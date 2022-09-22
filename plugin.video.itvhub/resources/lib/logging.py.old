@@ -1,0 +1,69 @@
+
+import os
+import logging
+from logging.handlers import RotatingFileHandler
+from logging.config import dictConfig
+
+from codequick.support import logger_id
+
+from . utils import addon_info
+
+# logger = logging.getLogger('itv')
+# file_handler = RotatingFileHandler(os.path.join(addon_info['profile'], addon_info['name'] + '.log'),
+#                                    mode='a',
+#                                    maxBytes=4000000,
+#                                    backupCount=2)
+# file_handler.setLevel(logging.DEBUG)
+# file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)-8s %(name)s: %(message)s'))
+# logger.addHandler(file_handler)
+# logger.propagate = False
+# logger.setLevel(logging.DEBUG)
+# logging.getLogger().setLevel(logging.DEBUG)
+
+
+log_cfg = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'default': {
+            'format': '%(asctime)s %(name)-20s  %(levelname)-8s: %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'default',
+            'filename': os.path.join(addon_info['profile'], addon_info['name'] + '.log'),
+            'maxBytes': 4 * 1024 * 1024,
+            'backupCount': 2,
+            'level': logging.DEBUG,
+        },
+        'screen': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default'
+        }
+    },
+    'loggers': {
+        logger_id: {
+            'propagate': False,
+            'handlers': ['file', 'screen'],
+            'level': logging.DEBUG,
+        },
+        logger_id +'.main': {
+            'level': logging.DEBUG,
+        },
+        logger_id + '.utils': {
+            'level': logging.DEBUG,
+        },
+    },
+    'root': {
+        'level': logging.DEBUG,
+    },
+}
+
+
+dictConfig(log_cfg)
+
+
+def shutdown_log():
+    logging.shutdown()

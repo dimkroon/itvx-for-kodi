@@ -1,0 +1,2 @@
+v.0.3.0
+Still a work in progress, but most things should be working reasonably well though

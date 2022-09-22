@@ -1,0 +1,17 @@
+<settings>
+  <!-- General -->
+  <category label="30100">
+      <setting label="30101" type="lsep"/>
+      <setting id="subtitles_show" label="30102" type="bool" default="false"/>
+      <setting id="subtitles_color" label="30103" type="bool" default="true" enable="eq(-1,true)"/>
+      <setting label="30110" type="lsep"/>
+      <setting id="log-file" type="bool" label="30111" default="false"/>
+      <setting id="log-handler" label="30112" type="text" default="kodi" visible="false"></setting>
+
+  </category>
+    <!-- ITV hub account -->
+    <category label="30300">
+        <setting id="hub-uname" type="text" label="30301" default=""/>
+        <setting id="hub-passw" type="text" label="30302" default="" option="hidden"/>
+    </category>
+</settings>
