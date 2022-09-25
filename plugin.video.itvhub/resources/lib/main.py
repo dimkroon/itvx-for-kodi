@@ -44,7 +44,7 @@ def root(_):
 # To prevent rather long waiting times when a user kind of quickly zaps between channels, the
 # listing is cached for a period short enough to not totally invalidate EPG data.
 
-@Route.register(cache_ttl=15)
+@Route.register(cache_ttl=4)
 def sub_menu_live(_):
     tv_schedule = itv.get_live_schedule()
     addon_path = utils.addon_info['path']
