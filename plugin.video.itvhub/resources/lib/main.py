@@ -276,7 +276,8 @@ def play_stream_live(_, channel, url):
         return
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url, resume_time='43200')
-    list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+    if list_item:
+        list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
     return list_item
 
 
@@ -296,7 +297,8 @@ def play_stream_catchup(_, url, name):
         return False
 
     list_item = create_dash_stream_item(name, manifest_url, key_service_url)
-    list_item.subtitles = itv.get_vtt_subtitles(subtitle_url)
+    if list_item:
+        list_item.subtitles = itv.get_vtt_subtitles(subtitle_url)
     return list_item
 
 
