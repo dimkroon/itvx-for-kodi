@@ -1,2 +1,7 @@
+v.0.3.1
+fix: episode without subtitle fails to play
+update live channels' epg a bit more frequent
+fix: some episodes are missing in listings
+
 v.0.3.0
 Still a work in progress, but most things should be working reasonably well though
