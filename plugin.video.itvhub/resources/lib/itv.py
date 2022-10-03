@@ -147,8 +147,9 @@ def get_catchup_urls(episode_url):
     dash_url = url_base + video_locations['Href']
     key_service = video_locations['KeyServiceUrl']
     try:
+        # usually stream_data['Subtitles'] is just None when no subtitles are not available
         subtitles = stream_data['Subtitles'][0]['Href']
-    except (KeyError, IndexError):
+    except (TypeError, KeyError, IndexError):
         subtitles = None
     return dash_url, key_service, subtitles
 

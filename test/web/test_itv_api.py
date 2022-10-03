@@ -113,7 +113,7 @@ class Productions(unittest.TestCase):
         )
         return resp.json()
 
-    def _validate_strcuture(self, productions_data):
+    def _validate_structure(self, productions_data):
         self.assertIsInstance(productions_data['count'], int)
         self.assertTrue('_embedded' in productions_data.keys())
         prod_list = productions_data['_embedded']['productions']
@@ -144,7 +144,7 @@ class Productions(unittest.TestCase):
         json_resp = self.get_json('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?'
                                   'programmeId=Y_1096&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,'
                                   'playready,widevine&broadcaster=itv')
-        self._validate_strcuture(json_resp)
+        self._validate_structure(json_resp)
 
     def test_productions_2020_the_story_of_us(self):
         """The long call - 4 episodes
@@ -154,7 +154,7 @@ class Productions(unittest.TestCase):
         json_resp = self.get_json('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?'
                                   'programmeId=2_6931&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,'
                                   'playready,widevine&broadcaster=itv')
-        self._validate_strcuture(json_resp)
+        self._validate_structure(json_resp)
 
     def test_productions_the_thief_his_wife_and_the_canoe(self):
         """The thief, his wife and the canoe - 4 episodes
@@ -164,7 +164,7 @@ class Productions(unittest.TestCase):
         json_resp = self.get_json('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?'
                                   'programmeId=10_1187&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,'
                                   'playready,widevine&broadcaster=itv')
-        self._validate_strcuture(json_resp)
+        self._validate_structure(json_resp)
 
     def test_productions_coronation_street(self):
         """Coronation Street, several episodes
@@ -174,7 +174,7 @@ class Productions(unittest.TestCase):
         json_resp =  self.get_json('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?'
                                    'programmeId=1_0694&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,'
                                    'playready,widevine&broadcaster=itv')
-        self._validate_strcuture(json_resp)
+        self._validate_structure(json_resp)
 
     def test_productions_the_chase(self):
         """The program item showed 52 episodes, but the productions listing only showed 1 item
@@ -183,7 +183,7 @@ class Productions(unittest.TestCase):
         json_resp =  self.get_json('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?'
                                    'programmeId=1_7842&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,'
                                    'playready,widevine&broadcaster=itv')
-        self._validate_strcuture(json_resp)
+        self._validate_structure(json_resp)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------
@@ -207,7 +207,9 @@ class Playlists(unittest.TestCase):
                     url,
                     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
                            'Cookie': acc_data.cookie},
-                    json=post_data)
+                    json=post_data,
+                    timeout=10
+            )
             self.assertEqual(200, resp.status_code)
             strm_data = resp.json()
             object_checks.check_live_stream_info(strm_data['Playlist'])
@@ -230,13 +232,17 @@ class Playlists(unittest.TestCase):
         acc_data = itv_account.itv_session()
         post_data = self.create_post_data()
         # post_data['user']['itvUserId'] = '92a3bfde-bfe1-40ea-ad43-09b8b522b7cb'
+
+        # Snooker UK open episode 10
+        url = 'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001'
+
         # request playlist of an episode of Doc Martin
-        url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
+        # url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
 
         # The bigger trip - episode 1
         # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
 
-        url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
+        # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
 
         # NOTE:
         #    Sometimes the returned json data contains a base url of
