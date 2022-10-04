@@ -53,15 +53,15 @@ class PersistentCookieJar(RequestsCookieJar):
         if not self._has_changed:
             return
         self.clear_expired_cookies()
+        self._has_changed = False
         with open(self.filename, 'wb') as f:
             pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
             logger.info("Saved cookies to file %s", cookie_file)
-        self._has_changed = False
 
     def set_cookie(self, cookie, *args, **kwargs):
         super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)
         logger.debug("Cookiejar sets cookie %s to %s", cookie.name, cookie.value)
-        self._has_changed = True
+        self._has_changed |= cookie.name != 'hdntl'
 
     def clear(self, domain=None, path=None, name=None) -> None:
         super(PersistentCookieJar, self).clear(domain, path, name)
@@ -189,6 +189,17 @@ def web_request(method, url, headers=None, data=None, **kwargs):
     except requests.HTTPError as e:
         # noinspection PyUnboundLocalVariable
         logger.info("HTTP error %s for url %s: '%s'", e.response.status_code, url, resp.content)
+
+        if 400 <= e.response.status_code < 500:
+            try:
+                resp_data = resp.json()
+            except json.JSONDecodeError:
+                pass
+            else:
+                if resp_data.get('error') == 'invalid_grant':
+                    descr = resp_data.get("error_description", 'Login failed"')
+                    raise AuthenticationError(descr)
+
         if e.response.status_code == 401:
             raise AuthenticationError()
         if e.response.status_code == 403:
