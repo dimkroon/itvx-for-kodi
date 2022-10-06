@@ -2,6 +2,7 @@
 <addon id="plugin.video.itvhub" name="ITV hub" version="0.3.0" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="inputstream.adaptive" version="19.0.5"/>
     <import addon="script.module.requests"/>
     <import addon="script.module.pytz"/>
     <import addon="script.module.six"/>
