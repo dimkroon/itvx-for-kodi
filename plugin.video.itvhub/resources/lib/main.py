@@ -83,8 +83,12 @@ def list_categories(_):
 
 
 @Route.register(cache_ttl=60)
-def list_programs(_, url):
+def list_programs(plugin, url):
     logger.debug("list programs for url '%s'", url)
+    plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                            xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE,
+                            disable_autosort=True)
+
     shows_list = itv.programmes(url)
     for show in shows_list:
         if show['episodes'] > 1:
