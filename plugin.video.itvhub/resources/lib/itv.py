@@ -1,5 +1,6 @@
 
 import os
+import string
 import time
 import logging
 
@@ -169,7 +170,71 @@ def categories():
     return ({'label': cat['name'], 'params': {'url': cat['_links']['doc:programmes']['href']}} for cat in cat_list)
 
 
-def programmes(url):
+def _create_program_item(item_data):
+    productions = item_data['_embedded']['productions']
+    latest_episode = item_data['_embedded']['latestProduction']
+
+    episode_count = productions['count']
+    orig_title = item_data.get('title', '')
+    if episode_count > 1:
+        title = '[B]{}[/B] - {} episodes'.format(orig_title, episode_count)
+    else:
+        title = orig_title
+
+    orig_title = orig_title.lower()
+
+    prog_item = {
+        'episodes': episode_count,
+        'show': {
+            'label': title,
+            'art': {'thumb': latest_episode['_links']['image']['href'].format(
+                width=960, height=540, quality=80, blur=0, bg='false')},
+            'info': {
+                'plot': item_data['synopses']['epg'],
+                'title': title,
+                'sorttitle': orig_title[4:] if orig_title.startswith('the ') else orig_title
+            },
+            'params': {
+                'name': item_data.get('title', ''),
+                'url': (productions['_links']['doc:productions']['href'] if episode_count > 1
+                        else latest_episode['_links']['playlist']['href'])
+            }
+        }
+    }
+    if episode_count == 1:
+        duration = utils.duration_2_seconds(latest_episode.get('duration'))
+        if duration:
+            prog_item['info']['duration'] = duration
+    return prog_item
+
+
+cached_programs = {}
+CACHE_TIME = 600
+
+
+def _get_programs(url):
+    """Return the cached list of programs is present in the cache and not expired, or
+    create a new list from data from itv hub.
+    Cache the list in memory for the lifetime of the addon, to a maximum of CACHE_TIME in seconds
+
+    """
+    progs = cached_programs.get(url)
+    if progs and progs['expires'] < time.monotonic():
+        logger.debug("Programs list cache hit")
+        return progs['progs_list']
+    else:
+        logger.debug("Programs list cache miss")
+        result = fetch.get_json(
+            url,
+            headers={'Accept': 'application/vnd.itv.online.discovery.programme.v1+hal+json'})
+
+        prog_data_list = result['_embedded']['programmes']
+        progr_list = [_create_program_item(prog) for prog in prog_data_list]
+        cached_programs[url] = {'progs_list': progr_list, 'expires': time.monotonic() + CACHE_TIME}
+        return progr_list
+
+
+def programmes(url, filter_char=None):
     """Get a listing of programmes
 
     A programmes data structure consist of a listing of 'programmes' (i.e. shows, or series)
@@ -183,42 +248,22 @@ def programmes(url):
     can be passed as a playable item to kodi.
 
     """
-    result = fetch.get_json(
-        url,
-        headers={'Accept': 'application/vnd.itv.online.discovery.programme.v1+hal+json'})
-    prog_list = result['_embedded']['programmes']
-    for prog in prog_list:
-        productions = prog['_embedded']['productions']
-        latest_episode = prog['_embedded']['latestProduction']
+    t_start = time.monotonic()
+    progr_list = _get_programs(url)
 
-        episode_count = productions['count']
-        if episode_count > 1:
-            title = '[B]{}[/B] - {} episodes'.format(prog.get('title', ''), episode_count)
-        else:
-            title = prog.get('title', '')
+    if filter_char is None:
+        result = progr_list
+    elif len(filter_char) == 1:
+        # filter on a single character
+        filter_char = filter_char.lower()
+        result = [prog for prog in progr_list if prog['show']['info']['sorttitle'][0] == filter_char]
+    else:
+        # like '0-9'. Return anything not a character
+        filter_char = string.ascii_lowercase
+        result = [prog for prog in progr_list if prog['show']['info']['sorttitle'][0] not in filter_char]
 
-        prog_item = {
-            'episodes': episode_count,
-            'show': {
-                'label': title,
-                'art': {'thumb': latest_episode['_links']['image']['href'].format(
-                    width=960, height=540, quality=80, blur=0, bg='false')},
-                'info': {
-                    'plot': prog['synopses']['epg'],
-                    'title': title
-                },
-                'params': {
-                    'name': prog.get('title', ''),
-                    'url': (productions['_links']['doc:productions']['href'] if episode_count > 1
-                            else latest_episode['_links']['playlist']['href'])
-                }
-            }
-        }
-        if episode_count == 1:
-            duration = utils.duration_2_seconds(latest_episode.get('duration'))
-            if duration:
-                prog_item['info']['duration'] = duration
-        yield prog_item
+    logger.debug("Created programs list in %s sec.", time.monotonic() - t_start)
+    return result
 
 
 def productions(url, show_name):
