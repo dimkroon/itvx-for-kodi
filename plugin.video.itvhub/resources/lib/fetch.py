@@ -35,7 +35,7 @@ from resources.lib.errors import *
 from resources.lib import utils
 
 WEB_TIMEOUT = (3.5, 7)
-USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0'
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
