@@ -1,11 +1,14 @@
-import account_login
-account_login.set_credentials()
+from test.support import fixtures
+fixtures.global_setup()
 
 import unittest
 from unittest.mock import MagicMock
 from typing import MutableMapping
 
 from resources.lib import main
+
+
+setUpModule = fixtures.setup_web_test
 
 
 class TestMenu(unittest.TestCase):
