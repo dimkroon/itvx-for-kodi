@@ -202,8 +202,6 @@ def web_request(method, url, headers=None, data=None, **kwargs):
 
         if e.response.status_code == 401:
             raise AuthenticationError()
-        if e.response.status_code == 403:
-            raise GeoRestrictedError
         else:
             resp = e.response
             raise HttpError(resp.status_code, resp.reason)
