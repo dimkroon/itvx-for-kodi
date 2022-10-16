@@ -83,8 +83,8 @@ msgid "Account error"
 msgstr ""
 
 msgctxt "#30611"
-msgid "You need to log in to your ITV hub account.\n"
-"You can always sign in out on the addon's settings page."
+msgid "You need to sign in to your ITV hub account.\n"
+"You can always sign in and out on the addon's settings page."
 msgstr ""
 
 msgctxt "#30612"
@@ -124,7 +124,7 @@ msgid "Play from the start"
 msgstr ""
 
 msgctxt "#30621"
-msgid "Sign in now"
+msgid "Open settings"
 msgstr ""
 
 # Generic button texts

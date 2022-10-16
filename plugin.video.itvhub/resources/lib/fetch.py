@@ -191,13 +191,16 @@ def web_request(method, url, headers=None, data=None, **kwargs):
         logger.info("HTTP error %s for url %s: '%s'", e.response.status_code, url, resp.content)
 
         if 400 <= e.response.status_code < 500:
+            # noinspection PyBroadException
             try:
                 resp_data = resp.json()
-            except json.JSONDecodeError:
+            except:
+                # Intentional broad exception as requests can raise various types of errors deping on python
+                # version and requests.JSONDecodeError does not always seem to catch them.
                 pass
             else:
-                if resp_data.get('error') == 'invalid_grant':
-                    descr = resp_data.get("error_description", 'Login failed"')
+                if resp_data.get('error') in ('invalid_grant', 'invalid_request'):
+                    descr = resp_data.get("error_description", 'Login failed')
                     raise AuthenticationError(descr)
 
         if e.response.status_code == 401:

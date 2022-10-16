@@ -34,13 +34,13 @@ logger = logging.getLogger('.'.join((logger_id, __name__)))
 @Script.register()
 def login(_):
     # just to provide a route for settings' log in
-    itv_account.session().login()
+    itv_account.itv_session().login()
 
 
 @Script.register()
 def logout(_):
     # just to provide a route for settings' log out
-    if itv_account.session().log_out():
+    if itv_account.itv_session().log_out():
         Script.notify(Script.localize(kodi_utils.TXT_ITV_ACCOUNT),
                       Script.localize(kodi_utils.MSG_LOGGED_OUT_SUCCESS),
                       Script.NOTIFY_INFO)
