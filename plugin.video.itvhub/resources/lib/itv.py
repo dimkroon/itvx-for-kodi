@@ -274,6 +274,7 @@ def productions(url, show_name):
         item_count -= 1
         episode_map = series.setdefault(series_idx, {})
         episode_map[episode_idx or item_count] = episode
+
     # turn the mappings in a list of series
     series_list = [
         {'name': 'Series {}'.format(k) if k != 0 else 'Other episodes',

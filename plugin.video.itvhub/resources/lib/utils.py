@@ -3,16 +3,12 @@
 from __future__ import unicode_literals
 
 import logging
-import os
-import sys
 import time
 from datetime import datetime
 
-import requests
 from xbmcvfs import translatePath
 import xbmcaddon
 
-from codequick import Script
 from codequick.support import logger_id
 from . errors import *
 
@@ -150,8 +146,8 @@ def xml_to_srt(xml_data, outfile):
 def vtt_to_srt(vtt_doc: str) -> str:
     """Convert a string containing subtitles in vtt format into a format kodi accepts.
 
-    Very simple that does not expect much styling, position or colours and tries
-    to ignore most fancy vtt stuff. But seems to be enough for Cinetree films.
+    Very simple converter that does not expect much styling, position or colours and tries
+    to ignore most fancy vtt stuff. But seems to be enough for most itv subtitles.
 
     All styling, except bold, italic and underline defined by HTML text in the cue payload is
     removed, as well as position information.
@@ -233,7 +229,7 @@ def duration_2_seconds(duration: str):
 
         if units == 'min':
             return int(splits[0]) * 60
-    except (ValueError, AttributeError):
+    except (ValueError, AttributeError, IndexError):
         return None
 
 

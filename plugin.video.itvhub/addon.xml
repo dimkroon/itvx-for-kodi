@@ -16,7 +16,7 @@
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary>Live TV and catchup from ITV Hub</summary>
-    <description>This add-on enables playing live and Catchup TV from ITV Hub. An ITV account is required </description>
+    <description>This add-on enables playing live and Catchup TV from ITV Hub. An ITV account is required.</description>
     <disclaimer lang="en">This add-on is not developed by ITV and is no way affiliated with, or endorsed by ITV.
     </disclaimer>
     <assets>

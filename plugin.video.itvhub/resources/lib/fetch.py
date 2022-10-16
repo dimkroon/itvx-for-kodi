@@ -30,9 +30,9 @@ import json
 from codequick import Script
 from codequick.support import logger_id
 
-
 from resources.lib.errors import *
 from resources.lib import utils
+
 
 WEB_TIMEOUT = (3.5, 7)
 USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0'
@@ -56,7 +56,7 @@ class PersistentCookieJar(RequestsCookieJar):
         self._has_changed = False
         with open(self.filename, 'wb') as f:
             pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
-            logger.info("Saved cookies to file %s", cookie_file)
+        logger.info("Saved cookies to file %s", cookie_file)
 
     def set_cookie(self, cookie, *args, **kwargs):
         super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)

@@ -36,7 +36,7 @@ def root(_):
             sub_menu_from_page,
             'Full series',
             params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
-    yield Listitem.from_dict(list_categories, 'categories')
+    yield Listitem.from_dict(list_categories, 'Categories')
 
 
 # In order to ensure that epg data is refreshed when a live stream is stopped, kodi is
