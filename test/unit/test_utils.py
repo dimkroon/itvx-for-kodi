@@ -45,22 +45,10 @@ class Generic(TestCase):
         info = utils.create_addon_info("my.some.plugin")
         self.assertEqual(set(info.keys()).intersection(keys), keys)
 
-    def test_kodi_vers_major(self):
-        self.assertIsInstance(utils.kodi_vers_major, int)
-
     def test_get_os(self):
         cur_os = utils.get_os()
-        self.assertIsInstance(cur_os, str)
-        self.assertGreater(len(cur_os), 2)
-
-    def test_get_subtitles_temp_file(self):
-        fname = utils.get_subtitles_temp_file()
-        self.assertTrue(fname.endswith('.srt'))
-        # check it is a full path
-        if platform.system().startswith('Win'):
-            self.assertTrue(fname[1:3], ':\\')
-        else:
-            self.assertTrue((fname.startswith('/')))
+        self.assertIsInstance(cur_os, tuple)
+        self.assertEqual(2, len(cur_os))
 
     def test_random_string(self):
         s = utils.random_string(8)
@@ -72,10 +60,6 @@ class Generic(TestCase):
         self.assertEqual(50 * 60, utils.duration_2_seconds('50 min'))
         self.assertEqual(123 * 60, utils.duration_2_seconds('123 min'))
         self.assertEqual(62 * 60, utils.duration_2_seconds('62'))
-        self.assertEqual(190, utils.duration_2_seconds('3.18'))
-        self.assertEqual(90, utils.duration_2_seconds('1:30'))
-        self.assertEqual(90, utils.duration_2_seconds('01:30'))
-        self.assertEqual(3930, utils.duration_2_seconds('1:05:30'))
 
         self.assertIsNone(utils.duration_2_seconds('1.25 hrs'))
         self.assertIsNone(utils.duration_2_seconds(''))
@@ -199,140 +183,3 @@ STYLE
             srt = utils.vtt_to_srt(vtt)
             self.assertGreater(len(srt), 100)
 
-
-class ReplaceMarkdown(TestCase):
-    def test_empty_string(self):
-        self.assertEqual('', resources.lib.utils.replace_markdown(''))
-
-    def test_none_value(self):
-        self.assertIsNone(resources.lib.utils.replace_markdown(None))
-
-    def test_non_string_value(self):
-        self.assertEqual('', resources.lib.utils.replace_markdown(123))
-
-    def test_remove_italics(self):
-        new_str = resources.lib.utils.replace_markdown("Dit is *een* string")
-        self.assertEqual(r"Dit is [I]een[/I] string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is _een_ string")
-        self.assertEqual(r"Dit is [I]een[/I] string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is *een_ string")
-        self.assertEqual(r"Dit is *een_ string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is _een* string")
-        self.assertEqual(r"Dit is _een* string", new_str)
-
-    def test_remove_italics_with_escaped_characters(self):
-        new_str = resources.lib.utils.replace_markdown(r"\* Dit is *een \*nieuwe\** string")
-        self.assertEqual(r"* Dit is [I]een *nieuwe*[/I] string", new_str)
-        new_str = resources.lib.utils.replace_markdown(r"\* Dit is _een \_nieuwe\__ string en een \*_oude_")
-        self.assertEqual(r"* Dit is [I]een _nieuwe_[/I] string en een *[I]oude[/I]", new_str)
-        new_str = resources.lib.utils.replace_markdown(r"Dit is _een \_\_\\nieuwe\\_ string en een _oude_")
-        self.assertEqual(r"Dit is [I]een __\nieuwe\[/I] string en een [I]oude[/I]", new_str)
-        new_str = resources.lib.utils.replace_markdown(r"Dit is *een \*\_\\nieuwe\\* string en een *oude*")
-        self.assertEqual(r"Dit is [I]een *_\nieuwe\[/I] string en een [I]oude[/I]", new_str)
-        # Ensure that markdown just after escaped backslashes is handled correctly
-        new_str = resources.lib.utils.replace_markdown(r"Dit is een \\*nieuwe* string en *dit* een oude")
-        self.assertEqual(r"Dit is een \[I]nieuwe[/I] string en [I]dit[/I] een oude", new_str)
-        # Ensure escaped backslashes at the start of a string are handled well
-        new_str = resources.lib.utils.replace_markdown(r"\\*Dit* is een *nieuwe* string")
-        self.assertEqual(r"\[I]Dit[/I] is een [I]nieuwe[/I] string", new_str)
-
-    def test_remove_bold(self):
-        new_str = resources.lib.utils.replace_markdown("Dit is **een** string")
-        self.assertEqual(r"Dit is [B]een[/B] string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is __een__ string")
-        self.assertEqual(r"Dit is [B]een[/B] string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is **een__ string")
-        self.assertEqual(r"Dit is **een__ string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is __een** string")
-        self.assertEqual(r"Dit is __een** string", new_str)
-
-    def test_remove_bold_with_escaped_characters(self):
-        new_str = resources.lib.utils.replace_markdown(r"\* Dit is **een \*nieuwe\*** string")
-        self.assertEqual(r"* Dit is [B]een *nieuwe*[/B] string", new_str)
-        new_str = resources.lib.utils.replace_markdown(r"\* Dit is __een \_nieuwe\___ string en een \*__oude__")
-        self.assertEqual(r"* Dit is [B]een _nieuwe_[/B] string en een *[B]oude[/B]", new_str)
-        new_str = resources.lib.utils.replace_markdown(r"Dit is __een \_\_\\nieuwe\\__ string en een __oude__")
-        self.assertEqual(r"Dit is [B]een __\nieuwe\[/B] string en een [B]oude[/B]", new_str)
-        new_str = resources.lib.utils.replace_markdown(r"Dit is **een \*\_\\nieuwe\\** string en een **oude**")
-        self.assertEqual(r"Dit is [B]een *_\nieuwe\[/B] string en een [B]oude[/B]", new_str)
-        # Ensure that markdown just after an escaped backslashes is handled correctly
-        new_str = resources.lib.utils.replace_markdown(r"Dit is een \\**nieuwe** string en **dit** een oude")
-        self.assertEqual(r"Dit is een \[B]nieuwe[/B] string en [B]dit[/B] een oude", new_str)
-        # Ensure escaped backslashes at the start of a string are handled well
-        new_str = resources.lib.utils.replace_markdown(r"\\**Dit** is een **nieuwe** string")
-        self.assertEqual(r"\[B]Dit[/B] is een [B]nieuwe[/B] string", new_str)
-
-    def test_remove_bold_italics(self):
-        new_str = resources.lib.utils.replace_markdown("Dit is ***een*** string")
-        self.assertEqual(r"Dit is [B][I]een[/B][/I] string", new_str)
-        # might not be legal markdown, but it is the intended result of the function
-        new_str = resources.lib.utils.replace_markdown("Dit is ___een___ string en __nog_ een")
-        self.assertEqual(r"Dit is [B][I]een[/B][/I] string en [I]_nog[/I] een", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is _**een**_ string")
-        self.assertEqual(r"Dit is [I][B]een[/B][/I] string", new_str)
-        new_str = resources.lib.utils.replace_markdown("Dit is **_een_** string")
-        self.assertEqual(r"Dit is [B][I]een[/I][/B] string", new_str)
-
-    def test_remove_link(self):
-        old_str = 'op rij (na The Wind [I, Daniel Blake](\u002Ffilms\u002Fi-daniel-blake)) [samen] met '
-        new_str = resources.lib.utils.replace_markdown(old_str)
-        self.assertEqual('op rij (na The Wind I, Daniel Blake) [samen] met ', new_str)
-        # backslash escapes in the link text
-        old_str = 'op rij (na The Wind [I, \\[Daniel\\] Blake](\u002Ffilms\u002Fi-daniel-blake)) [samen] met '
-        new_str = resources.lib.utils.replace_markdown(old_str)
-        self.assertEqual('op rij (na The Wind I, [Daniel] Blake) [samen] met ', new_str)
-
-    def test_remove_all(self):
-        txt = 'op rij (na The **Wind** That Shakes the Barley *[I, Daniel Blake](\u002Ffilms\u002Fi-daniel-blake)*) samen met '
-        new_str = resources.lib.utils.replace_markdown(txt)
-        self.assertEqual('op rij (na The [B]Wind[/B] That Shakes the Barley [I]I, Daniel Blake[/I]) samen met ', new_str)
-
-
-class RemoveMarkdownFromQuotedString(TestCase):
-    def handle_saved_doc(self, filename):
-        with open(doc_path(filename)) as f:
-            doc = f.read()
-
-        new_doc = resources.lib.utils.replace_markdown_from_quoted_strings(doc)
-        pos = new_doc.find('*')
-        while pos > -1:
-            # ensure all * left over in the document are escaped
-            self.assertEqual(new_doc[pos-1], '\\', f"'* character found at position {pos}: {new_doc[pos-100:pos+100]}")
-            pos = new_doc.find('*', pos + 1)
-
-    def test_remove_from_films_and_docus(self):
-        self.handle_saved_doc("films_en_docus-payload.js")
-
-    def test_remove_from_collecties_drama(self):
-        self.handle_saved_doc("collecties-drama-payload.js")
-
-
-class RemoveMarkdown(TestCase):
-    def test_remove_markdown(self):
-        result = utils.remove_markdown('some *italics* in a string')
-        self.assertEqual('some italics in a string', result)
-        result = utils.remove_markdown('some _italics_ in a string')
-        self.assertEqual('some italics in a string', result)
-        result = utils.remove_markdown('some __bold__ in a string')
-        self.assertEqual('some bold in a string', result)
-        result = utils.remove_markdown('some ### Header in a string')
-        self.assertEqual('some  Header in a string', result)
-
-    def test_remove_with_escapes(self):
-        result = utils.remove_markdown(r'some \*italics\* *in* a string')
-        self.assertEqual(r'some *italics* in a string', result)
-        result = utils.remove_markdown(r'some \_italics\_ _in_ a string')
-        self.assertEqual(r'some _italics_ in a string', result)
-        result = utils.remove_markdown(r'\_some \_italics\_ _in_ a string')
-        self.assertEqual(r'_some _italics_ in a string', result)
-        result = utils.remove_markdown(r'some \__italics_\_ in a string')
-        self.assertEqual('some _italics_ in a string', result)
-
-    def test_escaped_backslashes(self):
-        result = utils.remove_markdown(r'\\_some \\_italics\\_ _in_ a string')
-        self.assertEqual(r'\some \italics\ in a string', result)
-
-    def test_invalid_values(self):
-        self.assertEqual('', utils.remove_markdown(''))
-        self.assertIsNone(utils.remove_markdown(None))
-        self.assertEqual('', utils.remove_markdown(['dfg', 1]))

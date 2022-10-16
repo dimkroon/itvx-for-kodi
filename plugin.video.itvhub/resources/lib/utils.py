@@ -38,12 +38,8 @@ logger = logging.getLogger(logger_id + '.utils')
 
 
 def get_os():
-    # noinspection PyBroadException
-    try:
-        cur_os = os.environ.get("OS")
-    except:
-        cur_os = "unknown"
-    return cur_os
+    import platform
+    return platform.system(), platform.machine()
 
 
 def random_string(length):

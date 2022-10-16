@@ -100,9 +100,9 @@ class HttpSession(requests.sessions.Session):
 
         resp = super(HttpSession, self).request(
                 method, url,
-                params, data, headers, cookies, files,
-                auth, timeout, allow_redirects, proxies,
-                hooks, stream, verify, cert, json)
+                params=params, data=data, headers=headers, cookies=cookies, files=files,
+                auth=auth, timeout=timeout, allow_redirects=allow_redirects, proxies=proxies,
+                hooks=hooks, stream=stream, verify=verify, cert=cert, json=json)
 
         # noinspection PyUnresolvedReferences
         self.cookies.save()
