@@ -327,7 +327,7 @@ def get_vtt_subtitles(subtitles_url):
         # with open(vtt_file, 'w', encoding='utf8') as f:
         #     f.write(vtt_doc)
 
-        srt_doc = utils.vtt_to_srt(vtt_doc)
+        srt_doc = utils.vtt_to_srt(vtt_doc, colourize=Script.setting['subtitles_color'] != 'false')
         srt_file = os.path.join(utils.addon_info['profile'], 'subitles.srt')
         with open(srt_file, 'w', encoding='utf8') as f:
             f.write(srt_doc)

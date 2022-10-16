@@ -143,7 +143,7 @@ def xml_to_srt(xml_data, outfile):
         outfile.write('\n')
 
 
-def vtt_to_srt(vtt_doc: str) -> str:
+def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
     """Convert a string containing subtitles in vtt format into a format kodi accepts.
 
     Very simple that does not expect much styling, position or colours and tries
@@ -197,7 +197,7 @@ def vtt_to_srt(vtt_doc: str) -> str:
 
         srt_doc = f.getvalue()
 
-        if Script.setting['subtitles_color'] == 'true':
+        if colourize:
             # Remove any markup tag other than the supported bold, italic underline and colour.
             srt_doc = re.sub(r'<([^biuc]).*?>(.*)</\1.*?>', r'\2', srt_doc)
 
@@ -205,8 +205,9 @@ def vtt_to_srt(vtt_doc: str) -> str:
             def sub_color_tags(match):
                 colour = match[1]
                 if colour in ('white', 'yellow', 'green', 'cyan'):
-                    return '<font color="{}">{}</font>'.format(match[1], match[2])
+                    return '<font color="{}">{}</font>'.format(colour, match[2])
                 else:
+                    logger.debug("Unsupported colour '%s' in vtt file", colour)
                     return match[2]
 
             srt_doc = re.sub(r'<c\.(.*?)>(.*)</c>', sub_color_tags, srt_doc)
