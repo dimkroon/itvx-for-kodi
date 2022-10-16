@@ -30,8 +30,8 @@ from codequick.support import addon_data, logger_id
 logger = logging.getLogger(logger_id + '.kodi_utils')
 
 
-TXT_LOG_TARGETS = 30106
-TXT_ITV_ACCOUNT = 30300
+TXT_LOG_TARGETS = 30112
+TXT_ITV_ACCOUNT = 30200
 
 TXT_MORE_INFO = 30604
 

@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: Cinetree
-# Addon id: plugin.video.cinetree
-# Addon Provider: Kereltje
+# Addon Name: ITV hub
+# Addon id: plugin.video.itvhub
+# Addon Provider: Dim Kroon
 
 msgid ""
 msgstr ""
@@ -22,7 +22,7 @@ msgid "General"
 msgstr ""
 
 msgctxt "#30101"
-msgid "Subtitles"
+msgid "Catchup Subtitles"
 msgstr ""
 
 msgctxt "#30102"
@@ -34,35 +34,36 @@ msgid "Use coloured subtitles"
 msgstr ""
 
 msgctxt "#30110"
-msgid "Debug logging"
+msgid "Logging"
 msgstr ""
 
 msgctxt "#30111"
-msgid "Enable log file"
-msgstr ""
-
-msgctxt "#30112"
 msgid "Log to:"
 msgstr ""
 
-msgctxt "#30113"
+msgctxt "#30112"
 msgid "Kodi log,File,No logging"
 msgstr ""
 
-msgctxt "#30114"
+msgctxt "#30113"
 msgid "Log level"
 msgstr ""
 
-msgctxt "#30300"
+msgctxt "#30200"
 msgid "ITV Hub account"
 msgstr ""
 
-msgctxt "#30301"
-msgid "User name"
+
+msgctxt "#30201"
+msgid "Sign in"
 msgstr ""
 
-msgctxt "#30302"
-msgid "Password"
+msgctxt "#30202"
+msgid "Sign out"
+msgstr ""
+
+msgctxt "#30203"
+msgid "Show password during entry"
 msgstr ""
 
 
@@ -77,25 +78,21 @@ msgctxt "#30608"
 msgid "Nothing found"
 msgstr ""
 
-msgctxt "#30609"
-msgid "Too many results, not everything can be shown"
-msgstr ""
-
 msgctxt "#30610"
 msgid "Account error"
 msgstr ""
 
 msgctxt "#30611"
 msgid "You need to log in to your ITV hub account.\n"
-"You can always log in and log out on the Cinetree addon's settings page."
+"You can always sign in out on the addon's settings page."
 msgstr ""
 
 msgctxt "#30612"
-msgid "Successfully logged in!"
+msgid "Successfully signed in!"
 msgstr ""
 
 msgctxt "#30613"
-msgid "Logged out!"
+msgid "Signed out!"
 msgstr ""
 
 msgctxt "#30614"
@@ -127,7 +124,7 @@ msgid "Play from the start"
 msgstr ""
 
 msgctxt "#30621"
-msgid "Login now"
+msgid "Sign in now"
 msgstr ""
 
 # Generic button texts
@@ -182,11 +179,11 @@ msgid "Access not allowed."
 msgstr ""
 
 msgctxt "#30902"
-msgid "Not logged in at ITV hub."
+msgid "Not signed in at ITV hub."
 msgstr ""
 
 msgctxt "#30903"
-msgid "Login to account failed."
+msgid "Sign in to account failed."
 msgstr ""
 
 msgctxt "#30904"
