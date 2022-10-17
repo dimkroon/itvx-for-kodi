@@ -195,6 +195,8 @@ class Playlists(unittest.TestCase):
         post_data = itv.stream_req_data.copy()
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
+        featureset = post_data['variantAvailability']['featureset']
+        featureset['min'] = featureset['max']
         return post_data
 
     def test_get_playlist_live(self):
@@ -233,7 +235,7 @@ class Playlists(unittest.TestCase):
         post_data = self.create_post_data()
         # post_data['user']['itvUserId'] = '92a3bfde-bfe1-40ea-ad43-09b8b522b7cb'
 
-        # Snooker UK open episode 10
+        # Snooker UK open episode 10 - an episode without subtitles
         url = 'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001'
 
         # request playlist of an episode of Doc Martin
@@ -257,16 +259,20 @@ class Playlists(unittest.TestCase):
         #    without any.
         #    Anyway; it appears that without the itv.Session coockie there is a better change
         #    to get links to blue.content.itv.com.
-        resp = requests.post(
-            url,
-            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'},
-            json=post_data)
-        self.assertEqual(200, resp.status_code)
+        # resp = requests.post(
+        #     url,
+        #     headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'},
+        #     json=post_data)
+        resp = itv_account.fetch_authenticated(
+            fetch.post_json, url,
+            data=post_data,
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'})
+
         return resp
 
     def test_get_playlist_catchup(self):
         resp = self.get_playlist_catchup()
-        strm_data = resp.json()
+        strm_data = resp
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
 
     def test_replace_cdn1_for_blue_in_manifest_url(self):

@@ -81,7 +81,7 @@ stream_req_data = {
     'variantAvailability': {
         'featureset': {
             'max': ['mpeg-dash', 'widevine', 'outband-webvtt'],
-            'min': ['mpeg-dash', 'widevine']
+            'min': ['mpeg-dash', 'widevine', 'outband-webvtt']
         },
         'platformTag': 'dotcom'
     }
@@ -98,8 +98,16 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
 
         if stream_type == 'live':
             accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
+            # Live MUST have a featureset without outband-webvtt, or a bad request is returned.
+            min_features =  ['mpeg-dash', 'widevine']
         else:
             accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+            #  ITV appears now to use the min feature for catchup streams, causing subtitles
+            #  to go missing if not specfied here. Min and max both specifying webvtt appears to
+            # be no problem for catchup streams that don't have subtitles.
+            min_features = ['mpeg-dash', 'widevine', 'outband-webvtt']
+
+        stream_req_data['variantAvailability']['featureset']['min'] = min_features
 
         stream_data = fetch.post_json(
             url, stream_req_data,
@@ -361,7 +369,13 @@ def get_playlist_url_from_episode_page(page_url):
 
 
 def get_vtt_subtitles(subtitles_url):
-    if not subtitles_url or Script.setting['subtitles_show'] != 'true':
+    if not subtitles_url:
+        logger.info('No subtitles available for this stream')
+        return None
+
+    show_subtitles = Script.setting['subtitles_show'] == 'true'
+    if show_subtitles is False:
+        logger.info('Ignored subtitles by entry in settings')
         return None
 
     # noinspection PyBroadException
