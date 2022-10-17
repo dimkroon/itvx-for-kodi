@@ -63,6 +63,18 @@ def open_doc(doc):
     return wrapper
 
 
+def save_json(data, filename):
+    """Save a data structure in json format to a file in the test_docs directory"""
+    with open(doc_path(filename), 'w') as f:
+        json.dump(data, f)
+
+
+def save_doc(data, filename):
+    """Save a data as text to a file in the test_docs directory"""
+    with open(doc_path(filename), 'w') as f:
+        f.write(data)
+
+
 class HttpResponse(Response):
     """Create a requests.Response object with various attributes set.
     Can be used as the `return_value` of a mocked request.request.
@@ -82,4 +94,3 @@ class HttpResponse(Response):
             if status_code is None:
                 self.status_code = 200
                 self.reason = 'OK'
-
