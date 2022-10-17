@@ -20,23 +20,24 @@ class ItvSession:
     def __init__(self):
         self.account_data = {}
         self.read_account_data()
-        addon = utils.addon_info['addon']
-        self.uname = addon.getSetting('hub-uname')
-        self.passw = addon.getSetting('hub-passw')
-        if self.account_data and (
-                self.uname != self.account_data.get('uname') or self.passw != self.account_data.get('passw')):
-            # Force a new login on a token request
-            logger.warning("Stored username and/or password does not match those in the plugin's settings.")
-            self.account_data = None
+        self.uname = self.account_data.get('uname')
 
     @property
     def access_token(self):
-        if not self.account_data:   # account data can be None or an empty dict
-            self.login()
-        elif self.account_data['refreshed'] < time.time() - 24 * 3600:
-            # renew tokens periodically
-            self.refresh()
-        return self.account_data['itv_session']['access_token']
+        """Return the cached access token, but refresh first if it has expired.
+        Raise AuthenticationError when the token is not present.
+
+        """
+        try:
+            if self.account_data['refreshed'] < time.time() - 4 * 3600:
+                # renew tokens periodically
+                logger.debug("Token cache time has expired.")
+                self.refresh()
+
+            return self.account_data['itv_session']['access_token']
+        except (KeyError, TypeError):
+            logger.debug("Cannot produce access token from account data: %s", self.account_data)
+            raise AuthenticationError
 
     @property
     def cookie(self):
@@ -55,7 +56,7 @@ class ItvSession:
                 acc_data = json.load(f)
         except (OSError, IOError, ValueError) as err:
             logger.error("Failed to read account data: %r" % err)
-            acc_data = None
+            acc_data = {}
         self.account_data = acc_data
 
     def save_account_data(self):
@@ -65,17 +66,24 @@ class ItvSession:
         logger.debug("ITV account data saved to file")
 
     def login(self, uname=None, passw=None):
-        """Perform login to itv hub.
+        """Sign in to account.
 
-        Post credentials. The webbrowser sends no other cookies than an akamai-bm-telemetry cookie
+        The user is asked for username and password and a sign in attempt is made.
+        Returns True on success, False when sign in has been canceled (by the user).
+
+        Raises AuthenticationError if login fails (and the user does not want to try
+        again), or other exceptions as they occur, like e.g. FetchError.
         """
         self.account_data = {}
 
         if uname is None:
             uname = self.uname
 
-        if passw is None:
-            passw = self.passw
+        uname, passw = kodi_utils.ask_credentials(uname, passw)
+        if not all((uname, passw)):
+            return False
+
+        self.uname = uname
 
         req_data = {
             'grant_type': 'password',
@@ -84,7 +92,8 @@ class ItvSession:
             'password': passw,
             'scope': 'content'
         }
-        logger.info("trying to log in to ITV account as %s" % self.uname)
+
+        logger.info("trying to sign in to ITV account")
         try:
             # Post credentials
             session_data = fetch.post_json(
@@ -96,8 +105,7 @@ class ItvSession:
             )
 
             self.account_data = {
-                'uname': self.uname,
-                'passw': self.passw,
+                'uname': uname,
                 'refreshed': time.time(),
                 'itv_session': session_data,
                 'cookies': {
@@ -107,15 +115,21 @@ class ItvSession:
             cookie_str = self.build_cookie(session_data['access_token'], session_data['refresh_token'])
             self.account_data['cookies']['cookie_str'] = cookie_str
         except FetchError as e:
-            # Testing showed that itv hub returned error 400 on failed logins, but accept 401 as well.
-            logger.error("Error logging in to ITV account: %r" % e)
-            if isinstance(e, AuthenticationError) or (isinstance(e, HttpError) and e.code == 400):
-                raise AuthenticationError(
-                        "Login to ITV hub failed. Please edit account in settings.")
+            # Testing showed that itv hub can return various HTTP status codes on a failed sign in attempt.
+            # Sometimes returning a json string containing the reason of failure, sometimes and HTML page.
+            logger.error("Error signing in to ITV account: %r" % e)
+            if isinstance(e, AuthenticationError) or (isinstance(e, HttpError) and e.code in (400, 401, 403)):
+                if kodi_utils.ask_login_retry(str(e)):
+                    return self.login(uname, passw)
+                else:
+                    raise AuthenticationError
             else:
                 raise
         else:
+            logger.info("Sign in successful")
+            kodi_utils.show_login_result(success=True)
             self.save_account_data()
+            return True
 
     def refresh(self):
         """Refresh tokens.
@@ -164,6 +178,11 @@ class ItvSession:
         )
         return cookiestr
 
+    def log_out(self):
+        self.account_data = {}
+        self.save_account_data()
+        return True
+
 
 _itv_session_obj = None
 
@@ -187,6 +206,7 @@ def fetch_authenticated(funct, url, **kwargs):
 
     """
     account = itv_session()
+    logger.debug("making authenticated request")
 
     for tries in range(2):
         try:
@@ -200,8 +220,11 @@ def fetch_authenticated(funct, url, **kwargs):
             return funct(url=url, **kwargs)
         except AuthenticationError:
             if tries == 0:
+                logger.debug("Authentication failed on first attempt")
                 if account.refresh() is False:
+                    logger.debug("")
                     if not (kodi_utils.show_msg_not_logged_in() and account.login()):
                         raise
             else:
+                logger.debug("Authentication failed on second attempt")
                 raise

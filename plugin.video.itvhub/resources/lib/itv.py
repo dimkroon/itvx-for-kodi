@@ -12,6 +12,7 @@ from codequick.support import logger_id
 from . import utils
 from . import fetch
 from . import parse
+from . import kodi_utils
 
 from .errors import AuthenticationError
 
@@ -89,29 +90,35 @@ stream_req_data = {
 
 def _request_stream_data(url, stream_type='live', retry_on_error=True):
     from .itv_account import itv_session
-
-    stream_req_data['user']['token'] = itv_session().access_token
-    stream_req_data['client']['supportsAdPods'] = stream_type != 'live'
-
-    if stream_type == 'live':
-        accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
-    else:
-        accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+    session = itv_session()
 
     try:
+        stream_req_data['user']['token'] = session.access_token
+        stream_req_data['client']['supportsAdPods'] = stream_type != 'live'
+
+        if stream_type == 'live':
+            accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
+        else:
+            accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+
         stream_data = fetch.post_json(
             url, stream_req_data,
             {'Accept': accept_type, 'Cookie': itv_session().cookie})
 
         http_status = stream_data.get('StatusCode', 0)
-
         if http_status == 401:
             raise AuthenticationError
 
         return stream_data
     except AuthenticationError:
         if retry_on_error:
-            itv_session().refresh()
+            if session.refresh() is False:
+                if kodi_utils.show_msg_not_logged_in():
+                    from xbmc import executebuiltin
+                    executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info['id']))
+                return False
+                # if not (kodi_utils.show_msg_not_logged_in() and session.login()):
+                #     raise
             return _request_stream_data(url, stream_type, retry_on_error=False)
         else:
             raise
@@ -321,7 +328,7 @@ def get_vtt_subtitles(subtitles_url):
         # with open(vtt_file, 'w', encoding='utf8') as f:
         #     f.write(vtt_doc)
 
-        srt_doc = utils.vtt_to_srt(vtt_doc)
+        srt_doc = utils.vtt_to_srt(vtt_doc, colourize=Script.setting['subtitles_color'] != 'false')
         srt_file = os.path.join(utils.addon_info['profile'], 'subitles.srt')
         with open(srt_file, 'w', encoding='utf8') as f:
             f.write(srt_doc)
