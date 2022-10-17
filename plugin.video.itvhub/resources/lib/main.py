@@ -2,7 +2,6 @@
 import logging
 import os
 
-
 import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run

@@ -32,7 +32,7 @@ def doc_path(doc: str) -> str:
     avoiding the use absolute paths.
 
     .. note ::
-        The directory test_docs is to a sibling of this module's parent directory
+        The directory test_docs is to be a sibling of this module's parent directory
 
     """
     return os.path.normpath(os.path.join(os.path.dirname(__file__), '../test_docs', doc))
@@ -53,7 +53,7 @@ def open_doc(doc):
     """Returns a partial object that accepts any set of arguments and returns
     the contents of the file specified by *doc_path*.
 
-    Intended to be used as new object in patched tests. In particular to return
+    Intended to be used as 'new' object in patched tests. In particular to return
     locally saved documents instead of doing web requests.
 
     """
