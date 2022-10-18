@@ -53,7 +53,6 @@ msgctxt "#30200"
 msgid "ITV Hub account"
 msgstr ""
 
-
 msgctxt "#30201"
 msgid "Sign in"
 msgstr ""
@@ -63,9 +62,41 @@ msgid "Sign out"
 msgstr ""
 
 msgctxt "#30203"
-msgid "Show password during entry"
+msgid "Show password"
 msgstr ""
 
+# Help texts
+
+msgctxt "#30302"
+msgid "These settings only apply to catchup programs. Live programs may have embedded subtitles."
+msgstr ""
+
+msgctxt "#30303"
+msgid "If enabled subtitles will have different colours for different speakers, wherever possible.\n"
+"If disabled all subtitles are shown in white."
+msgstr ""
+
+msgctxt "#30311"
+msgid "Target of ITV hub logging.\n"
+"Default is the standard 'Kodi log' - nothing will be logged until 'debug logging' is enabled in Kodi's settings.\n"
+"'File' logs to ITV hub's own log file stored in the addon's user data directory. Only of use if you know where to "
+"find that file.\n"
+"'No logging' if you want to ensure the addon spends as little time on logging as possible."
+msgstr ""
+
+msgctxt "#30401"
+msgid "You will be asked to enter your username and password after which the addon will try to sign in to "
+"your account. You will remain signed in until you sign out or sign in with another account."
+msgstr ""
+
+msgctxt "#30402"
+msgid "Sign out of your ITV account"
+msgstr ""
+
+msgctxt "#30403"
+msgid "Show password in plain text while you type.\n"
+"If disabled the password will be masked with '*' characters, making your password invisible to others, and yourself."
+msgstr ""
 
 # Script texts
 
