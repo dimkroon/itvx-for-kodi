@@ -78,6 +78,10 @@ class HttpSession(requests.sessions.Session):
         return cls.instance
 
     def __init__(self):
+        if hasattr(self, 'cookies'):
+            # prevent re-initialization when __new__ returns an existing instance
+            return
+
         super(HttpSession, self).__init__()
         self.headers.update({
             'User-Agent': USER_AGENT,

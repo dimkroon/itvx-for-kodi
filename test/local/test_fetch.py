@@ -43,6 +43,22 @@ STD_HEADERS = ['User-Agent', 'Referer', 'Origin', 'Sec-Fetch-Dest', 'Sec-Fetch-M
                'Sec-Fetch-Site', 'Cache-Control', 'Pragma']
 
 
+class HttpSession(TestCase):
+    @patch('resources.lib.fetch._create_cookiejar')
+    def test_http_session_is_singleton(self, p_create):
+        s = fetch.HttpSession()
+        ss = fetch.HttpSession()
+        self.assertTrue(s is ss)
+
+        s_id = id(s)
+        del s
+        del ss
+        new_s = fetch.HttpSession()
+        self.assertEqual(s_id, id(new_s))
+        # The session's __init__() creates a cookiejar, assert that it has happend only once.
+        p_create.assert_called_once()
+
+
 class WebRequest(TestCase):
     @patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=200))
     def test_web_request_get_plain(self, mocked_req):
