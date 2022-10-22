@@ -317,7 +317,7 @@ def productions(url, show_name):
             'art': {'thumb': prod['_links']['image']['href'].format(
                 width=960, height=540, quality=80, blur=0, bg='false')},
             'info': {
-                'plot': utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%d-%m-%Y %H:%M') + '\n ' + prod['synopses']['epg'],
+                'plot': prod['synopses']['epg'],
                 'title': title,
                 'tagline': prod['synopses']['ninety'],
                 'duration': utils.duration_2_seconds(prod['duration']['display']),
