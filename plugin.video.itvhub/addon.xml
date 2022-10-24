@@ -2,9 +2,9 @@
 <addon id="plugin.video.itvhub" name="ITV hub" version="0.3.0" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="inputstream.adaptive" version="19.0.5"/>
     <import addon="script.module.requests"/>
     <import addon="script.module.pytz"/>
-    <import addon="script.module.six"/>
     <import addon="script.module.codequick"/>
     <import addon="script.module.beautifulsoup4"/>
     <import addon="script.module.inputstreamhelper"/>
@@ -15,7 +15,7 @@
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary>Live TV and catchup from ITV Hub</summary>
-    <description>This add-on enables playing live and Catchup TV from ITV Hub. An ITV account is required </description>
+    <description>This add-on enables playing live and Catchup TV from ITV Hub. An ITV account is required.</description>
     <disclaimer lang="en">This add-on is not developed by ITV and is no way affiliated with, or endorsed by ITV.
     </disclaimer>
     <assets>

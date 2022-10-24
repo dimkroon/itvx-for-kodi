@@ -32,7 +32,7 @@ def doc_path(doc: str) -> str:
     avoiding the use absolute paths.
 
     .. note ::
-        The directory test_docs is to a sibling of this module's parent directory
+        The directory test_docs is to be a sibling of this module's parent directory
 
     """
     return os.path.normpath(os.path.join(os.path.dirname(__file__), '../test_docs', doc))
@@ -53,7 +53,7 @@ def open_doc(doc):
     """Returns a partial object that accepts any set of arguments and returns
     the contents of the file specified by *doc_path*.
 
-    Intended to be used as new object in patched tests. In particular to return
+    Intended to be used as 'new' object in patched tests. In particular to return
     locally saved documents instead of doing web requests.
 
     """
@@ -61,6 +61,18 @@ def open_doc(doc):
         with open(doc_path(doc), 'r') as f:
             return f.read()
     return wrapper
+
+
+def save_json(data, filename):
+    """Save a data structure in json format to a file in the test_docs directory"""
+    with open(doc_path(filename), 'w') as f:
+        json.dump(data, f)
+
+
+def save_doc(data, filename):
+    """Save a data as text to a file in the test_docs directory"""
+    with open(doc_path(filename), 'w') as f:
+        f.write(data)
 
 
 class HttpResponse(Response):
@@ -82,4 +94,3 @@ class HttpResponse(Response):
             if status_code is None:
                 self.status_code = 200
                 self.reason = 'OK'
-

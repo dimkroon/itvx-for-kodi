@@ -30,16 +30,15 @@ import json
 from codequick import Script
 from codequick.support import logger_id
 
-
 from resources.lib.errors import *
 from resources.lib import utils
 
+
 WEB_TIMEOUT = (3.5, 7)
-USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0'
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
-cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
 session = None
 
 
@@ -53,15 +52,15 @@ class PersistentCookieJar(RequestsCookieJar):
         if not self._has_changed:
             return
         self.clear_expired_cookies()
+        self._has_changed = False
         with open(self.filename, 'wb') as f:
             pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
-            logger.info("Saved cookies to file %s", cookie_file)
-        self._has_changed = False
+        logger.info("Saved cookies to file %s", self.filename)
 
     def set_cookie(self, cookie, *args, **kwargs):
         super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)
         logger.debug("Cookiejar sets cookie %s to %s", cookie.name, cookie.value)
-        self._has_changed = True
+        self._has_changed |= cookie.name != 'hdntl'
 
     def clear(self, domain=None, path=None, name=None) -> None:
         super(PersistentCookieJar, self).clear(domain, path, name)
@@ -78,10 +77,14 @@ class HttpSession(requests.sessions.Session):
         return cls.instance
 
     def __init__(self):
+        if hasattr(self, 'cookies'):
+            # prevent re-initialization when __new__ returns an existing instance
+            return
+
         super(HttpSession, self).__init__()
         self.headers.update({
             'User-Agent': USER_AGENT,
-            'Origin': 'https://www.itv.com/',
+            'Origin': 'https://www.itv.com',
             'Referer': 'https://www.itv.com/',
             'Sec-Fetch-Dest': 'empty',
             'Sec-Fetch-Mode': 'cors',
@@ -100,9 +103,9 @@ class HttpSession(requests.sessions.Session):
 
         resp = super(HttpSession, self).request(
                 method, url,
-                params, data, headers, cookies, files,
-                auth, timeout, allow_redirects, proxies,
-                hooks, stream, verify, cert, json)
+                params=params, data=data, headers=headers, cookies=cookies, files=files,
+                auth=auth, timeout=timeout, allow_redirects=allow_redirects, proxies=proxies,
+                hooks=hooks, stream=stream, verify=verify, cert=cert, json=json)
 
         # noinspection PyUnresolvedReferences
         self.cookies.save()
@@ -114,18 +117,20 @@ def _create_cookiejar():
     apply the default cookies.
 
     """
+    cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
+
     try:
         with open(cookie_file, 'rb') as f:
             # TODO: handle expired consent cookies
             cj = pickle.load(f)
             logger.debug("Restored cookies from file")
     except (FileNotFoundError, pickle.UnpicklingError):
-        cj = set_cookies_consent(PersistentCookieJar(cookie_file))
+        cj = set_default_cookies(PersistentCookieJar(cookie_file))
         logger.debug("Created new cookiejar")
     return cj
 
 
-def set_cookies_consent(cookiejar: RequestsCookieJar = None):
+def set_default_cookies(cookiejar: RequestsCookieJar = None):
     """Make a request to reject all cookies.
 
     Ironically, the response sets third-party cookies to store that data.
@@ -143,6 +148,7 @@ def set_cookies_consent(cookiejar: RequestsCookieJar = None):
         elif cookiejar is not None:
             raise ValueError("Parameter cookiejar must be an instance of RequestCookiejar")
 
+        # Make a request to reject all cookies.
         resp = s.get(
             'https://identityservice.syrenis.com/Home/SaveConsent',
             params={'accessKey': '213aea86-31e5-43f3-8d6b-e01ba0d420c7',
@@ -168,10 +174,16 @@ def set_cookies_consent(cookiejar: RequestsCookieJar = None):
         cookie_data = json.loads(consent)
         jar = s.cookies
 
-        std_cookie_args = {'domain': '.itv.com', 'expires': time.time() + 365 * 86400, 'discard': False}
+        std_cookie_args = {'domain': '.itv.com', 'expires': time.time() + 3650 * 86400, 'discard': False}
         for cookie_name, cookie_value in cookie_data.items():
             jar.set(cookie_name, cookie_value, **std_cookie_args)
         logger.info("updated cookies consent")
+
+        # set other cookies
+        import uuid
+        jar.set('Itv.Cid', str(uuid.uuid4()), **std_cookie_args)
+        jar.set('Itv.Region', 'ITV|null', **std_cookie_args)
+        jar.set("Itv.ParentalControls", '{"active":false,"pin":null,"question":null,"answer":null}', **std_cookie_args)
         return jar
     except:
         logger.error("Unexpected exception while updating cookie consent", exc_info=True)
@@ -189,10 +201,22 @@ def web_request(method, url, headers=None, data=None, **kwargs):
     except requests.HTTPError as e:
         # noinspection PyUnboundLocalVariable
         logger.info("HTTP error %s for url %s: '%s'", e.response.status_code, url, resp.content)
+
+        if 400 <= e.response.status_code < 500:
+            # noinspection PyBroadException
+            try:
+                resp_data = resp.json()
+            except:
+                # Intentional broad exception as requests can raise various types of errors deping on python
+                # version and requests.JSONDecodeError does not always seem to catch them.
+                pass
+            else:
+                if resp_data.get('error') in ('invalid_grant', 'invalid_request'):
+                    descr = resp_data.get("error_description", 'Login failed')
+                    raise AuthenticationError(descr)
+
         if e.response.status_code == 401:
             raise AuthenticationError()
-        if e.response.status_code == 403:
-            raise GeoRestrictedError
         else:
             resp = e.response
             raise HttpError(resp.status_code, resp.reason)

@@ -2,7 +2,6 @@
 import logging
 import os
 
-
 import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run
@@ -23,20 +22,26 @@ logger.critical('-------------------------------------')
 build_url = urljoin('https://www.itv.com/hub/')
 
 
+def empty_folder():
+    Script.notify('ITV hub', 'No content', icon=Script.NOTIFY_INFO)
+    return False
+
+
 @Route.register
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
-    yield Listitem.from_dict(
-            list_programs,
-            'Shows',
-            params={'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&'
-                           'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,'
-                           'fairplay&sortBy=title'})
+    yield Listitem.from_dict(sub_menu_shows, 'Shows')
+    # yield Listitem.from_dict(
+    #         list_programs,
+    #         'Shows',
+    #         params={'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&'
+    #                        'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,'
+    #                        'fairplay&sortBy=title'})
     yield Listitem.from_dict(
             sub_menu_from_page,
             'Full series',
             params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
-    yield Listitem.from_dict(list_categories, 'categories')
+    yield Listitem.from_dict(list_categories, 'Categories')
 
 
 # In order to ensure that epg data is refreshed when a live stream is stopped, kodi is
@@ -74,6 +79,18 @@ def sub_menu_live(_):
         yield li
 
 
+@Route.register(cache_ttl=-1)
+def sub_menu_shows(_):
+    import string
+
+    url = 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&' \
+          'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title'
+    az_list = list(string.ascii_uppercase)
+    az_list.append('0-9')
+    items = [Listitem.from_dict(list_programs, char, params={'url': url, 'filter_char': char}) for char in az_list]
+    return items
+
+
 @Route.register(cache_ttl=24 * 60)
 def list_categories(_):
     logger.debug("List categories.")
@@ -82,15 +99,30 @@ def list_categories(_):
     return items
 
 
-@Route.register(cache_ttl=60)
-def list_programs(_, url):
+@Route.register(cache_ttl=-1)
+def list_programs(plugin, url, filter_char=None):
     logger.debug("list programs for url '%s'", url)
-    shows_list = itv.programmes(url)
-    for show in shows_list:
-        if show['episodes'] > 1:
-            yield Listitem.from_dict(list_productions, **show['show'])
-        else:
-            yield Listitem.from_dict(play_stream_catchup, **show['show'])
+    plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                            xbmcplugin.SORT_METHOD_TITLE,
+                            xbmcplugin.SORT_METHOD_DATE,
+                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                            disable_autosort=True)
+
+    shows_list = itv.programmes(url, filter_char)
+    if not shows_list:
+        return empty_folder()
+
+    return [
+        Listitem.from_dict(list_productions, **show['show'])
+        if show['episodes'] > 1 else
+        Listitem.from_dict(play_stream_catchup, **show['show'])
+        for show in shows_list
+    ]
+    # for show in shows_list:
+    #     if show['episodes'] > 1:
+    #         yield Listitem.from_dict(list_productions, **show['show'])
+    #     else:
+    #         yield Listitem.from_dict(play_stream_catchup, **show['show'])
 
 
 @Route.register(cache_ttl=60)
@@ -242,7 +274,7 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
             fetch.USER_AGENT,
             '&Content-Type=&Origin=https://www.itv.com&Referer=https://www.itv.com/&|R{SSM}|'))
 
-    cookiestr = itv_session().cookie + '; hdntl=' + hdntl_cookie
+    cookiestr = ''.join(('Itv.Session: ', itv_session().cookie['Itv.Session'], '; hdntl=', hdntl_cookie))
     play_item.property['inputstream.adaptive.stream_headers'] = ''.join((
             'User-Agent=',
             fetch.USER_AGENT,
@@ -293,7 +325,7 @@ def play_stream_catchup(_, url, name):
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
         return False
     except Exception as e:
-        logger.error('Error retrieving episode stream urls: %r' % e)
+        logger.error('Error retrieving episode stream urls:', exc_info=True)
         return False
 
     list_item = create_dash_stream_item(name, manifest_url, key_service_url)

@@ -21,6 +21,7 @@
 # ------------------------------------------------------------------------------
 
 from codequick import Route, Listitem
+# noinspection PyProtectedMember
 from codequick.listing import strip_formatting
 
 
@@ -61,13 +62,10 @@ def patch_label_prop():
 
     """
     def label_setter(self, label):
-        """Set label and only copy to fields that do not have a value"""
+        """Set label and only copy to fields that do not already have a value"""
         self.listitem.setLabel(label)
         unformatted_label = strip_formatting("", label)
-        if not self.params.get('_title_'):
-            self.params["_title_"] = unformatted_label
-        if not self.info.get('title'):
-            self.info["title"] = unformatted_label
+        self.params.setdefault("_title_", unformatted_label)
+        self.info.setdefault("title", unformatted_label)
 
-    # Listitem.label = property(fget=label_getter, fset=label_setter)
     Listitem.label = Listitem.label.setter(label_setter)

@@ -103,8 +103,9 @@ class TestItv(unittest.TestCase):
     def test_get_catchup_urls(self):
 
         urls = (
-            # Snooker British Open episode 10 , WITHOUT subtitles
+            # Snooker British Open episode 10 , WITHOUT subtitles:
             'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001',
+            # something else with subtitles:
             'https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001')
         for url in urls:
             result = itv.get_catchup_urls(url)

@@ -7,7 +7,6 @@ from codequick.support import logger_id
 
 from . import utils
 from .errors import ParseError
-from .utils import reformat_date
 
 
 logger = logging.getLogger(logger_id + '.parse')
@@ -90,16 +89,15 @@ def _parse_item_data(soup, fallback_name=''):
         summary = summary_tag.get_text(strip=True)
     else:
         summary = ''
+    episode['info']['plot'] = summary
 
     time_tag = soup.find('time')
     if time_tag is not None:
         date_str = soup.find('time')['datetime']
         episode['info']['date'] = date_str
-        summary = reformat_date(date_str, '%Y-%m-%dT%H:%MZ', '%d-%m-%Y %H:%M') + '\n ' + summary
     else:
         episode['info']['date'] = None
 
-    episode['info']['plot'] = summary
     return episode
 
 

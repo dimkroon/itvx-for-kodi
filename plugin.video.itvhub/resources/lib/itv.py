@@ -1,6 +1,6 @@
-from __future__ import unicode_literals
 
 import os
+import string
 import time
 import logging
 
@@ -12,6 +12,7 @@ from codequick.support import logger_id
 from . import utils
 from . import fetch
 from . import parse
+from . import kodi_utils
 
 from .errors import AuthenticationError
 
@@ -64,12 +65,12 @@ stream_req_data = {
         'version': '4.1'
     },
     'device': {
-        'manufacturer': '',
-        'model': '',
+        'manufacturer': 'Firefox',
+        'model': '105',
         'os': {
-            'name': '',
+            'name': 'Linux',
             'type': 'desktop',
-            'version': ''
+            'version': 'x86_64'
         }
     },
     'user': {
@@ -80,7 +81,7 @@ stream_req_data = {
     'variantAvailability': {
         'featureset': {
             'max': ['mpeg-dash', 'widevine', 'outband-webvtt'],
-            'min': ['mpeg-dash', 'widevine']
+            'min': ['mpeg-dash', 'widevine', 'outband-webvtt']
         },
         'platformTag': 'dotcom'
     }
@@ -89,30 +90,44 @@ stream_req_data = {
 
 def _request_stream_data(url, stream_type='live', retry_on_error=True):
     from .itv_account import itv_session
-
-    stream_req_data['user']['token'] = itv_session().access_token
-    stream_req_data['client']['supportsAdPods'] = stream_type != 'live'
-
-    if stream_type == 'live':
-        accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
-    else:
-        accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+    session = itv_session()
 
     try:
+        stream_req_data['user']['token'] = session.access_token
+        stream_req_data['client']['supportsAdPods'] = stream_type != 'live'
+
+        if stream_type == 'live':
+            accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
+            # Live MUST have a featureset containing an item without outband-webvtt, or a bad request is returned.
+            min_features = ['mpeg-dash', 'widevine']
+        else:
+            accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+            #  ITV appears now to use the min feature for catchup streams, causing subtitles
+            #  to go missing if not specfied here. Min and max both specifying webvtt appears to
+            # be no problem for catchup streams that don't have subtitles.
+            min_features = ['mpeg-dash', 'widevine', 'outband-webvtt']
+
+        stream_req_data['variantAvailability']['featureset']['min'] = min_features
+
         stream_data = fetch.post_json(
             url, stream_req_data,
-            {'Accept': accept_type, 'Cookie': itv_session().cookie})
+            headers={'Accept': accept_type},
+            cookies=session.cookie)
 
         http_status = stream_data.get('StatusCode', 0)
-
         if http_status == 401:
             raise AuthenticationError
 
         return stream_data
     except AuthenticationError:
         if retry_on_error:
-            itv_session().refresh()
-            return _request_stream_data(url, stream_type, retry_on_error=False)
+            if session.refresh():
+                return _request_stream_data(url, stream_type, retry_on_error=False)
+            else:
+                if kodi_utils.show_msg_not_logged_in():
+                    from xbmc import executebuiltin
+                    executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info['id']))
+                return False
         else:
             raise
 
@@ -163,7 +178,71 @@ def categories():
     return ({'label': cat['name'], 'params': {'url': cat['_links']['doc:programmes']['href']}} for cat in cat_list)
 
 
-def programmes(url):
+def _create_program_item(item_data):
+    productions = item_data['_embedded']['productions']
+    latest_episode = item_data['_embedded']['latestProduction']
+
+    episode_count = productions['count']
+    orig_title = item_data.get('title', '')
+    if episode_count > 1:
+        title = '[B]{}[/B] - {} episodes'.format(orig_title, episode_count)
+    else:
+        title = orig_title
+
+    orig_title = orig_title.lower()
+
+    prog_item = {
+        'episodes': episode_count,
+        'show': {
+            'label': title,
+            'art': {'thumb': latest_episode['_links']['image']['href'].format(
+                width=960, height=540, quality=80, blur=0, bg='false')},
+            'info': {
+                'plot': item_data['synopses']['epg'],
+                'title': title,
+                'sorttitle': orig_title[4:] if orig_title.startswith('the ') else orig_title
+            },
+            'params': {
+                'name': item_data.get('title', ''),
+                'url': (productions['_links']['doc:productions']['href'] if episode_count > 1
+                        else latest_episode['_links']['playlist']['href'])
+            }
+        }
+    }
+    if episode_count == 1:
+        duration = utils.duration_2_seconds(latest_episode.get('duration'))
+        if duration:
+            prog_item['info']['duration'] = duration
+    return prog_item
+
+
+cached_programs = {}
+CACHE_TIME = 600
+
+
+def _get_programs(url):
+    """Return the cached list of programs is present in the cache and not expired, or
+    create a new list from data from itv hub.
+    Cache the list in memory for the lifetime of the addon, to a maximum of CACHE_TIME in seconds
+
+    """
+    progs = cached_programs.get(url)
+    if progs and progs['expires'] < time.monotonic():
+        logger.debug("Programs list cache hit")
+        return progs['progs_list']
+    else:
+        logger.debug("Programs list cache miss")
+        result = fetch.get_json(
+            url,
+            headers={'Accept': 'application/vnd.itv.online.discovery.programme.v1+hal+json'})
+
+        prog_data_list = result['_embedded']['programmes']
+        progr_list = [_create_program_item(prog) for prog in prog_data_list]
+        cached_programs[url] = {'progs_list': progr_list, 'expires': time.monotonic() + CACHE_TIME}
+        return progr_list
+
+
+def programmes(url, filter_char=None):
     """Get a listing of programmes
 
     A programmes data structure consist of a listing of 'programmes' (i.e. shows, or series)
@@ -177,42 +256,22 @@ def programmes(url):
     can be passed as a playable item to kodi.
 
     """
-    result = fetch.get_json(
-        url,
-        headers={'Accept': 'application/vnd.itv.online.discovery.programme.v1+hal+json'})
-    prog_list = result['_embedded']['programmes']
-    for prog in prog_list:
-        productions = prog['_embedded']['productions']
-        latest_episode = prog['_embedded']['latestProduction']
+    t_start = time.monotonic()
+    progr_list = _get_programs(url)
 
-        episode_count = productions['count']
-        if episode_count > 1:
-            title = '[B]{}[/B] - {} episodes'.format(prog.get('title', ''), episode_count)
-        else:
-            title = prog.get('title', '')
+    if filter_char is None:
+        result = progr_list
+    elif len(filter_char) == 1:
+        # filter on a single character
+        filter_char = filter_char.lower()
+        result = [prog for prog in progr_list if prog['show']['info']['sorttitle'][0] == filter_char]
+    else:
+        # like '0-9'. Return anything not a character
+        filter_char = string.ascii_lowercase
+        result = [prog for prog in progr_list if prog['show']['info']['sorttitle'][0] not in filter_char]
 
-        prog_item = {
-            'episodes': episode_count,
-            'show': {
-                'label': title,
-                'art': {'thumb': latest_episode['_links']['image']['href'].format(
-                    width=960, height=540, quality=80, blur=0, bg='false')},
-                'info': {
-                    'plot': prog['synopses']['epg'],
-                    'title': title
-                },
-                'params': {
-                    'name': prog.get('title', ''),
-                    'url': (productions['_links']['doc:productions']['href'] if episode_count > 1
-                            else latest_episode['_links']['playlist']['href'])
-                }
-            }
-        }
-        if episode_count == 1:
-            duration = utils.duration_2_seconds(latest_episode.get('duration'))
-            if duration:
-                prog_item['info']['duration'] = duration
-        yield prog_item
+    logger.debug("Created programs list in %s sec.", time.monotonic() - t_start)
+    return result
 
 
 def productions(url, show_name):
@@ -222,8 +281,8 @@ def productions(url, show_name):
     Programmes may have one or more production (i.e. episodes), but only info about
     the latest production is included in the data structure.
 
-    Return a list in a format that contains only relevant info in a format that can easily be
-    used by  codequick Listitem.from_dict.
+    Return a list containing only relevant info in a format that can easily be
+    used by codequick Listitem.from_dict.
 
     """
     result = fetch.get_json(
@@ -244,21 +303,22 @@ def productions(url, show_name):
         # As listings appear to be returned in order from latest to oldest, we reverse the index.
         episode_idx = prod.get('episode')
         episode_title = prod.get('episodeTitle')
-        date = prod['broadcastDateTime'].get('commissioning') or prod['broadcastDateTime'].get('original')
+        date = prod['broadcastDateTime'].get('original') or prod['broadcastDateTime'].get('commissioning')
 
         if episode_title:
             title = '{}. {}'.format(episode_idx or item_count, episode_title)
         elif episode_idx:
             title = '{} episode {}'.format(show_name, episode_idx)
         else:
-            title = '{} - {}'.format(show_name, utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%a %d %b %H:%M'))
+            # TODO: convert to the local date format
+            title = '{} - {}'.format(show_name, utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%a %d %b %Y %H:%M'))
 
         episode = {
             'label': title,
             'art': {'thumb': prod['_links']['image']['href'].format(
                 width=960, height=540, quality=80, blur=0, bg='false')},
             'info': {
-                'plot': utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%d-%m-%Y %H:%M') + '\n ' + prod['synopses']['epg'],
+                'plot': prod['synopses']['epg'],
                 'title': title,
                 'tagline': prod['synopses']['ninety'],
                 'duration': utils.duration_2_seconds(prod['duration']['display']),
@@ -274,6 +334,7 @@ def productions(url, show_name):
         item_count -= 1
         episode_map = series.setdefault(series_idx, {})
         episode_map[episode_idx or item_count] = episode
+
     # turn the mappings in a list of series
     series_list = [
         {'name': 'Series {}'.format(k) if k != 0 else 'Other episodes',
@@ -296,7 +357,6 @@ def get_episodes(url, show_name):
 def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """
-
     import re
 
     logger.info("Get playlist from episode page - url=%s", page_url)
@@ -309,7 +369,13 @@ def get_playlist_url_from_episode_page(page_url):
 
 
 def get_vtt_subtitles(subtitles_url):
-    if not subtitles_url or Script.setting['subtitles_show'] != 'true':
+    show_subtitles = Script.setting['subtitles_show'] == 'true'
+    if show_subtitles is False:
+        logger.info('Ignored subtitles by entry in settings')
+        return None
+
+    if not subtitles_url:
+        logger.info('No subtitles available for this stream')
         return None
 
     # noinspection PyBroadException
@@ -320,7 +386,7 @@ def get_vtt_subtitles(subtitles_url):
         # with open(vtt_file, 'w', encoding='utf8') as f:
         #     f.write(vtt_doc)
 
-        srt_doc = utils.vtt_to_srt(vtt_doc)
+        srt_doc = utils.vtt_to_srt(vtt_doc, colourize=Script.setting['subtitles_color'] != 'false')
         srt_file = os.path.join(utils.addon_info['profile'], 'subitles.srt')
         with open(srt_file, 'w', encoding='utf8') as f:
             f.write(srt_doc)

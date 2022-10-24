@@ -1,11 +1,14 @@
-import account_login
-account_login.set_credentials()
+from test.support import fixtures
+fixtures.global_setup()
 
 import unittest
 from unittest.mock import MagicMock
 from typing import MutableMapping
 
 from resources.lib import main
+
+
+setUpModule = fixtures.setup_web_test
 
 
 class TestMenu(unittest.TestCase):
@@ -48,38 +51,47 @@ class TestGetEpisodes(unittest.TestCase):
 
 class TestGetProductions(unittest.TestCase):
     def test_productions_midsummer_murders(self):
-        items = list(main.list_productions(MagicMock(), 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=Y_1096&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv'))
+        items = list(main.list_productions(
+            MagicMock(),
+            'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=Y_1096&features=aes,'
+            'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv'))
         for item in items:
             print(item)
 
     def test_get_productions_midsummer_murder_folder_1(self):
-        items = list(main.list_productions(MagicMock(),
-                                           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=Y_1096&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-                                           series_idx=1))
+        items = list(main.list_productions(
+            MagicMock(),
+           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=Y_1096&features=aes,'
+           'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
+           series_idx=1))
         for item in items:
             print(item)
 
     def test_get_productions_the_professionals_folder_1(self):
-        items = list(main.list_productions(MagicMock(),
-                                           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=L0845&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-                                           series_idx=1))
+        items = list(main.list_productions(
+            MagicMock(),
+           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=L0845&features=aes,'
+           'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
+           series_idx=1))
         for item in items:
             print(item)
 
     def test_get_productions_the_chase(self):
         """The chase had 53 items, but only one production was shown"""
-        items = list(main.list_productions(MagicMock(),
-                                           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?'
-                                           'programmeId=1_7842&features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,'
-                                           'playready,widevine&broadcaster=itv',
-                                           name='The Chase'),)
+        items = list(main.list_productions(
+            MagicMock(),
+           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=1_7842&features=aes,'
+           'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
+           name='The Chase'),)
         self.assertGreater(len(items), 1)
         for item in items:
             print(item)
 
 class TestPlayShow(unittest.TestCase):
     def test_play_show_a_late_quartet(self):
-        result = main.play_show(MagicMock(), url='https://magni.itv.com/playlist/itvonline/ITV/10_2597_0001.001', show_name='A Late Quartet')
+        result = main.play_show(
+            MagicMock(),
+            url='https://magni.itv.com/playlist/itvonline/ITV/10_2597_0001.001', show_name='A Late Quartet')
         self.assertIsInstance(result.params, MutableMapping)
 
 

@@ -18,6 +18,7 @@
 #  You should have received a copy of the GNU General Public License along with
 #  plugin.video.itvhub. If not, see <https://www.gnu.org/licenses/>.
 
+
 from codequick import support
 from resources.lib import logging
 from resources.lib import main

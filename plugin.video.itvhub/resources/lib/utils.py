@@ -1,18 +1,12 @@
 #!/usr/bin/python
 
-from __future__ import unicode_literals
-
 import logging
-import os
-import sys
 import time
 from datetime import datetime
 
-import requests
 from xbmcvfs import translatePath
 import xbmcaddon
 
-from codequick import Script
 from codequick.support import logger_id
 from . errors import *
 
@@ -38,12 +32,8 @@ logger = logging.getLogger(logger_id + '.utils')
 
 
 def get_os():
-    # noinspection PyBroadException
-    try:
-        cur_os = os.environ.get("OS")
-    except:
-        cur_os = "unknown"
-    return cur_os
+    import platform
+    return platform.system(), platform.machine()
 
 
 def random_string(length):
@@ -147,11 +137,11 @@ def xml_to_srt(xml_data, outfile):
         outfile.write('\n')
 
 
-def vtt_to_srt(vtt_doc: str) -> str:
+def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
     """Convert a string containing subtitles in vtt format into a format kodi accepts.
 
-    Very simple that does not expect much styling, position or colours and tries
-    to ignore most fancy vtt stuff. But seems to be enough for Cinetree films.
+    Very simple converter that does not expect much styling, position or colours and tries
+    to ignore most fancy vtt stuff. But seems to be enough for most itv subtitles.
 
     All styling, except bold, italic and underline defined by HTML text in the cue payload is
     removed, as well as position information.
@@ -201,7 +191,7 @@ def vtt_to_srt(vtt_doc: str) -> str:
 
         srt_doc = f.getvalue()
 
-        if Script.setting['subtitles_color'] == 'true':
+        if colourize:
             # Remove any markup tag other than the supported bold, italic underline and colour.
             srt_doc = re.sub(r'<([^biuc]).*?>(.*)</\1.*?>', r'\2', srt_doc)
 
@@ -209,8 +199,9 @@ def vtt_to_srt(vtt_doc: str) -> str:
             def sub_color_tags(match):
                 colour = match[1]
                 if colour in ('white', 'yellow', 'green', 'cyan'):
-                    return '<font color="{}">{}</font>'.format(match[1], match[2])
+                    return '<font color="{}">{}</font>'.format(colour, match[2])
                 else:
+                    logger.debug("Unsupported colour '%s' in vtt file", colour)
                     return match[2]
 
             srt_doc = re.sub(r'<c\.(.*?)>(.*)</c>', sub_color_tags, srt_doc)
@@ -233,7 +224,7 @@ def duration_2_seconds(duration: str):
 
         if units == 'min':
             return int(splits[0]) * 60
-    except (ValueError, AttributeError):
+    except (ValueError, AttributeError, IndexError):
         return None
 
 
