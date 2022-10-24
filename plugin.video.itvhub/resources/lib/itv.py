@@ -303,14 +303,15 @@ def productions(url, show_name):
         # As listings appear to be returned in order from latest to oldest, we reverse the index.
         episode_idx = prod.get('episode')
         episode_title = prod.get('episodeTitle')
-        date = prod['broadcastDateTime'].get('commissioning') or prod['broadcastDateTime'].get('original')
+        date = prod['broadcastDateTime'].get('original') or prod['broadcastDateTime'].get('commissioning')
 
         if episode_title:
             title = '{}. {}'.format(episode_idx or item_count, episode_title)
         elif episode_idx:
             title = '{} episode {}'.format(show_name, episode_idx)
         else:
-            title = '{} - {}'.format(show_name, utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%a %d %b %H:%M'))
+            # TODO: convert to the local date format
+            title = '{} - {}'.format(show_name, utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%a %d %b %Y %H:%M'))
 
         episode = {
             'label': title,
