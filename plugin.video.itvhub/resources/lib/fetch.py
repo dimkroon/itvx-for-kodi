@@ -39,7 +39,6 @@ USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 F
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
-cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
 session = None
 
 
@@ -56,7 +55,7 @@ class PersistentCookieJar(RequestsCookieJar):
         self._has_changed = False
         with open(self.filename, 'wb') as f:
             pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
-        logger.info("Saved cookies to file %s", cookie_file)
+        logger.info("Saved cookies to file %s", self.filename)
 
     def set_cookie(self, cookie, *args, **kwargs):
         super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)
@@ -85,7 +84,7 @@ class HttpSession(requests.sessions.Session):
         super(HttpSession, self).__init__()
         self.headers.update({
             'User-Agent': USER_AGENT,
-            'Origin': 'https://www.itv.com/',
+            'Origin': 'https://www.itv.com',
             'Referer': 'https://www.itv.com/',
             'Sec-Fetch-Dest': 'empty',
             'Sec-Fetch-Mode': 'cors',
@@ -118,18 +117,20 @@ def _create_cookiejar():
     apply the default cookies.
 
     """
+    cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
+
     try:
         with open(cookie_file, 'rb') as f:
             # TODO: handle expired consent cookies
             cj = pickle.load(f)
             logger.debug("Restored cookies from file")
     except (FileNotFoundError, pickle.UnpicklingError):
-        cj = set_cookies_consent(PersistentCookieJar(cookie_file))
+        cj = set_default_cookies(PersistentCookieJar(cookie_file))
         logger.debug("Created new cookiejar")
     return cj
 
 
-def set_cookies_consent(cookiejar: RequestsCookieJar = None):
+def set_default_cookies(cookiejar: RequestsCookieJar = None):
     """Make a request to reject all cookies.
 
     Ironically, the response sets third-party cookies to store that data.
@@ -147,6 +148,7 @@ def set_cookies_consent(cookiejar: RequestsCookieJar = None):
         elif cookiejar is not None:
             raise ValueError("Parameter cookiejar must be an instance of RequestCookiejar")
 
+        # Make a request to reject all cookies.
         resp = s.get(
             'https://identityservice.syrenis.com/Home/SaveConsent',
             params={'accessKey': '213aea86-31e5-43f3-8d6b-e01ba0d420c7',

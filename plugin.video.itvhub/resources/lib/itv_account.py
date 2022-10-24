@@ -2,7 +2,6 @@
 import time
 import os
 import json
-import uuid
 import logging
 
 from codequick.support import logger_id
@@ -14,6 +13,7 @@ from .errors import *
 
 
 logger = logging.getLogger(logger_id + '.account')
+SESS_DATA_VERS = 1
 
 
 class ItvSession:
@@ -41,12 +41,15 @@ class ItvSession:
 
     @property
     def cookie(self):
-        if not self.account_data:  # account data can be None or an empty dict
-            self.login()
-        elif self.account_data['refreshed'] < time.time() - 4 * 3600:
-            # renew tokens periodically
-            self.refresh()
-        return self.account_data['cookies']['cookie_str']
+        """Return a dict containing the cookie required for authentication"""
+        try:
+            if self.account_data['refreshed'] < time.time() - 2 * 3600:
+                # renew tokens periodically
+                self.refresh()
+            return self.account_data['cookies']
+        except (KeyError, TypeError):
+            logger.debug("Cannot produce cookies from account data: %s", self.account_data)
+            raise AuthenticationError
 
     def read_account_data(self):
         session_file = os.path.join(utils.addon_info['profile'], "itv_session")
@@ -57,6 +60,17 @@ class ItvSession:
         except (OSError, IOError, ValueError) as err:
             logger.error("Failed to read account data: %r" % err)
             acc_data = {}
+        else:
+            if acc_data.get('vers') != SESS_DATA_VERS:
+                acc_data = convert_session_data(acc_data)
+                # TODO: remove this in future versions
+                try:
+                    del acc_data['passw']
+                    del acc_data['uname']
+                    self.save_account_data()
+                    logger.info("Removed username and password from session file")
+                except KeyError:
+                    pass
         self.account_data = acc_data
 
     def save_account_data(self):
@@ -93,7 +107,7 @@ class ItvSession:
             'scope': 'content'
         }
 
-        logger.info("trying to sign in to ITV account")
+        logger.info("Trying to sign in to ITV account")
         try:
             # Post credentials
             session_data = fetch.post_json(
@@ -108,12 +122,9 @@ class ItvSession:
                 'uname': uname,
                 'refreshed': time.time(),
                 'itv_session': session_data,
-                'cookies': {
-                    'Itv.Cid': str(uuid.uuid4()),
+                'cookies': {'Itv.Session': build_cookie(session_data)
                 }
             }
-            cookie_str = self.build_cookie(session_data['access_token'], session_data['refresh_token'])
-            self.account_data['cookies']['cookie_str'] = cookie_str
         except FetchError as e:
             # Testing showed that itv hub can return various HTTP status codes on a failed sign in attempt.
             # Sometimes returning a json string containing the reason of failure, sometimes and HTML page.
@@ -151,9 +162,9 @@ class ItvSession:
             new_tokens = resp
             session_data = self.account_data['itv_session']
             session_data.update(new_tokens)
-            sess_cookie_str = self.build_cookie(session_data['access_token'], session_data['refresh_token'])
-            logger.debug("New session cookie: %s" % sess_cookie_str)
-            self.account_data['cookies']['cookie_str'] = sess_cookie_str
+            sess_cookie_str = build_cookie(session_data)
+            logger.debug("New Itv.Session cookie: %s" % sess_cookie_str)
+            self.account_data['cookies']['Itv.Session'] = sess_cookie_str
             self.account_data['refreshed'] = time.time()
             self.save_account_data()
             return True
@@ -163,25 +174,18 @@ class ItvSession:
             logger.warning("Failed to refresh ITV tokens - No account data present.")
         return False
 
-    def build_cookie(self, access_tkn, refresh_tkn):
-        cookiestr = ''.join(
-            ('Itv.CookiePolicy.v2=accepted; Itv.Region=ITV|null; Itv.Cid=',
-             self.account_data['cookies']['Itv.Cid'],
-             '; Itv.Session={%22tokens%22:{%22content%22:{%22entitlement%22:{%22purchased%22:'
-             '[]%2C%22failed_availability_checks%22:[]%2C%22source%22:%22%22}%2C%22email_verified%22:true%2C%22'
-             'access_token%22:%22',
-             access_tkn,
-             '%22%2C%22token_type%22:%22bearer%22%2C%22refresh_token%22:%22',
-             refresh_tkn,
-             '%22}}%2C%22sticky%22:true}'
-             )
-        )
-        return cookiestr
-
     def log_out(self):
         self.account_data = {}
         self.save_account_data()
         return True
+
+
+def build_cookie(session_data):
+    cookiestr = json.dumps({
+        'sticky': True,
+        'tokens': {'content': session_data},
+        'redirect': "/hub/shows"})
+    return cookiestr
 
 
 _itv_session_obj = None
@@ -210,13 +214,10 @@ def fetch_authenticated(funct, url, **kwargs):
 
     for tries in range(2):
         try:
-            if 'headers' in kwargs.keys():
-                kwargs['headers'].update({
-                    'cookie': itv_session().cookie,
-                    'Authorization': 'Bearer ' + account.access_token})
-            else:
-                kwargs['headers'] = {'cookie': itv_session().cookie, 'Authorization': 'Bearer ' + account.access_token}
-
+            headers = kwargs.setdefault('headers', {})
+            headers.update({'Authorization': 'Bearer ' + account.access_token})
+            cookies = kwargs.setdefault('cookies', {})
+            cookies.update(account.cookie)
             return funct(url=url, **kwargs)
         except AuthenticationError:
             if tries == 0:
@@ -228,3 +229,10 @@ def fetch_authenticated(funct, url, **kwargs):
             else:
                 logger.debug("Authentication failed on second attempt")
                 raise
+
+
+def convert_session_data(acc_data: dict) -> dict:
+    acc_data['vers'] = SESS_DATA_VERS
+    sess_data = acc_data['itv_session']
+    acc_data['cookies'] = {'Itv.Session': build_cookie(sess_data)}
+    return acc_data

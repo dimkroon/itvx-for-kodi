@@ -325,7 +325,7 @@ def play_stream_catchup(_, url, name):
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
         return False
     except Exception as e:
-        logger.error('Error retrieving episode stream urls: %r' % e)
+        logger.error('Error retrieving episode stream urls:', exc_info=True)
         return False
 
     list_item = create_dash_stream_item(name, manifest_url, key_service_url)

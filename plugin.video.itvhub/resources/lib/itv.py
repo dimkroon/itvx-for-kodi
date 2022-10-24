@@ -65,12 +65,12 @@ stream_req_data = {
         'version': '4.1'
     },
     'device': {
-        'manufacturer': '',
-        'model': '',
+        'manufacturer': 'Firefox',
+        'model': '105',
         'os': {
-            'name': '',
+            'name': 'Linux',
             'type': 'desktop',
-            'version': ''
+            'version': 'x86_64'
         }
     },
     'user': {
@@ -98,8 +98,8 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
 
         if stream_type == 'live':
             accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
-            # Live MUST have a featureset without outband-webvtt, or a bad request is returned.
-            min_features =  ['mpeg-dash', 'widevine']
+            # Live MUST have a featureset containing an item without outband-webvtt, or a bad request is returned.
+            min_features = ['mpeg-dash', 'widevine']
         else:
             accept_type = 'application/vnd.itv.vod.playlist.v2+json'
             #  ITV appears now to use the min feature for catchup streams, causing subtitles
@@ -121,14 +121,13 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
         return stream_data
     except AuthenticationError:
         if retry_on_error:
-            if session.refresh() is False:
+            if session.refresh():
+                return _request_stream_data(url, stream_type, retry_on_error=False)
+            else:
                 if kodi_utils.show_msg_not_logged_in():
                     from xbmc import executebuiltin
                     executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info['id']))
                 return False
-                # if not (kodi_utils.show_msg_not_logged_in() and session.login()):
-                #     raise
-            return _request_stream_data(url, stream_type, retry_on_error=False)
         else:
             raise
 
@@ -282,8 +281,8 @@ def productions(url, show_name):
     Programmes may have one or more production (i.e. episodes), but only info about
     the latest production is included in the data structure.
 
-    Return a list in a format that contains only relevant info in a format that can easily be
-    used by  codequick Listitem.from_dict.
+    Return a list containing only relevant info in a format that can easily be
+    used by codequick Listitem.from_dict.
 
     """
     result = fetch.get_json(
@@ -357,7 +356,6 @@ def get_episodes(url, show_name):
 def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """
-
     import re
 
     logger.info("Get playlist from episode page - url=%s", page_url)
@@ -370,13 +368,13 @@ def get_playlist_url_from_episode_page(page_url):
 
 
 def get_vtt_subtitles(subtitles_url):
-    if not subtitles_url:
-        logger.info('No subtitles available for this stream')
-        return None
-
     show_subtitles = Script.setting['subtitles_show'] == 'true'
     if show_subtitles is False:
         logger.info('Ignored subtitles by entry in settings')
+        return None
+
+    if not subtitles_url:
+        logger.info('No subtitles available for this stream')
         return None
 
     # noinspection PyBroadException
