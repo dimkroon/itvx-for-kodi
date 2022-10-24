@@ -172,10 +172,16 @@ def set_cookies_consent(cookiejar: RequestsCookieJar = None):
         cookie_data = json.loads(consent)
         jar = s.cookies
 
-        std_cookie_args = {'domain': '.itv.com', 'expires': time.time() + 365 * 86400, 'discard': False}
+        std_cookie_args = {'domain': '.itv.com', 'expires': time.time() + 3650 * 86400, 'discard': False}
         for cookie_name, cookie_value in cookie_data.items():
             jar.set(cookie_name, cookie_value, **std_cookie_args)
         logger.info("updated cookies consent")
+
+        # set other cookies
+        import uuid
+        jar.set('Itv.Cid', str(uuid.uuid4()), **std_cookie_args)
+        jar.set('Itv.Region', 'ITV|null', **std_cookie_args)
+        jar.set("Itv.ParentalControls", '{"active":false,"pin":null,"question":null,"answer":null}', **std_cookie_args)
         return jar
     except:
         logger.error("Unexpected exception while updating cookie consent", exc_info=True)

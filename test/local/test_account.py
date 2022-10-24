@@ -38,11 +38,20 @@ setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
 
 
-account_data = {"uname": "my_uname", "refreshed": time.time(),
-                "itv_session": {"access_token": "my-token",
-                                "refresh_token": "my-refresh-token"},
-                'cookies': {'Itv.Cid': 'xxxxxxxxxxxx'}
-                }
+account_data_v0 = {'uname': 'my_uname', 'passw': 'my_passw',
+                   "refreshed": time.time(),
+                   'itv_session': {'access_token': 'my-token',
+                                   'refresh_token': 'my-refresh-token'},
+                   'cookies': {'Itv.Cid': 'xxxxxxxxxxxx'}
+                   }
+
+account_data_v1 = {'refreshed': account_data_v0['refreshed'],
+                   'itv_session': {'access_token': 'my-token',
+                                   'refresh_token': 'my-refresh-token'},
+                   'cookies': {'Itv.Session': '{"sticky": true, "tokens": {"content": {"access_token": "my-token", '
+                                              '"refresh_token": "my-refresh-token"}}, "redirect": "/hub/shows"}'},
+                   'vers': 1
+                   }
 
 
 class TestSession(unittest.TestCase):
@@ -232,8 +241,8 @@ class PropAccessToken(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh')
     def test_prop_access_token(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = account_data
-        self.assertEqual(account_data['itv_session']['access_token'], ct_sess.access_token)
+        ct_sess.account_data = account_data_v1
+        self.assertEqual(account_data_v1['itv_session']['access_token'], ct_sess.access_token)
         p_refresh.assert_not_called()
         p_login.assert_not_called()
 
@@ -251,7 +260,7 @@ class PropAccessToken(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     def test_prop_access_token_with_cache_timed_out_invokes_refresh(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = account_data
+        ct_sess.account_data = account_data_v1
         ct_sess.account_data['refreshed'] = time.time() - 13 * 3600     # force a timeout
         _ = ct_sess.access_token
         p_login.assert_not_called()
@@ -260,17 +269,24 @@ class PropAccessToken(unittest.TestCase):
 
 class Misc(unittest.TestCase):
     def test_read_account_data(self):
-        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data))):
-            # test data is being read and class instantiation
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v1))):
+            # test data is being read at class instantiation
             ct_sess = itv_account.ItvSession()
-            self.assertEqual(account_data, ct_sess.account_data)
+            has_keys(ct_sess.account_data, 'itv_session', 'cookies', 'refreshed', 'vers')
+            self.assertEqual(account_data_v1, ct_sess.account_data)
             ct_sess.account_data = None
             # test manual read
             ct_sess.read_account_data()
-            self.assertEqual(account_data, ct_sess.account_data)
+            self.assertEqual(account_data_v1, ct_sess.account_data)
         with patch('resources.lib.itv_account.open', side_effect=OSError):
             ct_sess.read_account_data()
             self.assertEqual({}, ct_sess.account_data)
+
+    def test_read_account_converts_to_new_format(self):
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v0))) as p_open:
+            ct_sess = itv_account.ItvSession()
+            has_keys(ct_sess.account_data, 'itv_session', 'cookies', 'refreshed', 'vers')
+            self.assertEqual(account_data_v1, ct_sess.account_data)
 
     def test_save_account_data(self):
         ct_sess = itv_account.ItvSession()

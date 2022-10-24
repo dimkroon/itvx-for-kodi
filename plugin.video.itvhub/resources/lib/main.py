@@ -274,7 +274,7 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
             fetch.USER_AGENT,
             '&Content-Type=&Origin=https://www.itv.com&Referer=https://www.itv.com/&|R{SSM}|'))
 
-    cookiestr = itv_session().cookie + '; hdntl=' + hdntl_cookie
+    cookiestr = ''.join(('Itv.Session: ', itv_session().cookie['Itv.Session'], '; hdntl=', hdntl_cookie))
     play_item.property['inputstream.adaptive.stream_headers'] = ''.join((
             'User-Agent=',
             fetch.USER_AGENT,

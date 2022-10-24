@@ -111,7 +111,8 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
 
         stream_data = fetch.post_json(
             url, stream_req_data,
-            {'Accept': accept_type, 'Cookie': itv_session().cookie})
+            headers={'Accept': accept_type},
+            cookies=session.cookie)
 
         http_status = stream_data.get('StatusCode', 0)
         if http_status == 401:
