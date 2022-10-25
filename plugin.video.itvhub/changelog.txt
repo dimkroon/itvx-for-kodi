@@ -1,3 +1,13 @@
+v.0.4.0
+- List A-Z subfolders in menu 'Shows'.
+- Much improved account sign in experience.
+- Now possible to sign out of ITV account.
+- New setting to show password in plain text while you type.
+- Settings in new format, with help texts.
+- fix: catchup subtitles did not show anymore.
+- A little less confusing error messages.
+- Various small fixes, improvements, changes and adaptions to changes at ITV's web services.
+
 v.0.3.1
 fix: episode without subtitle fails to play
 update live channels' epg a bit more frequent
