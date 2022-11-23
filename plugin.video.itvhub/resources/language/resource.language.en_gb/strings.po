@@ -22,7 +22,7 @@ msgid "General"
 msgstr ""
 
 msgctxt "#30101"
-msgid "Catchup Subtitles"
+msgid "Catchup programs"
 msgstr ""
 
 msgctxt "#30102"
@@ -47,6 +47,14 @@ msgstr ""
 
 msgctxt "#30113"
 msgid "Log level"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Live channels"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Offer to play from the start"
 msgstr ""
 
 msgctxt "#30200"
@@ -82,6 +90,10 @@ msgid "Target of ITV hub logging.\n"
 "'File' logs to ITV hub's own log file stored in the addon's user data directory. Only of use if you know where to "
 "find that file.\n"
 "'No logging' if you want to ensure the addon spends as little time on logging as possible."
+msgstr ""
+
+msgctxt "#30321"
+msgid "Whenever possible, offer the option to play the current program from the start each time a live channel is being started.\n"
 msgstr ""
 
 msgctxt "#30401"

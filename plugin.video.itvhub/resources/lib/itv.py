@@ -5,6 +5,7 @@ import time
 import logging
 
 from datetime import datetime, timedelta
+import pytz
 
 from codequick import Script
 from codequick.support import logger_id
@@ -24,7 +25,6 @@ def get_live_schedule(hours=4):
     """Get the schedule of the live channels from now up to the specified number of hours.
 
     """
-    import pytz
 
     # Calculate current british time and the difference between that and local time
     btz = pytz.timezone('Europe/London')
@@ -54,6 +54,7 @@ def get_live_schedule(hours=4):
             brit_time = datetime(*(time.strptime(time_str, '%Y-%m-%dT%H:%M')[0:6]))
             loc_time = brit_time + time_dif
             program['startTime'] = loc_time.strftime('%H:%M')
+            program['orig_start'] = program['onAirTimeUTC'][:19]
 
     return schedule
 
@@ -132,7 +133,7 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             raise
 
 
-def get_live_urls(channel, url=None):
+def get_live_urls(channel, url=None, title=None, start_time=None):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. Note::
@@ -148,6 +149,17 @@ def get_live_urls(channel, url=None):
     stream_data = _request_stream_data(url)
     video_locations = stream_data['Playlist']['Video']['VideoLocations'][0]
     dash_url = video_locations['Url']
+    start_again_url = video_locations.get('StartAgainUrl')
+
+    if start_again_url:
+        if start_time and kodi_utils.ask_play_from_start(title):
+            dash_url = start_again_url.format(START_TIME=start_time)
+            logger.debug('get_live_urls - selected play from start at %s', start_time)
+        else:
+            # Go 20 sec back to ensure we get the timeshift stream
+            start_time = datetime.utcnow() - timedelta(seconds=20)
+            dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
+
     key_service = video_locations['KeyServiceUrl']
     return dash_url, key_service, None
 

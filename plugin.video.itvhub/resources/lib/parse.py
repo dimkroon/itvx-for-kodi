@@ -216,3 +216,15 @@ def parse_category(page: str):
     except (json.JSONDecodeError, KeyError, ParseError) as err:
         logger.error('Failed parse page shows: %r', err)
         raise ParseError
+
+
+def get__next__data_from_page(html_page):
+    import re
+    result = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.+?)</script>', html_page)
+    if result:
+        json_str = result[1]
+        try:
+            data = json.loads(json_str)
+        except json.JSONDecodeError:
+            logger.warning("__NEXT_DATA__ in HTML page is not valid JSON.")
+        return data

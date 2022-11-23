@@ -126,3 +126,11 @@ def ask_log_handler(default):
     except IndexError:
         # default value is not necessarily a valid index.
         return result, ''
+
+
+def ask_play_from_start(title=None):
+    dlg = xbmcgui.Dialog()
+
+    return dlg.yesno(
+            title or 'ITVX',
+            Script.localize(TXT_PLAY_FROM_START))

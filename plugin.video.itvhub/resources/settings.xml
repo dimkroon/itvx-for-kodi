@@ -18,6 +18,13 @@
 					<control type="toggle"/>
 				</setting>
 			</group>
+			<group id="grp_live" label="30120">
+				<setting id="live_play_from_start" label="30121" type="boolean" help="30321">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+			</group>
 			<group id="grp2" label="30110">
 				<setting id="log-handler" label="30111" type="string" help="30311">
 					<level>2</level>

@@ -73,7 +73,9 @@ def sub_menu_live(_):
                 'plot': '\n'.join(programs)},
             params={
                 'channel': chan_name,
-                'url': channel_info['_links']['playlist']['href']
+                'url': channel_info['_links']['playlist']['href'],
+                'title': now_on,
+                'start_time': item['slot'][0]['orig_start']
             }
         )
         yield li
@@ -255,7 +257,7 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 
     is_helper = inputstreamhelper.Helper(PROTOCOL, drm=DRM)
     if not is_helper.check_inputstream():
-        return
+        return False
 
     play_item = Listitem()
     play_item.label = name
@@ -295,10 +297,14 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 
 
 @Resolver.register
-def play_stream_live(_, channel, url):
+def play_stream_live(addon, channel, url, title=None, start_time=None):
     logger.info('play live stream - channel=%s, url=%s', channel, url)
+
+    if addon.setting['live_play_from_start'] != 'true':
+        start_time = None
+
     try:
-        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel, url)
+        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel, url, title, start_time)
     except FetchError as err:
         logger.error('Error retrieving live stream urls: %r' % err)
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
@@ -307,9 +313,18 @@ def play_stream_live(_, channel, url):
         logger.error('Error retrieving live stream urls: %r' % e)
         return
 
-    list_item = create_dash_stream_item(channel, manifest_url, key_service_url, resume_time='43200')
+    list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
     if list_item:
-        list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+    #     list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+        if start_time and start_time in manifest_url:
+            # cut the first few seconds of video without audio
+            list_item.property['ResumeTime'] = '8'
+            list_item.property['inputstream.adaptive.play_timeshift_buffer'] = 'true'
+            logger.debug("play live stream - timeshift_buffer enabled")
+        else:
+            # compensate for the 20 sec back used to get the time shift stream of a live channel
+            list_item.property['ResumeTime'] = '20'
+        list_item.property['TotalTime'] = '1'
     return list_item
 
 

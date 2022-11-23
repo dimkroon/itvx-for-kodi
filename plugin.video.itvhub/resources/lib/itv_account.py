@@ -183,8 +183,8 @@ class ItvSession:
 def build_cookie(session_data):
     cookiestr = json.dumps({
         'sticky': True,
-        'tokens': {'content': session_data},
-        'redirect': "/hub/shows"})
+        'tokens': {'content': session_data}
+    })
     return cookiestr
 
 

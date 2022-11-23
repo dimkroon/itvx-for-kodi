@@ -1,4 +1,6 @@
+import datetime
 
+from support import testutils
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -6,7 +8,7 @@ import time
 import unittest
 import requests
 
-from resources.lib import itv, fetch, errors
+from resources.lib import itv, fetch, errors, parse
 from resources.lib import itv_account
 
 from test.support import object_checks
@@ -23,6 +25,55 @@ class TestCookies(unittest.TestCase):
 # ----------------------------------------------------------------------------------------------------------------------
 #           JSON API
 # ----------------------------------------------------------------------------------------------------------------------
+
+class LiveSchedules(unittest.TestCase):
+    def test_schedules(self):
+        now = datetime.datetime.utcnow()
+        end = now + datetime.timedelta(hours=4)
+        now = now - datetime.timedelta(hours=4)
+        t_fmt = '%Y%m%d%H%M'
+        resp = requests.get('https://scheduled.oasvc.itv.com/scheduled/itvonline/schedules?from={}&platformTag=ctv&to={}'.format(now.strftime(t_fmt), end.strftime(t_fmt)))
+        data = resp.json()
+        schedule = data['_embedded']['schedule']
+        self.assertEqual(6, len(schedule))
+        for channel_data in schedule:
+            programs = channel_data['_embedded']['slot']
+            for program in programs:
+                object_checks.has_keys(program, 'programmeTitle', 'startTime', 'onAirTimeUTC', 'productionId')
+                self.assertTrue(program['startTime'].endswith('Z'))     # start time is in format '2022-11-22T20:00Z'
+                self.assertEqual(17, len(program['startTime']))         # has no seconds
+            channel_info = channel_data['_embedded']['channel']
+            object_checks.has_keys(channel_info, 'name', 'strapline', '_links')
+            self.assertTrue(channel_info['_links']['playlist']['href'].startswith('https'))
+
+    def test_now_next(self):
+        resp = requests.get('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
+        data = resp.json()
+        object_checks.has_keys(data, 'channels', 'images', 'ts')
+        self.assertEqual(25, len(data['channels']))
+        for chan in data['channels']:
+            object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
+            for program in (chan['slots']['now'], chan['slots']['next']):
+                object_checks.has_keys(program, 'titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
+                                       'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
+                                       'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
+                                       'startAgainSimulcast', 'shortSynopsis')
+                self.assertTrue(program['start'].endswith('Z'))
+                self.assertTrue(20, len(program['start']))      # has seconds
+                self.assertTrue(program['end'].endswith('Z'))
+                self.assertTrue(20, len(program['end']))        # has seconds
+                if program['broadcastAt'] is not None:      # is None on fast channels
+                    self.assertTrue(program['broadcastAt'].endswith('Z'))
+                    self.assertTrue(20, len(program['broadcastAt']))
+
+
+class WatchPages(unittest.TestCase):
+    def test_watch_itv1(self):
+        acc_data = itv_account.itv_session()
+        page = fetch.get_document("https://www.itv.com/watch?channel=itv")
+        testutils.save_doc(page, 'html/watch-itv1.html')
+        data = parse.get__next__data_from_page(page)
+        print(data)
 
 
 class Categories(unittest.TestCase):
@@ -201,6 +252,7 @@ class Playlists(unittest.TestCase):
 
     def test_get_playlist_live(self):
         acc_data = itv_account.itv_session()
+        acc_data.refresh()
         post_data = self.create_post_data()
 
         for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
@@ -208,7 +260,7 @@ class Playlists(unittest.TestCase):
             resp = requests.post(
                     url,
                     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                           'Cookie': acc_data.cookie},
+                             'Cookie': acc_data.cookie},
                     json=post_data,
                     timeout=10
             )
