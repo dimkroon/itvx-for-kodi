@@ -244,6 +244,8 @@ def get_json(url, headers=None, **kwargs):
     if headers:
         dflt_headers.update(headers)
     resp = web_request('GET', url, dflt_headers, **kwargs)
+    if resp.status_code == 204:     # No Content
+        return None
     try:
         return resp.json()
     except json.JSONDecodeError:

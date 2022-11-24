@@ -121,3 +121,9 @@ class TestItv(unittest.TestCase):
         # Doc Martin episode 1
         srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
         self.assertIsInstance(srt_file, str)
+
+    def test_search(self):
+        items = itv.search('the chase')
+        self.assertGreater(len(list(items)), 2)
+        items = itv.search('xprgs')     # should return no results
+        self.assertEqual(len(list(items)), 0)

@@ -64,3 +64,22 @@ class Shows(TestCase):
         """Folder 'X' does not have any items"""
         shows_x = main.list_programs(MagicMock(), "shows_url", 'X')
         self.assertFalse(shows_x)
+
+
+class Productions(TestCase):
+    @patch("resources.lib.itv.productions", return_value=[])
+    def test_empty_productions_list(self, _):
+        result = list(main.list_productions(MagicMock(), ''))
+        self.assertListEqual([False], result)
+
+
+class Search(TestCase):
+    @patch('resources.lib.fetch.get_json', return_value=open_json('search/the_chase.json'))
+    def test_search_the_chase(self, _):
+        results = main.do_search(MagicMock(), 'the chase')
+        self.assertEqual(10, len(results))
+
+    @patch('resources.lib.fetch.get_json', return_value=None)
+    def test_search_with_no_results(self, _):
+        results = main.do_search(MagicMock(), 'the chase')
+        self.assertFalse(results)

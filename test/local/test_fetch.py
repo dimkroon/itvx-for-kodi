@@ -145,6 +145,12 @@ class GetJson(TestCase):
         mocked_req.assert_called_once_with('GET', URL, {'Accept': 'application/json'})
         self.assertEqual({'a': 1}, resp)
 
+    @patch("resources.lib.fetch.web_request", return_value=HttpResponse(status_code=204))
+    def test_get_json_returns_no_content(self, mocked_req):
+        resp = fetch.get_json(URL)
+        mocked_req.assert_called_once_with('GET', URL, {'Accept': 'application/json'})
+        self.assertIsNone(resp)
+
     @patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'{"a": 1}'))
     # noinspection PyMethodMayBeStatic
     def test_get_json_adds_extra_headers(self, mocked_req):

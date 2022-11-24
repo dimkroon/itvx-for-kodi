@@ -19,6 +19,9 @@ logger = logging.getLogger(logger_id + '.main')
 logger.critical('-------------------------------------')
 
 
+TXT_SEARCH = 30807
+TXT_NOTHING_FOUND = 30608
+
 build_url = urljoin('https://www.itv.com/hub/')
 
 
@@ -42,6 +45,7 @@ def root(_):
             'Full series',
             params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
     yield Listitem.from_dict(list_categories, 'Categories')
+    yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
 
 # In order to ensure that epg data is refreshed when a live stream is stopped, kodi is
@@ -137,6 +141,9 @@ def list_productions(plugin, url, name='', series_idx=0):
                             disable_autosort=True)
 
     series_list = itv.productions(url, name)
+    if not series_list:
+        yield False
+        return
 
     # First create folders for series
     for i in range(len(series_list)):
@@ -230,6 +237,25 @@ def sub_menu_full_series(_, url):
     submenu_items = parse.parse_full_series(fetch.get_document(url))
     for item in submenu_items:
         yield Listitem.from_dict(sub_menu_episodes, **item)
+
+
+@Route.register()
+def do_search(_, search_query):
+    search_results = itv.search(search_term=search_query)
+    if not search_results:
+        Script.notify('itvX - ' + Script.localize(TXT_SEARCH),
+                      Script.localize(TXT_NOTHING_FOUND),
+                      Script.NOTIFY_INFO, 7000)
+        return False
+
+    items = []
+    for result in search_results:
+        item_type = result.pop('entity_type')
+        if item_type == 'programme':
+            items.append(Listitem.from_dict(list_productions, **result))
+        else:
+            items.append(Listitem.from_dict(play_stream_catchup, **result))
+    return items
 
 
 def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=None):

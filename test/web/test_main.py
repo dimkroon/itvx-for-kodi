@@ -82,10 +82,20 @@ class TestGetProductions(unittest.TestCase):
             MagicMock(),
            'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=1_7842&features=aes,'
            'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-           name='The Chase'),)
+           name='The Chase'))
         self.assertGreater(len(items), 1)
         for item in items:
             print(item)
+
+    def test_get_productions_doctor_foster(self):
+        """Productions of a paid programme"""
+        items = list(main.list_productions(
+            MagicMock(),
+            'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=2_7438&features=aes,'
+            'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
+            name='Doctor Foster'))
+        self.assertEqual([False], items)
+
 
 class TestPlayShow(unittest.TestCase):
     def test_play_show_a_late_quartet(self):
