@@ -59,6 +59,54 @@ def get_live_schedule(hours=4):
     return schedule
 
 
+def get_live_channels():
+    from tzlocal import get_localzone
+    local_tz = get_localzone()
+    utc_tz = pytz.utc
+
+    live_data = fetch.get_json('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
+    fanart_url = live_data['images']['backdrop']
+
+    main_schedule = get_live_schedule()
+
+    channels = live_data['channels']
+
+    for channel in channels:
+        channel['backdrop'] = fanart_url
+        slots = channel.pop('slots')
+
+        # The itv main live channels get their schedule from the full live schedule
+        if channel['channelType'] == 'simulcast':
+            chan_id = channel['id']
+            for main_chan in main_schedule:
+                # Caution, might get broken when ITV becomes ITV1 everywhere
+                if main_chan['channel']['name'] == chan_id:
+                    channel['slot'] = main_chan['slot']
+                    break
+            if channel.get('slot'):
+                # On to the next channel if adding full schedule succeeded
+                continue
+
+        programs_list = []
+        for prog in (slots['now'], slots['next']):
+            if prog['detailedDisplayTitle']:
+                title = ': '.join((prog['displayTitle'], prog['detailedDisplayTitle']))
+            else:
+                title = prog['displayTitle']
+
+            start_t = prog['start'][:19]
+            # TODO: check this in DST period
+            utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6])).replace(tzinfo=utc_tz)
+
+            programs_list.append({
+                'programmeTitle': title,
+                'orig_start': None,          # fast channels do not support play from start
+                'startTime': utc_start.astimezone(local_tz).strftime('%H:%M')
+            })
+        channel['slot'] = programs_list
+    return channels
+
+
 stream_req_data = {
     'client': {
         'id': 'browser',

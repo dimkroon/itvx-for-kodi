@@ -14,7 +14,7 @@ setUpModule = fixtures.setup_web_test
 class TestMenu(unittest.TestCase):
     def test_menu_live(self):
         items = list(main.sub_menu_live(MagicMock()))
-        self.assertEqual(6, len(items))
+        self.assertGreaterEqual(len(items), 10)
         for item in items:
             print(item.params['url'])
 
