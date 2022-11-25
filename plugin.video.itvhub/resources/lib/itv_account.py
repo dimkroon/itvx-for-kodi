@@ -214,8 +214,6 @@ def fetch_authenticated(funct, url, **kwargs):
 
     for tries in range(2):
         try:
-            headers = kwargs.setdefault('headers', {})
-            headers.update({'Authorization': 'Bearer ' + account.access_token})
             cookies = kwargs.setdefault('cookies', {})
             cookies.update(account.cookie)
             return funct(url=url, **kwargs)
