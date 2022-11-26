@@ -34,6 +34,8 @@ class LiveSchedules(unittest.TestCase):
         t_fmt = '%Y%m%d%H%M'
         resp = requests.get('https://scheduled.oasvc.itv.com/scheduled/itvonline/schedules?from={}&platformTag=ctv&to={}'.format(now.strftime(t_fmt), end.strftime(t_fmt)))
         data = resp.json()
+        # testutils.save_json(data, 'schedule/live_4hrs.json')
+
         schedule = data['_embedded']['schedule']
         self.assertEqual(6, len(schedule))
         for channel_data in schedule:
@@ -49,7 +51,12 @@ class LiveSchedules(unittest.TestCase):
     def test_now_next(self):
         resp = requests.get('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
         data = resp.json()
+        # testutils.save_json(data, 'schedule/now_next.json')
         object_checks.has_keys(data, 'channels', 'images', 'ts')
+
+        self.assertTrue(data['images']['backdrop'].startswith('https://'))
+        self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
+
         self.assertEqual(25, len(data['channels']))
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')

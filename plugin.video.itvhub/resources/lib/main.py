@@ -55,29 +55,25 @@ def root(_):
 
 @Route.register(cache_ttl=4)
 def sub_menu_live(_):
-    tv_schedule = itv.get_live_schedule()
-    addon_path = utils.addon_info['path']
+    tv_schedule = itv.get_live_channels()
 
     for item in tv_schedule:
-        channel_info = item['channel']
-        chan_name = channel_info['name']
+        chan_name = item['name']
         now_on = item['slot'][0]['programmeTitle']
         programs = ('{} - {}'.format(program['startTime'], program['programmeTitle']) for program in item['slot'])
-        thumbfile = os.path.join(addon_path, 'resources/media/{}-colour.png'.format(chan_name.lower()))
         label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on)
         li = Listitem.from_dict(
             play_stream_live,
             label=label,
             art={
-                'fanart': channel_info['_links']['backgroundImage']['href'].format(
-                        width=1280, height=720, quality=80, blur=0, bg='false'),
-                'thumb': thumbfile},
+                'fanart': item['backdrop'],
+                'thumb': item['images']['logo']},
             info={
                 'title': label,
                 'plot': '\n'.join(programs)},
             params={
                 'channel': chan_name,
-                'url': channel_info['_links']['playlist']['href'],
+                'url': item['streamUrl'],
                 'title': now_on,
                 'start_time': item['slot'][0]['orig_start']
             }

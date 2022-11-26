@@ -1,0 +1,810 @@
+{
+  "_embedded": {
+    "schedule": [
+      {
+        "id": "itv/from=202211241937/to=202211250337",
+        "generatedAt": "2022-11-24T23:37Z",
+        "_embedded": {
+          "slot": [
+            {
+              "programmeTitle": "Emmerdale",
+              "productionId": "1/8694/9530#001",
+              "startTime": "2022-11-24T19:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T19:30:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Coronation Street",
+              "productionId": "1/0694/10803/04#001",
+              "startTime": "2022-11-24T20:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T20:02:01Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Coronation Street",
+              "productionId": "1/0694/10804#001",
+              "startTime": "2022-11-24T20:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T20:30:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "I'm a Celebrity... Get Me Out of Here!",
+              "productionId": "1/7103/0313#001",
+              "startTime": "2022-11-24T21:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T21:02:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "ITV News at Ten",
+              "productionId": "2/4409/1817#001",
+              "startTime": "2022-11-24T22:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T22:29:25Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "ITV Weather",
+              "productionId": "NET47TH22-NW23",
+              "startTime": "2022-11-24T22:58Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T22:59:35Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "ITV News Regional",
+              "productionId": "LON47TH22-RN23",
+              "startTime": "2022-11-24T23:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T23:01:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "ITV Regional Weather",
+              "productionId": "LON47TH22-WX23",
+              "startTime": "2022-11-24T23:13Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T23:11:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "The Late Debate",
+              "productionId": "1/7516/0153#001",
+              "startTime": "2022-11-24T23:15Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-24T23:16:22Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "FIFA World Cup 2022 Highlights",
+              "productionId": "10/3625/0004#001",
+              "startTime": "2022-11-24T23:45Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-24T23:45:30Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Heathrow: Britain's Busiest Airport",
+              "productionId": "2/3168/0016#001",
+              "startTime": "2022-11-25T00:50Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-25T00:48:35Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Shop: Ideal World",
+              "productionId": null,
+              "startTime": "2022-11-25T01:20Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T01:20:10Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Game Of Talents",
+              "productionId": "10/0664/0002#002",
+              "startTime": "2022-11-25T03:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv",
+              "onAirTimeUTC": "2022-11-25T03:00:44Z",
+              "hmac": null
+            }
+          ],
+          "channel": {
+            "name": "ITV",
+            "strapline": "Come on in.",
+            "_links": {
+              "playlist": {
+                "href": "https://simulcast.itv.com/playlist/itvonline/ITV"
+              },
+              "primaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-colour-pos.svg"
+              },
+              "secondaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg"
+              },
+              "dogImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg"
+              },
+              "backgroundImage": {
+                "href": "https://hubimages.itv.com/channel/itv?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "itv2/from=202211241937/to=202211250337",
+        "generatedAt": "2022-11-24T23:37Z",
+        "_embedded": {
+          "slot": [
+            {
+              "programmeTitle": "Dress To Impress",
+              "productionId": "2/4985/0086#001",
+              "startTime": "2022-11-24T19:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T19:00:15Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Bob's Burgers",
+              "productionId": "10/1449/0207#001",
+              "startTime": "2022-11-24T20:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T20:02:39Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Bob's Burgers",
+              "productionId": "10/1449/0208#001",
+              "startTime": "2022-11-24T20:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T20:30:11Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Family Guy",
+              "productionId": "2/4259/0176#001",
+              "startTime": "2022-11-24T21:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T21:01:42Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Family Guy",
+              "productionId": "2/4259/0177#001",
+              "startTime": "2022-11-24T21:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T21:32:47Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Plebs",
+              "productionId": "2/1873/0036#001",
+              "startTime": "2022-11-24T22:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T22:03:27Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Plebs",
+              "productionId": "2/1873/0037#002",
+              "startTime": "2022-11-24T22:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T22:32:53Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Family Guy",
+              "productionId": "2/4259/0168#001",
+              "startTime": "2022-11-24T23:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T23:03:21Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "American Dad!",
+              "productionId": "2/4263/0261#001",
+              "startTime": "2022-11-24T23:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T23:30:57Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "American Dad!",
+              "productionId": "2/4263/0255#001",
+              "startTime": "2022-11-24T23:55Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-24T23:57:36Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Bob's Burgers",
+              "productionId": "10/1449/0209#001",
+              "startTime": "2022-11-25T00:25Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-25T00:26:30Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Bob's Burgers",
+              "productionId": "10/1449/0210#001",
+              "startTime": "2022-11-25T00:55Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-25T00:53:54Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Crossing Swords",
+              "productionId": "10/0933/0015#001",
+              "startTime": "2022-11-25T01:20Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-25T01:22:51Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Crossing Swords",
+              "productionId": "10/0933/0016#001",
+              "startTime": "2022-11-25T01:50Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-25T01:52:57Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Iain Stirling's CelebAbility",
+              "productionId": "2/5129/0018#001",
+              "startTime": "2022-11-25T02:20Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv2",
+              "onAirTimeUTC": "2022-11-25T02:21:15Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "RVT/OEMM01/1800",
+              "startTime": "2022-11-25T03:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T03:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:30:00Z",
+              "hmac": null
+            }
+          ],
+          "channel": {
+            "name": "ITV2",
+            "strapline": "TV. And then some.",
+            "_links": {
+              "playlist": {
+                "href": "https://simulcast.itv.com/playlist/itvonline/ITV2"
+              },
+              "primaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv2/itv2-colour.svg"
+              },
+              "secondaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv2/itv2-mono-neg.svg"
+              },
+              "dogImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv2/itv2-mono-neg.svg"
+              },
+              "backgroundImage": {
+                "href": "https://hubimages.itv.com/channel/itv2?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "itv3/from=202211241937/to=202211250337",
+        "generatedAt": "2022-11-24T23:37Z",
+        "_embedded": {
+          "slot": [
+            {
+              "programmeTitle": "Heartbeat",
+              "productionId": "Y/0757/0322/A",
+              "startTime": "2022-11-24T19:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv3",
+              "onAirTimeUTC": "2022-11-24T19:03:55Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Vera",
+              "productionId": "1/7314/0011#003",
+              "startTime": "2022-11-24T20:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv3",
+              "onAirTimeUTC": "2022-11-24T20:04:53Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Foyle's War",
+              "productionId": "2/1515/0002#001",
+              "startTime": "2022-11-24T22:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv3",
+              "onAirTimeUTC": "2022-11-24T22:02:44Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "A Touch of Frost",
+              "productionId": "Y/1774/0004#004",
+              "startTime": "2022-11-25T00:05Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv3",
+              "onAirTimeUTC": "2022-11-25T00:05:12Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Unwind With ITV3",
+              "productionId": "10/1889/0406#001",
+              "startTime": "2022-11-25T02:15Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv3",
+              "onAirTimeUTC": "2022-11-25T02:19:18Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T02:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T02:30:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T03:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T03:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:30:00Z",
+              "hmac": null
+            }
+          ],
+          "channel": {
+            "name": "ITV3",
+            "strapline": "Contemporary and Classic Drama.",
+            "_links": {
+              "playlist": {
+                "href": "https://simulcast.itv.com/playlist/itvonline/ITV3"
+              },
+              "primaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-colour.svg"
+              },
+              "secondaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-mono-neg.svg"
+              },
+              "dogImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-mono-neg.svg"
+              },
+              "backgroundImage": {
+                "href": "https://hubimages.itv.com/channel/itv3?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "itv4/from=202211241937/to=202211250337",
+        "generatedAt": "2022-11-24T23:37Z",
+        "_embedded": {
+          "slot": [
+            {
+              "programmeTitle": "Battlebots",
+              "productionId": "10/2235/0004#001",
+              "startTime": "2022-11-24T18:55Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-24T18:57:09Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Beat the Chasers",
+              "productionId": "2/6826/0004#002",
+              "startTime": "2022-11-24T20:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-24T20:00:30Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Bobby Robson: More Than A Manager",
+              "productionId": "10/2998/0001#001",
+              "startTime": "2022-11-24T21:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-24T21:04:42Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Fyi Daily",
+              "productionId": "1/8987/4714#001",
+              "startTime": "2022-11-24T22:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-24T22:03:06Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Bobby Robson: More Than A Manager",
+              "productionId": "10/2998/0001#001",
+              "startTime": "2022-11-24T22:05Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-24T22:04:08Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Against the Odds",
+              "productionId": "10/1454/0010#001",
+              "startTime": "2022-11-24T23:15Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-24T23:14:06Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "The Purge",
+              "productionId": "2/6568/0001#002",
+              "startTime": "2022-11-25T00:15Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-25T00:15:14Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Fyi Daily",
+              "productionId": "1/8987/4714#001",
+              "startTime": "2022-11-25T01:15Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-25T01:14:37Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "The Purge",
+              "productionId": "2/6568/0001#002",
+              "startTime": "2022-11-25T01:20Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-25T01:15:49Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Minder",
+              "productionId": "IMM/00142/008#003",
+              "startTime": "2022-11-25T01:50Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-25T01:53:32Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Unwind With ITV4",
+              "productionId": "10/1889/0406#001",
+              "startTime": "2022-11-25T02:45Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itv4",
+              "onAirTimeUTC": "2022-11-25T02:46:13Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "RVT/OEMM01/1800",
+              "startTime": "2022-11-25T03:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping",
+              "productionId": "THA/MXKK03/1800",
+              "startTime": "2022-11-25T03:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:30:00Z",
+              "hmac": null
+            }
+          ],
+          "channel": {
+            "name": "ITV4",
+            "strapline": "Sport and Cult Classics.",
+            "_links": {
+              "playlist": {
+                "href": "https://simulcast.itv.com/playlist/itvonline/ITV4"
+              },
+              "primaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv4/itv4-colour.svg"
+              },
+              "secondaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv4/itv4-mono-neg.svg"
+              },
+              "dogImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv4/itv4-mono-neg.svg"
+              },
+              "backgroundImage": {
+                "href": "https://hubimages.itv.com/channel/itv4?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "citv/from=202211241937/to=202211250337",
+        "generatedAt": "2022-11-24T23:37Z",
+        "_embedded": {
+          "slot": [
+            {
+              "programmeTitle": "Scooby Doo Mystery Incorporated",
+              "productionId": "2/4672/0047#001",
+              "startTime": "2022-11-24T19:29Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-24T19:27:41Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Lloyd of the Flies",
+              "productionId": "2/5834/0024#001",
+              "startTime": "2022-11-24T20:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-24T19:58:30Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "The Rubbish World of Dave Spud",
+              "productionId": "2/6321/0012#001",
+              "startTime": "2022-11-24T20:15Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/citv",
+              "onAirTimeUTC": "2022-11-24T20:13:41Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Ted's Top Ten",
+              "productionId": "10/1260/0004#001",
+              "startTime": "2022-11-24T20:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/citv",
+              "onAirTimeUTC": "2022-11-24T20:28:53Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Dare Master",
+              "productionId": "2/6715/0014#001",
+              "startTime": "2022-11-24T20:55Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/citv",
+              "onAirTimeUTC": "2022-11-24T20:53:44Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "This Is CITV",
+              "productionId": null,
+              "startTime": "2022-11-24T21:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-24T21:00:00Z",
+              "hmac": null
+            }
+          ],
+          "channel": {
+            "name": "CITV",
+            "strapline": "For kids, by kids.",
+            "_links": {
+              "playlist": {
+                "href": "https://simulcast.itv.com/playlist/itvonline/CITV"
+              },
+              "primaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/citv/citv-colour.svg"
+              },
+              "secondaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/citv/citv-mono-neg.svg"
+              },
+              "dogImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/citv/citv-mono-neg.svg"
+              },
+              "backgroundImage": {
+                "href": "https://hubimages.itv.com/channel/citv?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "itvbe/from=202211241937/to=202211250337",
+        "generatedAt": "2022-11-24T23:37Z",
+        "_embedded": {
+          "slot": [
+            {
+              "programmeTitle": "Buying and Selling",
+              "productionId": "2/4352/0092#001",
+              "startTime": "2022-11-24T19:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-24T18:59:20Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Dinner Date",
+              "productionId": "1/8783/0118#001",
+              "startTime": "2022-11-24T20:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-24T19:59:08Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Botched",
+              "productionId": "2/3690/0026#001",
+              "startTime": "2022-11-24T21:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-24T21:02:32Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Botched",
+              "productionId": "2/3690/0022#002",
+              "startTime": "2022-11-24T22:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-24T22:00:26Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Don't Be Tardy...",
+              "productionId": "2/3473/0093#001",
+              "startTime": "2022-11-24T23:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-24T22:59:47Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Don't Be Tardy...",
+              "productionId": "2/3473/0094#001",
+              "startTime": "2022-11-24T23:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-24T23:31:05Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "The Only Way is Essex",
+              "productionId": "1/9310/0284#001",
+              "startTime": "2022-11-25T00:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": "https://simulcast.itv.com/playlist/itvonline/itvbe",
+              "onAirTimeUTC": "2022-11-25T00:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping (ITVBe - Nov 2022)",
+              "productionId": "EJX/ROXI68/1800",
+              "startTime": "2022-11-25T01:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T01:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping (ITVBe - Nov 2022)",
+              "productionId": "HST/NBJC12/1800",
+              "startTime": "2022-11-25T01:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T01:30:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping (ITVBe - Nov 2022)",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T02:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T02:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping (ITVBe - Nov 2022)",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T02:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T02:30:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping (ITVBe - Nov 2022)",
+              "productionId": "RVT/OEMM01/1800",
+              "startTime": "2022-11-25T03:00Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:00:00Z",
+              "hmac": null
+            },
+            {
+              "programmeTitle": "Teleshopping (ITVBe - Nov 2022)",
+              "productionId": "RVT/OMEM02/1800",
+              "startTime": "2022-11-25T03:30Z",
+              "startAgainVod": null,
+              "startAgainSimulcast": null,
+              "onAirTimeUTC": "2022-11-25T03:30:00Z",
+              "hmac": null
+            }
+          ],
+          "channel": {
+            "name": "ITVBe",
+            "strapline": "Life Worth Sharing.",
+            "_links": {
+              "playlist": {
+                "href": "https://simulcast.itv.com/playlist/itvonline/ITVBe"
+              },
+              "primaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itvbe/itvbe-colour.svg"
+              },
+              "secondaryImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itvbe/itvbe-mono-neg.svg"
+              },
+              "dogImage": {
+                "href": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itvbe/itvbe-mono-neg.svg"
+              },
+              "backgroundImage": {
+                "href": "https://hubimages.itv.com/channel/itvBe?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

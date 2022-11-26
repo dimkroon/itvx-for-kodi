@@ -16,7 +16,7 @@
 #
 #  You should have received a copy of the GNU General Public License along with
 #  plugin.video.itvhub. If not, see <https://www.gnu.org/licenses/>.
-
+import types
 
 from test.support import fixtures
 fixtures.global_setup()
@@ -31,6 +31,16 @@ from resources.lib import main
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
+
+
+@patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
+                                                    open_json('schedule/live_4hrs.json')))
+class LiveChannels(TestCase):
+    def test_liste_live_channels(self, _):
+        chans = main.sub_menu_live(MagicMock())
+        self.assertIsInstance(chans, types.GeneratorType)
+        chan_list = list(chans)
+        self.assertGreaterEqual(len(chan_list), 10)
 
 
 @patch('resources.lib.fetch.get_json', return_value=open_json('programs/all_shows.json'))
