@@ -49,7 +49,7 @@ account_data_v1 = {'refreshed': account_data_v0['refreshed'],
                    'itv_session': {'access_token': 'my-token',
                                    'refresh_token': 'my-refresh-token'},
                    'cookies': {'Itv.Session': '{"sticky": true, "tokens": {"content": {"access_token": "my-token", '
-                                              '"refresh_token": "my-refresh-token"}}, "redirect": "/hub/shows"}'},
+                                              '"refresh_token": "my-refresh-token"}}}'},
                    'vers': 1
                    }
 
