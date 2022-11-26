@@ -40,10 +40,10 @@ def root(_):
     #         params={'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&'
     #                        'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,'
     #                        'fairplay&sortBy=title'})
-    yield Listitem.from_dict(
-            sub_menu_from_page,
-            'Full series',
-            params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
+    # yield Listitem.from_dict(
+    #         sub_menu_from_page,
+    #         'Full series',
+    #         params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
     yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
