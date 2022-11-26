@@ -20,7 +20,7 @@
     </disclaimer>
     <assets>
       <icon>resources/icon.png</icon>
-      <fanart>resources/fanart.jpg</fanart>
+      <fanart>resources/fanart.png</fanart>
     </assets>
     <reuselanguageinvoker>true</reuselanguageinvoker>
   </extension>
