@@ -61,7 +61,7 @@ def get_live_schedule(hours=4):
 stream_req_data = {
     'client': {
         'id': 'browser',
-        'supportsAdPods': True,
+        'supportsAdPods': False,
         'version': '4.1'
     },
     'device': {
