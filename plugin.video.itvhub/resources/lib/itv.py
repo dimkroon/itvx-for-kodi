@@ -221,7 +221,7 @@ CACHE_TIME = 600
 
 
 def _get_programs(url):
-    """Return the cached list of programs is present in the cache and not expired, or
+    """Return the cached list of programs if present in the cache and not expired, or
     create a new list from data from itv hub.
     Cache the list in memory for the lifetime of the addon, to a maximum of CACHE_TIME in seconds
 

@@ -336,11 +336,11 @@ def play_stream_catchup(_, url, name):
 
 @Resolver.register
 def play_episode(plugin, url, name=None):
-    """PLay an episode from an url to the episode's html page.
+    """Play an episode from an url to the episode's html page.
 
-    While episodes obtain from list_productions() have urls to stream info,
-    episodes from listings obtained by parsing html pages have url to the
-    respective episode's details html page.
+    While episodes obtained from list_productions() have direct urls to stream's
+    playlist, episodes from listings obtained by parsing html pages have an url
+    to the respective episode's details html page.
 
     """
     url, title = itv.get_playlist_url_from_episode_page(url)
