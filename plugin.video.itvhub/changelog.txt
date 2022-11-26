@@ -1,3 +1,11 @@
+v.0.5.0
+- itvX icon and fanart
+- Access to all itvX live channels.
+- Option to play live programs from the start, when enabled in settings. For the main live channels only.
+- Now possible to pause live programs.
+- New main menu item 'Search'.
+- Removed main menu item 'Full series'.
+
 v.0.4.0
 - List A-Z subfolders in menu 'Shows'.
 - Much improved account sign in experience.
