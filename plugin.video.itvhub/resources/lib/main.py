@@ -59,9 +59,11 @@ def sub_menu_live(_):
 
     for item in tv_schedule:
         chan_name = item['name']
-        now_on = item['slot'][0]['programmeTitle']
-        programs = ('{} - {}'.format(program['startTime'], program['programmeTitle']) for program in item['slot'])
-        label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on)
+        now_on = item['slot'][0]
+        programs = ('{} - {}'.format(program['startTime'],
+                                     program.get('programme_details') or program['programmeTitle'])
+                    for program in item['slot'])
+        label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on['programmeTitle'])
         li = Listitem.from_dict(
             play_stream_live,
             label=label,
@@ -74,8 +76,8 @@ def sub_menu_live(_):
             params={
                 'channel': chan_name,
                 'url': item['streamUrl'],
-                'title': now_on,
-                'start_time': item['slot'][0]['orig_start']
+                'title': now_on['programmeTitle'],
+                'start_time': now_on['orig_start']
             }
         )
         yield li
