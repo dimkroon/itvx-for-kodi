@@ -28,7 +28,7 @@ from unittest.mock import patch
 
 import typing
 
-from resources.lib import itvx, itv, fetch, itv_account
+from resources.lib import itv, fetch, itv_account
 from codequick import Listitem, Route, Script
 
 
@@ -50,17 +50,17 @@ class TestItv(unittest.TestCase):
             assert('id') in item['params'].keys()
 
     def test_get_category_films(self):
-        result = itvx.get_category_films()
+        result = itv.get_category_films()
         print(result)
 
     def test_category_content(self):
-        result = itvx.category_content('SPORT')
+        result = itv.category_content('SPORT')
         self.assertIsInstance(result, list)
 
     def test_all_categories_content(self):
-        categories = itvx.categories()
+        categories = itv.categories()
         for cat in categories:
-            result = itvx.category_content(cat['params']['id'])
+            result = itv.category_content(cat['params']['id'])
             print(result)
 
     def test_get_live_schedule(self):
@@ -138,9 +138,3 @@ class TestItv(unittest.TestCase):
             srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
             self.assertIsInstance(srt_file, typing.Tuple)
             self.assertIsInstance(srt_file[0], str)
-
-    def test_search(self):
-        items = itv.search('the chase')
-        self.assertGreater(len(list(items)), 2)
-        items = itv.search('xprgs')     # should return no results
-        self.assertEqual(len(list(items)), 0)

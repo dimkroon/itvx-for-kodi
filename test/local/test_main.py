@@ -43,7 +43,7 @@ class LiveChannels(TestCase):
         self.assertGreaterEqual(len(chan_list), 10)
 
 
-@patch('resources.lib.fetch.get_json', return_value=open_json('programs/all_shows.json'))
+@patch('resources.lib.fetch.get_json', return_value=open_json('programs_legacy/all_shows.json'))
 class Shows(TestCase):
     def assert_all_items_start_with(self, chars, items_list):
         """Check if the first character of all items is one of `chars`."""

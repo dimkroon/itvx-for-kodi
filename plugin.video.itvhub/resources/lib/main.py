@@ -1,3 +1,7 @@
+#  Copyright (c) 2022 Dimitri Kroon.
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
 
 import logging
 import typing
@@ -8,7 +12,7 @@ from codequick import Route, Resolver, Listitem, Script, run
 from codequick.utils import urljoin_partial as urljoin
 from codequick.support import logger_id, build_path
 
-from resources.lib import itv, itv_account
+from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
 from resources.lib import parse
 from resources.lib import fetch
@@ -94,7 +98,7 @@ def root(_):
 
 @Route.register(cache_ttl=4)
 def sub_menu_live(_):
-    tv_schedule = itv.get_live_channels()
+    tv_schedule = itvx.get_live_channels()
 
     for item in tv_schedule:
         chan_name = item['name']
@@ -240,7 +244,7 @@ def sub_menu_from_page(_, url, callback):
 @Route.register()
 @dynamic_listing
 def do_search(_, search_query):
-    search_results = itv.search(search_term=search_query)
+    search_results = itvx.search(search_term=search_query)
 
     items = [
         Listitem.from_dict(list_productions, **result)
