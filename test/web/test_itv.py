@@ -28,7 +28,7 @@ from unittest.mock import patch
 
 import typing
 
-from resources.lib import itv, fetch, itv_account
+from resources.lib import itvx, itv, fetch, itv_account
 from codequick import Listitem, Route, Script
 
 
@@ -47,7 +47,21 @@ class TestItv(unittest.TestCase):
         for item in result:
             assert('label' in item.keys())
             assert('params') in item.keys()
-            assert('url') in item['params'].keys()
+            assert('id') in item['params'].keys()
+
+    def test_get_category_films(self):
+        result = itvx.get_category_films()
+        print(result)
+
+    def test_category_content(self):
+        result = itvx.category_content('SPORT')
+        self.assertIsInstance(result, list)
+
+    def test_all_categories_content(self):
+        categories = itvx.categories()
+        for cat in categories:
+            result = itvx.category_content(cat['params']['id'])
+            print(result)
 
     def test_get_live_schedule(self):
         result = itv.get_live_schedule()
