@@ -23,31 +23,6 @@ class TestMenu(unittest.TestCase):
         for item in items:
             print(item.params['url'])
 
-    def test_submenu_episodes(self):
-        for item in main.sub_menu_episodes(MagicMock(), 'cheat/2a5517'):
-            print(item)
-
-
-class TestFullSeries(unittest.TestCase):
-    def test_full_series_drama(self):
-        items = list(main.sub_menu_full_series(MagicMock(), '/hub/full-series/drama'))
-        for item in items:
-            print(item)
-
-
-class TestCategories(unittest.TestCase):
-    def test_category_comedy(self):
-        items = list(main.sub_menu_full_series(MagicMock(), '/hub/categories/comedy'))
-        for item in items:
-            print(item)
-
-
-class TestGetEpisodes(unittest.TestCase):
-    def test_episodes_midsummer_murders(self):
-        items = list(main.sub_menu_episodes(MagicMock(), 'https://www.itv.com/hub/midsomer-murders/Ya1096'))
-        for item in items:
-            print(item)
-
 
 class TestGetProductions(unittest.TestCase):
     def test_productions_midsummer_murders(self):
@@ -95,14 +70,6 @@ class TestGetProductions(unittest.TestCase):
             'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
             name='Doctor Foster'))
         self.assertEqual([False], items)
-
-
-class TestPlayShow(unittest.TestCase):
-    def test_play_show_a_late_quartet(self):
-        result = main.play_show(
-            MagicMock(),
-            url='https://magni.itv.com/playlist/itvonline/ITV/10_2597_0001.001', show_name='A Late Quartet')
-        self.assertIsInstance(result.params, MutableMapping)
 
 
 class TestPlayCatchup(unittest.TestCase):

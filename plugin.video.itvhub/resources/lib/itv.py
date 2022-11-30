@@ -407,16 +407,6 @@ def productions(url, show_name):
     return series_list
 
 
-def get_episodes(url, show_name):
-    t_start = time.time()
-    page_episodes = fetch.get_document(url)
-    logger.debug('fetched episodes in %f', time.time() - t_start)
-    t_start = time.time()
-    episodes_data = parse.parse_episodes(page_episodes, show_name)
-    logger.debug('parsed episodes in %f', time.time() - t_start)
-    return episodes_data
-
-
 def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """

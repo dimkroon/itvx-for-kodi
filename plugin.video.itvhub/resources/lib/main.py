@@ -175,49 +175,6 @@ def list_productions(plugin, url, name='', series_idx=0):
         yield li
 
 
-@Route.register(cache_ttl=120, autosort=False)
-def sub_menu_episodes(plugin, url, show_name='', series_idx=0):
-    """Show the list of episodes for the specified series and show folders for
-    all other series, if present.
-
-    """
-    logger.info('Getting episodes for series %s of %s', series_idx, url)
-    plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                            xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE,
-                            xbmcplugin.SORT_METHOD_DATE,
-                            disable_autosort=True)
-
-    series_list = itv.get_episodes(build_url(url), show_name)
-
-    # First create folders for series
-    for i in range(len(series_list)):
-        if i == series_idx:
-            continue
-
-        series = series_list[i]
-        episode_list = series['episodes']
-        label = '[B]{}[/B]  -  {} episodes'.format(series['name'], len(episode_list))
-        # TODO: Maybe better not to provide plot and art of the first episode. It is only of
-        #       of use when the series is one continuous story, which is only rarely the case.
-        li = Listitem.from_dict(
-            sub_menu_episodes,
-            label=label,
-            art=episode_list[0]['art'],
-            info={'title': label, 'plot': episode_list[0]['info']['plot']},
-            params={'url': url, 'show_name': show_name, 'series_idx': i}
-        )
-        yield li
-
-    # Now create episode items for the opened series
-    episodes = series_list[series_idx]['episodes']
-    for episode in episodes:
-        li = Listitem.from_dict(play_episode, **episode)
-        date = episode['info'].get('date')
-        if date:
-            li.info.date(date, '%Y-%m-%dT%H:%MZ')
-        yield li
-
-
 @Route.register(cache_ttl=480, autosort=False)
 def sub_menu_from_page(_, url, callback):
     """Return the submenu items present a page. Like the categories from page categories"""
@@ -225,16 +182,6 @@ def sub_menu_from_page(_, url, callback):
     submenu_items = parse.parse_submenu(fetch.get_document(url))
     for item in submenu_items:
         yield Listitem.from_dict(callback, **item)
-
-
-@Route.register(cache_ttl=480)
-def sub_menu_full_series(_, url):
-    """Return a listing of programmes from a full series' category"""
-    url = build_url(url)
-    logger.info('sub_menu_full_series for url %s', url)
-    submenu_items = parse.parse_full_series(fetch.get_document(url))
-    for item in submenu_items:
-        yield Listitem.from_dict(sub_menu_episodes, **item)
 
 
 @Route.register()
