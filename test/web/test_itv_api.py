@@ -317,7 +317,17 @@ class Playlists(unittest.TestCase):
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
         featureset = post_data['variantAvailability']['featureset']
-        featureset['min'] = featureset['max']
+        # if 'hd' not in featureset['min']:
+        #     featureset['min'].append('hd')
+        if 'hd' not in featureset['max']:
+            featureset['max'].append('hd')
+
+        # Catchup must have outband-webvtt in min featurset to return subtitles.
+        # Live, however must have a min featureset without outband-webvtt, or it wil return 400 - Bad Request
+        if stream_type == 'vod':
+            featureset['min'] = featureset['max']
+        else:
+            featureset['min'] = [x for x in featureset['min'] if x != 'outband-webvtt']
         return post_data
 
     def test_get_playlist_live(self):
@@ -328,7 +338,7 @@ class Playlists(unittest.TestCase):
         """
         acc_data = itv_account.itv_session()
         acc_data.refresh()
-        post_data = self.create_post_data()
+        post_data = self.create_post_data('live')
 
         for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
             url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
@@ -346,7 +356,11 @@ class Playlists(unittest.TestCase):
                     json=post_data,
                     timeout=10
             )
-            self.assertEqual(200, resp.status_code)
+            # strm_data = fetch.post_json(
+            #     url, data=post_data,
+            #     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json'},
+            #     cookies=acc_data.cookie)
+            # self.assertEqual(200, resp.status_code)
             strm_data = resp.json()
             object_checks.check_live_stream_info(strm_data['Playlist'])
 

@@ -75,7 +75,7 @@ class TestItv(unittest.TestCase):
     def test_get_programmes(self):
         # get all shows
         result = itv.programmes('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title')
-        self.assertIsInstance(result, list)
+        self.assertIsInstance(result, typing.List)
         for item in result:
             self.assertIsInstance(item, dict)
             self.assertTrue(tuple(item.keys()) == ('episodes', 'show'))

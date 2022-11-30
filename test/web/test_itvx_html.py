@@ -21,3 +21,12 @@ class WatchPages(unittest.TestCase):
         # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parsex.get__next__data_from_page(page)
         print(data)
+
+
+class TvGuide(unittest.TestCase):
+    def test_guide_of_today(self):
+        today = ''  # datetime.utcnow().strftime(('%Y-%m-%d'))
+        url = 'https://www.itv.com/watch/tv-guide/' + today
+        page = fetch.get_document(url)
+        # testutils.save_doc(page, 'html/tv_guide.html')
+        print(page)
