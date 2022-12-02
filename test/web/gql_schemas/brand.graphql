@@ -1,0 +1,20 @@
+
+type Brand {
+    ccid: String!
+    legacyId : String!
+    title: String!
+    channel: Channel
+    series: [Series]
+    earliestAvailableSeries: Series
+    latestAvailableSeries: Series
+    numberOfAvailableSeries: Int
+    latestAvailableEpisode: Episode
+    earliestAvailableTitle: Episode
+    latestAvailableTitle: Episode
+    genres: [Genre]
+    imageUrl: [ImageUrl]
+    tier: [String]
+    partnership: String
+    contentOwner: String
+    synopses: Synopses
+}

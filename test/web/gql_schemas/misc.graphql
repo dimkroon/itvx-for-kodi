@@ -1,0 +1,80 @@
+
+"Info regarding a live channel"
+type Channel {
+    id: String!
+    name:   String!
+    strapline: String
+}
+
+type Genre {
+    id: String!
+    name: String!
+    hubCategory: Boolean
+}
+
+type Version {
+    "Duration format :'PT3M'"
+    duration: String
+    legacyId: String
+    availability: AvailabilityInfo
+    compliance: Compliance
+    linearContent: Boolean
+    playlistUrl: String
+    scheduleEvent: ScheduleEvent
+    variants: [Variant]
+    visuallySigned: Boolean
+}
+
+type Series {
+    fullSeries: Boolean
+    longRunning: Boolean
+    numberOfAvailableEpisodes: Int
+    """serieNumber is null when there are multiple episodes, but they are not part of a specific series,
+    like one of the episode of the coverage sports event."""
+    seriesNumber: Int       # Is nullable
+}
+
+type Synopses {
+    ninety: String
+    epg: String
+}
+
+type AvailabilityInfo {
+    "Don't know; seen strings as 'NEVER'"
+    adRule: String
+    downloadable: Boolean
+    "Maximum available resolution. Only 'HD' observed"
+    maxResolution: String
+    "Probably the date when the content first became available - string in the format '2022-12-01T11:25:00Z'"
+    start: String               # "2021-04-01T04:54:00Z"
+    "Probably the date to when the content is available - string in the format '2022-12-01T11:25:00Z'"
+    end: String                 # "2023-01-23T23:59:59.999Z"
+}
+
+type  Compliance {
+    "String containing text like 'Contains strong language'"
+    displayableGuidance: String     # is nullable
+}
+
+"""Object that is member of a title type of object
+Most like defines to time the episode is going to be broadcast"""
+type ScheduleEvent {
+    "Datetimes in format yyy-mm-ddThh:mm:ssZ"
+    broadcastDateTime: String
+    originalBroadcastDateTime: String
+}
+
+type Variant {
+    "List of features of the variant, like 'AES, HLS, WIDEVINE'"
+    features: [String]
+    "Platform like 'MOBILE, DOTCOM"
+    platform: String
+    "Variant id, like 'VAR003'"
+    variantId: String
+}
+
+"This may not a be real existing object, but just here to satisfy code completion and checking"
+type ImageUrl{
+    imageType: String
+    url: String
+}
