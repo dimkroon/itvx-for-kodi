@@ -1,0 +1,46 @@
+{
+  "data": {
+    "genres": [
+      {
+        "__typename": "Genre",
+        "name": "Children",
+        "id": "CHILDREN"
+      },
+      {
+        "__typename": "Genre",
+        "name": "Comedy",
+        "id": "COMEDY"
+      },
+      {
+        "__typename": "Genre",
+        "name": "Drama & Soaps",
+        "id": "DRAMA_AND_SOAPS"
+      },
+      {
+        "__typename": "Genre",
+        "name": "Entertainment",
+        "id": "ENTERTAINMENT"
+      },
+      {
+        "__typename": "Genre",
+        "name": "Factual",
+        "id": "FACTUAL"
+      },
+      {
+        "__typename": "Genre",
+        "name": "Films",
+        "id": "FILM"
+      },
+      {
+        "__typename": "Genre",
+        "name": "News",
+        "id": "NEWS"
+      },
+      {
+        "__typename": "Genre",
+        "name": "Sport",
+        "id": "SPORT"
+      }
+    ]
+  }
+}
