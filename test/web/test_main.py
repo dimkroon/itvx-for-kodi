@@ -1,3 +1,10 @@
+# ---------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022. Dimitri Kroon
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
+
 from test.support import fixtures
 fixtures.global_setup()
 
