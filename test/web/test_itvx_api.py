@@ -1,23 +1,18 @@
+
+# ---------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
-#
+# ---------------------------------------------------------------------------------------------------------------------
 
-from support import testutils
 from test.support import fixtures
 fixtures.global_setup()
 
-import datetime
-import time
 import unittest
 import requests
 
-from resources.lib import itvx, fetch, errors, parse
-from resources.lib import itv_account
-
-from test.support import object_checks
-
+from test.support import object_checks, testutils
 
 setUpModule = fixtures.setup_web_test
 

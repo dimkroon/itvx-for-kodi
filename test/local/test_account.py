@@ -6,12 +6,11 @@
 #  This file is part of plugin.video.itvx
 # ---------------------------------------------------------------------------------------------------------------------
 
-import json
-import time
-
 from test.support import fixtures
 fixtures.global_setup()
 
+import json
+import time
 import unittest
 from unittest.mock import patch, mock_open
 
