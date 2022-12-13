@@ -122,3 +122,9 @@ class TestItvX(unittest.TestCase):
     def test__request_stream_data_live(self):
         result = itvx._request_stream_data('https://simulcast.itv.com/playlist/itvonline/ITV', 'live')
         check_live_stream_info(result['Playlist'])
+
+
+class Episodes(unittest.TestCase):
+    def test_get_episodes_frost(self):
+        result = itvx.get_episodes('Y/1774')
+        self.assertGreater(len(result), 30)
