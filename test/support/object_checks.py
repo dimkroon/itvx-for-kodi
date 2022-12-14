@@ -37,6 +37,28 @@ def has_keys(dict_obj, *keys, obj_name='dictionary'):
         )
 
 
+def is_url(url, ext=None):
+    result = url.startswith('https://')
+    if ext:
+        result = result and url.endswith(ext)
+    return result
+
+
+def is_iso_time(time_str):
+    """check if the time string is in the format like yyyy-mm-ddThh:mm:ssZ that is
+    often used by itv's web services.
+    Accept times with or without milliseconds
+    """
+    try:
+        if '.' in time_str:
+            time.strptime(time_str, '%Y-%m-%dT%H:%M:%S.%fZ')
+        else:
+            time.strptime(time_str, '%Y-%m-%dT%H:%M:%SZ')
+        return True
+    except ValueError:
+        return False
+
+
 def check_live_stream_info(playlist, additional_keys=None):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.online.playlist.sim.v3+json, which is
