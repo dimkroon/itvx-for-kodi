@@ -123,6 +123,9 @@ def _create_cookiejar():
         with open(cookie_file, 'rb') as f:
             # TODO: handle expired consent cookies
             cj = pickle.load(f)
+            # The internally stored filename of the saved file may be different to the current filename
+            # if the file has been copied from another system.
+            cj.filename = cookie_file
             logger.debug("Restored cookies from file")
     except (FileNotFoundError, pickle.UnpicklingError):
         cj = set_default_cookies(PersistentCookieJar(cookie_file))
