@@ -182,12 +182,12 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             raise
 
 
-def get_live_urls(channel, url=None, title=None, start_time=None):
+def get_live_urls(channel, url=None, title=None, start_time=None, play_from_start=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. Note::
         Subtitles are usually not available on live streams, but in order to be compatible with
-        data returned by get_catchup_urls(...) None is returned
+        data returned by get_catchup_urls(...) None is returned.
 
     """
     # import web_pdb; web_pdb.set_trace()
@@ -201,7 +201,7 @@ def get_live_urls(channel, url=None, title=None, start_time=None):
     start_again_url = video_locations.get('StartAgainUrl')
 
     if start_again_url:
-        if start_time and kodi_utils.ask_play_from_start(title):
+        if play_from_start or (start_time and kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
         else:

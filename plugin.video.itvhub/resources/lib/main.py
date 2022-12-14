@@ -6,7 +6,7 @@ import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run
 from codequick.utils import urljoin_partial as urljoin
-from codequick.support import logger_id
+from codequick.support import logger_id, build_path
 
 from resources.lib import itv, itv_account
 from resources.lib import utils
@@ -21,6 +21,8 @@ logger.critical('-------------------------------------')
 
 TXT_SEARCH = 30807
 TXT_NOTHING_FOUND = 30608
+TXT_PLAY_FROM_START = 30620
+
 
 build_url = urljoin('https://www.itv.com/hub/')
 
@@ -90,6 +92,12 @@ def sub_menu_live(_):
                 'totaltime': 3600
             }
         )
+
+        # add 'play from the start' context menu item for channels that support this feature
+        if program_start_time:
+            cmd = 'PlayMedia({}, noresume)'.format(
+                build_path(play_stream_live, play_from_start=True, **callback_kwargs))
+            li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
         yield li
 
 
