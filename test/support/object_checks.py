@@ -37,6 +37,18 @@ def has_keys(dict_obj, *keys, obj_name='dictionary'):
         )
 
 
+def misses_keys(dict_obj, *keys, obj_name='dictionary'):
+    """Checks if all keys are NOT present in the dictionary"""
+    keys_set = set(keys)
+    present_keys = set(dict_obj.keys()).intersection(keys_set)
+    if present_keys:
+        raise AssertionError("Key{} {} should not be present in '{}'".format(
+            's' if len(present_keys) > 1 else '',
+            present_keys,
+            obj_name)
+        )
+
+
 def is_url(url, ext=None):
     result = url.startswith('https://')
     if ext:
