@@ -117,7 +117,7 @@ class LiveSchedules(unittest.TestCase):
         self.assertTrue(data['images']['backdrop'].startswith('https://'))
         self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
 
-        self.assertEqual(25, len(data['channels']))
+        self.assertAlmostEqual(25, len(data['channels']), delta = 2)
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
@@ -125,10 +125,9 @@ class LiveSchedules(unittest.TestCase):
                                        'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
                                        'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
                                        'startAgainSimulcast', 'shortSynopsis')
-                self.assertTrue(program['start'].endswith('Z'))
-                self.assertTrue(20, len(program['start']))      # has seconds
-                self.assertTrue(program['end'].endswith('Z'))
-                self.assertTrue(20, len(program['end']))        # has seconds
+                self.assertIsNotNone(program['displayTitle'])
+                self.assertTrue(object_checks.is_iso_time(program['start']))
+                self.assertTrue(object_checks.is_iso_time(program['end']))
                 if program['broadcastAt'] is not None:      # is None on fast channels
                     self.assertTrue(program['broadcastAt'].endswith('Z'))
                     self.assertTrue(20, len(program['broadcastAt']))

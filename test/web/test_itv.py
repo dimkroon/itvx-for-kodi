@@ -56,6 +56,11 @@ class TestItv(unittest.TestCase):
         result = itv.get_live_schedule()
         print(json.dumps(result, indent=4))
 
+    def test_get_live_channels(self):
+        chan_list = list(itv.get_live_channels())
+        for item in chan_list:
+            self.assertIsInstance(item, dict)
+
     def test_get_programmes(self):
         # get all shows
         result = itv.programmes('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title')
