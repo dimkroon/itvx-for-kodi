@@ -13,18 +13,59 @@ import time
 import unittest
 
 from resources.lib import fetch, parsex, itv_account
-from support import testutils, object_checks
+from support import testutils
+from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
 
 
 setUpModule = fixtures.setup_web_test
 
 
 class WatchPages(unittest.TestCase):
+    def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
+        """Check the now/next schedule data returned from an HTML page.
+        It is very simular to the data returned by `nownext.oasvc.itv.com`, but not quite the same."""
+        has_keys(progr_data, 'titleId', 'title', 'prodId', 'brandTitle', 'broadcastAt', 'guidance', 'rating',
+                 'contentEntityType', 'episodeNumber', 'seriesNumber', 'startAgainPlaylistUrl', 'shortSynopsis',
+                 'displayTitle', 'detailedDisplayTitle', 'timestamp',
+                 'broadcastEndTimestamp', 'productionId', obj_name=obj_name)
+        # These times are in a format like '2022-11-22T20:00Z'
+        self.assertTrue(is_iso_time(progr_data['start']))
+        self.assertTrue(is_iso_time(progr_data['end']))
+
+        if chan_type == 'fast':
+            misses_keys(progr_data, 'broadcastStartTimestamp')
+            self.assertIsNone(progr_data['broadcastAt'])
+            self.assertIsNone(progr_data['broadcastEndTimestamp'])
+
+        if chan_type != 'fast':
+            has_keys(progr_data, 'broadcastStartTimestamp' )
+            self.assertTrue(is_iso_time(progr_data['broadcastAt']))
+            # check timestamps are integers
+            self.assertGreater(int(progr_data['broadcastStartTimestamp']), 0)
+            self.assertGreater(int(progr_data['broadcastEndTimestamp']), 0)
+        self.assertTrue(progr_data['startAgainPlaylistUrl'] is None or is_url(progr_data['startAgainPlaylistUrl']))
+
+    def check_schedule_channel_info(self, channel_info):
+        has_keys(channel_info, 'id', 'name', 'slug', 'slots', 'images', 'playlistUrl')
+        self.assertTrue(is_url(channel_info['images']['logo'], '.png'))
+        self.assertTrue(is_url(channel_info['playlistUrl']))
+        self.assertTrue(channel_info['channelType'] in ('fast', 'simulcast'))
+
     def test_watch_live_itv1(self):
+        """The jsonp data primarily contains now/next schedule of all live channels"""
         page = fetch.get_document("https://www.itv.com/watch?channel=itv")
         # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parsex.get__next__data_from_page(page)
-        print(data)
+        channel_data = data['props']['pageProps']['channelsMetaData']
+        # check presence and type of backdrop image
+        self.assertTrue(len(channel_data['images']), 1)     # only backdrop image is available
+        self.assertTrue(is_url(channel_data['images']['backdrop'], '.jpeg'))
+
+        for chan in channel_data['channels']:
+            chan_type = chan['channelType']
+            self.check_schedule_channel_info(chan)
+            self.check_schedule_now_next_slot(chan['slots']['now'], chan_type, obj_name='{}-Now-on'.format(chan['name']))
+            self.check_schedule_now_next_slot(chan['slots']['next'], chan_type, obj_name='{}-Next-on'.format(chan['name']))
 
 
 class TvGuide(unittest.TestCase):
@@ -52,7 +93,7 @@ class Categories(unittest.TestCase):
         categories = data['props']['pageProps']['subnav']['items']
         t_2 = time.time()
         for item in categories:
-            object_checks.has_keys(item, 'id', 'name', 'label', 'url')
+            has_keys(item, 'id', 'name', 'label', 'url')
             # url is the full path without domain
             self.assertTrue(item['url'].startswith('/watch/'))
 
