@@ -229,7 +229,7 @@ def duration_2_seconds(duration: str):
 
 
 def reformat_date(date_string, old_format, new_format):
-    """Take a string containing a datetime and in a particular format and
+    """Take a string containing a datetime in a particular format and
     convert it into another format.
 
     Usually used to convert datetime strings obtained from a website into a nice readable format.
@@ -240,3 +240,8 @@ def reformat_date(date_string, old_format, new_format):
     except TypeError:
         dt = datetime(*(time.strptime(date_string, old_format)[0:6]))
     return dt.strftime(new_format)
+
+
+def strptime(dt_str, format):
+    """A bug free alternative to `datetime.datetime.strptime(...)`"""
+    return datetime(*(time.strptime(dt_str, format)[0:6]))

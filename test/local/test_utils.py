@@ -23,14 +23,13 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-from test.support.testutils import doc_path
-
-import platform
-
+from datetime import datetime
 from unittest import TestCase
 
 import resources.lib
 from resources.lib import utils
+
+from test.support.testutils import doc_path
 
 
 setUpModule = fixtures.setup_local_tests
@@ -68,7 +67,12 @@ class Generic(TestCase):
         self.assertIsNone(utils.duration_2_seconds('1:18:43:22'))
 
     def test_reformat_date(self):
-        self.assertEqual(utils.reformat_date('1982-05-02T14:38:32Z', '%Y-%m-%dT%H:%M:%SZ', '%d.%m.%y %H:%M'), '02.05.82 14:38')
+        self.assertEqual(utils.reformat_date('1982-05-02T14:38:32Z', '%Y-%m-%dT%H:%M:%SZ', '%d.%m.%y %H:%M'),
+                         '02.05.82 14:38')
+
+    def test_strptime(self):
+        self.assertEqual(datetime(2012, 9, 14, 18, 32, 45),
+                         utils.strptime('2012-09-14T18:32:45Z', '%Y-%m-%dT%H:%M:%SZ'))
 
 
 # noinspection PyMethodMayBeStatic
