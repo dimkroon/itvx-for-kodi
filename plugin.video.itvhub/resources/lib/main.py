@@ -64,6 +64,15 @@ def sub_menu_live(_):
                                      program.get('programme_details') or program['programmeTitle'])
                     for program in item['slot'])
         label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on['programmeTitle'])
+        program_start_time = now_on['orig_start']
+        callback_kwargs = {
+                'channel': chan_name,
+                'url': item['streamUrl'],
+                'title': now_on['programmeTitle'],
+                'start_time': program_start_time
+            }
+
+        # noinspection SpellCheckingInspection
         li = Listitem.from_dict(
             play_stream_live,
             label=label,
@@ -72,12 +81,13 @@ def sub_menu_live(_):
                 'thumb': item['images']['logo']},
             info={
                 'title': label,
-                'plot': '\n'.join(programs)},
-            params={
-                'channel': chan_name,
-                'url': item['streamUrl'],
-                'title': now_on['programmeTitle'],
-                'start_time': now_on['orig_start']
+                'plot': '\n'.join(programs),
+                },
+            params=callback_kwargs,
+            properties={
+                # This causes Kodi not to offer the standard resume dialog
+                'resumetime': '0',
+                'totaltime': 3600
             }
         )
         yield li
@@ -268,14 +278,18 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 
 
 @Resolver.register
-def play_stream_live(addon, channel, url, title=None, start_time=None):
+def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
     logger.info('play live stream - channel=%s, url=%s', channel, url)
 
     if addon.setting['live_play_from_start'] != 'true':
         start_time = None
 
     try:
-        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel, url, title, start_time)
+        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel,
+                                                                        url,
+                                                                        title,
+                                                                        start_time,
+                                                                        play_from_start)
     except FetchError as err:
         logger.error('Error retrieving live stream urls: %r' % err)
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
