@@ -55,6 +55,14 @@ class Shows(TestCase):
         self.assertIsInstance(all_shows, list)
         self.assertGreater(len(all_shows), 300)
 
+    def test_shows_without_kwargs(self, _):
+        """Test calling list_programs without keyword arguments. Is what happens when a programme
+        has been added to favourites and the user clicks on the '...' after entering the listing from
+        favourites.
+        """
+        all_shows = main.list_programs(MagicMock())
+        self.assertIs(all_shows, False)
+
     def test_shows_filtered(self, _):
         shows_a = main.list_programs(MagicMock(), "shows_url", 'A')
         self.assert_all_items_start_with('a', shows_a)
@@ -79,8 +87,12 @@ class Shows(TestCase):
 class Productions(TestCase):
     @patch("resources.lib.itv.productions", return_value=[])
     def test_empty_productions_list(self, _):
-        result = list(main.list_productions(MagicMock(), ''))
-        self.assertListEqual([False], result)
+        result = main.list_productions(MagicMock(), '')
+        self.assertIs(result, False)
+
+    def test_no_url_passed(self):
+        result = main.list_productions(MagicMock())
+        self.assertIs(False, result)
 
 
 class Search(TestCase):

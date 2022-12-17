@@ -118,7 +118,7 @@ msgid "More info"
 msgstr ""
 
 msgctxt "#30608"
-msgid "Nothing found"
+msgid "No items found"
 msgstr ""
 
 msgctxt "#30610"

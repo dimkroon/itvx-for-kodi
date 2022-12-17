@@ -1,6 +1,6 @@
 
 import logging
-import os
+import typing
 
 import xbmcplugin
 
@@ -20,7 +20,7 @@ logger.critical('-------------------------------------')
 
 
 TXT_SEARCH = 30807
-TXT_NOTHING_FOUND = 30608
+TXT_NO_ITEMS_FOUND = 30608
 TXT_PLAY_FROM_START = 30620
 
 
@@ -28,8 +28,45 @@ build_url = urljoin('https://www.itv.com/hub/')
 
 
 def empty_folder():
-    Script.notify('ITV hub', 'No content', icon=Script.NOTIFY_INFO)
+    Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO)
     return False
+
+
+def dynamic_listing(func=None):
+    """Decorator that adds some default behaviour to callback functions that provide
+    a listing of items where the content depends on parameters passes to the function.
+
+    Typically, these callbacks are not guaranteed to return items - a directory may be empty, or
+    a search may not return anything.
+    Also, when the directory has been added to favourites and has been opened from there, the
+    'directory up' ('..') entry in the list will cause the callback to be invoked without any arguments.
+
+    This decorator provides default behaviour for these cases
+
+    """
+    def wrapper(*args, **kwargs):
+        # Codequick will always pass a Router object as positional argument and all other parameters
+        # as keyword arguments, but others, like tests, may use position arguments.
+        if not kwargs and len(args) < 2:
+            logger.debug("Function called without kwargs; return False ")
+            # Just return false, which results in Kodi returning to the main menu.
+            return False
+        else:
+            logger.debug("wrapper diverts route to: %s", func.__name__)
+            result = func(*args, **kwargs)
+            if isinstance(result, typing.Generator):
+                result = list(result)
+            if result:
+                return result
+            else:
+                # Anything that evaluates to False is 'no items found'.
+                Script.notify('itvX', Script.localize(TXT_NO_ITEMS_FOUND), Script.NOTIFY_INFO, 7000)
+                return False
+    if func is None:
+        return wrapper()
+    else:
+        wrapper.__name__ = 'wrapper.' + func.__name__
+        return wrapper
 
 
 @Route.register
@@ -117,11 +154,12 @@ def sub_menu_shows(_):
 def list_categories(_):
     logger.debug("List categories.")
     categories = itv.categories()
-    items = list(Listitem.from_dict(list_programs, **cat) for cat in categories)
+    items = [Listitem.from_dict(list_programs, **cat) for cat in categories]
     return items
 
 
 @Route.register(cache_ttl=-1)
+@dynamic_listing
 def list_programs(plugin, url, filter_char=None):
     logger.debug("list programs for url '%s'", url)
     plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
@@ -131,9 +169,6 @@ def list_programs(plugin, url, filter_char=None):
                             disable_autosort=True)
 
     shows_list = itv.programmes(url, filter_char)
-    if not shows_list:
-        return empty_folder()
-
     return [
         Listitem.from_dict(list_productions, **show['show'])
         if show['episodes'] > 1 else
@@ -148,9 +183,11 @@ def list_programs(plugin, url, filter_char=None):
 
 
 @Route.register(cache_ttl=60)
+@dynamic_listing
 def list_productions(plugin, url, name='', series_idx=0):
 
-    logger.info('Getting productions for series %s of %s', series_idx, url)
+    logger.info("Getting productions for series '%s' of '%s'", series_idx, url)
+
     plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                             xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE,
                             xbmcplugin.SORT_METHOD_DATE,
@@ -158,7 +195,6 @@ def list_productions(plugin, url, name='', series_idx=0):
 
     series_list = itv.productions(url, name)
     if not series_list:
-        yield False
         return
 
     # First create folders for series
@@ -198,26 +234,20 @@ def sub_menu_from_page(_, url, callback):
     """Return the submenu items present a page. Like the categories from page categories"""
     logger.info('sub_menu_from_page for url %s, handler = %s', url, callback)
     submenu_items = parse.parse_submenu(fetch.get_document(url))
-    for item in submenu_items:
-        yield Listitem.from_dict(callback, **item)
+    return [Listitem.from_dict(callback, **item) for item in submenu_items]
 
 
 @Route.register()
+@dynamic_listing
 def do_search(_, search_query):
     search_results = itv.search(search_term=search_query)
-    if not search_results:
-        Script.notify('itvX - ' + Script.localize(TXT_SEARCH),
-                      Script.localize(TXT_NOTHING_FOUND),
-                      Script.NOTIFY_INFO, 7000)
-        return False
 
-    items = []
-    for result in search_results:
-        item_type = result.pop('entity_type')
-        if item_type == 'programme':
-            items.append(Listitem.from_dict(list_productions, **result))
-        else:
-            items.append(Listitem.from_dict(play_stream_catchup, **result))
+    items = [
+        Listitem.from_dict(list_productions, **result)
+        if result.pop('entity_type') == 'programme'
+        else Listitem.from_dict(play_stream_catchup, **result)
+        for result in search_results
+    ]
     return items
 
 
