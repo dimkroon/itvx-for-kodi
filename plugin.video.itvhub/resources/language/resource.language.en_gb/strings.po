@@ -1,6 +1,6 @@
 # Kodi Media Center language file
-# Addon Name: ITV hub
-# Addon id: plugin.video.itvhub
+# Addon Name: itvX
+# Addon id: plugin.video.itvx
 # Addon Provider: Dim Kroon
 
 msgid ""
@@ -58,7 +58,7 @@ msgid "Offer to play from the start"
 msgstr ""
 
 msgctxt "#30200"
-msgid "ITV Hub account"
+msgid "itvX account"
 msgstr ""
 
 msgctxt "#30201"
@@ -85,9 +85,9 @@ msgid "If enabled subtitles will have different colours for different speakers, 
 msgstr ""
 
 msgctxt "#30311"
-msgid "Target of ITV hub logging.\n"
+msgid "Target of itvX logging.\n"
 "Default is the standard 'Kodi log' - nothing will be logged until 'debug logging' is enabled in Kodi's settings.\n"
-"'File' logs to ITV hub's own log file stored in the addon's user data directory. Only of use if you know where to "
+"'File' logs to itvX's own log file stored in the addon's user data directory. Only of use if you know where to "
 "find that file.\n"
 "'No logging' if you want to ensure the addon spends as little time on logging as possible."
 msgstr ""
@@ -102,7 +102,7 @@ msgid "You will be asked to enter your username and password after which the add
 msgstr ""
 
 msgctxt "#30402"
-msgid "Sign out of your ITV account"
+msgid "Sign out of your itvX account"
 msgstr ""
 
 msgctxt "#30403"
@@ -126,7 +126,7 @@ msgid "Account error"
 msgstr ""
 
 msgctxt "#30611"
-msgid "You need to sign in to your ITV hub account.\n"
+msgid "You need to sign in to your itvX account.\n"
 "You can always sign in and out on the addon's settings page."
 msgstr ""
 
@@ -222,7 +222,7 @@ msgid "Access not allowed."
 msgstr ""
 
 msgctxt "#30902"
-msgid "Not signed in at ITV hub."
+msgid "Not signed in at itvX."
 msgstr ""
 
 msgctxt "#30903"
