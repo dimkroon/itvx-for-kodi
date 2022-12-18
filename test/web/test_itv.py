@@ -24,8 +24,9 @@ fixtures.global_setup()
 import os
 import json
 import unittest
+from unittest.mock import patch
 
-from typing import Generator
+import typing
 
 from resources.lib import itv, fetch, itv_account
 from codequick import Listitem, Route, Script
@@ -42,15 +43,11 @@ def dummycallback():
 class TestItv(unittest.TestCase):
     def test_get_categories(self):
         result = itv.categories()
-        self.assertIsInstance(result, Generator)
+        self.assertIsInstance(result, typing.Generator)
         for item in result:
             assert('label' in item.keys())
             assert('params') in item.keys()
             assert('url') in item['params'].keys()
-
-    def test_get_shows(self):
-        result = itv.get_shows()
-        self.assertIsInstance(result, Generator)
 
     def test_get_live_schedule(self):
         result = itv.get_live_schedule()
@@ -64,7 +61,7 @@ class TestItv(unittest.TestCase):
     def test_get_programmes(self):
         # get all shows
         result = itv.programmes('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title')
-        self.assertIsInstance(result, Generator)
+        self.assertIsInstance(result, list)
         for item in result:
             self.assertIsInstance(item, dict)
             self.assertTrue(tuple(item.keys()) == ('episodes', 'show'))
@@ -94,7 +91,7 @@ class TestItv(unittest.TestCase):
     def test_get_playlist_url_from_episode_page(self):
         episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
         url, name = itv.get_playlist_url_from_episode_page(episode_url)
-        self.assertEqual('Holding', name)
+        self.assertEqual('', name)
         self.assertTrue(url.startswith('https://'))
 
     def test_get_live_urls(self):
@@ -106,12 +103,9 @@ class TestItv(unittest.TestCase):
         print(result)
 
     def test_get_catchup_urls(self):
-
         urls = (
-            # Snooker British Open episode 10 , WITHOUT subtitles:
-            'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001',
             # something else with subtitles:
-            'https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001')
+            'https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001', )
         for url in urls:
             result = itv.get_catchup_urls(url)
             self.assertIsInstance(result, tuple)
@@ -125,7 +119,11 @@ class TestItv(unittest.TestCase):
         # self.assertIsInstance(srt_file, str)
         # Doc Martin episode 1
         srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
-        self.assertIsInstance(srt_file, str)
+        self.assertIsNone(srt_file)
+        with patch.object(itv.Script, 'setting', new={'subtitles_show': 'true', 'subtitles_color': 'true'}):
+            srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
+            self.assertIsInstance(srt_file, typing.Tuple)
+            self.assertIsInstance(srt_file[0], str)
 
     def test_search(self):
         items = itv.search('the chase')

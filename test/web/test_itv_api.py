@@ -1,4 +1,3 @@
-import datetime
 
 from support import testutils
 from test.support import fixtures
@@ -8,6 +7,7 @@ from datetime import datetime, timedelta
 import time
 import unittest
 import requests
+import copy
 
 from resources.lib import itv, fetch, errors, parse
 from resources.lib import itv_account
@@ -117,7 +117,7 @@ class LiveSchedules(unittest.TestCase):
         self.assertTrue(data['images']['backdrop'].startswith('https://'))
         self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
 
-        self.assertAlmostEqual(25, len(data['channels']), delta = 2)
+        self.assertAlmostEqual(25, len(data['channels']), delta=2)
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
@@ -137,7 +137,7 @@ class WatchPages(unittest.TestCase):
     def test_watch_itv1(self):
         acc_data = itv_account.itv_session()
         page = fetch.get_document("https://www.itv.com/watch?channel=itv")
-        testutils.save_doc(page, 'html/watch-itv1.html')
+        # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parse.get__next__data_from_page(page)
         print(data)
 
@@ -211,6 +211,10 @@ class Programmes(unittest.TestCase):
         self._validate_strcuture(json_resp)
 
     def test_programs_are_same_for_different_platforms(self):
+        """Test if the number of programs differ for different platforms
+
+        Initially they did not, but now dotcom returns a significant larger number (> 400) of programs than ctv.
+        """
         dotcom_resp = self.get_json('https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?'
                                     'broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,'
                                     'widevine,fairplay&sortBy=title')
@@ -219,7 +223,7 @@ class Programmes(unittest.TestCase):
                                  'widevine,fairplay&sortBy=title')
         dot_com_programs = dotcom_resp['_embedded']['programmes']
         ctv_programs = ctv_resp['_embedded']['programmes']
-        self.assertEqual(len(dot_com_programs), len(ctv_programs))
+        self.assertGreater(len(dot_com_programs), len(ctv_programs))
 
 
 class Productions(unittest.TestCase):
@@ -309,7 +313,7 @@ class Productions(unittest.TestCase):
 class Playlists(unittest.TestCase):
     def create_post_data(self):
         acc_data = itv_account.itv_session()
-        post_data = itv.stream_req_data.copy()
+        post_data = copy.deepcopy(itv.stream_req_data)
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
         featureset = post_data['variantAvailability']['featureset']
@@ -317,6 +321,11 @@ class Playlists(unittest.TestCase):
         return post_data
 
     def test_get_playlist_live(self):
+        """Get the playlists of the main live channels
+
+        For all channels other than ITV the headers User Agent and Origin are required.
+        And the cookie consent cookies must present. If any of those are missing the request will time out.
+        """
         acc_data = itv_account.itv_session()
         acc_data.refresh()
         post_data = self.create_post_data()
@@ -326,7 +335,14 @@ class Playlists(unittest.TestCase):
             resp = requests.post(
                     url,
                     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                             'Cookie': acc_data.cookie},
+                             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                             'Origin':           'https://www.itv.com',
+                             # 'Referer':          'https://www.itv.com/',
+                             # 'Sec-Fetch-Dest':   'empty',
+                             # 'Sec-Fetch-Mode':   'cors ',
+                             # 'Sec-Fetch-Site':   'same-site'
+                             },
+                    cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
                     json=post_data,
                     timeout=10
             )
@@ -354,37 +370,31 @@ class Playlists(unittest.TestCase):
         # post_data['user']['itvUserId'] = '92a3bfde-bfe1-40ea-ad43-09b8b522b7cb'
 
         # Snooker UK open episode 10 - an episode without subtitles
-        url = 'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001'
+        # url = 'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001'
 
         # request playlist of an episode of Doc Martin
-        # url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
+        url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
 
         # The bigger trip - episode 1
         # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
 
         # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
 
-        # NOTE:
-        #    Sometimes the returned json data contains a base url of
-        #    'https://itvpnpdotcom.cdn1.content.itv.com/'
-        #    and other times 'https://itvpnpdotcom.blue.content.itv.com/'
-        #    Important difference is that the first returns an error 403 - Forbidden,
-        #    least quite often.
-        #    IMPORTANT: The webbrowser seems to have the same problem. If a similar request
-        #    returns an url to cdn1.content.itv.com we get the 'Oops' popup.
-        #
-        #    The webbrowsers sends all cookies with this request, but it also seems to work
-        #    without any.
-        #    Anyway; it appears that without the itv.Session coockie there is a better change
-        #    to get links to blue.content.itv.com.
-        # resp = requests.post(
-        #     url,
-        #     headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'},
-        #     json=post_data)
-        resp = itv_account.fetch_authenticated(
-            fetch.post_json, url,
-            data=post_data,
-            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'})
+
+        resp = requests.post(
+            url,
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
+                     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                     'Origin': 'https://www.itv.com',
+                     },
+            json=post_data,
+            timeout=10)
+        resp = resp.json()
+
+        # resp = itv_account.fetch_authenticated(
+        #     fetch.post_json, url,
+        #     data=post_data,
+        #     headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'})
 
         return resp
 
@@ -393,44 +403,19 @@ class Playlists(unittest.TestCase):
         strm_data = resp
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
 
-    def test_replace_cdn1_for_blue_in_manifest_url(self):
-        """Since urls to cdn1.content.itv.com always seem to fail with http status 403 - forbidden,
-        this tries to replace cdn1 for blue, as these urls always work.
-
-        Conclusion:
-            Replacing is not possible, all changed requests fail with the same http status 403.
-            There is very little we can do, as the webbrowser has exactly the same problem!
-        """
-        for i in range(10):
-            print("Try {}".format(i))
-            resp = self.get_playlist_catchup()
-            strm_data = resp.json()['Playlist']['Video']
-            base_url = strm_data['Base']
-            if 'cdn1' in base_url:
-                print('    url = cnd1')
-                base_url = base_url.replace('cdn1', 'blue')
-            else:
-                print('    url = blue')
-            dash_url = base_url + strm_data['MediaFiles'][0]['Href']
-            if self.test_dash_manifest(dash_url):
-                print('    SUCCESS!')
-            else:
-                print('    FAIL!')
-            time.sleep(5)
-
-    def test_dash_manifest(self, url):
-        # url = 'https://itvpnpdotcom.cdn1.content.itv.com/10-2772-0001-001/18/2/VAR028/10-2772-0001-001_18_2_VAR028.ism/.mpd?Policy=eyJTdGF0ZW1lbn' \
-        #       'QiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9pdHZwbnBkb3Rjb20uY2RuMS5jb250ZW50Lml0di5jb20vMTAtMjc3Mi0wMDAxLTAwMS8xOC8yL1ZBUjAyOC8xMC0yNzcyLTAw' \
-        #       'MDEtMDAxXzE4XzJfVkFSMDI4LmlzbS8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjYzODI4OTIwfX19XX0_&Signature=SeN' \
-        #       'TRPqvV~jRw59gIIEnXtG4-VvBOSfNnWflCosIAyXm2xZ1ZbUREze0X34-o1v2l1MJ4yvXKMMwDhi7Db5rM-gEq9sgm9twvv5k9sMIeynQ7aBhlafgHSc7GqwB6pQ11i5XY' \
-        #       '29W5F9WfEAcPLkvH4NlXxYzYnKM4RQKofauAjImxrteCG3XAJDu-Dt~JPLR~EJ3MXtodRFJQGnydT~aukIIO3tuyBjAaUKkB1KmXi7RdkTKdO1~5PfNOLPkB3ZCvUb2jqi' \
-        #       'LtUE988solFN8uzOsUKGVVdA--5zahz3RAVIcc9wp8PzDeFj~KEDzMytINmmTIpZUodmWTeu5nYWYRw__&Key-Pair-Id=APKAJB7PCFZAZHWZVIB'
-
-        try:
-            resp = itv_account.fetch_authenticated(fetch.get_document, url)
-            return True
-        except errors.FetchError:
-            return False
+    # def test_dash_manifest(self):
+    #     url = 'https://itvpnpdotcom.cdn1.content.itv.com/10-2772-0001-001/18/2/VAR028/10-2772-0001-001_18_2_VAR028.ism/.mpd?Policy=eyJTdGF0ZW1lbn' \
+    #           'QiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9pdHZwbnBkb3Rjb20uY2RuMS5jb250ZW50Lml0di5jb20vMTAtMjc3Mi0wMDAxLTAwMS8xOC8yL1ZBUjAyOC8xMC0yNzcyLTAw' \
+    #           'MDEtMDAxXzE4XzJfVkFSMDI4LmlzbS8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjYzODI4OTIwfX19XX0_&Signature=SeN' \
+    #           'TRPqvV~jRw59gIIEnXtG4-VvBOSfNnWflCosIAyXm2xZ1ZbUREze0X34-o1v2l1MJ4yvXKMMwDhi7Db5rM-gEq9sgm9twvv5k9sMIeynQ7aBhlafgHSc7GqwB6pQ11i5XY' \
+    #           '29W5F9WfEAcPLkvH4NlXxYzYnKM4RQKofauAjImxrteCG3XAJDu-Dt~JPLR~EJ3MXtodRFJQGnydT~aukIIO3tuyBjAaUKkB1KmXi7RdkTKdO1~5PfNOLPkB3ZCvUb2jqi' \
+    #           'LtUE988solFN8uzOsUKGVVdA--5zahz3RAVIcc9wp8PzDeFj~KEDzMytINmmTIpZUodmWTeu5nYWYRw__&Key-Pair-Id=APKAJB7PCFZAZHWZVIB'
+    #
+    #     try:
+    #         resp = itv_account.fetch_authenticated(fetch.get_document, url)
+    #         return True
+    #     except errors.FetchError:
+    #         return False
 
 
 class Search(unittest.TestCase):

@@ -63,13 +63,14 @@ class TestGetProductions(unittest.TestCase):
             print(item)
 
     def test_get_productions_doctor_foster(self):
-        """Productions of a paid programme"""
-        items = list(main.list_productions(
+        """Productions of a paid programme
+        Fails with a non-subscription account"""
+        items = main.list_productions(
             MagicMock(),
             'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=2_7438&features=aes,'
             'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-            name='Doctor Foster'))
-        self.assertEqual([False], items)
+            name='Doctor Foster')
+        self.assertIs(False, items)
 
 
 class TestPlayCatchup(unittest.TestCase):
