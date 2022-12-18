@@ -11,6 +11,7 @@ fixtures.global_setup()
 
 import time
 import unittest
+import requests
 
 from resources.lib import fetch, parsex, itv_account
 from support import testutils
@@ -18,6 +19,32 @@ from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
 
 
 setUpModule = fixtures.setup_web_test
+
+
+class MainPage(unittest.TestCase):
+    def test_main_page(self):
+        page = fetch.get_document('https://www.itv.com/')
+        # testutils.save_doc(page, 'html/index.html')
+        page_data = parsex.get__next__data_from_page(page)
+        # testutils.save_json(page_data, 'html/index-data.json')
+        page_props = page_data['props']['pageProps']
+        has_keys(page_props, 'heroContent', 'editorialSliders', 'newsShortformSliderContent', 'trendingSliderContent')
+
+        self.assertIsInstance(page_props['heroContent'], list)
+        for item in page_props['heroContent']:
+            has_keys(item, 'type', 'title', 'imageTemplate', 'programmeId', 'encodedEpisodeId',
+                     'description', 'genre', 'contentInfo')
+        pass
+
+    def test_get_itvx_logo(self):
+        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-backgrounds.jpg?q=80&format=jpg&w=960&h=540&bg=false&blur=0')
+        self.assertEqual(200, resp.status_code)
+        img = resp.content
+        # testutils.save_binary(img, 'html/itvx-logo-light-bg.jpg')
+        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-dark-backgrounds.jpg?q=80&format=jpg&w=960&bg=false&blur=0')
+        self.assertEqual(200, resp.status_code)
+        img = resp.content
+        # testutils.save_binary(img, 'html/itvx-logo-dark-bg.jpg')
 
 
 class WatchPages(unittest.TestCase):
