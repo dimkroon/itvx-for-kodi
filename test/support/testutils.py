@@ -74,6 +74,11 @@ def save_doc(data, filename):
     with open(doc_path(filename), 'w') as f:
         f.write(data)
 
+def save_binary(data, filename):
+    """Save a data as bytes to a file in the test_docs directory"""
+    with open(doc_path(filename), 'wb') as f:
+        f.write(data)
+
 
 class HttpResponse(Response):
     """Create a requests.Response object with various attributes set.
