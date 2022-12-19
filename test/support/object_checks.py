@@ -50,9 +50,18 @@ def misses_keys(dict_obj, *keys, obj_name='dictionary'):
 
 
 def is_url(url, ext=None):
+    """Short and simple check if the string `url` is indeed a URL.
+    This in no way intended to completely validate the URL - it is just to check
+    that the string is not just a path without protocol specification, or just some
+    other string that is not intended to be a URL at all.
+
+    :param url, str: String to check.
+    :param ext: Optional file extension (including preceding dot) of the document requested in the URL.
+
+    """
     result = url.startswith('https://')
     if ext:
-        result = result and url.endswith(ext)
+        result = result and (url.endswith(ext) or ext + '?' in url)
     return result
 
 

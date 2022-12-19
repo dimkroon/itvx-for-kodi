@@ -17,6 +17,8 @@ class TestObjectChecks(TestCase):
         self.assertFalse(object_checks.is_url('http://adskj'))     # unsecure fails
         self.assertTrue(object_checks.is_url('https://adskj/jbhnkjn.jpg', '.jpg'))
         self.assertFalse(object_checks.is_url('https://adskj/jbhnkjn.png', '.jpg'))
+        self.assertTrue(object_checks.is_url('https://adskj/jbhnkjn.jpg?some=query&string=', '.jpg'))
+        self.assertFalse(object_checks.is_url('https://adskj/jbhnkjn.jpg?some=query&string=', '.png'))
 
     def test_is_iso_time(self):
         self.assertTrue(object_checks.is_iso_time("2019-05-26T23:10:32Z"))
