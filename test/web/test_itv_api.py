@@ -166,6 +166,17 @@ class Categories(unittest.TestCase):
             self.assertTrue(item['_links']['doc:programmes']['href'].startswith('https://'))
 
 
+class Collections(unittest.TestCase):
+    cat_req_kwargs = {
+        'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/collections',
+        'headers': {'Accept': 'application/vnd.itv.online.discovery.collection.v1+hal+json; charset=UTF-8'}
+    }
+
+    def test_collection(self):
+        resp = requests.get(**self.cat_req_kwargs)
+        self.assertEqual(404, resp.status_code)
+
+
 class Programmes(unittest.TestCase):
     def get_json(self, url):
         resp = requests.get(
@@ -317,7 +328,7 @@ class Productions(unittest.TestCase):
 
 
 class Playlists(unittest.TestCase):
-    def create_post_data(self):
+    def create_post_data(self, stream_type):
         acc_data = itv_account.itv_session()
         post_data = copy.deepcopy(itv.stream_req_data)
         post_data['user']['token'] = acc_data.access_token

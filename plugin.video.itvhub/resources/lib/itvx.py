@@ -18,6 +18,8 @@ import pytz
 from codequick.support import logger_id
 
 from . import fetch
+from . import parsex
+from . import utils
 
 from .itv import get_live_schedule
 
@@ -26,6 +28,13 @@ logger = logging.getLogger(logger_id + '.itv')
 
 FEATURE_SET = 'hd,progressive,single-track,mpeg-dash,widevine,widevine-download,inband-ttml,hls,aes,inband-webvtt,outband-webvtt,inband-audio-description'
 PLATFORM_TAG = 'mobile'
+
+
+def get_page_data(url):
+    if not url.startswith('https://'):
+        url = 'https://www.itv.com' + url
+    html_doc = fetch.get_document(url)
+    return parsex.scrape_json(html_doc)
 
 
 def get_live_channels():
@@ -80,6 +89,47 @@ def get_live_channels():
             })
         channel['slot'] = programs_list
     return channels
+
+
+def main_page_items():
+    main_data = get_page_data('https://www.itv.com')
+    for hero_data in main_data['heroContent']:
+        yield parsex.parse_hero_content(hero_data)
+
+
+def episodes(url):
+    """Get a listing of series and their episodes
+
+    Return a list containing only relevant info in a format that can easily be
+    used by codequick Listitem.from_dict.
+
+    """
+    brand_data = get_page_data(url)['title']['brand']
+    brand_title = brand_data['title']
+    brand_thumb = brand_data['title'].format(parsex.IMG_PROPS_THUMB)
+    brand_fanart = brand_data['title'].format(parsex.IMG_PROPS_FANART)
+    brand_description = brand_data['synopses'].get('ninety', '')
+    series_data = brand_data['series']
+
+    if not series_data:
+        return []
+
+    series_list = []
+    for series in series_data:
+        title = series['title']
+        series_idx = series['seriesNumber']
+        series_obj = {
+            'label': title,
+            'art': {'thumb': brand_thumb, 'fanart': brand_fanart},
+            'info': {'title': '[B]{} - {}[/B]'.format(brand_title, series['title']),
+                     'plot': '{}\n\n{} - {} episodes'.format(
+                         brand_description, title, series['seriesAvailableEpisodeCount'])},
+
+            'params': {'url': url, 'series_idx': series_idx},
+            'episodes': [parsex.parse_title(episode, brand_fanart) for episode in series['episodes']]
+        }
+        series_list.append(series_obj)
+    return series_list
 
 
 def categories():

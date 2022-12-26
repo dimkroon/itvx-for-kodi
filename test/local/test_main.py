@@ -74,7 +74,7 @@ class Shows(TestCase):
 
 
 class Productions(TestCase):
-    @patch("resources.lib.itv.productions", return_value=[])
+    @patch("resources.lib.itvx.episodes", return_value=[])
     def test_empty_productions_list(self, _):
         result = main.list_productions(MagicMock(), '')
         self.assertIs(result, False)
@@ -82,6 +82,26 @@ class Productions(TestCase):
     def test_no_url_passed(self):
         result = main.list_productions(MagicMock())
         self.assertIs(False, result)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
+    def test_episodes_marple(self, _):
+        list_items = main.list_productions(MagicMock(), 'marple')
+        self.assertIsInstance(list_items, list)
+        self.assertEqual(6, len(list_items))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
+    def test_episodes_marple_series_4(self, _):
+        """Test listing opened at series 4"""
+        list_items = main.list_productions(MagicMock(), 'marple', series_idx=4)
+        self.assertIsInstance(list_items, list)
+        self.assertEqual(9, len(list_items))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_bad-girls_data.json'))
+    def test_episodes_bad_girls_series_5(self, _):
+        """Test listing opened at series 4"""
+        list_items = main.list_productions(MagicMock(), 'bad girls', series_idx=5)
+        self.assertIsInstance(list_items, list)
+        self.assertEqual(23, len(list_items))
 
 
 class Search(TestCase):

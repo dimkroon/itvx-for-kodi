@@ -79,18 +79,15 @@ def dynamic_listing(func=None):
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     yield Listitem.from_dict(sub_menu_shows, 'Shows')
-    # yield Listitem.from_dict(
-    #         list_programs,
-    #         'Shows',
-    #         params={'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&'
-    #                        'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,'
-    #                        'fairplay&sortBy=title'})
-    # yield Listitem.from_dict(
-    #         sub_menu_from_page,
-    #         'Full series',
-    #         params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
     yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
+    for item in itvx.main_page_items():
+        item_type = item.pop('type')
+        if item_type == 'series':
+            callback = list_productions
+        else:
+            callback = play_title
+        yield Listitem.from_dict(callback, **item)
 
 
 # In order to ensure that epg data is refreshed when a live stream is stopped, kodi is
@@ -190,7 +187,7 @@ def list_programs(plugin, url, filter_char=None):
 
 @Route.register(cache_ttl=60)
 @dynamic_listing
-def list_productions(plugin, url, name='', series_idx=0):
+def list_productions(plugin, url, series_idx=0):
 
     logger.info("Getting productions for series '%s' of '%s'", series_idx, url)
 
@@ -199,40 +196,35 @@ def list_productions(plugin, url, name='', series_idx=0):
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    series_list = itv.productions(url, name)
+    series_list = itvx.episodes(url)
     if not series_list:
         return
 
-    # First create folders for series
-    for i in range(len(series_list)):
-        # skip the folder of the series that is opened
-        if i == series_idx:
-            continue
+    if len(series_list) == 1:
+        # List the episodes if there is only 1 series
+        opened_series = series_list[0]
+    else:
+        opened_series = None
+        # First create folders for series
+        for series in series_list:
+            # skip the folder of the series that is opened
+            if series_idx == series['params']['series_idx']:
+                opened_series = series
+                continue
 
-        series = series_list[i]
-        episode_list = series['episodes']
-        label = '[B]{}[/B]  -  {} episodes'.format(series['name'], len(episode_list))
-        # TODO: Maybe better not to provide plot and art of the first episode. It is only of
-        #       of use when the series is one continuous story, which is only rarely the case.
-        li = Listitem.from_dict(
-            list_productions,
-            label=label,
-            art=episode_list[0]['art'],
-            info={'title': label,
-                  'plot': episode_list[0]['info']['plot'],
-                  },
-            params={'url': url, 'name': name, 'series_idx': i}
-        )
-        yield li
+            series.pop('episodes')
+            li = Listitem.from_dict(list_productions, **series)
+            yield li
 
     # Now create episode items for the opened series folder
-    episodes = series_list[series_idx]['episodes']
-    for episode in episodes:
-        li = Listitem.from_dict(play_stream_catchup, **episode)
-        date = episode['info'].get('date')
-        if date:
-            li.info.date(date, '%Y-%m-%dT%H:%MZ')
-        yield li
+    if opened_series:
+        episodes = opened_series['episodes']
+        for episode in episodes:
+            li = Listitem.from_dict(play_stream_catchup, **episode)
+            date = episode['info'].get('date')
+            if date:
+                li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
+            yield li
 
 
 @Route.register(cache_ttl=480, autosort=False)
@@ -379,7 +371,7 @@ def play_stream_catchup(_, url, name):
 
 
 @Resolver.register
-def play_episode(plugin, url, name=None):
+def play_title(plugin, url, name=None):
     """Play an episode from an url to the episode's html page.
 
     While episodes obtained from list_productions() have direct urls to stream's
@@ -387,7 +379,7 @@ def play_episode(plugin, url, name=None):
     to the respective episode's details html page.
 
     """
-    url, title = itv.get_playlist_url_from_episode_page(url)
+    url, title = itvx.get_playlist_url_from_episode_page(url)
     if name is None:
         name = title
     return play_stream_catchup(plugin, url, name)
