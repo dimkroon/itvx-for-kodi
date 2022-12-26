@@ -74,17 +74,18 @@ def get_live_channels():
         programs_list = []
         for prog in (slots['now'], slots['next']):
             if prog['detailedDisplayTitle']:
-                title = ': '.join((prog['displayTitle'], prog['detailedDisplayTitle']))
+                details = ': '.join((prog['displayTitle'], prog['detailedDisplayTitle']))
             else:
-                title = prog['displayTitle']
+                details = prog['displayTitle']
 
             start_t = prog['start'][:19]
             # TODO: check this in DST period
             utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6])).replace(tzinfo=utc_tz)
 
             programs_list.append({
-                'programmeTitle': title,
-                'orig_start': None,  # fast channels do not support play from start
+                'programme_details': details,
+                'programmeTitle': prog['displayTitle'],
+                'orig_start': None,          # fast channels do not support play from start
                 'startTime': utc_start.astimezone(local_tz).strftime('%H:%M')
             })
         channel['slot'] = programs_list
