@@ -221,7 +221,7 @@ def _create_program_item(item_data):
                 'sorttitle': orig_title[4:] if orig_title.startswith('the ') else orig_title
             },
             'params': {
-                'name': item_data.get('title', ''),
+                # 'name': item_data.get('title', ''),
                 'url': (productions['_links']['doc:productions']['href'] if episode_count > 1
                         else latest_episode['_links']['playlist']['href'])
             }

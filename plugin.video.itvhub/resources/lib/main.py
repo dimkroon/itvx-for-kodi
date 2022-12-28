@@ -78,7 +78,7 @@ def dynamic_listing(func=None):
 @Route.register
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
-    yield Listitem.from_dict(sub_menu_shows, 'Shows')
+    # yield Listitem.from_dict(sub_menu_shows, 'Shows')
     yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
     for item in itvx.main_page_items():
