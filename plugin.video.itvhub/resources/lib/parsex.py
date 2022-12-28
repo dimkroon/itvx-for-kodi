@@ -33,7 +33,12 @@ IMG_PROPS_FANART = {'treatment': '', 'aspect_ratio': '16x9', 'class': '01_Hero_D
 
 
 def build_url(programme, programme_id, episode_id=None):
-    base_url = 'https://www.itv.com/watch/' + programme.lower().replace(' ', '-')
+    base_url = ('https://www.itv.com/watch/' + programme.lower()
+                .replace(' ', '-')
+                .replace('&', 'and')
+                .replace('#', '')
+                .replace('/', '')
+                .replace('?', ''))
     if episode_id:
         return '/'.join((base_url, programme_id, episode_id))
     else:

@@ -135,64 +135,52 @@ def episodes(url):
 
 def categories():
     """Return all available categorie names."""
-    result = fetch.get_json(
-        'https://content-inventory.prd.oasvc.itv.com/discovery',
-        params={
-            'operationName': 'Categories',
-            'query': 'query Categories { genres(filter: {hubCategory: true}, sortBy: TITLE_ASC) { __typename name id } }'
-        })
-    cat_list = result['data']['genres']
-    return ({'label': cat['name'], 'params': {'id': cat['id']}} for cat in cat_list)
+    data = get_page_data('https://www.itv.com/watch/categories')
+    cat_list = data['subnav']['items']
+    return ({'label': cat['name'], 'params': {'path': cat['url']}} for cat in cat_list)
 
 
-def category_content(cat_id: str):
+def category_content(url: str, hide_payed=False):
     """Return all programmes in a category"""
-    if cat_id == 'FILM':
-        return get_category_films()
+    cat_data = get_page_data(url)
+    category = cat_data['category']['pathSegment']
+    progr_list = cat_data.get('programmes')
 
-    result = fetch.get_json(
-        'https://content-inventory.prd.oasvc.itv.com/discovery',
-        params={
-            'operationName': 'CategoryPage',
-            'query': 'query CategoryPage($broadcaster: Broadcaster, $features: [Feature!], $category: Category, '
-                     '$tiers: [Tier!]) { brands(filter: {category: $category, tiers: $tiers, available: "NOW", '
-                     'broadcaster: $broadcaster}, sortBy: TITLE_ASC) { __typename ...CategoryPageBrandFields } '
-                     'titles(filter: {hasBrand: false, category: $category, tiers: $tiers, available: "NOW", '
-                     'broadcaster: $broadcaster}, sortBy: TITLE_ASC) { __typename ...CategoryPageTitleFields } } '
-                     'fragment CategoryPageBrandFields on Brand { __typename ccid legacyId imageUrl(imageType: ITVX) '
-                     'title latestAvailableTitle { __typename ...CategoryPageTitleFields } tier partnership '
-                     'contentOwner } fragment CategoryPageTitleFields on Title { __typename ccid brandLegacyId '
-                     'legacyId imageUrl(imageType: ITVX) title channel { __typename name } titleType broadcastDateTime '
-                     'latestAvailableVersion { __typename legacyId duration } synopses { __typename ninety epg } '
-                     'availableNow tier partnership contentOwner }',
-            'variables': '{"broadcaster":"UNKNOWN",'
-                         '"features":["HD","PROGRESSIVE","SINGLE_TRACK","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD",'
-                         '"INBAND_TTML","HLS","AES","INBAND_WEBVTT"],'
-                         '"category":"%s",'
-                         '"tiers":["FREE"]}' % cat_id
-        })
-    return result['data']['brands']
+    for prog in progr_list:
+        content_info = prog['contentInfo']
+        is_playable = not content_info.lower().startswith('series')
+        title = prog['title']
 
+        if 'FREE' in prog['tier']:
+            plot = prog['description']
+        else:
+            if hide_payed:
+                continue
+            plot = '\n\n'.join((prog['description'], '[COLOR yellow]X premium[/COLOR]'))
 
-def get_category_films():
-    """Return all films in the category films"""
-    result = fetch.get_json(
-        'https://content-inventory.prd.oasvc.itv.com/discovery',
-        params={
-            'operationName': 'Films',
-            'query': 'query Films($broadcaster: Broadcaster, $features: [Feature!], $tiers: [Tier!]) '
-                     '{ titles(filter: {titleType: FILM, available: "NOW", tiers: $tiers, broadcaster: $broadcaster}, '
-                     'sortBy: TITLE_ASC) { __typename ccid legacyId brandLegacyId imageUrl(imageType: ITVX) '
-                     'title tier channel { __typename name } broadcastDateTime latestAvailableVersion '
-                     '{ __typename legacyId duration } availableNow synopses { __typename ninety epg } '
-                     'partnership contentOwner } }',
-            'variables': '{"broadcaster":"UNKNOWN",'
-                         '"features":["HD","PROGRESSIVE","SINGLE_TRACK","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD",'
-                         '"INBAND_TTML","HLS","AES","INBAND_WEBVTT"],'
-                         '"category":"%s",'
-                         '"tiers":["FREE"]}'
-        })
-    return result['data']['titles']
+        sort_title = title.lower()
+
+        programme_item = {
+            'label': title,
+            'art': {'thumb': prog['imageTemplate'].format(**parsex.IMG_PROPS_THUMB),
+                    'fanart': prog['imageTemplate'].format(**parsex.IMG_PROPS_FANART)},
+            'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
+                     'plot': plot,
+                     'sorttitle': sort_title[4:] if sort_title.startswith('the ') else sort_title},
+        }
+
+        if category == 'films':
+            programme_item['art']['poster'] = prog['imageTemplate'].format(**parsex.IMG_PROPS_POSTER)
+
+        if is_playable:
+            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+            programme_item['params'] = {'url': parsex.build_url(title, prog['encodedProgrammeId']['letterA'])}
+        else:
+            programme_item['params'] = {'url': parsex.build_url(title,
+                                                                prog['encodedProgrammeId']['letterA'],
+                                                                prog['encodedEpisodeId']['letterA'])}
+        yield {'playable': is_playable,
+               'show': programme_item}
 
 
 cached_programs = {}

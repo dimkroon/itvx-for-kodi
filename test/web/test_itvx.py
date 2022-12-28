@@ -16,9 +16,10 @@ import unittest
 
 from typing import Generator
 
-from resources.lib import itvx
 from codequick import Listitem, Route, Script
 
+from resources.lib import itvx
+from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
 
 setUpModule = fixtures.setup_web_test
 
@@ -33,23 +34,16 @@ class TestItvX(unittest.TestCase):
         result = itvx.categories()
         self.assertIsInstance(result, Generator)
         for item in result:
-            self.assertTrue('label' in item.keys())
-            self.assertTrue('params' in item.keys())
-            self.assertTrue('id' in item['params'].keys())
-
-    def test_get_category_films(self):
-        result = itvx.get_category_films()
-        print(result)
-
-    def test_category_content(self):
-        result = itvx.category_content('SPORT')
-        self.assertIsInstance(result, list)
+            is_li_compatible_dict(self, item)
 
     def test_all_categories_content(self):
         categories = itvx.categories()
         for cat in categories:
-            result = itvx.category_content(cat['params']['id'])
-            print(result)
+            result = list(itvx.category_content(cat['params']['path']))
+            self.assertGreater(len(result), 1)      # News has only a few items
+            for item in result:
+                self.assertIsInstance(item['playable'], bool)
+                is_li_compatible_dict(self, item['show'])
 
     def test_get_now_next_schedule(self):
         result = itvx.get_live_schedule()

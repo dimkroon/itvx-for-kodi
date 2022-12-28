@@ -31,6 +31,13 @@ class TestMenu(unittest.TestCase):
             print(item.params['url'])
 
 
+class Categories(unittest.TestCase):
+    def test_get_categories(self):
+        items = main.list_categories(MagicMock())
+        self.assertIsInstance(items, list)
+        self.assertAlmostEqual(len(items), 8, delta=2)
+
+
 class TestGetProductions(unittest.TestCase):
     def test_productions_midsummer_murders(self):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096')

@@ -152,13 +152,33 @@ def sub_menu_shows(_):
     items = [Listitem.from_dict(list_programs, char, params={'url': url, 'filter_char': char}) for char in az_list]
     return items
 
-
-@Route.register(cache_ttl=24 * 60)
+# FIXME: Cache throws error - list_category is not pickable
+@Route.register(cache_ttl=-1)  # 24 * 60)
 def list_categories(_):
     logger.debug("List categories.")
-    categories = itv.categories()
-    items = [Listitem.from_dict(list_programs, **cat) for cat in categories]
+    categories = itvx.categories()
+    items = [Listitem.from_dict(list_category, **cat) for cat in categories]
     return items
+
+
+@Route.register(cache_ttl=-1)
+@dynamic_listing
+def list_category(addon, path, filter_char=None):
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                            xbmcplugin.SORT_METHOD_TITLE,
+                            xbmcplugin.SORT_METHOD_DATE,
+                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                            disable_autosort=True)
+    if path.endswith('/films'):
+        addon.content_type = 'movies'
+
+    shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_payed'))
+    return [
+        Listitem.from_dict(play_title, **show['show'])
+        if show['playable'] else
+        Listitem.from_dict(list_productions, **show['show'])
+        for show in shows_list
+    ]
 
 
 @Route.register(cache_ttl=-1)
@@ -166,7 +186,6 @@ def list_categories(_):
 def list_programs(plugin, url, filter_char=None):
     logger.debug("list programs for url '%s'", url)
     plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                            xbmcplugin.SORT_METHOD_TITLE,
                             xbmcplugin.SORT_METHOD_DATE,
                             xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                             disable_autosort=True)
@@ -185,7 +204,7 @@ def list_programs(plugin, url, filter_char=None):
     #         yield Listitem.from_dict(play_stream_catchup, **show['show'])
 
 
-@Route.register(cache_ttl=60)
+@Route.register(cache_ttl=-1)
 @dynamic_listing
 def list_productions(plugin, url, series_idx=0):
 

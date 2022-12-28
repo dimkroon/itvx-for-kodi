@@ -13,6 +13,8 @@ fixtures.global_setup()
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
+from codequick import Listitem
+
 from test.support.testutils import open_json
 
 from resources.lib import main
@@ -71,6 +73,22 @@ class Shows(TestCase):
         """Folder 'X' does not have any items"""
         shows_x = main.list_programs(MagicMock(), "shows_url", 'X')
         self.assertFalse(shows_x)
+
+
+class Categories(TestCase):
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
+    def test_get_categories(self,_):
+        cats = main.list_categories(MagicMock())
+        self.assertAlmostEqual(len(cats), 8, delta=2)
+        for cat in cats:
+            self.assertIsInstance(cat, Listitem)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_drama-soaps.json'))
+    def test_get_category_drama(self, _):
+        programmes = main.list_category(MagicMock(), 'sdfg')
+        self.assertGreater(len(programmes), 100)
+        for prog in programmes:
+            self.assertIsInstance(prog, Listitem)
 
 
 class Productions(TestCase):
