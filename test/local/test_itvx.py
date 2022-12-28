@@ -79,5 +79,4 @@ class Search(TestCase):
     @patch('resources.lib.fetch.get_json', return_value=None)
     def test_search_without_results(self, _):
         result = itvx.search('xprs')
-        self.assertIsInstance(result, types.GeneratorType)
-        self.assertListEqual(list(result), [])
+        self.assertIsNone(result)

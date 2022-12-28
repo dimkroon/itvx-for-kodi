@@ -128,7 +128,23 @@ class Search(TestCase):
         results = main.do_search(MagicMock(), 'the chase')
         self.assertEqual(10, len(results))
 
+    def test_search_result_with_unknown_entitytype(self):
+        search_data = open_json('search/search_results_mear.json')
+        with patch('resources.lib.fetch.get_json', return_value=search_data):
+            results_1 = main.do_search(MagicMock(), 'kjhbn')
+            self.assertEqual(10, len(results_1))
+        # check again with one item having an unknown entity type
+        search_data['results'][3]['entityType'] = 'video'
+        with patch('resources.lib.fetch.get_json', return_value=search_data):
+            results_2 = main.do_search(MagicMock(), 'kjhbn')
+            self.assertEqual(9, len(results_2))
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('search/search_results_mear.json'))
+    def test_search_the_chase(self, _):
+        results = main.do_search(MagicMock(), 'the chase')
+        self.assertEqual(10, len(results))
+
     @patch('resources.lib.fetch.get_json', return_value=None)
     def test_search_with_no_results(self, _):
         results = main.do_search(MagicMock(), 'the chase')
-        self.assertFalse(results)
+        self.assertIs(results, False)

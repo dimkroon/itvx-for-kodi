@@ -45,6 +45,11 @@ def build_url(programme, programme_id, episode_id=None):
         return '/'.join((base_url, programme_id))
 
 
+def premium_plot(plot: str):
+    """Add notice of paid or premium content tot the plot."""
+    return '\n\n'.join((plot, '[COLOR yellow]X premium[/COLOR]'))
+
+
 def parse_submenu(page: str, ):
     """Parse the submenu of a page which usually contains categories
 
@@ -129,3 +134,48 @@ def parse_title(title_data, brand_fanart=None):
     if title_data['titleType'] == 'EPISODE':
         title_obj['info'].update(episode=title_data['episodeNumber'], season=title_data['seriesNumber'])
     return title_obj
+
+
+def parse_search_result(search_data):
+    entity_type = search_data['entityType']
+    result_data = search_data['data']
+    api_episode_id = ''
+    if 'FREE' in result_data['tier']:
+        plot = result_data['synopsis']
+    else:
+        plot = premium_plot(result_data['synopsis'])
+
+    if entity_type == 'programme':
+        prog_name = result_data['programmeTitle']
+        title = '[B]{}[/B] - {} episodes'.format(prog_name, result_data.get('totalAvailableEpisodes', ''))
+        img_url = result_data['latestAvailableEpisode']['imageHref']
+        api_prod_id = result_data['legacyId']['officialFormat']
+
+    elif entity_type == 'special':
+        # A single programme without episodes
+        title = result_data['specialTitle']
+        prog_name = result_data['specialProgramme']['programmeTitle']
+        img_url = result_data['imageHref']
+        api_episode_id = result_data['legacyId']['officialFormat']
+        api_prod_id = result_data['specialProgramme']['legacyId']['officialFormat']
+
+    elif entity_type == 'film':
+        prog_name = result_data['filmTitle']
+        title = '[B]Film[/B] - ' +  result_data['filmTitle']
+        img_url = result_data['imageHref']
+        api_prod_id = result_data['legacyId']['officialFormat']
+
+    else:
+        logger.warning("Unknown search result item entityType %s", entity_type)
+        return None
+
+    return {
+        'playable': entity_type != 'programme',
+        'show':{
+            'label': prog_name,
+            'art': {'thumb': img_url.format(**IMG_PROPS_THUMB)},
+            'info': {'plot': plot,
+                     'title': title},
+            'params': {'url': build_url(prog_name, api_prod_id.replace('/', 'a'), api_episode_id.replace('/', 'a'))}
+        }
+    }

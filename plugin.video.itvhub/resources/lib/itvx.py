@@ -156,7 +156,7 @@ def category_content(url: str, hide_payed=False):
         else:
             if hide_payed:
                 continue
-            plot = '\n\n'.join((prog['description'], '[COLOR yellow]X premium[/COLOR]'))
+            plot = parsex.premium_plot(prog['description'])
 
         sort_title = title.lower()
 
@@ -191,32 +191,21 @@ def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """
     import re
-
+    # TODO: premium content do not the tag data-video-id without a premium account
     logger.info("Get playlist from episode page - url=%s", page_url)
     html_doc = fetch.get_document(page_url)
     logger.debug("successfully retrieved page %s", page_url)
-
-    # New version - might a bit overdone as just a regex to obtain the playlist url should suffice.
-    # doc_data = parse.get__next__data_from_page(html_doc)
-    # player_data = doc_data['props']['pageProps']['episodeHeroWrapperProps']['playerProps']
-    # name = player_data['programmeTitle']
-    # play_list_url = player_data['playlistUrl']
-
-    # Only this will fail on itvX, but is the name actually used anywhere?
-    # name = re.compile('data-video-title="(.+?)"').search(html_doc)[1]
     name = ''
     play_list_url = re.compile('data-video-id="(.+?)"').search(html_doc)[1]
     return play_list_url, name
 
 
-
-def search(search_term):
+def search(search_term, hide_payed=False):
     url = 'https://textsearch.prd.oasvc.itv.com/search'
     query_params = {
         'broadcaster': 'itv',
-        'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
-        # We can handle only free items because of the way we list production right now.
-        'onlyFree': 'true',
+        'featureSet': 'clearkey,outband-webvtt,hls,aes,widevine,fairplay,bbts,progressive,hd,rtmpe',
+        'onlyFree': 'true' if hide_payed else 'false',
         'platform': 'dotcom',
         'query': search_term
     }
@@ -225,50 +214,5 @@ def search(search_term):
         return
 
     results = data.get('results')
+    return (parsex.parse_search_result(result) for result in results)
 
-    def parse_programme(prg_data):
-        prog_name = prg_data['programmeTitle']
-        img_url = prg_data['latestAvailableEpisode']['imageHref']
-
-        return {
-            'entity_type': 'programme',
-            'label': prog_name,
-            'art': {'thumb': img_url.format(width=960, height=540, quality=80, blur=0, bg='false')},
-            'info': {'plot': prg_data.get('synopsis'),
-                     'title': '[B]{}[/B] - {} episodes'.format(prog_name, prg_data.get('totalAvailableEpisodes', ''))},
-            'params': {
-                'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId={}&'
-                       'features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,'
-                       'widevine&broadcaster=itv'.format(prg_data['legacyId']['apiEncoded']),
-                'name': prog_name}
-        }
-
-    def parse_special(prg_data):
-        # AFAICT special is always a production, which might be a production of a programme, but
-        # presented as a single episode in the search results.
-        prog_name = program_data['specialTitle']
-        img_url = program_data['imageHref']
-        # convert productionId to a format used in the url
-        api_prod_id = prg_data['productionId'].replace('/', '_').replace('#', '.')
-
-        return {
-            'entity_type': 'special',
-            'label': prog_name,
-            'art': {'thumb': img_url.format(width=960, height=540, quality=80, blur=0, bg='false')},
-            'info': {'plot': prg_data.get('synopsis'),
-                     'title': prog_name},
-            'params': {'url': 'https://magni.itv.com/playlist/itvonline/ITV/' + api_prod_id,
-                       'name': prog_name}
-        }
-
-    for result in results:
-        program_data = result['data']
-        entity_type = result['entityType']
-
-        if entity_type == 'programme':
-            yield parse_programme(program_data)
-        elif entity_type == 'special':
-            yield parse_special(program_data)
-        else:
-            logger.warning("Unknown search result item entityType %s on search term %s", entity_type, search_term)
-            continue

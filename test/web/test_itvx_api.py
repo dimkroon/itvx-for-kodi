@@ -38,6 +38,8 @@ class Search(unittest.TestCase):
                 self.check_programme_item(item['data'])
             elif item['entityType'] == 'special':
                 self.check_special_item(item['data'])
+            elif item['entityType'] == 'film':
+                self.check_film_item(item['data'])
             else:
                 raise AssertionError('unknown entityType {}'.format(item['entityType']))
             self.assertTrue(item['data']['tier'] in ('PAID', 'FREE'))
@@ -46,7 +48,8 @@ class Search(unittest.TestCase):
         object_checks.has_keys(item_data, 'programmeCCId', 'legacyId', 'productionId', 'programmeTitle',
                                'synopsis', 'latestAvailableEpisode', 'totalAvailableEpisodes', 'tier',
                                obj_name='programItem.data')
-        self.assertTrue(item_data['latestAvailableEpisode']['imageHref'].startswith('https://'))
+        object_checks.is_url(item_data['latestAvailableEpisode']['imageHref'])
+        self.assertTrue(item_data['legacyId']['officialFormat'])
 
     def check_special_item(self, item_data):
         object_checks.has_keys(item_data, 'specialCCId', 'legacyId', 'productionId', 'specialTitle',
@@ -57,7 +60,15 @@ class Search(unittest.TestCase):
         if special_data:
             object_checks.has_keys(special_data, 'programmeCCId', 'legacyId', 'programmeTitle',
                                    obj_name='specialItem.data.specialProgramme')
-        self.assertTrue(item_data['imageHref'].startswith('https://'))
+        object_checks.is_url(item_data['imageHref'])
+        self.assertTrue(item_data['legacyId']['officialFormat'])
+
+    def check_film_item(self, item_data):
+        object_checks.has_keys(item_data, 'filmCCId', 'legacyId', 'productionId', 'filmTitle',
+                               'synopsis', 'imageHref', 'tier',
+                               obj_name='specialItem.data')
+        object_checks.is_url(item_data['imageHref'])
+        self.assertTrue(item_data['legacyId']['officialFormat'])
 
     def test_search_normal(self):
         self.search_params['query'] = 'the chases'
@@ -66,9 +77,13 @@ class Search(unittest.TestCase):
         self.assertGreater(len(resp['results']), 3)
 
     def test_search_without_result(self):
+        """Typical itvX behaviour; response can be either HTTP status 204 - No Content,
+        or status 200 - OK with empty results list."""
         self.search_params['query'] = 'xprs'
         resp = requests.get(self.search_url, params=self.search_params)
-        self.assertEqual(204, resp.status_code)
+        self.assertTrue(resp.status_code in (200, 204))
+        if resp.status_code == 200:
+            self.assertListEqual([], resp.json()['results'])
 
     def test_search_with_non_free_results(self):
         """Results contain Doctor Foster programme which is can only be watch with a premium account."""

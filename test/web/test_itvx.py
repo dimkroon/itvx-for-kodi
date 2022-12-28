@@ -53,8 +53,9 @@ class TestItvX(unittest.TestCase):
     def test_search(self):
         items = itvx.search('the chase')
         self.assertGreater(len(list(items)), 2)
-        items = itvx.search('xprgs')     # should return no results
-        self.assertEqual(len(list(items)), 0)
+        items = itvx.search('xprgs')     # should return None or empty results, depending on how ITV responds.
+        if items is not None:
+            self.assertEqual(len(list(items)), 0)
 
     def test_get_playlist_url_from_episode_page(self):
         # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002

@@ -256,14 +256,16 @@ def sub_menu_from_page(_, url, callback):
 
 @Route.register()
 @dynamic_listing
-def do_search(_, search_query):
-    search_results = itvx.search(search_term=search_query)
+def do_search(addon, search_query):
+    search_results = itvx.search(search_term=search_query, hide_payed=addon.setting.get_boolean('hide_payed'))
+    if not search_results:
+        return
 
     items = [
-        Listitem.from_dict(list_productions, **result)
-        if result.pop('entity_type') == 'programme'
-        else Listitem.from_dict(play_stream_catchup, **result)
-        for result in search_results
+        Listitem.from_dict(list_productions, **result['show'])
+        if result['playable']
+        else Listitem.from_dict(play_title, **result['show'])
+        for result in search_results if result is not None
     ]
     return items
 

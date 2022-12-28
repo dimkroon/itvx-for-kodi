@@ -56,8 +56,8 @@ class Generic(unittest.TestCase):
         data = open_json('search/search_results_mear.json')
         for result_item in data['results']:
             item = parsex.parse_search_result(result_item)
-            has_keys(item, 'entity_type', 'label', 'art', 'info', 'params')
-            self.assertListEqual(list(item['params'].keys()), ['url'])
+            has_keys(item, 'playable', 'show')
+            is_li_compatible_dict(self, item['show'])
         search_result = data['results'][0]
         # unknown entity type
         search_result['entityType'] = 'dfgs'
