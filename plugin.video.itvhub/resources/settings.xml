@@ -17,6 +17,11 @@
 					</dependencies>
 					<control type="toggle"/>
 				</setting>
+				<setting id="hide_payed" label="30104" type="boolean" help="30304">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
 			</group>
 			<group id="grp_live" label="30120">
 				<setting id="live_play_from_start" label="30121" type="boolean" help="30321">
