@@ -72,22 +72,24 @@ class MainPage(unittest.TestCase):
     def test_main_page(self):
         page = fetch.get_document('https://www.itv.com/')
         # testutils.save_doc(page, 'html/index.html')
-        page_data = parsex.scrape_json(page)
-        # testutils.save_json(page_data, 'html/index-data.json')
-        page_props = page_data['props']['pageProps']
+        page_props = parsex.scrape_json(page)
+        # testutils.save_json(page_props, 'html/index-data.json')
         has_keys(page_props, 'heroContent', 'editorialSliders', 'newsShortformSliderContent', 'trendingSliderContent')
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'type', 'title', 'imageTemplate', 'brandImageTemplate', 'programmeId', 'description',
+            has_keys(item, 'type', 'title', 'imageTemplate', 'programmeId', 'description',
                      'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
             self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film'))
 
             if item['type'] in ('simulcastspot' 'series'):
-                has_keys(item, 'encodedEpisodeId', obj_name=item['title'])
+                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
 
             if item['type'] == 'series':
                 has_keys(item, 'series', obj_name=item['title'])
+
+            if item['type'] == 'film':
+                has_keys(item, 'productionYear', 'dateTime', 'duration', obj_name=item['title'])
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
@@ -97,7 +99,18 @@ class MainPage(unittest.TestCase):
                      obj_name='collection-' + collection['headingTitle'])
             for show in collection['shows']:
                 check_shows(self, show, collection['headingTitle'])
-        pass
+
+        self.assertIsInstance(page_props['trendingSliderContent'], dict)
+        self.assertTrue(page_props['trendingSliderContent']['header']['title'])
+        for item in page_props['trendingSliderContent']['items']:
+            has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'encodedEpisodeId', 'contentType',
+                     'contentInfo', 'titleSlug', obj_name='trending-slider')
+
+        self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
+        for item in page_props['newsShortformSliderContent']['items']:
+            has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
+                     'titleSlug', obj_name='news-slider')
+
 
     def test_get_itvx_logo(self):
         resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-backgrounds.jpg?q=80&format=jpg&w=960&h=540&bg=false&blur=0')
