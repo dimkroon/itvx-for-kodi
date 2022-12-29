@@ -24,6 +24,15 @@ setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
 
 
+@patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+class MainMenu(TestCase):
+    def test_main_menu(self,_):
+        items = list(main.root(MagicMock()))
+        self.assertGreater(len(items), 10)
+        for item in items:
+            self.assertIsInstance(item, Listitem)
+
+
 @patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
                                                     open_json('schedule/live_4hrs.json')))
 class LiveChannels(TestCase):
@@ -73,6 +82,34 @@ class Shows(TestCase):
         """Folder 'X' does not have any items"""
         shows_x = main.list_programs(MagicMock(), "shows_url", 'X')
         self.assertFalse(shows_x)
+
+
+class Collections(TestCase):
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_get_collections(self, _):
+        coll = main.list_collections(MagicMock())
+        self.assertAlmostEqual(20, len(coll), delta=5)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_get_collection_news(self, _):
+        shows = main.list_collection_content(MagicMock(), slider='newsShortformSliderContent')
+        self.assertGreater(len(shows), 10)
+        for item in shows:
+            self.assertIsInstance(item, Listitem)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_get_collection_trending(self, _):
+        shows = main.list_collection_content(MagicMock(), slider='trendingSliderContent')
+        self.assertGreater(len(shows), 10)
+        for item in shows:
+            self.assertIsInstance(item, Listitem)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
+    def test_get_collection_from_collection_page(self, _):
+        shows = main.list_collection_content(MagicMock(), url='top-picks')
+        self.assertGreater(len(shows), 10)
+        for item in shows:
+            self.assertIsInstance(item, Listitem)
 
 
 class Categories(TestCase):

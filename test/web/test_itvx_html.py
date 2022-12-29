@@ -110,6 +110,14 @@ class MainPage(unittest.TestCase):
         # testutils.save_binary(img, 'html/itvx-logo-dark-bg.jpg')
 
 
+class CollectionPage(unittest.TestCase):
+    def test_collection_just_in(self):
+        page = fetch.get_document('https://www.itv.com/watch/collections/just-in/2RQpkypwh3w8m6738sUHQH')
+        # testutils.save_doc(page, 'html/collection_just-in.html')
+        data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/collection_just-in.json')
+
+
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
         """Check the now/next schedule data returned from an HTML page.

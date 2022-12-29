@@ -28,6 +28,38 @@ class MainPageItem(TestCase):
         items = list(itvx.main_page_items())
         pass
 
+
+class Collections(TestCase):
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_collection_news(self, _):
+        items = list(itvx.collection_content(slider='newsShortformSliderContent'))
+        self.assertGreater(len(items), 10)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_collection_trending(self, _):
+        items = list(itvx.collection_content(slider='trendingSliderContent'))
+        self.assertGreater(len(items), 10)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_collection_from_main_page(self, _):
+        items = list(itvx.collection_content(slider='editorialRailSlot1'))
+        self.assertGreater(len(items), 10)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
+    def test_collection_from_collection_page(self, _):
+        items = list(itvx.collection_content(url='collection_top_picks'))
+        self.assertGreater(len(items), 10)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+
+
+
 class Categories(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
     def test_get_categories(self, _):

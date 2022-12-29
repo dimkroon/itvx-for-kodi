@@ -16,7 +16,7 @@ from codequick.support import logger_id, build_path
 
 from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
-from resources.lib import parse
+from resources.lib import parsex
 from resources.lib import fetch
 from resources.lib.errors import *
 
@@ -79,15 +79,17 @@ def dynamic_listing(func=None):
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     # yield Listitem.from_dict(sub_menu_shows, 'Shows')
-    yield Listitem.from_dict(list_categories, 'Categories')
-    yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
+    callb_map = {
+        'collection': list_collection_content,
+        'series': list_productions,
+        'simulcastspot': play_stream_live
+    }
     for item in itvx.main_page_items():
-        item_type = item.pop('type')
-        if item_type == 'series':
-            callback = list_productions
-        else:
-            callback = play_title
-        yield Listitem.from_dict(callback, **item)
+        callback = callb_map.get(item['type'], play_title)
+        yield Listitem.from_dict(callback, **item['show'])
+    yield Listitem.from_dict(list_categories, 'Categories')
+    yield Listitem.from_dict(list_collections, 'Collections')
+    yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
 
 # In order to ensure that epg data is refreshed when a live stream is stopped, kodi is
@@ -151,6 +153,25 @@ def sub_menu_shows(_):
     az_list.append('0-9')
     items = [Listitem.from_dict(list_programs, char, params={'url': url, 'filter_char': char}) for char in az_list]
     return items
+
+
+@Route.register(cache_ttl=-1)
+def list_collections(_):
+    slider_data = itvx.get_page_data('https://www.itv.com')['editorialSliders']
+    return [Listitem.from_dict(list_collection_content, **parsex.parse_slider(*slider)['show'])
+            for slider in slider_data.items()]
+
+
+@Route.register(cache_ttl=-1)
+def list_collection_content(addon, url=None, slider=None):
+    shows_list = itvx.collection_content(url, slider)
+    return [
+        Listitem.from_dict(play_title, **show['show'])
+        if show['playable'] else
+        Listitem.from_dict(list_productions, **show['show'])
+        for show in shows_list
+    ]
+
 
 # FIXME: Cache throws error - list_category is not pickable
 @Route.register(cache_ttl=-1)  # 24 * 60)

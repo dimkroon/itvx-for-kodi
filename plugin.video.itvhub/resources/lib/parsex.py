@@ -6,10 +6,9 @@
 #  This file is part of plugin.video.itvx
 # ---------------------------------------------------------------------------------------------------------------------
 
-import itertools
 import json
-import time
 import logging
+import pytz
 
 from codequick.support import logger_id
 
@@ -23,13 +22,13 @@ logger = logging.getLogger(logger_id + '.parse')
 #       the image returned by itvX is of that exact resolution.
 IMG_PROPS_THUMB = {'treatment': 'title', 'aspect_ratio': '16x9', 'class': '04_DesktopCTV_RailTileLandscape',
                    'distributionPartner': '', 'fallback': 'standard', 'width': '960', 'height': '540',
-                   'quality': '80', 'blur': 0, 'bg': 'false'}
+                   'quality': '80', 'blur': 0, 'bg': 'false', 'image_format': 'jpg'}
 IMG_PROPS_POSTER = {'treatment': 'title', 'aspect_ratio': '2x3', 'class': '07_RailTilePortrait',
-                   'distributionPartner': '', 'fallback': 'standard', 'width': '1000', 'height': '1500',
-                    'quality': '80', 'blur': 0, 'bg': 'false'}
+                    'distributionPartner': '', 'fallback': 'standard', 'width': '1000', 'height': '1500',
+                    'quality': '80', 'blur': 0, 'bg': 'false', 'image_format': 'jpg'}
 IMG_PROPS_FANART = {'treatment': '', 'aspect_ratio': '16x9', 'class': '01_Hero_DesktopCTV',
-                   'distributionPartner': '', 'fallback': 'standard', 'width': '1920', 'height': '1080',
-                    'quality': '80', 'blur': 0, 'bg': 'false'}
+                    'distributionPartner': '', 'fallback': 'standard', 'width': '1920', 'height': '1080',
+                    'quality': '80', 'blur': 0, 'bg': 'false', 'image_format': 'jpg'}
 
 
 def build_url(programme, programme_id, episode_id=None):
@@ -86,11 +85,10 @@ def scrape_json(html_page):
 def parse_hero_content(hero_data):
     item_type = hero_data['type']
     item = {
-        'type': item_type,
         'label': hero_data['title'],
         'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
                 'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
-        'info': {'title': '[B]{}[/B]'.format(hero_data['title'])}
+        'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(hero_data['title'])}
 
     }
     brand_img = item.get('brandImageTemplate')
@@ -99,23 +97,105 @@ def parse_hero_content(hero_data):
         item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
 
     if item_type == 'simulcastspot':
-        item['params'] = {'channel': hero_data['channel'], 'url': None }
+        item['params'] = {'channel': hero_data['channel'], 'url': None}
         item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
 
     elif item_type == 'series':
         item['info'].update(plot='[B]Series {}[/B]\n{}'.format(hero_data.get('series', '?'),
-                                                              hero_data.get('description')))
+                                                               hero_data.get('description')))
         item['params'] = {'url': build_url(hero_data['title'], hero_data['encodedProgrammeId']['letterA']),
                           'series_idx': hero_data.get('series')}
 
     elif item_type == 'film':
-        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
+        item['info'].update(plot='[B]Watch Film[/B]\n' + hero_data.get('description'),
                             duration=utils.duration_2_seconds(hero_data['duration']))
         item['params'] = {'url': build_url(hero_data['title'], hero_data['encodedProgrammeId']['letterA'])}
-    return item
+    return {'type': item_type, 'show': item}
 
 
-def parse_title(title_data, brand_fanart=None):
+def parse_slider(slider_name, slider_data):
+    coll_data = slider_data['collection']
+    page_link = coll_data.get('headingLink')
+    base_url = 'https://www.itv.com/watch'
+    if page_link:
+        # Link to the collection's page if available
+        params = {'url': base_url + page_link['href']}
+    else:
+        # Provide the slider name when the collection content is to be obtained from the main page.
+        params = {'slider': slider_name}
+
+    return {'type': 'collection',
+            'show': {'label': coll_data['headingTitle'], 'params': params}}
+
+
+def parse_collection_item(show_data):
+    """Parse a show item from a collection page
+
+    Very much like category content, but not quite.
+    There appears to be no premium content in collections.
+    """
+    is_playable = show_data['type'] == 'title'
+    title = show_data['title']
+    content_info = show_data.get('contentInfo')
+
+    sort_title = title.lower()
+
+    programme_item = {
+        'label': title,
+        'art': {'thumb': show_data['imageTemplate'].format(**IMG_PROPS_THUMB),
+                'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+        'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
+                 'plot': show_data['description'],
+                 'sorttitle': sort_title[4:] if sort_title.startswith('the ') else sort_title},
+    }
+
+    if 'FILMS' in show_data['categories']:
+        programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
+
+    if is_playable:
+        programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+        programme_item['params'] = {'url': build_url(show_data['titleSlug'],
+                                                     show_data['encodedProgrammeId']['letterA'])}
+    else:
+        programme_item['params'] = {'url': build_url(show_data['titleSlug'],
+                                                    show_data['encodedProgrammeId']['letterA'],
+                                                    show_data['encodedEpisodeId']['letterA'])}
+    return {'playable': is_playable,
+            'show': programme_item}
+
+
+def parse_news_collection_item(news_item, time_zone, time_fmt):
+    # dateTime field occasionally has milliseconds
+    item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
+    loc_time = item_time.astimezone(time_zone)
+    base_url = 'https://www.itv.com/watch/news/'
+    return {
+        'playable': True,
+        'show': {
+            'label': news_item['episodeTitle'],
+            'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
+            'info': {'plot': '\n'.join((loc_time.strftime(time_fmt), news_item['synopsis']))},
+            'params': {'url': base_url + news_item['href']}
+        }
+    }
+
+
+def parse_trending_collection_item(trending_item):
+    return{
+        'playable': True,
+        'show': {
+            'label': trending_item['title'],
+            'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
+            'info': {'plot': '\n'.join((trending_item['description'], trending_item['contentInfo']))},
+            'params': {'url': build_url(trending_item['titleSlug'],
+                                        trending_item['encodedProgrammeId']['letterA'],
+                                        trending_item['encodedEpisodeId']['letterA'])}
+        }
+    }
+
+
+def parse_episode_title(title_data, brand_fanart=None):
+    """Parse a title from episodes listing"""
     # Note: episodeTitle may be None
     title = title_data['episodeTitle'] or title_data['numberedEpisodeTitle']
     img_url = title_data['imageUrl']
@@ -161,7 +241,7 @@ def parse_search_result(search_data):
 
     elif entity_type == 'film':
         prog_name = result_data['filmTitle']
-        title = '[B]Film[/B] - ' +  result_data['filmTitle']
+        title = '[B]Film[/B] - ' + result_data['filmTitle']
         img_url = result_data['imageHref']
         api_prod_id = result_data['legacyId']['officialFormat']
 

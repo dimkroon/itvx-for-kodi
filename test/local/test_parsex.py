@@ -4,6 +4,7 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
 # ---------------------------------------------------------------------------------------------------------------------
+import pytz
 
 from test.support import fixtures
 fixtures.global_setup()
@@ -41,7 +42,51 @@ class Generic(unittest.TestCase):
         url = parsex.build_url('#50/50-heroes?', '10a1511')
         self.assertEqual('https://www.itv.com/watch/5050-heroes/10a1511', url)
 
-    def test_parse_title(self):
+    def test_parse_hero(self):
+        data = open_json('html/index-data.json')
+        for item_data in data['heroContent']:
+            obj = parsex.parse_hero_content(item_data)
+            has_keys(obj, 'type', 'show')
+            is_li_compatible_dict(self, obj['show'])
+
+    def test_parse_slider(self):
+        data = open_json('html/index-data.json')
+        for item_name, item_data in data['editorialSliders'].items():
+            obj = parsex.parse_slider(item_name, item_data)
+            has_keys(obj, 'type', 'show')
+            is_li_compatible_dict(self, obj['show'])
+
+    def test_parse_collection_title(self):
+        data = open_json('html/collection_just-in_data.json')['collection']['shows']
+        # film The Hulk
+        item = parsex.parse_collection_item(data[0])
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+        # series
+        item = parsex.parse_collection_item(data[1])
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+
+    def test_parse_collection_title_from_main_page(self):
+        data = open_json('html/index-data.json')['editorialSliders']['editorialRailSlot1']['collection']['shows']
+        item = parsex.parse_collection_item(data[0])
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+
+    def test_parse_news_collection_item(self):
+        data = open_json('html/index-data.json')['newsShortformSliderContent']['items']
+        tz_uk = pytz.timezone('Europe/London')
+        item = parsex.parse_news_collection_item(data[1], tz_uk, "%H-%M-%S")
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+
+    def test_parse_trending_collection_item(self):
+        data = open_json('html/index-data.json')['trendingSliderContent']['items']
+        item = parsex.parse_trending_collection_item(data[1])
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+
+    def test_parse_category_title(self):
         data = open_json('html/series_miss-marple_data.json')
         item = parsex.parse_episode_title(data['title'])
         is_li_compatible_dict(self, item)

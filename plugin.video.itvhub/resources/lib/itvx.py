@@ -13,28 +13,47 @@ import logging
 
 from datetime import datetime
 import pytz
-
+import xbmc
 
 from codequick.support import logger_id
 
 from . import fetch
 from . import parsex
 from . import utils
+from . import cache
 
 from .itv import get_live_schedule
 
 
-logger = logging.getLogger(logger_id + '.itv')
+logger = logging.getLogger(logger_id + '.itvx')
+logger.info('short date format %s', xbmc.getRegion('dateshort'))
+logger.info('long date format %s', xbmc.getRegion('datelong'))
+logger.info('time format %s', xbmc.getRegion('time'))
+logger.info('meridiem format %s', xbmc.getRegion('meridiem'))
+
 
 FEATURE_SET = 'hd,progressive,single-track,mpeg-dash,widevine,widevine-download,inband-ttml,hls,aes,inband-webvtt,outband-webvtt,inband-audio-description'
 PLATFORM_TAG = 'mobile'
 
 
-def get_page_data(url):
+def get_page_data(url, cache_time=None):
+    """Return the json data embedded in a <script> tag on a html page.
+
+    Return the data from cache if present and not expired, or request the page by HTTP.
+    """
     if not url.startswith('https://'):
         url = 'https://www.itv.com' + url
+
+    if cache_time:
+        cached_data = cache.get_item(url)
+        if cached_data:
+            return cached_data
+
     html_doc = fetch.get_document(url)
-    return parsex.scrape_json(html_doc)
+    data = parsex.scrape_json(html_doc)
+    if cache_time:
+        cache.set_item(url, data, cache_time)
+    return data
 
 
 def get_live_channels():
@@ -93,9 +112,39 @@ def get_live_channels():
 
 
 def main_page_items():
-    main_data = get_page_data('https://www.itv.com')
+    main_data = get_page_data('https://www.itv.com', cache_time=3600)
     for hero_data in main_data['heroContent']:
         yield parsex.parse_hero_content(hero_data)
+    if 'trendingSliderContent' in main_data.keys():
+        yield {'type': 'collection',
+               'show': {'label': 'Trending', 'params': {'slider': 'trendingSliderContent'}}}
+    if 'newsShortformSliderContent' in main_data.keys():
+        yield {'type': 'collection',
+               'show': {'label': 'News', 'params': {'slider': 'newsShortformSliderContent'}}}
+    # for slider_item in main_data['editorialSliders'].items():
+    #     yield parsex.parse_slider(*slider_item)
+
+
+def collection_content(url=None, slider=None):
+    if url:
+        items_list = get_page_data(url, cache_time=43200)['collection']['shows']
+        return (parsex.parse_collection_item(item) for item in items_list)
+    else:
+        page_data = get_page_data('https://www.itv.com', cache_time=3600)
+
+        if slider == 'newsShortformSliderContent':
+            uk_tz = pytz.timezone('Europe/London')
+            time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
+            items_list = page_data['newsShortformSliderContent']['items']
+            return (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt) for news_item in items_list)
+
+        if slider == 'trendingSliderContent':
+            items_list = page_data['trendingSliderContent']['items']
+            return (parsex.parse_trending_collection_item(trending_item) for trending_item in items_list)
+
+        else:
+            items_list = page_data['editorialSliders'][slider]['collection']['shows']
+            return (parsex.parse_collection_item(item) for item in items_list)
 
 
 def episodes(url):
@@ -127,7 +176,7 @@ def episodes(url):
                          brand_description, title, series['seriesAvailableEpisodeCount'])},
 
             'params': {'url': url, 'series_idx': series_idx},
-            'episodes': [parsex.parse_title(episode, brand_fanart) for episode in series['episodes']]
+            'episodes': [parsex.parse_episode_title(episode, brand_fanart) for episode in series['episodes']]
         }
         series_list.append(series_obj)
     return series_list
@@ -135,14 +184,14 @@ def episodes(url):
 
 def categories():
     """Return all available categorie names."""
-    data = get_page_data('https://www.itv.com/watch/categories')
+    data = get_page_data('https://www.itv.com/watch/categories', cache_time=86400)
     cat_list = data['subnav']['items']
     return ({'label': cat['name'], 'params': {'path': cat['url']}} for cat in cat_list)
 
 
 def category_content(url: str, hide_payed=False):
     """Return all programmes in a category"""
-    cat_data = get_page_data(url)
+    cat_data = get_page_data(url, cache_time=3600)
     category = cat_data['category']['pathSegment']
     progr_list = cat_data.get('programmes')
 
