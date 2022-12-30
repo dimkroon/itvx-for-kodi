@@ -11,10 +11,119 @@ fixtures.global_setup()
 
 import unittest
 import requests
+import copy
+from datetime import datetime, timedelta
 
+from resources.lib import itv_account
 from test.support import object_checks, testutils
 
 setUpModule = fixtures.setup_web_test
+
+
+class LiveSchedules(unittest.TestCase):
+    """Request the live schedule
+    No cookies or authentication required. Web browser doesn't either.
+
+    """
+    def check_schedule(self, start_dt, end_dt):
+        t_fmt = '%Y%m%d%H%M'
+        resp = requests.get(
+                'https://scheduled.oasvc.itv.com/scheduled/itvonline/schedules?',
+                params={'from': start_dt.strftime(t_fmt),
+                        'to': end_dt.strftime(t_fmt),
+                        'platformTag': 'dotcom',        # was 'ctv' until recently, maybe changed since itvX
+                        'featureSet': 'mpeg-dash,widevine'},
+                headers={'Accept': 'application/vnd.itv.hubsvc.schedule.v2+vnd.itv.hubsvc.channel.v2+hal+json',
+                         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0',
+                         'Origin': 'https://www.itv.com',
+                         },
+                timeout=60)     # Usually a 504 - Gateway Timeout is returned before that.
+        resp.raise_for_status()
+        data = resp.json()
+        # testutils.save_json(data, 'schedule/live_4hrs.json')
+
+        schedule = data['_embedded']['schedule']
+        self.assertEqual(6, len(schedule))      # only the 6 main channels are present in the schedule
+        for channel_data in schedule:
+            programs = channel_data['_embedded']['slot']
+            for program in programs:
+                object_checks.has_keys(program, 'programmeTitle', 'startTime', 'onAirTimeUTC', 'productionId')
+                self.assertTrue(program['startTime'].endswith('Z'))     # start time is in format '2022-11-22T20:00Z'
+                self.assertEqual(17, len(program['startTime']))         # has no seconds
+            channel_info = channel_data['_embedded']['channel']
+            object_checks.has_keys(channel_info, 'name', 'strapline', '_links')
+            self.assertTrue(channel_info['_links']['playlist']['href'].startswith('https'))
+            return schedule
+
+    def test_main_channels_schedules_4hrs(self):
+        now = datetime.utcnow()
+        end = now + timedelta(hours=4)
+        self.check_schedule(now, end)
+
+    def test_main_channels_schedules_week_in_the_past(self):
+        """Live schedules are available to some time in the past.
+
+        Requesting schedules takes some time, but going further in the past quickly increases
+        the time the request takes to return. There is definitely a caching problem upstream.
+        If we do the same request several times, a response that initially took 10 sec , returns
+        in 150 ms after a few attempts.
+
+        .. Note ::
+        Regularly requests encounter a 504 - Gateway Timeout error, even requests that on other occasions
+        complete without error, but going further in the past increases the change of a time-out.
+        """
+        now = datetime.utcnow()
+        start = now - timedelta(days=4)
+        self.check_schedule(start, now)
+        # self.assertRaises(requests.ReadTimeout, self.check_schedule, start, now)
+
+    def test_main_channels_schedules_days_in_the_future(self):
+        """Live schedules are available up to roughly 1 week in the future. Requests for
+        more will usually succeed normally, but do not contain more data.
+
+        See the test above (week_in_the_past) for peculiarities
+
+        """
+        now = datetime.utcnow()
+        end = now + timedelta(days=8)
+        expected_end = now + timedelta(days=7)
+        schedule = self.check_schedule(now, end)
+        last_programme = schedule[0]['_embedded']['slot'][-1]
+        start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
+        self.assertAlmostEqual(start_dt.timestamp(), expected_end.timestamp(), delta=86400)  # give or take a day
+
+    def test_one_day_week_ago(self):
+        now = datetime.utcnow()
+        end = now - timedelta(days=6)
+        schedule = self.check_schedule(start_dt=now - timedelta(days=7), end_dt=end)
+        last_programme = schedule[0]['_embedded']['slot'][-1]
+        start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
+        self.assertAlmostEqual(start_dt.timestamp(), end.timestamp(), delta=86400)  # give or take a day
+
+    def test_now_next(self):
+        resp = requests.get('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,'
+                            'outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
+        data = resp.json()
+        # testutils.save_json(data, 'schedule/now_next.json')
+        object_checks.has_keys(data, 'channels', 'images', 'ts')
+
+        self.assertTrue(data['images']['backdrop'].startswith('https://'))
+        self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
+
+        self.assertAlmostEqual(25, len(data['channels']), delta=2)
+        for chan in data['channels']:
+            object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
+            for program in (chan['slots']['now'], chan['slots']['next']):
+                object_checks.has_keys(program, 'titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
+                                       'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
+                                       'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
+                                       'startAgainSimulcast', 'shortSynopsis')
+                self.assertIsNotNone(program['displayTitle'])
+                self.assertTrue(object_checks.is_iso_time(program['start']))
+                self.assertTrue(object_checks.is_iso_time(program['end']))
+                if program['broadcastAt'] is not None:      # is None on fast channels
+                    self.assertTrue(program['broadcastAt'].endswith('Z'))
+                    self.assertTrue(20, len(program['broadcastAt']))
 
 
 class Search(unittest.TestCase):
@@ -91,3 +200,127 @@ class Search(unittest.TestCase):
         resp = requests.get(self.search_url, params=self.search_params).json()
         self.check_result(resp)
         self.assertEqual('PAID', resp['results'][0]['data']['tier'])
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+class Playlists(unittest.TestCase):
+    def create_post_data(self, stream_type):
+        acc_data = itv_account.itv_session()
+        post_data = copy.deepcopy(itvx.stream_req_data)
+        post_data['user']['token'] = acc_data.access_token
+        post_data['client']['supportsAdPods'] = True
+        featureset = post_data['variantAvailability']['featureset']
+        # if 'hd' not in featureset['min']:
+        #     featureset['min'].append('hd')
+        if 'hd' not in featureset['max']:
+            featureset['max'].append('hd')
+
+        # Catchup must have outband-webvtt in min feature set to return subtitles.
+        # Live, however must have a min feature set without outband-webvtt, or it wil return 400 - Bad Request
+        if stream_type == 'vod':
+            featureset['min'] = featureset['max']
+        else:
+            featureset['min'] = [x for x in featureset['min'] if x != 'outband-webvtt']
+        return post_data
+
+    def test_get_playlist_live(self):
+        """Get the playlists of the main live channels
+
+        For all channels other than ITV the headers User Agent and Origin are required.
+        And the cookie consent cookies must present. If any of those are missing the request will time out.
+        """
+        acc_data = itv_account.itv_session()
+        acc_data.refresh()
+        post_data = self.create_post_data('live')
+
+        for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
+            url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
+            resp = requests.post(
+                    url,
+                    headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+                             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                             'Origin':           'https://www.itv.com',
+                             # 'Referer':          'https://www.itv.com/',
+                             # 'Sec-Fetch-Dest':   'empty',
+                             # 'Sec-Fetch-Mode':   'cors ',
+                             # 'Sec-Fetch-Site':   'same-site'
+                             },
+                    cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
+                    json=post_data,
+                    timeout=10
+            )
+            # strm_data = fetch.post_json(
+            #     url, data=post_data,
+            #     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json'},
+            #     cookies=acc_data.cookie)
+            # self.assertEqual(200, resp.status_code)
+            strm_data = resp.json()
+            object_checks.check_live_stream_info(strm_data['Playlist'])
+
+    def get_playlist_catchup(self):
+        """Request stream of a catchup episode (i.e. production)
+
+        Webbrowsers send several cookies in one single Cookie header:
+            - Itv.Session
+            - Itv.Cid
+            - mid
+            - All Syrenisxxx concerning cookie consent
+            - _ga_D6PQ6YDTQK
+            - _ga
+            - Itv.Region
+
+        However, we test with only Itv.Session cookie set and that seems to work fine.
+
+        """
+        acc_data = itv_account.itv_session()
+        post_data = self.create_post_data('vod')
+        # post_data['user']['itvUserId'] = '92a3bfde-bfe1-40ea-ad43-09b8b522b7cb'
+
+        # Snooker UK open episode 10 - an episode without subtitles
+        # url = 'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001'
+
+        # request playlist of an episode of Doc Martin
+        url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
+
+        # The bigger trip - episode 1
+        # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
+
+        # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
+
+
+        resp = requests.post(
+            url,
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
+                     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                     'Origin': 'https://www.itv.com',
+                     },
+            json=post_data,
+            timeout=10)
+        resp = resp.json()
+
+        # resp = itv_account.fetch_authenticated(
+        #     fetch.post_json, url,
+        #     data=post_data,
+        #     headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'})
+
+        return resp
+
+    def test_get_playlist_catchup(self):
+        resp = self.get_playlist_catchup()
+        strm_data = resp
+        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+
+    # def test_dash_manifest(self):
+    #     url = 'https://itvpnpdotcom.cdn1.content.itv.com/10-2772-0001-001/18/2/VAR028/10-2772-0001-001_18_2_VAR028.ism/.mpd?Policy=eyJTdGF0ZW1lbn' \
+    #           'QiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9pdHZwbnBkb3Rjb20uY2RuMS5jb250ZW50Lml0di5jb20vMTAtMjc3Mi0wMDAxLTAwMS8xOC8yL1ZBUjAyOC8xMC0yNzcyLTAw' \
+    #           'MDEtMDAxXzE4XzJfVkFSMDI4LmlzbS8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjYzODI4OTIwfX19XX0_&Signature=SeN' \
+    #           'TRPqvV~jRw59gIIEnXtG4-VvBOSfNnWflCosIAyXm2xZ1ZbUREze0X34-o1v2l1MJ4yvXKMMwDhi7Db5rM-gEq9sgm9twvv5k9sMIeynQ7aBhlafgHSc7GqwB6pQ11i5XY' \
+    #           '29W5F9WfEAcPLkvH4NlXxYzYnKM4RQKofauAjImxrteCG3XAJDu-Dt~JPLR~EJ3MXtodRFJQGnydT~aukIIO3tuyBjAaUKkB1KmXi7RdkTKdO1~5PfNOLPkB3ZCvUb2jqi' \
+    #           'LtUE988solFN8uzOsUKGVVdA--5zahz3RAVIcc9wp8PzDeFj~KEDzMytINmmTIpZUodmWTeu5nYWYRw__&Key-Pair-Id=APKAJB7PCFZAZHWZVIB'
+    #
+    #     try:
+    #         resp = itv_account.fetch_authenticated(fetch.get_document, url)
+    #         return True
+    #     except errors.FetchError:
+    #         return False
