@@ -21,6 +21,7 @@
 # ------------------------------------------------------------------------------
 
 import time
+import unittest
 
 
 def has_keys(dict_obj, *keys, obj_name='dictionary'):
@@ -78,6 +79,37 @@ def is_iso_time(time_str):
         return True
     except ValueError:
         return False
+
+
+def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
+    """Check if `dict_obj` is dict that can be used with codequick's Listitem.from_dict()
+
+    """
+    testcase.assertIsInstance(dict_obj, dict)
+
+    for item_key, item_value in dict_obj.items():
+        testcase.assertTrue(item_key in ('label', 'art', 'info', 'params'))
+        if item_key == 'label':
+            testcase.assertIsInstance(dict_obj['label'], str)
+            testcase.assertTrue(dict_obj['label'])
+            continue
+
+        testcase.assertIsInstance(item_value, dict)
+        # all sub items must be strings or integers.
+        # Is not a requirement for Listitem, but I like to keep it that way.
+        for item_val in item_value.values():
+            testcase.assertIsInstance(item_val, (str, int, type(None)))
+
+        if item_key == 'art':
+            for art_type, art_link in item_value.items():
+                testcase.assertTrue(art_type in ('thumb', 'fanart', 'poster'),
+                                    'Unexpected artType: {}'.format(art_type))
+                testcase.assertTrue(not art_link or is_url(art_link))
+        elif item_key == 'params':
+            for param, param_val in item_value.items():
+                if param == 'url' and param_val:
+                    testcase.assertTrue(is_url(param_val))
+    return True
 
 
 def check_live_stream_info(playlist, additional_keys=None):
