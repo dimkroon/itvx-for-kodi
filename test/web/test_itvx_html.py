@@ -13,7 +13,7 @@ import time
 import unittest
 import requests
 
-from resources.lib import fetch, parsex, utils
+from resources.lib import fetch, parsex, utils, errors
 from support import testutils
 from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
 

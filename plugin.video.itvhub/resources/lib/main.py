@@ -87,8 +87,8 @@ def root(_):
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)
         yield Listitem.from_dict(callback, **item['show'])
-    yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.from_dict(list_collections, 'Collections')
+    yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
 
@@ -144,18 +144,6 @@ def sub_menu_live(_):
 
 
 @Route.register(cache_ttl=-1)
-def sub_menu_shows(_):
-    import string
-
-    url = 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&' \
-          'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title'
-    az_list = list(string.ascii_uppercase)
-    az_list.append('0-9')
-    items = [Listitem.from_dict(list_programs, char, params={'url': url, 'filter_char': char}) for char in az_list]
-    return items
-
-
-@Route.register(cache_ttl=-1)
 def list_collections(_):
     slider_data = itvx.get_page_data('https://www.itv.com')['editorialSliders']
     return [Listitem.from_dict(list_collection_content, **parsex.parse_slider(*slider)['show'])
@@ -198,24 +186,6 @@ def list_category(addon, path, filter_char=None):
         Listitem.from_dict(play_title, **show['show'])
         if show['playable'] else
         Listitem.from_dict(list_productions, **show['show'])
-        for show in shows_list
-    ]
-
-
-@Route.register(cache_ttl=-1)
-@dynamic_listing
-def list_programs(plugin, url, filter_char=None):
-    logger.debug("list programs for url '%s'", url)
-    plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                            xbmcplugin.SORT_METHOD_DATE,
-                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
-                            disable_autosort=True)
-
-    shows_list = itv.programmes(url, filter_char)
-    return [
-        Listitem.from_dict(list_productions, **show['show'])
-        if show['episodes'] > 1 else
-        Listitem.from_dict(play_stream_catchup, **show['show'])
         for show in shows_list
     ]
 

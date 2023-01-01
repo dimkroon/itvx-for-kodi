@@ -49,26 +49,6 @@ def premium_plot(plot: str):
     return '\n\n'.join((plot, '[COLOR yellow]X premium[/COLOR]'))
 
 
-def parse_submenu(page: str, ):
-    """Parse the submenu of a page which usually contains categories
-
-    """
-    from bs4 import BeautifulSoup, SoupStrainer
-
-    header_filter = SoupStrainer('header')
-    soup = BeautifulSoup(page, "html.parser", parse_only=header_filter)
-    soup = soup.find('ul', class_=['nav-secondary__items', 'cp_sub-nav__list'])
-    submenu = []
-    for anchor in soup.find_all('a'):
-        submenu_item = {
-            # The selected item may have the text '(selected') in a separate <span>
-            'label': anchor.get_text(separator='|', strip=True).split('|')[0],
-            'params': {'url': anchor['href']}
-        }
-        submenu.append(submenu_item)
-    return submenu
-
-
 def scrape_json(html_page):
     # noinspection GrazieInspection
     """Return the json data embedded in a script tag on an html page"""

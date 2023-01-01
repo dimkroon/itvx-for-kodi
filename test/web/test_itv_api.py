@@ -15,7 +15,7 @@ import unittest
 import requests
 import copy
 
-from resources.lib import itv, fetch, errors, parse
+from resources.lib import itv, fetch, errors
 from resources.lib import itv_account
 
 from test.support import object_checks

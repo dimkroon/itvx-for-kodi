@@ -26,12 +26,6 @@ class TestMenu(unittest.TestCase):
         # for item in items:
         #     print(item.params['url'])
 
-    def test_menu_shows(self):
-        items  = list(main.list_programs(MagicMock(), url='https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title'))
-        self.assertGreater(len(items), 100)
-        # for item in items:
-        #     print(item.params['url'])
-
     def test_menu_categories(self):
         items = main.list_categories(MagicMock())
         self.assertIsInstance(items, list)
