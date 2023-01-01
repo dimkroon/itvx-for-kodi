@@ -47,7 +47,7 @@ def dynamic_listing(func=None):
     Also, when the directory has been added to favourites and has been opened from there, the
     'directory up' ('..') entry in the list will cause the callback to be invoked without any arguments.
 
-    This decorator provides default behaviour for these cases
+    This decorator provides default behaviour for these cases.
 
     """
     def wrapper(*args, **kwargs):
@@ -114,7 +114,7 @@ def sub_menu_live(_):
                 'url': item['streamUrl'],
                 'title': now_on['programmeTitle'],
                 'start_time': program_start_time
-            }
+                }
 
         # noinspection SpellCheckingInspection
         li = Listitem.from_dict(
@@ -218,11 +218,6 @@ def list_programs(plugin, url, filter_char=None):
         Listitem.from_dict(play_stream_catchup, **show['show'])
         for show in shows_list
     ]
-    # for show in shows_list:
-    #     if show['episodes'] > 1:
-    #         yield Listitem.from_dict(list_productions, **show['show'])
-    #     else:
-    #         yield Listitem.from_dict(play_stream_catchup, **show['show'])
 
 
 @Route.register(cache_ttl=-1)
@@ -267,12 +262,12 @@ def list_productions(plugin, url, series_idx=0):
             yield li
 
 
-@Route.register(cache_ttl=480, autosort=False)
-def sub_menu_from_page(_, url, callback):
-    """Return the submenu items present a page. Like the categories from page categories"""
-    logger.info('sub_menu_from_page for url %s, handler = %s', url, callback)
-    submenu_items = parse.parse_submenu(fetch.get_document(url))
-    return [Listitem.from_dict(callback, **item) for item in submenu_items]
+# @Route.register(cache_ttl=480, autosort=False)
+# def sub_menu_from_page(_, url, callback):
+#     """Return the submenu items present a page. Like the categories from page categories"""
+#     logger.info('sub_menu_from_page for url %s, handler = %s', url, callback)
+#     submenu_items = parse.parse_submenu(fetch.get_document(url))
+#     return [Listitem.from_dict(callback, **item) for item in submenu_items]
 
 
 @Route.register()
@@ -378,7 +373,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
     if list_item:
-    #     list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+        # list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
         if start_time and start_time in manifest_url:
             # cut the first few seconds of video without audio
             list_item.property['ResumeTime'] = '8'
@@ -394,7 +389,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 @Resolver.register
 def play_stream_catchup(_, url, name):
 
-    logger.info('play catchup stream -%s  url=%s', name, url)
+    logger.info('play catchup stream - %s  url=%s', name, url)
     try:
         manifest_url, key_service_url, subtitle_url = itv.get_catchup_urls(url)
         logger.debug('dash subtitles url: %s', subtitle_url)
@@ -402,7 +397,7 @@ def play_stream_catchup(_, url, name):
         logger.error('Error retrieving episode stream urls: %r' % err)
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
         return False
-    except Exception as e:
+    except Exception:
         logger.error('Error retrieving episode stream urls:', exc_info=True)
         return False
 

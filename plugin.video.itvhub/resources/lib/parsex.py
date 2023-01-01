@@ -45,7 +45,7 @@ def build_url(programme, programme_id, episode_id=None):
 
 
 def premium_plot(plot: str):
-    """Add notice of paid or premium content tot the plot."""
+    """Add a notice of paid or premium content tot the plot."""
     return '\n\n'.join((plot, '[COLOR yellow]X premium[/COLOR]'))
 
 
@@ -70,6 +70,8 @@ def parse_submenu(page: str, ):
 
 
 def scrape_json(html_page):
+    # noinspection GrazieInspection
+    """Return the json data embedded in a script tag on an html page"""
     import re
     result = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.+?)</script>', html_page, flags=re.DOTALL)
     if result:

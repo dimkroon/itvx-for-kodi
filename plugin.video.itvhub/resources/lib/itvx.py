@@ -240,7 +240,7 @@ def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """
     import re
-    # TODO: premium content do not the tag data-video-id without a premium account
+    # TODO: premium content does not have the tag data-video-id without a premium account
     logger.info("Get playlist from episode page - url=%s", page_url)
     html_doc = fetch.get_document(page_url)
     logger.debug("successfully retrieved page %s", page_url)
@@ -250,6 +250,12 @@ def get_playlist_url_from_episode_page(page_url):
 
 
 def search(search_term, hide_payed=False):
+    """Make a query on `search_term`
+
+    When no search result are found itvX returns either HTTP status 204, or
+    a normal json object with an emtpy list of results.
+
+    """
     url = 'https://textsearch.prd.oasvc.itv.com/search'
     query_params = {
         'broadcaster': 'itv',
@@ -264,4 +270,3 @@ def search(search_term, hide_payed=False):
 
     results = data.get('results')
     return (parsex.parse_search_result(result) for result in results)
-

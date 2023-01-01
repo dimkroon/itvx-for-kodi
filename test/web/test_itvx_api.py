@@ -32,7 +32,8 @@ class LiveSchedules(unittest.TestCase):
                 'https://scheduled.oasvc.itv.com/scheduled/itvonline/schedules?',
                 params={'from': start_dt.strftime(t_fmt),
                         'to': end_dt.strftime(t_fmt),
-                        'platformTag': 'dotcom',        # was 'ctv' until recently, maybe changed since itvX
+                        # was 'ctv' until recently, maybe changed since itvX, doesn't seem to matter.
+                        'platformTag': 'dotcom',
                         'featureSet': 'mpeg-dash,widevine'},
                 headers={'Accept': 'application/vnd.itv.hubsvc.schedule.v2+vnd.itv.hubsvc.channel.v2+hal+json',
                          'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0',
@@ -65,11 +66,12 @@ class LiveSchedules(unittest.TestCase):
         """Live schedules are available to some time in the past.
 
         Requesting schedules takes some time, but going further in the past quickly increases
-        the time the request takes to return. There is definitely a caching problem upstream.
+        the time the request takes to return.
         If we do the same request several times, a response that initially took 10 sec , returns
         in 150 ms after a few attempts.
 
         .. Note ::
+
         Regularly requests encounter a 504 - Gateway Timeout error, even requests that on other occasions
         complete without error, but going further in the past increases the change of a time-out.
         """

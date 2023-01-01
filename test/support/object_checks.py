@@ -52,7 +52,7 @@ def is_url(url, ext=None):
 
 
 def is_iso_time(time_str):
-    """check if the time string is in the format like yyyy-mm-ddThh:mm:ssZ that is
+    """check if the time string is in the format like yyyy-mm-ddThh:mm:ssZ which is
     often used by itv's web services.
     Accept times with or without milliseconds
     """
