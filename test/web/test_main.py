@@ -88,3 +88,17 @@ class TestPlayCatchup(unittest.TestCase):
                                           name='Walks with Julia Bradbury')
         self.assertEqual('Walks with Julia Bradbury', result.label)
         self.assertIsInstance(result.params, MutableMapping)
+
+
+class TestSearch(unittest.TestCase):
+    def test_search_chase(self):
+        items = main.do_search(MagicMock(), 'chase')
+        self.assertGreater(len(items), 4)
+
+    def test_search_mear(self):
+        items = main.do_search(MagicMock(), 'mear')
+        self.assertGreater(len(items), 4)
+
+    def test_search_monday(self):
+        items = main.do_search(MagicMock(), 'monday')
+        self.assertGreater(len(items), 4)

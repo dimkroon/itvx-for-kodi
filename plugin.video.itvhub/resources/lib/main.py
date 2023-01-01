@@ -248,9 +248,9 @@ def do_search(addon, search_query):
         return
 
     items = [
-        Listitem.from_dict(list_productions, **result['show'])
+        Listitem.from_dict(play_title, **result['show'])
         if result['playable']
-        else Listitem.from_dict(play_title, **result['show'])
+        else Listitem.from_dict(list_productions, **result['show'])
         for result in search_results if result is not None
     ]
     return items

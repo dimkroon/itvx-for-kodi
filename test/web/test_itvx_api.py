@@ -191,8 +191,9 @@ class Search(unittest.TestCase):
         object_checks.has_keys(item_data, 'specialCCId', 'legacyId', 'productionId', 'specialTitle',
                                'synopsis', 'imageHref', 'tier',
                                obj_name='specialItem.data')
+
+        # The field specialProgramme is not always present
         special_data = item_data.get('specialProgramme')
-        # The field specialProgramme is not used by the addon, but if present we check it anyway
         if special_data:
             object_checks.has_keys(special_data, 'programmeCCId', 'legacyId', 'programmeTitle',
                                    obj_name='specialItem.data.specialProgramme')
@@ -206,9 +207,16 @@ class Search(unittest.TestCase):
         object_checks.is_url(item_data['imageHref'])
         self.assertTrue(item_data['legacyId']['officialFormat'])
 
-    def test_search_normal(self):
+    def test_search_normal_chase(self):
         self.search_params['query'] = 'the chases'
         resp = requests.get(self.search_url, params=self.search_params).json()
+        self.check_result(resp)
+        self.assertGreater(len(resp['results']), 3)
+
+    def test_search_normal_monday(self):
+        self.search_params['query'] = 'monday'
+        resp = requests.get(self.search_url, params=self.search_params).json()
+        # testutils.save_json(resp, 'search/search_monday.json')
         self.check_result(resp)
         self.assertGreater(len(resp['results']), 3)
 

@@ -217,10 +217,16 @@ def parse_search_result(search_data):
     elif entity_type == 'special':
         # A single programme without episodes
         title = result_data['specialTitle']
-        prog_name = result_data['specialProgramme']['programmeTitle']
         img_url = result_data['imageHref']
-        api_episode_id = result_data['legacyId']['officialFormat']
-        api_prod_id = result_data['specialProgramme']['legacyId']['officialFormat']
+
+        programme = result_data.get('specialProgramme')
+        if programme:
+            prog_name = result_data['specialProgramme']['programmeTitle']
+            api_prod_id = result_data['specialProgramme']['legacyId']['officialFormat']
+            api_episode_id = result_data['legacyId']['officialFormat']
+        else:
+            prog_name = title
+            api_prod_id = result_data['legacyId']['officialFormat']
 
     elif entity_type == 'film':
         prog_name = result_data['filmTitle']
