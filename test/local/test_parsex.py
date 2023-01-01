@@ -15,18 +15,25 @@ from unittest.mock import MagicMock, patch
 from support.testutils import open_doc, open_json
 from support.object_checks import has_keys, is_url, is_li_compatible_dict
 from resources.lib import parsex
-
+from resources.lib import errors
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
 
 
-class TestGet__Next__DataFromPage(unittest.TestCase):
-    def test_parse_watch_pages(self):
+class TestScrapeJson(unittest.TestCase):
+    def test_scrape_json_watch_pages(self):
         for page in ('html/index.html', 'html/watch-itv1.html'):
             get_page = open_doc(page)
             data = parsex.scrape_json(get_page())
             self.assertIsInstance(data, dict)
+
+    def test_invalid_page(self):
+        # no __NEXT_DATA___
+        self.assertRaises(errors.ParseError, parsex.scrape_json, '<html></html')
+        # invalid json
+        self.assertRaises(errors.ParseError, parsex.scrape_json,
+                          '<script id="__NEXT_DATA__" type="application/json">{data=[1,2]}</script>')
 
 
 class Generic(unittest.TestCase):

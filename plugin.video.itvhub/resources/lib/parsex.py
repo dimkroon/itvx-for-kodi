@@ -80,6 +80,7 @@ def scrape_json(html_page):
         except (json.JSONDecodeError, KeyError, TypeError) as e:
             logger.warning("__NEXT_DATA__ in HTML page has unexpected format: %r", e)
             raise ParseError('Invalid data received')
+    raise ParseError('No data available')
 
 
 def parse_hero_content(hero_data):

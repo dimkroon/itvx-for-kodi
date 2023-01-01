@@ -15,6 +15,7 @@ import copy
 from datetime import datetime, timedelta
 
 from resources.lib import itv_account
+from resources.lib import fetch
 from test.support import object_checks, testutils
 
 setUpModule = fixtures.setup_web_test
@@ -74,10 +75,18 @@ class LiveSchedules(unittest.TestCase):
         """
         now = datetime.utcnow()
         start = now - timedelta(days=4)
-        self.check_schedule(start, now)
-        # self.assertRaises(requests.ReadTimeout, self.check_schedule, start, now)
+        # self.check_schedule(start, now)
+        try:
+            self.check_schedule(start, now)
+        except (requests.HTTPError, requests.ReadTimeout) as err:
+            if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
+                # try again
+                print("schedule for days on the future failed, trying again...")
+                self.check_schedule(start, now)
+            else:
+                raise
 
-    def test_main_channels_schedules_days_in_the_future(self):
+    def test_main_channels_schedules_7_days_in_the_future(self):
         """Live schedules are available up to roughly 1 week in the future. Requests for
         more will usually succeed normally, but do not contain more data.
 
@@ -87,7 +96,15 @@ class LiveSchedules(unittest.TestCase):
         now = datetime.utcnow()
         end = now + timedelta(days=8)
         expected_end = now + timedelta(days=7)
-        schedule = self.check_schedule(now, end)
+        try:
+             schedule = self.check_schedule(now, end)
+        except (requests.HTTPError, requests.ReadTimeout) as err:
+            if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
+                # try again
+                print("schedule for days on the future failed, trying again...")
+                schedule = self.check_schedule(now, end)
+            else:
+                raise
         last_programme = schedule[0]['_embedded']['slot'][-1]
         start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
         self.assertAlmostEqual(start_dt.timestamp(), expected_end.timestamp(), delta=86400)  # give or take a day
@@ -95,7 +112,15 @@ class LiveSchedules(unittest.TestCase):
     def test_one_day_week_ago(self):
         now = datetime.utcnow()
         end = now - timedelta(days=6)
-        schedule = self.check_schedule(start_dt=now - timedelta(days=7), end_dt=end)
+        try:
+            schedule = self.check_schedule(start_dt=now - timedelta(days=7), end_dt=end)
+        except (requests.HTTPError, requests.ReadTimeout) as err:
+            if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
+                # try again
+                print("schedule for on week ago failed, trying again...")
+                schedule = self.check_schedule(start_dt=now - timedelta(days=7), end_dt=end)
+            else:
+                raise
         last_programme = schedule[0]['_embedded']['slot'][-1]
         start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
         self.assertAlmostEqual(start_dt.timestamp(), end.timestamp(), delta=86400)  # give or take a day
@@ -204,24 +229,50 @@ class Search(unittest.TestCase):
 # ----------------------------------------------------------------------------------------------------------------------
 
 
+stream_req_data = {
+    'client': {
+        'id': 'browser',
+        'supportsAdPods': False,
+        'version': ''
+    },
+    'device': {
+        'manufacturer': 'Firefox',
+        'model': '105',
+        'os': {
+            'name': 'Linux',
+            'type': 'desktop',
+            'version': 'x86_64'
+        }
+    },
+    'user': {
+        'entitlements': [],
+        'itvUserId': '',
+        'token': ''
+    },
+    'variantAvailability': {
+        'featureset': {
+            'min': ['mpeg-dash', 'widevine'],
+            'max': ['mpeg-dash', 'widevine', 'hd']
+        },
+        'platformTag': 'ctv'
+    }
+}
+
+
 class Playlists(unittest.TestCase):
-    def create_post_data(self, stream_type):
+    @staticmethod
+    def create_post_data(stream_type):
         acc_data = itv_account.itv_session()
-        post_data = copy.deepcopy(itvx.stream_req_data)
+        post_data = copy.deepcopy(stream_req_data)
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
-        featureset = post_data['variantAvailability']['featureset']
-        # if 'hd' not in featureset['min']:
-        #     featureset['min'].append('hd')
-        if 'hd' not in featureset['max']:
-            featureset['max'].append('hd')
+        feature_set = post_data['variantAvailability']['featureset']
 
-        # Catchup must have outband-webvtt in min feature set to return subtitles.
-        # Live, however must have a min feature set without outband-webvtt, or it wil return 400 - Bad Request
+        # Catchup MUST have outband-webvtt in min feature set to return subtitles.
+        # Live, however must have a min feature set WITHOUT outband-webvtt, or it wil return 400 - Bad Request
         if stream_type == 'vod':
-            featureset['min'] = featureset['max']
-        else:
-            featureset['min'] = [x for x in featureset['min'] if x != 'outband-webvtt']
+            feature_set['min'].append('outband-webvtt')
+
         return post_data
 
     def test_get_playlist_live(self):
@@ -277,9 +328,6 @@ class Playlists(unittest.TestCase):
         post_data = self.create_post_data('vod')
         # post_data['user']['itvUserId'] = '92a3bfde-bfe1-40ea-ad43-09b8b522b7cb'
 
-        # Snooker UK open episode 10 - an episode without subtitles
-        # url = 'https://magni.itv.com/playlist/itvonline/ITV4/10_1758_0023.001'
-
         # request playlist of an episode of Doc Martin
         url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
 
@@ -287,7 +335,6 @@ class Playlists(unittest.TestCase):
         # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
 
         # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
-
 
         resp = requests.post(
             url,

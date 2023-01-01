@@ -30,6 +30,17 @@ def dummycallback():
 
 
 class TestItvX(unittest.TestCase):
+    def test_get_now_next_schedule(self):
+        result = itvx.get_live_schedule()
+        for item in result:
+            has_keys(item, 'channel', 'slot')
+        # print(json.dumps(result, indent=4))
+
+    def test_get_live_channels(self):
+        chan_list = list(itvx.get_live_channels())
+        for item in chan_list:
+            self.assertIsInstance(item, dict)
+
     def test_get_categories(self):
         result = itvx.categories()
         self.assertIsInstance(result, Generator)

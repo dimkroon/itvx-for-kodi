@@ -22,20 +22,25 @@ class TestMenu(unittest.TestCase):
     def test_menu_live(self):
         items = list(main.sub_menu_live(MagicMock()))
         self.assertGreaterEqual(len(items), 10)
-        for item in items:
-            print(item.params['url'])
+        self.assertGreater(len(items), 10)
+        # for item in items:
+        #     print(item.params['url'])
 
     def test_menu_shows(self):
         items  = list(main.list_programs(MagicMock(), url='https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title'))
-        for item in items:
-            print(item.params['url'])
+        self.assertGreater(len(items), 100)
+        # for item in items:
+        #     print(item.params['url'])
 
-
-class Categories(unittest.TestCase):
-    def test_get_categories(self):
+    def test_menu_categories(self):
         items = main.list_categories(MagicMock())
         self.assertIsInstance(items, list)
         self.assertAlmostEqual(len(items), 8, delta=2)
+
+    def test_menu_collections(self):
+        items = main.list_collections(MagicMock())
+        self.assertIsInstance(items, list)
+        self.assertAlmostEqual(len(items), 20, delta=4)
 
 
 class TestGetProductions(unittest.TestCase):

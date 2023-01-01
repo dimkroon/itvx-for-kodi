@@ -24,44 +24,11 @@ from test.support import object_checks
 setUpModule = fixtures.setup_web_test
 
 
-class TestCookies(unittest.TestCase):
-    def test_cookie_consent(self):
-        r = requests.Session()
 
 
 # ----------------------------------------------------------------------------------------------------------------------
 #           JSON API
 # ----------------------------------------------------------------------------------------------------------------------
-
-
-class Categories(unittest.TestCase):
-    cat_req_kwargs = {
-        'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/categories',
-        'headers': {'Accept': 'application/vnd.itv.online.discovery.category.v1+hal+json; charset=UTF-8'}
-    }
-
-    def test_categories(self):
-        json_resp = requests.get(**self.cat_req_kwargs).json()
-        self.assertTrue('_embedded' in json_resp.keys())
-        self.assertTrue('categories' in json_resp['_embedded'].keys())
-        cat_list = json_resp['_embedded']['categories']
-        self.assertIsInstance(cat_list, list)
-        for item in cat_list:
-            self.assertTrue('name' in item.keys())
-            self.assertTrue('_links' in item.keys())
-            self.assertTrue(item['_links']['doc:programmes']['href'].startswith('https://'))
-
-
-class Collections(unittest.TestCase):
-    cat_req_kwargs = {
-        'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/collections',
-        'headers': {'Accept': 'application/vnd.itv.online.discovery.collection.v1+hal+json; charset=UTF-8'}
-    }
-
-    def test_collection(self):
-        resp = requests.get(**self.cat_req_kwargs)
-        self.assertEqual(404, resp.status_code)
-
 
 class Programmes(unittest.TestCase):
     def get_json(self, url):

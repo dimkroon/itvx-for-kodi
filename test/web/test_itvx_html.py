@@ -167,7 +167,7 @@ class WatchPages(unittest.TestCase):
         page = fetch.get_document('https://www.itv.com/watch?channel=itv')
         # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parsex.scrape_json(page)
-        channel_data = data['props']['pageProps']['channelsMetaData']
+        channel_data = data['channelsMetaData']
         # check presence and type of backdrop image
         self.assertTrue(len(channel_data['images']), 1)     # only backdrop image is available
         self.assertTrue(is_url(channel_data['images']['backdrop'], '.jpeg'))
@@ -204,7 +204,7 @@ class TvGuide(unittest.TestCase):
         url = 'https://www.itv.com/watch/tv-guide/' + today
         page = fetch.get_document(url)
         # testutils.save_doc(page, 'html/tv_guide.html')
-        print(page)
+        self.assertRaises(errors.ParseError,  parsex.scrape_json, page)
 
 
 class Categories(unittest.TestCase):
@@ -230,8 +230,8 @@ class Categories(unittest.TestCase):
 
         self.assertEqual(8, len(categories))        # the mobile app has an additional category AD (Audio Described)
         self.assertListEqual([cat['label'].lower().replace(' & ', '-') for cat in categories], self.all_categories)
-        print('Categorie page fetched in {:0.3f}, parsed in {:0.3f}, total: {:0.3f}'.format(
-            t_1 - t_s, t_2 - t_1, t_2 - t_s))
+        # print('Categorie page fetched in {:0.3f}, parsed in {:0.3f}, total: {:0.3f}'.format(
+        #     t_1 - t_s, t_2 - t_1, t_2 - t_s))
 
     def test_all_categories(self):
         for cat in self.all_categories:
@@ -252,5 +252,5 @@ class Categories(unittest.TestCase):
                 self.assertIsNotNone(progr['encodedEpisodeId']['letterA'])
                 self.assertTrue(progr['contentInfo'].lower().startswith('series') or
                                 utils.duration_2_seconds(progr['contentInfo']) is not None)
-            print("Fetched categorie {} in {:0.3f} s, parsed in {:0.3f}s, total {:0.3f}s.".format(
-                cat, t_1 - t_s, t_2 - t_1, t_2 - t_s))
+            # print("Fetched categorie {} in {:0.3f} s, parsed in {:0.3f}s, total {:0.3f}s.".format(
+            #     cat, t_1 - t_s, t_2 - t_1, t_2 - t_s))
