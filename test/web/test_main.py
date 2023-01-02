@@ -37,6 +37,12 @@ class TestMenu(unittest.TestCase):
         self.assertAlmostEqual(len(items), 20, delta=4)
 
 
+class TstCategories(unittest.TestCase):
+    def test_categorey_drama_and_soaps(self):
+        items = main.list_category(MagicMock(), path='/watch/categories/drama-soaps')
+        self.assertGreater(len(items), 10)
+
+
 class TestGetProductions(unittest.TestCase):
     def test_productions_midsummer_murders(self):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096')

@@ -206,7 +206,8 @@ def category_content(url: str, hide_payed=False):
 
     for prog in progr_list:
         content_info = prog['contentInfo']
-        is_playable = not content_info.lower().startswith('series')
+        # TODO: This is bound to break
+        is_playable = 'series' not in content_info.lower()
         title = prog['title']
 
         if 'FREE' in prog['tier']:
