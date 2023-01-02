@@ -157,7 +157,7 @@ def get_live_urls(channel, url=None, title=None, start_time=None, play_from_star
     start_again_url = video_locations.get('StartAgainUrl')
 
     if start_again_url:
-        if play_from_start or (start_time and kodi_utils.ask_play_from_start(title)):
+        if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
         else:

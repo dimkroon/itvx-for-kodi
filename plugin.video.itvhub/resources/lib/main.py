@@ -151,6 +151,7 @@ def list_collections(_):
 
 
 @Route.register(cache_ttl=-1)
+@dynamic_listing
 def list_collection_content(addon, url=None, slider=None):
     shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
     return [
@@ -319,7 +320,7 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
     logger.info('play live stream - channel=%s, url=%s', channel, url)
 
-    if addon.setting['live_play_from_start'] != 'true':
+    if addon.setting['live_play_from_start'] != 'true'and not play_from_start:
         start_time = None
 
     try:
