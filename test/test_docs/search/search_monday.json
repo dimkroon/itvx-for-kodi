@@ -1,0 +1,199 @@
+{
+  "tookLongest": 197,
+  "tookTotal": 458,
+  "maxScore": 0.0,
+  "results": [
+    {
+      "id": "czy3088-itv_hub-dotcom-ITV-fairplay-hls",
+      "entityType": "programme",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "programmeCCId": "j14p6k0",
+        "legacyId": {
+          "officialFormat": "1/7293",
+          "apiEncoded": "1_7293"
+        },
+        "productionId": "1/7293/0065#002",
+        "platform": "dotcom",
+        "programmeTitle": "Monarch of the Glen",
+        "synopsis": "A young man attempts to save his grand family home in Scotland",
+        "latestAvailableEpisode": {
+          "episodeCCId": "1g7v6jw",
+          "legacyId": {
+            "officialFormat": "1/7293/0065",
+            "apiEncoded": "1_7293_0065"
+          },
+          "imageHref": "https://ovp.itv.com/images/programme/j14p6k0/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+        },
+        "totalAvailableEpisodes": 64,
+        "tier": "PAID",
+        "brandingMetadata": {
+          "partnership": "BRITBOX",
+          "contentOwner": "BBC"
+        }
+      },
+      "score": 9.9
+    },
+    {
+      "id": "n8v714s-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+      "entityType": "programme",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "programmeCCId": "cfpt11t",
+        "legacyId": {
+          "officialFormat": "10/1148",
+          "apiEncoded": "10_1148"
+        },
+        "productionId": "10/1148/0008#001",
+        "platform": "dotcom",
+        "programmeTitle": "Moneyball",
+        "synopsis": "Their fate rests on the bounce of a ball - Ian Wright hosts",
+        "latestAvailableEpisode": {
+          "episodeCCId": "p3w00t1",
+          "legacyId": {
+            "officialFormat": "10/1148/0008",
+            "apiEncoded": "10_1148_0008"
+          },
+          "imageHref": "https://ovp.itv.com/images/programme/cfpt11t/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+        },
+        "totalAvailableEpisodes": 7,
+        "tier": "FREE"
+      },
+      "score": 5.4
+    },
+    {
+      "id": "rpkq16y-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+      "entityType": "programme",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "programmeCCId": "tlhkvcx",
+        "legacyId": {
+          "officialFormat": "2/4896",
+          "apiEncoded": "2_4896"
+        },
+        "productionId": "2/4896/0004#001",
+        "platform": "dotcom",
+        "programmeTitle": "Strictly The Real Full Monty",
+        "synopsis": "A celebrity recreation of the famous striptease from the classic film",
+        "latestAvailableEpisode": {
+          "episodeCCId": "vgdz8d4",
+          "legacyId": {
+            "officialFormat": "2/4896/0004",
+            "apiEncoded": "2_4896_0004"
+          },
+          "imageHref": "https://ovp.itv.com/images/programme/tlhkvcx/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+        },
+        "totalAvailableEpisodes": 1,
+        "tier": "FREE"
+      },
+      "score": 5.4
+    },
+    {
+      "id": "1df88tj-itv_hub-dotcom-ITV-fairplay-hls",
+      "entityType": "programme",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "programmeCCId": "7gjfbfk",
+        "legacyId": {
+          "officialFormat": "2/1827",
+          "apiEncoded": "2_1827"
+        },
+        "productionId": "2/1827/0133#002",
+        "platform": "dotcom",
+        "programmeTitle": "The Martin Lewis Money Show Live",
+        "synopsis": "Martin Lewis is here to help you with all things money-related",
+        "latestAvailableEpisode": {
+          "episodeCCId": "zfhdyf2",
+          "legacyId": {
+            "officialFormat": "2/1827/0133",
+            "apiEncoded": "2_1827_0133"
+          },
+          "imageHref": "https://ovp.itv.com/images/programme/7gjfbfk/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+        },
+        "totalAvailableEpisodes": 26,
+        "tier": "FREE"
+      },
+      "score": 5.4
+    },
+    {
+      "id": "mdkwtvl-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+      "entityType": "programme",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "programmeCCId": "r1cg2tv",
+        "legacyId": {
+          "officialFormat": "10/1819",
+          "apiEncoded": "10_1819"
+        },
+        "productionId": "10/1819/0003#002",
+        "platform": "dotcom",
+        "programmeTitle": "Save Money: My Beautiful Green Home",
+        "synopsis": "How to have lovely homes, save money & help the planet",
+        "latestAvailableEpisode": {
+          "episodeCCId": "2fml0d1",
+          "legacyId": {
+            "officialFormat": "10/1819/0003",
+            "apiEncoded": "10_1819_0003"
+          },
+          "imageHref": "https://ovp.itv.com/images/programme/r1cg2tv/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+        },
+        "totalAvailableEpisodes": 3,
+        "tier": "FREE"
+      },
+      "score": 5.4
+    },
+    {
+      "id": "jc6qxdt-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+      "entityType": "programme",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "programmeCCId": "p9zhkgl",
+        "legacyId": {
+          "officialFormat": "10/0712",
+          "apiEncoded": "10_0712"
+        },
+        "productionId": "10/0712/0002#001",
+        "platform": "dotcom",
+        "programmeTitle": "The Real Full Monty on Ice",
+        "synopsis": "Celebrities strip to show the importance of checking your body for cancer",
+        "latestAvailableEpisode": {
+          "episodeCCId": "58pftpm",
+          "legacyId": {
+            "officialFormat": "10/0712/0002",
+            "apiEncoded": "10_0712_0002"
+          },
+          "imageHref": "https://ovp.itv.com/images/programme/p9zhkgl/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+        },
+        "totalAvailableEpisodes": 2,
+        "tier": "FREE"
+      },
+      "score": 5.4
+    },
+    {
+      "id": "bg2hvhw-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+      "entityType": "special",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "specialCCId": "hxt8hhq",
+        "legacyId": {
+          "officialFormat": "10/3536/0001",
+          "apiEncoded": "10_3536_0001"
+        },
+        "productionId": "10/3536/0001#001",
+        "platform": "dotcom",
+        "specialTitle": "The Martin Lewis Money Show Live: Cost of Living Special",
+        "synopsis": "Martin brings his energy hike must-knows for the months ahead",
+        "imageHref": "https://ovp.itv.com/images/special/hxt8hhq/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+        "tier": "FREE"
+      },
+      "score": 4.8
+    }
+  ]
+}

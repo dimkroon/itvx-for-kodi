@@ -1,24 +1,10 @@
 
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022. Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#
-#  This file is part of plugin.video.itvhub
-#
-#  Plugin.video.itvhub is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or (at your
-#  option) any later version.
-#
-#  Plugin.video.itvhub is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-#  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-#  more details.
-#
-#  You should have received a copy of the GNU General Public License along with
-#  plugin.video.itvhub. If not, see <https://www.gnu.org/licenses/>.
-# ------------------------------------------------------------------------------
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
 fixtures.global_setup()
@@ -46,6 +32,7 @@ STD_HEADERS = ['User-Agent', 'Referer', 'Origin', 'Sec-Fetch-Dest', 'Sec-Fetch-M
 class HttpSession(TestCase):
     @patch('resources.lib.fetch._create_cookiejar')
     def test_http_session_is_singleton(self, p_create):
+        fetch.HttpSession.instance = None   # remove a possible existing instance
         s = fetch.HttpSession()
         ss = fetch.HttpSession()
         self.assertTrue(s is ss)
@@ -57,6 +44,9 @@ class HttpSession(TestCase):
         self.assertEqual(s_id, id(new_s))
         # The session's __init__() creates a cookiejar, assert that it has happend only once.
         p_create.assert_called_once()
+        # Remove the created instance so subsequent (web) requests don't end up with a
+        # session with a patched cookiejar.
+        fetch.HttpSession.instance = None
 
 
 class WebRequest(TestCase):

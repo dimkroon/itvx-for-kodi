@@ -1,23 +1,9 @@
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022. Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#
-#  This file is part of plugin.video.itvhub
-#
-#  Plugin.video.itvhub is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or (at your
-#  option) any later version.
-#
-#  Plugin.video.itvhub is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-#  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-#  more details.
-#
-#  You should have received a copy of the GNU General Public License along with
-#  plugin.video.itvhub. If not, see <https://www.gnu.org/licenses/>.
-# ------------------------------------------------------------------------------
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 import os
 
@@ -44,7 +30,7 @@ def global_setup():
 
 
 patch_1 = None
-patch_2 = None
+
 
 class RealWebRequestMadeError(Exception):
     pass
@@ -56,23 +42,16 @@ def setup_local_tests():
 
     """
     global patch_1
-    global patch_2
-    patch_1 = patch('requests.request', side_effect=RealWebRequestMadeError)
-    patch_2 = patch('requests.sessions.Session.send', side_effect=RealWebRequestMadeError)
+    patch_1 = patch('requests.sessions.Session.send', side_effect=RealWebRequestMadeError)
     patch_1.start()
-    patch_2.start()
 
 
 def tear_down_local_tests():
     global patch_1
-    global patch_2
 
     if patch_1:
         patch_1.stop()
         patch_1 = None
-    if patch_2:
-        patch_2.stop()
-        patch_2 = None
 
 
 def setup_web_test(*args):

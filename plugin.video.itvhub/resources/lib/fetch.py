@@ -1,23 +1,9 @@
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022. Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#
-#  This file is part of plugin.video.itvhub
-#
-#  Plugin.video.itvhub is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or (at your
-#  option) any later version.
-#
-#  Plugin.video.itvhub is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-#  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-#  more details.
-#
-#  You should have received a copy of the GNU General Public License along with
-#  plugin.video.itvhub. If not, see <https://www.gnu.org/licenses/>.
-# ------------------------------------------------------------------------------
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 import os
 import logging
@@ -123,6 +109,9 @@ def _create_cookiejar():
         with open(cookie_file, 'rb') as f:
             # TODO: handle expired consent cookies
             cj = pickle.load(f)
+            # The internally stored filename of the saved file may be different to the current filename
+            # if the file has been copied from another system.
+            cj.filename = cookie_file
             logger.debug("Restored cookies from file")
     except (FileNotFoundError, pickle.UnpicklingError):
         cj = set_default_cookies(PersistentCookieJar(cookie_file))

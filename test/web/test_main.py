@@ -1,3 +1,10 @@
+# ---------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022. Dimitri Kroon
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
+
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -15,94 +22,61 @@ class TestMenu(unittest.TestCase):
     def test_menu_live(self):
         items = list(main.sub_menu_live(MagicMock()))
         self.assertGreaterEqual(len(items), 10)
-        for item in items:
-            print(item.params['url'])
+        self.assertGreater(len(items), 10)
+        # for item in items:
+        #     print(item.params['url'])
 
-    def test_menu_shows(self):
-        items  = list(main.list_programs(MagicMock(), url='https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title'))
-        for item in items:
-            print(item.params['url'])
+    def test_menu_categories(self):
+        items = main.list_categories(MagicMock())
+        self.assertIsInstance(items, list)
+        self.assertAlmostEqual(len(items), 8, delta=2)
 
-    def test_submenu_episodes(self):
-        for item in main.sub_menu_episodes(MagicMock(), 'cheat/2a5517'):
-            print(item)
-
-
-class TestFullSeries(unittest.TestCase):
-    def test_full_series_drama(self):
-        items = list(main.sub_menu_full_series(MagicMock(), '/hub/full-series/drama'))
-        for item in items:
-            print(item)
+    def test_menu_collections(self):
+        items = main.list_collections(MagicMock())
+        self.assertIsInstance(items, list)
+        self.assertAlmostEqual(len(items), 20, delta=4)
 
 
-class TestCategories(unittest.TestCase):
-    def test_category_comedy(self):
-        items = list(main.sub_menu_full_series(MagicMock(), '/hub/categories/comedy'))
-        for item in items:
-            print(item)
-
-
-class TestGetEpisodes(unittest.TestCase):
-    def test_episodes_midsummer_murders(self):
-        items = list(main.sub_menu_episodes(MagicMock(), 'https://www.itv.com/hub/midsomer-murders/Ya1096'))
-        for item in items:
-            print(item)
+class TstCategories(unittest.TestCase):
+    def test_categorey_drama_and_soaps(self):
+        items = main.list_category(MagicMock(), path='/watch/categories/drama-soaps')
+        self.assertGreater(len(items), 10)
 
 
 class TestGetProductions(unittest.TestCase):
     def test_productions_midsummer_murders(self):
-        items = list(main.list_productions(
-            MagicMock(),
-            'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=Y_1096&features=aes,'
-            'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv'))
-        for item in items:
-            print(item)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096')
+        # for item in items:
+        #     print(item)
+        self.assertGreater(len(items), 1)
 
     def test_get_productions_midsummer_murder_folder_1(self):
-        items = list(main.list_productions(
-            MagicMock(),
-           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=Y_1096&features=aes,'
-           'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-           series_idx=1))
-        for item in items:
-            print(item)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx=1)
+        self.assertGreater(len(items), 1)
+
+    def test_get_productions_midsummer_murder_folder_other_episodes(self):
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='other-episodes')
+        self.assertGreater(len(items), 1)
 
     def test_get_productions_the_professionals_folder_1(self):
-        items = list(main.list_productions(
-            MagicMock(),
-           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=L0845&features=aes,'
-           'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-           series_idx=1))
-        for item in items:
-            print(item)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/the-professionals/L0845', series_idx=1)
+        self.assertGreater(len(items), 1)
 
     def test_get_productions_the_chase(self):
         """The chase had 53 items, but only one production was shown"""
-        items = list(main.list_productions(
-            MagicMock(),
-           'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=1_7842&features=aes,'
-           'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-           name='The Chase'))
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/the-chase/1a7842')
         self.assertGreater(len(items), 1)
-        for item in items:
-            print(item)
 
     def test_get_productions_doctor_foster(self):
         """Productions of a paid programme"""
-        items = list(main.list_productions(
-            MagicMock(),
-            'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId=2_7438&features=aes,'
-            'clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-            name='Doctor Foster'))
-        self.assertEqual([False], items)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/doctor-foster/2a7438')
+        self.assertGreater(len(items), 1)
 
-
-class TestPlayShow(unittest.TestCase):
-    def test_play_show_a_late_quartet(self):
-        result = main.play_show(
-            MagicMock(),
-            url='https://magni.itv.com/playlist/itvonline/ITV/10_2597_0001.001', show_name='A Late Quartet')
-        self.assertIsInstance(result.params, MutableMapping)
+    def test_get_productions_bad_girls(self):
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/bad-girls/7a0129')
+        self.assertEqual(8, len(items))
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/bad-girls/7a0129', series_idx=6)
+        self.assertEqual(19, len(items))
 
 
 class TestPlayCatchup(unittest.TestCase):
@@ -124,3 +98,17 @@ class TestPlayCatchup(unittest.TestCase):
                                           name='Walks with Julia Bradbury')
         self.assertEqual('Walks with Julia Bradbury', result.label)
         self.assertIsInstance(result.params, MutableMapping)
+
+
+class TestSearch(unittest.TestCase):
+    def test_search_chase(self):
+        items = main.do_search(MagicMock(), 'chase')
+        self.assertGreater(len(items), 4)
+
+    def test_search_mear(self):
+        items = main.do_search(MagicMock(), 'mear')
+        self.assertGreater(len(items), 4)
+
+    def test_search_monday(self):
+        items = main.do_search(MagicMock(), 'monday')
+        self.assertGreater(len(items), 4)

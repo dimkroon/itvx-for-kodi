@@ -1,0 +1,775 @@
+{
+  "collection": {
+    "subsequentJourney": {
+      "name": "The Costume Collection ",
+      "label": "View All",
+      "destinationUrl": "/collections/4ckyuMXbc2e1KK9AmgQU0r"
+    },
+    "headingTitle": "The Costume Collection ",
+    "page": "collections",
+    "sliderName": "the_costume_collection",
+    "shows": [
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "The Confessions of Frannie Langton",
+        "channel": "itv",
+        "description": "Secrets, lies & a fight to survive - thrilling period drama with a twist",
+        "tagNames": null,
+        "episodeId": "10/1811/0001",
+        "programmeId": "10/1811",
+        "encodedEpisodeId": {
+          "letterA": "10a1811a0001",
+          "underscore": "10_1811_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "10a1811",
+          "underscore": "10_1811"
+        },
+        "titleSlug": "the-confessions-of-frannie-langton",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/0p382rf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Sanditon",
+        "channel": "itv",
+        "description": "Get stuck into this retelling of the novel that Austen never finished",
+        "tagNames": null,
+        "episodeId": "2/6094/0001",
+        "programmeId": "2/6094",
+        "encodedEpisodeId": {
+          "letterA": "2a6094a0001",
+          "underscore": "2_6094_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a6094",
+          "underscore": "2_6094"
+        },
+        "titleSlug": "sanditon",
+        "dateTime": "2022-06-17T20:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 2",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/f53njc9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Agatha Christie's Poirot",
+        "channel": "itv3",
+        "description": "He's the super sleuth with a sharp mind and a peculiar manner",
+        "tagNames": null,
+        "episodeId": "L0830/0001",
+        "programmeId": "L0830",
+        "encodedEpisodeId": {
+          "letterA": "L0830a0001",
+          "underscore": "L0830_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "L0830",
+          "underscore": "L0830"
+        },
+        "titleSlug": "agatha-christies-poirot",
+        "dateTime": "2023-01-02T20:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 13",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 7
+          },
+          {
+            "seriesNumber": 8
+          },
+          {
+            "seriesNumber": 9
+          },
+          {
+            "seriesNumber": 10
+          },
+          {
+            "seriesNumber": 11
+          },
+          {
+            "seriesNumber": 12
+          },
+          {
+            "seriesNumber": 13
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/k61yd06/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Mr Selfridge",
+        "channel": "itv",
+        "description": "Mr Selfridge is a man on a mission to make shopping thrilling",
+        "tagNames": null,
+        "episodeId": "1/9721/0001",
+        "programmeId": "1/9721",
+        "encodedEpisodeId": {
+          "letterA": "1a9721a0001",
+          "underscore": "1_9721_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "1a9721",
+          "underscore": "1_9721"
+        },
+        "titleSlug": "mr-selfridge",
+        "dateTime": "2013-01-06T21:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 4",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 4
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/m7fk3qn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Downton Abbey",
+        "channel": "itv",
+        "description": "Maggie Smith & Hugh Bonneville star in Julian Fellowes’ hit period drama ",
+        "tagNames": [
+          "premium"
+        ],
+        "isPaid": true,
+        "episodeId": "1/8697/0001",
+        "programmeId": "1/8697",
+        "encodedEpisodeId": {
+          "letterA": "1a8697a0001",
+          "underscore": "1_8697_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "1a8697",
+          "underscore": "1_8697"
+        },
+        "titleSlug": "downton-abbey",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 6",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 6
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/k8pkgb3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Victoria",
+        "channel": "itv",
+        "description": "Witness Victoria's transformation from immature teen to iconic Queen",
+        "tagNames": null,
+        "episodeId": "2/4229/0001",
+        "programmeId": "2/4229",
+        "encodedEpisodeId": {
+          "letterA": "2a4229a0001",
+          "underscore": "2_4229_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a4229",
+          "underscore": "2_4229"
+        },
+        "titleSlug": "victoria",
+        "dateTime": "2016-08-28T20:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 3",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/gpd8xx7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Pride and Prejudice",
+        "channel": "itv",
+        "description": "Jane Austen's spirited classic starring Colin Firth – & that lake scene",
+        "tagNames": [
+          "premium"
+        ],
+        "isPaid": true,
+        "episodeId": "2/7476/0001",
+        "programmeId": "2/7476",
+        "encodedEpisodeId": {
+          "letterA": "2a7476a0001",
+          "underscore": "2_7476_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a7476",
+          "underscore": "2_7476"
+        },
+        "titleSlug": "pride-and-prejudice",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": "BRITBOX",
+        "contentOwner": "BBC",
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/4z7pg7h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Lost in Austen",
+        "channel": "itv",
+        "description": "A bored bank worker literally gets lost in her favourite Austen book",
+        "tagNames": null,
+        "episodeId": "1/6440/0001",
+        "programmeId": "1/6440",
+        "encodedEpisodeId": {
+          "letterA": "1a6440a0001",
+          "underscore": "1_6440_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "1a6440",
+          "underscore": "1_6440"
+        },
+        "titleSlug": "lost-in-austen",
+        "dateTime": "2008-09-03T20:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/kkkybfw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Hotel Portofino",
+        "channel": "itv",
+        "description": "Natascha McElhone & Anna Chancellor are the stars of this decadent drama ",
+        "tagNames": [
+          "premium"
+        ],
+        "isPaid": true,
+        "episodeId": "10/1743/0001",
+        "programmeId": "10/1743",
+        "encodedEpisodeId": {
+          "letterA": "10a1743a0001",
+          "underscore": "10_1743_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "10a1743",
+          "underscore": "10_1743"
+        },
+        "titleSlug": "hotel-portofino",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/rt27cs1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Houdini and Doyle",
+        "channel": "itv",
+        "description": "A master magician reluctantly pairs up with a rationalist to crack crimes",
+        "tagNames": null,
+        "episodeId": "2/3919/0001",
+        "programmeId": "2/3919",
+        "encodedEpisodeId": {
+          "letterA": "2a3919a0001",
+          "underscore": "2_3919_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a3919",
+          "underscore": "2_3919"
+        },
+        "titleSlug": "houdini-and-doyle",
+        "dateTime": "2016-03-13T22:15:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/b97tszr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Jericho (2016)",
+        "channel": "itv",
+        "description": "British twist on the classic Western - Jessica Raine stars",
+        "tagNames": null,
+        "episodeId": "2/2320/0001",
+        "programmeId": "2/2320",
+        "encodedEpisodeId": {
+          "letterA": "2a2320a0001",
+          "underscore": "2_2320_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a2320",
+          "underscore": "2_2320"
+        },
+        "titleSlug": "jericho-2016",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/qkzqyfg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "The Singapore Grip",
+        "channel": "itv",
+        "description": "Brooding, glossy WWII drama starring David Morrissey & Jane Horrocks",
+        "tagNames": null,
+        "episodeId": "2/7035/0001",
+        "programmeId": "2/7035",
+        "encodedEpisodeId": {
+          "letterA": "2a7035a0001",
+          "underscore": "2_7035_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a7035",
+          "underscore": "2_7035"
+        },
+        "titleSlug": "the-singapore-grip",
+        "dateTime": "2020-09-13T20:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/4fszdk4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Brideshead Revisited",
+        "channel": "itv",
+        "description": "Join the tangled and stormy world of the Marchmains - Jeremy Irons stars",
+        "tagNames": null,
+        "episodeId": "3/0418/0001",
+        "programmeId": "3/0418",
+        "encodedEpisodeId": {
+          "letterA": "3a0418a0001",
+          "underscore": "3_0418_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "3a0418",
+          "underscore": "3_0418"
+        },
+        "titleSlug": "brideshead-revisited",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/r78w9md/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "The Forsyte Saga",
+        "channel": "itv",
+        "description": "Damian Lewis & Gina McKee star this sexy and powerful period drama",
+        "tagNames": null,
+        "episodeId": "1/3392/0001",
+        "programmeId": "1/3392",
+        "encodedEpisodeId": {
+          "letterA": "1a3392a0001",
+          "underscore": "1_3392_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "1a3392",
+          "underscore": "1_3392"
+        },
+        "titleSlug": "the-forsyte-saga",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 2",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/09p1yjk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Jewel in the Crown",
+        "channel": "itv3",
+        "description": "Tensions mount in India during the dying days of the British Empire",
+        "tagNames": null,
+        "episodeId": "1/1039/0001",
+        "programmeId": "1/1039",
+        "encodedEpisodeId": {
+          "letterA": "1a1039a0001",
+          "underscore": "1_1039_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "1a1039",
+          "underscore": "1_1039"
+        },
+        "titleSlug": "jewel-in-the-crown",
+        "dateTime": "2005-09-11T21:25:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/rgfgkpv/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Beecham House",
+        "channel": "itv3",
+        "description": "Tom Bateman stars in Gurinder Chadha’s sumptuous period drama",
+        "tagNames": null,
+        "episodeId": "2/5715/0001",
+        "programmeId": "2/5715",
+        "encodedEpisodeId": {
+          "letterA": "2a5715a0001",
+          "underscore": "2_5715_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a5715",
+          "underscore": "2_5715"
+        },
+        "titleSlug": "beecham-house",
+        "dateTime": "2021-12-29T01:10:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/h02ww85/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Wuthering Heights",
+        "channel": "itv",
+        "description": "Tom Hardy stars in this sumptuous take on Brontë's stormy novel",
+        "tagNames": null,
+        "episodeId": "1/6833/0001",
+        "programmeId": "1/6833",
+        "encodedEpisodeId": {
+          "letterA": "1a6833a0001",
+          "underscore": "1_6833_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "1a6833",
+          "underscore": "1_6833"
+        },
+        "titleSlug": "wuthering-heights",
+        "dateTime": "2009-08-30T20:00:00Z",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/wj9kczd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "series",
+        "title": "Upstairs, Downstairs",
+        "channel": "itv",
+        "description": "The turbulent lives of the Bellamy clan and their servants",
+        "tagNames": null,
+        "episodeId": "L1097/0001",
+        "programmeId": "L1097",
+        "encodedEpisodeId": {
+          "letterA": "L1097a0001",
+          "underscore": "L1097_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "L1097",
+          "underscore": "L1097"
+        },
+        "titleSlug": "upstairs-downstairs",
+        "categories": [
+          "DRAMA & SOAPS"
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1 - 5",
+        "partnership": null,
+        "contentOwner": null,
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 5
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/images/series/1bccfr3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "type": "title",
+        "title": "Henry V",
+        "channel": "itv2",
+        "description": "Kenneth Branagh thrives as an insulted Henry V invading France",
+        "tagNames": null,
+        "episodeId": "10/3038/0001",
+        "programmeId": "10/3038",
+        "encodedEpisodeId": {
+          "letterA": "10a3038a0001",
+          "underscore": "10_3038_0001"
+        },
+        "encodedProgrammeId": {
+          "letterA": "10a3038",
+          "underscore": "10_3038"
+        },
+        "titleSlug": "henry-v",
+        "categories": [
+          "FILMS"
+        ],
+        "duration": "PT3H",
+        "contentInfo": "3h",
+        "titleItem": {
+          "audioDescription": false,
+          "broadcastDateTime": null,
+          "categories": {
+            "queryable": [
+              "FILM"
+            ],
+            "formatted": [
+              "FILMS"
+            ],
+            "formattedCapitalised": [
+              "Films"
+            ]
+          },
+          "isChildrenCategory": false,
+          "channel": "ITV2",
+          "duration": "3h",
+          "legacyId": "10/3038/0001",
+          "brandLegacyId": "10/3038",
+          "episodeTitle": "Henry V",
+          "hasBrand": false,
+          "headerTitle": "Henry V",
+          "href": "/henry-v/10a3038",
+          "imageUrl": "https://ovp.itv.com/images/film/7mc02xx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "playlistUrl": "undefined",
+          "productionIdEncoded": "",
+          "programmeTitle": "Henry V",
+          "regionalisation": false,
+          "showTitle": "Henry V",
+          "showTitleSlug": "henry-v",
+          "subtitles": false,
+          "titleType": "FILM",
+          "variants": [],
+          "CTAText": "Watch Film",
+          "description": {
+            "descriptionTextStrong": "Henry V"
+          },
+          "accessibilityTags": [],
+          "contentInfo": [
+            "FILMS",
+            "3h"
+          ],
+          "contentOwner": null,
+          "partnership": null,
+          "tier": [
+            "FREE"
+          ],
+          "numberedEpisodeTitle": "Henry V"
+        },
+        "partnership": null,
+        "contentOwner": null,
+        "imageTemplate": "https://ovp.itv.com/images/film/7mc02xx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      }
+    ]
+  },
+  "sponsorship": {
+    "area": "collections",
+    "collection": [
+      "The Costume Collection "
+    ]
+  }
+}

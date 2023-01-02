@@ -1,3 +1,12 @@
+v0.6.0
+- Added itvx promoted content to main menu.
+- Added itvx collections to main menu.
+- Removed shows A-Z due to lacking native support on itvx.
+- All other items are now also retrieved from itvx.
+- Added setting to hide paid itvX-premium content.
+- Add 'play from the start' to the context menu of the main live channels.
+- In live channel listing, display bare programme names rather than extended info.
+
 v.0.5.1
 - fix new icon not shown anymore after reboot
 

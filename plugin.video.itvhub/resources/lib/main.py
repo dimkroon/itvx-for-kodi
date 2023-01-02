@@ -1,16 +1,22 @@
+# ---------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022 Dimitri Kroon.
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 import logging
-import os
+import typing
 
 import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run
 from codequick.utils import urljoin_partial as urljoin
-from codequick.support import logger_id
+from codequick.support import logger_id, build_path
 
-from resources.lib import itv, itv_account
+from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
-from resources.lib import parse
+from resources.lib import parsex
 from resources.lib import fetch
 from resources.lib.errors import *
 
@@ -20,30 +26,68 @@ logger.critical('-------------------------------------')
 
 
 TXT_SEARCH = 30807
-TXT_NOTHING_FOUND = 30608
+TXT_NO_ITEMS_FOUND = 30608
+TXT_PLAY_FROM_START = 30620
+
 
 build_url = urljoin('https://www.itv.com/hub/')
 
 
 def empty_folder():
-    Script.notify('ITV hub', 'No content', icon=Script.NOTIFY_INFO)
+    Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO)
     return False
+
+
+def dynamic_listing(func=None):
+    """Decorator that adds some default behaviour to callback functions that provide
+    a listing of items where the content depends on parameters passes to the function.
+
+    Typically, these callbacks are not guaranteed to return items - a directory may be empty, or
+    a search may not return anything.
+    Also, when the directory has been added to favourites and has been opened from there, the
+    'directory up' ('..') entry in the list will cause the callback to be invoked without any arguments.
+
+    This decorator provides default behaviour for these cases.
+
+    """
+    def wrapper(*args, **kwargs):
+        # Codequick will always pass a Router object as positional argument and all other parameters
+        # as keyword arguments, but others, like tests, may use position arguments.
+        if not kwargs and len(args) < 2:
+            logger.debug("Function called without kwargs; return False ")
+            # Just return false, which results in Kodi returning to the main menu.
+            return False
+        else:
+            logger.debug("wrapper diverts route to: %s", func.__name__)
+            result = func(*args, **kwargs)
+            if isinstance(result, typing.Generator):
+                result = list(result)
+            if result:
+                return result
+            else:
+                # Anything that evaluates to False is 'no items found'.
+                Script.notify('itvX', Script.localize(TXT_NO_ITEMS_FOUND), Script.NOTIFY_INFO, 7000)
+                return False
+    if func is None:
+        return wrapper()
+    else:
+        wrapper.__name__ = 'wrapper.' + func.__name__
+        return wrapper
 
 
 @Route.register
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
-    yield Listitem.from_dict(sub_menu_shows, 'Shows')
-    # yield Listitem.from_dict(
-    #         list_programs,
-    #         'Shows',
-    #         params={'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&'
-    #                        'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,'
-    #                        'fairplay&sortBy=title'})
-    # yield Listitem.from_dict(
-    #         sub_menu_from_page,
-    #         'Full series',
-    #         params={'url': 'https://www.itv.com/hub/full-series', 'callback': sub_menu_full_series})
+    # yield Listitem.from_dict(sub_menu_shows, 'Shows')
+    callb_map = {
+        'collection': list_collection_content,
+        'series': list_productions,
+        'simulcastspot': play_stream_live
+    }
+    for item in itvx.main_page_items():
+        callback = callb_map.get(item['type'], play_title)
+        yield Listitem.from_dict(callback, **item['show'])
+    yield Listitem.from_dict(list_collections, 'Collections')
     yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
@@ -55,13 +99,24 @@ def root(_):
 
 @Route.register(cache_ttl=4)
 def sub_menu_live(_):
-    tv_schedule = itv.get_live_channels()
+    tv_schedule = itvx.get_live_channels()
 
     for item in tv_schedule:
         chan_name = item['name']
-        now_on = item['slot'][0]['programmeTitle']
-        programs = ('{} - {}'.format(program['startTime'], program['programmeTitle']) for program in item['slot'])
-        label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on)
+        now_on = item['slot'][0]
+        programs = ('{} - {}'.format(program['startTime'],
+                                     program.get('programme_details') or program['programmeTitle'])
+                    for program in item['slot'])
+        label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on['programmeTitle'])
+        program_start_time = now_on['orig_start']
+        callback_kwargs = {
+                'channel': chan_name,
+                'url': item['streamUrl'],
+                'title': now_on['programmeTitle'],
+                'start_time': program_start_time
+                }
+
+        # noinspection SpellCheckingInspection
         li = Listitem.from_dict(
             play_stream_live,
             label=label,
@@ -70,187 +125,130 @@ def sub_menu_live(_):
                 'thumb': item['images']['logo']},
             info={
                 'title': label,
-                'plot': '\n'.join(programs)},
-            params={
-                'channel': chan_name,
-                'url': item['streamUrl'],
-                'title': now_on,
-                'start_time': item['slot'][0]['orig_start']
+                'plot': '\n'.join(programs),
+                },
+            params=callback_kwargs,
+            properties={
+                # This causes Kodi not to offer the standard resume dialog
+                'resumetime': '0',
+                'totaltime': 3600
             }
         )
+
+        # add 'play from the start' context menu item for channels that support this feature
+        if program_start_time:
+            cmd = 'PlayMedia({}, noresume)'.format(
+                build_path(play_stream_live, play_from_start=True, **callback_kwargs))
+            li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
         yield li
 
 
 @Route.register(cache_ttl=-1)
-def sub_menu_shows(_):
-    import string
-
-    url = 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/programmes?broadcaster=itv&' \
-          'features=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&sortBy=title'
-    az_list = list(string.ascii_uppercase)
-    az_list.append('0-9')
-    items = [Listitem.from_dict(list_programs, char, params={'url': url, 'filter_char': char}) for char in az_list]
-    return items
+def list_collections(_):
+    slider_data = itvx.get_page_data('https://www.itv.com')['editorialSliders']
+    return [Listitem.from_dict(list_collection_content, **parsex.parse_slider(*slider)['show'])
+            for slider in slider_data.items()]
 
 
-@Route.register(cache_ttl=24 * 60)
+@Route.register(cache_ttl=-1)
+@dynamic_listing
+def list_collection_content(addon, url=None, slider=None):
+    shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
+    return [
+        Listitem.from_dict(play_title, **show['show'])
+        if show['playable'] else
+        Listitem.from_dict(list_productions, **show['show'])
+        for show in shows_list
+    ]
+
+
+# FIXME: Cache throws error - list_category is not pickable
+@Route.register(cache_ttl=-1)  # 24 * 60)
 def list_categories(_):
     logger.debug("List categories.")
-    categories = itv.categories()
-    items = list(Listitem.from_dict(list_programs, **cat) for cat in categories)
+    categories = itvx.categories()
+    items = [Listitem.from_dict(list_category, **cat) for cat in categories]
     return items
 
 
 @Route.register(cache_ttl=-1)
-def list_programs(plugin, url, filter_char=None):
-    logger.debug("list programs for url '%s'", url)
-    plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+@dynamic_listing
+def list_category(addon, path, filter_char=None):
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                             xbmcplugin.SORT_METHOD_TITLE,
                             xbmcplugin.SORT_METHOD_DATE,
                             xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                             disable_autosort=True)
+    if path.endswith('/films'):
+        addon.content_type = 'movies'
 
-    shows_list = itv.programmes(url, filter_char)
-    if not shows_list:
-        return empty_folder()
-
+    shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_paid'))
     return [
+        Listitem.from_dict(play_title, **show['show'])
+        if show['playable'] else
         Listitem.from_dict(list_productions, **show['show'])
-        if show['episodes'] > 1 else
-        Listitem.from_dict(play_stream_catchup, **show['show'])
         for show in shows_list
     ]
-    # for show in shows_list:
-    #     if show['episodes'] > 1:
-    #         yield Listitem.from_dict(list_productions, **show['show'])
-    #     else:
-    #         yield Listitem.from_dict(play_stream_catchup, **show['show'])
 
 
-@Route.register(cache_ttl=60)
-def list_productions(plugin, url, name='', series_idx=0):
+@Route.register(cache_ttl=-1)
+@dynamic_listing
+def list_productions(plugin, url, series_idx=0):
 
-    logger.info('Getting productions for series %s of %s', series_idx, url)
+    logger.info("Getting productions for series '%s' of '%s'", series_idx, url)
+
     plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                             xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE,
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    series_list = itv.productions(url, name)
-    if not series_list:
-        yield False
+    series_map = itvx.episodes(url)
+    if not series_map:
         return
 
-    # First create folders for series
-    for i in range(len(series_list)):
-        # skip the folder of the series that is opened
-        if i == series_idx:
-            continue
+    if len(series_map) == 1:
+        # List the episodes if there is only 1 series
+        opened_series = list(series_map.values())[0]
+    else:
+        opened_series = series_map.pop(series_idx, None)
 
-        series = series_list[i]
-        episode_list = series['episodes']
-        label = '[B]{}[/B]  -  {} episodes'.format(series['name'], len(episode_list))
-        # TODO: Maybe better not to provide plot and art of the first episode. It is only of
-        #       of use when the series is one continuous story, which is only rarely the case.
-        li = Listitem.from_dict(
-            list_productions,
-            label=label,
-            art=episode_list[0]['art'],
-            info={'title': label,
-                  'plot': episode_list[0]['info']['plot'],
-                  },
-            params={'url': url, 'name': name, 'series_idx': i}
-        )
-        yield li
+        # First create folders for series
+        for series in series_map.values():
+            li = Listitem.from_dict(list_productions, **series['series'])
+            yield li
 
     # Now create episode items for the opened series folder
-    episodes = series_list[series_idx]['episodes']
-    for episode in episodes:
-        li = Listitem.from_dict(play_stream_catchup, **episode)
-        date = episode['info'].get('date')
-        if date:
-            li.info.date(date, '%Y-%m-%dT%H:%MZ')
-        yield li
+    if opened_series:
+        episodes = opened_series['episodes']
+        for episode in episodes:
+            li = Listitem.from_dict(play_stream_catchup, **episode)
+            date = episode['info'].get('date')
+            if date:
+                li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
+            yield li
 
 
-@Route.register(cache_ttl=120, autosort=False)
-def sub_menu_episodes(plugin, url, show_name='', series_idx=0):
-    """Show the list of episodes for the specified series and show folders for
-    all other series, if present.
-
-    """
-    logger.info('Getting episodes for series %s of %s', series_idx, url)
-    plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                            xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE,
-                            xbmcplugin.SORT_METHOD_DATE,
-                            disable_autosort=True)
-
-    series_list = itv.get_episodes(build_url(url), show_name)
-
-    # First create folders for series
-    for i in range(len(series_list)):
-        if i == series_idx:
-            continue
-
-        series = series_list[i]
-        episode_list = series['episodes']
-        label = '[B]{}[/B]  -  {} episodes'.format(series['name'], len(episode_list))
-        # TODO: Maybe better not to provide plot and art of the first episode. It is only of
-        #       of use when the series is one continuous story, which is only rarely the case.
-        li = Listitem.from_dict(
-            sub_menu_episodes,
-            label=label,
-            art=episode_list[0]['art'],
-            info={'title': label, 'plot': episode_list[0]['info']['plot']},
-            params={'url': url, 'show_name': show_name, 'series_idx': i}
-        )
-        yield li
-
-    # Now create episode items for the opened series
-    episodes = series_list[series_idx]['episodes']
-    for episode in episodes:
-        li = Listitem.from_dict(play_episode, **episode)
-        date = episode['info'].get('date')
-        if date:
-            li.info.date(date, '%Y-%m-%dT%H:%MZ')
-        yield li
-
-
-@Route.register(cache_ttl=480, autosort=False)
-def sub_menu_from_page(_, url, callback):
-    """Return the submenu items present a page. Like the categories from page categories"""
-    logger.info('sub_menu_from_page for url %s, handler = %s', url, callback)
-    submenu_items = parse.parse_submenu(fetch.get_document(url))
-    for item in submenu_items:
-        yield Listitem.from_dict(callback, **item)
-
-
-@Route.register(cache_ttl=480)
-def sub_menu_full_series(_, url):
-    """Return a listing of programmes from a full series' category"""
-    url = build_url(url)
-    logger.info('sub_menu_full_series for url %s', url)
-    submenu_items = parse.parse_full_series(fetch.get_document(url))
-    for item in submenu_items:
-        yield Listitem.from_dict(sub_menu_episodes, **item)
+# @Route.register(cache_ttl=480, autosort=False)
+# def sub_menu_from_page(_, url, callback):
+#     """Return the submenu items present a page. Like the categories from page categories"""
+#     logger.info('sub_menu_from_page for url %s, handler = %s', url, callback)
+#     submenu_items = parse.parse_submenu(fetch.get_document(url))
+#     return [Listitem.from_dict(callback, **item) for item in submenu_items]
 
 
 @Route.register()
-def do_search(_, search_query):
-    search_results = itv.search(search_term=search_query)
+@dynamic_listing
+def do_search(addon, search_query):
+    search_results = itvx.search(search_term=search_query, hide_paid=addon.setting.get_boolean('hide_paid'))
     if not search_results:
-        Script.notify('itvX - ' + Script.localize(TXT_SEARCH),
-                      Script.localize(TXT_NOTHING_FOUND),
-                      Script.NOTIFY_INFO, 7000)
-        return False
+        return
 
-    items = []
-    for result in search_results:
-        item_type = result.pop('entity_type')
-        if item_type == 'programme':
-            items.append(Listitem.from_dict(list_productions, **result))
-        else:
-            items.append(Listitem.from_dict(play_stream_catchup, **result))
+    items = [
+        Listitem.from_dict(play_title, **result['show'])
+        if result['playable']
+        else Listitem.from_dict(list_productions, **result['show'])
+        for result in search_results if result is not None
+    ]
     return items
 
 
@@ -319,14 +317,18 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 
 
 @Resolver.register
-def play_stream_live(addon, channel, url, title=None, start_time=None):
+def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
     logger.info('play live stream - channel=%s, url=%s', channel, url)
 
-    if addon.setting['live_play_from_start'] != 'true':
+    if addon.setting['live_play_from_start'] != 'true'and not play_from_start:
         start_time = None
 
     try:
-        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel, url, title, start_time)
+        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel,
+                                                                        url,
+                                                                        title,
+                                                                        start_time,
+                                                                        play_from_start)
     except FetchError as err:
         logger.error('Error retrieving live stream urls: %r' % err)
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
@@ -337,7 +339,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None):
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
     if list_item:
-    #     list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+        # list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
         if start_time and start_time in manifest_url:
             # cut the first few seconds of video without audio
             list_item.property['ResumeTime'] = '8'
@@ -353,7 +355,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None):
 @Resolver.register
 def play_stream_catchup(_, url, name):
 
-    logger.info('play catchup stream -%s  url=%s', name, url)
+    logger.info('play catchup stream - %s  url=%s', name, url)
     try:
         manifest_url, key_service_url, subtitle_url = itv.get_catchup_urls(url)
         logger.debug('dash subtitles url: %s', subtitle_url)
@@ -361,7 +363,7 @@ def play_stream_catchup(_, url, name):
         logger.error('Error retrieving episode stream urls: %r' % err)
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
         return False
-    except Exception as e:
+    except Exception:
         logger.error('Error retrieving episode stream urls:', exc_info=True)
         return False
 
@@ -372,7 +374,7 @@ def play_stream_catchup(_, url, name):
 
 
 @Resolver.register
-def play_episode(plugin, url, name=None):
+def play_title(plugin, url, name=None):
     """Play an episode from an url to the episode's html page.
 
     While episodes obtained from list_productions() have direct urls to stream's
@@ -380,7 +382,7 @@ def play_episode(plugin, url, name=None):
     to the respective episode's details html page.
 
     """
-    url, title = itv.get_playlist_url_from_episode_page(url)
+    url, title = itvx.get_playlist_url_from_episode_page(url)
     if name is None:
         name = title
     return play_stream_catchup(plugin, url, name)

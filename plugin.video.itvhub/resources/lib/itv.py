@@ -1,3 +1,9 @@
+# ---------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022. Dimitri Kroon
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 import os
 import string
@@ -12,7 +18,6 @@ from codequick.support import logger_id
 
 from . import utils
 from . import fetch
-from . import parse
 from . import kodi_utils
 
 from .errors import AuthenticationError
@@ -57,54 +62,6 @@ def get_live_schedule(hours=4):
             program['orig_start'] = program['onAirTimeUTC'][:19]
 
     return schedule
-
-
-def get_live_channels():
-    from tzlocal import get_localzone
-    local_tz = get_localzone()
-    utc_tz = pytz.utc
-
-    live_data = fetch.get_json('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
-    fanart_url = live_data['images']['backdrop']
-
-    main_schedule = get_live_schedule()
-
-    channels = live_data['channels']
-
-    for channel in channels:
-        channel['backdrop'] = fanart_url
-        slots = channel.pop('slots')
-
-        # The itv main live channels get their schedule from the full live schedule
-        if channel['channelType'] == 'simulcast':
-            chan_id = channel['id']
-            for main_chan in main_schedule:
-                # Caution, might get broken when ITV becomes ITV1 everywhere
-                if main_chan['channel']['name'] == chan_id:
-                    channel['slot'] = main_chan['slot']
-                    break
-            if channel.get('slot'):
-                # On to the next channel if adding full schedule succeeded
-                continue
-
-        programs_list = []
-        for prog in (slots['now'], slots['next']):
-            if prog['detailedDisplayTitle']:
-                title = ': '.join((prog['displayTitle'], prog['detailedDisplayTitle']))
-            else:
-                title = prog['displayTitle']
-
-            start_t = prog['start'][:19]
-            # TODO: check this in DST period
-            utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6])).replace(tzinfo=utc_tz)
-
-            programs_list.append({
-                'programmeTitle': title,
-                'orig_start': None,          # fast channels do not support play from start
-                'startTime': utc_start.astimezone(local_tz).strftime('%H:%M')
-            })
-        channel['slot'] = programs_list
-    return channels
 
 
 stream_req_data = {
@@ -181,12 +138,12 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             raise
 
 
-def get_live_urls(channel, url=None, title=None, start_time=None):
+def get_live_urls(channel, url=None, title=None, start_time=None, play_from_start=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. Note::
         Subtitles are usually not available on live streams, but in order to be compatible with
-        data returned by get_catchup_urls(...) None is returned
+        data returned by get_catchup_urls(...) None is returned.
 
     """
     # import web_pdb; web_pdb.set_trace()
@@ -200,7 +157,7 @@ def get_live_urls(channel, url=None, title=None, start_time=None):
     start_again_url = video_locations.get('StartAgainUrl')
 
     if start_again_url:
-        if start_time and kodi_utils.ask_play_from_start(title):
+        if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
         else:
@@ -227,215 +184,6 @@ def get_catchup_urls(episode_url):
     except (TypeError, KeyError, IndexError):
         subtitles = None
     return dash_url, key_service, subtitles
-
-
-def categories():
-    result = fetch.get_json(
-            'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/categories?'
-            'features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,widevine&broadcaster=itv',
-            headers={'Accept': 'application/vnd.itv.online.discovery.category.v1+hal+json'})
-    cat_list = result['_embedded']['categories']
-    return ({'label': cat['name'], 'params': {'url': cat['_links']['doc:programmes']['href']}} for cat in cat_list)
-
-
-def _create_program_item(item_data):
-    productions = item_data['_embedded']['productions']
-    latest_episode = item_data['_embedded']['latestProduction']
-
-    episode_count = productions['count']
-    orig_title = item_data.get('title', '')
-    if episode_count > 1:
-        title = '[B]{}[/B] - {} episodes'.format(orig_title, episode_count)
-    else:
-        title = orig_title
-
-    orig_title = orig_title.lower()
-
-    prog_item = {
-        'episodes': episode_count,
-        'show': {
-            'label': title,
-            'art': {'thumb': latest_episode['_links']['image']['href'].format(
-                width=960, height=540, quality=80, blur=0, bg='false')},
-            'info': {
-                'plot': item_data['synopses']['epg'],
-                'title': title,
-                'sorttitle': orig_title[4:] if orig_title.startswith('the ') else orig_title
-            },
-            'params': {
-                'name': item_data.get('title', ''),
-                'url': (productions['_links']['doc:productions']['href'] if episode_count > 1
-                        else latest_episode['_links']['playlist']['href'])
-            }
-        }
-    }
-    if episode_count == 1:
-        duration = utils.duration_2_seconds(latest_episode.get('duration'))
-        if duration:
-            prog_item['info']['duration'] = duration
-    return prog_item
-
-
-cached_programs = {}
-CACHE_TIME = 600
-
-
-def _get_programs(url):
-    """Return the cached list of programs if present in the cache and not expired, or
-    create a new list from data from itv hub.
-    Cache the list in memory for the lifetime of the addon, to a maximum of CACHE_TIME in seconds
-
-    """
-    progs = cached_programs.get(url)
-    if progs and progs['expires'] < time.monotonic():
-        logger.debug("Programs list cache hit")
-        return progs['progs_list']
-    else:
-        logger.debug("Programs list cache miss")
-        result = fetch.get_json(
-            url,
-            headers={'Accept': 'application/vnd.itv.online.discovery.programme.v1+hal+json'})
-
-        prog_data_list = result['_embedded']['programmes']
-        progr_list = [_create_program_item(prog) for prog in prog_data_list]
-        cached_programs[url] = {'progs_list': progr_list, 'expires': time.monotonic() + CACHE_TIME}
-        return progr_list
-
-
-def programmes(url, filter_char=None):
-    """Get a listing of programmes
-
-    A programmes data structure consist of a listing of 'programmes' (i.e. shows, or series)
-    Programmes may have one or more productions (i.e. episodes), but only info about
-    the latest production is included in the data structure.
-
-    Return a list in a format that contains only relevant info that can easily be used by
-    codequick Listitem.from_dict.
-
-    If the programme has only one production we return the info of that production, so it
-    can be passed as a playable item to kodi.
-
-    """
-    t_start = time.monotonic()
-    progr_list = _get_programs(url)
-
-    if filter_char is None:
-        result = progr_list
-    elif len(filter_char) == 1:
-        # filter on a single character
-        filter_char = filter_char.lower()
-        result = [prog for prog in progr_list if prog['show']['info']['sorttitle'][0] == filter_char]
-    else:
-        # like '0-9'. Return anything not a character
-        filter_char = string.ascii_lowercase
-        result = [prog for prog in progr_list if prog['show']['info']['sorttitle'][0] not in filter_char]
-
-    logger.debug("Created programs list in %s sec.", time.monotonic() - t_start)
-    return result
-
-
-def productions(url, show_name):
-    """Get a listing of productions
-
-    A productions data structure consist of a listing of 'productions' (i.e. episodes)
-    Programmes may have one or more production (i.e. episodes), but only info about
-    the latest production is included in the data structure.
-
-    Return a list containing only relevant info in a format that can easily be
-    used by codequick Listitem.from_dict.
-
-    """
-    result = fetch.get_json(
-        url,
-        headers={'Accept': 'application/vnd.itv.online.discovery.production.v1+hal+json'})
-    prod_list = result['_embedded']['productions']
-    if not prod_list:
-        return []
-
-    # create a mapping of series and their episodes. Put all episodes without a series into
-    # series[0].
-    item_count = result['count']
-    series = {}
-    for prod in prod_list:
-        series_idx = prod.get('series', 0)
-        # In some lists of production productions do not have a field 'episode'. Until now only seen in
-        # productions list that do not contain multiple series. Like Coronation Street, which just returns
-        # a (small) list of recent episodes.
-        # In order to create a somewhat sensible title we create an index bases in de position in the list,
-        # As listings appear to be returned in order from latest to oldest, we reverse the index.
-        episode_idx = prod.get('episode')
-        episode_title = prod.get('episodeTitle')
-        date = prod['broadcastDateTime'].get('original') or prod['broadcastDateTime'].get('commissioning')
-
-        if episode_title:
-            title = '{}. {}'.format(episode_idx or item_count, episode_title)
-        elif episode_idx:
-            title = '{} episode {}'.format(show_name, episode_idx)
-        else:
-            # TODO: convert to the local date format
-            title = '{} - {}'.format(show_name, utils.reformat_date(date, '%Y-%m-%dT%H:%MZ', '%a %d %b %Y %H:%M'))
-
-        episode = {
-            'label': title,
-            'art': {'thumb': prod['_links']['image']['href'].format(
-                width=960, height=540, quality=80, blur=0, bg='false')},
-            'info': {
-                'plot': prod['synopses']['epg'],
-                'title': title,
-                'tagline': prod['synopses']['ninety'],
-                'duration': utils.duration_2_seconds(prod['duration']['display']),
-                'date': date,
-                'episode': episode_idx,
-                'season': series_idx if series_idx != 0 else None
-            },
-            'params': {
-                'url': prod['_links']['playlist']['href'],
-                'name': title
-            }
-        }
-        item_count -= 1
-        episode_map = series.setdefault(series_idx, {})
-        episode_map[episode_idx or item_count] = episode
-
-    # turn the mappings in a list of series
-    series_list = [
-        {'name': 'Series {}'.format(k) if k != 0 else 'Other episodes',
-         'episodes': [v[item_idx] for item_idx in sorted(v.keys())]}
-        for k, v in sorted(series.items(), key=lambda x: x[0])
-    ]
-    return series_list
-
-
-def get_episodes(url, show_name):
-    t_start = time.time()
-    page_episodes = fetch.get_document(url)
-    logger.debug('fetched episodes in %f', time.time() - t_start)
-    t_start = time.time()
-    episodes_data = parse.parse_episodes(page_episodes, show_name)
-    logger.debug('parsed episodes in %f', time.time() - t_start)
-    return episodes_data
-
-
-def get_playlist_url_from_episode_page(page_url):
-    """Obtain the url to the episode's playlist from the episode's HTML page.
-    """
-    import re
-
-    logger.info("Get playlist from episode page - url=%s", page_url)
-    html_doc = fetch.get_document(page_url)
-    logger.debug("successfully retrieved page %s", page_url)
-
-    # New version - might a bit overdone as just a regex to obtain the playlist url should suffice.
-    # doc_data = parse.get__next__data_from_page(html_doc)
-    # player_data = doc_data['props']['pageProps']['episodeHeroWrapperProps']['playerProps']
-    # name = player_data['programmeTitle']
-    # play_list_url = player_data['playlistUrl']
-
-    # Only this will fail on itvX, but is the name actually used anywhere?
-    # name = re.compile('data-video-title="(.+?)"').search(html_doc)[1]
-    name = ''
-    play_list_url = re.compile('data-video-id="(.+?)"').search(html_doc)[1]
-    return play_list_url, name
 
 
 def get_vtt_subtitles(subtitles_url):
@@ -466,66 +214,3 @@ def get_vtt_subtitles(subtitles_url):
         logger.error("Failed to get vtt subtitles from url %s", subtitles_url, exc_info=True)
         return None
 
-
-def search(search_term):
-    url = 'https://textsearch.prd.oasvc.itv.com/search'
-    query_params = {
-        'broadcaster': 'itv',
-        'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
-        # We can handle only free items because of the way we list production right now.
-        'onlyFree': 'true',
-        'platform': 'dotcom',
-        'query': search_term
-    }
-    data = fetch.get_json(url, params=query_params)
-    if data is None:
-        return
-
-    results = data.get('results')
-
-    def parse_programme(prg_data):
-        prog_name = prg_data['programmeTitle']
-        img_url = prg_data['latestAvailableEpisode']['imageHref']
-
-        return {
-            'entity_type': 'programme',
-            'label': prog_name,
-            'art': {'thumb': img_url.format(width=960, height=540, quality=80, blur=0, bg='false')},
-            'info': {'plot': prg_data.get('synopsis'),
-                     'title': '[B]{}[/B] - {} episodes'.format(prog_name, prg_data.get('totalAvailableEpisodes', ''))},
-            'params': {
-                'url': 'https://discovery.hubsvc.itv.com/platform/itvonline/dotcom/productions?programmeId={}&'
-                       'features=aes,clearkey,fairplay,hls,mpeg-dash,outband-webvtt,playready,'
-                       'widevine&broadcaster=itv'.format(prg_data['legacyId']['apiEncoded']),
-                'name': prog_name}
-        }
-
-    def parse_special(prg_data):
-        # AFAICT special is always a production, which might be a production of a programme, but
-        # presented as a single episode in the search results.
-        prog_name = program_data['specialTitle']
-        img_url = program_data['imageHref']
-        # convert productionId to a format used in the url
-        api_prod_id = prg_data['productionId'].replace('/', '_').replace('#', '.')
-
-        return {
-            'entity_type': 'special',
-            'label': prog_name,
-            'art': {'thumb': img_url.format(width=960, height=540, quality=80, blur=0, bg='false')},
-            'info': {'plot': prg_data.get('synopsis'),
-                     'title': prog_name},
-            'params': {'url': 'https://magni.itv.com/playlist/itvonline/ITV/' + api_prod_id,
-                       'name': prog_name}
-        }
-
-    for result in results:
-        program_data = result['data']
-        entity_type = result['entityType']
-
-        if entity_type == 'programme':
-            yield parse_programme(program_data)
-        elif entity_type == 'special':
-            yield parse_special(program_data)
-        else:
-            logger.warning("Unknown search result item entityType %s on search term %s", entity_type, search_term)
-            continue

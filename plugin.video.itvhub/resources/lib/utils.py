@@ -1,4 +1,9 @@
-#!/usr/bin/python
+# ---------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022. Dimitri Kroon
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 import logging
 import time
@@ -212,24 +217,50 @@ def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
 
 
 def duration_2_seconds(duration: str):
-    """Convert a string like '120 min' to the corresponding number of seconds
+    """Convert a string containing duration in various formats to the corresponding number of seconds.
+
+    supported formats:
+
+    * '62' - single number of minutes
+    * '1,32 hrs'  - hours as float
+    * '78 min' - number of minutes as integer
+    * '1h 35m' - hours and minutes, where both hours and minutes are optional.
 
     """
+    hours = 0
+    minutes = 0
+
+    if not duration:
+        return None
+
     try:
         splits = duration.split()
-        if len(splits) == 1:
-            units = 'min'
-        else:
-            units = splits[1]
+        if len(splits) == 2:
+            # format  '62 min'
+            if splits[1] == 'min':
+                return int(splits[0]) * 60
+            if splits[1] == 'hrs':
+                # format '1.56 hrs'
+                return float(splits[0]) * 3600
 
-        if units == 'min':
-            return int(splits[0]) * 60
+        for t_str in splits:
+            if t_str.endswith('h'):
+                # format '2h 15m' or '2h'
+                hours = int(t_str[:-1])
+            elif t_str.endswith('m'):
+                minutes = int(t_str[:-1])
+            elif len(splits) == 1:
+                # format '62'
+                minutes = int(t_str)
+
+        return int(hours) * 3600 + int(minutes) * 60
+
     except (ValueError, AttributeError, IndexError):
         return None
 
 
 def reformat_date(date_string, old_format, new_format):
-    """Take a string containing a datetime and in a particular format and
+    """Take a string containing a datetime in a particular format and
     convert it into another format.
 
     Usually used to convert datetime strings obtained from a website into a nice readable format.
@@ -240,3 +271,8 @@ def reformat_date(date_string, old_format, new_format):
     except TypeError:
         dt = datetime(*(time.strptime(date_string, old_format)[0:6]))
     return dt.strftime(new_format)
+
+
+def strptime(dt_str, format):
+    """A bug free alternative to `datetime.datetime.strptime(...)`"""
+    return datetime(*(time.strptime(dt_str, format)[0:6]))

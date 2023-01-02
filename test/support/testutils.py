@@ -1,23 +1,9 @@
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022. Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#
-#  This file is part of plugin.video.itvhub
-#
-#  Plugin.video.itvhub is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or (at your
-#  option) any later version.
-#
-#  Plugin.video.itvhub is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-#  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-#  more details.
-#
-#  You should have received a copy of the GNU General Public License along with
-#  plugin.video.itvhub. If not, see <https://www.gnu.org/licenses/>.
-# ------------------------------------------------------------------------------
+#  This file is part of plugin.video.itvx
+# ---------------------------------------------------------------------------------------------------------------------
 
 import json
 import os.path
@@ -74,13 +60,19 @@ def save_doc(data, filename):
     with open(doc_path(filename), 'w') as f:
         f.write(data)
 
+def save_binary(data, filename):
+    """Save a data as bytes to a file in the test_docs directory"""
+    with open(doc_path(filename), 'wb') as f:
+        f.write(data)
+
 
 class HttpResponse(Response):
     """Create a requests.Response object with various attributes set.
     Can be used as the `return_value` of a mocked request.request.
 
     """
-    def __init__(self, status_code: int = None, headers: dict = None, content: bytes = None, reason=None):
+    def __init__(self, status_code: int = None, headers: dict = None,
+                 content: bytes = None, text: str = None, reason=None):
         super().__init__()
         if status_code is not None:
             self.status_code = status_code
@@ -91,6 +83,11 @@ class HttpResponse(Response):
             self.reason = reason
         if content is not None:
             self._content = content
+            if status_code is None:
+                self.status_code = 200
+                self.reason = 'OK'
+        elif text is not None:
+            self._content = text.encode('utf8')
             if status_code is None:
                 self.status_code = 200
                 self.reason = 'OK'
