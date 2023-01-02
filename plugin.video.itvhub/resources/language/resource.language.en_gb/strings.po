@@ -89,7 +89,7 @@ msgid "If enabled subtitles will have different colours for different speakers, 
 msgstr ""
 
 msgctxt "#30304"
-msgid "Hide content that is only available with a payed itvX-premium account."
+msgid "Hide content that is only available with a paid itvX-premium account."
 msgstr ""
 
 msgctxt "#30311"

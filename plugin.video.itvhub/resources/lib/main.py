@@ -181,7 +181,7 @@ def list_category(addon, path, filter_char=None):
     if path.endswith('/films'):
         addon.content_type = 'movies'
 
-    shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_payed'))
+    shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_paid'))
     return [
         Listitem.from_dict(play_title, **show['show'])
         if show['playable'] else
@@ -238,7 +238,7 @@ def list_productions(plugin, url, series_idx=0):
 @Route.register()
 @dynamic_listing
 def do_search(addon, search_query):
-    search_results = itvx.search(search_term=search_query, hide_payed=addon.setting.get_boolean('hide_payed'))
+    search_results = itvx.search(search_term=search_query, hide_paid=addon.setting.get_boolean('hide_paid'))
     if not search_results:
         return
 

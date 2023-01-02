@@ -198,7 +198,7 @@ def categories():
     return ({'label': cat['name'], 'params': {'path': cat['url']}} for cat in cat_list)
 
 
-def category_content(url: str, hide_payed=False):
+def category_content(url: str, hide_paid=False):
     """Return all programmes in a category"""
     cat_data = get_page_data(url, cache_time=3600)
     category = cat_data['category']['pathSegment']
@@ -213,7 +213,7 @@ def category_content(url: str, hide_payed=False):
         if 'FREE' in prog['tier']:
             plot = prog['description']
         else:
-            if hide_payed:
+            if hide_paid:
                 continue
             plot = parsex.premium_plot(prog['description'])
 
@@ -259,7 +259,7 @@ def get_playlist_url_from_episode_page(page_url):
     return play_list_url, name
 
 
-def search(search_term, hide_payed=False):
+def search(search_term, hide_paid=False):
     """Make a query on `search_term`
 
     When no search result are found itvX returns either HTTP status 204, or
@@ -270,7 +270,7 @@ def search(search_term, hide_payed=False):
     query_params = {
         'broadcaster': 'itv',
         'featureSet': 'clearkey,outband-webvtt,hls,aes,widevine,fairplay,bbts,progressive,hd,rtmpe',
-        'onlyFree': 'true' if hide_payed else 'false',
+        'onlyFree': 'true' if hide_paid else 'false',
         'platform': 'dotcom',
         'query': search_term
     }

@@ -89,7 +89,7 @@ class Categories(TestCase):
         for progr in program_list:
             has_keys(progr['show'], 'label', 'info', 'art', 'params')
             self.assertTrue(progr['playable'])
-        free_list = list(itvx.category_content('asdgf', hide_payed=True))
+        free_list = list(itvx.category_content('asdgf', hide_paid=True))
         self.assertLess(len(free_list), len(program_list))
 
 
