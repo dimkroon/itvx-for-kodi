@@ -110,12 +110,39 @@ class Productions(TestCase):
         self.assertIsInstance(list_items, list)
         self.assertEqual(9, len(list_items))
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsummer-murders.json'))
+    def test_episodes_midsummer_murders_series_other_episodes(self, _):
+        """Test listing opened at the non-integer seriesNUmber 'other episodes'."""
+        list_items = main.list_productions(MagicMock(), 'midsumer', series_idx='other-episodes')
+        self.assertIsInstance(list_items, list)
+        self.assertEqual(23, len(list_items))      # 22 series, 1 episode
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsummer-murders.json'))
+    def test_episodes_midsummer_murders_series_4(self, _):
+        """Midsummer murder has 2 different series numbered series-4. These should be merged into one"""
+        list_items = main.list_productions(MagicMock(), 'midsumer', series_idx=4)
+        self.assertIsInstance(list_items, list)
+        self.assertEqual(28, len(list_items))      # 22 series, 5 episode in series 4-1, 1 episode in series 4-2
+
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_bad-girls_data.json'))
     def test_episodes_bad_girls_series_5(self, _):
         """Test listing opened at series 4"""
         list_items = main.list_productions(MagicMock(), 'bad girls', series_idx=5)
         self.assertIsInstance(list_items, list)
         self.assertEqual(23, len(list_items))
+
+    def test_episode_of_show_with_only_one_series(self):
+        data = open_json('html/series_miss-marple_data.json')
+        series = data['title']['brand']['series']
+        # Remove all but the first series
+        while len(series) > 1:
+            series.pop()
+        with patch('resources.lib.itvx.get_page_data', return_value=data):
+            series_listing = main.list_productions(MagicMock(), 'asd')
+            self.assertEqual(4, len(series_listing))
+            # Check if all items are playable
+            for episode in series_listing:
+                self.assertIs(episode.path, main.play_stream_catchup.route)
 
 
 class Search(TestCase):

@@ -195,7 +195,15 @@ def parse_episode_title(title_data, brand_fanart=None):
         'params': {'url': title_data['playlistUrl'], 'name': title}
     }
     if title_data['titleType'] == 'EPISODE':
-        title_obj['info'].update(episode=title_data['episodeNumber'], season=title_data['seriesNumber'])
+        try:
+            episode_nr = int(title_data['episodeNumber'])
+        except ValueError:
+            episode_nr = None
+        try:
+            series_nr = int(title_data['seriesNumber'])
+        except ValueError:
+            series_nr = None
+        title_obj['info'].update(episode=episode_nr, season=series_nr)
     return title_obj
 
 

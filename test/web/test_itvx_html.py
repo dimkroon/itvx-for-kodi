@@ -39,7 +39,8 @@ def check_brand(self, brand, parent_name):
 
 def check_series(self, series, parent_name):
     obj_name = '{}-{}'.format(parent_name, series['title'])
-    has_keys(series, 'title', 'seriesNumber', 'seriesAvailableEpisodeCount', 'fullSeries', 'legacyId', 'episodes',
+    # Field 'legacyId' is not always present, but is not used anyway.
+    has_keys(series, 'title', 'seriesNumber', 'seriesAvailableEpisodeCount', 'fullSeries', 'episodes',
              obj_name=obj_name)
     for episode in series['episodes']:
         check_episode(self, episode, obj_name)
@@ -179,12 +180,14 @@ class WatchPages(unittest.TestCase):
             self.check_schedule_now_next_slot(chan['slots']['next'], chan_type, obj_name='{}-Next-on'.format(chan['name']))
 
     def test_series_page(self):
-        for url in ('https://www.itv.com/watch/agatha-christies-marple/L1286',
-                    'https://www.itv.com/watch/bad-girls/7a0129'):
+        for url in (
+                'https://www.itv.com/watch/agatha-christies-marple/L1286',
+                'https://www.itv.com/watch/bad-girls/7a0129',
+                'https://www.itv.com/watch/midsomer-murders/Ya1096', ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/series_bad-girls_data.json')
+            # testutils.save_json(data, 'html/series_midsummer-murders.json')
             title_data = data['title']
             check_title(self, title_data, '')
             check_brand(self, title_data['brand'], '')

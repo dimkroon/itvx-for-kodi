@@ -97,7 +97,7 @@ class Episodes(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/series_miss-marple.html'))
     def test_episodes_marple(self):
         series_listing = itvx.episodes('asd')
-        self.assertIsInstance(series_listing, list)
+        self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
 
 

@@ -48,6 +48,10 @@ class TestGetProductions(unittest.TestCase):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx=1)
         self.assertGreater(len(items), 1)
 
+    def test_get_productions_midsummer_murder_folder_other_episodes(self):
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='other-episodes')
+        self.assertGreater(len(items), 1)
+
     def test_get_productions_the_professionals_folder_1(self):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/the-professionals/L0845', series_idx=1)
         self.assertGreater(len(items), 1)

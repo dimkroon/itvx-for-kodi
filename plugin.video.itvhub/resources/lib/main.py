@@ -201,24 +201,19 @@ def list_productions(plugin, url, series_idx=0):
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    series_list = itvx.episodes(url)
-    if not series_list:
+    series_map = itvx.episodes(url)
+    if not series_map:
         return
 
-    if len(series_list) == 1:
+    if len(series_map) == 1:
         # List the episodes if there is only 1 series
-        opened_series = series_list[0]
+        opened_series = list(series_map.values())[0]
     else:
-        opened_series = None
-        # First create folders for series
-        for series in series_list:
-            # skip the folder of the series that is opened
-            if series_idx == series['params']['series_idx']:
-                opened_series = series
-                continue
+        opened_series = series_map.pop(series_idx, None)
 
-            series.pop('episodes')
-            li = Listitem.from_dict(list_productions, **series)
+        # First create folders for series
+        for series in series_map.values():
+            li = Listitem.from_dict(list_productions, **series['series'])
             yield li
 
     # Now create episode items for the opened series folder

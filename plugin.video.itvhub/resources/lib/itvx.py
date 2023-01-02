@@ -162,24 +162,33 @@ def episodes(url):
     series_data = brand_data['series']
 
     if not series_data:
-        return []
+        return {}
 
-    series_list = []
+    # The field seriesNUmber is not guaranteed to be unique - and not guaranteed an integer eiter.
+    # Midsummer murder for instance has 2 series with seriesNumber 4
+    # By using this mapping, setdefault() and extend() on the episode list, series with the same
+    # seriesNumber are automatically merged.
+    series_map = {}
     for series in series_data:
         title = series['title']
         series_idx = series['seriesNumber']
-        series_obj = {
-            'label': title,
-            'art': {'thumb': brand_thumb, 'fanart': brand_fanart},
-            'info': {'title': '[B]{} - {}[/B]'.format(brand_title, series['title']),
-                     'plot': '{}\n\n{} - {} episodes'.format(
-                         brand_description, title, series['seriesAvailableEpisodeCount'])},
+        series_obj = series_map.setdefault(
+            series_idx, {
+                'series': {
+                    'label': title,
+                    'art': {'thumb': brand_thumb, 'fanart': brand_fanart},
+                    # TODO: add more info, like series number, number of episodes
+                    'info': {'title': '[B]{} - {}[/B]'.format(brand_title, series['title']),
+                             'plot': '{}\n\n{} - {} episodes'.format(
+                                 brand_description, title, series['seriesAvailableEpisodeCount'])},
 
-            'params': {'url': url, 'series_idx': series_idx},
-            'episodes': [parsex.parse_episode_title(episode, brand_fanart) for episode in series['episodes']]
-        }
-        series_list.append(series_obj)
-    return series_list
+                    'params': {'url': url, 'series_idx': series_idx}
+                },
+                'episodes': []
+            })
+        series_obj['episodes'].extend(
+            [parsex.parse_episode_title(episode, brand_fanart) for episode in series['episodes']])
+    return series_map
 
 
 def categories():
