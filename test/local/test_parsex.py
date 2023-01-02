@@ -117,6 +117,12 @@ class Generic(unittest.TestCase):
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
+        # Paid episode
+        title_obj['tier'] = ['PAID']
+        item = parsex.parse_episode_title(title_obj)
+        is_li_compatible_dict(self, item)
+        self.assertTrue('premium' in item['info']['plot'].lower())
+
     def test_parse_search_result(self):
         # These files contain programmes, episodes, films and specials both and without a specialProgramm field.
         for file in ('search/search_results_mear.json', 'search/search_monday.json'):

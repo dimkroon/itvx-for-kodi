@@ -152,7 +152,7 @@ def list_collections(_):
 
 @Route.register(cache_ttl=-1)
 def list_collection_content(addon, url=None, slider=None):
-    shows_list = itvx.collection_content(url, slider)
+    shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
     return [
         Listitem.from_dict(play_title, **show['show'])
         if show['playable'] else

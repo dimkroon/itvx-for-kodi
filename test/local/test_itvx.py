@@ -58,6 +58,15 @@ class Collections(TestCase):
         for item in items:
             has_keys(item, 'playable', 'show')
 
+    @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
+                                                            open_json('html/collection_the-costume-collection.json')))
+    def test_collection_with_paid_items(self, _):
+        # The costume collection has 18 show, 1 title, of which 3 are premium
+        items = list(itvx.collection_content(url='the_costume_collection'))
+        self.assertEqual(19, len(items))
+        items = list(itvx.collection_content(url='the_costume_collection', hide_paid=True))
+        self.assertEqual(16, len(items))
+
 
 
 class Categories(TestCase):

@@ -125,10 +125,15 @@ def main_page_items():
     #     yield parsex.parse_slider(*slider_item)
 
 
-def collection_content(url=None, slider=None):
+def collection_content(url=None, slider=None, hide_paid=False):
     if url:
         items_list = get_page_data(url, cache_time=43200)['collection']['shows']
-        return (parsex.parse_collection_item(item) for item in items_list)
+        if hide_paid:
+            return (parsex.parse_collection_item(item)
+                    for item in items_list
+                    if not item.get('isPaid'))
+        else:
+            return (parsex.parse_collection_item(item) for item in items_list)
     else:
         page_data = get_page_data('https://www.itv.com', cache_time=3600)
 
@@ -136,15 +141,28 @@ def collection_content(url=None, slider=None):
             uk_tz = pytz.timezone('Europe/London')
             time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
             items_list = page_data['newsShortformSliderContent']['items']
-            return (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt) for news_item in items_list)
+            if hide_paid:
+                return (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+                        for news_item in items_list
+                        if not news_item.get('isPaid'))
+            else:
+                return (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt) for news_item in items_list)
 
         if slider == 'trendingSliderContent':
             items_list = page_data['trendingSliderContent']['items']
-            return (parsex.parse_trending_collection_item(trending_item) for trending_item in items_list)
+            if hide_paid:
+                return (parsex.parse_trending_collection_item(trending_item)
+                        for trending_item in items_list
+                        if not trending_item.get('isPaid'))
+            else:
+                return (parsex.parse_trending_collection_item(trending_item) for trending_item in items_list)
 
         else:
             items_list = page_data['editorialSliders'][slider]['collection']['shows']
-            return (parsex.parse_collection_item(item) for item in items_list)
+            if hide_paid:
+                return (parsex.parse_collection_item(item) for item in items_list if not item.get('isPaid'))
+            else:
+                return (parsex.parse_collection_item(item) for item in items_list)
 
 
 def episodes(url):

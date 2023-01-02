@@ -46,7 +46,7 @@ def build_url(programme, programme_id, episode_id=None):
 
 def premium_plot(plot: str):
     """Add a notice of paid or premium content tot the plot."""
-    return '\n\n'.join((plot, '[COLOR yellow]X premium[/COLOR]'))
+    return '\n'.join(('[COLOR yellow]itvX premium[/COLOR]', plot))
 
 
 def scrape_json(html_page):
@@ -120,15 +120,19 @@ def parse_collection_item(show_data):
     is_playable = show_data['type'] == 'title'
     title = show_data['title']
     content_info = show_data.get('contentInfo')
-
     sort_title = title.lower()
+
+    if show_data.get('isPaid'):
+        plot = premium_plot(show_data['description'])
+    else:
+        plot = show_data['description']
 
     programme_item = {
         'label': title,
         'art': {'thumb': show_data['imageTemplate'].format(**IMG_PROPS_THUMB),
                 'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
         'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
-                 'plot': show_data['description'],
+                 'plot': plot,
                  'sorttitle': sort_title[4:] if sort_title.startswith('the ') else sort_title},
     }
 
@@ -141,8 +145,8 @@ def parse_collection_item(show_data):
                                                      show_data['encodedProgrammeId']['letterA'])}
     else:
         programme_item['params'] = {'url': build_url(show_data['titleSlug'],
-                                                    show_data['encodedProgrammeId']['letterA'],
-                                                    show_data['encodedEpisodeId']['letterA'])}
+                                                     show_data['encodedProgrammeId']['letterA'],
+                                                     show_data['encodedEpisodeId']['letterA'])}
     return {'playable': is_playable,
             'show': programme_item}
 
@@ -152,24 +156,34 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
     item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
     loc_time = item_time.astimezone(time_zone)
     base_url = 'https://www.itv.com/watch/news/'
+    plot = '\n'.join((loc_time.strftime(time_fmt), news_item['synopsis']))
+
+    if news_item.get('isPaid'):
+        plot = premium_plot(plot)
+
     return {
         'playable': True,
         'show': {
             'label': news_item['episodeTitle'],
             'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': '\n'.join((loc_time.strftime(time_fmt), news_item['synopsis']))},
+            'info': {'plot': plot},
             'params': {'url': base_url + news_item['href']}
         }
     }
 
 
 def parse_trending_collection_item(trending_item):
+    # No idea if premium content can be trending, but just to be sure.
+    plot = '\n'.join((trending_item['description'], trending_item['contentInfo']))
+    if trending_item.get('isPaid'):
+        plot = premium_plot(plot)
+
     return{
         'playable': True,
         'show': {
             'label': trending_item['title'],
             'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': '\n'.join((trending_item['description'], trending_item['contentInfo']))},
+            'info': {'plot': plot},
             'params': {'url': build_url(trending_item['titleSlug'],
                                         trending_item['encodedProgrammeId']['letterA'],
                                         trending_item['encodedEpisodeId']['letterA'])}
@@ -182,6 +196,10 @@ def parse_episode_title(title_data, brand_fanart=None):
     # Note: episodeTitle may be None
     title = title_data['episodeTitle'] or title_data['numberedEpisodeTitle']
     img_url = title_data['imageUrl']
+    plot = '\n\n'.join((title_data['synopsis'], title_data['guidance'] or ''))
+    if 'PAID' in title_data.get('tier', []):
+        plot = premium_plot(plot)
+
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -189,7 +207,7 @@ def parse_episode_title(title_data, brand_fanart=None):
                 # 'poster': img_url.format(**IMG_PROPS_POSTER)
                 },
         'info': {'title': title_data['numberedEpisodeTitle'],
-                 'plot': '\n\n'.join((title_data['synopsis'], title_data['guidance'] or '')),
+                 'plot': plot,
                  'duration': utils.duration_2_seconds(title_data['duration']),
                  'date': title_data['broadcastDateTime']},
         'params': {'url': title_data['playlistUrl'], 'name': title}
