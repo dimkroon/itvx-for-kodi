@@ -17,8 +17,8 @@ from codequick import Route
 
 from resources.lib import itvx, errors, itv_account
 from resources.lib import cache
-from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
-
+from test.support.object_checks import (is_url, has_keys, is_li_compatible_dict,
+                                        check_catchup_dash_stream_info, check_live_stream_info)
 setUpModule = fixtures.setup_web_test
 
 
@@ -119,3 +119,15 @@ class TestItvX(unittest.TestCase):
         # invalid user ID
         recom_list = itvx.recommended('dgsd')
         self.assertEqual(len(recom_list), 12)
+
+    def test__request_stream_data_vod(self):
+        urls = (
+            # something else with subtitles:
+            'https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001', )
+        for url in urls:
+            result = itvx._request_stream_data(url, 'vod')
+            check_catchup_dash_stream_info(result['Playlist'])
+
+    def test__request_stream_data_live(self):
+        result = itvx._request_stream_data('https://simulcast.itv.com/playlist/itvonline/ITV', 'live')
+        check_live_stream_info(result['Playlist'])
