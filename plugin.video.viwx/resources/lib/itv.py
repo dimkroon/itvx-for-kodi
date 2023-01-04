@@ -124,9 +124,12 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
         data returned by get_catchup_urls(...).
 
     """
+    # import web_pdb; web_pdb.set_trace()
+    from . import itvx
+
     channel = url.rsplit('/', 1)[1]
 
-    stream_data = _request_stream_data(url)
+    stream_data = itvx._request_stream_data(url)
     video_locations = stream_data['Playlist']['Video']['VideoLocations'][0]
     dash_url = video_locations['Url']
     start_again_url = video_locations.get('StartAgainUrl')
@@ -150,7 +153,8 @@ def get_catchup_urls(episode_url):
     episode and the type of video.
 
     """
-    playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
+    from resources.lib import itvx
+    playlist = itvx._request_stream_data(episode_url, 'catchup')['Playlist']
     stream_data = playlist['Video']
     url_base = stream_data['Base']
     video_locations = stream_data['MediaFiles'][0]
