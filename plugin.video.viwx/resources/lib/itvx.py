@@ -22,6 +22,9 @@ from . import fetch
 from . import parsex
 from . import cache
 from . import itv_account
+from . import errors
+from . import utils
+from . import kodi_utils
 
 from .itv import get_live_schedule
 
@@ -640,3 +643,102 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
         return byw['watched_programme']
     else:
         return list(filter(None, (parsex.parse_my_list_item(item, hide_paid) for item in byw['recommendations'])))
+
+
+stream_req_data = {
+    'client': {
+        'id': 'browser',
+        'supportsAdPods': False,
+        'version': ''
+    },
+    'device': {
+        'manufacturer': 'Firefox',
+        'model': '105',
+        'os': {
+            'name': 'Linux',
+            'type': 'desktop',
+            'version': 'x86_64'
+        }
+    },
+    'user': {
+        'entitlements': [],
+        'itvUserId': '',
+        'token': ''
+    },
+    'variantAvailability': {
+        'featureset': {
+            'min': ['mpeg-dash', 'widevine'],
+            'max': ['mpeg-dash', 'widevine', 'hd']
+        },
+        'platformTag': 'ctv'
+    }
+}
+
+mobile_strm_req_data = {
+  "client": {
+    "id": "android",
+    "service": "itv.x",
+    "supportsAdPods": True,
+    "version": "0.6.0"
+  },
+  "device": {
+    "advertisingIdentifier": "00000000-0000-0000-0000-000000000000",
+    "firmware": "22",
+    "id": "xplayer",
+    "manufacturer": "",
+    "model": "",
+    "os": {
+      "name": "android",
+      "type": "android",
+      "version": "12.0"
+    }
+  },
+  "preview": False,
+  "user": {
+    "entitlements": [],
+    "itvUserId": "",
+    "status": "reg",
+    "subscribed": "false",
+    "token": ""
+  },
+  "variantAvailability": {
+    "featureset": {
+
+    },
+    "platformTag": "ctv"
+  }
+}
+
+features_live = {
+    "min": ["mpeg-dash","widevine",],
+    "max": ["hd", "mpeg-dash", "widevine", "inband-webvtt"]
+}
+
+features_catchup = {
+    "min": ["hd", "mpeg-dash", "widevine", "single-track", "outband-webvtt"],
+    "max": ["hd", "mpeg-dash", "widevine", "single-track", "outband-webvtt"]
+}
+
+
+def _request_stream_data(url, stream_type='live'):
+    from .itv_account import itv_session, fetch_authenticated
+    session = itv_session()
+    stream_req_data = mobile_strm_req_data
+
+    stream_req_data['user']['token'] = session.access_token
+    stream_req_data['client']['supportsAdPods'] = stream_type != 'live'
+
+    if stream_type == 'live':
+        accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
+        stream_req_data['variantAvailability']['featureset'] = features_live
+    else:
+        accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+        stream_req_data['variantAvailability']['featureset'] = features_catchup
+
+    stream_data = fetch_authenticated(
+        fetch.post_json, url,
+        data=stream_req_data,
+        headers={'Accept': accept_type})
+
+    return stream_data
+
