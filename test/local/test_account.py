@@ -12,19 +12,87 @@ fixtures.global_setup()
 import json
 import time
 import unittest
+import uuid
+import binascii
 from copy import deepcopy
 from unittest.mock import patch, mock_open, MagicMock
 
 from resources.lib import errors
 from resources.lib import itv_account
 from resources.lib import fetch
+from resources.lib import utils
 
 from test.support.object_checks import has_keys
+from test.support.testutils import is_uuid
 from test.support.testutils import HttpResponse
 
 # noinspection PyPep8Naming
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
+
+
+ACCESS_TKN_FIELDS = ('iss', 'sub', 'exp', 'iat', 'broadcastErrorMsg', 'broadcastResponseCode', 'broadcaster',
+                     'isActive', 'nonce', 'name', 'scope', 'entitlements', 'paymentSource', 'showPrivacyNotice',
+                     'under18', 'accountProfileIdInUse')
+REFRESH_TKN_FIELDS = ('iss', 'sub', 'exp', 'iat', 'nonce', 'scope', 'auth_time', 'accountProfileIdInUse')
+PROFILE_TKN_FIELDS = ('iss', 'sub', 'exp', 'iat', 'nonce', 'name', 'under18', 'scope')
+
+
+def build_test_tokens(user_nick, account_id=None, exp_time=None):
+    now = int(time.time())
+    tkn_type = {'typ': 'JWT',
+                'alg': 'RS256'}
+    gen_data = {"iss": "https://auth.itv.com",
+                "sub": account_id or str(uuid.uuid4()),
+                "exp": exp_time or now + 90000,
+                "iat": now,
+                'auth_time': now,
+                "broadcastErrorMsg": "",
+                "broadcastResponseCode": "200",
+                "broadcaster": "ITV",
+                "isActive": True,
+                "nonce": utils.random_string(20),
+                "name": user_nick,
+                "scope": "content",
+                "entitlements": [],
+                "paymentSource": "",
+                "showPrivacyNotice": False,
+                "under18": False,
+                "accountProfileIdInUse": None}
+
+    def create_token(tkn_data, key):
+        return '.'.join((
+            binascii.b2a_base64(json.dumps(tkn_type).encode('ASCII')).decode('ascii'),
+            binascii.b2a_base64(json.dumps(tkn_data).encode('ASCII')).decode('ascii'),
+            key))
+
+    access_data = {k: v for k, v in gen_data.items() if k in ACCESS_TKN_FIELDS}
+    refresh_data = {k: v for k, v in gen_data.items()  if k in REFRESH_TKN_FIELDS}
+    profile_data = {k: v for k, v in gen_data.items()  if k in PROFILE_TKN_FIELDS}
+
+    return (create_token(access_data, utils.random_string(342)),
+            create_token(refresh_data, utils.random_string(342)),
+            create_token(profile_data, utils.random_string(342))
+            )
+
+
+test_user_nick_name = 'My username'
+test_access_token, test_refresh_token, test_profile_token = build_test_tokens(test_user_nick_name)
+
+
+session_dta = {'itv_session': {
+    'entitlement': {
+        'purchased': [],
+        'failed_availability_checks': [],
+        'source': ''
+    },
+    'email_verified': True,
+    'missingUserData': ['NoPlanSelected'],
+    'access_token': test_access_token,
+    'token_type': 'bearer',
+    'refresh_token': test_refresh_token,
+    'profile_token': test_profile_token}
+}
 
 
 account_data_v0 = {'uname': 'my_uname', 'passw': 'my_passw',
@@ -218,6 +286,48 @@ class PropCookie(unittest.TestCase):
         p_login.assert_not_called()
         p_refresh.assert_called_once()
 
+class PropCookie(unittest.TestCase):
+    @patch('resources.lib.itv_account.ItvSession.login')
+    @patch('resources.lib.itv_account.ItvSession.refresh')
+    def test_prop_access_token(self, p_refresh, p_login):
+        sess = itv_account.ItvSession()
+        sess.account_data = deepcopy(account_data_v2)
+        cookie = sess.cookie
+        p_login.assert_not_called()
+        self.assertIsInstance(cookie, dict)
+
+        sess.account_data = {}
+        with self.assertRaises(errors.AuthenticationError):
+            _ = sess.cookie
+
+
+class PropUserId(unittest.TestCase):
+    @patch('resources.lib.itv_account.ItvSession.login')
+    @patch('resources.lib.itv_account.ItvSession.refresh')
+    def test_prop_user_id(self, p_refresh, p_login):
+        acc_data = deepcopy(account_data_v2)
+        acc_data['itv_session'] = session_dta['itv_session']
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
+            sess = itv_account.ItvSession()
+        userid = sess.user_id
+        p_login.assert_not_called()
+        p_refresh.assert_not_called()
+        self.assertTrue(is_uuid(userid))
+
+
+class PropUserNickName(unittest.TestCase):
+    @patch('resources.lib.itv_account.ItvSession.login')
+    @patch('resources.lib.itv_account.ItvSession.refresh')
+    def test_prop_user_id(self, p_refresh, p_login):
+        acc_data = deepcopy(account_data_v2)
+        acc_data['itv_session'] = session_dta['itv_session']
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
+            sess = itv_account.ItvSession()
+        username = sess.user_nickname
+        p_login.assert_not_called()
+        p_refresh.assert_not_called()
+        self.assertIsInstance(username, str)
+
 
 class Misc(unittest.TestCase):
     def test_read_account_data(self):
@@ -266,6 +376,21 @@ class Misc(unittest.TestCase):
         ct_sess.log_out()
         self.assertEqual(ct_sess.account_data, {})
         p_save.assert_called_once()
+
+    def test_parse_token(self):
+        access_tkn, _, __ = build_test_tokens('My username')
+        a_user_id, a_user_nick, a_exp_time = itv_account.parse_token(access_tkn)
+        self.assertTrue(is_uuid(a_user_id))
+        self.assertIsInstance(a_exp_time, int)
+        self.assertEqual('My username', a_user_nick)
+
+        invalid_token = access_tkn[:60] + access_tkn[90:]
+        a_user_id, a_user_nick, a_exp_time = itv_account.parse_token(invalid_token)
+        self.assertIsNone(a_user_id)
+        self.assertIsNone(a_user_nick)
+        # on parse errors expire time is set to now(), to force a refresh on the next call
+        self.assertIsInstance(a_exp_time, int)
+        self.assertAlmostEqual(a_exp_time, time.time() + time.timezone, delta=1)
 
 
 class AccountMock:

@@ -24,6 +24,9 @@ SESS_DATA_VERS = 2
 
 class ItvSession:
     def __init__(self):
+        self._user_id = None
+        self._user_nickname = None
+        self._expire_time = 0
         self.account_data = {}
         self.read_account_data()
 
@@ -48,13 +51,21 @@ class ItvSession:
     def cookie(self):
         """Return a dict containing the cookie required for authentication"""
         try:
-            if self.account_data['refreshed'] < time.time() - 2 * 3600:
+            if self.account_data['refreshed'] < time.time() - 4 * 3600:
                 # renew tokens periodically
                 self.refresh()
             return self.account_data['cookies']
         except (KeyError, TypeError):
             logger.debug("Cannot produce cookies from account data: %s", self.account_data)
-            raise AuthenticationError
+            raise AuthenticationError from None
+
+    @property
+    def user_id(self):
+        return self._user_id
+
+    @property
+    def user_nickname(self):
+        return self._user_nickname
 
     def read_account_data(self):
         session_file = os.path.join(utils.addon_info.profile, "itv_session")
@@ -74,6 +85,8 @@ class ItvSession:
             self.save_account_data()
         else:
             self.account_data = acc_data
+        access_token = self.account_data.get('itv_session', {}).get('access_token')
+        self._user_id, self._user_nickname, self._expire_time = parse_token(access_token)
 
     def save_account_data(self):
         session_file = os.path.join(utils.addon_info.profile, "itv_session")
@@ -126,6 +139,7 @@ class ItvSession:
                 raise
         else:
             logger.info("Sign in successful")
+            self._user_id, self._user_nickname, self._expire_time = parse_token(session_data.get('access_token'))
             self.save_account_data()
             return True
 
@@ -153,6 +167,7 @@ class ItvSession:
             logger.debug("New Itv.Session cookie: %s" % sess_cookie_str)
             self.account_data['cookies']['Itv.Session'] = sess_cookie_str
             self.account_data['refreshed'] = time.time()
+            self._user_id, self._user_nickname, self._expire_time = parse_token(session_data.get('access_token'))
             self.save_account_data()
             return True
         except (KeyError, ValueError, FetchError) as e:
@@ -165,6 +180,29 @@ class ItvSession:
         self.account_data = {}
         self.save_account_data()
         return True
+
+
+def parse_token(token):
+    """Return user_id, user nickname and token expiration time obtained from an access token.
+
+    Token has other fields which we currently don't parse, like:
+    accountProfileIdInUse
+    auth_time
+    scope
+    nonce
+    iat
+    """
+    import binascii
+    try:
+        token_parts = token.split('.')
+        # Since some padding errors have been observed with refresh tokens, add the maximum just
+        # to be sure padding errors won't occur. a2b_base64 automatically removes excess padding.
+        token_data = binascii.a2b_base64(token_parts[1] + '==')
+        data = json.loads(token_data)
+        return data['sub'], data['name'], data['exp']
+    except (KeyError, AttributeError, IndexError, binascii.Error) as err:
+        logger.error("Failed to parse token: '%r'", err)
+        return None, None, int(time.time()) + time.timezone
 
 
 def build_cookie(session_data):
