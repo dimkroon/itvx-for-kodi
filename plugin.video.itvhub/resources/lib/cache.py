@@ -14,6 +14,7 @@ Stores data in volatile memory for the lifetime of the addon or the specified pe
 
 import time
 import logging
+from copy import deepcopy
 
 from codequick.support import logger_id
 
@@ -33,7 +34,7 @@ def get_item(key):
     item = __cache__.get(key)
     if item and item['expires'] > time.monotonic():
         logger.debug("Data cache: hit")
-        return item['data']
+        return deepcopy(item['data'])
     else:
         logger.debug("Data cache: miss")
         return None
@@ -44,8 +45,9 @@ def set_item(key, data, expire_time=DFLT_EXPIRE_TIME):
 
     """
     item = dict(expires=time.monotonic() + expire_time,
-                data=data)
-    __cache__[key] = item
+                data=deepcopy(data))
+    logger.debug("cached '%s'", key)
+    __cache[key] = item
 
 
 def clean():
@@ -53,8 +55,8 @@ def clean():
     now = time.monotonic()
     for key, item in list(__cache__.items()):
         if item['expires'] < now:
-            logger.debug('Data cache clean removed: %s', key)
-            del __cache__[key]
+            logger.debug('Clean removed: %s', key)
+            del __cache[key]
 
 
 def purge():
