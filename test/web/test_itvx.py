@@ -31,15 +31,15 @@ def dummycallback():
 
 class TestItvX(unittest.TestCase):
     def test_get_now_next_schedule(self):
-        result = itvx.get_live_schedule()
+        result = itvx.get_now_next_schedule()
         for item in result:
-            has_keys(item, 'channel', 'slot')
+            has_keys(item, 'name', 'channelType', 'streamUrl', 'images', 'slot')
         # print(json.dumps(result, indent=4))
 
     def test_get_live_channels(self):
         chan_list = list(itvx.get_live_channels())
         for item in chan_list:
-            self.assertIsInstance(item, dict)
+            has_keys(item, 'name', 'channelType', 'streamUrl', 'images', 'slot')
 
     def test_get_categories(self):
         result = itvx.categories()
@@ -55,11 +55,6 @@ class TestItvX(unittest.TestCase):
             for item in result:
                 self.assertIsInstance(item['playable'], bool)
                 is_li_compatible_dict(self, item['show'])
-
-    def test_get_now_next_schedule(self):
-        result = itvx.get_live_schedule()
-        # TODO: check result
-        print(json.dumps(result, indent=4))
 
     def test_search(self):
         items = itvx.search('the chase')

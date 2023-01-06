@@ -56,10 +56,14 @@ def get_page_data(url, cache_time=None):
     return data
 
 
-def get_live_channels():
-    from tzlocal import get_localzone
-    local_tz = get_localzone()
+def get_now_next_schedule(local_tz=None):
+    if local_tz is None:
+        from tzlocal import get_localzone
+        local_tz = get_localzone()
+
     utc_tz = pytz.utc
+    # Use local time format without seconds. Fix weird kodi formatting for 12-hour clock.
+    time_format = xbmc.getRegion('time').replace(':%S', '').replace('%I%I:', '%I:')
 
     live_data = fetch.get_json(
         'https://nownext.oasvc.itv.com/channels',
@@ -69,26 +73,11 @@ def get_live_channels():
             'platformTag': PLATFORM_TAG})
 
     fanart_url = live_data['images']['backdrop']
-
-    main_schedule = get_live_schedule()
-
     channels = live_data['channels']
 
     for channel in channels:
         channel['backdrop'] = fanart_url
         slots = channel.pop('slots')
-
-        # The itv main live channels get their schedule from the full live schedule
-        if channel['channelType'] == 'simulcast':
-            chan_id = channel['id']
-            for main_chan in main_schedule:
-                # Caution, might get broken when ITV becomes ITV1 everywhere
-                if main_chan['channel']['name'] == chan_id:
-                    channel['slot'] = main_chan['slot']
-                    break
-            if channel.get('slot'):
-                # On to the next channel if adding full schedule succeeded
-                continue
 
         programs_list = []
         for prog in (slots['now'], slots['next']):
@@ -99,16 +88,36 @@ def get_live_channels():
 
             start_t = prog['start'][:19]
             # TODO: check this in DST period
-            utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6])).replace(tzinfo=utc_tz)
+            utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6]), tzinfo=utc_tz)
 
             programs_list.append({
                 'programme_details': details,
                 'programmeTitle': prog['displayTitle'],
                 'orig_start': None,          # fast channels do not support play from start
-                'startTime': utc_start.astimezone(local_tz).strftime('%H:%M')
+                'startTime': utc_start.astimezone(local_tz).strftime(time_format)
             })
         channel['slot'] = programs_list
     return channels
+
+
+def get_live_channels():
+    from tzlocal import get_localzone
+    local_tz = get_localzone()
+
+    schedule = get_now_next_schedule(local_tz)
+    main_schedule = get_live_schedule(local_tz=local_tz)
+
+    # Replace the schedule of the main channels with the longer one obtained from get_live_schedule()
+    for channel in schedule:
+        # The itv main live channels get their schedule from the full live schedule
+        if channel['channelType'] == 'simulcast':
+            chan_id = channel['id']
+            for main_chan in main_schedule:
+                # Caution, might get broken when ITV becomes ITV1 everywhere
+                if main_chan['channel']['name'] == chan_id:
+                    channel['slot'] = main_chan['slot']
+                    break
+    return schedule
 
 
 def main_page_items():
