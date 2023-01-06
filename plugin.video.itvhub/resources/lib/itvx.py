@@ -17,7 +17,7 @@ import xbmc
 
 from codequick.support import logger_id
 
-from . import fetch
+from . import fetch, errors
 from . import parsex
 from . import utils
 from . import cache
@@ -272,12 +272,16 @@ def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """
     import re
-    # TODO: premium content does not have the tag data-video-id without a premium account
+
     logger.info("Get playlist from episode page - url=%s", page_url)
     html_doc = fetch.get_document(page_url)
     logger.debug("successfully retrieved page %s", page_url)
-    play_list_url = re.compile('data-video-id="(.+?)"').search(html_doc)[1]
-    return play_list_url
+    match = re.compile('data-video-id="(.+?)"').search(html_doc)
+    if match:
+        return match[1]
+    else:
+        # premium content does not have a data-video-id property in the episode page
+        raise errors.AccessRestrictedError
 
 
 def search(search_term, hide_paid=False):

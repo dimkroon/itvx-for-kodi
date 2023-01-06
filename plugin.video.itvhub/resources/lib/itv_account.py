@@ -222,8 +222,8 @@ def fetch_authenticated(funct, url, **kwargs):
                     if not (kodi_utils.show_msg_not_logged_in() and account.login()):
                         raise
             else:
-                logger.debug("Authentication failed on second attempt")
-                raise
+                logger.warning("Authentication failed on second attempt")
+                raise AccessRestrictedError
 
 
 def convert_session_data(acc_data: dict) -> dict:

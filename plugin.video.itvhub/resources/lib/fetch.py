@@ -203,6 +203,8 @@ def web_request(method, url, headers=None, data=None, **kwargs):
                 if resp_data.get('error') in ('invalid_grant', 'invalid_request'):
                     descr = resp_data.get("error_description", 'Login failed')
                     raise AuthenticationError(descr)
+                if 'User does not have entitlements' in resp_data.get('Message', ''):
+                    raise AccessRestrictedError()
 
         if e.response.status_code == 401:
             raise AuthenticationError()

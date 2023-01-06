@@ -336,8 +336,9 @@ class Playlists(unittest.TestCase):
         """
         post_data = self.create_post_data('vod')
 
-        # request playlist of an episode of Doc Martin
-        url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
+        if not url:
+            # request playlist of an episode of Doc Martin
+            url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
 
             # The bigger trip - episode 1
             # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
@@ -359,6 +360,13 @@ class Playlists(unittest.TestCase):
         resp = self.get_playlist_catchup()
         strm_data = resp
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+
+    def test_get_playlist_premium_catchup(self):
+        """Request a premium stream without a premium account."""
+        # 2Point4 Children S1E1
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_0848_0006.001')
+        object_checks.has_keys(resp, 'Message', 'TransactionId')
+        self.assertTrue('message: User does not have entitlements' in resp['Message'])
 
     # def test_dash_manifest(self):
     #     url = 'https://itvpnpdotcom.cdn1.content.itv.com/10-2772-0001-001/18/2/VAR028/10-2772-0001-001_18_2_VAR028.ism/.mpd?Policy=eyJTdGF0ZW1lbn' \

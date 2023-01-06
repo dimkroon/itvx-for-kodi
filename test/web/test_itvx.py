@@ -17,7 +17,7 @@ from typing import Generator
 
 from codequick import Route
 
-from resources.lib import itvx
+from resources.lib import itvx, errors
 from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
 
 setUpModule = fixtures.setup_web_test
@@ -67,7 +67,12 @@ class TestItvX(unittest.TestCase):
         episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
+
         # itvx episode page - Nightwatch Series1 episode 2
         episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
+
+        # Premium episode Downton-abbey S1E1
+        episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
+        self.assertRaises(errors.AccessRestrictedError, itvx.get_playlist_url_from_episode_page, episode_url)

@@ -18,7 +18,7 @@ from codequick import Listitem
 from test.support.testutils import open_json
 
 from resources.lib import main
-
+from resources.lib import errors
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -182,3 +182,17 @@ class Search(TestCase):
     def test_search_with_no_results(self, _):
         results = main.do_search(MagicMock(), 'the chase')
         self.assertIs(results, False)
+
+
+class PlayStreamCatchup(TestCase):
+    @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
+    def test_play_premium_episode(self, _):
+        result = main.play_stream_catchup(MagicMock(), 'url', '')
+        self.assertIs(result, False)
+
+
+class PlayTitle(TestCase):
+    @patch('resources.lib.itvx.get_playlist_url_from_episode_page', side_effect=errors.AccessRestrictedError)
+    def test_play_premium_episode(self, _):
+        result = main.play_title(MagicMock(), 'page')
+        self.assertIs(result, False)

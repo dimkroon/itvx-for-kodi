@@ -178,6 +178,10 @@ msgctxt "#30621"
 msgid "Open settings"
 msgstr ""
 
+msgctxt "#30622"
+msgid "This stream is only available to users with an itvX premium account"
+msgstr ""
+
 # Generic button texts
 msgctxt "#30790"
 msgid "OK"
