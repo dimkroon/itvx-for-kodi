@@ -184,7 +184,10 @@ def episodes(url):
     brand_title = brand_data['title']
     brand_thumb = brand_data['imageUrl'].format(**parsex.IMG_PROPS_THUMB)
     brand_fanart = brand_data['imageUrl'].format(**parsex.IMG_PROPS_FANART)
-    brand_description = brand_data['synopses'].get('ninety', '')
+    if 'FREE' in brand_data['tier']:
+        brand_description = brand_data['synopses'].get('ninety', '')
+    else:
+        brand_description = parsex.premium_plot(brand_data['synopses'].get('ninety', ''))
     series_data = brand_data['series']
 
     if not series_data:
@@ -214,6 +217,7 @@ def episodes(url):
             })
         series_obj['episodes'].extend(
             [parsex.parse_episode_title(episode, brand_fanart) for episode in series['episodes']])
+    cache.set_item(url, series_data, )
     return series_map
 
 
