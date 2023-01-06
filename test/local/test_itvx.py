@@ -10,15 +10,15 @@ from test.support import fixtures
 fixtures.global_setup()
 
 from unittest import TestCase
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 import types
 import time
 import pytz
 
 from test.support.testutils import open_json, open_doc
-from test.support.object_checks import has_keys
+from test.support.object_checks import has_keys, is_li_compatible_dict, is_url
 
-from resources.lib import itvx
+from resources.lib import itvx, errors
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -63,7 +63,9 @@ class MainPageItem(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/index.html'))
     def test_list_main_page_items(self):
         items = list(itvx.main_page_items())
-        pass
+        self.assertGreater(len(items), 6)
+        for item in items:
+            is_li_compatible_dict(self, item['show'])
 
 
 class Collections(TestCase):
@@ -103,7 +105,6 @@ class Collections(TestCase):
         self.assertEqual(19, len(items))
         items = list(itvx.collection_content(url='the_costume_collection', hide_paid=True))
         self.assertEqual(16, len(items))
-
 
 
 class Categories(TestCase):
@@ -157,3 +158,19 @@ class Search(TestCase):
     def test_search_without_results(self, _):
         result = itvx.search('xprs')
         self.assertIsNone(result)
+
+
+class GetPLaylistUrl(TestCase):
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/film_love-actually.html'))
+    def test_get_playlist_from_film_page(self):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/episode_marple_s6e3.html'))
+    def test_get_playlist_from_episode_page(self):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
+    def test_get_playlist_from_premium_episode(self):
+        self.assertRaises(errors.AccessRestrictedError, itvx.get_playlist_url_from_episode_page, 'page')

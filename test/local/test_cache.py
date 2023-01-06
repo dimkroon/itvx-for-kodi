@@ -33,6 +33,7 @@ class TestCache(unittest.TestCase):
         self.assertDictEqual(self.my_dict, cache.get_item('3'))
 
     def test_expire_time(self):
+        cache.purge()
         cache.set_item('1', self.my_str, 10)
         cache.set_item('2', self.my_list, -10)
         cache.set_item('3', self.my_dict, 10)

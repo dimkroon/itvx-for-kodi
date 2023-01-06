@@ -17,8 +17,10 @@ from unittest.mock import patch, mock_open, MagicMock
 
 from resources.lib import errors
 from resources.lib import itv_account
+from resources.lib import fetch
 
 from test.support.object_checks import has_keys
+from test.support.testutils import HttpResponse
 
 # noinspection PyPep8Naming
 setUpModule = fixtures.setup_local_tests
@@ -45,18 +47,20 @@ account_data_v1 = {'uname': 'my_uname',
 class TestSession(unittest.TestCase):
     # noinspection PyMethodMayBeStatic
     def test_instantiate_session_class(self):
-        cinetree_sess = itv_account.ItvSession()
-        assert cinetree_sess is not None
+        sess = itv_account.ItvSession()
+        self.assertIsInstance(sess, itv_account.ItvSession)
 
     @patch('resources.lib.itv_account.open', side_effect=OSError)
     def test_instantiate_session_class_with_missing_data_file(self, _):
-        cinetree_sess = itv_account.ItvSession()
-        assert cinetree_sess is not None
+        sess = itv_account.ItvSession()
+        self.assertIsInstance(sess, itv_account.ItvSession)
 
     def test_session(self):
         itv_account._session_obj = None
-        cinetree_sess = itv_account.ItvSession()
-        self.assertIsInstance(cinetree_sess, itv_account.ItvSession)
+        sess_1 = itv_account.itv_session()
+        self.assertIsInstance(sess_1, itv_account.ItvSession)
+        sess_2 = itv_account.itv_session()
+        self.assertIs(sess_1, sess_2)
 
 
 @patch("resources.lib.itv_account.ItvSession.save_account_data")
@@ -255,6 +259,37 @@ class PropAccessToken(unittest.TestCase):
         p_refresh.assert_called_once()
 
 
+class PropCookie(unittest.TestCase):
+    @patch('resources.lib.itv_account.ItvSession.login')
+    @patch('resources.lib.itv_account.ItvSession.refresh')
+    def test_prop_cookie(self, p_refresh, p_login):
+        ct_sess = itv_account.ItvSession()
+        ct_sess.account_data = account_data_v1
+        self.assertEqual(account_data_v1['cookies'], ct_sess.cookie)
+        p_refresh.assert_not_called()
+        p_login.assert_not_called()
+
+    @patch('resources.lib.itv_account.ItvSession.login')
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    def test_prop_cookie_auth_error_on_no_account_data(self, p_refresh, p_login):
+        ct_sess = itv_account.ItvSession()
+        ct_sess.account_data = None
+        with self.assertRaises(errors.AuthenticationError):
+            _ = ct_sess.cookie    # TypeError as mocked login does not update account_data
+        p_login.assert_not_called()
+        p_refresh.assert_not_called()
+
+    @patch('resources.lib.itv_account.ItvSession.login')
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    def test_prop_cookie_with_cache_timed_out_invokes_refresh(self, p_refresh, p_login):
+        ct_sess = itv_account.ItvSession()
+        ct_sess.account_data = deepcopy(account_data_v1)
+        ct_sess.account_data['refreshed'] = time.time() - 13 * 3600     # force a timeout
+        _ = ct_sess.cookie
+        p_login.assert_not_called()
+        p_refresh.assert_called_once()
+
+
 class Misc(unittest.TestCase):
     def test_read_account_data(self):
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v1))):
@@ -290,3 +325,90 @@ class Misc(unittest.TestCase):
         ct_sess.log_out()
         self.assertEqual(ct_sess.account_data, {})
         p_save.assert_called_once()
+
+
+class AccountMock:
+    access_token = '123abc'
+
+    def __init__(self):
+        self.refresh = MagicMock()
+        self.login = MagicMock()
+        self.cookie = MagicMock()
+
+
+URL = 'https://mydoc'
+
+
+class GetAuthenticated(unittest.TestCase):
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch("resources.lib.fetch.get_json", return_value={'a': 1})
+    def test_authenticated_get(self, mocked_get, _):
+        resp = itv_account.fetch_authenticated(fetch.get_json, URL)
+        self.assertEqual({'a': 1}, resp)
+        mocked_get.assert_called_once_with(url=URL, cookies={})
+
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
+    def test_authenticated_meets_auth_error_response(self, mocked_get, mocked_account):
+        """Refresh tokens on authentication error and try again"""
+        resp = itv_account.fetch_authenticated(fetch.get_json, URL)
+        mocked_account.return_value.refresh.assert_called_once()
+        mocked_account.return_value.login.assert_not_called()
+        self.assertEqual(2, mocked_get.call_count)
+        self.assertEqual({'a': 1}, resp)
+
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch('resources.lib.fetch.HttpSession.request',
+           return_value=HttpResponse(status_code=403,
+                                     content=b'{"Message": "UserTokenValidationFailed for user: Some(92a3bfde-bfe1-'
+                                             b'40ea-ad43-09b8b522b7cb) message: User does not have entitlements"}'))
+    def test_authenticated_meets_auth_error_no_subscription(self, mocked_get, mocked_account):
+        """Caused by trying to play a premium stream without a premium account
+        Should raise a AccessRestrictedError without attempts to refresh or login.
+        """
+        self.assertRaises(errors.AccessRestrictedError, itv_account.fetch_authenticated, fetch.get_json, URL)
+        mocked_account.return_value.refresh.assert_not_called()
+        mocked_account.return_value.login.assert_not_called()
+        self.assertEqual(1, mocked_get.call_count)
+
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
+    def test_authenticated_refresh_fails_login_succeeds(self, mocked_get, mocked_account):
+        """Refresh tokens on authentication error and try again"""
+        mocked_account.return_value.refresh.return_value = False
+
+        resp = itv_account.fetch_authenticated(fetch.get_json, URL)
+        mocked_account.return_value.refresh.assert_called_once()
+        mocked_account.return_value.login.assert_called_once()
+        self.assertEqual(2, mocked_get.call_count)
+        self.assertEqual({'a': 1}, resp)
+
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
+    def test_authenticated_refresh_fails_login_rejectd(self, mocked_get, mocked_account):
+        """Refresh tokens failed and the user canceled the request to log in."""
+        mocked_account.return_value.refresh.return_value = False
+        with patch("resources.lib.kodi_utils.show_msg_not_logged_in", return_value=False):
+            self.assertRaises(errors.AuthenticationError, itv_account.fetch_authenticated, fetch.get_json, URL)
+        mocked_account.return_value.refresh.assert_called_once()
+        mocked_account.return_value.login.assert_not_called()
+        self.assertEqual(1, mocked_get.call_count)
+
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
+    def test_authenticated_login_fails(self, mocked_get, mocked_account):
+        """If refresh and login fail, do not try again"""
+        mocked_account.return_value.refresh.return_value = False
+        mocked_account.return_value.login.side_effect = errors.AuthenticationError
+
+        self.assertRaises(errors.AuthenticationError, itv_account.fetch_authenticated, fetch.get_json, URL)
+        mocked_account.return_value.refresh.assert_called_once()
+        mocked_account.return_value.login.assert_called_once()
+        mocked_get.assert_called_once()
+
+    @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
+    @patch("resources.lib.fetch.get_json", side_effect=errors.AuthenticationError)
+    def test_authenticated_not_authenticated_even_after_successful_refresh(self, mocked_get, mocked_account):
+        self.assertRaises(errors.AccessRestrictedError, itv_account.fetch_authenticated, fetch.get_json, URL)
+        mocked_account.return_value.refresh.assert_called_once()
+        self.assertEqual(2, mocked_get.call_count)

@@ -116,8 +116,11 @@ def ask_log_handler(default):
 
 
 def ask_play_from_start(title=None):
-    dlg = xbmcgui.Dialog()
+    if not isinstance(title, (type(None), str)):
+        logger.error("Invalid argument passed to ask_lay_from_start: '%s'", title)
+        raise ValueError('Parameter title must be of type string')
 
+    dlg = xbmcgui.Dialog()
     return dlg.yesno(
             title or 'ITVX',
             Script.localize(TXT_PLAY_FROM_START))

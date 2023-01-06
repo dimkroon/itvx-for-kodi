@@ -97,14 +97,12 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
     return True
 
 
-def check_live_stream_info(playlist, additional_keys=None):
+def check_live_stream_info(playlist):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.online.playlist.sim.v3+json, which is
     returned for live channels
     """
     mandatory_keys = ['Video', 'ProductionId', 'VideoType', 'ContentBreaks', 'Cdn']
-    if additional_keys:
-        mandatory_keys.update(additional_keys)
     has_keys(playlist, *mandatory_keys, obj_name='Playlist')
 
     video_inf = playlist['Video']
@@ -117,10 +115,10 @@ def check_live_stream_info(playlist, additional_keys=None):
     strm_inf = video_inf['VideoLocations']
     assert isinstance(strm_inf, list), 'VideoLocations is not a list but {}'.format(type(strm_inf))
     for strm in strm_inf:
-        assert (strm['Url'].startswith('https://') and '.mpd?' in strm['Url']), \
-            "Unexpected playlist url: <{}>".format(strm['Url'])
-        assert (strm['StartAgainUrl'].startswith('https://') and '.mpd?' in strm['StartAgainUrl']), \
-            "Unexpected StartAgainUrl url: <{}>".format(strm['StartAgainUrl'])
+        assert is_url(strm['Url'], '.mpd')
+        assert is_url(strm['StartAgainUrl'], '.mpd')
+        assert is_url(strm['KeyServiceUrl'])
+        assert '{START_TIME}' in strm['StartAgainUrl']
 
 
 def check_catchup_dash_stream_info(playlist):

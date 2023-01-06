@@ -62,6 +62,7 @@ class LiveSchedules(unittest.TestCase):
         end = now + timedelta(hours=4)
         self.check_schedule(now, end)
 
+    @unittest.skip("Schedules far in the past time out")
     def test_main_channels_schedules_week_in_the_past(self):
         """Live schedules are available to some time in the past.
 
@@ -88,6 +89,7 @@ class LiveSchedules(unittest.TestCase):
             else:
                 raise
 
+    @unittest.skip("Schedules far in the future time out")
     def test_main_channels_schedules_7_days_in_the_future(self):
         """Live schedules are available up to roughly 1 week in the future. Requests for
         more will usually succeed normally, but do not contain more data.
@@ -111,6 +113,7 @@ class LiveSchedules(unittest.TestCase):
         start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
         self.assertAlmostEqual(start_dt.timestamp(), expected_end.timestamp(), delta=86400)  # give or take a day
 
+    @unittest.skip("Schedules far in the past time out")
     def test_one_day_week_ago(self):
         now = datetime.utcnow()
         end = now - timedelta(days=6)
@@ -285,7 +288,7 @@ class Playlists(unittest.TestCase):
 
         return post_data
 
-    def test_get_playlist_live(self):
+    def get_playlist_live(self, channel):
         """Get the playlists of the main live channels
 
         For all channels other than ITV the headers User Agent and Origin are required.
@@ -295,31 +298,49 @@ class Playlists(unittest.TestCase):
         acc_data.refresh()
         post_data = self.create_post_data('live')
 
+        url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
+        resp = requests.post(
+                url,
+                headers={
+                    'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                    'Origin':           'https://www.itv.com',
+                },
+                cookies=fetch.HttpSession().cookies,  # acc_data.cookie,
+                json=post_data,
+                timeout=10
+        )
+        # strm_data = fetch.post_json(
+        #     url, data=post_data,
+        #     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json'},
+        #     cookies=acc_data.cookie)
+        # self.assertEqual(200, resp.status_code)
+        strm_data = resp.json()
+        return strm_data
+
+    def test_get_playlist_live(self):
         for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
-            url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
-            resp = requests.post(
-                    url,
-                    headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
-                             'Origin':           'https://www.itv.com',
-                             # 'Referer':          'https://www.itv.com/',
-                             # 'Sec-Fetch-Dest':   'empty',
-                             # 'Sec-Fetch-Mode':   'cors ',
-                             # 'Sec-Fetch-Site':   'same-site'
-                             },
-                    cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
-                    json=post_data,
-                    timeout=10
-            )
-            # strm_data = fetch.post_json(
-            #     url, data=post_data,
-            #     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json'},
-            #     cookies=acc_data.cookie)
-            # self.assertEqual(200, resp.status_code)
-            strm_data = resp.json()
+            strm_data = self.get_playlist_live(channel)
             object_checks.check_live_stream_info(strm_data['Playlist'])
 
-    def get_playlist_catchup(self):
+    def test_manifest_live(self):
+        strm_data = self.get_playlist_live('ITV')
+        mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['Url']
+        resp = requests.get(
+                mpd_url,
+                headers={
+                    'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                    'Origin':           'https://www.itv.com',
+                },
+                # cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
+                timeout=10
+        )
+        manifest = resp.text
+        self.assertGreater(len(manifest), 1000)
+        self.assertTrue(manifest.startswith('<?xml version='))
+
+    def get_playlist_catchup(self, url=None):
         """Request stream of a catchup episode (i.e. production)
 
         Webbrowsers send several cookies in one single Cookie header:
@@ -368,16 +389,20 @@ class Playlists(unittest.TestCase):
         object_checks.has_keys(resp, 'Message', 'TransactionId')
         self.assertTrue('message: User does not have entitlements' in resp['Message'])
 
-    # def test_dash_manifest(self):
-    #     url = 'https://itvpnpdotcom.cdn1.content.itv.com/10-2772-0001-001/18/2/VAR028/10-2772-0001-001_18_2_VAR028.ism/.mpd?Policy=eyJTdGF0ZW1lbn' \
-    #           'QiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9pdHZwbnBkb3Rjb20uY2RuMS5jb250ZW50Lml0di5jb20vMTAtMjc3Mi0wMDAxLTAwMS8xOC8yL1ZBUjAyOC8xMC0yNzcyLTAw' \
-    #           'MDEtMDAxXzE4XzJfVkFSMDI4LmlzbS8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjYzODI4OTIwfX19XX0_&Signature=SeN' \
-    #           'TRPqvV~jRw59gIIEnXtG4-VvBOSfNnWflCosIAyXm2xZ1ZbUREze0X34-o1v2l1MJ4yvXKMMwDhi7Db5rM-gEq9sgm9twvv5k9sMIeynQ7aBhlafgHSc7GqwB6pQ11i5XY' \
-    #           '29W5F9WfEAcPLkvH4NlXxYzYnKM4RQKofauAjImxrteCG3XAJDu-Dt~JPLR~EJ3MXtodRFJQGnydT~aukIIO3tuyBjAaUKkB1KmXi7RdkTKdO1~5PfNOLPkB3ZCvUb2jqi' \
-    #           'LtUE988solFN8uzOsUKGVVdA--5zahz3RAVIcc9wp8PzDeFj~KEDzMytINmmTIpZUodmWTeu5nYWYRw__&Key-Pair-Id=APKAJB7PCFZAZHWZVIB'
-    #
-    #     try:
-    #         resp = itv_account.fetch_authenticated(fetch.get_document, url)
-    #         return True
-    #     except errors.FetchError:
-    #         return False
+    def test_manifest_vod(self):
+        strm_data = self.get_playlist_catchup()
+        base_url = strm_data['Playlist']['Video']['Base']
+        path = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
+        mpd_url = base_url + path
+        resp = requests.get(
+            mpd_url,
+            headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+                     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                     'Origin': 'https://www.itv.com',
+                     },
+            # cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
+            timeout=10
+        )
+        manifest = resp.text
+        self.assertGreater(len(manifest), 1000)
+        self.assertTrue(manifest.startswith('<?xml version='))

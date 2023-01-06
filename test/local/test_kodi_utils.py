@@ -58,6 +58,11 @@ class TestKodiUtils(unittest.TestCase):
             self.assertEqual(5, result)
             self.assertEqual('', name)
 
+    def test_ask_play_from_start(self):
+        kodi_utils.ask_play_from_start()
+        kodi_utils.ask_play_from_start('Title')
+        self.assertRaises(ValueError, kodi_utils.ask_play_from_start, 1235)
+
     def test_msg_dlg(self):
         kodi_utils.msg_dlg('Message')
         kodi_utils.msg_dlg('Message', 'Title')

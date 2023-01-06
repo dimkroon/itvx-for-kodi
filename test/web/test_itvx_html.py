@@ -21,7 +21,8 @@ setUpModule = fixtures.setup_web_test
 
 
 def check_shows(self, show, parent_name):
-    has_keys(show, 'type', 'title', 'description', 'titleSlug', 'contentInfo', 'imageTemplate', 'encodedEpisodeId',
+    # Not always present: 'contentInfo'
+    has_keys(show, 'type', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     self.assertTrue(show['type'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
         '.'.join((parent_name, show['title'])), show['type']))
@@ -89,7 +90,8 @@ class MainPage(unittest.TestCase):
                 has_keys(item, 'series', obj_name=item['title'])
 
             if item['type'] == 'film':
-                has_keys(item, 'productionYear', 'dateTime', 'duration', obj_name=item['title'])
+                # Fields not always present:  'dateTime'
+                has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
@@ -129,6 +131,7 @@ class CollectionPage(unittest.TestCase):
         page = fetch.get_document('https://www.itv.com/watch/collections/just-in/2RQpkypwh3w8m6738sUHQH')
         # testutils.save_doc(page, 'html/collection_just-in.html')
         data = parsex.scrape_json(page)
+        self.assertIsNotNone(data)
         # testutils.save_json(data, 'html/collection_just-in.json')
 
 
@@ -185,7 +188,9 @@ class WatchPages(unittest.TestCase):
         for url in (
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
-                'https://www.itv.com/watch/midsomer-murders/Ya1096', ):
+                'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                # heartbeat is premium, but series 18 is free.
+                'https://www.itv.com/watch/heartbeat/Ya0757/Ya0757a0372',):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
