@@ -182,8 +182,8 @@ def episodes(url):
     """
     brand_data = get_page_data(url)['title']['brand']
     brand_title = brand_data['title']
-    brand_thumb = brand_data['title'].format(parsex.IMG_PROPS_THUMB)
-    brand_fanart = brand_data['title'].format(parsex.IMG_PROPS_FANART)
+    brand_thumb = brand_data['imageUrl'].format(**parsex.IMG_PROPS_THUMB)
+    brand_fanart = brand_data['imageUrl'].format(**parsex.IMG_PROPS_FANART)
     brand_description = brand_data['synopses'].get('ninety', '')
     series_data = brand_data['series']
 
