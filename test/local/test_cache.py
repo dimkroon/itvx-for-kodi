@@ -9,9 +9,7 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import time
 import unittest
-from unittest.mock import patch, mock_open
 
 from resources.lib import cache
 

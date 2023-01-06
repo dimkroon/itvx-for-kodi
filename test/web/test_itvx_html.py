@@ -23,7 +23,7 @@ setUpModule = fixtures.setup_web_test
 
 def check_shows(self, show, parent_name):
     has_keys(show, 'type', 'title', 'description', 'titleSlug', 'contentInfo', 'imageTemplate', 'encodedEpisodeId',
-             'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name,show['title']))
+             'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     self.assertTrue(show['type'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
         '.'.join((parent_name, show['title'])), show['type']))
     is_url(show['imageTemplate'], '.png')
@@ -112,13 +112,14 @@ class MainPage(unittest.TestCase):
             has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
                      'titleSlug', obj_name='news-slider')
 
-
     def test_get_itvx_logo(self):
-        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-backgrounds.jpg?q=80&format=jpg&w=960&h=540&bg=false&blur=0')
+        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'
+                            'backgrounds.jpg?q=80&format=jpg&w=960&h=540&bg=false&blur=0')
         self.assertEqual(200, resp.status_code)
         img = resp.content
         # testutils.save_binary(img, 'html/itvx-logo-light-bg.jpg')
-        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-dark-backgrounds.jpg?q=80&format=jpg&w=960&bg=false&blur=0')
+        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-dark-'
+                            'backgrounds.jpg?q=80&format=jpg&w=960&bg=false&blur=0')
         self.assertEqual(200, resp.status_code)
         img = resp.content
         # testutils.save_binary(img, 'html/itvx-logo-dark-bg.jpg')
@@ -150,7 +151,7 @@ class WatchPages(unittest.TestCase):
             self.assertIsNone(progr_data['broadcastEndTimestamp'])
 
         if chan_type != 'fast':
-            has_keys(progr_data, 'broadcastStartTimestamp' )
+            has_keys(progr_data, 'broadcastStartTimestamp')
             self.assertTrue(is_iso_time(progr_data['broadcastAt']))
             # check timestamps are integers
             self.assertGreater(int(progr_data['broadcastStartTimestamp']), 0)
@@ -176,8 +177,10 @@ class WatchPages(unittest.TestCase):
         for chan in channel_data['channels']:
             chan_type = chan['channelType']
             self.check_schedule_channel_info(chan)
-            self.check_schedule_now_next_slot(chan['slots']['now'], chan_type, obj_name='{}-Now-on'.format(chan['name']))
-            self.check_schedule_now_next_slot(chan['slots']['next'], chan_type, obj_name='{}-Next-on'.format(chan['name']))
+            self.check_schedule_now_next_slot(chan['slots']['now'], chan_type,
+                                              obj_name='{}-Now-on'.format(chan['name']))
+            self.check_schedule_now_next_slot(chan['slots']['next'], chan_type,
+                                              obj_name='{}-Next-on'.format(chan['name']))
 
     def test_series_page(self):
         for url in (

@@ -39,9 +39,9 @@ def is_url(url, ext=None):
     """Short and simple check if the string `url` is indeed a URL.
     This in no way intended to completely validate the URL - it is just to check
     that the string is not just a path without protocol specification, or just some
-    other string that is not intended to be a URL at all.
+    other string that is not a URL at all.
 
-    :param url, str: String to check.
+    :param url: str: String to check.
     :param ext: Optional file extension (including preceding dot) of the document requested in the URL.
 
     """
@@ -52,7 +52,7 @@ def is_url(url, ext=None):
 
 
 def is_iso_time(time_str):
-    """check if the time string is in the format like yyyy-mm-ddThh:mm:ssZ which is
+    """check if the time string is in a format like yyyy-mm-ddThh:mm:ssZ which is
     often used by itv's web services.
     Accept times with or without milliseconds
     """
@@ -67,7 +67,7 @@ def is_iso_time(time_str):
 
 
 def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
-    """Check if `dict_obj` is dict that can be used with codequick's Listitem.from_dict()
+    """Check if `dict_obj` is a dict that can be passed to codequick's Listitem.from_dict()
 
     """
     testcase.assertIsInstance(dict_obj, dict)
@@ -123,7 +123,7 @@ def check_live_stream_info(playlist, additional_keys=None):
             "Unexpected StartAgainUrl url: <{}>".format(strm['StartAgainUrl'])
 
 
-def check_catchup_dash_stream_info(playlist, additional_keys=None):
+def check_catchup_dash_stream_info(playlist):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.vod.playlist.v2+json, which is
     returned for catchup productions
@@ -131,7 +131,8 @@ def check_catchup_dash_stream_info(playlist, additional_keys=None):
     has_keys(playlist, 'Video', 'ProductionId', 'VideoType', 'ContentBreaks', obj_name='Playlist')
 
     video_inf = playlist['Video']
-    has_keys(video_inf, 'Duration','Timecodes', 'Base', 'MediaFiles', 'Subtitles', 'Token', obj_name="Playlist['Video']")
+    has_keys(video_inf, 'Duration', 'Timecodes', 'Base', 'MediaFiles', 'Subtitles', 'Token',
+             obj_name="Playlist['Video']")
 
     assert isinstance(video_inf['Duration'], str)
     assert isinstance(video_inf['Token'], (type(None), str))
@@ -147,7 +148,7 @@ def check_catchup_dash_stream_info(playlist, additional_keys=None):
         assert isinstance(strm['KeyServiceToken'], str)
 
     subtitles = video_inf['Subtitles']
-    assert isinstance(subtitles, (type(None),list)), 'MediaFiles is not a list but {}'.format(type(strm_inf))
+    assert isinstance(subtitles, (type(None), list)), 'MediaFiles is not a list but {}'.format(type(strm_inf))
     if subtitles is not None:
         for subt in subtitles:
-            assert subt['Href'].startswith('https://') and subt['Href'].endswith('.vtt')
+            assert is_url(subt['Href'], '.vtt')

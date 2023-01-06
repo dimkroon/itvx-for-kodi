@@ -175,10 +175,10 @@ def list_categories(_):
 @dynamic_listing
 def list_category(addon, path, filter_char=None):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                            xbmcplugin.SORT_METHOD_TITLE,
-                            xbmcplugin.SORT_METHOD_DATE,
-                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
-                            disable_autosort=True)
+                           xbmcplugin.SORT_METHOD_TITLE,
+                           xbmcplugin.SORT_METHOD_DATE,
+                           xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                           disable_autosort=True)
     if path.endswith('/films'):
         addon.content_type = 'movies'
 
@@ -320,7 +320,7 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
     logger.info('play live stream - channel=%s, url=%s', channel, url)
 
-    if addon.setting['live_play_from_start'] != 'true'and not play_from_start:
+    if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
         start_time = None
 
     try:

@@ -128,8 +128,7 @@ class ItvSession:
                 'uname': uname,
                 'refreshed': time.time(),
                 'itv_session': session_data,
-                'cookies': {'Itv.Session': build_cookie(session_data)
-                }
+                'cookies': {'Itv.Session': build_cookie(session_data)}
             }
         except FetchError as e:
             # Testing showed that itv hub can return various HTTP status codes on a failed sign in attempt.

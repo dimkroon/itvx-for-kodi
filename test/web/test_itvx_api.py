@@ -99,7 +99,7 @@ class LiveSchedules(unittest.TestCase):
         end = now + timedelta(days=8)
         expected_end = now + timedelta(days=7)
         try:
-             schedule = self.check_schedule(now, end)
+            schedule = self.check_schedule(now, end)
         except (requests.HTTPError, requests.ReadTimeout) as err:
             if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
                 # try again

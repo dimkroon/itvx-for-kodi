@@ -26,7 +26,7 @@ tearDownModule = fixtures.tear_down_local_tests
 
 @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
 class MainMenu(TestCase):
-    def test_main_menu(self,_):
+    def test_main_menu(self, _):
         items = list(main.root(MagicMock()))
         self.assertGreater(len(items), 10)
         for item in items:
@@ -36,7 +36,7 @@ class MainMenu(TestCase):
 @patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
                                                     open_json('schedule/live_4hrs.json')))
 class LiveChannels(TestCase):
-    def test_liste_live_channels(self, _):
+    def test_list_live_channels(self, _):
         chans = main.sub_menu_live(MagicMock())
         self.assertIsInstance(chans, types.GeneratorType)
         chan_list = list(chans)
@@ -73,7 +73,7 @@ class Collections(TestCase):
 
 class Categories(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
-    def test_get_categories(self,_):
+    def test_get_categories(self, _):
         cats = main.list_categories(MagicMock())
         self.assertAlmostEqual(len(cats), 8, delta=2)
         for cat in cats:

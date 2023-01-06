@@ -122,10 +122,9 @@ class Categories(TestCase):
             for progr in program_list:
                 has_keys(progr['show'], 'label', 'info', 'art', 'params')
                 if progr['playable']:
-                    playables +=1
+                    playables += 1
             self.assertGreater(playables, 0)
             self.assertLess(playables, len(program_list) / 2)
-
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_films.json'))
     def test_category_films(self, _):

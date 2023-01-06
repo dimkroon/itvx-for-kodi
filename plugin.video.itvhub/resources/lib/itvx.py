@@ -144,6 +144,7 @@ def collection_content(url=None, slider=None, hide_paid=False):
         else:
             return (parsex.parse_collection_item(item) for item in items_list)
     else:
+        # A Collection that has all it's data on the main page and does not have its own page.
         page_data = get_page_data('https://www.itv.com', cache_time=3600)
 
         if slider == 'newsShortformSliderContent':

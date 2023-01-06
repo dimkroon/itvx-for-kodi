@@ -151,6 +151,7 @@ def parse_collection_item(show_data):
             'show': programme_item}
 
 
+# noinspection GrazieInspection
 def parse_news_collection_item(news_item, time_zone, time_fmt):
     # dateTime field occasionally has milliseconds
     item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
@@ -158,6 +159,7 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
     base_url = 'https://www.itv.com/watch/news/'
     plot = '\n'.join((loc_time.strftime(time_fmt), news_item['synopsis']))
 
+    # Does paid news exists?
     if news_item.get('isPaid'):
         plot = premium_plot(plot)
 
@@ -266,7 +268,7 @@ def parse_search_result(search_data):
 
     return {
         'playable': entity_type != 'programme',
-        'show':{
+        'show': {
             'label': prog_name,
             'art': {'thumb': img_url.format(**IMG_PROPS_THUMB)},
             'info': {'plot': plot,

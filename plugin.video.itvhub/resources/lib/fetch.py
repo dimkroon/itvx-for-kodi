@@ -196,7 +196,7 @@ def web_request(method, url, headers=None, data=None, **kwargs):
             try:
                 resp_data = resp.json()
             except:
-                # Intentional broad exception as requests can raise various types of errors deping on python
+                # Intentional broad exception as requests can raise various types of errors depending on python
                 # version and requests.JSONDecodeError does not always seem to catch them.
                 pass
             else:
