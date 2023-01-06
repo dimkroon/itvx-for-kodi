@@ -13,7 +13,6 @@ fixtures.global_setup()
 from datetime import datetime
 from unittest import TestCase
 
-import resources.lib
 from resources.lib import utils
 
 from test.support.testutils import doc_path
@@ -26,10 +25,9 @@ tearDownModule = fixtures.tear_down_local_tests
 class Generic(TestCase):
     def test_addon_info(self):
         info = utils.addon_info
-        keys = {"name", "id", "addon", "version", "path", "profile"}
-        self.assertEqual(set(info.keys()).intersection(keys), keys)
-        info = utils.create_addon_info("my.some.plugin")
-        self.assertEqual(set(info.keys()).intersection(keys), keys)
+        info.initialise()
+        for attr_name in ('addon', 'name', 'id', 'localise', 'profile'):
+            self.assertTrue(hasattr(info, attr_name))
 
     def test_get_os(self):
         cur_os = utils.get_os()

@@ -58,7 +58,7 @@ class ItvSession:
             raise AuthenticationError
 
     def read_account_data(self):
-        session_file = os.path.join(utils.addon_info['profile'], "itv_session")
+        session_file = os.path.join(utils.addon_info.profile, "itv_session")
         logger.debug("Reading account data from file: %s", session_file)
         try:
             with open(session_file, 'r') as f:
@@ -69,18 +69,10 @@ class ItvSession:
         else:
             if acc_data.get('vers') != SESS_DATA_VERS:
                 acc_data = convert_session_data(acc_data)
-                # TODO: remove this in future versions
-                try:
-                    del acc_data['passw']
-                    del acc_data['uname']
-                    self.save_account_data()
-                    logger.info("Removed username and password from session file")
-                except KeyError:
-                    pass
         self.account_data = acc_data
 
     def save_account_data(self):
-        session_file = os.path.join(utils.addon_info['profile'], "itv_session")
+        session_file = os.path.join(utils.addon_info.profile, "itv_session")
         with open(session_file, 'w') as f:
             json.dump(self.account_data, f)
         logger.debug("ITV account data saved to file")
@@ -238,4 +230,5 @@ def convert_session_data(acc_data: dict) -> dict:
     acc_data['vers'] = SESS_DATA_VERS
     sess_data = acc_data['itv_session']
     acc_data['cookies'] = {'Itv.Session': build_cookie(sess_data)}
+    acc_data.pop('passw', None)
     return acc_data

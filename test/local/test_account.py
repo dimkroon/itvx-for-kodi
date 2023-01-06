@@ -12,7 +12,8 @@ fixtures.global_setup()
 import json
 import time
 import unittest
-from unittest.mock import patch, mock_open
+from copy import deepcopy
+from unittest.mock import patch, mock_open, MagicMock
 
 from resources.lib import errors
 from resources.lib import itv_account
@@ -31,7 +32,8 @@ account_data_v0 = {'uname': 'my_uname', 'passw': 'my_passw',
                    'cookies': {'Itv.Cid': 'xxxxxxxxxxxx'}
                    }
 
-account_data_v1 = {'refreshed': account_data_v0['refreshed'],
+account_data_v1 = {'uname': 'my_uname',
+                   'refreshed': account_data_v0['refreshed'],
                    'itv_session': {'access_token': 'my-token',
                                    'refresh_token': 'my-refresh-token'},
                    'cookies': {'Itv.Session': '{"sticky": true, "tokens": {"content": {"access_token": "my-token", '
@@ -246,7 +248,7 @@ class PropAccessToken(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     def test_prop_access_token_with_cache_timed_out_invokes_refresh(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = account_data_v1
+        ct_sess.account_data = deepcopy(account_data_v1)
         ct_sess.account_data['refreshed'] = time.time() - 13 * 3600     # force a timeout
         _ = ct_sess.access_token
         p_login.assert_not_called()
@@ -269,7 +271,7 @@ class Misc(unittest.TestCase):
             self.assertEqual({}, ct_sess.account_data)
 
     def test_read_account_converts_to_new_format(self):
-        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v0))) as p_open:
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v0))):
             ct_sess = itv_account.ItvSession()
             has_keys(ct_sess.account_data, 'itv_session', 'cookies', 'refreshed', 'vers')
             self.assertEqual(account_data_v1, ct_sess.account_data)

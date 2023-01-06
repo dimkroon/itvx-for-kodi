@@ -12,7 +12,7 @@ class AccountError(Exception):
 class AuthenticationError(FetchError):
     def __init__(self, msg=None):
         super(AuthenticationError, self).__init__(
-            msg or u'Login required')
+            msg or 'Login required')
 
 
 class GeoRestrictedError(FetchError):

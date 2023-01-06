@@ -11,13 +11,14 @@ import typing
 import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run
-from codequick.utils import urljoin_partial as urljoin
 from codequick.support import logger_id, build_path
 
 from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
 from resources.lib import parsex
 from resources.lib import fetch
+from resources.lib import kodi_utils
+from resources.lib import cache
 from resources.lib.errors import *
 
 
@@ -28,13 +29,11 @@ logger.critical('-------------------------------------')
 TXT_SEARCH = 30807
 TXT_NO_ITEMS_FOUND = 30608
 TXT_PLAY_FROM_START = 30620
-
-
-build_url = urljoin('https://www.itv.com/hub/')
+TXT_PREMIUM_CONTENT = 30622
 
 
 def empty_folder():
-    Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO)
+    Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO, display_time=6000)
     return False
 
 
@@ -51,13 +50,14 @@ def dynamic_listing(func=None):
 
     """
     def wrapper(*args, **kwargs):
-        # Codequick will always pass a Router object as positional argument and all other parameters
+        # Codequick will always pass a Router object as 1st positional argument and all other parameters
         # as keyword arguments, but others, like tests, may use position arguments.
         if not kwargs and len(args) < 2:
             logger.debug("Function called without kwargs; return False ")
             # Just return false, which results in Kodi returning to the main menu.
             return False
         else:
+            args[0].register_delayed(cache.clean)
             logger.debug("wrapper diverts route to: %s", func.__name__)
             result = func(*args, **kwargs)
             if isinstance(result, typing.Generator):
@@ -97,7 +97,7 @@ def root(_):
 # To prevent rather long waiting times when a user kind of quickly zaps between channels, the
 # listing is cached for a period short enough to not totally invalidate EPG data.
 
-@Route.register(cache_ttl=4)
+@Route.register(cache_ttl=4, content_type='videos')
 def sub_menu_live(_):
     tv_schedule = itvx.get_live_channels()
 
@@ -143,14 +143,14 @@ def sub_menu_live(_):
         yield li
 
 
-@Route.register(cache_ttl=-1)
+@Route.register(content_type='videos')
 def list_collections(_):
-    slider_data = itvx.get_page_data('https://www.itv.com')['editorialSliders']
+    slider_data = itvx.get_page_data('https://www.itv.com', cache_time=3600)['editorialSliders']
     return [Listitem.from_dict(list_collection_content, **parsex.parse_slider(*slider)['show'])
             for slider in slider_data.items()]
 
 
-@Route.register(cache_ttl=-1)
+@Route.register(cache_ttl=-1, content_type='videos')
 @dynamic_listing
 def list_collection_content(addon, url=None, slider=None):
     shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
@@ -162,8 +162,7 @@ def list_collection_content(addon, url=None, slider=None):
     ]
 
 
-# FIXME: Cache throws error - list_category is not pickable
-@Route.register(cache_ttl=-1)  # 24 * 60)
+@Route.register(content_type='videos')  # 24 * 60)
 def list_categories(_):
     logger.debug("List categories.")
     categories = itvx.categories()
@@ -171,7 +170,7 @@ def list_categories(_):
     return items
 
 
-@Route.register(cache_ttl=-1)
+@Route.register(content_type='videos')
 @dynamic_listing
 def list_category(addon, path, filter_char=None):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
@@ -191,7 +190,8 @@ def list_category(addon, path, filter_char=None):
     ]
 
 
-@Route.register(cache_ttl=-1)
+
+@Route.register(content_type='videos')
 @dynamic_listing
 def list_productions(plugin, url, series_idx=0):
 
@@ -228,15 +228,7 @@ def list_productions(plugin, url, series_idx=0):
             yield li
 
 
-# @Route.register(cache_ttl=480, autosort=False)
-# def sub_menu_from_page(_, url, callback):
-#     """Return the submenu items present a page. Like the categories from page categories"""
-#     logger.info('sub_menu_from_page for url %s, handler = %s', url, callback)
-#     submenu_items = parse.parse_submenu(fetch.get_document(url))
-#     return [Listitem.from_dict(callback, **item) for item in submenu_items]
-
-
-@Route.register()
+@Route.register(content_type='videos')
 @dynamic_listing
 def do_search(addon, search_query):
     search_results = itvx.search(search_term=search_query, hide_paid=addon.setting.get_boolean('hide_paid'))
@@ -359,12 +351,16 @@ def play_stream_catchup(_, url, name):
     try:
         manifest_url, key_service_url, subtitle_url = itv.get_catchup_urls(url)
         logger.debug('dash subtitles url: %s', subtitle_url)
+    except AccessRestrictedError:
+        logger.info('Stream only available with premium account')
+        kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
+        return False
     except FetchError as err:
         logger.error('Error retrieving episode stream urls: %r' % err)
-        Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
+        Script.notify(utils.addon_info.name, str(err), Script.NOTIFY_ERROR)
         return False
     except Exception:
-        logger.error('Error retrieving episode stream urls:', exc_info=True)
+        logger.error('Error retrieving catchup stream urls:', exc_info=True)
         return False
 
     list_item = create_dash_stream_item(name, manifest_url, key_service_url)
@@ -374,7 +370,7 @@ def play_stream_catchup(_, url, name):
 
 
 @Resolver.register
-def play_title(plugin, url, name=None):
+def play_title(plugin, url, name=''):
     """Play an episode from an url to the episode's html page.
 
     While episodes obtained from list_productions() have direct urls to stream's
@@ -382,7 +378,9 @@ def play_title(plugin, url, name=None):
     to the respective episode's details html page.
 
     """
-    url, title = itvx.get_playlist_url_from_episode_page(url)
-    if name is None:
-        name = title
+    try:
+        url = itvx.get_playlist_url_from_episode_page(url)
+    except AccessRestrictedError:
+        kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
+        return False
     return play_stream_catchup(plugin, url, name)

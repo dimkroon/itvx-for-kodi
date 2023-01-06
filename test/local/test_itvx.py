@@ -23,6 +23,7 @@ from resources.lib import itvx
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
 
+
 @patch('resources.lib.fetch.get_json', new=lambda *a, **k: open_json('schedule/now_next.json'))
 class NowNextSchedule(TestCase):
     def test_get_now_next_schedule(self):

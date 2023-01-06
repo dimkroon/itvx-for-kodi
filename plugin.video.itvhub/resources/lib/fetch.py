@@ -103,7 +103,7 @@ def _create_cookiejar():
     apply the default cookies.
 
     """
-    cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
+    cookie_file = os.path.join(utils.addon_info.profile, 'cookies')
 
     try:
         with open(cookie_file, 'rb') as f:

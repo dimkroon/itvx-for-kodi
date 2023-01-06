@@ -8,16 +8,13 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import os
-import json
 import unittest
-import typing
 from unittest.mock import patch
 
 import typing
 
-from resources.lib import itv, fetch, itv_account
-from codequick import Listitem, Route, Script
+from resources.lib import itv
+from codequick import Route
 
 from test.support.object_checks import has_keys
 
@@ -60,14 +57,11 @@ class TestItv(unittest.TestCase):
             # print(result)
 
     def test_get_vtt_subtitles(self):
-        # result = itv.get_catchup_urls('https://magni.itv.com/playlist/itvonline/ITV/10_0591_0001.002')
-        # subtitles_url = result[2]
-        # srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
-        # self.assertIsInstance(srt_file, str)
-        # Doc Martin episode 1
-        srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
+        srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/'
+                                         'WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
         self.assertIsNone(srt_file)
         with patch.object(itv.Script, 'setting', new={'subtitles_show': 'true', 'subtitles_color': 'true'}):
-            srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
+            srt_file = itv.get_vtt_subtitles('https://itvpnpsubtitles.blue.content.itv.com/1-7665-0049-001/Subtitles/2/'
+                                             'WebVTT-OUT-OF-BAND/1-7665-0049-001_Series1662044575_TX000000.vtt')
             self.assertIsInstance(srt_file, typing.Tuple)
             self.assertIsInstance(srt_file[0], str)

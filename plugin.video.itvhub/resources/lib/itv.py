@@ -127,7 +127,7 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             else:
                 if kodi_utils.show_msg_not_logged_in():
                     from xbmc import executebuiltin
-                    executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info['id']))
+                    executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info.id))
                 return False
         else:
             raise
@@ -200,7 +200,7 @@ def get_vtt_subtitles(subtitles_url):
         #     f.write(vtt_doc)
 
         srt_doc = utils.vtt_to_srt(vtt_doc, colourize=Script.setting['subtitles_color'] != 'false')
-        srt_file = os.path.join(utils.addon_info['profile'], 'subitles.srt')
+        srt_file = os.path.join(utils.addon_info.profile, 'subitles.srt')
         with open(srt_file, 'w', encoding='utf8') as f:
             f.write(srt_doc)
 

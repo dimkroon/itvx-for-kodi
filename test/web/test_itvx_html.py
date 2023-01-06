@@ -14,7 +14,6 @@ import unittest
 import requests
 
 from resources.lib import fetch, parsex, utils, errors
-from support import testutils
 from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
 
 
@@ -58,7 +57,7 @@ def check_title(self, title, parent_name):
     if title['titleType'] in ('EPISODE', 'FILM'):
         self.assertFalse(title['duration'].startswith('P'))    # duration is not is iso format
 
-    if title['titleType'] == ('FILM'):
+    if title['titleType'] == 'FILM':
         has_keys(title, 'productionYear',
                  obj_name=obj_name)
 
@@ -83,7 +82,7 @@ class MainPage(unittest.TestCase):
                      'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
             self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film'))
 
-            if item['type'] in ('simulcastspot' 'series'):
+            if item['type'] in ('simulcastspot', 'series'):
                 has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
 
             if item['type'] == 'series':

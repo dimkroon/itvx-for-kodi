@@ -7,7 +7,6 @@
     <import addon="script.module.pytz"/>
     <import addon="script.module.tzlocal"/>
     <import addon="script.module.codequick"/>
-    <import addon="script.module.beautifulsoup4"/>
     <import addon="script.module.inputstreamhelper"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">

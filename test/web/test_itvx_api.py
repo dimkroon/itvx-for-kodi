@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 
 from resources.lib import itv_account
 from resources.lib import fetch
-from test.support import object_checks, testutils
+from test.support import object_checks
 
 setUpModule = fixtures.setup_web_test
 
@@ -334,17 +334,15 @@ class Playlists(unittest.TestCase):
         However, we test with only Itv.Session cookie set and that seems to work fine.
 
         """
-        acc_data = itv_account.itv_session()
         post_data = self.create_post_data('vod')
-        # post_data['user']['itvUserId'] = '92a3bfde-bfe1-40ea-ad43-09b8b522b7cb'
 
         # request playlist of an episode of Doc Martin
         url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
 
-        # The bigger trip - episode 1
-        # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
+            # The bigger trip - episode 1
+            # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
 
-        # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
+            # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
 
         resp = requests.post(
             url,
@@ -355,12 +353,6 @@ class Playlists(unittest.TestCase):
             json=post_data,
             timeout=10)
         resp = resp.json()
-
-        # resp = itv_account.fetch_authenticated(
-        #     fetch.post_json, url,
-        #     data=post_data,
-        #     headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json'})
-
         return resp
 
     def test_get_playlist_catchup(self):

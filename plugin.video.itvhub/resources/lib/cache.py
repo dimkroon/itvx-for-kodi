@@ -19,19 +19,19 @@ from copy import deepcopy
 from codequick.support import logger_id
 
 
-logger = logging.getLogger(logger_id + '.itvx')
+logger = logging.getLogger(logger_id + '.cache')
 # noinspection SpellCheckingInspection
 DFLT_EXPIRE_TIME = 600
 
 
-__cache__ = {}
+__cache = {}
 
 
 def get_item(key):
     """Return the cached data if present in the cache and not expired, or
 
     """
-    item = __cache__.get(key)
+    item = __cache.get(key)
     if item and item['expires'] > time.monotonic():
         logger.debug("Data cache: hit")
         return deepcopy(item['data'])
@@ -53,7 +53,7 @@ def set_item(key, data, expire_time=DFLT_EXPIRE_TIME):
 def clean():
     """Remove expired items form the cache"""
     now = time.monotonic()
-    for key, item in list(__cache__.items()):
+    for key, item in list(__cache.items()):
         if item['expires'] < now:
             logger.debug('Clean removed: %s', key)
             del __cache[key]
@@ -61,8 +61,8 @@ def clean():
 
 def purge():
     """Empty the cache"""
-    __cache__.clear()
+    __cache.clear()
 
 
 def size():
-    return len(__cache__)
+    return len(__cache)

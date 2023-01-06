@@ -10,13 +10,12 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import os
-import json
+
 import unittest
 
 from typing import Generator
 
-from codequick import Listitem, Route, Script
+from codequick import Route
 
 from resources.lib import itvx
 from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
@@ -66,11 +65,9 @@ class TestItvX(unittest.TestCase):
     def test_get_playlist_url_from_episode_page(self):
         # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002
         episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
-        url, name = itvx.get_playlist_url_from_episode_page(episode_url)
-        self.assertEqual('', name)
-        self.assertTrue(url.startswith('https://'))
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))
         # itvx episode page - Nightwatch Series1 episode 2
         episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
-        rl, name = itvx.get_playlist_url_from_episode_page(episode_url)
-        self.assertEqual('', name)
-        self.assertTrue(url.startswith('https://'))
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))

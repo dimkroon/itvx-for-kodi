@@ -130,8 +130,6 @@ def main_page_items():
     if 'newsShortformSliderContent' in main_data.keys():
         yield {'type': 'collection',
                'show': {'label': 'News', 'params': {'slider': 'newsShortformSliderContent'}}}
-    # for slider_item in main_data['editorialSliders'].items():
-    #     yield parsex.parse_slider(*slider_item)
 
 
 def collection_content(url=None, slider=None, hide_paid=False):
@@ -270,10 +268,6 @@ def category_content(url: str, hide_paid=False):
                'show': programme_item}
 
 
-cached_programs = {}
-CACHE_TIME = 600
-
-
 def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
     """
@@ -282,9 +276,8 @@ def get_playlist_url_from_episode_page(page_url):
     logger.info("Get playlist from episode page - url=%s", page_url)
     html_doc = fetch.get_document(page_url)
     logger.debug("successfully retrieved page %s", page_url)
-    name = ''
     play_list_url = re.compile('data-video-id="(.+?)"').search(html_doc)[1]
-    return play_list_url, name
+    return play_list_url
 
 
 def search(search_term, hide_paid=False):

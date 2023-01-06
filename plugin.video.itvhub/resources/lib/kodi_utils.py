@@ -12,6 +12,7 @@ import xbmcgui
 from codequick import Script, utils
 from codequick.support import addon_data, logger_id
 
+from . utils import addon_info
 
 logger = logging.getLogger(logger_id + '.kodi_utils')
 
@@ -120,3 +121,14 @@ def ask_play_from_start(title=None):
     return dlg.yesno(
             title or 'ITVX',
             Script.localize(TXT_PLAY_FROM_START))
+
+
+def msg_dlg(msg, title=None):
+    if not isinstance(msg, str) or not isinstance(title, (type(None), str)):
+        logger.error("Invalid argument passed to message dialog: '%s', '%s'", msg, title)
+        raise ValueError('Arguments must be of type string')
+
+    dlg = xbmcgui.Dialog()
+    if title is None:
+        title = addon_info.name
+    dlg.ok(title, msg)

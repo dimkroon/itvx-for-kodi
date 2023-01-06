@@ -31,13 +31,12 @@ IMG_PROPS_FANART = {'treatment': '', 'aspect_ratio': '16x9', 'class': '01_Hero_D
                     'quality': '80', 'blur': 0, 'bg': 'false', 'image_format': 'jpg'}
 
 
+url_trans_table = str.maketrans(' ', '-', '#/?')
+
+
 def build_url(programme, programme_id, episode_id=None):
-    base_url = ('https://www.itv.com/watch/' + programme.lower()
-                .replace(' ', '-')
-                .replace('&', 'and')
-                .replace('#', '')
-                .replace('/', '')
-                .replace('?', ''))
+    progr_slug = programme.lower().replace('&', 'and').translate(url_trans_table)
+    base_url = ('https://www.itv.com/watch/' + progr_slug)
     if episode_id:
         return '/'.join((base_url, programme_id, episode_id))
     else:
