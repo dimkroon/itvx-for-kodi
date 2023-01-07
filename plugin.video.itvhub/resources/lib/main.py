@@ -202,7 +202,7 @@ def list_productions(plugin, url, series_idx=0):
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    series_map = itvx.episodes(url)
+    series_map = itvx.episodes(url, use_cache=True)
     if not series_map:
         return
 

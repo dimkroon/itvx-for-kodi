@@ -146,6 +146,16 @@ class Episodes(TestCase):
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
 
+    @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
+    def test_episodes_with_cache(self, p_fetch):
+        series_listing = itvx.episodes('asd', use_cache=False)
+        self.assertIsInstance(series_listing, dict)
+        self.assertEqual(len(series_listing), 6)
+        series_listing = itvx.episodes('asd', use_cache=True)
+        self.assertIsInstance(series_listing, dict)
+        self.assertEqual(len(series_listing), 6)
+        p_fetch.assert_called_once()
+
 
 class Search(TestCase):
     @patch('resources.lib.fetch.get_json', return_value=open_json('search/the_chase.json'))

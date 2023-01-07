@@ -173,14 +173,19 @@ def collection_content(url=None, slider=None, hide_paid=False):
                 return (parsex.parse_collection_item(item) for item in items_list)
 
 
-def episodes(url):
+def episodes(url, use_cache=False):
     """Get a listing of series and their episodes
 
     Return a list containing only relevant info in a format that can easily be
     used by codequick Listitem.from_dict.
 
     """
-    brand_data = get_page_data(url)['title']['brand']
+    if use_cache:
+        cached_data = cache.get_item(url)
+        if cached_data is not None:
+            return cached_data
+
+    brand_data = get_page_data(url, cache_time=0)['title']['brand']
     brand_title = brand_data['title']
     brand_thumb = brand_data['imageUrl'].format(**parsex.IMG_PROPS_THUMB)
     brand_fanart = brand_data['imageUrl'].format(**parsex.IMG_PROPS_FANART)
@@ -217,7 +222,7 @@ def episodes(url):
             })
         series_obj['episodes'].extend(
             [parsex.parse_episode_title(episode, brand_fanart) for episode in series['episodes']])
-    cache.set_item(url, series_data, )
+    cache.set_item(url, series_map)
     return series_map
 
 

@@ -87,6 +87,7 @@ class Categories(TestCase):
             self.assertIsInstance(prog, Listitem)
 
 
+@patch("resources.lib.cache.get_item", new=lambda *a, **k: None)     # disable cache
 class Productions(TestCase):
     @patch("resources.lib.itvx.episodes", return_value=[])
     def test_empty_productions_list(self, _):
