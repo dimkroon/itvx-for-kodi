@@ -33,7 +33,8 @@ TXT_PREMIUM_CONTENT = 30622
 
 
 def empty_folder():
-    Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO, display_time=6000)
+    kodi_utils.msg_dlg(Script.localize(TXT_NO_ITEMS_FOUND))
+    # Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO, display_time=6000)
     return False
 
 
@@ -66,8 +67,7 @@ def dynamic_listing(func=None):
                 return result
             else:
                 # Anything that evaluates to False is 'no items found'.
-                Script.notify('itvX', Script.localize(TXT_NO_ITEMS_FOUND), Script.NOTIFY_INFO, 7000)
-                return False
+                return empty_folder()
     if func is None:
         return wrapper()
     else:
