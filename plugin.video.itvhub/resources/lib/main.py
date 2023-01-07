@@ -193,7 +193,7 @@ def list_category(addon, path, filter_char=None):
 
 @Route.register(content_type='videos')
 @dynamic_listing
-def list_productions(plugin, url, series_idx=0):
+def list_productions(plugin, url, series_idx=None):
 
     logger.info("Getting productions for series '%s' of '%s'", series_idx, url)
 
@@ -210,21 +210,21 @@ def list_productions(plugin, url, series_idx=0):
         # List the episodes if there is only 1 series
         opened_series = list(series_map.values())[0]
     else:
-        opened_series = series_map.pop(series_idx, None)
+        opened_series = series_map.get(series_idx, None)
 
-        # First create folders for series
-        for series in series_map.values():
-            li = Listitem.from_dict(list_productions, **series['series'])
-            yield li
-
-    # Now create episode items for the opened series folder
     if opened_series:
+        # list episodes of a series
         episodes = opened_series['episodes']
         for episode in episodes:
             li = Listitem.from_dict(play_stream_catchup, **episode)
             date = episode['info'].get('date')
             if date:
                 li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
+            yield li
+    else:
+        # List folders of all series
+        for series in series_map.values():
+            li = Listitem.from_dict(list_productions, **series['series'])
             yield li
 
 
