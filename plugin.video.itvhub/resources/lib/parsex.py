@@ -118,7 +118,7 @@ def parse_collection_item(show_data):
     """
     is_playable = show_data['type'] == 'title'
     title = show_data['title']
-    content_info = show_data.get('contentInfo')
+    content_info = show_data.get('contentInfo', '')
     sort_title = title.lower()
 
     if show_data.get('isPaid'):
