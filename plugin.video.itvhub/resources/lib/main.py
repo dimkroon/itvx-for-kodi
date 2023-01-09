@@ -7,11 +7,12 @@
 
 import logging
 import typing
+import string
 
 import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run
-from codequick.support import logger_id, build_path
+from codequick.support import logger_id, build_path, dispatcher
 
 from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
@@ -75,7 +76,75 @@ def dynamic_listing(func=None):
         return wrapper
 
 
-@Route.register
+class Paginator:
+    def __init__(self, items_list, filter_char, page_nr, **kwargs):
+        self._items_list = items_list
+        self._filter = filter_char
+        self._page_nr = page_nr
+        self._kwargs = kwargs
+        self._addon = utils.addon_info.addon
+
+    def _show_az_list(self):
+        az_len = self._addon.getSettingInt('a-z_size')
+        items_list = self._items_list
+        list_len = len(items_list)
+        if not self._filter and az_len and list_len >= az_len:
+            logger.debug("List size %s exceeds maximum of %s items; creating A-Z subdivision", list_len, az_len)
+            return True
+
+    def _generate_az(self):
+        char_list = utils.list_start_chars(self._items_list)
+        kwargs = self._kwargs
+        callb = dispatcher.get_route().callback
+        for char in char_list:
+            params = {'filter_char': char, 'page_nr': 0}
+            params.update(kwargs)
+            yield Listitem.from_dict(callb, char, params=params)
+
+    def _generate_page(self):
+        shows_list = self._items_list
+        if not shows_list:
+            return
+
+        page_len = self._addon.getSettingInt('page_len')
+        filter_char = self._filter
+
+        if filter_char:
+            if len(filter_char) == 1:
+                # filter on a single character
+                filter_char = filter_char.lower()
+                shows_list = [prog for prog in shows_list if prog['show']['info']['sorttitle'][0] == filter_char]
+            else:
+                # like '0-9'. Return anything not starting with a letter
+                filter_chars = string.ascii_lowercase
+                shows_list = [prog for prog in shows_list if prog['show']['info']['sorttitle'][0] not in filter_chars]
+            logger.debug("Filtering on '%s' produced %s items", filter_char, len(shows_list))
+
+        if page_len:
+            shows_list, next_page_nr = utils.paginate(shows_list, self._page_nr, page_len)
+            logger.debug("Creating page %s with %s items", self._page_nr, len(shows_list))
+        else:
+            next_page_nr = 0
+
+        for show in shows_list:
+            if show['playable']:
+                yield Listitem.from_dict(play_title, **show['show'])
+            else:
+                yield Listitem.from_dict(list_productions, **show['show'])
+
+        if next_page_nr:
+            li = Listitem.next_page(filter_char=self._filter, page_nr=next_page_nr, **self._kwargs)
+            li.info['sorttitle'] = 'zzzzzz'
+            yield li
+
+    def __iter__(self):
+        if self._show_az_list():
+            return self._generate_az()
+        else:
+            return self._generate_page()
+
+
+@Route.register(content_type='videos')
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     # yield Listitem.from_dict(sub_menu_shows, 'Shows')
@@ -152,14 +221,11 @@ def list_collections(_):
 
 @Route.register(cache_ttl=-1, content_type='videos')
 @dynamic_listing
-def list_collection_content(addon, url=None, slider=None):
+def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=0):
     shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
-    return [
-        Listitem.from_dict(play_title, **show['show'])
-        if show['playable'] else
-        Listitem.from_dict(list_productions, **show['show'])
-        for show in shows_list
-    ]
+    logger.info("Listed collection %s%s with %s items", url, slider, len(shows_list))
+    paginator = Paginator(shows_list, filter_char, page_nr, url=url)
+    yield from paginator
 
 
 @Route.register(content_type='videos')  # 24 * 60)
@@ -172,9 +238,8 @@ def list_categories(_):
 
 @Route.register(content_type='videos')
 @dynamic_listing
-def list_category(addon, path, filter_char=None):
+def list_category(addon, path, filter_char=None, page_nr=0):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                           xbmcplugin.SORT_METHOD_TITLE,
                            xbmcplugin.SORT_METHOD_DATE,
                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                            disable_autosort=True)
@@ -182,13 +247,10 @@ def list_category(addon, path, filter_char=None):
         addon.content_type = 'movies'
 
     shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_paid'))
-    return [
-        Listitem.from_dict(play_title, **show['show'])
-        if show['playable'] else
-        Listitem.from_dict(list_productions, **show['show'])
-        for show in shows_list
-    ]
 
+    logger.info("Listed category %s with % items", path, len(shows_list))
+    paginator = Paginator(shows_list, filter_char, page_nr, path=path)
+    yield from paginator
 
 
 @Route.register(content_type='videos')
@@ -331,7 +393,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
     if list_item:
-        # list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+        list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
         if start_time and start_time in manifest_url:
             # cut the first few seconds of video without audio
             list_item.property['ResumeTime'] = '8'

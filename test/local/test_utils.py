@@ -10,6 +10,7 @@
 from test.support import fixtures
 fixtures.global_setup()
 
+import string
 from datetime import datetime
 from unittest import TestCase
 
@@ -61,6 +62,41 @@ class Generic(TestCase):
     def test_strptime(self):
         self.assertEqual(datetime(2012, 9, 14, 18, 32, 45),
                          utils.strptime('2012-09-14T18:32:45Z', '%Y-%m-%dT%H:%M:%SZ'))
+
+    def test_paginate(self):
+        letters = list(string.ascii_letters)
+        lower, next_page_nr = utils.paginate(letters, page_nr=0, page_len=26)
+        self.assertEqual(lower, list(string.ascii_lowercase))
+        self.assertEqual(1, next_page_nr)
+        upper, next_page_nr = utils.paginate(letters, 1, 26)
+        self.assertEqual(upper, list(string.ascii_uppercase))
+        self.assertIs(next_page_nr, None)
+        # merge the remaining 10 of the second page into the first
+        all_letters, next_page_nr = utils.paginate(letters, 0, 42, 10)
+        self.assertEqual(all_letters, letters)
+        self.assertIs(next_page_nr, None)
+        # a small page
+        self.assertListEqual([1,2,3,4], utils.paginate([1,2,3,4], page_nr=0, page_len=10)[0])
+        # invalid page nr
+        self.assertListEqual([], utils.paginate([1, 2, 3, 4], page_nr=2, page_len=10)[0])
+
+
+    def test_list_start_chars(self):
+        items = [
+            {'show': {'info': {'sorttitle': 'asgf'}}},
+            {'show': {'info': {'sorttitle': 'bhfl'}}},
+            {'show': {'info': {'sorttitle': 'krinj'}}},
+            {'show': {'info': {'sorttitle': 'xhkjh khjkh'}}},
+            {'show': {'info': {'sorttitle': 'ujjm'}}},
+        ]
+        char_list  = utils.list_start_chars(items)
+        self.assertListEqual(char_list, ['A', 'B', 'K', 'U', 'X'])
+        items.extend([{'show': {'info': {'sorttitle': '#maf '}}}, {'show': {'info': {'sorttitle': '1 ffrk'}}}])
+        char_list = utils.list_start_chars(items)
+        self.assertListEqual(char_list, ['A', 'B', 'K', 'U', 'X', '0-9'])
+        items = [{'show': {'info': {'sorttitle': '#maf '}}}]
+        char_list = utils.list_start_chars(items)
+        self.assertListEqual(char_list, ['0-9'])
 
 
 # noinspection PyMethodMayBeStatic

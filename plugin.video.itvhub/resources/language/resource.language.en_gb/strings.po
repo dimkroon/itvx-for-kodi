@@ -37,6 +37,14 @@ msgctxt "#30104"
 msgid "Hide premium content"
 msgstr ""
 
+msgctxt "#30105"
+msgid "Maximum number of items per page"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Minimum number of items for A-Z listing."
+msgstr ""
+
 msgctxt "#30110"
 msgid "Logging"
 msgstr ""
@@ -90,6 +98,15 @@ msgstr ""
 
 msgctxt "#30304"
 msgid "Hide content that is only available with a paid itvX-premium account."
+msgstr ""
+
+msgctxt "#30305"
+msgid "The number of items per page. Listings with more items are split up into multiple pages.\n"
+"This affects a listing of a category or a collection."
+msgstr ""
+
+msgctxt "#30306"
+msgid "When a category or collection has more items than specified here, an A-Z list will be used."
 msgstr ""
 
 msgctxt "#30311"

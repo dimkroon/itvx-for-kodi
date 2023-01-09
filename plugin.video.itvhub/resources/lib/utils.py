@@ -246,3 +246,32 @@ def reformat_date(date_string: str, old_format: str, new_format: str):
 def strptime(dt_str: str, format: str):
     """A bug free alternative to `datetime.datetime.strptime(...)`"""
     return datetime(*(time.strptime(dt_str, format)[0:6]))
+
+
+def paginate(items: list, page_nr: int, page_len: int, merge_count: int = 5):
+    """Return a subset of the list.
+
+    Prevent last pages of `merge_count` or fewer items by adding them to the previous page.
+    """
+    start = page_nr * page_len
+    end = start + page_len
+    if end + merge_count < len(items):
+        return items[start:end], page_nr + 1
+    else:
+        return items[start:end + merge_count], None
+
+
+def list_start_chars(items: list):
+    """Return a list of all starting character present in the sorttitles in the list `items`.
+
+    Used to create an A-Z listing to subdivide long lists of items, but only list those
+    characters that have actual items.
+
+    """
+    start_chars = set(item['show']['info']['sorttitle'][0].upper() for item in items)
+    az_chars = list(string.ascii_uppercase)
+    char_list = sorted(start_chars.intersection(az_chars))
+    if start_chars.difference(char_list):
+        # Anything not a letter
+        char_list.append('0-9')
+    return char_list
