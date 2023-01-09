@@ -15,7 +15,7 @@ import requests
 
 from resources.lib import fetch, parsex, utils, errors
 from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
-
+from support import testutils
 
 setUpModule = fixtures.setup_web_test
 
@@ -81,10 +81,13 @@ class MainPage(unittest.TestCase):
         for item in page_props['heroContent']:
             has_keys(item, 'type', 'title', 'imageTemplate', 'programmeId', 'description',
                      'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
-            self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film'))
+            self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film', 'special'))
 
             if item['type'] in ('simulcastspot', 'series'):
                 has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
+
+            if item['type'] == 'special':
+                has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
 
             if item['type'] == 'series':
                 has_keys(item, 'series', obj_name=item['title'])
@@ -105,8 +108,11 @@ class MainPage(unittest.TestCase):
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])
         for item in page_props['trendingSliderContent']['items']:
-            has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'encodedEpisodeId', 'contentType',
-                     'contentInfo', 'titleSlug', obj_name='trending-slider')
+            has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'contentType',
+                     'contentInfo', 'titleSlug', obj_name='trending-slider_' + item['title'])
+            # Must have either an episode id when the underlying item is an episode, but there
+            # is no way to check the item's type
+            # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
 
         self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
         for item in page_props['newsShortformSliderContent']['items']:

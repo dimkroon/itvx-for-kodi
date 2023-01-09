@@ -35,7 +35,10 @@ url_trans_table = str.maketrans(' ', '-', '#/?')
 
 
 def build_url(programme, programme_id, episode_id=None):
-    progr_slug = programme.lower().replace('&', 'and').translate(url_trans_table)
+    progr_slug = (programme.lower()
+                           .replace('&', 'and')
+                           .replace(' - ', '-')
+                           .translate(url_trans_table))
     base_url = ('https://www.itv.com/watch/' + progr_slug)
     if episode_id:
         return '/'.join((base_url, programme_id, episode_id))
@@ -66,11 +69,12 @@ def scrape_json(html_page):
 
 def parse_hero_content(hero_data):
     item_type = hero_data['type']
+    title = hero_data['title']
     item = {
         'label': hero_data['title'],
         'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
                 'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
-        'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(hero_data['title'])}
+        'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(title)}
 
     }
     brand_img = item.get('brandImageTemplate')
@@ -85,13 +89,24 @@ def parse_hero_content(hero_data):
     elif item_type == 'series':
         item['info'].update(plot='[B]Series {}[/B]\n{}'.format(hero_data.get('series', '?'),
                                                                hero_data.get('description')))
-        item['params'] = {'url': build_url(hero_data['title'], hero_data['encodedProgrammeId']['letterA']),
+        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                           'series_idx': hero_data.get('series')}
+
+    elif item_type == 'special':
+        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
+                            duration=utils.duration_2_seconds(hero_data.get('duration')))
+        item['params'] = {'url': build_url(title,
+                                           hero_data['encodedProgrammeId']['letterA'],
+                                           hero_data['encodedEpisodeId']['letterA']),
+                          'name': title}
 
     elif item_type == 'film':
         item['info'].update(plot='[B]Watch Film[/B]\n' + hero_data.get('description'),
                             duration=utils.duration_2_seconds(hero_data['duration']))
-        item['params'] = {'url': build_url(hero_data['title'], hero_data['encodedProgrammeId']['letterA'])}
+        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                          'name': title}
+    else:
+        logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
     return {'type': item_type, 'show': item}
 
 
@@ -179,6 +194,11 @@ def parse_trending_collection_item(trending_item):
     if trending_item.get('isPaid'):
         plot = premium_plot(plot)
 
+    # NOTE:
+    # Especially titles of type 'special' may lack a field episodeID. For those titles it
+    # should not be necessary, but for episodes they are a requirement otherwise the page
+    # will always return the first episode.
+
     return{
         'playable': True,
         'show': {
@@ -187,7 +207,7 @@ def parse_trending_collection_item(trending_item):
             'info': {'plot': plot},
             'params': {'url': build_url(trending_item['titleSlug'],
                                         trending_item['encodedProgrammeId']['letterA'],
-                                        trending_item['encodedEpisodeId']['letterA'])}
+                                        trending_item.get('encodedEpisodeId', {}).get('letterA'))}
         }
     }
 
