@@ -268,3 +268,229 @@ class Shows(unittest.TestCase):
         self.assertGreater(len(data['brands']), 500)
         self.assertGreater(len(data['titles']), 400)
 
+
+    def test_request_a_titles_lagacy_id(self):
+        query = """
+        query TitleLegacyId($broadcaster: Broadcaster, $titleLegacyId: TitleLegacyId, $features: [Feature!]) {
+            titles(filter: {legacyId: $titleLegacyId, broadcaster: $broadcaster, available: "NOW", platform: MOBILE, features: $features, tiers: ["FREE", "PAID"]}) { 
+                __typename 
+                brandLegacyId 
+            } 
+        }
+        """
+        vars = ('{'
+                '"broadcaster":"UNKNOWN",'
+                '"titleLegacyId":"10/3819/0001",'
+                '"features":["HD","PROGRESSIVE","SINGLE_TRACK ","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD","INBAND_TTML","HLS","AES","INBAND_WEBVTT" ]'
+                '}')
+        operationName = 'TitleLegacyId'
+
+
+    def test_get_episode_page(self):
+        query = """
+            'query=query EpisodePage($broadcaster: Broadcaster, $brandLegacyId: BrandLegacyId, $features: [Feature!]) { 
+                brands(filter: {legacyId: $brandLegacyId, tiers: ["FREE", "PAID"]}) { 
+                    __typename 
+                    title 
+                    tier 
+                    imageUrl(imageType: ITVX) 
+                    synopses { 
+                        __typename 
+                        ninety 
+                    } 
+                    earliestAvailableTitle { 
+                        __typename 
+                        ccid 
+                    } 
+                    latestAvailableTitle { 
+                        __typename 
+                        ccid 
+                    } s
+                    eries(sortBy: SEQUENCE_ASC) { 
+                        __typename 
+                        seriesNumber 
+                    } 
+                    channel { 
+                        __typename 
+                        name 
+                    } 
+                } 
+                titles(filter: {brandLegacyId: $brandLegacyId, broadcaster: $broadcaster, available: "NOW", platform: MOBILE, features: $features, tiers: ["FREE", "PAID"]}, sortBy: SEQUENCE_ASC) { 
+                    __typename ...TitleFields 
+                } 
+            } fragment TitleFields on Title { 
+                __typename 
+                titleType 
+                ccid 
+                legacyId 
+                brandLegacyId 
+                title 
+                brand { 
+                    __typename 
+                    title 
+                    ccid 
+                    legacyId 
+                    synopses { 
+                        __typename 
+                        ninety 
+                    } 
+                    tier 
+                    latestAvailableEpisode { 
+                        __typename 
+                        ccid 
+                        title 
+                    } 
+                    genres(filter: {hubCategory: true}) { 
+                        __typename name 
+                    } 
+                    channel { 
+                        __typename 
+                        name 
+                    } 
+                    earliestAvailableSeries { 
+                        __typename 
+                        seriesNumber 
+                    } 
+                    latestAvailableSeries { 
+                        __typename 
+                        seriesNumber 
+                    } 
+                    numberOfAvailableSeries 
+                } 
+                merchandisingTags { 
+                    __typename 
+                    id 
+                } 
+                nextAvailableTitle { 
+                    __typename 
+                    ccid 
+                    legacyId 
+                    latestAvailableVersion { 
+                        __typename 
+                        legacyId 
+                    } 
+                } 
+                channel { 
+                    __typename 
+                    name 
+                    strapline 
+                } 
+                broadcastDateTime 
+                synopses { 
+                    __typename 
+                    ninety 
+                } 
+                imageUrl(imageType: ITVX) 
+                regionalisation 
+                latestAvailableVersion { 
+                    __typename 
+                    legacyId 
+                    duration 
+                    playlistUrl 
+                    duration 
+                    compliance { 
+                        __typename 
+                        displayableGuidance 
+                    } 
+                    availability { 
+                        __typename 
+                        downloadable 
+                        end 
+                        start 
+                        maxResolution 
+                        adRule 
+                    } .
+                    ..VariantsFields 
+                    linearContent 
+                    visuallySigned 
+                    duration 
+                    scheduleEvent { 
+                        __typename 
+                        broadcastDateTime 
+                        originalBroadcastDateTime 
+                    } 
+                } 
+                contentOwner 
+                partnership 
+                ... on Episode { 
+                    ...EpisodeInfo 
+                } 
+                ... on Film { 
+                    ...FilmInfo 
+                } 
+                ... on Special { 
+                    ...SpecialInfo 
+                } 
+            } f
+            ragment 
+            VariantsFields on Version { 
+                __typename 
+                variants(filter: {features: $features}) {
+                    __typename 
+                    features 
+                    variantId 
+                    platform 
+                } 
+            } 
+            fragment 
+            EpisodeInfo on Episode { 
+                __typename 
+                series { 
+                    __typename 
+                    ...SeriesInfo 
+                } 
+                episodeNumber 
+                tier 
+            } 
+            fragment SeriesInfo on Series { 
+                __typename 
+                longRunning 
+                fullSeries 
+                seriesNumber 
+                numberOfAvailableEpisodes 
+            } 
+            fragment FilmInfo on Title { 
+                __typename 
+                ... on Film { 
+                    title 
+                    tier 
+                    imageUrl(imageType: ITVX) 
+                    synopses { 
+                        __typename 
+                        ninety 
+                    } 
+                    categories 
+                    genres { 
+                        __typename 
+                        id 
+                        name 
+                        hubCategory 
+                    } 
+                } 
+            } 
+            fragment SpecialInfo on Special { 
+                __typename 
+                title 
+                tier 
+                imageUrl(imageType: ITVX) 
+                synopses { 
+                    __typename 
+                    ninety 
+                    thousand 
+                } 
+                categories 
+                genres { 
+                `   __typename 
+                    id 
+                    name 
+                    hubCategory 
+                } 
+            }
+        """
+        vars = ('{'
+                '"broadcaster":"UNKNOWN",'
+                '"brandLegacyId":"10/3819",'
+                '"features":["HD","PROGRESSIVE","SINGLE_TRACK","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD","INBAND_TTML","HLS","AES","INBAND_WEBVTT","OUTBAND_WEBVTT","INBAND_AUDIO_DESCRIPTION"]'
+                '}')
+        operationName='EpisodePage'
+
