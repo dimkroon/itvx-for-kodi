@@ -345,10 +345,7 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
     play_item.property['inputstream.adaptive.license_type'] = DRM
     # Ensure to clear the Content-Type header to force curl to make the right request.
     play_item.property['inputstream.adaptive.license_key'] = ''.join((
-            key_service_url,
-            '|User-Agent=',
-            fetch.USER_AGENT,
-            '&Content-Type=&Origin=https://www.itv.com&Referer=https://www.itv.com/&|R{SSM}|'))
+            key_service_url, '|Content-Type=application/octet-stream|R{SSM}|'))
 
     cookiestr = ''.join(('Itv.Session: ', itv_session().cookie['Itv.Session'], '; hdntl=', hdntl_cookie))
     play_item.property['inputstream.adaptive.stream_headers'] = ''.join((
@@ -372,7 +369,8 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
 
 @Resolver.register
 def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
-    logger.info('play live stream - channel=%s, url=%s', channel, url)
+    logger.info('play live stream - channel=%s, url=%s, start_time=%s, play_from_start=%s',
+                channel, url, start_time, play_from_start)
 
     if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
         start_time = None
@@ -402,6 +400,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
         else:
             # compensate for the 20 sec back used to get the time shift stream of a live channel
             list_item.property['ResumeTime'] = '20'
+            logger.debug("play live stream - timeshift_buffer disabled")
         list_item.property['TotalTime'] = '1'
     return list_item
 
