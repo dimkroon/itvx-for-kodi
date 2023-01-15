@@ -133,7 +133,7 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             raise
 
 
-def get_live_urls(channel, url=None, title=None, start_time=None, play_from_start=False):
+def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. Note::
@@ -142,9 +142,7 @@ def get_live_urls(channel, url=None, title=None, start_time=None, play_from_star
 
     """
     # import web_pdb; web_pdb.set_trace()
-
-    if url is None:
-        url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
+    channel = url.rsplit('/', 1)[1]
 
     stream_data = _request_stream_data(url)
     video_locations = stream_data['Playlist']['Video']['VideoLocations'][0]
@@ -155,7 +153,8 @@ def get_live_urls(channel, url=None, title=None, start_time=None, play_from_star
         if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
-        else:
+        # Fast channels play only for about 5 minutes on the time shift stream
+        elif not channel.startswith('FAST'):
             # Go 20 sec back to ensure we get the timeshift stream
             start_time = datetime.utcnow() - timedelta(seconds=20)
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
@@ -208,4 +207,3 @@ def get_vtt_subtitles(subtitles_url):
     except:
         logger.error("Failed to get vtt subtitles from url %s", subtitles_url, exc_info=True)
         return None
-

@@ -376,8 +376,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
         start_time = None
 
     try:
-        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(channel,
-                                                                        url,
+        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(url,
                                                                         title,
                                                                         start_time,
                                                                         play_from_start)

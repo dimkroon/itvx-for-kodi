@@ -39,7 +39,7 @@ class TestItv(unittest.TestCase):
                          obj_name='-'.join((item['channel']['name'], programme['programmeTitle'])))
 
     def test_get_live_urls(self):
-        result = itv.get_live_urls('itv')
+        result = itv.get_live_urls('https://simulcast.itv.com/playlist/itvonline/itv')
         self.assertIsInstance(result, tuple)
         self.assertEqual(len(result), 3)
         # assert live provides no subtitles

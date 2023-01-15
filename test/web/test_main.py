@@ -81,7 +81,7 @@ class TestGetProductions(unittest.TestCase):
 
 class TestPlayCatchup(unittest.TestCase):
     def test_play_itv_1(self):
-        result = main.play_stream_live(MagicMock(), "itv", None)
+        result = main.play_stream_live(MagicMock(), "itv", 'https://simulcast.itv.com/playlist/itvonline/itv', None)
         self.assertEqual('itv', result.label)
         self.assertIsInstance(result.params, MutableMapping)
 
