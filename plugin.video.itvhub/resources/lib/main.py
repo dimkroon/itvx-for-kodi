@@ -161,12 +161,8 @@ def root(_):
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
 
-# In order to ensure that epg data is refreshed when a live stream is stopped, kodi is
-# directed not to return to it's cached listing, but call the addon to supply the list.
-# To prevent rather long waiting times when a user kind of quickly zaps between channels, the
-# listing is cached for a period short enough to not totally invalidate EPG data.
 
-@Route.register(cache_ttl=4, content_type='videos')
+@Route.register(content_type='videos')
 def sub_menu_live(_):
     tv_schedule = itvx.get_live_channels()
 

@@ -101,6 +101,10 @@ def get_now_next_schedule(local_tz=None):
 
 
 def get_live_channels():
+    cached_schedule = cache.get_item('live_schedule')
+    if cached_schedule:
+        return cached_schedule
+
     from tzlocal import get_localzone
     local_tz = get_localzone()
 
@@ -117,6 +121,7 @@ def get_live_channels():
                 if main_chan['channel']['name'] == chan_id:
                     channel['slot'] = main_chan['slot']
                     break
+    cache.set_item('live_schedule', schedule, expire_time=240)
     return schedule
 
 
