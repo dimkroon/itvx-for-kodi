@@ -49,6 +49,11 @@ class Generic(unittest.TestCase):
         url = parsex.build_url('#50/50-heroes?', '10a1511')
         self.assertEqual('https://www.itv.com/watch/5050-heroes/10a1511', url)
 
+    def test_sort_title(self):
+        self.assertEqual('my title', parsex.sort_title('My Title'))
+        self.assertEqual('title', parsex.sort_title('The Title'))
+        self.assertEqual('thetitle', parsex.sort_title('TheTitle'))
+
     def test_parse_hero(self):
         data = open_json('html/index-data.json')
         for item_data in data['heroContent']:

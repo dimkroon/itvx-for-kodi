@@ -141,11 +141,11 @@ def collection_content(url=None, slider=None, hide_paid=False):
     if url:
         items_list = get_page_data(url, cache_time=43200)['collection']['shows']
         if hide_paid:
-            return [parsex.parse_collection_item(item)
-                    for item in items_list
-                    if not item.get('isPaid')]
+            progr_list = [parsex.parse_collection_item(item)
+                          for item in items_list
+                          if not item.get('isPaid')]
         else:
-            return [parsex.parse_collection_item(item) for item in items_list]
+            progr_list = [parsex.parse_collection_item(item) for item in items_list]
     else:
         # A Collection that has all it's data on the main page and does not have its own page.
         page_data = get_page_data('https://www.itv.com', cache_time=3600)
@@ -155,27 +155,30 @@ def collection_content(url=None, slider=None, hide_paid=False):
             time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
             items_list = page_data['newsShortformSliderContent']['items']
             if hide_paid:
-                return [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
-                        for news_item in items_list
-                        if not news_item.get('isPaid')]
+                progr_list = [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+                              for news_item in items_list
+                              if not news_item.get('isPaid')]
             else:
-                return [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt) for news_item in items_list]
+                progr_list = [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+                              for news_item in items_list]
 
-        if slider == 'trendingSliderContent':
+        elif slider == 'trendingSliderContent':
             items_list = page_data['trendingSliderContent']['items']
             if hide_paid:
-                return [parsex.parse_trending_collection_item(trending_item)
-                        for trending_item in items_list
-                        if not trending_item.get('isPaid')]
+                progr_list = [parsex.parse_trending_collection_item(trending_item)
+                              for trending_item in items_list
+                              if not trending_item.get('isPaid')]
             else:
-                return [parsex.parse_trending_collection_item(trending_item) for trending_item in items_list]
+                progr_list = [parsex.parse_trending_collection_item(trending_item) for trending_item in items_list]
 
         else:
             items_list = page_data['editorialSliders'][slider]['collection']['shows']
             if hide_paid:
-                return [parsex.parse_collection_item(item) for item in items_list if not item.get('isPaid')]
+                progr_list = [parsex.parse_collection_item(item) for item in items_list if not item.get('isPaid')]
             else:
-                return [parsex.parse_collection_item(item) for item in items_list]
+                progr_list = [parsex.parse_collection_item(item) for item in items_list]
+    progr_list.sort(key=lambda prog: prog['show']['info']['sorttitle'])
+    return progr_list
 
 
 def episodes(url, use_cache=False):
@@ -248,47 +251,13 @@ def category_content(url: str, hide_paid=False):
     category = cat_data['category']['pathSegment']
     progr_list = cat_data.get('programmes')
 
-    def parse_progr(prog):
-        content_info = prog['contentInfo']
-        # TODO: This is bound to break
-        is_playable = 'series' not in content_info.lower()
-        title = prog['title']
-
-        if 'FREE' in prog['tier']:
-            plot = prog['description']
-        else:
-            # if hide_paid:
-            #     continue
-            plot = parsex.premium_plot(prog['description'])
-
-        sort_title = title.lower()
-
-        programme_item = {
-            'label': title,
-            'art': {'thumb': prog['imageTemplate'].format(**parsex.IMG_PROPS_THUMB),
-                    'fanart': prog['imageTemplate'].format(**parsex.IMG_PROPS_FANART)},
-            'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
-                     'plot': plot,
-                     'sorttitle': sort_title[4:] if sort_title.startswith('the ') else sort_title},
-        }
-
-        if category == 'films':
-            programme_item['art']['poster'] = prog['imageTemplate'].format(**parsex.IMG_PROPS_POSTER)
-
-        if is_playable:
-            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
-            programme_item['params'] = {'url': parsex.build_url(title, prog['encodedProgrammeId']['letterA'])}
-        else:
-            programme_item['params'] = {'url': parsex.build_url(title,
-                                                                prog['encodedProgrammeId']['letterA'],
-                                                                prog['encodedEpisodeId']['letterA'])}
-        return {'playable': is_playable,
-               'show': programme_item}
+    parse_progr = parsex.parse_category_item
 
     if hide_paid:
-        items = [parse_progr(prog) for prog in progr_list if 'FREE' in prog['tier']]
+        items = [parse_progr(prog, category) for prog in progr_list if 'FREE' in prog['tier']]
     else:
-        items = [parse_progr(prog) for prog in progr_list]
+        items = [parse_progr(prog, category) for prog in progr_list]
+    items.sort(key=lambda prog: prog['show']['info']['sorttitle'])
     cache.set_item(url, {'items_list': items, 'hide_paid': hide_paid}, expire_time=3600)
     return items
 

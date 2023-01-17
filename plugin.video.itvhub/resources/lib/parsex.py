@@ -51,6 +51,15 @@ def premium_plot(plot: str):
     return '\n'.join(('[COLOR yellow]itvX premium[/COLOR]', plot))
 
 
+def sort_title(title: str):
+    """Return a string te be used as sort title of `title`
+
+    The returned sort title is lowercase and stripped of a possible leading 'The'
+    """
+    l_title = title.lower()
+    return l_title[4:] if l_title. startswith('the ') else l_title
+
+
 def scrape_json(html_page):
     # noinspection GrazieInspection
     """Return the json data embedded in a script tag on an html page"""
@@ -134,7 +143,6 @@ def parse_collection_item(show_data):
     is_playable = show_data['type'] == 'title'
     title = show_data['title']
     content_info = show_data.get('contentInfo', '')
-    sort_title = title.lower()
 
     if show_data.get('isPaid'):
         plot = premium_plot(show_data['description'])
@@ -147,7 +155,7 @@ def parse_collection_item(show_data):
                 'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
         'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
                  'plot': plot,
-                 'sorttitle': sort_title[4:] if sort_title.startswith('the ') else sort_title},
+                 'sorttitle': sort_title(title)},
     }
 
     if 'FILMS' in show_data['categories']:
@@ -182,7 +190,7 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
         'show': {
             'label': news_item['episodeTitle'],
             'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': plot},
+            'info': {'plot': plot, 'sorttitle': sort_title(news_item['episodeTitle'])},
             'params': {'url': base_url + news_item['href']}
         }
     }
@@ -204,12 +212,46 @@ def parse_trending_collection_item(trending_item):
         'show': {
             'label': trending_item['title'],
             'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': plot},
+            'info': {'plot': plot, 'sorttitle': sort_title(trending_item['title'])},
             'params': {'url': build_url(trending_item['titleSlug'],
                                         trending_item['encodedProgrammeId']['letterA'],
                                         trending_item.get('encodedEpisodeId', {}).get('letterA'))}
         }
     }
+
+
+def parse_category_item(prog, category):
+    content_info = prog['contentInfo']
+    # TODO: This is bound to break
+    is_playable = 'series' not in content_info.lower()
+    title = prog['title']
+
+    if 'FREE' in prog['tier']:
+        plot = prog['description']
+    else:
+        plot = premium_plot(prog['description'])
+
+    programme_item = {
+        'label': title,
+        'art': {'thumb': prog['imageTemplate'].format(**IMG_PROPS_THUMB),
+                'fanart': prog['imageTemplate'].format(**IMG_PROPS_FANART)},
+        'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
+                 'plot': plot,
+                 'sorttitle': sort_title(title)},
+    }
+
+    if category == 'films':
+        programme_item['art']['poster'] = prog['imageTemplate'].format(**IMG_PROPS_POSTER)
+
+    if is_playable:
+        programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+        programme_item['params'] = {'url': build_url(title, prog['encodedProgrammeId']['letterA'])}
+    else:
+        programme_item['params'] = {'url': build_url(title,
+                                                     prog['encodedProgrammeId']['letterA'],
+                                                     prog['encodedEpisodeId']['letterA'])}
+    return {'playable': is_playable,
+            'show': programme_item}
 
 
 def parse_episode_title(title_data, brand_fanart=None):

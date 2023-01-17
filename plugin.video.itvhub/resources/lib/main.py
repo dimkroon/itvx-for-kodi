@@ -218,6 +218,9 @@ def list_collections(_):
 @Route.register(cache_ttl=-1, content_type='videos')
 @dynamic_listing
 def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=0):
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                           xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                           disable_autosort=True)
     shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
     logger.info("Listed collection %s%s with %s items", url, slider, len(shows_list))
     paginator = Paginator(shows_list, filter_char, page_nr, url=url)
@@ -225,7 +228,10 @@ def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=
 
 
 @Route.register(content_type='videos')  # 24 * 60)
-def list_categories(_):
+def list_categories(addon):
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                           xbmcplugin.SORT_METHOD_TITLE,
+                           disable_autosort=True)
     logger.debug("List categories.")
     categories = itvx.categories()
     items = [Listitem.from_dict(list_category, **cat) for cat in categories]
@@ -236,7 +242,6 @@ def list_categories(_):
 @dynamic_listing
 def list_category(addon, path, filter_char=None, page_nr=0):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                           xbmcplugin.SORT_METHOD_DATE,
                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                            disable_autosort=True)
     if path.endswith('/films'):
