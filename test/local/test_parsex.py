@@ -48,6 +48,8 @@ class Generic(unittest.TestCase):
         self.assertEqual('https://www.itv.com/watch/astrid-and-lily-save-the-world/10a2921/10a2921a0001', url)
         url = parsex.build_url('#50/50-heroes?', '10a1511')
         self.assertEqual('https://www.itv.com/watch/5050-heroes/10a1511', url)
+        url = parsex.build_url('Paul Sinha: Shout Out To My Ex', '10a3819')
+        self.assertEqual('https://www.itv.com/watch/paul-sinha-shout-out-to-my-ex/10a3819', url)
 
     def test_sort_title(self):
         self.assertEqual('my title', parsex.sort_title('My Title'))

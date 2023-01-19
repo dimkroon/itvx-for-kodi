@@ -31,7 +31,7 @@ IMG_PROPS_FANART = {'treatment': '', 'aspect_ratio': '16x9', 'class': '01_Hero_D
                     'quality': '80', 'blur': 0, 'bg': 'false', 'image_format': 'jpg'}
 
 
-url_trans_table = str.maketrans(' ', '-', '#/?')
+url_trans_table = str.maketrans(' ', '-', '#/?:')
 
 
 def build_url(programme, programme_id, episode_id=None):
