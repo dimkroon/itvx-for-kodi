@@ -12,13 +12,19 @@ class AccountError(Exception):
 class AuthenticationError(FetchError):
     def __init__(self, msg=None):
         super(AuthenticationError, self).__init__(
-            msg or u'Login required')
+            msg or 'Login required')
 
 
 class GeoRestrictedError(FetchError):
     def __init__(self, msg=None):
         super(GeoRestrictedError, self).__init__(
-            msg or u'Service is not available in this area')
+            msg or 'Service is not available in this area')
+
+
+class AccessRestrictedError(FetchError):
+    def __init__(self, msg=None):
+        super(AccessRestrictedError, self).__init__(
+            msg or 'Access not allowed')
 
 
 class HttpError(FetchError):

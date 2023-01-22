@@ -22,6 +22,30 @@
 					<default>false</default>
 					<control type="toggle"/>
 				</setting>
+				<setting id="a-z_size" label="30106" type="integer" help="30306">
+					<level>1</level>
+					<default>250</default>
+					<constraints>
+						<minimum>150</minimum>
+						<step>10</step>
+						<maximum>1000</maximum>
+					</constraints>
+					<control type="slider" format="integer">
+						<popup>false</popup>
+					</control>
+				</setting>
+				<setting id="page_len" label="30105" type="integer" help="30305">
+					<level>1</level>
+					<default>60</default>
+					<constraints>
+						<minimum>30</minimum>
+						<step>10</step>
+						<maximum>400</maximum>
+					</constraints>
+					<control type="slider" format="integer">
+						<popup>false</popup>
+					</control>
+				</setting>
 			</group>
 			<group id="grp_live" label="30120">
 				<setting id="live_play_from_start" label="30121" type="boolean" help="30321">

@@ -103,7 +103,7 @@ def _create_cookiejar():
     apply the default cookies.
 
     """
-    cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
+    cookie_file = os.path.join(utils.addon_info.profile, 'cookies')
 
     try:
         with open(cookie_file, 'rb') as f:
@@ -189,20 +189,28 @@ def web_request(method, url, headers=None, data=None, **kwargs):
         return resp
     except requests.HTTPError as e:
         # noinspection PyUnboundLocalVariable
-        logger.info("HTTP error %s for url %s: '%s'", e.response.status_code, url, resp.content)
+        logger.info("HTTP error %s for url %s: '%s'",
+                    e.response.status_code,
+                    url,
+                    resp.content[:500] if resp.content is not None else '')
 
         if 400 <= e.response.status_code < 500:
             # noinspection PyBroadException
             try:
                 resp_data = resp.json()
             except:
-                # Intentional broad exception as requests can raise various types of errors deping on python
+                # Intentional broad exception as requests can raise various types of errors depending on python
                 # version and requests.JSONDecodeError does not always seem to catch them.
                 pass
             else:
                 if resp_data.get('error') in ('invalid_grant', 'invalid_request'):
                     descr = resp_data.get("error_description", 'Login failed')
                     raise AuthenticationError(descr)
+                # Errors from https://magni.itv.com/playlist/itvonline:
+                if 'User does not have entitlements' in resp_data.get('Message', ''):
+                    raise AccessRestrictedError()
+                if 'Outside Of Allowed Geographic Region' in resp_data.get('Message', ''):
+                    raise GeoRestrictedError
 
         if e.response.status_code == 401:
             raise AuthenticationError()

@@ -14,26 +14,27 @@ Stores data in volatile memory for the lifetime of the addon or the specified pe
 
 import time
 import logging
+from copy import deepcopy
 
 from codequick.support import logger_id
 
 
-logger = logging.getLogger(logger_id + '.itvx')
+logger = logging.getLogger(logger_id + '.cache')
 # noinspection SpellCheckingInspection
 DFLT_EXPIRE_TIME = 600
 
 
-__cache__ = {}
+__cache = {}
 
 
 def get_item(key):
     """Return the cached data if present in the cache and not expired, or
 
     """
-    item = __cache__.get(key)
+    item = __cache.get(key)
     if item and item['expires'] > time.monotonic():
         logger.debug("Data cache: hit")
-        return item['data']
+        return deepcopy(item['data'])
     else:
         logger.debug("Data cache: miss")
         return None
@@ -44,23 +45,24 @@ def set_item(key, data, expire_time=DFLT_EXPIRE_TIME):
 
     """
     item = dict(expires=time.monotonic() + expire_time,
-                data=data)
-    __cache__[key] = item
+                data=deepcopy(data))
+    logger.debug("cached '%s'", key)
+    __cache[key] = item
 
 
 def clean():
     """Remove expired items form the cache"""
     now = time.monotonic()
-    for key, item in list(__cache__.items()):
+    for key, item in list(__cache.items()):
         if item['expires'] < now:
-            logger.debug('Data cache clean removed: %s', key)
-            del __cache__[key]
+            logger.debug('Clean removed: %s', key)
+            del __cache[key]
 
 
 def purge():
     """Empty the cache"""
-    __cache__.clear()
+    __cache.clear()
 
 
 def size():
-    return len(__cache__)
+    return len(__cache)

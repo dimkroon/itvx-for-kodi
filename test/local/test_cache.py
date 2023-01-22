@@ -9,9 +9,7 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import time
 import unittest
-from unittest.mock import patch, mock_open
 
 from resources.lib import cache
 
@@ -35,6 +33,7 @@ class TestCache(unittest.TestCase):
         self.assertDictEqual(self.my_dict, cache.get_item('3'))
 
     def test_expire_time(self):
+        cache.purge()
         cache.set_item('1', self.my_str, 10)
         cache.set_item('2', self.my_list, -10)
         cache.set_item('3', self.my_dict, 10)
@@ -52,3 +51,18 @@ class TestCache(unittest.TestCase):
         cache.purge()
         self.assertEqual(0, cache.size())
         self.assertIsNone(cache.get_item('1'))
+
+    def test_changing_data_does_not_alter_cache(self):
+        """Test that changing an object after it has been cached, or after it has been
+        retrieved from cache does not affect the cached object.
+
+        """
+        new_list = self.my_list.copy()
+        cache.set_item('n', new_list)
+        new_list.pop()
+        self.assertListEqual(cache.get_item('n'), self.my_list)
+
+        cache.set_item('1', {'value': 123}, 10)
+        item1 = cache.get_item('1')
+        item2 = cache.get_item('1')
+        self.assertIsNot(item1, item2)

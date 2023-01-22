@@ -24,7 +24,7 @@ class TestItvSession(unittest.TestCase):
 
 
 class TestLogin(unittest.TestCase):
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda x, y: (x,y))
+    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda x, y: (x, y))
     def test_login(self):
         itv_sess = itv_account.itv_session()
         resp = itv_sess.login(account_login.UNAME, account_login.PASSW)

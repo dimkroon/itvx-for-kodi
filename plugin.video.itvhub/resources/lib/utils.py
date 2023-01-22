@@ -7,33 +7,30 @@
 
 import logging
 import time
+import string
 from datetime import datetime
 
 from xbmcvfs import translatePath
 import xbmcaddon
 
 from codequick.support import logger_id
-from . errors import *
 
 
-def create_addon_info(addon_id=None):
-    if addon_id:
-        addon = xbmcaddon.Addon(addon_id)
-    else:
-        addon = xbmcaddon.Addon()
-    return {
-        "name": addon.getAddonInfo("name"),
-        "id": addon.getAddonInfo("id"),
-        "addon": addon,
-        "language": addon.getLocalizedString,
-        "version": addon.getAddonInfo("version"),
-        "path": addon.getAddonInfo("path"),
-        "profile": translatePath(addon.getAddonInfo('profile'))
-    }
+class AddonInfo:
+    def __init__(self):
+        self.initialise()
+
+    # noinspection PyAttributeOutsideInit
+    def initialise(self):
+        self.addon = addon = xbmcaddon.Addon()
+        self.name = addon.getAddonInfo("name")
+        self.id = addon.getAddonInfo("id")
+        self.localise = addon.getLocalizedString
+        self.profile = translatePath(addon.getAddonInfo('profile'))
 
 
-addon_info = create_addon_info()
 logger = logging.getLogger(logger_id + '.utils')
+addon_info = AddonInfo()
 
 
 def get_os():
@@ -41,7 +38,7 @@ def get_os():
     return platform.system(), platform.machine()
 
 
-def random_string(length):
+def random_string(length: int) -> str:
     """Return a string of random upper and lowercase charters and numbers"""
     import random
     import string
@@ -51,37 +48,13 @@ def random_string(length):
     return result
 
 
-def get_json_from_html(page):
-    """Extract JSON data from the end of an HTML page and return it as a python object.
-
-    Some pages provide a json data structure in an <script> tag at the end of the page,
-    that contains all relevant data.
-
-    """
-    import json
-
-    script_start_tag = '<script id="__NEXT_DATA__" type="application/json">'
-    pos_start = page.find(script_start_tag) + len(script_start_tag)
-    if pos_start < len(script_start_tag):
-        logger.error('Failed to parse page shows: script tag not found')
-        raise ParseError
-
-    pos_end = page.find('</script>', pos_start)
-    if pos_end < pos_start:
-        logger.error('Failed to parse page shows: cannot find </script> tag')
-        raise ParseError
-
-    script = page[pos_start:pos_end]
-    return json.loads(script)
-
-
-def xml_to_srt(xml_data, outfile):
+def ttml_to_srt(ttml_data, outfile):
     """Convert subtitles in XML format to a format that kodi accepts"""
     from xml.etree import ElementTree
     import re
 
     # Get XML namespace
-    match = re.search(r'xmlns="(.*?)" ', xml_data, re.DOTALL)
+    match = re.search(r'xmlns="(.*?)" ', ttml_data, re.DOTALL)
     if match:
         xmlns = ''.join(('{', match.group(1), '}'))
     else:
@@ -90,7 +63,7 @@ def xml_to_srt(xml_data, outfile):
     FONT_COL_WHITE = '<font color="white">'
     FONT_END_TAG = '</font>\n'
 
-    root = ElementTree.fromstring(xml_data)
+    root = ElementTree.fromstring(ttml_data)
 
     dflt_styles = {}
     path = ''.join(('./', xmlns, 'head', '/', xmlns, 'styling', '/', xmlns, 'style'))
@@ -196,23 +169,23 @@ def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
 
         srt_doc = f.getvalue()
 
-        if colourize:
-            # Remove any markup tag other than the supported bold, italic underline and colour.
-            srt_doc = re.sub(r'<([^biuc]).*?>(.*)</\1.*?>', r'\2', srt_doc)
+    if colourize:
+        # Remove any markup tag other than the supported bold, italic underline and colour.
+        srt_doc = re.sub(r'<([^biuc]).*?>(.*)</\1.*?>', r'\2', srt_doc)
 
-            # convert color tags, accept only simple colour names.
-            def sub_color_tags(match):
-                colour = match[1]
-                if colour in ('white', 'yellow', 'green', 'cyan'):
-                    return '<font color="{}">{}</font>'.format(colour, match[2])
-                else:
-                    logger.debug("Unsupported colour '%s' in vtt file", colour)
-                    return match[2]
+        # convert color tags, accept only simple colour names.
+        def sub_color_tags(match):
+            colour = match[1]
+            if colour in ('white', 'yellow', 'green', 'cyan'):
+                return '<font color="{}">{}</font>'.format(colour, match[2])
+            else:
+                logger.debug("Unsupported colour '%s' in vtt file", colour)
+                return match[2]
 
-            srt_doc = re.sub(r'<c\.(.*?)>(.*)</c>', sub_color_tags, srt_doc)
-        else:
-            # Remove any markup tag other than the supported bold, italic underline.
-            srt_doc = re.sub(r'<([^biu]).*?>(.*)</\1.*?>', r'\2', srt_doc)
+        srt_doc = re.sub(r'<c\.(.*?)>(.*)</c>', sub_color_tags, srt_doc)
+    else:
+        # Remove any markup tag other than the supported bold, italic underline.
+        srt_doc = re.sub(r'<([^biu]).*?>(.*)</\1.*?>', r'\2', srt_doc)
     return srt_doc
 
 
@@ -259,20 +232,46 @@ def duration_2_seconds(duration: str):
         return None
 
 
-def reformat_date(date_string, old_format, new_format):
+def reformat_date(date_string: str, old_format: str, new_format: str):
     """Take a string containing a datetime in a particular format and
     convert it into another format.
 
     Usually used to convert datetime strings obtained from a website into a nice readable format.
 
     """
-    try:
-        dt = datetime.strptime(date_string, old_format)
-    except TypeError:
-        dt = datetime(*(time.strptime(date_string, old_format)[0:6]))
+    dt = datetime(*(time.strptime(date_string, old_format)[0:6]))
     return dt.strftime(new_format)
 
 
-def strptime(dt_str, format):
+def strptime(dt_str: str, format: str):
     """A bug free alternative to `datetime.datetime.strptime(...)`"""
     return datetime(*(time.strptime(dt_str, format)[0:6]))
+
+
+def paginate(items: list, page_nr: int, page_len: int, merge_count: int = 5):
+    """Return a subset of the list.
+
+    Prevent last pages of `merge_count` or fewer items by adding them to the previous page.
+    """
+    start = page_nr * page_len
+    end = start + page_len
+    if end + merge_count < len(items):
+        return items[start:end], page_nr + 1
+    else:
+        return items[start:end + merge_count], None
+
+
+def list_start_chars(items: list):
+    """Return a list of all starting character present in the sorttitles in the list `items`.
+
+    Used to create an A-Z listing to subdivide long lists of items, but only list those
+    characters that have actual items.
+
+    """
+    start_chars = set(item['show']['info']['sorttitle'][0].upper() for item in items)
+    az_chars = list(string.ascii_uppercase)
+    char_list = sorted(start_chars.intersection(az_chars))
+    if start_chars.difference(char_list):
+        # Anything not a letter
+        char_list.append('0-9')
+    return char_list

@@ -10,15 +10,14 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import os
-import json
+
 import unittest
 
 from typing import Generator
 
-from codequick import Listitem, Route, Script
+from codequick import Route
 
-from resources.lib import itvx
+from resources.lib import itvx, errors
 from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
 
 setUpModule = fixtures.setup_web_test
@@ -31,15 +30,15 @@ def dummycallback():
 
 class TestItvX(unittest.TestCase):
     def test_get_now_next_schedule(self):
-        result = itvx.get_live_schedule()
+        result = itvx.get_now_next_schedule()
         for item in result:
-            has_keys(item, 'channel', 'slot')
+            has_keys(item, 'name', 'channelType', 'streamUrl', 'images', 'slot')
         # print(json.dumps(result, indent=4))
 
     def test_get_live_channels(self):
         chan_list = list(itvx.get_live_channels())
         for item in chan_list:
-            self.assertIsInstance(item, dict)
+            has_keys(item, 'name', 'channelType', 'streamUrl', 'images', 'slot')
 
     def test_get_categories(self):
         result = itvx.categories()
@@ -56,11 +55,6 @@ class TestItvX(unittest.TestCase):
                 self.assertIsInstance(item['playable'], bool)
                 is_li_compatible_dict(self, item['show'])
 
-    def test_get_now_next_schedule(self):
-        result = itvx.get_live_schedule()
-        # TODO: check result
-        print(json.dumps(result, indent=4))
-
     def test_search(self):
         items = itvx.search('the chase')
         self.assertGreater(len(list(items)), 2)
@@ -71,11 +65,14 @@ class TestItvX(unittest.TestCase):
     def test_get_playlist_url_from_episode_page(self):
         # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002
         episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
-        url, name = itvx.get_playlist_url_from_episode_page(episode_url)
-        self.assertEqual('', name)
-        self.assertTrue(url.startswith('https://'))
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))
+
         # itvx episode page - Nightwatch Series1 episode 2
         episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
-        rl, name = itvx.get_playlist_url_from_episode_page(episode_url)
-        self.assertEqual('', name)
-        self.assertTrue(url.startswith('https://'))
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))
+
+        # Premium episode Downton-abbey S1E1
+        episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
+        self.assertRaises(errors.AccessRestrictedError, itvx.get_playlist_url_from_episode_page, episode_url)

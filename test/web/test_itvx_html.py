@@ -14,16 +14,16 @@ import unittest
 import requests
 
 from resources.lib import fetch, parsex, utils, errors
-from support import testutils
 from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
-
+from support import testutils
 
 setUpModule = fixtures.setup_web_test
 
 
 def check_shows(self, show, parent_name):
-    has_keys(show, 'type', 'title', 'description', 'titleSlug', 'contentInfo', 'imageTemplate', 'encodedEpisodeId',
-             'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name,show['title']))
+    # Not always present: 'contentInfo'
+    has_keys(show, 'type', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
+             'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     self.assertTrue(show['type'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
         '.'.join((parent_name, show['title'])), show['type']))
     is_url(show['imageTemplate'], '.png')
@@ -58,7 +58,7 @@ def check_title(self, title, parent_name):
     if title['titleType'] in ('EPISODE', 'FILM'):
         self.assertFalse(title['duration'].startswith('P'))    # duration is not is iso format
 
-    if title['titleType'] == ('FILM'):
+    if title['titleType'] == 'FILM':
         has_keys(title, 'productionYear',
                  obj_name=obj_name)
 
@@ -81,16 +81,20 @@ class MainPage(unittest.TestCase):
         for item in page_props['heroContent']:
             has_keys(item, 'type', 'title', 'imageTemplate', 'programmeId', 'description',
                      'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
-            self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film'))
+            self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film', 'special'))
 
-            if item['type'] in ('simulcastspot' 'series'):
+            if item['type'] in ('simulcastspot', 'series'):
                 has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
+
+            if item['type'] == 'special':
+                has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
 
             if item['type'] == 'series':
                 has_keys(item, 'series', obj_name=item['title'])
 
             if item['type'] == 'film':
-                has_keys(item, 'productionYear', 'dateTime', 'duration', obj_name=item['title'])
+                # Fields not always present:  'dateTime'
+                has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
@@ -104,21 +108,25 @@ class MainPage(unittest.TestCase):
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])
         for item in page_props['trendingSliderContent']['items']:
-            has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'encodedEpisodeId', 'contentType',
-                     'contentInfo', 'titleSlug', obj_name='trending-slider')
+            has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'contentType',
+                     'contentInfo', 'titleSlug', obj_name='trending-slider_' + item['title'])
+            # Must have either an episode id when the underlying item is an episode, but there
+            # is no way to check the item's type
+            # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
 
         self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
         for item in page_props['newsShortformSliderContent']['items']:
             has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
                      'titleSlug', obj_name='news-slider')
 
-
     def test_get_itvx_logo(self):
-        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-backgrounds.jpg?q=80&format=jpg&w=960&h=540&bg=false&blur=0')
+        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'
+                            'backgrounds.jpg?q=80&format=jpg&w=960&h=540&bg=false&blur=0')
         self.assertEqual(200, resp.status_code)
         img = resp.content
         # testutils.save_binary(img, 'html/itvx-logo-light-bg.jpg')
-        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-dark-backgrounds.jpg?q=80&format=jpg&w=960&bg=false&blur=0')
+        resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-dark-'
+                            'backgrounds.jpg?q=80&format=jpg&w=960&bg=false&blur=0')
         self.assertEqual(200, resp.status_code)
         img = resp.content
         # testutils.save_binary(img, 'html/itvx-logo-dark-bg.jpg')
@@ -129,6 +137,7 @@ class CollectionPage(unittest.TestCase):
         page = fetch.get_document('https://www.itv.com/watch/collections/just-in/2RQpkypwh3w8m6738sUHQH')
         # testutils.save_doc(page, 'html/collection_just-in.html')
         data = parsex.scrape_json(page)
+        self.assertIsNotNone(data)
         # testutils.save_json(data, 'html/collection_just-in.json')
 
 
@@ -150,7 +159,7 @@ class WatchPages(unittest.TestCase):
             self.assertIsNone(progr_data['broadcastEndTimestamp'])
 
         if chan_type != 'fast':
-            has_keys(progr_data, 'broadcastStartTimestamp' )
+            has_keys(progr_data, 'broadcastStartTimestamp')
             self.assertTrue(is_iso_time(progr_data['broadcastAt']))
             # check timestamps are integers
             self.assertGreater(int(progr_data['broadcastStartTimestamp']), 0)
@@ -176,14 +185,18 @@ class WatchPages(unittest.TestCase):
         for chan in channel_data['channels']:
             chan_type = chan['channelType']
             self.check_schedule_channel_info(chan)
-            self.check_schedule_now_next_slot(chan['slots']['now'], chan_type, obj_name='{}-Now-on'.format(chan['name']))
-            self.check_schedule_now_next_slot(chan['slots']['next'], chan_type, obj_name='{}-Next-on'.format(chan['name']))
+            self.check_schedule_now_next_slot(chan['slots']['now'], chan_type,
+                                              obj_name='{}-Now-on'.format(chan['name']))
+            self.check_schedule_now_next_slot(chan['slots']['next'], chan_type,
+                                              obj_name='{}-Next-on'.format(chan['name']))
 
     def test_series_page(self):
         for url in (
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
-                'https://www.itv.com/watch/midsomer-murders/Ya1096', ):
+                'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                # heartbeat is premium, but series 18 is free.
+                'https://www.itv.com/watch/heartbeat/Ya0757/Ya0757a0372',):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)

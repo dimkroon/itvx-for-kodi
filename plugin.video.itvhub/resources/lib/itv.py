@@ -6,12 +6,11 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 import os
-import string
-import time
 import logging
 
 from datetime import datetime, timedelta
 import pytz
+import xbmc
 
 from codequick import Script
 from codequick.support import logger_id
@@ -26,39 +25,35 @@ from .errors import AuthenticationError
 logger = logging.getLogger(logger_id + '.itv')
 
 
-def get_live_schedule(hours=4):
+def get_live_schedule(hours=4, local_tz=None):
     """Get the schedule of the live channels from now up to the specified number of hours.
 
     """
-
-    # Calculate current british time and the difference between that and local time
+    if local_tz is None:
+        from tzlocal import get_localzone
+        local_tz = get_localzone()
     btz = pytz.timezone('Europe/London')
-    british_now = datetime.now(btz)
-    local_offset = datetime.now() - datetime.utcnow()
-    time_dif = local_offset - british_now.utcoffset()
-    # in the above calculation we lose a few nanoseconds, so we need to convert the difference to round seconds again
-    time_dif = timedelta(time_dif.days, time_dif.seconds + 1)
+    british_now = datetime.now(pytz.utc).astimezone(btz)
 
     # Request TV schedules for the specified number of hours from now, in british time
     from_date = british_now.strftime('%Y%m%d%H%M')
     to_date = (british_now + timedelta(hours=hours)).strftime('%Y%m%d%H%M')
     # Note: platformTag=ctv is exactly what a webbrowser sends
     url = 'https://scheduled.oasvc.itv.com/scheduled/itvonline/schedules?from={}&platformTag=ctv&to={}'.format(
-        from_date, to_date
-    )
+        from_date, to_date)
     data = fetch.get_json(url)
-
     schedules_list = data.get('_embedded', {}).get('schedule', [])
     schedule = [element['_embedded'] for element in schedules_list]
 
-    # convert British start time to local time
+    # Convert British start time to local time and format in the user's regional format
+    # Use local time format without seconds. Fix weird kodi formatting for 12-hour clock.
+    time_format = xbmc.getRegion('time').replace(':%S', '').replace('%I%I:', '%I:')
+    strptime = utils.strptime
     for channel in schedule:
         for program in channel['slot']:
             time_str = program['startTime'][:16]
-            # datetime.datetime.strptime has a bug in python3 used in kodi 19: https://bugs.python.org/issue27400
-            brit_time = datetime(*(time.strptime(time_str, '%Y-%m-%dT%H:%M')[0:6]))
-            loc_time = brit_time + time_dif
-            program['startTime'] = loc_time.strftime('%H:%M')
+            brit_time = btz.localize(strptime(time_str, '%Y-%m-%dT%H:%M'))
+            program['startTime'] = brit_time.astimezone(local_tz).strftime(time_format)
             program['orig_start'] = program['onAirTimeUTC'][:19]
 
     return schedule
@@ -132,13 +127,13 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             else:
                 if kodi_utils.show_msg_not_logged_in():
                     from xbmc import executebuiltin
-                    executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info['id']))
+                    executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info.id))
                 return False
         else:
             raise
 
 
-def get_live_urls(channel, url=None, title=None, start_time=None, play_from_start=False):
+def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. Note::
@@ -147,9 +142,7 @@ def get_live_urls(channel, url=None, title=None, start_time=None, play_from_star
 
     """
     # import web_pdb; web_pdb.set_trace()
-
-    if url is None:
-        url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
+    channel = url.rsplit('/', 1)[1]
 
     stream_data = _request_stream_data(url)
     video_locations = stream_data['Playlist']['Video']['VideoLocations'][0]
@@ -160,7 +153,8 @@ def get_live_urls(channel, url=None, title=None, start_time=None, play_from_star
         if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
-        else:
+        # Fast channels play only for about 5 minutes on the time shift stream
+        elif not channel.startswith('FAST'):
             # Go 20 sec back to ensure we get the timeshift stream
             start_time = datetime.utcnow() - timedelta(seconds=20)
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
@@ -205,7 +199,7 @@ def get_vtt_subtitles(subtitles_url):
         #     f.write(vtt_doc)
 
         srt_doc = utils.vtt_to_srt(vtt_doc, colourize=Script.setting['subtitles_color'] != 'false')
-        srt_file = os.path.join(utils.addon_info['profile'], 'subitles.srt')
+        srt_file = os.path.join(utils.addon_info.profile, 'subitles.srt')
         with open(srt_file, 'w', encoding='utf8') as f:
             f.write(srt_doc)
 
@@ -213,4 +207,3 @@ def get_vtt_subtitles(subtitles_url):
     except:
         logger.error("Failed to get vtt subtitles from url %s", subtitles_url, exc_info=True)
         return None
-

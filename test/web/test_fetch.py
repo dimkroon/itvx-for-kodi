@@ -19,7 +19,7 @@ setUpModule = fixtures.setup_web_test
 
 class TestFetch(unittest.TestCase):
     def test_set_cookie_consent(self):
-        cookie_file = os.path.join(utils.addon_info['profile'], 'cookies')
+        cookie_file = os.path.join(utils.addon_info.profile, 'cookies')
         cj = fetch.set_default_cookies(fetch.PersistentCookieJar(cookie_file))
         self.assertGreater(len(cj), 5)
         self.assertIsInstance(cj, fetch.PersistentCookieJar)
