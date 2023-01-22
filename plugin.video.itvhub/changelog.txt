@@ -1,3 +1,15 @@
+v0.7.0
+- Fix fast channels stop playing after a few minutes.
+- Fix crash of kodi 20 on playing video.
+- Proprer error message on access attempt to geo restricted content.
+- Now navigate into a series folder, rather then opening it in place.
+- Added settings to devide long lists up in pages and/or A-Z listing.
+- Series folder inherit the premium status of the program.
+- Series folders now have images.
+- Error message is shown on playing premium content without a premium account.
+- Times in live schedules now presented in the system locale/user preferences
+- Some other minor fixes, improvements and changes under the hood.
+
 v0.6.0
 - Added itvx promoted content to main menu.
 - Added itvx collections to main menu.
