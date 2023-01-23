@@ -1,3 +1,6 @@
+v0.7.1
+- Fixed "KeyError 'type'" at addon start caused by changes at itvx.
+
 v0.7.0
 - Fix fast channels stop playing after a few minutes.
 - Fix crash of kodi 20 on playing video.
