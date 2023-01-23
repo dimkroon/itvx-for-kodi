@@ -22,10 +22,10 @@ setUpModule = fixtures.setup_web_test
 
 def check_shows(self, show, parent_name):
     # Not always present: 'contentInfo'
-    has_keys(show, 'type', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
+    has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
-    self.assertTrue(show['type'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
-        '.'.join((parent_name, show['title'])), show['type']))
+    self.assertTrue(show['contentType'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
+        '.'.join((parent_name, show['title'])), show['contentType']))
     is_url(show['imageTemplate'], '.png')
 
 
@@ -79,20 +79,20 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'type', 'title', 'imageTemplate', 'programmeId', 'description',
+            has_keys(item, 'contentType', 'title', 'imageTemplate', 'programmeId', 'description',
                      'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
-            self.assertTrue(item['type'] in ('simulcastspot', 'series', 'film', 'special'))
+            self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special'))
 
-            if item['type'] in ('simulcastspot', 'series'):
+            if item['contentType'] in ('simulcastspot', 'series'):
                 has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
 
-            if item['type'] == 'special':
+            if item['contentType'] == 'special':
                 has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
 
-            if item['type'] == 'series':
+            if item['contentType'] == 'series':
                 has_keys(item, 'series', obj_name=item['title'])
 
-            if item['type'] == 'film':
+            if item['contentType'] == 'film':
                 # Fields not always present:  'dateTime'
                 has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
 
