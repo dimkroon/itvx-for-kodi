@@ -77,7 +77,7 @@ def scrape_json(html_page):
 
 
 def parse_hero_content(hero_data):
-    item_type = hero_data['type']
+    item_type = hero_data['contentType']
     title = hero_data['title']
     item = {
         'label': hero_data['title'],
@@ -140,7 +140,8 @@ def parse_collection_item(show_data):
     Very much like category content, but not quite.
     There appears to be no premium content in collections.
     """
-    is_playable = show_data['type'] == 'title'
+    content_type = show_data.get('contentType') or show_data['type']
+    is_playable = content_type == 'title'
     title = show_data['title']
     content_info = show_data.get('contentInfo', '')
 
