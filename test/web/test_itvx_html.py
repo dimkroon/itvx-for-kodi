@@ -116,6 +116,7 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
         for item in page_props['newsShortformSliderContent']['items']:
+            # Have once seen an item without field 'synopsys', but keep the check to see if happens again.
             has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
                      'titleSlug', obj_name='news-slider')
 

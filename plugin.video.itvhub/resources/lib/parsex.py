@@ -180,7 +180,8 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
     item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
     loc_time = item_time.astimezone(time_zone)
     base_url = 'https://www.itv.com/watch/news/'
-    plot = '\n'.join((loc_time.strftime(time_fmt), news_item['synopsis']))
+    title = news_item['episodeTitle']
+    plot = '\n'.join((loc_time.strftime(time_fmt), news_item.get('synopsis', title)))
 
     # Does paid news exists?
     if news_item.get('isPaid'):
@@ -189,9 +190,9 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
     return {
         'playable': True,
         'show': {
-            'label': news_item['episodeTitle'],
+            'label': title,
             'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': plot, 'sorttitle': sort_title(news_item['episodeTitle'])},
+            'info': {'plot': plot, 'sorttitle': sort_title(title)},
             'params': {'url': base_url + news_item['href']}
         }
     }
