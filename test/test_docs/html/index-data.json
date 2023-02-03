@@ -11659,6 +11659,25 @@
         "synopsis": "Catch up with the most recent edition of ITV News.",
         "dateTime": "2023-01-23T14:50:00Z",
         "posterImage": "https://images.ctfassets.net/go68aep20o4s/zGGo34j6UwCeUkVajpXX7/713cc59372d091efc21046ecdf3eb405/ITVX_CHARLENE_PROG_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Watch Thursday's ITV Evening News",
+        "encodedEpisodeId": {
+          "letterA": "2a4545a1846",
+          "underscore": "2_4545_1846"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a4545",
+          "underscore": "2_4545"
+        },
+        "titleSlug": "watch-thursdays-itv-evening-news",
+        "programmeTitle": "ITV Evening News",
+        "episodeId": "2/4545/1846",
+        "programmeId": "2/4545",
+        "href": "watch-thursdays-itv-evening-news/2/4545/2/4545/1846",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/66dXNkJouk34NWDufivLCv/05f5673cbe921e17dbdaa143b82de6d5/Mary_Programme_Thumbnail.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "dateTime": "2023-02-02T20:34:00Z"
       }
     ],
     "key": "newsShortform",

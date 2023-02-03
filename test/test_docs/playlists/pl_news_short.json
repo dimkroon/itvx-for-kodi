@@ -1,0 +1,16 @@
+{
+  "Playlist": {
+    "VideoType": "SHORT",
+    "ProductionId": "294f5r9",
+    "Video": {
+      "Duration": "00:00:32:920",
+      "Base": "https://playback.brightcovecdn.com",
+      "MediaFiles": [
+        {
+          "Href": "/playback/v1/accounts/2821697655001/videos/6319711095112/high.mp4?bcov_auth=ewoJInR5cGUiOiAiSldUIiwKCSJhbGciOiAiUlMyNTYiCn0.ewoJImFjY2lkIjogIjI4MjE2OTc2NTUwMDEiCn0.XU9GEvV2NRG__OVbLn9kSt-MX5XHD6MCofzeuD2B89IQOfNYDfPPYk0ZZrQT5Lfj_PNIQh-1UsSGRjpeFu_3IJRtAf5HabobscEcBiAluTw2Vjr5WRTaNeI572h-o2zQosoQ4aNS67hl0LDGWQfAqgjf1H4EPCrQc-GvlGvoXxgpnnPHQfwLIACoN5TYOREKq26sa4wPEu1v-vWGgQBqssk9IUX2bY7ovfzY9gtec4o7pAXosZvMEiPWx3PX7pOb4s13Q6zUReHnCwofnnFewCX2QzgAAUMSqkd73iVA0VWg7Atus6Iag40mJWVoVAOgP_EXFOS76c7GJTb-rOELZw"
+        }
+      ]
+    },
+    "ContentBreaks": []
+  }
+}

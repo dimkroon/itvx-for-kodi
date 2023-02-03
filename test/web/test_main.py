@@ -1,10 +1,9 @@
 # ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022. Dimitri Kroon
+#  Copyright (c) 2022 - 2023 Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
 # ---------------------------------------------------------------------------------------------------------------------
-
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -12,17 +11,20 @@ import unittest
 from unittest.mock import MagicMock
 from typing import MutableMapping
 
-from resources.lib import main
-
+from resources.lib import main, parsex, itvx
+from support import object_checks
 
 setUpModule = fixtures.setup_web_test
 
 
 class TestMenu(unittest.TestCase):
+    def test_main_menu(self):
+        items = list(main.root(MagicMock()))
+        self.assertGreaterEqual(len(items), 6)
+
     def test_menu_live(self):
         items = list(main.sub_menu_live(MagicMock()))
         self.assertGreaterEqual(len(items), 10)
-        self.assertGreater(len(items), 10)
         # for item in items:
         #     print(item.params['url'])
 
@@ -98,6 +100,17 @@ class TestPlayCatchup(unittest.TestCase):
                                           name='Walks with Julia Bradbury')
         self.assertEqual('Walks with Julia Bradbury', result.label)
         self.assertIsInstance(result.params, MutableMapping)
+        self.assertTrue(object_checks.is_url(result.path, '.mpd'))
+
+    def test_play_short_news_item(self):
+        # get the first news item from the main page
+        page_data = itvx.get_page_data('https://www.itv.com/')
+        news_item = page_data['newsShortformSliderContent']['items'][0]
+        item_url = 'https://www.itv.com/watch/news/' + news_item['href']
+        # play the item
+        result = main.play_title(MagicMock(), item_url, 'news item')
+        self.assertIsInstance(result.params, MutableMapping)
+        self.assertTrue(object_checks.is_url(result.path, '.mp4'))
 
 
 class TestSearch(unittest.TestCase):

@@ -1,5 +1,10 @@
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvhub
@@ -53,7 +58,7 @@ class TestItv(unittest.TestCase):
         for url in urls:
             result = itv.get_catchup_urls(url)
             self.assertIsInstance(result, tuple)
-            self.assertEqual(len(result), 3)
+            self.assertEqual(len(result), 4)
             # print(result)
 
     def test_get_vtt_subtitles(self):

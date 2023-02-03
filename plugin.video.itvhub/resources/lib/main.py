@@ -1,9 +1,15 @@
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
-# ---------------------------------------------------------------------------------------------------------------------
+#
+# ----------------------------------------------------------------------------------------------------------------------
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
 
 import logging
 import typing
@@ -368,6 +374,19 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
     return play_item
 
 
+def create_mp4_file_item(name, file_url):
+    # noinspection PyImport,PyUnresolvedReferences
+    from resources.lib.itv_account import itv_session
+
+    logger.debug('mp4 file url: %s', file_url)
+    play_item = Listitem()
+    play_item.label = name
+    play_item.set_path(file_url, is_playable=True)
+    # play_item.listitem.setContentLookup(False)
+    play_item.listitem.setMimeType('video/mp4')
+    return play_item
+
+
 @Resolver.register
 def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
     logger.info('play live stream - channel=%s, url=%s, start_time=%s, play_from_start=%s',
@@ -411,7 +430,7 @@ def play_stream_catchup(_, url, name):
 
     logger.info('play catchup stream - %s  url=%s', name, url)
     try:
-        manifest_url, key_service_url, subtitle_url = itv.get_catchup_urls(url)
+        manifest_url, key_service_url, subtitle_url, stream_type = itv.get_catchup_urls(url)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
@@ -425,10 +444,13 @@ def play_stream_catchup(_, url, name):
         logger.error('Error retrieving catchup stream urls:', exc_info=True)
         return False
 
-    list_item = create_dash_stream_item(name, manifest_url, key_service_url)
-    if list_item:
-        list_item.subtitles = itv.get_vtt_subtitles(subtitle_url)
-    return list_item
+    if stream_type == 'SHORT':
+        return create_mp4_file_item(name, manifest_url)
+    else:
+        list_item = create_dash_stream_item(name, manifest_url, key_service_url)
+        if list_item:
+            list_item.subtitles = itv.get_vtt_subtitles(subtitle_url)
+        return list_item
 
 
 @Resolver.register

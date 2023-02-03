@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022. Dimitri Kroon
+#  Copyright (c) 2022 - 2023 Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
@@ -167,17 +167,18 @@ def get_catchup_urls(episode_url):
     """Return the urls to the dash stream, key service and subtitles for a particular catchup episode.
     """
     # import web_pdb; web_pdb.set_trace()
-    stream_data = _request_stream_data(episode_url, 'catchup')['Playlist']['Video']
+    playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
+    stream_data = playlist['Video']
     url_base = stream_data['Base']
     video_locations = stream_data['MediaFiles'][0]
     dash_url = url_base + video_locations['Href']
-    key_service = video_locations['KeyServiceUrl']
+    key_service = video_locations.get('KeyServiceUrl')
     try:
         # usually stream_data['Subtitles'] is just None when no subtitles are not available
         subtitles = stream_data['Subtitles'][0]['Href']
     except (TypeError, KeyError, IndexError):
         subtitles = None
-    return dash_url, key_service, subtitles
+    return dash_url, key_service, subtitles, playlist['VideoType']
 
 
 def get_vtt_subtitles(subtitles_url):

@@ -1,6 +1,6 @@
 
 # ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+#  Copyright (c) 2022 -2023 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
@@ -31,7 +31,7 @@ IMG_PROPS_FANART = {'treatment': '', 'aspect_ratio': '16x9', 'class': '01_Hero_D
                     'quality': '80', 'blur': 0, 'bg': 'false', 'image_format': 'jpg'}
 
 
-url_trans_table = str.maketrans(' ', '-', '#/?:')
+url_trans_table = str.maketrans(' ', '-', '#/?:\'')
 
 
 def build_url(programme, programme_id, episode_id=None):
@@ -176,10 +176,20 @@ def parse_collection_item(show_data):
 
 # noinspection GrazieInspection
 def parse_news_collection_item(news_item, time_zone, time_fmt):
+    if 'encodedProgrammeId' in news_item.keys():
+        # The new item is a 'normal' catchup title
+        # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
+        url = '/'.join(('https://www.itv.com/watch',
+                        news_item['titleSlug'],
+                        news_item['encodedProgrammeId']['letterA'],
+                        news_item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
+    else:
+        # Thi news item is a 'short' item
+        url = 'https://www.itv.com/watch/news/' + news_item['href']
+
     # dateTime field occasionally has milliseconds
     item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
     loc_time = item_time.astimezone(time_zone)
-    base_url = 'https://www.itv.com/watch/news/'
     title = news_item['episodeTitle']
     plot = '\n'.join((loc_time.strftime(time_fmt), news_item.get('synopsis', title)))
 
@@ -193,7 +203,7 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
             'label': title,
             'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
             'info': {'plot': plot, 'sorttitle': sort_title(title)},
-            'params': {'url': base_url + news_item['href']}
+            'params': {'url': url }
         }
     }
 

@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+#  Copyright (c) 2022 - 2023 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
@@ -50,6 +50,8 @@ class Generic(unittest.TestCase):
         self.assertEqual('https://www.itv.com/watch/5050-heroes/10a1511', url)
         url = parsex.build_url('Paul Sinha: Shout Out To My Ex', '10a3819')
         self.assertEqual('https://www.itv.com/watch/paul-sinha-shout-out-to-my-ex/10a3819', url)
+        url = parsex.build_url("Watch Thursday's ITV Evening News", '10a3819')
+        self.assertEqual('https://www.itv.com/watch/watch-thursdays-itv-evening-news/10a3819', url)
 
     def test_sort_title(self):
         self.assertEqual('my title', parsex.sort_title('My Title'))
@@ -90,7 +92,12 @@ class Generic(unittest.TestCase):
     def test_parse_news_collection_item(self):
         data = open_json('html/index-data.json')['newsShortformSliderContent']['items']
         tz_uk = pytz.timezone('Europe/London')
+        # a short new item
         item = parsex.parse_news_collection_item(data[1], tz_uk, "%H-%M-%S")
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+        # a new item like a normal catchup episode
+        item = parsex.parse_news_collection_item(data[-1], tz_uk, "%H-%M-%S")
         has_keys(item, 'playable', 'show')
         is_li_compatible_dict(self, item['show'])
 
