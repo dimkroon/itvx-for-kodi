@@ -1,3 +1,8 @@
+v0.7.2
+- Fix short news items from 'main menu/news' didn't play.
+- Fix 'main menu/news' sometimes failed with "KeyError 'synopsis'".
+- Fix fast channels won't play on kodi 20.
+
 v0.7.1
 - Fixed "KeyError 'type'" at addon start caused by changes at itvx.
 
