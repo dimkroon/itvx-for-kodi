@@ -1,9 +1,15 @@
 
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+
 # ---------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
@@ -119,6 +125,8 @@ class MainPage(unittest.TestCase):
             # Have once seen an item without field 'synopsys', but keep the check to see if happens again.
             has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
                      'titleSlug', obj_name='news-slider')
+            self.assertFalse(is_url(item['href']))
+            self.assertFalse(item['href'].startswith('/'))
 
     def test_get_itvx_logo(self):
         resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'

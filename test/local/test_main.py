@@ -1,9 +1,15 @@
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
-# ---------------------------------------------------------------------------------------------------------------------
+#
+# ----------------------------------------------------------------------------------------------------------------------
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
 
 import types
 
@@ -229,6 +235,11 @@ class Search(TestCase):
 
 
 class PlayStreamCatchup(TestCase):
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
+    def test_play_short_news_item(self, _):
+        result = main.play_stream_catchup.route.unittest_caller('some/url', 'a short news item')
+        self.assertIsInstance(result, Listitem)
+
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
         result = main.play_stream_catchup(MagicMock(), 'url', '')

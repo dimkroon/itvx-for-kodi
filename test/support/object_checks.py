@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022. Dimitri Kroon
+#  Copyright (c) 2022 - 2023 Dimitri Kroon
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
@@ -150,3 +150,24 @@ def check_catchup_dash_stream_info(playlist):
     if subtitles is not None:
         for subt in subtitles:
             assert is_url(subt['Href'], '.vtt')
+
+
+def check_news_stream_info(playlist):
+    """Check the structure of a dictionary containing urls to the mp4 file
+    This checks a playlist of type application/vnd.itv.vod.playlist.v2+json, which is
+    returned for short news items
+    """
+    has_keys(playlist, 'Video', 'ProductionId', 'VideoType', 'ContentBreaks', obj_name='Playlist')
+    assert playlist['VideoType'] == 'SHORT'
+
+    video_inf = playlist['Video']
+    has_keys(video_inf, 'Duration', 'Base', 'MediaFiles', obj_name="Playlist['Video']")
+    # If these are present it is a 'normal' catchup item
+    misses_keys(video_inf, 'Timecodes', 'Subtitles', 'Token', obj_name="Playlist['Video']")
+
+    assert isinstance(video_inf['Duration'], str)
+
+    strm_inf = video_inf['MediaFiles']
+    assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
+    assert len(strm_inf) == 1
+    assert is_url(video_inf['Base'] + strm_inf[0]['Href'], '.mp4')

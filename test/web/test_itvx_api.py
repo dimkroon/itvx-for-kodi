@@ -1,9 +1,15 @@
 
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+
 # ---------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
@@ -16,6 +22,8 @@ from datetime import datetime, timedelta
 
 from resources.lib import itv_account
 from resources.lib import fetch
+from resources.lib import parsex
+from resources.lib import itvx
 from test.support import object_checks
 
 setUpModule = fixtures.setup_web_test
@@ -406,3 +414,26 @@ class Playlists(unittest.TestCase):
         manifest = resp.text
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
+
+    def test_playlist_news_collection_items(self):
+        """Short news items form the collection 'news' are all just mp4 files."""
+        page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
+        for item in page_data['newsShortformSliderContent']['items']:
+            is_short = True
+            if 'encodedProgrammeId' in item.keys():
+                # The new item is a 'normal' catchup title
+                # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
+                url = '/'.join(('https://www.itv.com/watch',
+                                item['titleSlug'],
+                                item['encodedProgrammeId']['letterA'],
+                                item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
+                is_short = False
+            else:
+                # This news item is a 'short' item
+                url = 'https://www.itv.com/watch/news/' + item['href']
+            playlist_url = itvx.get_playlist_url_from_episode_page(url)
+            strm_data = self.get_playlist_catchup(playlist_url)
+            if is_short:
+                object_checks.check_news_stream_info(strm_data['Playlist'])
+            else:
+                object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
