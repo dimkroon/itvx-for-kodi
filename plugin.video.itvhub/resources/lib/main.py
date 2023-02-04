@@ -10,6 +10,11 @@
 #  This file is part of plugin.video.itvx
 #
 # ----------------------------------------------------------------------------------------------------------------------
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
 
 import logging
 import typing
@@ -389,8 +394,9 @@ def create_mp4_file_item(name, file_url):
 
 @Resolver.register
 def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
-    logger.info('play live stream - channel=%s, url=%s, start_time=%s, play_from_start=%s',
-                channel, url, start_time, play_from_start)
+    if url is None:
+        url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
+        logger.info("Created live url from channel name: '%s'", url)
 
     if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
         start_time = None

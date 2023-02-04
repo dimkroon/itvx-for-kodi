@@ -142,30 +142,22 @@
     },
     {
       "imagePresets": {},
-      "contentType": "series",
-      "title": "Maternal",
+      "contentType": "simulcastspot",
+      "title": "Six Nations Championship: England v Scotland",
       "tagName": null,
-      "imageTemplate": "https://ovp.itv.com/images/series/t619vpl/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/zdv3n6n/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "10/0158",
-      "encodedProgrammeId": {
-        "letterA": "10a0158",
-        "underscore": "10_0158"
-      },
+      "imageTemplate": "https://ovp.itv.com/images/episode/8r9dkzh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "brandImageTemplate": "https://ovp.itv.com/images/programme/6khrj88/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "programmeId": "2/4295/0056",
       "encodedEpisodeId": {
-        "letterA": "10a0158a0001",
-        "underscore": "10_0158_0001"
+        "letterA": "2a4295a0056",
+        "underscore": "2_4295_0056"
       },
-      "categories": [
-        "DRAMA_AND_SOAPS"
-      ],
-      "description": "Life & death on medicine's frontline - catch every ep of this tense drama",
-      "series": 1,
+      "description": "Catch all the on-pitch action from England v Scotland at Twickenham",
+      "channel": "ITV",
       "ctaLabel": "Watch Now",
-      "genre": "Drama & Soaps",
+      "genre": "Sport",
       "contentInfo": [
-        "Drama & Soaps",
-        "Series 1"
+        "Sport"
       ]
     }
   ],
