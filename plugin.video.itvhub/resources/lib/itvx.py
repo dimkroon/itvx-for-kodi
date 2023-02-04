@@ -1,6 +1,11 @@
 
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
+#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  This file is part of plugin.video.itvx
+#
+# ----------------------------------------------------------------------------------------------------------------------
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
@@ -126,7 +131,7 @@ def get_live_channels():
 
 
 def main_page_items():
-    main_data = get_page_data('https://www.itv.com', cache_time=3600)
+    main_data = get_page_data('https://www.itv.com', cache_time=None)
     for hero_data in main_data['heroContent']:
         yield parsex.parse_hero_content(hero_data)
     if 'trendingSliderContent' in main_data.keys():
