@@ -14,8 +14,8 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary>Live TV and catchup from itvX</summary>
-    <description>Play live and catchup TV from itvX. An ITV account is required.</description>
+    <summary lang="en">Live TV and catchup from itvX</summary>
+    <description lang="en">Play live and catchup TV from itvX. An ITV account is required.</description>
     <disclaimer lang="en">This add-on is not developed by ITV and is no way affiliated with, or endorsed by ITV.
     </disclaimer>
     <assets>
