@@ -1,3 +1,9 @@
+v0.7.3
+- Fixed playable items in collections failed with error 'Not Found' caused by changes at itvX.
+- The main menu is always refreshed to ensure hero items are up to date.
+- Fixed regression in 0.7.2: live hero items failed to play.
+- Various minor changes under the hood.
+
 v0.7.2
 - Fix short news items from 'main menu/news' didn't play.
 - Fix 'main menu/news' sometimes failed with "KeyError 'synopsis'".
