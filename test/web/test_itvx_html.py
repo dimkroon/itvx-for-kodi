@@ -79,18 +79,18 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'contentType', 'title', 'imageTemplate', 'programmeId', 'description',
-                     'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
+            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description',
+                     'contentInfo', 'tagName', obj_name=item['title'])
             self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special'))
 
-            if item['contentType'] in ('simulcastspot', 'series'):
-                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
+            if item['contentType'] != 'simulcastspot':
+                has_keys(item, 'encodedProgrammeId', 'programmeId', 'genre', obj_name=item['title'])
 
             if item['contentType'] == 'special':
                 has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
 
             if item['contentType'] == 'series':
-                has_keys(item, 'series', obj_name=item['title'])
+                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
 
             if item['contentType'] == 'film':
                 # Fields not always present:  'dateTime'
