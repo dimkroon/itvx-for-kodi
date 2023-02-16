@@ -233,7 +233,7 @@ class PlayStreamLive(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
-    def test_play_live_by_channel_name(self, p_req_strm, _, __):
+    def test_play_live_by_channel_name(self, _, __, p_req_strm):
         result = main.play_stream_live.route.unittest_caller(channel='ITV', url=None)
         self.assertIsInstance(result, Listitem)
         # Assert channel name is converted to a full url
