@@ -138,10 +138,9 @@ def parse_collection_item(show_data):
     """Parse a show item from a collection page
 
     Very much like category content, but not quite.
-    There appears to be no premium content in collections.
     """
     content_type = show_data.get('contentType') or show_data['type']
-    is_playable = content_type == 'title'
+    is_playable = content_type in ('episode', 'film', 'special', 'title')
     title = show_data['title']
     content_info = show_data.get('contentInfo', '')
 

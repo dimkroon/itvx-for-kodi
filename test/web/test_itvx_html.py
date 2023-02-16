@@ -24,7 +24,7 @@ def check_shows(self, show, parent_name):
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
-    self.assertTrue(show['contentType'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
+    self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode'), "{}: Unexpected title type '{}'.".format(
         '.'.join((parent_name, show['title'])), show['contentType']))
     is_url(show['imageTemplate'], '.png')
 
@@ -138,10 +138,11 @@ class MainPage(unittest.TestCase):
 class CollectionPage(unittest.TestCase):
     def test_collection_just_in(self):
         page = fetch.get_document('https://www.itv.com/watch/collections/just-in/2RQpkypwh3w8m6738sUHQH')
-        # testutils.save_doc(page, 'html/collection_just-in.html')
         data = parsex.scrape_json(page)
-        self.assertIsNotNone(data)
-        # testutils.save_json(data, 'html/collection_just-in.json')
+        # testutils.save_json(data, 'html/collection_just-in_data.json')
+        shows = data['collection']['shows']
+        for show in shows:
+            check_shows(self, show, data['collection']['sliderName'])
 
 
 class WatchPages(unittest.TestCase):

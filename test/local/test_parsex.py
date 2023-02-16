@@ -75,14 +75,26 @@ class Generic(unittest.TestCase):
 
     def test_parse_collection_title(self):
         data = open_json('html/collection_just-in_data.json')['collection']['shows']
-        # film The Hulk
-        item = parsex.parse_collection_item(data[0])
+        # film - Valentine's Day
+        item = parsex.parse_collection_item(data[2])
         has_keys(item, 'playable', 'show')
         is_li_compatible_dict(self, item['show'])
-        # series
+        self.assertIs(item['playable'], True)
+        # series - The Twelve
         item = parsex.parse_collection_item(data[1])
         has_keys(item, 'playable', 'show')
         is_li_compatible_dict(self, item['show'])
+        self.assertIs(item['playable'], False)
+        # episode - Kavos Weekender
+        item = parsex.parse_collection_item(data[3])
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertIs(item['playable'], True)
+        # Brand - Jonathan Ross' Must-Watch Films
+        item = parsex.parse_collection_item(data[13])
+        has_keys(item, 'playable', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertIs(item['playable'], False)
 
     def test_parse_collection_title_from_main_page(self):
         data = open_json('html/index-data.json')['editorialSliders']['editorialRailSlot1']['collection']['shows']
