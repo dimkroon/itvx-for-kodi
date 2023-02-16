@@ -1,27 +1,22 @@
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#
-#  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
-#
-# ----------------------------------------------------------------------------------------------------------------------
-#
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  This file is part of plugin.video.itvx
-#
+#  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
-import types
 
 from test.support import fixtures
 fixtures.global_setup()
+
+import types
 
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
 from codequick import Listitem
 
-from test.support.testutils import open_json
+from test.support.testutils import open_json, HttpResponse
+from test.support import object_checks
 
 from resources.lib import main
 from resources.lib import errors
@@ -232,6 +227,18 @@ class Search(TestCase):
     def test_search_with_no_results(self, _):
         results = main.do_search(MagicMock(), 'the chase')
         self.assertIs(results, False)
+
+
+class PlayStreamLive(TestCase):
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    def test_play_live_by_channel_name(self, _, __, p_req_strm):
+        result = main.play_stream_live.route.unittest_caller(channel='ITV', url=None)
+        self.assertIsInstance(result, Listitem)
+        # Assert channel name is converted to a full url
+        self.assertEqual(1, len(p_req_strm.call_args_list))
+        self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
 
 
 class PlayStreamCatchup(TestCase):

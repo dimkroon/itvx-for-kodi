@@ -1,10 +1,10 @@
 
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
-#
-#  SPDX-License-Identifier: GPL-2.0-or-later
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.itvx
-# ---------------------------------------------------------------------------------------------------------------------
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  See LICENSE.txt
+# ----------------------------------------------------------------------------------------------------------------------
 
 import logging
 
@@ -13,7 +13,7 @@ from codequick.support import addon_data, logger_id
 
 from resources.lib import itv_account
 from resources.lib import kodi_utils
-from resources.lib import logging as itv_logging
+from resources.lib import addon_log
 
 logger = logging.getLogger('.'.join((logger_id, __name__)))
 
@@ -39,15 +39,15 @@ def change_logger(_):
     Let the user choose between logging to kodi log, to our own file, or no logging at all.
 
     """
-    handlers = (itv_logging.KodiLogHandler, itv_logging.CtFileHandler, itv_logging.DummyHandler)
+    handlers = (addon_log.KodiLogHandler, addon_log.CtFileHandler, addon_log.DummyHandler)
 
     try:
-        curr_hndlr_idx = handlers.index(type(itv_logging.logger.handlers[0]))
+        curr_hndlr_idx = handlers.index(type(addon_log.logger.handlers[0]))
     except (ValueError, IndexError):
         curr_hndlr_idx = 0
 
     new_hndlr_idx, handler_name = kodi_utils.ask_log_handler(curr_hndlr_idx)
     handler_type = handlers[new_hndlr_idx]
 
-    itv_logging.set_log_handler(handler_type)
+    addon_log.set_log_handler(handler_type)
     addon_data.setSettingString('log-handler', handler_name)

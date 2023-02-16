@@ -1,9 +1,9 @@
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022. Dimitri Kroon
-#
-#  SPDX-License-Identifier: GPL-2.0-or-later
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.itvx
-# ---------------------------------------------------------------------------------------------------------------------
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  See LICENSE.txt
+# ----------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
 fixtures.global_setup()
@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from resources.lib import settings
-from resources.lib import logging
+from resources.lib import addon_log
 
 
 class TestSettings(unittest.TestCase):
@@ -30,24 +30,24 @@ class TestSettings(unittest.TestCase):
         settings.logout(MagicMock())
         p_logout.assert_called_once()
 
-    @patch("resources.lib.logging.set_log_handler")
+    @patch("resources.lib.addon_log.set_log_handler")
     def test_change_logger(self, p_set_log):
-        logger = logging.logger
+        logger = addon_log.logger
 
         self.assertTrue(hasattr(settings.change_logger, 'route'))
 
         with patch("resources.lib.kodi_utils.ask_log_handler", return_value=(0, 'kodi log')):
             settings.change_logger(MagicMock())
-            p_set_log.assert_called_with(logging.KodiLogHandler)
+            p_set_log.assert_called_with(addon_log.KodiLogHandler)
 
         with patch("resources.lib.kodi_utils.ask_log_handler", return_value=(1, 'file log')):
             settings.change_logger(MagicMock())
-            p_set_log.assert_called_with(logging.CtFileHandler)
+            p_set_log.assert_called_with(addon_log.CtFileHandler)
 
         with patch("resources.lib.kodi_utils.ask_log_handler", return_value=(2, 'no log')) as p_ask:
-            with patch.object(logger, 'handlers', new=[logging.CtFileHandler()]):
+            with patch.object(logger, 'handlers', new=[addon_log.CtFileHandler()]):
                 settings.change_logger(MagicMock())
-                p_set_log.assert_called_with(logging.DummyHandler)
+                p_set_log.assert_called_with(addon_log.DummyHandler)
                 p_ask.assert_called_with(1)
 
         # Test default values passed to ask_log_handler().

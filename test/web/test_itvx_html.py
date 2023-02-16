@@ -1,16 +1,10 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#
-#  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
-#
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-#
-#  SPDX-License-Identifier: GPL-2.0-or-later
-#  This file is part of plugin.video.itvx
-
-# ---------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
 fixtures.global_setup()
@@ -30,7 +24,7 @@ def check_shows(self, show, parent_name):
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
-    self.assertTrue(show['contentType'] in ('series', 'title', 'brand'), "{}: Unexpected title type '{}'.".format(
+    self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode'), "{}: Unexpected title type '{}'.".format(
         '.'.join((parent_name, show['title'])), show['contentType']))
     is_url(show['imageTemplate'], '.png')
 
@@ -85,18 +79,18 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'contentType', 'title', 'imageTemplate', 'programmeId', 'description',
-                     'genre', 'contentInfo', 'tagName', 'encodedProgrammeId', obj_name=item['title'])
+            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description',
+                     'contentInfo', 'tagName', obj_name=item['title'])
             self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special'))
 
-            if item['contentType'] in ('simulcastspot', 'series'):
-                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', obj_name=item['title'])
+            if item['contentType'] != 'simulcastspot':
+                has_keys(item, 'encodedProgrammeId', 'programmeId', 'genre', obj_name=item['title'])
 
             if item['contentType'] == 'special':
                 has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
 
             if item['contentType'] == 'series':
-                has_keys(item, 'series', obj_name=item['title'])
+                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
 
             if item['contentType'] == 'film':
                 # Fields not always present:  'dateTime'
@@ -122,8 +116,8 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
         for item in page_props['newsShortformSliderContent']['items']:
-            # Have once seen an item without field 'synopsys', but keep the check to see if happens again.
-            has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
+            # Field 'synopsys' may be absent occasionally.
+            has_keys(item, 'episodeTitle', 'imageUrl', 'href', 'dateTime',
                      'titleSlug', obj_name='news-slider')
             self.assertFalse(is_url(item['href']))
             self.assertFalse(item['href'].startswith('/'))
@@ -144,10 +138,11 @@ class MainPage(unittest.TestCase):
 class CollectionPage(unittest.TestCase):
     def test_collection_just_in(self):
         page = fetch.get_document('https://www.itv.com/watch/collections/just-in/2RQpkypwh3w8m6738sUHQH')
-        # testutils.save_doc(page, 'html/collection_just-in.html')
         data = parsex.scrape_json(page)
-        self.assertIsNotNone(data)
-        # testutils.save_json(data, 'html/collection_just-in.json')
+        # testutils.save_json(data, 'html/collection_just-in_data.json')
+        shows = data['collection']['shows']
+        for show in shows:
+            check_shows(self, show, data['collection']['sliderName'])
 
 
 class WatchPages(unittest.TestCase):
@@ -204,8 +199,7 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
-                # heartbeat is premium, but series 18 is free.
-                'https://www.itv.com/watch/heartbeat/Ya0757/Ya0757a0372',):
+                ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
@@ -217,7 +211,7 @@ class WatchPages(unittest.TestCase):
                 check_series(self, series, title_data['brand']['title'])
 
     def test_film_details_page(self):
-        page = fetch.get_document('https://www.itv.com/watch/love-actually/27304')
+        page = fetch.get_document('https://www.itv.com/watch/danny-collins/10a3142')
         # testutils.save_doc(page, 'html/film_love-actually.html')
         data = parsex.scrape_json(page)
         check_title(self, data['title'], 'love-actually')

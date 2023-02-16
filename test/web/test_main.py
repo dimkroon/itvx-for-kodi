@@ -1,9 +1,9 @@
-# ---------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 - 2023 Dimitri Kroon
-#
-#  SPDX-License-Identifier: GPL-2.0-or-later
+# ----------------------------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.itvx
-# ---------------------------------------------------------------------------------------------------------------------
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  See LICENSE.txt
+# ----------------------------------------------------------------------------------------------------------------------
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -60,9 +60,9 @@ class TestGetProductions(unittest.TestCase):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='other-episodes')
         self.assertEqual(len(items), 1)
 
-    def test_get_productions_the_professionals_folder_1(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/the-professionals/L0845', series_idx=1)
-        self.assertGreater(len(items), 1)
+    def test_get_productions_above_suspicion_folder_1(self):
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/above-suspicion/35460', series_idx=1)
+        self.assertEqual(len(items), 2)
 
     def test_get_productions_the_chase(self):
         """The chase had 53 items, but only one production was shown"""
