@@ -116,8 +116,8 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
         for item in page_props['newsShortformSliderContent']['items']:
-            # Have once seen an item without field 'synopsys', but keep the check to see if happens again.
-            has_keys(item, 'episodeTitle', 'imageUrl', 'synopsis', 'href', 'dateTime',
+            # Field 'synopsys' may be absent occasionally.
+            has_keys(item, 'episodeTitle', 'imageUrl', 'href', 'dateTime',
                      'titleSlug', obj_name='news-slider')
             self.assertFalse(is_url(item['href']))
             self.assertFalse(item['href'].startswith('/'))
@@ -199,8 +199,7 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
-                # heartbeat is premium, but series 18 is free.
-                'https://www.itv.com/watch/heartbeat/Ya0757/Ya0757a0372',):
+                ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
@@ -212,7 +211,7 @@ class WatchPages(unittest.TestCase):
                 check_series(self, series, title_data['brand']['title'])
 
     def test_film_details_page(self):
-        page = fetch.get_document('https://www.itv.com/watch/love-actually/27304')
+        page = fetch.get_document('https://www.itv.com/watch/danny-collins/10a3142')
         # testutils.save_doc(page, 'html/film_love-actually.html')
         data = parsex.scrape_json(page)
         check_title(self, data['title'], 'love-actually')
