@@ -92,9 +92,17 @@ class Paginator:
         self._filter = filter_char
         self._page_nr = page_nr
         self._kwargs = kwargs
+        self._is_az_list = None
         self._addon = utils.addon_info.addon
 
-    def _show_az_list(self):
+    @property
+    def is_az_list(self):
+        """True if the paginator will return only A to Z folders"""
+        if self._is_az_list is None:
+            self._is_az_list = self._get_show_az_list()
+        return self._is_az_list
+
+    def _get_show_az_list(self):
         az_len = self._addon.getSettingInt('a-z_size')
         items_list = self._items_list
         try:
@@ -159,7 +167,7 @@ class Paginator:
             yield li
 
     def __iter__(self):
-        if self._show_az_list():
+        if self.is_az_list:
             return self._generate_az()
         else:
             return self._generate_page()
@@ -179,7 +187,27 @@ def root(_):
 
 @Route.register(content_type='videos')
 def sub_menu_my_itvx(_):
+    # Ensure to add at least one parameter to persuade dynamic listing that we actually call the list.
+    yield Listitem.from_dict(list_my_list, 'My List', params={'filter_char': None})
     yield Listitem.from_dict(list_last_watched, 'Continue watching', params={'filter_char': None})
+
+
+@Route.register(content_type='videos')
+@dynamic_listing
+def list_my_list(addon, filter_char=None, page_nr=0):
+    """List the contents of itvX's 'My List'.
+
+    """
+    shows_list = itvx.get_mylist(itv_account.itv_session().user_id)
+    logger.info("Listed My List with % items", len(shows_list))
+    # Mylist can contain 999 items,
+    paginator = Paginator(shows_list, filter_char, page_nr)
+    if paginator.is_az_list:
+        yield from paginator
+    else:
+        for li in paginator:
+            li.context.script(update_mylist, "Remove from itvX's My List", li.params['url'])
+            yield li
 
 
 @Route.register(content_type='videos')
@@ -564,6 +592,11 @@ def play_title(plugin, url, name=''):
         kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
         return False
     return play_stream_catchup(plugin, url, name)
+
+
+@Script.register
+def update_mylist(_, programm_id, operation):
+    pass
 
 
 def run():

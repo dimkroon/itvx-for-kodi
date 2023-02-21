@@ -51,6 +51,18 @@ class TestMyItvx(unittest.TestCase):
     def setUp(self):
         cache.purge()
 
+    def test_mylist(self):
+        items = main.list_my_list(MagicMock(), filter_char=None)
+        self.assertGreater(len(items), 1)
+
+    def test_mylist_wrong_user_id(self):
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=uuid.uuid4()):
+            self.assertRaises(errors.AccessRestrictedError, main.list_my_list.test, filter_char=None)
+
+    def test_my_list_not_signed_in(self):
+        with patch.object(itv_account._itv_session_obj, 'account_data', new={}):
+            self.assertRaises(SystemExit, main.list_my_list.test, filter_char=None)
+
     @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
     def test_continue_watching(self, _):
         items = main.list_last_watched.test(filter_char=None)

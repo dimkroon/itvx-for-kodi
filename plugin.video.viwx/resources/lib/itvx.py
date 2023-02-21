@@ -485,6 +485,13 @@ def search(search_term, hide_paid=False):
     return (parsex.parse_search_result(result) for result in results)
 
 
+def get_mylist(user_id):
+    url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform={}'.format(
+        user_id, FEATURE_SET, PLATFORM_TAG)
+    # Requesting content-type application/json returns a list instead of a dict
+    my_list = itv_account.fetch_authenticated(fetch.get_json, url)
+    return [parsex.parse_my_list_item(item) for item in my_list]
+
 def get_last_watched():
     cache_key = 'last_watched'
     cached_data = cache.get_item(cache_key)

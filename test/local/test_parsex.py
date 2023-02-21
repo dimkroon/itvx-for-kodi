@@ -235,6 +235,13 @@ class Generic(unittest.TestCase):
         search_result['entityType'] = 'dfgs'
         self.assertIsNone(parsex.parse_search_result(search_result))
 
+    def test_parse_mylist(self):
+        data = open_json('mylist/mylist_data.json')['items']
+        for mylist_item in data:
+            item = parsex.parse_my_list_item(mylist_item)
+            has_keys(item, 'type', 'show')
+            is_li_compatible_dict(self, item['show'])
+
     def test_parse_last_watched(self):
         data = open_json('usercontent/last_watched_all.json')
         utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)

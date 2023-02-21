@@ -381,3 +381,30 @@ class GetPLaylistUrl(TestCase):
     def test_get_playlist_from_special_item(self, _):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
+
+
+class GetMyList(TestCase):
+    def setUp(self):
+        cache.purge()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_get_mylist(self, p_fetch):
+        result_1 = itvx.my_list('156-45xsghf75-4sf569')
+        self.assertEqual(len(list(result_1)), 4)
+        for item in result_1:
+            is_li_compatible_dict(self, item['show'])
+        p_fetch.assert_called_once()
+        # second call should be fetched from cache
+        result_2 = itvx.my_list('156-45xsghf75-4sf569')
+        p_fetch.assert_called_once()
+        self.assertListEqual(result_1, result_2)
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=None)
+    def test_get_empty_mylist(self, p_fetch):
+        result_1 = itvx.my_list('156-45xsghf75-4sf569')
+        self.assertListEqual(result_1, [])
+        p_fetch.assert_called_once()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit)
+    def test_get_mylist_not_signed_in(self, p_fetch):
+        self.assertRaises(SystemExit, itvx.my_list, '156-45xsghf75-4sf569')
