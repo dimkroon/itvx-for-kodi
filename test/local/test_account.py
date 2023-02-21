@@ -411,7 +411,7 @@ class GetAuthenticated(unittest.TestCase):
     def test_authenticated_get(self, mocked_get, _):
         resp = itv_account.fetch_authenticated(fetch.get_json, URL)
         self.assertEqual({'a': 1}, resp)
-        mocked_get.assert_called_once_with(url=URL, cookies={})
+        mocked_get.assert_called_once_with(url=URL, cookies={}, headers={'authorization': 'Bearer 123abc'})
 
     @patch('resources.lib.settings.login')
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
