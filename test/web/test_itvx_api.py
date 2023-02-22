@@ -208,7 +208,8 @@ class Search(unittest.TestCase):
                                'synopsis', 'latestAvailableEpisode', 'totalAvailableEpisodes', 'tier',
                                obj_name='programItem.data')
         object_checks.is_url(item_data['latestAvailableEpisode']['imageHref'])
-        self.assertTrue(object_checks.is_encoded_programme_id(item_data['legacyId']['apiEncoded']))
+        self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
+        self.assertFalse('/' in item_data['legacyId']['apiEncoded'])
 
     def check_special_item(self, item_data):
         object_checks.has_keys(item_data, 'specialCCId', 'legacyId', 'productionId', 'specialTitle',
@@ -220,22 +221,21 @@ class Search(unittest.TestCase):
         if special_data:
             object_checks.has_keys(special_data, 'programmeCCId', 'legacyId', 'programmeTitle',
                                    obj_name='specialItem.data.specialProgramme')
-            self.assertTrue(object_checks.is_encoded_programme_id(special_data['legacyId']['apiEncoded']))
+            self.assertTrue(object_checks.is_not_empty(special_data['legacyId']['apiEncoded'], str))
+            self.assertFalse('/' in special_data['legacyId']['apiEncoded'])
         else:
-            self.assertTrue(object_checks.is_encoded_programme_id(item_data['legacyId']['apiEncoded']))
+            self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
             # Check this programmeId has 2 underscores, since it is in fact more like an episodeId.
             self.assertEqual(2, item_data['legacyId']['apiEncoded'].count('_'))
         object_checks.is_url(item_data['imageHref'])
-
 
     def check_film_item(self, item_data):
         object_checks.has_keys(item_data, 'filmCCId', 'legacyId', 'productionId', 'filmTitle',
                                'synopsis', 'imageHref', 'tier',
                                obj_name='specialItem.data')
         object_checks.is_url(item_data['imageHref'])
-        self.assertTrue(object_checks.is_encoded_programme_id(item_data['legacyId']['apiEncoded']))
-        # Check this programmeId has 2 underscores, since it is in fact more like an episodeId.
-        self.assertEqual(2, item_data['legacyId']['apiEncoded'].count('_'))
+        self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
+        self.assertFalse('/' in item_data['legacyId']['apiEncoded'])
 
     def test_search_normal_chase(self):
         self.search_params['query'] = 'the chase'
@@ -371,11 +371,11 @@ class LastWatched(unittest.TestCase):
             object_checks.has_keys(
                 item, 'availabilityEnd', "broadcastDatetime", "contentType", "duration",
                 "episodeNumber", "episodeTitle", "isNextEpisode", "itvxImageLink", "percentageWatched",
-                "productionId", "programmeTitle", "seriesNumber", "synopsis", "tier", "viewedOn",
+                "productionId", "programmeTitle", "seriesNumber", "synopsis", "tier", "viewedOn", "programmeId",
                 obj_name=item['programmeTitle'])
 
             object_checks.expect_keys(item, 'categories', "channel", "channelLink", "contentOwner", "imageLink",
-                                      "episodeId", "programmeId", "longRunning", "partnership",
+                                      "episodeId", "longRunning", "partnership",
                                       obj_name='Watching: {}'.format(item['programmeTitle']))
             self.assertTrue(item['contentType']in ('EPISODE', 'FILM', 'SPECIAL'))
             self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
@@ -392,8 +392,8 @@ class LastWatched(unittest.TestCase):
             # tier is usually of type list, but is string here. The parser accepts both
             self.assertTrue(object_checks.is_not_empty(item['tier'], str))
             self.assertTrue(object_checks.is_iso_utc_time(item['viewedOn']))
-
             self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
+            self.assertTrue(object_checks.is_not_empty(item['programmeId'], str))
 
             if item['contentType'] == 'EPISODE':
                 # Some episodes' series and/or episode number are None, e.g. episodes of The Chase

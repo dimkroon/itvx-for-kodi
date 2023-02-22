@@ -88,5 +88,5 @@ class TestItvX(unittest.TestCase):
 
     def test_get_mylist(self):
         uid = itv_account.itv_session().user_id
-        items = itvx.get_mylist(uid)
+        items = itvx.my_list(uid)
         self.assertGreater(len(items), 1)

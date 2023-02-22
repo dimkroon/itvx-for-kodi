@@ -261,6 +261,20 @@ def put_json(url, data, headers=None, **kwargs):
     return resp
 
 
+def delete_json(url, data, headers=None, **kwargs):
+    """DELETE JSON data and return the response object or None if no data has been returned."""
+    dflt_headers = {'Accept': 'application/json'}
+    if headers:
+        dflt_headers.update(headers)
+    resp = web_request('DELETE', url, dflt_headers, data, **kwargs)
+    if resp.status_code == 204:     # No Content
+        return None
+    try:
+        return resp.json()
+    except json.JSONDecodeError:
+        raise FetchError(Script.localize(30920))
+
+
 def get_document(url, headers=None, **kwargs):
     """GET any document. Expects the document to be UTF-8 encoded and returns
     the contents as string.

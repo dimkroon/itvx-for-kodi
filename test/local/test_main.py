@@ -79,6 +79,9 @@ class LiveChannels(TestCase):
 
 
 class MyItvx(TestCase):
+    def setUpModule(self):
+        cache.purge()
+
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
     def test_submenu_my_itvx(self, _):
         list_items = main.sub_menu_my_itvx.test()
@@ -91,14 +94,16 @@ class MyItvx(TestCase):
         self.assertEqual(7, len(shows))
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
-    def test_get_my_list(self, _):
-        cache.my_list_programmes = None
+    def test_initialise_my_list(self, _):
         main._initialise_my_list()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AuthenticationError)
-    def test_get_my_list_not_logged_in(self, _):
-        cache.my_list_programmes = None
-        main._initialise_my_list()
+    def test_initialise_my_list_not_logged_in(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AuthenticationError):
+            main._initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            main._initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            main._initialise_my_list()
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_list_mylist(self, _):
@@ -106,6 +111,34 @@ class MyItvx(TestCase):
         self.assertIsInstance(li_items, list)
         for item in li_items:
             self.assertIsInstance(item, Listitem)
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_add_mylist_item(self, _):
+        result = main.update_mylist.test(progr_id='10_1511', operation='add')
+        # Callbacks of type Script should not return data
+        self.assertIsNone(result)
+
+    def test_add_mylist_item_with_auth_error(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            result = main.update_mylist.test(progr_id='10_1511', operation='add')
+            # Callbacks of type Script should not return data
+            self.assertIsNone(result)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            self.assertRaises(SystemExit, main.update_mylist.test, progr_id='10_1511', operation='add')
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_delete_mylist_item(self, _):
+        result = main.update_mylist.test(progr_id='10_1511', operation='remove')
+        # Callbacks of type Script should not return data
+        self.assertIsNone(result)
+
+    def test_delete_mylist_item_with_auth_error(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            result = main.update_mylist.test(progr_id='10_1511', operation='remove')
+            # Callbacks of type Script should not return data
+            self.assertIsNone(result)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            self.assertRaises(SystemExit, main.update_mylist.test, progr_id='10_1511', operation='remove')
 
 
 class Collections(TestCase):

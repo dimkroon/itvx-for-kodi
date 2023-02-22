@@ -122,7 +122,9 @@ def parse_hero_content(hero_data):
         else:
             logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
             return None
-        return {'type': item_type, 'show': item}
+        return {'type': item_type,
+                'programme_id': hero_data.get('encodedProgrammeId', {}).get('underscore'),
+                'show': item}
     except:
         logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title', 'unknown title'), exc_info=True)
 
@@ -232,6 +234,7 @@ def parse_collection_item(show_data, hide_paid=False):
         if is_playable:
             programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
         return {'type': content_type,
+                'programme_id': show_data.get('encodedProgrammeId', {}).get('underscore'),
                 'show': programme_item}
     except Exception as err:
         logger.warning("Failed to parse collection_item: %r\n%s", err, json.dumps(show_data, indent=4))
@@ -312,6 +315,7 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
 
         return {
             'type': 'title',
+            'programme_id': trending_item['encodedProgrammeId']['underscore'],
             'show': {
                 'label': trending_item['title'],
                 'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
@@ -369,6 +373,7 @@ def parse_category_item(prog, category):
                                                      prog['encodedProgrammeId']['letterA'],
                                                      prog['encodedEpisodeId']['letterA'])}
     return {'type': 'title' if is_playable else 'series',
+            'programme_id': prog['encodedProgrammeId']['underscore'],
             'show': programme_item}
 
 
@@ -482,7 +487,7 @@ def parse_search_result(search_data):
         prog_name = result_data['programmeTitle']
         title = '[B]{}[/B] - {} episodes'.format(prog_name, result_data.get('totalAvailableEpisodes', ''))
         img_url = result_data['latestAvailableEpisode']['imageHref']
-        api_prod_id = result_data['legacyId']['officialFormat']
+        api_prod_id = result_data['legacyId']['apiEncoded']
 
     elif entity_type == 'special':
         # A single programme without episodes
@@ -491,18 +496,22 @@ def parse_search_result(search_data):
 
         programme = result_data.get('specialProgramme')
         if programme:
-            prog_name = result_data['specialProgramme']['programmeTitle']
-            api_prod_id = result_data['specialProgramme']['legacyId']['officialFormat']
+            prog_name = programme['programmeTitle']
+            api_prod_id = programme['legacyId']['apiEncoded']
             api_episode_id = result_data['legacyId']['officialFormat']
         else:
             prog_name = title
-            api_prod_id = result_data['legacyId']['officialFormat']
+            api_prod_id = result_data['legacyId']['apiEncoded']
+            if api_prod_id.count('_') > 1:
+                api_prod_id = api_prod_id.rpartition('_')[0]
 
     elif entity_type == 'film':
         prog_name = result_data['filmTitle']
         title = '[B]Film[/B] - ' + result_data['filmTitle']
         img_url = result_data['imageHref']
-        api_prod_id = result_data['legacyId']['officialFormat']
+        api_prod_id = result_data['legacyId']['apiEncoded']
+        if api_prod_id.count('_') > 1:
+            api_prod_id = api_prod_id.rpartition('_')[0]
 
     else:
         logger.warning("Unknown search result item entityType %s", entity_type)
@@ -510,19 +519,20 @@ def parse_search_result(search_data):
 
     return {
         'type': entity_type,
+        'programme_id': api_prod_id,
         'show': {
             'label': prog_name,
             'art': {'thumb': img_url.format(**IMG_PROPS_THUMB)},
             'info': {'plot': plot,
                      'title': title},
-            'params': {'url': build_url(prog_name, api_prod_id.replace('/', 'a'), api_episode_id.replace('/', 'a'))}
+            'params': {'url': build_url(prog_name, api_prod_id.replace('_', 'a'), api_episode_id.replace('/', 'a'))}
         }
     }
 
 
 def parse_my_list_item(item):
     progr_name = item['programmeTitle']
-    progr_id = item['programmeId']
+    progr_id = item['programmeId'].replace('/', '_')
     num_episodes = item['numberOfEpisodes']
     content_info = ' - {} episodes'.format(num_episodes) if num_episodes is not None else ''
     img_link = item['itvxImageLink']
@@ -546,6 +556,7 @@ def parse_my_list_item(item):
     if item['contentType'] == 'FILM':
         item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
     return item_dict
+
 
 def parse_last_watched_item(item, utc_now):
     progr_name = item.get('programmeTitle', '')
@@ -585,6 +596,7 @@ def parse_last_watched_item(item, utc_now):
 
     item_dict = {
         'type': 'vodstream',
+        'programme_id': item['programmeId'].replace('/', '_'),
         'show': {
             'label': episode_name or progr_name,
             'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
