@@ -16,9 +16,11 @@ import xbmc
 
 from codequick.support import logger_id
 
+from . import errors
 from . import fetch
 from . import parsex
 from . import cache
+from . import itv_account
 
 from .itv import get_live_schedule
 
@@ -481,3 +483,39 @@ def search(search_term, hide_paid=False):
     if not results:
         logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
     return (parsex.parse_search_result(result) for result in results)
+
+
+def get_last_watched():
+    cache_key = 'last_watched'
+    cached_data = cache.get_item(cache_key)
+    if cached_data is not None:
+        return cached_data
+
+    url = 'https://content.prd.user.itv.com/lastwatched/user/{}/{}?features={}'.format(
+            itv_account.itv_session().user_id, PLATFORM_TAG, FEATURE_SET)
+    header = {'accept': 'application/vnd.user.content.v1+json'}
+    data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
+    watched_list = [parsex.parse_last_watched_item(item) for item in data]
+    cache.set_item(cache_key, watched_list, 600)
+    return watched_list
+
+
+def get_resume_point(production_id: str):
+    try:
+        production_id = production_id.replace('/', '_').replace('#', '.')
+        url = 'https://content.prd.user.itv.com/resume/user/{}/productionid/{}'.format(
+            itv_account.itv_session().user_id, production_id)
+        data = itv_account.fetch_authenticated(fetch.get_json, url)
+        resume_time = data['progress']['time'].split(':')
+        resume_point = int(resume_time[0]) * 3600 + int(resume_time[1]) * 60 + float(resume_time[2])
+        return resume_point
+    except errors.HttpError as err:
+        if err.code == 404:
+            # Normal response when no resume data is found, e.g. with 'next episodes'.
+            logger.warning("Resume point of production '%s' not available.", production_id)
+        else:
+            logger.error("HTTP error %s: %s on request for resume point of production '%s'.",
+                         err.code, err.reason, production_id)
+    except:
+        logger.error("Error obtaining resume point of production '%s'.", production_id, exc_info=True)
+    return None

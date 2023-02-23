@@ -178,9 +178,8 @@ def root(_):
 
 
 @Route.register(content_type='videos')
-@dynamic_listing
 def sub_menu_my_itvx(_):
-    return
+    yield Listitem.from_dict(list_last_watched, 'Continue watching', params={'filter_char': None})
 
 
 @Route.register(content_type='videos')
@@ -241,6 +240,17 @@ def sub_menu_live(_):
                 build_path(play_stream_live, play_from_start=True, **callback_kwargs))
             li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
         yield li
+
+
+@Route.register(content_type='videos')
+@dynamic_listing
+def list_last_watched(addon, filter_char=None, page_nr=0):
+    """List items to continue watching for submenu My itvX"""
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                           xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                           xbmcplugin.SORT_METHOD_DATE,
+                           disable_autosort=True)
+    yield from Paginator(itvx.get_last_watched(), filter_char, page_nr)
 
 
 @Route.register(content_type='videos')
@@ -495,7 +505,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 
 
 @Resolver.register
-def play_stream_catchup(plugin, url, name):
+def play_stream_catchup(plugin, url, name, set_resume_point=False):
 
     logger.info('play catchup stream - %s  url=%s', name, url)
     try:
@@ -517,15 +527,25 @@ def play_stream_catchup(plugin, url, name):
         return create_mp4_file_item(name, manifest_url)
     else:
         list_item = create_dash_stream_item(name, manifest_url, key_service_url)
-        if list_item:
-            plugin.register_delayed(xprogress.playtime_monitor, production_id=production_id)
-            subtitles = itv.get_vtt_subtitles(subtitle_url)
-            if subtitles:
-                list_item.setSubtitles(subtitles)
+        if not list_item:
+            return False
+
+        plugin.register_delayed(xprogress.playtime_monitor, production_id=production_id)
+        subtitles = itv.get_vtt_subtitles(subtitle_url)
+        if subtitles:
+            list_item.setSubtitles(subtitles)
+            list_item.setProperties({
+                'subtitles.translate.file': subtitles[0],
+                'subtitles.translate.orig_lang': 'en',
+                'subtitles.translate.type': 'srt'})
+        if set_resume_point:
+            resume_time =  itvx.get_resume_point(production_id)
+            if resume_time:
                 list_item.setProperties({
-                    'subtitles.translate.file': subtitles[0],
-                    'subtitles.translate.orig_lang': 'en',
-                    'subtitles.translate.type': 'srt'})
+                    'ResumeTime': str(resume_time),
+                    'TotalTime': '7200'
+                })
+                logger.info("Resume from %s", resume_time)
         return list_item
 
 
@@ -566,5 +586,6 @@ callb_map = {
     'episode': play_title,
     'special': play_title,
     'film': play_title,
-    'title': play_title
+    'title': play_title,
+    'vodstream': play_stream_catchup
 }

@@ -140,7 +140,7 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
     testcase.assertIsInstance(dict_obj, dict)
     has_keys(dict_obj, 'label', 'params')
     for item_key, item_value in dict_obj.items():
-        testcase.assertTrue(item_key in ('label', 'art', 'info', 'params'))
+        testcase.assertTrue(item_key in ('label', 'art', 'info', 'params', 'properties'))
         if item_key == 'label':
             testcase.assertIsInstance(dict_obj['label'], str)
             testcase.assertTrue(dict_obj['label'])
@@ -161,6 +161,13 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
             for param, param_val in item_value.items():
                 if param == 'url' and param_val:
                     testcase.assertTrue(is_url(param_val))
+        elif item_key == 'properties':
+            for param, param_val in item_value.items():
+                if param == 'resumetime':
+                    testcase.assertIsInstance(param_val, str)
+                    testcase.assertGreaterEqual(int(param_val), 0)
+                if param == 'totaltime':
+                    testcase.assertIsInstance(param_val, int)
     return True
 
 
