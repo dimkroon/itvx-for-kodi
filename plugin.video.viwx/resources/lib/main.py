@@ -24,6 +24,7 @@ from resources.lib import parsex
 from resources.lib import fetch
 from resources.lib import kodi_utils
 from resources.lib import cache
+from resources.lib import xprogress
 from resources.lib.errors import *
 
 
@@ -504,11 +505,11 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 
 
 @Resolver.register
-def play_stream_catchup(_, url, name):
+def play_stream_catchup(plugin, url, name):
 
     logger.info('play catchup stream - %s  url=%s', name, url)
     try:
-        manifest_url, key_service_url, subtitle_url, stream_type = itv.get_catchup_urls(url)
+        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
@@ -526,13 +527,15 @@ def play_stream_catchup(_, url, name):
         return create_mp4_file_item(name, manifest_url)
     else:
         list_item = create_dash_stream_item(name, manifest_url, key_service_url)
-        subtitles = itv.get_vtt_subtitles(subtitle_url)
-        if list_item and subtitles:
-            list_item.setSubtitles(subtitles)
-            list_item.setProperties({
-                'subtitles.translate.file': subtitles[0],
-                'subtitles.translate.orig_lang': 'en',
-                'subtitles.translate.type': 'srt'})
+        if list_item:
+            plugin.register_delayed(xprogress.playtime_monitor, production_id=production_id)
+            subtitles = itv.get_vtt_subtitles(subtitle_url)
+            if subtitles:
+                list_item.setSubtitles(subtitles)
+                list_item.setProperties({
+                    'subtitles.translate.file': subtitles[0],
+                    'subtitles.translate.orig_lang': 'en',
+                    'subtitles.translate.type': 'srt'})
         return list_item
 
 

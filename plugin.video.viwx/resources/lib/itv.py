@@ -178,7 +178,7 @@ def get_catchup_urls(episode_url):
         subtitles = stream_data['Subtitles'][0]['Href']
     except (TypeError, KeyError, IndexError):
         subtitles = None
-    return dash_url, key_service, subtitles, playlist['VideoType']
+    return dash_url, key_service, subtitles, playlist['VideoType'], playlist['ProductionId']
 
 
 def get_vtt_subtitles(subtitles_url):
