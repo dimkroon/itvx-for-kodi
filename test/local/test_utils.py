@@ -203,6 +203,17 @@ STYLE
         srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.yellow>text 1</c>', False)
         self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1\n', srt)
 
+    def test_convert_named_colours(self):
+        for colour in ('white', 'yellow', 'green', 'cyan', 'red'):
+            srt = utils.vtt_to_srt(f'01:02:03.234 --> 01:02:04.567\n<c.{colour}>text 1</c>')
+            self.assertEqual(f'\n1\n01:02:03,234 --> 01:02:04,567\n<font color="{colour}">text 1</font>\n', srt)
+
+    def test_rgb_colours(self):
+        srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.color008000>text 1</c>')
+        self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\n<font color="#008000">text 1</font>\n', srt)
+        srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.color008000ff>text 1</c>')
+        self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\n<font color="#008000">text 1</font>\n', srt)
+
     def test_convert_whole_file(self):
         for subtitle in (
                 'vtt/subtitles_1_ok.vtt',

@@ -176,8 +176,13 @@ def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
         # convert color tags, accept only simple colour names.
         def sub_color_tags(match):
             colour = match[1]
-            if colour in ('white', 'yellow', 'green', 'cyan'):
+            if colour in ('white', 'yellow', 'green', 'cyan', 'red'):
+                # Named colours
                 return '<font color="{}">{}</font>'.format(colour, match[2])
+            elif colour.startswith('color'):
+                # RBG colour, ensure to strip the alpha channel if present.
+                result = '<font color="#{}">{}</font>'.format(colour[5:11], match[2])
+                return result
             else:
                 logger.debug("Unsupported colour '%s' in vtt file", colour)
                 return match[2]
