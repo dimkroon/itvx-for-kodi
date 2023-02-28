@@ -87,7 +87,8 @@ class MainPage(unittest.TestCase):
                 has_keys(item, 'encodedProgrammeId', 'programmeId', 'genre', obj_name=item['title'])
 
             if item['contentType'] == 'special':
-                has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
+                # Field 'dateTime' not always present in special title
+                has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
 
             if item['contentType'] == 'series':
                 has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
