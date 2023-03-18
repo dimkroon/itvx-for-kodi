@@ -62,6 +62,7 @@ def get_live_schedule(hours=4, local_tz=None):
 stream_req_data = {
     'client': {
         'id': 'browser',
+        'service': 'itv.x',
         'supportsAdPods': False,
         'version': '4.1'
     },
@@ -71,7 +72,6 @@ stream_req_data = {
         'os': {
             'name': 'Linux',
             'type': 'desktop',
-            'version': 'x86_64'
         }
     },
     'user': {
@@ -81,10 +81,11 @@ stream_req_data = {
     },
     'variantAvailability': {
         'featureset': {
-            'max': ['mpeg-dash', 'widevine', 'outband-webvtt'],
-            'min': ['mpeg-dash', 'widevine', 'outband-webvtt']
+            'max': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
+            'min': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
         },
-        'platformTag': 'dotcom'
+        'platformTag': 'dotcom',
+        'player': 'dash'
     }
 }
 
@@ -106,7 +107,7 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             #  ITV appears now to use the min feature for catchup streams, causing subtitles
             #  to go missing if not specfied here. Min and max both specifying webvtt appears to
             # be no problem for catchup streams that don't have subtitles.
-            min_features = ['mpeg-dash', 'widevine', 'outband-webvtt']
+            min_features = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
 
         stream_req_data['variantAvailability']['featureset']['min'] = min_features
 
