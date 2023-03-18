@@ -67,7 +67,7 @@ stream_req_data = {
     },
     'device': {
         'manufacturer': 'Firefox',
-        'model': '105',
+        'model': '110',
         'os': {
             'name': 'Linux',
             'type': 'desktop',
