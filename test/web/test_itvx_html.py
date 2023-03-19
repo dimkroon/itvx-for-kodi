@@ -81,7 +81,8 @@ class MainPage(unittest.TestCase):
         for item in page_props['heroContent']:
             has_keys(item, 'contentType', 'title', 'imageTemplate', 'description',
                      'contentInfo', 'tagName', obj_name=item['title'])
-            self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special'))
+            self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special', 'brand'))
+            self.assertIsInstance(item['contentInfo'], list)
 
             if item['contentType'] != 'simulcastspot':
                 has_keys(item, 'encodedProgrammeId', 'programmeId', 'genre', obj_name=item['title'])
@@ -96,6 +97,10 @@ class MainPage(unittest.TestCase):
             if item['contentType'] == 'film':
                 # Fields not always present:  'dateTime'
                 has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
+
+            if item['contentType'] == 'brand':
+                # Just to check over time if this is always true
+                self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
