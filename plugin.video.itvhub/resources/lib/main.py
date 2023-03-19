@@ -24,6 +24,7 @@ from resources.lib.errors import *
 
 
 logger = logging.getLogger(logger_id + '.main')
+logger.critical('version: %s', utils.addon_info.addon.getAddonInfo('version'))
 logger.critical('-------------------------------------')
 
 
