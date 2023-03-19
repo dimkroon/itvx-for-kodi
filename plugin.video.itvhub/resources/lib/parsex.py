@@ -101,6 +101,13 @@ def parse_hero_content(hero_data):
         item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                           'series_idx': hero_data.get('series')}
 
+    # Occasionally hero items are of type 'brand'. Possibly a mistake at ITV, but try to handle it anyway.
+    elif item_type == 'brand':
+        logger.info("Hero item %s is of type 'brand'", title)
+        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'))
+        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                          'name': title}
+
     elif item_type == 'special':
         item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
                             duration=utils.duration_2_seconds(hero_data.get('duration')))
