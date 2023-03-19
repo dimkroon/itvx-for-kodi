@@ -182,12 +182,14 @@ class WatchPages(unittest.TestCase):
         page = fetch.get_document('https://www.itv.com/watch?channel=itv')
         # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parsex.scrape_json(page)
-        channel_data = data['channelsMetaData']
-        # check presence and type of backdrop image
-        self.assertTrue(len(channel_data['images']), 1)     # only backdrop image is available
-        self.assertTrue(is_url(channel_data['images']['backdrop'], '.jpeg'))
 
-        for chan in channel_data['channels']:
+        # !!! Field channelsMetaData absent since 18-3-2023 !!!
+        # channel_data = data['channelsMetaData']
+        # # check presence and type of backdrop image
+        # self.assertTrue(len(channel_data['images']), 1)     # only backdrop image is available
+        # self.assertTrue(is_url(channel_data['images']['backdrop'], '.jpeg'))
+
+        for chan in data['channels']:
             chan_type = chan['channelType']
             self.check_schedule_channel_info(chan)
             self.check_schedule_now_next_slot(chan['slots']['now'], chan_type,
