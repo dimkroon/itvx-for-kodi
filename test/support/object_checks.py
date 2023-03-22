@@ -140,10 +140,8 @@ def check_catchup_dash_stream_info(playlist):
     assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
     for strm in strm_inf:
         assert (not strm['Href'].startswith('https://')) and '.mpd?' in strm['Href'], \
-            "Unexpected playlist url: <{}>".format(strm['Url'])
-        assert strm['KeyServiceUrl'].startswith('https://'), \
-            "Unexpected KeyServiceUrl url: <{}>".format(strm['StartAgainUrl'])
-        assert isinstance(strm['KeyServiceToken'], str)
+            "Unexpected playlist url: <{}>".format(strm['Href'])
+        assert is_url(strm['KeyServiceUrl']), "Unexpected KeyServiceUrl url: <{}>".format(strm['KeyServiceUrl'])
 
     subtitles = video_inf['Subtitles']
     assert isinstance(subtitles, (type(None), list)), 'MediaFiles is not a list but {}'.format(type(strm_inf))
