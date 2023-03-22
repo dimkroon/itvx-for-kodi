@@ -24,9 +24,19 @@ def global_setup():
     # some code want to write, whether intentional or not.
     global patch_g
     if patch_g is None:
+        # Define an addon profile directory to be used by tests
         profile_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'addon_profile_dir'))
-        patch_g = patch('xbmcaddon.Addon.getAddonInfo', new=lambda self, item: profile_dir if item == 'profile' else '')
+        patch_g = patch('xbmcaddon.Addon.getAddonInfo',
+                         new=lambda self, item: profile_dir if item == 'profile' else '')
         patch_g.start()
+
+        # Enable logging to file during tests with a new file each test run.
+        try:
+            os.remove(os.path.join(profile_dir, '.log'))
+        except FileNotFoundError:
+            pass
+        patch('xbmcaddon.Addon.getSettingString',
+              new=lambda self, item: 'file' if item == 'log-handler' else '').start()
 
 
 patch_1 = None
