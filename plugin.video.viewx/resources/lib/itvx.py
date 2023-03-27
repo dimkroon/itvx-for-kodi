@@ -290,17 +290,20 @@ def search(search_term, hide_paid=False):
     a normal json object with an emtpy list of results.
 
     """
-    url = 'https://textsearch.prd.oasvc.itv.com/search'
-    query_params = {
-        'broadcaster': 'itv',
-        'featureSet': 'clearkey,outband-webvtt,hls,aes,widevine,fairplay,bbts,progressive,hd,rtmpe',
-        'onlyFree': 'true' if hide_paid else 'false',
-        'platform': 'dotcom',
-        'query': search_term
-    }
-    data = fetch.get_json(url, params=query_params)
+    from urllib.parse import quote
+    # Include the querystring in url. If requests builds the querystring from parameters it will quote the
+    # commas in argument `featureset`, and ITV's search appears to have a problem with that and sometimes returns
+    # no results.
+    url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
+          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=dotcom&query=' + quote(
+        search_term)
+    data = fetch.get_json(url, headers={'Cache-Control': None, 'Pragma': None})
+
     if data is None:
+        logger.debug("Search for '%s' returned no data. (hide_paid=%s)", search_term, hide_paid)
         return
 
     results = data.get('results')
+    if not results:
+        logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
     return (parsex.parse_search_result(result) for result in results)
