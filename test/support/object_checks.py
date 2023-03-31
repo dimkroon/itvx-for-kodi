@@ -51,7 +51,7 @@ def is_url(url, ext=None):
     return result
 
 
-def is_iso_time(time_str):
+def is_iso_utc_time(time_str):
     """check if the time string is in a format like yyyy-mm-ddThh:mm:ssZ which is
     often used by itv's web services.
     Accept times with or without milliseconds
@@ -153,7 +153,7 @@ def check_catchup_dash_stream_info(playlist):
 def check_news_stream_info(playlist):
     """Check the structure of a dictionary containing urls to the mp4 file
     This checks a playlist of type application/vnd.itv.vod.playlist.v2+json, which is
-    returned for short news items
+    returned for short news items.
     """
     has_keys(playlist, 'Video', 'ProductionId', 'VideoType', 'ContentBreaks', obj_name='Playlist')
     assert playlist['VideoType'] == 'SHORT'

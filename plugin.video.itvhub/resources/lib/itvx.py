@@ -57,6 +57,10 @@ def get_page_data(url, cache_time=None):
 
 
 def get_now_next_schedule(local_tz=None):
+    """Get the name and start time of the current and next programme for each live channel.
+
+    Present start time in the system's local time zone.
+    """
     if local_tz is None:
         from tzlocal import get_localzone
         local_tz = get_localzone()
@@ -87,7 +91,6 @@ def get_now_next_schedule(local_tz=None):
                 details = prog['displayTitle']
 
             start_t = prog['start'][:19]
-            # TODO: check this in DST period
             utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6]), tzinfo=utc_tz)
 
             programs_list.append({
