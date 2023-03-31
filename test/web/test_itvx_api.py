@@ -52,8 +52,12 @@ class LiveSchedules(unittest.TestCase):
             programs = channel_data['_embedded']['slot']
             for program in programs:
                 object_checks.has_keys(program, 'programmeTitle', 'startTime', 'onAirTimeUTC', 'productionId')
-                self.assertTrue(program['startTime'].endswith('Z'))     # start time is in format '2022-11-22T20:00Z'
-                self.assertEqual(17, len(program['startTime']))         # has no seconds
+                self.assertTrue(program['startTime'].endswith('Z') or program['startTime'].endswith('+01:00'))     # start time is in format '2022-11-22T20:00Z'
+                # Ascertain startTime has no seconds
+                if program['startTime'].endswith('Z'):
+                    self.assertEqual(17, len(program['startTime']))
+                else:
+                    self.assertEqual(22, len(program['startTime']))
             channel_info = channel_data['_embedded']['channel']
             object_checks.has_keys(channel_info, 'name', 'strapline', '_links')
             self.assertTrue(channel_info['_links']['playlist']['href'].startswith('https'))
@@ -151,8 +155,8 @@ class LiveSchedules(unittest.TestCase):
                                        'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
                                        'startAgainSimulcast', 'shortSynopsis')
                 self.assertIsNotNone(program['displayTitle'])
-                self.assertTrue(object_checks.is_iso_time(program['start']))
-                self.assertTrue(object_checks.is_iso_time(program['end']))
+                self.assertTrue(object_checks.is_iso_utc_time(program['start']))
+                self.assertTrue(object_checks.is_iso_utc_time(program['end']))
                 if program['broadcastAt'] is not None:      # is None on fast channels
                     self.assertTrue(program['broadcastAt'].endswith('Z'))
                     self.assertTrue(20, len(program['broadcastAt']))

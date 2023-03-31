@@ -14,7 +14,7 @@ import unittest
 import requests
 
 from resources.lib import fetch, parsex, utils, errors
-from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
+from support.object_checks import has_keys, misses_keys, is_url, is_iso_utc_time
 from support import testutils
 
 setUpModule = fixtures.setup_web_test
@@ -160,8 +160,8 @@ class WatchPages(unittest.TestCase):
                  'displayTitle', 'detailedDisplayTitle', 'timestamp',
                  'broadcastEndTimestamp', 'productionId', obj_name=obj_name)
         # These times are in a format like '2022-11-22T20:00Z'
-        self.assertTrue(is_iso_time(progr_data['start']))
-        self.assertTrue(is_iso_time(progr_data['end']))
+        self.assertTrue(is_iso_utc_time(progr_data['start']))
+        self.assertTrue(is_iso_utc_time(progr_data['end']))
 
         if chan_type == 'fast':
             misses_keys(progr_data, 'broadcastStartTimestamp')
@@ -170,7 +170,7 @@ class WatchPages(unittest.TestCase):
 
         if chan_type != 'fast':
             has_keys(progr_data, 'broadcastStartTimestamp')
-            self.assertTrue(is_iso_time(progr_data['broadcastAt']))
+            self.assertTrue(is_iso_utc_time(progr_data['broadcastAt']))
             # check timestamps are integers
             self.assertGreater(int(progr_data['broadcastStartTimestamp']), 0)
             self.assertGreater(int(progr_data['broadcastEndTimestamp']), 0)
