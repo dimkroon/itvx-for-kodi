@@ -381,13 +381,25 @@ class Episodes(TestCase):
 
 class Search(TestCase):
     @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
-    def test_simple_search(self, _):
-        result = itvx.search('the_chase')
+    def test_simple_search(self, p_send):
+        result = itvx.search('the chase')
         self.assertIsInstance(result, types.GeneratorType)
         self.assertEqual(10, len(list(result)))
+        self.assertEqual(9, p_send.call_count)      # Called once for every character in search term.
+        self.assertTrue(p_send.call_args.args[0].url.endswith("the%20chase"))   # last call is the whole search term.
 
-    @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
-    def test_search_without_results(self, _):
+    def test_search_without_results(self, ):
+        with patch('requests.sessions.Session.send',
+                   return_value=HttpResponse(text=open_doc('search/search_no_results.json')())):
+            result = itvx.search('xprs')
+            self.assertListEqual([], list(result))
+
+        with patch('requests.sessions.Session.send', return_value=HttpResponse(204)):
+            result = itvx.search('xprs')
+            self.assertIsNone(result)
+
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text="Some non json text."))
+    def test_search_with_unexpected_response_data(self, _):
         result = itvx.search('xprs')
         self.assertIsNone(result)
 

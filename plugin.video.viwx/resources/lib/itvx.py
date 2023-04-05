@@ -430,36 +430,41 @@ def search(search_term, hide_paid=False):
 
     """
     from urllib.parse import quote
-    url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&channelType=simulcast&'
-           'featureSet=clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&'
-           'platform=dotcom&query={}&size=24').format(quote(search_term.lower()))
+    base_url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&channelType=simulcast&'
+                'featureSet=clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&'
+                'platform=dotcom&size=24&query=')
     headers = {
-        'User-Agent': fetch.USER_AGENT,
+        'user-agent': fetch.USER_AGENT,
         'accept': 'application/json',
-        'Origin': 'https://www.itv.com',
-        'Referer': 'https://www.itv.com/',
+        'origin': 'https://www.itv.com',
+        'referer': 'https://www.itv.com/',
         'accept-language': 'en-GB,en;q=0.5',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-site',
+        'sec-fetch-site': 'same-site',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-dest': 'empty'
     }
-    resp = requests.get(url, headers=headers, timeout=fetch.WEB_TIMEOUT)
+
+    with requests.Session() as http_sess:
+        # Mimic the search term being typed in a web browser.
+        # Request results after each letter. Disregard everything but the last result.
+        for i in range(1, len(search_term) + 1):
+            url = base_url + quote(search_term[:i])
+            resp = http_sess.request('GET', url, headers=headers, timeout=fetch.WEB_TIMEOUT)
 
     if resp.status_code != 200:
-        logger.debug("Search for '%s' (hide_paid=%s) failed with HTTP status %s",
-                     search_term, hide_paid, resp.status_code)
+        logger.info("Search for '%s' failed with HTTP status %s. (hide_paid=%s)",
+                     search_term, resp.status_code, hide_paid)
         return None
 
     try:
         data = resp.json()
     except:
-        logger.warning("Search for '%s' (hide_paid=%s) returned non-json content: '%s'",
-                       search_term, hide_paid, resp.content)
+        logger.warning("Error search results - response is not json: %s", resp.content)
         return None
 
     results = data.get('results')
     if not results:
-        logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
+        logger.info("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
     return (parsex.parse_search_result(result, hide_paid) for result in results)
 
 
