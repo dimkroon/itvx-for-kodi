@@ -277,7 +277,9 @@ class Categories(unittest.TestCase):
                          'imageTemplate', 'contentInfo', 'contentOwner', 'tier')
                 self.assertTrue(progr['encodedProgrammeId']['letterA'])
                 self.assertIsNotNone(progr['encodedEpisodeId']['letterA'])
-                self.assertTrue(progr['contentInfo'].lower().startswith('series') or
-                                utils.duration_2_seconds(progr['contentInfo']) is not None)
+                cont_inf = progr['contentInfo']
+                self.assertTrue(cont_inf.lower().startswith('series') or
+                                utils.duration_2_seconds(cont_inf) is not None,
+                                "invalid contentInfo '{}' for item '{}'".format(cont_inf, progr['title']))
             # print("Fetched categorie {} in {:0.3f} s, parsed in {:0.3f}s, total {:0.3f}s.".format(
             #     cat, t_1 - t_s, t_2 - t_1, t_2 - t_s))
