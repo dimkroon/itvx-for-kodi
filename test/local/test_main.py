@@ -9,13 +9,14 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import types
+import json
 
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
 from codequick import Listitem
 
-from test.support.testutils import open_json, HttpResponse
+from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support import object_checks
 
 from resources.lib import main
@@ -192,21 +193,24 @@ class Productions(TestCase):
 
 
 class Search(TestCase):
-    @patch('resources.lib.fetch.get_json', return_value=open_json('search/the_chase.json'))
+    @patch('requests.sessions.Session.send',
+           return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
     def test_search_the_chase(self, _):
         results = main.do_search(MagicMock(), 'the chase')
         self.assertEqual(10, len(results))
         self.assertIs(results[0].path, main.list_productions.route)     # programme
         self.assertIs(results[4].path, main.play_title.route)           # special with field specialProgramme
 
-    @patch('resources.lib.fetch.get_json', return_value=open_json('search/search_results_mear.json'))
+    @patch('requests.sessions.Session.send',
+           return_value=HttpResponse(text=open_doc('search/search_results_mear.json')()))
     def test_search_mear(self, _):
         results = main.do_search(MagicMock(), 'mear')
         self.assertEqual(10, len(results))
         self.assertIs(results[0].path, main.list_productions.route)     # programme
         self.assertIs(results[4].path, main.play_title.route)           # film
 
-    @patch('resources.lib.fetch.get_json', return_value=open_json('search/search_monday.json'))
+    @patch('requests.sessions.Session.send',
+           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
     def test_search_monday(self, _):
         results = main.do_search(MagicMock(), 'monday')
         self.assertEqual(7, len(results))
@@ -215,16 +219,16 @@ class Search(TestCase):
 
     def test_search_result_with_unknown_entitytype(self):
         search_data = open_json('search/search_results_mear.json')
-        with patch('resources.lib.fetch.get_json', return_value=search_data):
+        with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_1 = main.do_search(MagicMock(), 'kjhbn')
             self.assertEqual(10, len(results_1))
         # check again with one item having an unknown entity type
         search_data['results'][3]['entityType'] = 'video'
-        with patch('resources.lib.fetch.get_json', return_value=search_data):
+        with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_2 = main.do_search(MagicMock(), 'kjhbn')
             self.assertEqual(9, len(results_2))
 
-    @patch('resources.lib.fetch.get_json', return_value=None)
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
     def test_search_with_no_results(self, _):
         results = main.do_search(MagicMock(), 'the chase')
         self.assertIs(results, False)
