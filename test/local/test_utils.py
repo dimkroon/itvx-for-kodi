@@ -55,6 +55,40 @@ class Generic(TestCase):
         self.assertIsNone(utils.duration_2_seconds(None))
         self.assertIsNone(utils.duration_2_seconds('1:18:43:22'))
 
+    def test_iso_duration_2_seconds(self):
+        self.assertEqual(50 * 3600, utils.iso_duration_2_seconds('PT50H'))
+        self.assertEqual(5400, utils.iso_duration_2_seconds('PT1H30M'))
+        self.assertEqual(5400, utils.iso_duration_2_seconds('PT1.5H'))
+        self.assertEqual(1800, utils.iso_duration_2_seconds('PT.5H'))
+        self.assertEqual(1800, utils.iso_duration_2_seconds('PT0.5H'))
+        self.assertEqual(5403, utils.iso_duration_2_seconds('PT1H30M3S'))
+
+        self.assertEqual(5400, utils.iso_duration_2_seconds('PT90M'))
+        self.assertEqual(630, utils.iso_duration_2_seconds('PT10.5M'))
+        self.assertEqual(90, utils.iso_duration_2_seconds('PT1M30S'))
+        self.assertEqual(30, utils.iso_duration_2_seconds('PT.5M'))
+
+        self.assertEqual(20, utils.iso_duration_2_seconds('PT20S'))
+        self.assertEqual(2.4, utils.iso_duration_2_seconds('PT2.4S'))
+        self.assertEqual(0.5, utils.iso_duration_2_seconds('PT.5S'))
+
+        self.assertIsNone(utils.iso_duration_2_seconds('23m'))          # illegal duration string
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1h30m3s'))    # lower case
+        self.assertIsNone(utils.iso_duration_2_seconds('P1DT1H1M1S'))   # Days and larger are not supported
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1h'))         # lowercase is not supported
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1H2H'))       # double hours
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1H2M3M'))     # double minutes
+        self.assertIsNone(utils.iso_duration_2_seconds('PT5S2M'))       # wrong order
+        self.assertIsNone(utils.iso_duration_2_seconds('T2M25S'))       # not starting with 'PT'
+        self.assertIsNone(utils.iso_duration_2_seconds('DPT2M25S'))     # not starting with 'PT'
+        self.assertIsNone(utils.iso_duration_2_seconds('PT2M25S2'))     # number after seconds
+        self.assertIsNone(utils.iso_duration_2_seconds('PT2M25'))       # missing seconds specifier 'S'
+        self.assertIsNone(utils.iso_duration_2_seconds('PT'))           # no duration
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3H'))     # 2 decimal points - not a number
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3M'))     # 2 decimal points - not a number
+        self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3S'))     # 2 decimal points - not a number
+
+
     def test_reformat_date(self):
         self.assertEqual(utils.reformat_date('1982-05-02T14:38:32Z', '%Y-%m-%dT%H:%M:%SZ', '%d.%m.%y %H:%M'),
                          '02.05.82 14:38')
