@@ -25,6 +25,10 @@ class TestMenu(unittest.TestCase):
         items = list(main.root(MagicMock()))
         self.assertGreaterEqual(len(items), 6)
 
+    def test_menu_my_itvx(self):
+        items = list(main.sub_menu_my_itvx.route.unittest_caller())
+        self.assertGreater(len(items), 0)
+
     @patch('resources.lib.kodi_utils.get_system_setting', return_value='America/Regina')
     def test_menu_live(self, _):
         items = list(main.sub_menu_live(MagicMock()))
@@ -41,6 +45,13 @@ class TestMenu(unittest.TestCase):
         items = main.list_collections.test()
         self.assertIsInstance(items, list)
         self.assertAlmostEqual(len(items), 20, delta=4)
+
+
+class TestMyItvx(unittest.TestCase):
+    @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
+    def test_continue_watching(self, _):
+        items = main.list_last_watched.route.unittest_caller(filter_char=None)
+        self.assertGreater(len(items), 1)
 
 
 class TstCategories(unittest.TestCase):

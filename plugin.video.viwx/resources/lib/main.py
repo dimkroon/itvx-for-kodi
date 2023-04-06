@@ -177,9 +177,8 @@ def root(_):
 
 
 @Route.register(content_type='videos')
-@dynamic_listing
 def sub_menu_my_itvx(_):
-    return
+    yield Listitem.from_dict(list_last_watched, 'Continue watching', params={'filter_char': None})
 
 
 @Route.register(content_type='videos')
@@ -240,6 +239,17 @@ def sub_menu_live(_):
                 build_path(play_stream_live, play_from_start=True, **callback_kwargs))
             li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
         yield li
+
+
+@Route.register(content_type='videos')
+@dynamic_listing
+def list_last_watched(addon, filter_char=None, page_nr=0):
+    """List items to continue watching for submenu My itvX"""
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                           xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                           xbmcplugin.SORT_METHOD_DATE,
+                           disable_autosort=True)
+    yield from Paginator(itvx.get_last_watched(), filter_char, page_nr)
 
 
 @Route.register(content_type='videos')
@@ -563,5 +573,6 @@ callb_map = {
     'episode': play_title,
     'special': play_title,
     'film': play_title,
-    'title': play_title
+    'title': play_title,
+    'vodstream': play_stream_catchup
 }

@@ -9,6 +9,7 @@
 import json
 import logging
 import pytz
+from datetime import datetime
 
 from codequick.support import logger_id
 
@@ -515,3 +516,70 @@ def parse_search_result(search_data):
             'params': {'url': build_url(prog_name, api_prod_id.replace('/', 'a'), api_episode_id.replace('/', 'a'))}
         }
     }
+
+
+def parse_last_watched_item(item):
+    progr_name = item.get('programmeTitle', '')
+    episode_name = item.get('episodeTitle')
+    series_nr = item.get('seriesNumber')
+    episode_nr = item.get('episodeNumber')
+    img_link = item.get('itvxImageLink', '')
+    available_dt = utils.strptime(item['availabilityEnd'], "%Y-%m-%dT%H:%M:%SZ") -  datetime.now()
+    days_available = int(available_dt.days + 0.99)
+
+    if days_available > 365:
+        availability = '\nAvailable for over a year.'
+    elif days_available > 30:
+        months = int(days_available//30)
+        availability = '\nAvailable for {} month{}.'.format(months, 's' if months > 1 else '')
+    elif days_available >= 1:
+        availability = '\n[COLOR orange]Only {} day{} available.[/COLOR]'.format(
+            days_available, 's' if days_available > 1 else '')
+    else:
+        hours_available = int(available_dt.seconds / 3600)
+        availability = '\n[COLOR orange]Only {} hours{} available.[/COLOR]'.format(
+            hours_available, 's' if hours_available == 1 else '')
+
+    info = ''.join((
+        item['synopsis'] if 'FREE' in item['tier'] else premium_plot(item['synopsis']),
+        '\n\n',
+        episode_name or '',
+        ' - ' if episode_name and series_nr else '',
+        'series {} episode {}'.format(series_nr, episode_nr) if series_nr else '',
+        availability
+    ))
+
+    if item.get('isNextEpisode'):
+        title = progr_name + ' - [I]next episode[/I]'
+    else:
+        title = '{} - [I]{}% watched[/I]'.format(progr_name, int(item['percentageWatched'] * 100))
+
+    item_dict = {
+        'type': 'vodstream',
+        'show': {
+            'label': episode_name or progr_name,
+            'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
+                    'fanart': img_link.format(**IMG_PROPS_FANART)},
+            'info': {'title': title ,
+                     'plot': info,
+                     'sorttitle': sort_title(title),
+                     'date': utils.reformat_date(item['viewedOn'], "%Y-%m-%dT%H:%M:%SZ", "%d.%m.%Y"),
+                     'duration': utils.duration_2_seconds(item['duration']),
+                     'season': series_nr,
+                     'episode': episode_nr},
+            'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
+                               item['productionId'].replace('/', '_').replace('#', '.' )),
+                       'name': progr_name,
+                       'set_resume_point': True},
+            'properties': {
+                # This causes Kodi not to offer the standard resume dialog, so we can obtain
+                # resume time at the time of resolving the video url and play from there, or show
+                # a 'resume from' dialog.
+                'resumetime': '0',
+                'totaltime': 60
+            }
+        }
+    }
+    if item['contentType'] == 'FILM':
+        item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
+    return item_dict
