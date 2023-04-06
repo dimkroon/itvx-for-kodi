@@ -237,6 +237,27 @@ def duration_2_seconds(duration: str):
         return None
 
 
+def iso_duration_2_seconds(iso_str: str):
+    """Convert an ISO 8601 duration string into seconds.
+
+    Simple parser to match durations found in films and tv episodes.
+    Handles only hours, minutes and seconds.
+
+    """
+    if len(iso_str) > 3:
+        import re
+        match = re.match(r'^PT(?:([\d.]+)H)?(?:([\d.]+)M)?(?:([\d.]+)S)?$', iso_str)
+        if match:
+            hours, minutes, seconds = match.groups(default=0)
+            try:
+                return float(hours) * 3600 + float(minutes) * 60 + float(seconds)
+            except ValueError:
+                pass
+
+    logger.warning("Invalid ISO8601 duration: '%s'", iso_str)
+    return None
+
+
 def reformat_date(date_string: str, old_format: str, new_format: str):
     """Take a string containing a datetime in a particular format and
     convert it into another format.
