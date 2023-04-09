@@ -205,14 +205,15 @@ def duration_2_seconds(duration: str):
     * '1h 35m' - hours and minutes, where both hours and minutes are optional.
 
     """
-    if duration.startswith("P"):
-        return iso_duration_2_seconds(duration)
-
-    hours = 0
-    minutes = 0
 
     if not duration:
         return None
+
+    if duration.startswith("P"):
+        return int(iso_duration_2_seconds(duration))
+
+    hours = 0
+    minutes = 0
 
     try:
         splits = duration.split()
