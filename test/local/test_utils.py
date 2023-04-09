@@ -55,6 +55,11 @@ class Generic(TestCase):
         self.assertIsNone(utils.duration_2_seconds(None))
         self.assertIsNone(utils.duration_2_seconds('1:18:43:22'))
 
+        # ISO8601 duration returns an integer
+        seconds = utils.duration_2_seconds('PT10.5029M')
+        self.assertEqual(630, seconds)
+        self.assertIsInstance(seconds, int)
+
     def test_iso_duration_2_seconds(self):
         self.assertEqual(50 * 3600, utils.iso_duration_2_seconds('PT50H'))
         self.assertEqual(5400, utils.iso_duration_2_seconds('PT1H30M'))
@@ -87,7 +92,6 @@ class Generic(TestCase):
         self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3H'))     # 2 decimal points - not a number
         self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3M'))     # 2 decimal points - not a number
         self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3S'))     # 2 decimal points - not a number
-
 
     def test_reformat_date(self):
         self.assertEqual(utils.reformat_date('1982-05-02T14:38:32Z', '%Y-%m-%dT%H:%M:%SZ', '%d.%m.%y %H:%M'),
