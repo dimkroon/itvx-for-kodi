@@ -8,7 +8,7 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 from typing import MutableMapping
 
 from resources.lib import main, parsex, itvx
@@ -22,7 +22,8 @@ class TestMenu(unittest.TestCase):
         items = list(main.root(MagicMock()))
         self.assertGreaterEqual(len(items), 6)
 
-    def test_menu_live(self):
+    @patch('resources.lib.kodi_utils.get_system_setting', return_value='America/Regina')
+    def test_menu_live(self, _):
         items = list(main.sub_menu_live(MagicMock()))
         self.assertGreaterEqual(len(items), 10)
         # for item in items:

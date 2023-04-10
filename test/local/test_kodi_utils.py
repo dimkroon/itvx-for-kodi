@@ -68,3 +68,14 @@ class TestKodiUtils(unittest.TestCase):
         kodi_utils.msg_dlg('Message', 'Title')
         self.assertRaises(TypeError, kodi_utils.msg_dlg, title='Title')
         self.assertRaises(ValueError, kodi_utils.msg_dlg, 12345)
+
+    def test_get_system_setting(self):
+        with patch("xbmc.executeJSONRPC",
+                   return_value='{"id": 1, "jsonrpc": "2.0", "result": {"value": "Europe/Amsterdam"}}') as p_rpc:
+            self.assertEqual('Europe/Amsterdam', kodi_utils.get_system_setting("my.setting"))
+            p_rpc.assert_called_once_with(
+                '{"jsonrpc": "2.0", "method": "Settings.GetSettingValue", "params": ["my.setting"], "id": 1}')
+
+        with patch("xbmc.executeJSONRPC",
+                   return_value='{"error":{"code":-32602,"message":"Invalid params."},"id": 1,"jsonrpc": "2.0"}'):
+            self.assertRaises(ValueError, kodi_utils.get_system_setting, "my.setting")
