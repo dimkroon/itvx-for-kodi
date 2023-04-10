@@ -26,7 +26,6 @@ class ItvSession:
     def __init__(self):
         self.account_data = {}
         self.read_account_data()
-        self.uname = self.account_data.get('uname')
 
     @property
     def access_token(self):
@@ -77,25 +76,13 @@ class ItvSession:
             json.dump(self.account_data, f)
         logger.debug("ITV account data saved to file")
 
-    def login(self, uname=None, passw=None):
-        """Sign in to account.
+    def login(self, uname: str, passw: str):
+        """Sign in to itv account with `uname` and `passw`.
 
-        The user is asked for username and password and a sign in attempt is made.
-        Returns True on success, False when sign in has been canceled (by the user).
-
-        Raises AuthenticationError if login fails (and the user does not want to try
-        again), or other exceptions as they occur, like e.g. FetchError.
+        Returns True on success, raises exception on failure.
+        Raises AuthenticationError if login fails, or other exceptions as they occur, like e.g. FetchError.
         """
         self.account_data = {}
-
-        if uname is None:
-            uname = self.uname
-
-        uname, passw = kodi_utils.ask_credentials(uname, passw)
-        if not all((uname, passw)):
-            return False
-
-        self.uname = uname
 
         req_data = {
             'grant_type': 'password',
@@ -117,7 +104,6 @@ class ItvSession:
             )
 
             self.account_data = {
-                'uname': uname,
                 'refreshed': time.time(),
                 'itv_session': session_data,
                 'cookies': {'Itv.Session': build_cookie(session_data)}
@@ -127,15 +113,12 @@ class ItvSession:
             # Sometimes returning a json string containing the reason of failure, sometimes and HTML page.
             logger.error("Error signing in to ITV account: %r" % e)
             if isinstance(e, AuthenticationError) or (isinstance(e, HttpError) and e.code in (400, 401, 403)):
-                if kodi_utils.ask_login_retry(str(e)):
-                    return self.login(uname, passw)
-                else:
-                    raise AuthenticationError
+                logger.info("Sign in failed: %r", e)
+                raise AuthenticationError(str(e)) from None
             else:
                 raise
         else:
             logger.info("Sign in successful")
-            kodi_utils.show_login_result(success=True)
             self.save_account_data()
             return True
 
@@ -219,7 +202,8 @@ def fetch_authenticated(funct, url, **kwargs):
                 logger.debug("Authentication failed on first attempt")
                 if account.refresh() is False:
                     logger.debug("")
-                    if not (kodi_utils.show_msg_not_logged_in() and account.login()):
+                    from . import settings
+                    if not (kodi_utils.show_msg_not_logged_in() and settings.login()):
                         raise
             else:
                 logger.warning("Authentication failed on second attempt")

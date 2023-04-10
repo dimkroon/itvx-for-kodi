@@ -19,12 +19,12 @@ def global_setup():
     importing any other module from the project or other kodi related module.
 
     As it is global for all tests there is no need to tear down.
+
     """
-    # Ensure that kodi's special://profile refers to a predefined folder. Just in case
-    # some code want to write, whether intentional or not.
     global patch_g
     if patch_g is None:
-        # Define an addon profile directory to be used by tests
+        # Ensure that kodi's special://profile refers to a predefined folder. Just in case
+        # some code want to write, whether intentional or not.
         profile_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'addon_profile_dir'))
         patch_g = patch('xbmcaddon.Addon.getAddonInfo',
                          new=lambda self, item: profile_dir if item == 'profile' else '')
@@ -64,9 +64,24 @@ def tear_down_local_tests():
         patch_1 = None
 
 
-def setup_web_test(*args):
+credentials_set = False
+
+def set_credentials(session=None) -> None:
+    # IMPORTANT: import here, after global setup has been executed and paths to addon profile_dir are set!!
+    from resources.lib import itv_account
     try:
         from test import account_login
-        account_login.set_credentials()
     except ImportError:
-        pass
+        raise RuntimeError("Missing ITV account credentials.")
+
+    global credentials_set
+    s = session if session is not None else itv_account.itv_session()
+    if s.refresh() is False:
+        with patch("resources.lib.kodi_utils.ask_credentials", new=lambda x, y: (x,y)):
+            credentials_set = s.login(account_login.UNAME, account_login.PASSW)
+
+
+def setup_web_test(*args):
+    # Sign in once per test run.
+    if not credentials_set:
+        set_credentials()
