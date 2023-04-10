@@ -14,14 +14,34 @@ from codequick.support import addon_data, logger_id
 from resources.lib import itv_account
 from resources.lib import kodi_utils
 from resources.lib import addon_log
+from resources.lib import errors
 
 logger = logging.getLogger('.'.join((logger_id, __name__)))
 
 
 @Script.register()
-def login(_):
-    # just to provide a route for settings' log in
-    itv_account.itv_session().login()
+def login(_=None):
+    """Ask the user to enter credentials and try to sign in to ITV.
+
+    On failure ask to retry and continue to do so until signin succeeds,
+    or the user cancels.
+    """
+    uname = None
+    passw = None
+
+    while True:
+        uname, passw = kodi_utils.ask_credentials(uname, passw)
+        if not all((uname, passw)):
+            logger.info("Entering login credentials canceled by user")
+            return False
+        try:
+            itv_account.itv_session().login(uname, passw)
+            kodi_utils.show_login_result(success=True)
+            return True
+        except errors.AuthenticationError as e:
+            if not kodi_utils.ask_login_retry(str(e)):
+                logger.info("Login retry canceled by user")
+                return False
 
 
 @Script.register()

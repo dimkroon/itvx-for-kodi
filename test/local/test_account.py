@@ -65,132 +65,53 @@ class TestSession(unittest.TestCase):
 
 @patch("resources.lib.itv_account.ItvSession.save_account_data")
 class TestLogin(unittest.TestCase):
-    @patch("resources.lib.kodi_utils.ask_credentials", return_value=('your_name', 'your_passw'))
     @patch('resources.lib.fetch.post_json', return_value={'access_token': 'new_token', 'refresh_token': 'new_refresh'})
-    def test_login(self, p_post, p_ask, patched_save):
+    def test_login_requires_both_uname_and_password(self, _, __):
         ct_sess = itv_account.ItvSession()
-        self.assertTrue(ct_sess.login())
-        has_keys(p_post.call_args[0][1], 'username', 'password', 'nonce', 'grant_type', obj_name='post_json kwargs')
-        patched_save.assert_called_once()
-        p_ask.assert_called_once()
-        has_keys(ct_sess.account_data['itv_session'], 'access_token', 'refresh_token')
+        self.assertRaises(TypeError, ct_sess.login)
+        self.assertRaises(TypeError, ct_sess.login, uname="my name")
+        self.assertRaises(TypeError, ct_sess.login, passw="my password")
+        self.assertTrue(ct_sess.login(uname="my name", passw="my password"))
 
-    @patch("resources.lib.kodi_utils.ask_credentials", return_value=('your_name', 'your_passw'))
     @patch('resources.lib.fetch.post_json', return_value={'access_token': 'new_token', 'refresh_token': 'new_refresh'})
-    def test_login_with_credentials(self, p_post, p_ask, _):
-        """Credentials passed are used as default values for the on-screenkeyboard ask_credentials
-        will show. Ask_credentials() will return the user input."""
+    def test_login_with_credentials(self, p_post, _):
         ct_sess = itv_account.ItvSession()
-        ct_sess.uname = 'your_name'
-        ct_sess.passw = 'your_passw'
         self.assertTrue(ct_sess.login('my_name', 'my_passw'))
-        p_ask.assert_called_once_with('my_name', 'my_passw')
         post_kwargs = p_post.call_args[0][1]
         has_keys(post_kwargs, 'username', 'password', 'nonce', 'grant_type', obj_name='post_json kwargs')
-        self.assertEqual('your_name', post_kwargs['username'])
-        self.assertEqual('your_passw', post_kwargs['password'])
+        self.assertEqual('my_name', post_kwargs['username'])
+        self.assertEqual('my_passw', post_kwargs['password'])
 
-    @patch("resources.lib.kodi_utils.ask_credentials", side_effect=[('', ''), ('my_name', ''), ('', 'my_passw')])
-    @patch('resources.lib.fetch.post_json')
-    def test_user_cancels_entry(self, p_post, _, __):
-        """Test all situation where NOT both username and password are provided.
-        The last one should practically never occur though."""
-        for _ in range(3):
-            ct_sess = itv_account.ItvSession()
-            self.assertFalse(ct_sess.login())
-        p_post.assert_not_called()
-
-    @patch("resources.lib.kodi_utils.ask_credentials", return_value=('my_name', 'my_password'))
-    @patch("resources.lib.kodi_utils.ask_login_retry", return_value=False)
-    def test_login_encounters_http_errors_without_retry(self, p_ask_retry, p_ask_cred, p_save):
+    def test_login_encounters_http_errors(self, p_save):
         with patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError):
             ct_sess = itv_account.ItvSession()
-            self.assertRaises(errors.AuthenticationError, ct_sess.login,)
-            p_ask_retry.assert_called_once()
-            p_ask_cred.assert_called_once()
+            self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
-            p_ask_retry.reset_mock()
-            p_ask_cred.reset_mock()
+        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(400, '')):
+            ct_sess = itv_account.ItvSession()
+            self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
+            p_save.assert_not_called()
+
+        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(401, '')):
+            ct_sess = itv_account.ItvSession()
+            self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
+            p_save.assert_not_called()
+
+        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(403, '')):
+            ct_sess = itv_account.ItvSession()
+            self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
+            p_save.assert_not_called()
+
         with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(404, '')):
             ct_sess = itv_account.ItvSession()
-            self.assertRaises(errors.HttpError, ct_sess.login)
-            p_ask_retry.assert_not_called()
-            p_ask_cred.assert_called_once()
+            self.assertRaises(errors.HttpError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
-            p_ask_cred.reset_mock()
         with patch('resources.lib.fetch.post_json', side_effect=errors.GeoRestrictedError):
             ct_sess = itv_account.ItvSession()
-            self.assertRaises(errors.GeoRestrictedError, ct_sess.login)
-            p_ask_retry.assert_not_called()
-            p_ask_cred.assert_called_once()
+            self.assertRaises(errors.GeoRestrictedError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
-
-    @patch("resources.lib.kodi_utils.ask_credentials", return_value=('my_name', 'my_password'))
-    @patch("resources.lib.kodi_utils.ask_login_retry", return_value=True)
-    @patch('resources.lib.fetch.post_json',
-           side_effect=(errors.AuthenticationError, {'access_token': 'new_token', 'refresh_token': 'new_refresh'}))
-    def test_login_succeeds_after_retry(self, p_post, p_ask_retry, p_ask_cred, p_save):
-        ct_sess = itv_account.ItvSession()
-        self.assertTrue(ct_sess.login())
-        self.assertEqual(2, p_post.call_count)
-        self.assertEqual(2, p_ask_cred.call_count)
-        p_ask_retry.assert_called_once()
-        p_save.assert_called_once()
-
-
-@patch("resources.lib.kodi_utils.ask_login_retry", side_effect=(True, False))
-@patch("resources.lib.itv_account.ItvSession.save_account_data", new=lambda _: True)
-# noinspection PyMethodMayBeStatic
-class LoginRetryBehaviour(unittest.TestCase):
-    @patch('resources.lib.fetch.post_json', return_value={'access_token': 'new_token', 'refresh_token': 'new_refresh'})
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda a, b: ('my_name', 'my_password'))
-    def test_login_no_retry_on_successful_login(self, _, p_ask_retry):
-        ct_sess = itv_account.ItvSession()
-        ct_sess.login()
-        p_ask_retry.assert_not_called()
-
-    @patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError)
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda a, b: ('', ''))
-    def test_login_no_retry_on_canceled_credentials(self, _, p_ask_retry):
-        ct_sess = itv_account.ItvSession()
-        self.assertFalse(ct_sess.login())
-        p_ask_retry.assert_not_called()
-
-    @patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError)
-    @patch("resources.lib.kodi_utils.ask_credentials", side_effect=(('my_name', 'my_password'), ('', '')))
-    def test_login_no_second_retry_on_canceled_credentials(self, _, __, p_ask_retry):
-        """The user cancels entering credentials after the first retry has been offered"""
-        ct_sess = itv_account.ItvSession()
-        self.assertFalse(ct_sess.login())
-        p_ask_retry.assert_called_once()
-
-    @patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(404, ''))
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda a, b: ('my_name', 'my_password'))
-    def test_login_no_retry_on_other_errors(self, _, p_ask_retry):
-        ct_sess = itv_account.ItvSession()
-        self.assertRaises(errors.HttpError, ct_sess.login)
-        p_ask_retry.assert_not_called()
-
-    @patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError)
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda a, b: ('my_name', 'my_password'))
-    def test_login_retry_on_wrong_credentials(self, p_post, p_ask_retry):
-        ct_sess = itv_account.ItvSession()
-        self.assertRaises(errors.AuthenticationError, ct_sess.login)
-        self.assertEqual(2, p_ask_retry.call_count)
-        self.assertEqual(2, p_post.call_count)      # 1 original login, 1 after first retry
-
-    @patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(400, ''))
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda a, b: ('my_name', 'my_password'))
-    def test_login_retry_on_other_errors(self, p_post, p_ask_retry):
-        """Sometimes a failed sign in returns HTTP status 400 with an HTML page in the response content
-        HTTP 400 is therefore after a sign in attempt is regarded as a failed login
-        """
-        ct_sess = itv_account.ItvSession()
-        self.assertRaises(errors.AuthenticationError, ct_sess.login)
-        self.assertEqual(2, p_ask_retry.call_count)
-        self.assertEqual(2, p_post.call_count)  # 1 original login, 1 after first retry
 
 
 @patch("resources.lib.itv_account.ItvSession.save_account_data")
@@ -347,64 +268,77 @@ class GetAuthenticated(unittest.TestCase):
         self.assertEqual({'a': 1}, resp)
         mocked_get.assert_called_once_with(url=URL, cookies={})
 
+    @patch('resources.lib.settings.login')
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
     @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
-    def test_authenticated_meets_auth_error_response(self, mocked_get, mocked_account):
+    def test_authenticated_meets_auth_error_response(self, mocked_get, mocked_account, mocked_login):
         """Refresh tokens on authentication error and try again"""
         resp = itv_account.fetch_authenticated(fetch.get_json, URL)
         mocked_account.return_value.refresh.assert_called_once()
-        mocked_account.return_value.login.assert_not_called()
+        mocked_login.assert_not_called()
         self.assertEqual(2, mocked_get.call_count)
         self.assertEqual({'a': 1}, resp)
 
+    @patch('resources.lib.settings.login')
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
     @patch('resources.lib.fetch.HttpSession.request',
            return_value=HttpResponse(status_code=403,
                                      content=b'{"Message": "UserTokenValidationFailed for user: Some(92a3bfde-bfe1-'
                                              b'40ea-ad43-09b8b522b7cb) message: User does not have entitlements"}'))
-    def test_authenticated_meets_auth_error_no_subscription(self, mocked_get, mocked_account):
+    def test_authenticated_meets_auth_error_no_subscription(self, mocked_get, mocked_account, mocked_login):
         """Caused by trying to play a premium stream without a premium account
         Should raise a AccessRestrictedError without attempts to refresh or login.
         """
         self.assertRaises(errors.AccessRestrictedError, itv_account.fetch_authenticated, fetch.get_json, URL)
         mocked_account.return_value.refresh.assert_not_called()
-        mocked_account.return_value.login.assert_not_called()
+        mocked_login.login.assert_not_called()
         self.assertEqual(1, mocked_get.call_count)
 
+    @patch('resources.lib.settings.login')
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
     @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
-    def test_authenticated_refresh_fails_login_succeeds(self, mocked_get, mocked_account):
+    def test_authenticated_refresh_fails_login_succeeds(self, mocked_get, mocked_account, mocked_login):
         """Refresh tokens on authentication error and try again"""
         mocked_account.return_value.refresh.return_value = False
 
         resp = itv_account.fetch_authenticated(fetch.get_json, URL)
         mocked_account.return_value.refresh.assert_called_once()
-        mocked_account.return_value.login.assert_called_once()
+        mocked_login.assert_called_once()
         self.assertEqual(2, mocked_get.call_count)
         self.assertEqual({'a': 1}, resp)
 
+    @patch('resources.lib.settings.login')
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
     @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
-    def test_authenticated_refresh_fails_login_rejectd(self, mocked_get, mocked_account):
+    def test_authenticated_refresh_fails_login_rejectd(self, mocked_get, mocked_account, mocked_login):
         """Refresh tokens failed and the user canceled the request to log in."""
         mocked_account.return_value.refresh.return_value = False
         with patch("resources.lib.kodi_utils.show_msg_not_logged_in", return_value=False):
             self.assertRaises(errors.AuthenticationError, itv_account.fetch_authenticated, fetch.get_json, URL)
         mocked_account.return_value.refresh.assert_called_once()
-        mocked_account.return_value.login.assert_not_called()
+        mocked_login.login.assert_not_called()
         self.assertEqual(1, mocked_get.call_count)
 
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
-    @patch("resources.lib.fetch.get_json", side_effect=[errors.AuthenticationError, {'a': 1}])
+    @patch("resources.lib.fetch.get_json", side_effect=errors.AuthenticationError)
     def test_authenticated_login_fails(self, mocked_get, mocked_account):
         """If refresh and login fail, do not try again"""
         mocked_account.return_value.refresh.return_value = False
         mocked_account.return_value.login.side_effect = errors.AuthenticationError
 
-        self.assertRaises(errors.AuthenticationError, itv_account.fetch_authenticated, fetch.get_json, URL)
-        mocked_account.return_value.refresh.assert_called_once()
-        mocked_account.return_value.login.assert_called_once()
-        mocked_get.assert_called_once()
+        with patch("resources.lib.settings.login", return_value=False) as p_login:
+            self.assertRaises(errors.AuthenticationError, itv_account.fetch_authenticated, fetch.get_json, URL)
+            mocked_account.return_value.refresh.assert_called_once()
+            p_login.assert_called_once()
+            mocked_get.assert_called_once()
+
+            mocked_account.return_value.refresh.reset_mock()
+            mocked_get.reset_mock()
+        with patch("resources.lib.settings.login", side_effect=errors.HttpError(500, '')) as p_login:
+            self.assertRaises(errors.HttpError, itv_account.fetch_authenticated, fetch.get_json, URL)
+            mocked_account.return_value.refresh.assert_called_once()
+            p_login.assert_called_once()
+            mocked_get.assert_called_once()
 
     @patch("resources.lib.itv_account.itv_session", return_value=AccountMock())
     @patch("resources.lib.fetch.get_json", side_effect=errors.AuthenticationError)
