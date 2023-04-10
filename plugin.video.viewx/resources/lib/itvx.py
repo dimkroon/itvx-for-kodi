@@ -62,8 +62,7 @@ def get_now_next_schedule(local_tz=None):
     Present start time in the system's local time zone.
     """
     if local_tz is None:
-        from tzlocal import get_localzone
-        local_tz = get_localzone()
+        local_tz = pytz.timezone('Europe/London')
 
     utc_tz = pytz.utc
     # Use local time format without seconds. Fix weird kodi formatting for 12-hour clock.
@@ -103,13 +102,13 @@ def get_now_next_schedule(local_tz=None):
     return channels
 
 
-def get_live_channels():
+def get_live_channels(local_tz=None):
     cached_schedule = cache.get_item('live_schedule')
     if cached_schedule:
         return cached_schedule
 
-    from tzlocal import get_localzone
-    local_tz = get_localzone()
+    if local_tz is None:
+        local_tz = pytz.timezone('Europe/London')
 
     schedule = get_now_next_schedule(local_tz)
     main_schedule = get_live_schedule(local_tz=local_tz)

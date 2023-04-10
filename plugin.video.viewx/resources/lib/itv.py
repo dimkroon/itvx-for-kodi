@@ -30,8 +30,7 @@ def get_live_schedule(hours=4, local_tz=None):
 
     """
     if local_tz is None:
-        from tzlocal import get_localzone
-        local_tz = get_localzone()
+        local_tz = pytz.timezone('Europe/London')
     btz = pytz.timezone('Europe/London')
     british_now = datetime.now(pytz.utc).astimezone(btz)
 

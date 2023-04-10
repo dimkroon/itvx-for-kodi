@@ -4,9 +4,10 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
+import json
 import logging
 
+import xbmc
 import xbmcgui
 
 from codequick import Script, utils
@@ -135,3 +136,15 @@ def msg_dlg(msg, title=None):
     if title is None:
         title = addon_info.name
     dlg.ok(title, msg)
+
+
+def get_system_setting(setting_id):
+    json_str = '{{"jsonrpc": "2.0", "method": "Settings.GetSettingValue", "params": ["{}"], "id": 1}}'.format(setting_id)
+    response = xbmc.executeJSONRPC(json_str)
+    data = json.loads(response)
+    try:
+        return data['result']['value']
+    except KeyError:
+        msg  = data.get('message') or "Failed to get setting"
+        logger.error("get_system_setting failed for setting_id '%s': '%s'", setting_id, msg)
+        raise ValueError('system setting error: {}'.format(msg))

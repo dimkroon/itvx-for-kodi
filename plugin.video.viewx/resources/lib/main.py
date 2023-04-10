@@ -9,6 +9,7 @@ import logging
 import typing
 import string
 
+import pytz
 import xbmcplugin
 
 from codequick import Route, Resolver, Listitem, Script, run
@@ -165,7 +166,8 @@ def root(_):
 
 @Route.register(content_type='videos')
 def sub_menu_live(_):
-    tv_schedule = itvx.get_live_channels()
+    local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
+    tv_schedule = itvx.get_live_channels(local_tz)
 
     for item in tv_schedule:
         chan_name = item['name']

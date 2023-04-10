@@ -44,7 +44,8 @@ class MainMenu(TestCase):
 @patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
                                                     open_json('schedule/live_4hrs.json')))
 class LiveChannels(TestCase):
-    def test_list_live_channels(self, _):
+    @patch('resources.lib.kodi_utils.get_system_setting', return_value='America/Regina')
+    def test_list_live_channels(self, _, __):
         chans = main.sub_menu_live(MagicMock())
         self.assertIsInstance(chans, types.GeneratorType)
         chan_list = list(chans)
