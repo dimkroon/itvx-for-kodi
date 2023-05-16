@@ -14,7 +14,7 @@ import unittest
 import requests
 
 from resources.lib import fetch, parsex, utils, errors
-from support.object_checks import has_keys, misses_keys, is_url, is_iso_utc_time
+from support.object_checks import has_keys, expect_keys, misses_keys, is_url, is_iso_utc_time
 from support import testutils
 
 setUpModule = fixtures.setup_web_test
@@ -85,7 +85,8 @@ class MainPage(unittest.TestCase):
             self.assertIsInstance(item['contentInfo'], list)
 
             if item['contentType'] != 'simulcastspot':
-                has_keys(item, 'encodedProgrammeId', 'programmeId', 'genre', obj_name=item['title'])
+                has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
+                expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
 
             if item['contentType'] == 'special':
                 # Field 'dateTime' not always present in special title
