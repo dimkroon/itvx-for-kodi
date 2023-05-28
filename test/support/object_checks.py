@@ -8,6 +8,8 @@
 import time
 import unittest
 
+from resources.lib import  utils
+
 
 def has_keys(dict_obj, *keys, obj_name='dictionary'):
     """Checks if all keys are present in the dictionary"""
@@ -23,8 +25,14 @@ def has_keys(dict_obj, *keys, obj_name='dictionary'):
         )
 
 
-def misses_keys(dict_obj, *keys, obj_name='dictionary'):
-    """Checks if all keys are NOT present in the dictionary"""
+def misses_keys(dict_obj: str, *keys: str, obj_name: str = 'dictionary') -> None:
+    """Checks if all keys are NOT present in the dictionary
+
+    :param dict_obj: The dictionary to check
+    :param obj_name: Optional name of the object, only used to add a meaningful message to an AssertionError
+    :raises AssertionError:
+
+    """
     keys_set = set(keys)
     present_keys = set(dict_obj.keys()).intersection(keys_set)
     if present_keys:
@@ -37,7 +45,7 @@ def misses_keys(dict_obj, *keys, obj_name='dictionary'):
     return True
 
 
-def expect_keys(dict_obj, *keys, obj_name='dictionary'):
+def expect_keys(dict_obj: dict, *keys: str, obj_name: str ='dictionary'):
     """Print a warning if a key is not present, but do not fail a test.
     """
     try:
@@ -56,9 +64,9 @@ def expect_misses_keys(dict_obj, *keys, obj_name='dictionary'):
         return False
 
 
-def is_url(url, ext=None):
+def is_url(url: str, ext: str = None) -> bool:
     """Short and simple check if the string `url` is indeed a URL.
-    This in no way intended to completely validate the URL - it is just to check
+    This is in no way intended to completely validate the URL - it is just to check
     that the string is not just a path without protocol specification, or just some
     other string that is not a URL at all.
 
@@ -85,6 +93,37 @@ def is_iso_utc_time(time_str):
         return True
     except ValueError:
         return False
+
+
+def is_encoded_programme_or_episode_id(item: dict) -> bool:
+    try:
+        if len(item) != 2:
+            return False
+        la = item['letterA']
+        us = item['underscore']
+        if la == '' and us == '':
+            return True
+        if not(isinstance(la, str) and la):
+            return False
+        for char in '_/':
+            if char in la:
+                return False
+        if not(isinstance(us, str) and us):
+            return False
+        for char in 'a/':
+            if char in us:
+                return False
+        return True
+    except (KeyError, ValueError):
+        return False
+
+
+def is_encoded_programme_id(item):
+    return is_encoded_programme_or_episode_id(item)
+
+
+def is_encoded_episode_id(item):
+    return is_encoded_programme_or_episode_id(item)
 
 
 def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
@@ -116,6 +155,12 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
                 if param == 'url' and param_val:
                     testcase.assertTrue(is_url(param_val))
     return True
+
+
+def is_tier_info(item) -> bool:
+    if not isinstance( item, list):
+        return False
+    return 'FREE' in item or 'PAID' in item
 
 
 def check_live_stream_info(playlist):
@@ -183,10 +228,11 @@ def check_catchup_dash_stream_info(playlist):
             assert is_url(subt['Href'], '.vtt')
 
 
-def check_news_stream_info(playlist):
+def check_news_collection_stream_info(playlist):
     """Check the structure of a dictionary containing urls to the mp4 file
     This checks a playlist of type application/vnd.itv.vod.playlist.v2+json, which is
     returned for short news items.
+
     """
     has_keys(playlist, 'Video', 'ProductionId', 'VideoType', 'ContentBreaks', obj_name='Playlist')
     assert playlist['VideoType'] == 'SHORT'
@@ -202,3 +248,57 @@ def check_news_stream_info(playlist):
     assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
     assert len(strm_inf) == 1
     assert is_url(video_inf['Base'] + strm_inf[0]['Href'], '.mp4')
+
+
+def check_news_category_clip_item(item):
+    """Check the content of a news clip from category 'News'
+
+    Hero items have an extra field `posterImage`, but it's not used in the addon.
+    """
+    has_keys(
+        item,
+        'episodeTitle', 'episodeId', 'titleSlug', 'href', 'imageUrl', 'synopsis', 'dateTime', 'duration',
+        obj_name=item['News-category-hero-item'])
+    # imagePresets is currently an empty dict.
+    assert isinstance(item['imagePresets'], dict and not item['imagePresets'])
+    assert isinstance(item['episodeTitle'], str) and item['episodeTitle']
+    assert isinstance(item['episodeId'], str) and item['episodeId']
+    assert isinstance(item['titleSlug'], str) and item['titleSlug']
+    assert isinstance(item['href'], str) and item['href'] and not is_url(item['href'])
+    assert is_url(item['imageUrl'], '.jpg')
+    assert isinstance(item['synopsis'], str) and item['synopsis']
+    assert is_iso_utc_time(item['dateTime'])
+    assert isinstance(item['duration'], int)
+    assert is_url(item['imageUrl'], '.jpg')
+
+
+def check_category_item(item):
+    """Check an item from the section 'longformData' which contains full episodes from itv news
+    and other news related programmes.
+
+    """
+    # TODO: Check if this is the same as a normal episode
+    # Note: it misses a `titleType` field.
+    has_keys(
+        item,
+        'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'channel', 'description', 'imageTemplate',
+        'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId'
+    )
+    assert isinstance(item['title'], str) and item['title']
+    title = item['title']
+    assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
+    assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
+    assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
+    assert isinstance(item['description'], str) and item['description'], "Invalid description in '{}'.".format(title)
+    assert is_url(item['imageTemplate']), "Invalid imageTemple in '{}'.".format(title)
+    # ContentInfo is at this moment what is being shown on the web, but can be empty, or have
+    # info like 'series 1'.
+    assert isinstance(item['contentInfo'], str), "Invalid contentInfo in '{}'.".format(title)
+    assert (item['contentInfo'].lower().startswith('series')
+            or utils.duration_2_seconds(item['contentInfo']) is not None), \
+            print("invalid contentInfo '{}' for item '{}'.".format(item['contentInfo'], item['title']))
+    assert is_tier_info(item['tier']), "Invalid tier in '{}'.".format(title)
+    # Broadcast datetime can be None occasionally.
+    assert item['broadcastDateTime'] is None or is_iso_utc_time(item['broadcastDateTime']), \
+        "Invalid broadcastDateTime in '{}'.".format(title)
+    assert isinstance(item['programmeId'], str) and item['programmeId'], "Invalid programmeId in '{}'.".format(title)

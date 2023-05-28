@@ -14,7 +14,15 @@ import unittest
 import requests
 
 from resources.lib import fetch, parsex, utils, errors
-from support.object_checks import has_keys, expect_keys, misses_keys, is_url, is_iso_utc_time
+from support.object_checks import (
+    has_keys,
+    expect_keys,
+    misses_keys,
+    is_url,
+    is_iso_utc_time,
+    check_news_category_clip_item,
+    check_category_item
+)
 from support import testutils
 
 setUpModule = fixtures.setup_web_test
@@ -267,6 +275,9 @@ class Categories(unittest.TestCase):
 
     def test_all_categories(self):
         for cat in self.all_categories:
+            if cat == 'news':
+                # As of May 2023 category news returns a different data structure and has its own test.
+                continue
             url = 'https://www.itv.com/watch/categories/' + cat
             t_s = time.time()
             page = fetch.get_document(url)
@@ -278,13 +289,34 @@ class Categories(unittest.TestCase):
             t_2 = time.time()
             self.assertIsInstance(programmes, list)
             for progr in programmes:
-                has_keys(progr, 'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'description',
-                         'imageTemplate', 'contentInfo', 'contentOwner', 'tier')
-                self.assertTrue(progr['encodedProgrammeId']['letterA'])
-                self.assertIsNotNone(progr['encodedEpisodeId']['letterA'])
-                cont_inf = progr['contentInfo']
-                self.assertTrue(cont_inf.lower().startswith('series') or
-                                utils.duration_2_seconds(cont_inf) is not None,
-                                "invalid contentInfo '{}' for item '{}'".format(cont_inf, progr['title']))
+                check_category_item(progr)
+                # has_keys(progr, 'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'description',
+                #          'imageTemplate', 'contentInfo', 'contentOwner', 'tier')
+                # self.assertTrue(is_encoded_programme_or_episode_id(progr['encodedProgrammeId']))
+                # self.assertTrue(is_encoded_programme_or_episode_id(progr['encodedEpisodeId']))
+                # cont_inf = progr['contentInfo']
+                # self.assertTrue(cont_inf.lower().startswith('series') or
+                #                 utils.duration_2_seconds(cont_inf) is not None,
+                #                 "invalid contentInfo '{}' for item '{}'".format(cont_inf, progr['title']))
             # print("Fetched categorie {} in {:0.3f} s, parsed in {:0.3f}s, total {:0.3f}s.".format(
             #     cat, t_1 - t_s, t_2 - t_1, t_2 - t_s))
+
+    def test_category_news(self):
+        url = 'https://www.itv.com/watch/categories/news'
+        t_s = time.time()
+        page = fetch.get_document(url)
+        t_1 = time.time()
+        data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/category_news.json')
+        # Field `programmes` is still present, but contains no data anymore
+        self.assertIsNone(data['programmes'])
+        news_data = data['newsData']
+        # Check the hero rail
+        for item in news_data['heroAndLatestData']:
+            check_news_category_clip_item(item)
+        for item in news_data['longformData']:
+            check_category_item(item)
+        for  rail in news_data['curatedRails']:
+            self.assertTrue(isinstance(rail['title'], str) and rail['title'])
+            for item in rail['clips']:
+                check_news_category_clip_item(item)
