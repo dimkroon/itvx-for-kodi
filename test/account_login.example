@@ -1,0 +1,20 @@
+
+"""
+Use this file to set the password and username of your ITV account.
+These credentials are used by web tests, since various web requests
+require a user being signed in.
+
+Create a copy of this file, enter your own credentials and rename the
+file to account_login.py
+
+Ensure this file NEVER ends up on a public repository.
+The file is already added to .gitignore, so it should not be included
+in any commit, but better double check to be sure.
+"""
+
+
+UNAME = 'my.user.name'
+PASSW = 'myverycomplicatedpassword'
+
+
+
