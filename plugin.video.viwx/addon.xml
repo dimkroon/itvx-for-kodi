@@ -13,9 +13,9 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary lang="en_GB">Live TV and video on demand from ITVX (UK only)</summary>
+    <summary lang="en_GB">Live TV and video on-demand from ITVX (UK only, ITVX account required)</summary>
     <description lang="en_GB">
-      A Vibrant ITVX Web eXperience. Play live and catchup TV from ITVX. An ITV account is required, either free or premium.[CR][CR]This add-on is not developed by ITV and is no way affiliated with, or endorsed by ITV.
+      A Vibrant ITVX Web eXperience. Play live TV and video on-demand from the webservices of British broadcaster ITV. An ITVX account is required, either free or premium, to play any stream.[CR][CR]This add-on is not developed by ITV and is no way affiliated with, or endorsed by ITV.
     </description>
     <disclaimer lang="en_GB">
       This addon is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
