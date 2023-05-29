@@ -89,10 +89,16 @@ class Paginator:
     def _show_az_list(self):
         az_len = self._addon.getSettingInt('a-z_size')
         items_list = self._items_list
-        list_len = len(items_list)
+        try:
+            list_len = len(items_list)
+        except TypeError:
+            logger.warning("Items list is '%s'", items_list)
+            return False
         if not self._filter and az_len and list_len >= az_len:
             logger.debug("List size %s exceeds maximum of %s items; creating A-Z subdivision", list_len, az_len)
             return True
+        else:
+            return False
 
     def _generate_az(self):
         char_list = utils.list_start_chars(self._items_list)
@@ -225,7 +231,7 @@ def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=
                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                            disable_autosort=True)
     shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
-    logger.info("Listed collection %s%s with %s items", url, slider, len(shows_list))
+    logger.info("Listed collection %s%s with %s items", url, slider, len(shows_list) if shows_list else 0)
     paginator = Paginator(shows_list, filter_char, page_nr, url=url)
     yield from paginator
 
@@ -252,7 +258,7 @@ def list_category(addon, path, filter_char=None, page_nr=0):
 
     shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_paid'))
 
-    logger.info("Listed category %s with % items", path, len(shows_list))
+    logger.info("Listed category %s with % items", path, len(shows_list) if shows_list else 0)
     paginator = Paginator(shows_list, filter_char, page_nr, path=path)
     yield from paginator
 
