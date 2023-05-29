@@ -246,6 +246,18 @@ def categories():
     return ({'label': cat['name'], 'params': {'path': cat['url']}} for cat in cat_list)
 
 
+def category_news(path):
+    """Unlike other categories, news returns a list of sub-categories"""
+    data = get_page_data(path, cache_time=86400).get('newsData')
+    if not data:
+        return []
+    items = [{'label': 'Latest stories', 'params': {'path': path, 'subcat': 'heroAndLatestData'}}]
+    items.extend({'label': item['title'], 'params': {'path': path, 'subcat': 'curatedRails', 'rail': item['title']}}
+                 for item in data['curatedRails'])
+    items.extend(({'label': 'Programmes', 'params': {'path': path, 'subcat': 'longformData'}},))
+    return items
+
+
 def category_content(url: str, hide_paid=False):
     """Return all programmes in a category"""
     cached_data = cache.get_item(url)
@@ -265,6 +277,47 @@ def category_content(url: str, hide_paid=False):
     items.sort(key=lambda prog: prog['show']['info']['sorttitle'])
     cache.set_item(url, {'items_list': items, 'hide_paid': hide_paid}, expire_time=3600)
     return items
+
+
+def category_news_content(url, sub_cat, rail=None, hide_paid=False):
+    """Return the content of one of the news sub categories."""
+    page_data = get_page_data(url, cache_time=900)
+    news_sub_cats = page_data['newsData']
+
+    uk_tz = pytz.timezone('Europe/London')
+    time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
+
+    # A normal listing of TV shows in the category News, like normal category content
+    if sub_cat == 'longformData':
+        items_list = news_sub_cats.get(sub_cat)
+        if hide_paid:
+            return [parsex.parse_category_item(prog, None) for prog in items_list if 'FREE' in prog['tier']]
+        else:
+            return [parsex.parse_category_item(prog, None) for prog in items_list]
+
+    # News clips, like the news collection
+    if rail:
+        items_list = None
+        for subcat in news_sub_cats.get(sub_cat, []):
+            if subcat.get('title') == rail:
+                items_list = subcat.get('clips', [])
+                break
+
+    elif sub_cat == 'heroAndLatestData':
+        items_list = news_sub_cats.get(sub_cat)
+    else:
+        return False
+
+    if not items_list:
+        return []
+
+    if hide_paid:
+        return [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+                for news_item in items_list
+                if not news_item.get('isPaid')]
+    else:
+        return [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+                for news_item in items_list]
 
 
 def get_playlist_url_from_episode_page(page_url):

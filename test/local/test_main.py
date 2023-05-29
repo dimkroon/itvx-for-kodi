@@ -131,6 +131,32 @@ class Categories(TestCase):
             programmes = list(filter(None, main.list_category(MagicMock(), 'sdfg', filter_char='A', page_nr=1)))
             self.assertEqual(10, len(programmes))  # The remaining 4 of the last page are added to this one.
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_category_news(self, _):
+        """News now returns a list of sub categories."""
+        items = main.list_category.route.unittest_caller('category/news')
+        self.assertIsInstance(items, list)
+        self.assertEqual(6, len(items))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_sub_category_news_hero_items(self, _):
+        items = main.list_news_sub_category.route.unittest_caller('my/url', 'heroAndLatestData', None)
+        self.assertIsInstance(items, list)
+        self.assertEqual(13, len(items))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_sub_category_news_long_format_items(self, _):
+        """These are in fact the tv shows in the category news."""
+        items = main.list_news_sub_category.route.unittest_caller('my/url', 'longformData', None)
+        self.assertIsInstance(items, list)
+        self.assertEqual(12, len(items))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_sub_category_news_rails(self, _):
+        """Very much the same as collection news, but divided in various sub categories."""
+        items = main.list_news_sub_category.route.unittest_caller('my/url', 'curatedRails', 'Politics')
+        self.assertIsInstance(items, list)
+        self.assertEqual(10, len(items))
 
 
 @patch("resources.lib.cache.get_item", new=lambda *a, **k: None)     # disable cache
