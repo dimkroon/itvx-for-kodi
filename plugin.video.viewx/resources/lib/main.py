@@ -25,8 +25,12 @@ from resources.lib.errors import *
 
 
 logger = logging.getLogger(logger_id + '.main')
-logger.critical('version: %s', utils.addon_info.addon.getAddonInfo('version'))
 logger.critical('-------------------------------------')
+logger.critical('--- version: %s', utils.addon_info.addon.getAddonInfo('version'))
+# logger.info('short date format %s', xbmc.getRegion('dateshort'))
+# logger.info('long date format %s', xbmc.getRegion('datelong'))
+# logger.info('time format %s', xbmc.getRegion('time'))
+# logger.info('meridiem format %s', xbmc.getRegion('meridiem'))
 
 
 TXT_SEARCH = 30807

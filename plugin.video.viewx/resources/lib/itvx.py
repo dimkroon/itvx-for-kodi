@@ -26,10 +26,6 @@ from .itv import get_live_schedule
 
 
 logger = logging.getLogger(logger_id + '.itvx')
-logger.info('short date format %s', xbmc.getRegion('dateshort'))
-logger.info('long date format %s', xbmc.getRegion('datelong'))
-logger.info('time format %s', xbmc.getRegion('time'))
-logger.info('meridiem format %s', xbmc.getRegion('meridiem'))
 
 
 FEATURE_SET = 'hd,progressive,single-track,mpeg-dash,widevine,widevine-download,inband-ttml,hls,aes,inband-webvtt,outband-webvtt,inband-audio-description'
