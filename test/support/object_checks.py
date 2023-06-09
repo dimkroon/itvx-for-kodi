@@ -27,14 +27,14 @@ def misses_keys(dict_obj, *keys, obj_name='dictionary'):
     """Checks if all keys are NOT present in the dictionary"""
     keys_set = set(keys)
     present_keys = set(dict_obj.keys()).intersection(keys_set)
-    if present_keys != keys_set:
-        absent = keys_set.difference(present_keys)
-        raise AssertionError("Key{} {} {} not present in '{}'".format(
-            's' if len(absent) > 1 else '',
-            absent,
-            'is' if len(absent) == 1 else 'are',
+    if present_keys:
+        raise AssertionError("Key{} {} {} unexpectedly present in '{}'".format(
+            's' if len(present_keys) > 1 else '',
+            present_keys,
+            'is' if len(present_keys) == 1 else 'are',
             obj_name)
         )
+    return True
 
 
 def expect_keys(dict_obj, *keys, obj_name='dictionary'):
@@ -44,6 +44,16 @@ def expect_keys(dict_obj, *keys, obj_name='dictionary'):
         has_keys(dict_obj, *keys, obj_name=obj_name)
     except AssertionError as err:
         print('Expected', err)
+
+
+def expect_misses_keys(dict_obj, *keys, obj_name='dictionary'):
+    """Print a warning if a key is unexpectedly present, but do not fail a test.
+    """
+    try:
+        return misses_keys(dict_obj, *keys, obj_name=obj_name)
+    except AssertionError as err:
+        print(err)
+        return False
 
 
 def is_url(url, ext=None):

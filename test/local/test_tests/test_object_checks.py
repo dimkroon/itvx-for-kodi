@@ -1,6 +1,6 @@
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viewx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
@@ -29,4 +29,16 @@ class TestObjectChecks(TestCase):
         self.assertTrue(object_checks.is_iso_utc_time("2019-05-26T23:10:32.3Z"))
         self.assertFalse(object_checks.is_iso_utc_time("2019-05-26T23:10:32.Z"))
 
+    def test_misses_keys(self):
+        d = {'a': 1, 'b': 2, 'c': 3}
+        self.assertTrue(object_checks.misses_keys(d, 'z'))
+        self.assertTrue(object_checks.misses_keys(d, 'z', 'x', 'y'))
+        self.assertRaises(AssertionError, object_checks.misses_keys, d, 'b')
+        self.assertRaises(AssertionError, object_checks.misses_keys, d, 'z', 'b')
 
+    def test_expect_misses_keys(self):
+        d = {'a': 1, 'b': 2, 'c': 3}
+        self.assertTrue(object_checks.expect_misses_keys(d, 'z'))
+        self.assertTrue(object_checks.expect_misses_keys(d, 'z', 'x', 'y'))
+        self.assertFalse(object_checks.expect_misses_keys(d, 'b'))
+        self.assertFalse(object_checks.expect_misses_keys(d, 'z', 'b'))
