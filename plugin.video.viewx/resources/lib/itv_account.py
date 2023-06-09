@@ -74,7 +74,7 @@ class ItvSession:
         session_file = os.path.join(utils.addon_info.profile, "itv_session")
         with open(session_file, 'w') as f:
             json.dump(self.account_data, f)
-        logger.debug("ITV account data saved to file")
+        logger.info("ITV account data saved to file")
 
     def login(self, uname: str, passw: str):
         """Sign in to itv account with `uname` and `passw`.
