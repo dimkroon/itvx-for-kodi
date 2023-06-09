@@ -92,7 +92,7 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
 
     """
     testcase.assertIsInstance(dict_obj, dict)
-
+    has_keys(dict_obj, 'label', 'params')
     for item_key, item_value in dict_obj.items():
         testcase.assertTrue(item_key in ('label', 'art', 'info', 'params'))
         if item_key == 'label':
@@ -136,10 +136,22 @@ def check_live_stream_info(playlist):
     strm_inf = video_inf['VideoLocations']
     assert isinstance(strm_inf, list), 'VideoLocations is not a list but {}'.format(type(strm_inf))
     for strm in strm_inf:
+        assert isinstance(strm['IsDar'], bool)
         assert is_url(strm['Url'], '.mpd')
         assert is_url(strm['StartAgainUrl'], '.mpd')
         assert is_url(strm['KeyServiceUrl'])
         assert '{START_TIME}' in strm['StartAgainUrl']
+
+
+def has_adverts(playlist):
+    breaks = playlist['ContentBreaks']
+    has_breaks = len(breaks) > 1
+    if len(breaks) == 1:
+        # If there  are no content breaks the list of breaks has a single item with an empty actions list.
+        assert len(breaks[0]['Actions']) == 0
+    for stream in playlist['Video']['VideoLocations']:
+        assert stream['IsDar'] == has_breaks
+    return has_breaks
 
 
 def check_catchup_dash_stream_info(playlist):

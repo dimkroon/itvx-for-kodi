@@ -79,7 +79,7 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description',
+            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
                      'contentInfo', 'tagName', obj_name=item['title'])
             self.assertTrue(item['contentType'] in ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand'))
             self.assertIsInstance(item['contentInfo'], list)
@@ -88,6 +88,8 @@ class MainPage(unittest.TestCase):
                 has_keys(item, 'channel', obj_name=item['title'])
             else:
                 has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
+                # As of 06-2023 field genre seems to be removed from all types of hero content.
+                # Just keep the check in for a while.
                 expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
 
             if item['contentType'] == 'special':
@@ -167,12 +169,12 @@ class WatchPages(unittest.TestCase):
         self.assertTrue(is_iso_utc_time(progr_data['end']))
 
         if chan_type == 'fast':
-            misses_keys(progr_data, 'broadcastStartTimestamp')
+            misses_keys(progr_data, 'broadcastStartTimestamp', obj_name=obj_name)
             self.assertIsNone(progr_data['broadcastAt'])
             self.assertIsNone(progr_data['broadcastEndTimestamp'])
 
         if chan_type != 'fast':
-            has_keys(progr_data, 'broadcastStartTimestamp')
+            has_keys(progr_data, 'broadcastStartTimestamp', obj_name=obj_name)
             self.assertTrue(is_iso_utc_time(progr_data['broadcastAt']))
             # check timestamps are integers
             self.assertGreater(int(progr_data['broadcastStartTimestamp']), 0)
