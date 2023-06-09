@@ -25,7 +25,6 @@ USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 F
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
-session = None
 
 
 class PersistentCookieJar(RequestsCookieJar):
