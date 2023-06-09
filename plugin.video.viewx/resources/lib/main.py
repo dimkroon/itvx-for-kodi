@@ -159,7 +159,8 @@ def root(_):
     callb_map = {
         'collection': list_collection_content,
         'series': list_productions,
-        'simulcastspot': play_stream_live
+        'simulcastspot': play_stream_live,
+        'fastchannelspot': play_stream_live
     }
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)

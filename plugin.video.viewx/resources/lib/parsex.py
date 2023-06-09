@@ -91,7 +91,7 @@ def parse_hero_content(hero_data):
     if brand_img:
         item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
 
-    if item_type == 'simulcastspot':
+    if item_type in ('simulcastspot', 'fastchannelspot'):
         item['params'] = {'channel': hero_data['channel'], 'url': None}
         item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
 

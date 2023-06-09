@@ -159,6 +159,17 @@
       "contentInfo": [
         "Sport"
       ]
+    },
+    {
+      "imagePresets": {},
+      "contentType": "fastchannelspot",
+      "title": "Crime Drama Channel",
+      "tagName": null,
+      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-crimedrama/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "description": "From Cracker to Karen Pirie, stream the exclusive Crime Drama channel",
+      "channel": "fast7",
+      "ctaLabel": "Watch Now",
+      "contentInfo": []
     }
   ],
   "editorialSliders": {

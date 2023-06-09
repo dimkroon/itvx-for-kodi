@@ -81,10 +81,12 @@ class MainPage(unittest.TestCase):
         for item in page_props['heroContent']:
             has_keys(item, 'contentType', 'title', 'imageTemplate', 'description',
                      'contentInfo', 'tagName', obj_name=item['title'])
-            self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special', 'brand'))
+            self.assertTrue(item['contentType'] in ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand'))
             self.assertIsInstance(item['contentInfo'], list)
 
-            if item['contentType'] != 'simulcastspot':
+            if item['contentType']in ('simulcastspot', 'fastchannelspot'):
+                has_keys(item, 'channel', obj_name=item['title'])
+            else:
                 has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
                 expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
 
