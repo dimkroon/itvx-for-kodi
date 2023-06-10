@@ -215,10 +215,10 @@ def web_request(method, url, headers=None, data=None, **kwargs):
             raise AuthenticationError()
         else:
             resp = e.response
-            raise HttpError(resp.status_code, resp.reason)
+            raise HttpError(resp.status_code, resp.reason) from None
     except requests.RequestException as e:
         logger.error('Error connecting to %s: %r', url, e)
-        raise FetchError(str(e))
+        raise FetchError(str(e)) from None
     finally:
         http_session.close()
 

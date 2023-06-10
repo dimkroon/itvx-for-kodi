@@ -125,7 +125,7 @@ class ItvSession:
     def refresh(self):
         """Refresh tokens.
         Perform a get request with the current renew token in the param string. ITV hub will
-        return a json formatted string containing a new access token and a new renew token.
+        return a json formatted string containing a new access token and a new renew-token.
 
         """
         logger.debug("Refreshing ITV account tokens...")
@@ -133,7 +133,7 @@ class ItvSession:
             token = self.account_data['itv_session']['refresh_token']
             url = 'https://auth.prd.user.itv.com/token?grant_type=refresh_token&' \
                   'token=content_token refresh_token&refresh=' + token
-            # Refresh requests require no autorization header and no cookies at all
+            # Refresh requests require no authorization header and no cookies at all
             resp = fetch.get_json(
                 url,
                 headers={'Accept': 'application/vnd.user.auth.v2+json'},

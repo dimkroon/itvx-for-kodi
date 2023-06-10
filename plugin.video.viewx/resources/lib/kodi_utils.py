@@ -123,7 +123,7 @@ def ask_play_from_start(title=None):
 
     dlg = xbmcgui.Dialog()
     return dlg.yesno(
-            title or 'ITVX',
+            title or addon_info.name,
             Script.localize(TXT_PLAY_FROM_START))
 
 

@@ -308,7 +308,7 @@ class Playlists(unittest.TestCase):
         return post_data
 
     def get_playlist_live(self, channel):
-        """Get the playlists of the main live channels
+        """Get the playlist of one of the itvx live channels
 
         For all channels other than ITV the headers User Agent and Origin are required.
         And the cookie consent cookies must present. If any of those are missing the request will time out.

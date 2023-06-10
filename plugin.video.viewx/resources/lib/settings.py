@@ -21,10 +21,10 @@ logger = logging.getLogger('.'.join((logger_id, __name__)))
 
 @Script.register()
 def login(_=None):
-    """Ask the user to enter credentials and try to sign in to ITV.
+    """Ask the user to enter credentials and try to sign in to ITVX.
 
     On failure ask to retry and continue to do so until signin succeeds,
-    or the user cancels.
+    or the user selects cancel.
     """
     uname = None
     passw = None

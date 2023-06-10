@@ -103,8 +103,8 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
             min_features = ['mpeg-dash', 'widevine']
         else:
             accept_type = 'application/vnd.itv.vod.playlist.v2+json'
-            #  ITV appears now to use the min feature for catchup streams, causing subtitles
-            #  to go missing if not specfied here. Min and max both specifying webvtt appears to
+            # ITV appears now to use the min feature for catchup streams, causing subtitles
+            # to go missing if not specified here. Min and max both specifying webvtt appears to
             # be no problem for catchup streams that don't have subtitles.
             min_features = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
 
@@ -164,9 +164,10 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
 
 
 def get_catchup_urls(episode_url):
-    """Return the urls to the dash stream, key service and subtitles for a particular catchup episode.
+    """Return the urls to the dash stream, key service and subtitles for a particular catchup
+    episode and the type of video.
+
     """
-    # import web_pdb; web_pdb.set_trace()
     playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
     stream_data = playlist['Video']
     url_base = stream_data['Base']
@@ -174,7 +175,7 @@ def get_catchup_urls(episode_url):
     dash_url = url_base + video_locations['Href']
     key_service = video_locations.get('KeyServiceUrl')
     try:
-        # usually stream_data['Subtitles'] is just None when no subtitles are not available
+        # Usually stream_data['Subtitles'] is just None when subtitles are not available.
         subtitles = stream_data['Subtitles'][0]['Href']
     except (TypeError, KeyError, IndexError):
         subtitles = None
@@ -182,6 +183,13 @@ def get_catchup_urls(episode_url):
 
 
 def get_vtt_subtitles(subtitles_url):
+    """Return a tuple with the file paths to rst subtitles files. The tuple usually
+    has only one single element, but could contain more.
+
+    Return None if subtitles_url does not point to a valid Web-vvt subtitle file or
+    subtitles are not te be shown by user setting.
+
+    """
     show_subtitles = Script.setting['subtitles_show'] == 'true'
     if show_subtitles is False:
         logger.info('Ignored subtitles by entry in settings')

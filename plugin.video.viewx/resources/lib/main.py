@@ -174,7 +174,6 @@ def root(_):
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
 
-
 @Route.register(content_type='videos')
 def sub_menu_live(_):
     local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
