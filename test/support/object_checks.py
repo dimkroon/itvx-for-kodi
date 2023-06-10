@@ -257,23 +257,24 @@ def check_news_category_clip_item(item):
     """
     has_keys(
         item,
-        'episodeTitle', 'episodeId', 'titleSlug', 'href', 'imageUrl', 'synopsis', 'dateTime', 'duration',
-        obj_name=item['News-category-hero-item'])
+        'episodeTitle', 'episodeId', 'titleSlug', 'href', 'imageUrl', 'dateTime',
+        obj_name=item['episodeTitle'])
+    expect_keys(item, 'duration', 'synopsis', obj_name=item['episodeTitle'])
     # imagePresets is currently an empty dict.
-    assert isinstance(item['imagePresets'], dict and not item['imagePresets'])
+    assert isinstance(item['imagePresets'], dict) and not item['imagePresets']
     assert isinstance(item['episodeTitle'], str) and item['episodeTitle']
     assert isinstance(item['episodeId'], str) and item['episodeId']
     assert isinstance(item['titleSlug'], str) and item['titleSlug']
     assert isinstance(item['href'], str) and item['href'] and not is_url(item['href'])
-    assert is_url(item['imageUrl'], '.jpg')
-    assert isinstance(item['synopsis'], str) and item['synopsis']
+    assert is_url(item['imageUrl'], '.jpg') or is_url(item['imageUrl'], '.png') or is_url(item['imageUrl'], '.bmp')
     assert is_iso_utc_time(item['dateTime'])
-    assert isinstance(item['duration'], int)
-    assert is_url(item['imageUrl'], '.jpg')
+    if item.get('synopsis'):
+        assert isinstance(item['synopsis'], str,) and item['synopsis']
+    assert isinstance(item.get('duration'), (int, type(None)))
 
 
 def check_category_item(item):
-    """Check an item from the section 'longformData' which contains full episodes from itv news
+    """Check a news item from the section 'longformData' which contains full episodes from itv news
     and other news related programmes.
 
     """
@@ -295,8 +296,9 @@ def check_category_item(item):
     # info like 'series 1'.
     assert isinstance(item['contentInfo'], str), "Invalid contentInfo in '{}'.".format(title)
     assert (item['contentInfo'].lower().startswith('series')
-            or utils.duration_2_seconds(item['contentInfo']) is not None), \
-            print("invalid contentInfo '{}' for item '{}'.".format(item['contentInfo'], item['title']))
+            or utils.duration_2_seconds(item['contentInfo']) is not None
+            or item['contentInfo'] == ''), \
+            "invalid contentInfo '{}' for item '{}'.".format(item['contentInfo'], item['title'])
     assert is_tier_info(item['tier']), "Invalid tier in '{}'.".format(title)
     # Broadcast datetime can be None occasionally.
     assert item['broadcastDateTime'] is None or is_iso_utc_time(item['broadcastDateTime']), \

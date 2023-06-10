@@ -149,7 +149,7 @@ class Categories(TestCase):
     def test_news_sub_categories(self, _):
         for sub_cat in (('heroAndLatestData', None), ('longformData', None),
                         ('curatedRails', 'Politics'), ('curatedRails', 'World'),
-                        ('curatedRails', 'Special Reports'), ('curatedRails', 'News Explained ')):
+                        ('curatedRails', 'Special Reports'), ('curatedRails', 'News Explained')):
             items = itvx.category_news_content('my/url', *sub_cat)
             self.assertGreater(len(items), 4)
             for item in items:
