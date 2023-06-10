@@ -6,8 +6,6 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
-import os
-import string
 import time
 import logging
 
@@ -19,7 +17,6 @@ from codequick.support import logger_id
 
 from . import fetch, errors
 from . import parsex
-from . import utils
 from . import cache
 
 from .itv import get_live_schedule
@@ -55,7 +52,7 @@ def get_page_data(url, cache_time=None):
 def get_now_next_schedule(local_tz=None):
     """Get the name and start time of the current and next programme for each live channel.
 
-    Present start time in the system's local time zone.
+    Present start time conform Kodi's time zone setting.
     """
     if local_tz is None:
         local_tz = pytz.timezone('Europe/London')
@@ -99,6 +96,15 @@ def get_now_next_schedule(local_tz=None):
 
 
 def get_live_channels(local_tz=None):
+    """Return a list of all available live channels. Include each channel's scheduled
+    programmes in the channel data.
+
+    For the stream-only FAST channels, only the current and next programme are
+    available. For the regular channels a schedule from now up to 4 hours in the
+    future will be returned.
+    Programme start times will be presented in the user's local time zone.
+
+    """
     cached_schedule = cache.get_item('live_schedule')
     if cached_schedule:
         return cached_schedule
@@ -109,13 +115,13 @@ def get_live_channels(local_tz=None):
     schedule = get_now_next_schedule(local_tz)
     main_schedule = get_live_schedule(local_tz=local_tz)
 
-    # Replace the schedule of the main channels with the longer one obtained from get_live_schedule()
+    # Replace the schedule of the main channels with the longer one obtained from get_live_schedule().
     for channel in schedule:
-        # The itv main live channels get their schedule from the full live schedule
+        # The itv main live channels get their schedule from the full live schedule.
         if channel['channelType'] == 'simulcast':
             chan_id = channel['id']
             for main_chan in main_schedule:
-                # Caution, might get broken when ITV becomes ITV1 everywhere
+                # Caution, might get broken when ITV becomes ITV1 everywhere.
                 if main_chan['channel']['name'] == chan_id:
                     channel['slot'] = main_chan['slot']
                     break
@@ -183,7 +189,7 @@ def episodes(url, use_cache=False):
     """Get a listing of series and their episodes
 
     Return a list containing only relevant info in a format that can easily be
-    used by codequick Listitem.from_dict.
+    used by codequick Listitem.from_dict().
 
     """
     if use_cache:
@@ -204,7 +210,7 @@ def episodes(url, use_cache=False):
     if not series_data:
         return {}
 
-    # The field seriesNUmber is not guaranteed to be unique - and not guaranteed an integer eiter.
+    # The field 'seriesNumber' is not guaranteed to be unique - and not guaranteed an integer either.
     # Midsummer murder for instance has 2 series with seriesNumber 4
     # By using this mapping, setdefault() and extend() on the episode list, series with the same
     # seriesNumber are automatically merged.
@@ -272,7 +278,8 @@ def get_playlist_url_from_episode_page(page_url):
     if match:
         return match[1]
     else:
-        # premium content does not have a data-video-id property in the episode page
+        # Premium content does not have a 'data-video-id' property in the episode page.
+        # TODO: Check if it does when the user has a premium account.
         raise errors.AccessRestrictedError
 
 

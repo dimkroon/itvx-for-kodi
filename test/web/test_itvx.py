@@ -6,10 +6,8 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
-
 from test.support import fixtures
 fixtures.global_setup()
-
 
 import unittest
 

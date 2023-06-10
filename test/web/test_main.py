@@ -4,6 +4,7 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -11,7 +12,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 from typing import MutableMapping
 
-from resources.lib import main, parsex, itvx
+from resources.lib import main, itvx
 from support import object_checks
 
 setUpModule = fixtures.setup_web_test
