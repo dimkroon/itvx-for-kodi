@@ -15,7 +15,7 @@ import types
 import time
 import pytz
 
-from test.support.testutils import open_json, open_doc
+from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url
 
 from resources.lib import itvx, errors
@@ -158,13 +158,13 @@ class Episodes(TestCase):
 
 
 class Search(TestCase):
-    @patch('resources.lib.fetch.get_json', return_value=open_json('search/the_chase.json'))
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
     def test_simple_search(self, _):
         result = itvx.search('the_chase')
         self.assertIsInstance(result, types.GeneratorType)
         self.assertEqual(10, len(list(result)))
 
-    @patch('resources.lib.fetch.get_json', return_value=None)
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
     def test_search_without_results(self, _):
         result = itvx.search('xprs')
         self.assertIsNone(result)
