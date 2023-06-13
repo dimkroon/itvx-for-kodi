@@ -11,6 +11,7 @@ import logging
 
 from datetime import datetime
 import pytz
+import requests
 import xbmc
 
 from codequick.support import logger_id
@@ -290,17 +291,38 @@ def search(search_term, hide_paid=False):
     a normal json object with an emtpy list of results.
 
     """
-    url = 'https://textsearch.prd.oasvc.itv.com/search'
-    query_params = {
-        'broadcaster': 'itv',
-        'featureSet': 'clearkey,outband-webvtt,hls,aes,widevine,fairplay,bbts,progressive,hd,rtmpe',
-        'onlyFree': 'true' if hide_paid else 'false',
-        'platform': 'dotcom',
-        'query': search_term
+    from urllib.parse import quote
+    # Include the querystring in url. If requests builds the querystring from parameters it will quote the
+    # commas in argument `featureset`, and ITV's search appears to have a problem with that and sometimes returns
+    # no results.
+    url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
+          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=dotcom&query=' + quote(
+        search_term)
+    headers = {
+        'User-Agent': fetch.USER_AGENT,
+        'accept': 'application/json',
+        'Origin': 'https://www.itv.com',
+        'Referer': 'https://www.itv.com/',
+        'accept-language': 'en-GB,en;q=0.5',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-site',
     }
-    data = fetch.get_json(url, params=query_params)
-    if data is None:
-        return
+    resp = requests.get(url, headers=headers, timeout=fetch.WEB_TIMEOUT)
+
+    if resp.status_code != 200:
+        logger.debug("Search for '%s' (hide_paid=%s) failed with HTTP status %s",
+                     search_term, hide_paid, resp.status_code)
+        return None
+
+    try:
+        data = resp.json()
+    except:
+        logger.warning("Search for '%s' (hide_paid=%s) returned non-json content: '%s'",
+                       search_term, hide_paid, resp.content)
+        return None
 
     results = data.get('results')
+    if not results:
+        logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
     return (parsex.parse_search_result(result) for result in results)
