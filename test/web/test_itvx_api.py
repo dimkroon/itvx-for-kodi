@@ -473,6 +473,6 @@ class Playlists(unittest.TestCase):
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
             if is_short:
-                object_checks.check_news_stream_info(strm_data['Playlist'])
+                object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
                 object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])

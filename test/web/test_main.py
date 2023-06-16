@@ -46,6 +46,10 @@ class TstCategories(unittest.TestCase):
         items = main.list_category(MagicMock(), path='/watch/categories/drama-soaps')
         self.assertGreater(len(items), 10)
 
+    def test_news_subcategory_latest_stories(self):
+        items = main.list_news_sub_category(MagicMock(), '/watch/categories/news', 'heroAndLatestData')
+        self.assertGreater(len(items), 5)
+
 
 class TestGetProductions(unittest.TestCase):
     def test_productions_midsummer_murders(self):
