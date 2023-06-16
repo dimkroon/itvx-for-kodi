@@ -138,6 +138,28 @@ class Categories(TestCase):
         free_list = list(itvx.category_content('asdgf', hide_paid=True))
         self.assertLess(len(free_list), len(program_list))
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_category_news(self, _):
+        sub_cat_list = list(itvx.category_news('zdfd'))
+        self.assertGreater(len(sub_cat_list), 4)
+        for item in sub_cat_list:
+            is_li_compatible_dict(self, item)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_news_sub_categories(self, _):
+        for sub_cat in (('heroAndLatestData', None), ('longformData', None),
+                        ('curatedRails', 'Politics'), ('curatedRails', 'World'),
+                        ('curatedRails', 'Special Reports'), ('curatedRails', 'News Explained')):
+            items = itvx.category_news_content('my/url', *sub_cat)
+            self.assertGreater(len(items), 4)
+            for item in items:
+                self.assertIsInstance(item['playable'], bool)
+                is_li_compatible_dict(self, item['show'])
+
+            if sub_cat[0] == 'longformData':
+                free_items = itvx.category_news_content('my/url', *sub_cat, hide_paid=True)
+                self.assertEqual(len(items), len(free_items))
+
 
 class Episodes(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/series_miss-marple.html'))

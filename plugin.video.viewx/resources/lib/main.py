@@ -260,11 +260,29 @@ def list_category(addon, path, filter_char=None, page_nr=0):
     if path.endswith('/films'):
         addon.content_type = 'movies'
 
+    if path.endswith('/news'):
+        for item in itvx.category_news(path):
+            yield Listitem.from_dict(callback=list_news_sub_category, **item)
+        return
+
     shows_list = itvx.category_content(path, addon.setting.get_boolean('hide_paid'))
 
     logger.info("Listed category %s with % items", path, len(shows_list) if shows_list else 0)
     paginator = Paginator(shows_list, filter_char, page_nr, path=path)
     yield from paginator
+
+
+@Route.register(content_type='videos')
+@dynamic_listing
+def list_news_sub_category(addon, path, subcat, rail=None, filter_char=None, page_nr=0):
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_DATE,
+                           xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
+                           xbmcplugin.SORT_METHOD_UNSORTED,
+                           disable_autosort=True)
+
+    shows_list = itvx.category_news_content(path, subcat, rail, addon.setting.get_boolean('hide_paid'))
+    logger.info("Listed news sub category %s with % items", rail or subcat, len(shows_list) if shows_list else 0)
+    yield from Paginator(shows_list, filter_char, page_nr, subcat=subcat, rail=rail)
 
 
 @Route.register(content_type='videos')

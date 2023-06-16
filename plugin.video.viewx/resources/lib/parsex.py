@@ -180,21 +180,24 @@ def parse_collection_item(show_data):
 
 # noinspection GrazieInspection
 def parse_news_collection_item(news_item, time_zone, time_fmt):
+    """Parse data found in news collection and in short news clips from news sub-categories
+
+    """
     if 'encodedProgrammeId' in news_item.keys():
-        # The new item is a 'normal' catchup title
+        # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
         # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
         url = '/'.join(('https://www.itv.com/watch',
                         news_item['titleSlug'],
                         news_item['encodedProgrammeId']['letterA'],
                         news_item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
     else:
-        # Thi news item is a 'short' item
+        # This news item is a 'short item', aka 'news clip'.
         url = 'https://www.itv.com/watch/news/' + news_item['href']
 
-    # dateTime field occasionally has milliseconds
+    # dateTime field occasionally has milliseconds. Strip these when present.
     item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
     loc_time = item_time.astimezone(time_zone)
-    title = news_item['episodeTitle']
+    title = news_item.get('episodeTitle')
     plot = '\n'.join((loc_time.strftime(time_fmt), news_item.get('synopsis', title)))
 
     # Does paid news exists?

@@ -1,0 +1,982 @@
+{
+  "category": {
+    "slug": "news",
+    "title": "News",
+    "pathSegment": "news",
+    "sponsorCategory": "news"
+  },
+  "programmes": null,
+  "metadata": {
+    "TITLE": "Catch Up On The Latest News Clips - ITVX",
+    "DESC": "Discover the latest and breaking news clips from ITV. ITVX - The UK's freshest streaming service."
+  },
+  "subnav": {
+    "items": [
+      {
+        "id": "factual",
+        "name": "Factual",
+        "label": "Factual",
+        "url": "/watch/categories/factual"
+      },
+      {
+        "id": "drama-soaps",
+        "name": "Drama & Soaps",
+        "label": "Drama & Soaps",
+        "url": "/watch/categories/drama-soaps"
+      },
+      {
+        "id": "children",
+        "name": "Children",
+        "label": "Children",
+        "url": "/watch/categories/children"
+      },
+      {
+        "id": "films",
+        "name": "Films",
+        "label": "Films",
+        "url": "/watch/categories/films"
+      },
+      {
+        "id": "sport",
+        "name": "Sport",
+        "label": "Sport",
+        "url": "/watch/categories/sport"
+      },
+      {
+        "id": "comedy",
+        "name": "Comedy",
+        "label": "Comedy",
+        "url": "/watch/categories/comedy"
+      },
+      {
+        "id": "news",
+        "name": "News",
+        "label": "News",
+        "url": "/watch/categories/news"
+      },
+      {
+        "id": "entertainment",
+        "name": "Entertainment",
+        "label": "Entertainment",
+        "url": "/watch/categories/entertainment"
+      }
+    ],
+    "activeItem": "news",
+    "type": "category"
+  },
+  "navAdServerParams": {
+    "area": "category",
+    "category": [
+      "news"
+    ]
+  },
+  "newsData": {
+    "heroAndLatestData": [
+      {
+        "imagePresets": {},
+        "episodeTitle": "The latest ITV News headlines - as former Prime Minister Boris Johnson resigns as MP",
+        "episodeId": "6js5d0f",
+        "titleSlug": "the-latest-itv-news-headlines-as-former-prime-minister-boris-johnson-resigns-as-mp",
+        "href": "the-latest-itv-news-headlines-as-former-prime-minister-boris-johnson-resigns-as-mp/6js5d0f",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/vuzVEayK9xo5rJE0umaL0/a7258413c2b075d6d40e1b933ba9fbb3/ITVX_BULLETIN_THUMBNAIL.00_00_04_18.Still003.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Watch a short summary of today's top stories from the ITV News team.",
+        "dateTime": "2023-06-09T23:55:00Z",
+        "duration": 113,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/6U4UZ1xoJ9rtXMczN71IkM/1ebd4de00ca019f742992bbc99ffcadf/BULLETIN_NO_STRAPS.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Boris Johnson stands down as MP after receiving Partygate report",
+        "episodeId": "81jb2r1",
+        "titleSlug": "boris-johnson-stands-down-as-mp-after-receiving-partygate-report",
+        "href": "boris-johnson-stands-down-as-mp-after-receiving-partygate-report/81jb2r1",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1psA3v0wHJBmKunjZtx299/4afcebec89b0b61170c760e7ac7d6f7d/NEW_STRAPS_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Boris Johnson is resigning as an MP after accusing a Commons investigation into whether he misled Parliament over partygate of attempting to \"drive me out\".",
+        "dateTime": "2023-06-09T21:25:00Z",
+        "duration": 275,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/6cTIaYnoDjRJVlEBAOZ2QB/416a0d39ff5e283bc7b6e8085be1be5f/NEW_STRAPS_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "What does Boris Johnson's resignation mean for the future of the Tory party?",
+        "episodeId": "7pl5fp7",
+        "titleSlug": "what-does-boris-johnsons-resignation-mean-for-the-future-of-the-tory-party",
+        "href": "what-does-boris-johnsons-resignation-mean-for-the-future-of-the-tory-party/7pl5fp7",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5QNxOvOfCCFEEtiNSCMx98/a777175f213304bc1965c4983437f088/BORIS_STUDIO_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "ITV News' Paul Brand and Anushka Asthana discuss Johnson's scathing resignation statement and what might happen next, for both Boris and the Conservative party.",
+        "dateTime": "2023-06-09T21:26:00Z",
+        "duration": 265,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/7Guzym49U8dqEtLnvEJtb2/b088c2d564393de4ef77c85c06ea5967/THUMB_PIC_FOR_STUDIO_DISCUSSION.png?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Donald Trump faces 37 felony counts according to unsealed indictment",
+        "episodeId": "t6b3k66",
+        "titleSlug": "donald-trump-faces-37-felony-counts-according-to-unsealed-indictment",
+        "href": "donald-trump-faces-37-felony-counts-according-to-unsealed-indictment/t6b3k66",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6bLLrtldJYkACEEb6TyL9D/72da3a5785b2a5302ee6a085f57fc9c4/TRUMPPPP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "The former U.S. President posted on social media suggesting the charges were linked to the handling of classified documents and said he was \"an innocent man\".",
+        "dateTime": "2023-06-09T21:30:00Z",
+        "duration": 354,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/3TiAuDLSpfrVeh7NLHhEAA/117541eeee527cb537f4ab1efd41869e/PA-72014179.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Hotter in the UK than in Tenerife? Heat health warning comes into force",
+        "episodeId": "vrk9gvz",
+        "titleSlug": "hotter-in-the-uk-than-in-tenerife-heat-health-warning-comes-into-force",
+        "href": "hotter-in-the-uk-than-in-tenerife-heat-health-warning-comes-into-force/vrk9gvz",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5c0HDvOTDyfXMcpQDPevJs/e36c3c1b789cb94fd4cf59c8e214e100/HEAT_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Parts of England are predicted to reach temperatures of around 30 degrees, with amber heat alerts in force for some until Monday morning.",
+        "dateTime": "2023-06-09T21:39:00Z",
+        "duration": 157,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5fdsNvJiuoIyEisGaVDLSk/d8cab2c9add78089645b129e0c0e15a4/HEAT_NO.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Ask ITV: Your questions answered on the Amber heat alert",
+        "episodeId": "n2gmlx5",
+        "titleSlug": "ask-itv-your-questions-answered-on-the-amber-heat-alert",
+        "href": "ask-itv-your-questions-answered-on-the-amber-heat-alert/n2gmlx5",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3kdDSZxCVWpfH0QL8Vq5th/b4ab989f56e3ecd4fd914f48102d157f/ask_itv_final_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "ITV viewers across the country have been asking what the amber heat alerts mean. Our science correspondent Martin Stew has the answers for you.",
+        "dateTime": "2023-06-09T17:37:16.53Z",
+        "duration": 326,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/6BZvUCy7zMl5rZ7zrsGtEp/31420ee40f036311ae2f82099f086674/ASK_ITV_2.png?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Putin says Russian tactical nuclear weapons to be deployed on European soil",
+        "episodeId": "w86mh40",
+        "titleSlug": "putin-says-russian-tactical-nuclear-weapons-to-be-deployed-on-european-soil",
+        "href": "putin-says-russian-tactical-nuclear-weapons-to-be-deployed-on-european-soil/w86mh40",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1VnUqNtEudGO4QzXjA45RR/5b6691467070d496fbc37da80cbab5cc/NUCLEAR_WEAPONS_THBUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Russia will start deploying tactical nuclear weapons in Belarus after special storage facilities are made ready, President Vladimir Putin announced.",
+        "dateTime": "2023-06-09T21:29:00Z",
+        "duration": 179,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/3fAGxsBhT4Wg2S0mUXszSP/945212bc67b70897e88a7a15ba72a85f/AP23160626179855.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Youth unemployment in China almost doubles since 2019",
+        "episodeId": "mr62dxf",
+        "titleSlug": "youth-unemployment-in-china-almost-doubles-since-2019",
+        "href": "youth-unemployment-in-china-almost-doubles-since-2019/mr62dxf",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2qv5mzeJtOXVY8sdHdEPtP/b25757c10737a7abac7e82125afcb887/CHINESE_YOUTH_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "In the first quarter of 2019 it was 11.3%, now it has risen to 20.4%. More and more students are graduating, but since the pandemic there are not enough jobs.",
+        "dateTime": "2023-06-09T21:36:00Z",
+        "duration": 232,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5FuXPL1r4NpQVlUKsY5r1I/86333c16bec00361a4e89b4467181c6f/CHINESE_YOUTH.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Students injured and one arrested in 'serious assault' at private school in Devon",
+        "episodeId": "5y0zg63",
+        "titleSlug": "students-injured-and-one-arrested-in-serious-assault-at-private-school-in-devon",
+        "href": "students-injured-and-one-arrested-in-serious-assault-at-private-school-in-devon/5y0zg63",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/XS12gmsV6m98m9VH0YGAR/a5db39d922fbccee451495744c03f3eb/DEVON_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Three people are in hospital after being injured in a 'serious assault' at Blundell's School in Tiverton on Friday morning. A teenager has been arrested.",
+        "dateTime": "2023-06-09T17:47:00Z",
+        "duration": 113,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5MhYCWOxe5EglI1jg5Ujj9/b3b356bfa51c981441df9308283f5cff/DEVON_NO.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Alps stabbing attack: Emmanuel Macron visits victims and families in hospital",
+        "episodeId": "59hd21s",
+        "titleSlug": "alps-stabbing-attack-emmanuel-macron-visits-victims-and-families-in-hospital",
+        "href": "alps-stabbing-attack-emmanuel-macron-visits-victims-and-families-in-hospital/59hd21s",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1RIjXxhoxgPkUTyZ8nn0SD/814ea14d8d7e3f4ebc595c4f82355c7d/park_strap.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Emmanuel Macron travelled to the hospital treating three of the four children who suffered life-threatening injuries. A British child is in a stable condition.",
+        "dateTime": "2023-06-09T18:17:00Z",
+        "duration": 242,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/2ds1FMh0YZYmT7XLAxVw4s/04dd84d6646cd302789c10cfd99e9c51/daytime_strap.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Beverley Knight's tribute to parents in Windrush 75 concert",
+        "episodeId": "r65z7vp",
+        "titleSlug": "beverley-knights-tribute-to-parents-in-windrush-75-concert",
+        "href": "beverley-knights-tribute-to-parents-in-windrush-75-concert/r65z7vp",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6EXJCM91omZeC5r5bYvYvy/f3d593ffa2c9c76ed795d797ae97b707/BEVERLY_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "On stage at the Royal Albert Hall, marking the 75th anniversary of Windrush, Knight said she was thinking of her parents and their 'resilience'.",
+        "dateTime": "2023-06-09T21:42:00Z",
+        "duration": 194,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/30lQdlKlwQMMPvds3JOYJv/0a7dc267bbe0e3d9f459d82bdf25721a/2.2091056.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Hot and humid: The latest ITV Weather forecast",
+        "episodeId": "t6r5brk",
+        "titleSlug": "hot-and-humid-the-latest-itv-weather-forecast",
+        "href": "hot-and-humid-the-latest-itv-weather-forecast/t6r5brk",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5sFO5PZRXmzaqAEOEZFwQw/061ea04a1bfdb2e23dd7d451814169eb/AMANDA_WEATHER.png?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Watch the latest UK forecast from the ITV Weather team.",
+        "dateTime": "2023-06-09T21:47:00Z",
+        "duration": 63,
+        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5sFO5PZRXmzaqAEOEZFwQw/061ea04a1bfdb2e23dd7d451814169eb/AMANDA_WEATHER.png?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Watch Thursday's ITV News at Ten",
+        "encodedEpisodeId": {
+          "letterA": "2a4409a1958",
+          "underscore": "2_4409_1958"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a4409",
+          "underscore": "2_4409"
+        },
+        "titleSlug": "watch-thursdays-itv-news-at-ten",
+        "programmeTitle": "ITV News at Ten",
+        "episodeId": "2/4409/1958",
+        "programmeId": "2/4409",
+        "href": "watch-thursdays-itv-news-at-ten/2/4409/2/4409/1958",
+        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3FuCS6o0owkPt4IT4WTGYk/6096186467035813b954196505135300/itvx_thumb_news_at_ten.png?w={width}&h={height}&q={quality}&fm={image_format}",
+        "dateTime": "2023-06-09T22:07:00Z"
+      }
+    ],
+    "longformData": [
+      {
+        "title": "ITV News at Ten",
+        "titleSlug": "itv-news-at-ten",
+        "encodedProgrammeId": {
+          "letterA": "2a4409",
+          "underscore": "2_4409"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "2a4409a1958",
+          "underscore": "2_4409_1958"
+        },
+        "description": "The latest news from ITV News at Ten.",
+        "imageTemplate": "https://ovp.itv.com/images/programme/jkv8vj9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 7",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2023-06-09T21:00:00Z",
+        "episodeId": "2/4409/1958",
+        "programmeId": "2/4409"
+      },
+      {
+        "title": "ITV Evening News",
+        "titleSlug": "itv-evening-news",
+        "encodedProgrammeId": {
+          "letterA": "2a4545",
+          "underscore": "2_4545"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "2a4545a1937",
+          "underscore": "2_4545_1937"
+        },
+        "description": "All the latest news from the ITV Evening News team",
+        "imageTemplate": "https://ovp.itv.com/images/programme/z4778t5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 8",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2023-06-09T17:30:00Z",
+        "episodeId": "2/4545/1937",
+        "programmeId": "2/4545"
+      },
+      {
+        "title": "Good Morning Britain",
+        "titleSlug": "good-morning-britain",
+        "encodedProgrammeId": {
+          "letterA": "2a3211",
+          "underscore": "2_3211"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "2a3211a3582",
+          "underscore": "2_3211_3582"
+        },
+        "description": "BAFTA-nominated breakfast show covering the latest news, sport & weather",
+        "imageTemplate": "https://ovp.itv.com/images/programme/m3kf9ck/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 12",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2023-06-09T05:00:00Z",
+        "episodeId": "2/3211/3582",
+        "programmeId": "2/3211"
+      },
+      {
+        "title": "King Charles III: The Coronation",
+        "titleSlug": "king-charles-iii-the-coronation",
+        "encodedProgrammeId": {
+          "letterA": "10a4617",
+          "underscore": "10_4617"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "10a4617a0002",
+          "underscore": "10_4617_0002"
+        },
+        "description": "History in the making - relive the day in full",
+        "imageTemplate": "https://ovp.itv.com/images/programme/jsb48nd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 1",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": null,
+        "episodeId": "10/4617/0002",
+        "programmeId": "10/4617"
+      },
+      {
+        "title": "Tonight",
+        "titleSlug": "tonight",
+        "encodedProgrammeId": {
+          "letterA": "1a2803",
+          "underscore": "1_2803"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "1a2803a9372",
+          "underscore": "1_2803_9372"
+        },
+        "description": "Compelling current affairs stories that get to the heart of what matters",
+        "imageTemplate": "https://ovp.itv.com/images/programme/2sqyd7n/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 25, 25",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2023-06-08T19:30:00Z",
+        "episodeId": "1/2803/9372",
+        "programmeId": "1/2803"
+      },
+      {
+        "title": "Peston",
+        "titleSlug": "peston",
+        "encodedProgrammeId": {
+          "letterA": "2a4458",
+          "underscore": "2_4458"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "2a4458a0290",
+          "underscore": "2_4458_0290"
+        },
+        "description": "ITV News' Robert Peston presents his lively political interview programme",
+        "imageTemplate": "https://ovp.itv.com/images/programme/ypjrr23/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 9",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2023-06-07T21:45:00Z",
+        "episodeId": "2/4458/0290",
+        "programmeId": "2/4458"
+      },
+      {
+        "title": "60 Minutes: Prince Harry Interview",
+        "titleSlug": "60-minutes-prince-harry-interview",
+        "encodedProgrammeId": {
+          "letterA": "10a3985",
+          "underscore": "10_3985"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "",
+          "underscore": ""
+        },
+        "description": "Prince Harry sits down with Anderson Cooper from CBS' 60 Minutes",
+        "imageTemplate": "https://ovp.itv.com/images/special/6pvh0pc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "30m",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2023-01-10T22:45:00Z",
+        "programmeId": "10/3985"
+      },
+      {
+        "title": "Highlights",
+        "titleSlug": "highlights",
+        "encodedProgrammeId": {
+          "letterA": "10a4617",
+          "underscore": "10_4617"
+        },
+        "channel": "itv",
+        "encodedEpisodeId": {
+          "letterA": "",
+          "underscore": ""
+        },
+        "description": "A moment in history - watch highlights from an unforgettable day",
+        "imageTemplate": "https://ovp.itv.com/images/episode/35bdr6r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": null,
+        "programmeId": "10/4617"
+      }
+    ],
+    "curatedRails": [
+      {
+        "title": "Politics",
+        "clips": [
+          {
+            "imagePresets": {},
+            "episodeTitle": "Boris Johnson receives findings of Parliament's Partygate investigation",
+            "episodeId": "y50g2qj",
+            "titleSlug": "boris-johnson-receives-findings-of-parliaments-partygate-investigation",
+            "href": "boris-johnson-receives-findings-of-parliaments-partygate-investigation/y50g2qj",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5fxsmcSsQ14WdRuERUemjP/d48b0045052b18b1eb30e55758cb9367/boris_thumb_version_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The former Prime Minister was questioned in March by the Privileges Committee, on whether he misled MPs over Partygate. Johnson now has a draft of its report.",
+            "dateTime": "2023-06-08T21:41:00Z",
+            "duration": 94
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Rishi Sunak and Joe Biden announce new partnership to boost economic security",
+            "episodeId": "kryp2vd",
+            "titleSlug": "rishi-sunak-and-joe-biden-announce-new-partnership-to-boost-economic-security",
+            "href": "rishi-sunak-and-joe-biden-announce-new-partnership-to-boost-economic-security/kryp2vd",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1odBOl4b3Ls0RbY2Ry4dX6/648470e5b598fd301903a9287d57f84d/ska_etn.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The Atlantic Declaration, announced at the White House, falls short of a full free trade deal. UK officials says it's a better response to current challenges.",
+            "dateTime": "2023-06-08T21:24:00Z",
+            "duration": 450
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Green Party's only MP Caroline Lucas to stand down at the next election",
+            "episodeId": "nq3mh61",
+            "titleSlug": "green-partys-only-mp-caroline-lucas-to-stand-down-at-the-next-election",
+            "href": "green-partys-only-mp-caroline-lucas-to-stand-down-at-the-next-election/nq3mh61",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/10cRojII0egVW6wLFT1NHZ/c8e0670556669b3c246a34b54a99d64a/caroline_lucas.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Caroline Lucas has said her role in Parliament has meant she has \"struggled to spend the time I want\" on climate concerns and the environment.",
+            "dateTime": "2023-06-08T07:14:00Z",
+            "duration": 21
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Chair of Covid-19 Inquiry says it should be her decision which material is relevant",
+            "episodeId": "4b3rh5j",
+            "titleSlug": "chair-of-covid-19-inquiry-says-it-should-be-her-decision-which-material-is-relevant",
+            "href": "chair-of-covid-19-inquiry-says-it-should-be-her-decision-which-material-is-relevant/4b3rh5j",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6u03j1QztHPERRJjkeaKu5/b565d120d2052a94fd6b64007ad655b0/COVID_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Baroness Hallett reacted to the Cabinet Office's decision to block full access to Boris Johnson's WhatsApp messages from when he was Prime Minister.",
+            "dateTime": "2023-06-06T21:23:00Z",
+            "duration": 172
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Rishi Sunak insists plan to reduce small boats crossing the Channel is working",
+            "episodeId": "nc4wbz9",
+            "titleSlug": "rishi-sunak-insists-plan-to-reduce-small-boats-crossing-the-channel-is-working",
+            "href": "rishi-sunak-insists-plan-to-reduce-small-boats-crossing-the-channel-is-working/nc4wbz9",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1uMfd4okTgO6nYKRSdpekB/8f3844017b7d2867a4a2c30393f135ae/IMMIGRATION_THUMB_NEW.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The Prime Minister shared the progress made in the six months since he introduced the Illegal Migration Bill.",
+            "dateTime": "2023-06-05T21:25:00Z",
+            "duration": 180
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Senior minister says migration targets are 'not helpful' after Tories miss theirs",
+            "episodeId": "dh1z0wj",
+            "titleSlug": "senior-minister-says-migration-targets-are-not-helpful-after-tories-miss-theirs",
+            "href": "senior-minister-says-migration-targets-are-not-helpful-after-tories-miss-theirs/dh1z0wj",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5yOYabxtI8NP1o5CCiUYwL/e5b7d29f0afa94e54faab8d6886db051/jenrick_v2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Immigration Minister Robert Jenrick said migration targets are not \"particularly helpful\" - despite previous Tory promises to keep figures below 100,000 a year.",
+            "dateTime": "2023-06-04T12:34:00Z",
+            "duration": 47
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Boris Johnson warned he could lose legal funding for Covid inquiry",
+            "episodeId": "yvyyghn",
+            "titleSlug": "boris-johnson-warned-he-could-lose-legal-funding-for-covid-inquiry",
+            "href": "boris-johnson-warned-he-could-lose-legal-funding-for-covid-inquiry/yvyyghn",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6yAfMx3dBptPBTpckgBCU9/20b23e5cf81725a0a2238408f44bf7fa/BORIS_THUMB_STRAPS.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Johnson has been warned he could lose public funding for legal advice if he continues to \"frustrate or undermine\" the Government's position on the Covid inquiry",
+            "dateTime": "2023-06-04T21:53:00Z",
+            "duration": 136
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The government may be about to announce funding to fill thousands of NHS vacancies",
+            "episodeId": "r1p4s6s",
+            "titleSlug": "the-government-may-be-about-to-announce-funding-to-fill-thousands-of-nhs-vacancies",
+            "href": "the-government-may-be-about-to-announce-funding-to-fill-thousands-of-nhs-vacancies/r1p4s6s",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1pP9fdWy6PkLzIZNGD8kdd/d4b6e7b7bb47a3db3f8138945ce0032a/itvx_thumb_nhs_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The government is reportedly set to announce that \u00a31bn will be spent on filling vacancies in the NHS in England. The funding would train thousands of new staff.",
+            "dateTime": "2023-06-03T21:27:00Z",
+            "duration": 117
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Boris Johnson says he can't access many of his pandemic Whatsapp messages",
+            "episodeId": "c3ffsdz",
+            "titleSlug": "boris-johnson-says-he-cant-access-many-of-his-pandemic-whatsapp-messages",
+            "href": "boris-johnson-says-he-cant-access-many-of-his-pandemic-whatsapp-messages/c3ffsdz",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3aby1x5hUoUHbRKeAw2J3x/7cd5a7a08c125c2a97c828dfe286b6cf/itvx_thumb_johnson_ltn.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The former PM says the security services told him not to access his old phone, after a privacy breach. The phone holds messages requested by the Covid Inquiry.",
+            "dateTime": "2023-06-02T21:20:00Z",
+            "duration": 300
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Plans to relax rules on academic qualifications of childcare providers",
+            "episodeId": "05b93bg",
+            "titleSlug": "plans-to-relax-rules-on-academic-qualifications-of-childcare-providers",
+            "href": "plans-to-relax-rules-on-academic-qualifications-of-childcare-providers/05b93bg",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/33sBrxBUIzJDjKBDWY4yR3/1c5cd62db342693a6b79f9b55c97787f/CHILDCARE_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The government wants more people to consider jobs in childcare as it expands its free hours provision, but critics are worried it could drive down standards.",
+            "dateTime": "2023-05-31T21:41:00Z",
+            "duration": 152
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Government to crackdown on underage vaping after rise in e-cigarettes use",
+            "episodeId": "cdhdm4j",
+            "titleSlug": "government-to-crackdown-on-underage-vaping-after-rise-in-e-cigarettes-use",
+            "href": "government-to-crackdown-on-underage-vaping-after-rise-in-e-cigarettes-use/cdhdm4j",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5X7DwxqldD1YA2zhPraEjv/29ba47380da9aef232d4523760217eda/VAPE_THHUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Ministers plan to close a loophole allowing retailers to give free samples to children. NHS figures show 9% of those aged 11 to 15 used e-cigarettes in 2021.",
+            "dateTime": "2023-05-30T17:39:00Z",
+            "duration": 235
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Ministers asking supermarkets to consider cutting prices on basic food items",
+            "episodeId": "rrdvtpz",
+            "titleSlug": "ministers-asking-supermarkets-to-consider-cutting-prices-on-basic-food-items",
+            "href": "ministers-asking-supermarkets-to-consider-cutting-prices-on-basic-food-items/rrdvtpz",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3eSEvJDacT0RIj7HPCktZb/7f54915f041304a0e8fcc23da1293def/SUPERMARKET_THUMB_FM.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "It's understood the agreement with major retailers would be voluntary and could see price reductions on items to help tackle the cost of living crisis.",
+            "dateTime": "2023-05-29T06:15:00Z",
+            "duration": 132
+          }
+        ]
+      },
+      {
+        "title": "World",
+        "clips": [
+          {
+            "imagePresets": {},
+            "episodeTitle": "Donald Trump faces 37 felony counts according to unsealed indictment",
+            "episodeId": "t6b3k66",
+            "titleSlug": "donald-trump-faces-37-felony-counts-according-to-unsealed-indictment",
+            "href": "donald-trump-faces-37-felony-counts-according-to-unsealed-indictment/t6b3k66",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6bLLrtldJYkACEEb6TyL9D/72da3a5785b2a5302ee6a085f57fc9c4/TRUMPPPP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The former U.S. President posted on social media suggesting the charges were linked to the handling of classified documents and said he was \"an innocent man\".",
+            "dateTime": "2023-06-09T21:30:00Z",
+            "duration": 354
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Alps stabbing attack: Emmanuel Macron visits victims and families in hospital",
+            "episodeId": "59hd21s",
+            "titleSlug": "alps-stabbing-attack-emmanuel-macron-visits-victims-and-families-in-hospital",
+            "href": "alps-stabbing-attack-emmanuel-macron-visits-victims-and-families-in-hospital/59hd21s",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1RIjXxhoxgPkUTyZ8nn0SD/814ea14d8d7e3f4ebc595c4f82355c7d/park_strap.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Emmanuel Macron travelled to the hospital treating three of the four children who suffered life-threatening injuries. A British child is in a stable condition.",
+            "dateTime": "2023-06-09T18:17:00Z",
+            "duration": 242
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Ukrainian residents trapped by floods as fears grow over dislodged landmines ",
+            "episodeId": "bwr32sl",
+            "titleSlug": "ukrainian-residents-trapped-by-floods-as-fears-grow-over-dislodged-landmines",
+            "href": "ukrainian-residents-trapped-by-floods-as-fears-grow-over-dislodged-landmines/bwr32sl",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/58c1GFymuHiTdjnOPh3dJg/c9b5608e7a0c4d7027f0fb18ce3d325d/LANDMINES.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The Red Cross says floodwater from a destroyed dam in Ukraine has uprooted landmines, which will pose a danger to civilians for decades to come.",
+            "dateTime": "2023-06-08T21:25:00Z",
+            "duration": 226
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Rishi Sunak and Joe Biden announce new partnership to boost economic security",
+            "episodeId": "kryp2vd",
+            "titleSlug": "rishi-sunak-and-joe-biden-announce-new-partnership-to-boost-economic-security",
+            "href": "rishi-sunak-and-joe-biden-announce-new-partnership-to-boost-economic-security/kryp2vd",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1odBOl4b3Ls0RbY2Ry4dX6/648470e5b598fd301903a9287d57f84d/ska_etn.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The Atlantic Declaration, announced at the White House, falls short of a full free trade deal. UK officials says it's a better response to current challenges.",
+            "dateTime": "2023-06-08T21:24:00Z",
+            "duration": 450
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Raging wildfires in Canada spreading smoke south into U.S. and as far as Norway",
+            "episodeId": "4xs0trm",
+            "titleSlug": "raging-wildfires-in-canada-spreading-smoke-south-into-us-and-as-far-as-norway",
+            "href": "raging-wildfires-in-canada-spreading-smoke-south-into-us-and-as-far-as-norway/4xs0trm",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6OBTZlFBSSpZvxZcSnulPD/358c8d0e7e4ae93573c3eae5863fa39e/THUMV_V2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "As hundreds of wildfires continue to burn in Canada, the hazardous haze from them is disrupting daily life for millions - with many being told to stay inside.",
+            "dateTime": "2023-06-08T12:50:00Z",
+            "duration": 152
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "What could the consequences be of the Ukraine dam attack?",
+            "episodeId": "l2br9n1",
+            "titleSlug": "what-could-the-consequences-be-of-the-ukraine-dam-attack",
+            "href": "what-could-the-consequences-be-of-the-ukraine-dam-attack/l2br9n1",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3ljlwul8KTdFP3JYjnF4mQ/3d1085b60418677e36b699d8c88d3061/dam_wall_tn.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The collapse of the Kakhovka dam is likely to have far-reaching and long-lasting effects on the southern region of Ukraine and beyond.",
+            "dateTime": "2023-06-07T18:45:00Z",
+            "duration": 153
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Calls for Duke's U.S. visa records to be released over past drug-use revelations",
+            "episodeId": "p5jpf1k",
+            "titleSlug": "calls-for-dukes-us-visa-records-to-be-released-over-past-drug-use-revelations",
+            "href": "calls-for-dukes-us-visa-records-to-be-released-over-past-drug-use-revelations/p5jpf1k",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3YiNxFxLRBE3EDVv5OrWO7/7af32be918a7e12dddc2db53b9dfc14e/us_drug.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A Conservative think tank is demanding that Prince Harry's records be unsealed to check whether he previously admitted using drugs on his U.S. visa form.",
+            "dateTime": "2023-06-06T06:14:00Z",
+            "duration": 152
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Veterans remember D-Day landings on 79th anniversary of Normandy invasion",
+            "episodeId": "9rndzlm",
+            "titleSlug": "veterans-remember-d-day-landings-on-79th-anniversary-of-normandy-invasion",
+            "href": "veterans-remember-d-day-landings-on-79th-anniversary-of-normandy-invasion/9rndzlm",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7El4J6hQmzlylX5vJaKaf0/08c21d0c2ebbfca2362cbc10038e2136/D-DAY_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Services are being held today to mark 79 years since the invasion which turned the tide against Nazi Germany in World War II.",
+            "dateTime": "2023-06-06T12:57:00Z",
+            "duration": 135
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Miraculous rescue as sherpa carries stricken climber to safety on Mount Everest",
+            "episodeId": "kkdj1f1",
+            "titleSlug": "miraculous-rescue-as-sherpa-carries-stricken-climber-to-safety-on-mount-everest",
+            "href": "miraculous-rescue-as-sherpa-carries-stricken-climber-to-safety-on-mount-everest/kkdj1f1",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4VmXZ8onSqK5DLmdCMtgh5/5b5f442ec9dacf51b6e0477e7a0d339a/EVEREST_THUMB_PR.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A Nepalese sherpa has saved the life of a climber who was freezing to death near the summit of the mountain, by carrying him on his back for hours.",
+            "dateTime": "2023-06-01T17:57:00Z",
+            "duration": 144
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Madeleine McCann: Number of items seized in fresh search \u2018cannot yet be linked\u2019 to disappearance",
+            "episodeId": "7x0s674",
+            "titleSlug": "madeleine-mccann-number-of-items-seized-in-fresh-search-cannot-yet-be-linked-to-disappearance",
+            "href": "madeleine-mccann-number-of-items-seized-in-fresh-search-cannot-yet-be-linked-to-disappearance/7x0s674",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1fRAw4q3AyKmXFxDTKCcuh/6e864c9f09fbd3df01c36b3006823c02/MADDDFIE_1.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Police investigating the disappearance of Madeleine McCann have confirmed \"a number of items were seized\" after the recent search at a Portuguese dam.",
+            "dateTime": "2023-06-01T17:57:00Z",
+            "duration": 128
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "U.S. military criticises Chinese jet pilot's \"unnecessarily aggressive\" manoeuvre",
+            "episodeId": "sztx7st",
+            "titleSlug": "us-military-criticises-chinese-jet-pilots-unnecessarily-aggressive-manoeuvre",
+            "href": "us-military-criticises-chinese-jet-pilots-unnecessarily-aggressive-manoeuvre/sztx7st",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/23sWLADmVYDKjPD4My7m7w/9a2cb6a08a75e1e9f06bb92325cc98d9/THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "U.S. authorities say the Chinese fighter pilot flew directly in front of the nose of the American aircraft forcing it to fly through its wake turbulence.",
+            "dateTime": "2023-05-31T01:00:00Z",
+            "duration": 45
+          }
+        ]
+      },
+      {
+        "title": "Special Reports",
+        "clips": [
+          {
+            "imagePresets": {},
+            "episodeTitle": "Chilling warning from mother whose son was killed in dog attack",
+            "episodeId": "y1nlypn",
+            "titleSlug": "chilling-warning-from-mother-whose-son-was-killed-in-dog-attack",
+            "href": "chilling-warning-from-mother-whose-son-was-killed-in-dog-attack/y1nlypn",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5Wb4yRjB9JGZUTZhjM5qeg/a6781e56860359c83c60a0dcff46923a/7PM_DOG_ATTACK_THUMB_STRAPS.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Ten-year-old Jack Lis was attacked by an XL Bully in 2021. Now his mother Emma Whitfield is campaigning for a change in the law around dangerous dogs.",
+            "dateTime": "2023-06-08T18:30:00Z",
+            "duration": 314
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The pioneering surgical robots which could be key to cutting NHS waiting times",
+            "episodeId": "cpbps53",
+            "titleSlug": "the-pioneering-surgical-robots-which-could-be-key-to-cutting-nhs-waiting-times",
+            "href": "the-pioneering-surgical-robots-which-could-be-key-to-cutting-nhs-waiting-times/cpbps53",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/WkYJaAkQRO27iwWTdBdQi/0740caab907e28aa1cf46b9af1770233/ROBOT_THUMB_FINAL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News visits Guy's and St Thomas' hospital trust, which has seven robots in their operating theatres, carrying out up to 1,500 procedures a year.",
+            "dateTime": "2023-06-07T18:44:00Z",
+            "duration": 292
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The U.S. city with a murder rate 20 times the national average",
+            "episodeId": "1gjwbqh",
+            "titleSlug": "the-us-city-with-a-murder-rate-20-times-the-national-average",
+            "href": "the-us-city-with-a-murder-rate-20-times-the-national-average/1gjwbqh",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/59hO2lzMVacF4hYY362I4P/6a64d271f3b019113a2bdf62e813c67f/THUMB_FOR_GIN_VIOLENCE_FINAL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "New figures show there have been 70 murders so far in St.Louis this year - predominantly from gun crime. Dan Rivers visits the streets of this dangerous city.",
+            "dateTime": "2023-06-06T21:15:00Z",
+            "duration": 421
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The fears and frustration facing many of the UK's elderly carers",
+            "episodeId": "qgpz8x7",
+            "titleSlug": "the-fears-and-frustration-facing-many-of-the-uks-elderly-carers",
+            "href": "the-fears-and-frustration-facing-many-of-the-uks-elderly-carers/qgpz8x7",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1QWKctj95bmYz7uoiojS4w/d95de9a2f90688cff25919e3964ac0d5/social_care_thumb_white_border.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News speaks to 79-year-old Jessie, a full-time carer of her disabled son Andrew. She says she's frightened about what will happen to him when she dies.",
+            "dateTime": "2023-06-05T18:15:00Z",
+            "duration": 373
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "'An attempt to smear the LGBT community': The battle over Tennessee's 'drag ban'",
+            "episodeId": "7067vdd",
+            "titleSlug": "an-attempt-to-smear-the-lgbt-community-the-battle-over-tennessees-drag-ban",
+            "href": "an-attempt-to-smear-the-lgbt-community-the-battle-over-tennessees-drag-ban/7067vdd",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1ms1qkpcn36mLFfzE4xVQj/4a1934dc9d382a73825a359632810a4d/drag_tn.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Campaigners are trying to block a new law in Tennessee, which bans drag performances anywhere a child might see them. Dan Rivers reports for 'On Assignment'.",
+            "dateTime": "2023-06-01T09:35:00Z",
+            "duration": 602
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "John Cleese says phone hacking experience left him feeling 'slightly violated'",
+            "episodeId": "2nmhp2c",
+            "titleSlug": "john-cleese-says-phone-hacking-experience-left-him-feeling-slightly-violated",
+            "href": "john-cleese-says-phone-hacking-experience-left-him-feeling-slightly-violated/2nmhp2c",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1cdCp6gYTIno5EmEz9aFRF/7020c0341948b38d305b2753b71bda7d/ITVX_JOHN_CLEESE.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The Fawlty Towers star spoke to ITV News as he attended London's High Court, for the high profile hacking case against Mirror Group Newspapers.",
+            "dateTime": "2023-05-26T21:57:00Z",
+            "duration": 175
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Worrying levels of E. coli found inside some UK oysters",
+            "episodeId": "fcd41z2",
+            "titleSlug": "worrying-levels-of-e-coli-found-inside-some-uk-oysters",
+            "href": "worrying-levels-of-e-coli-found-inside-some-uk-oysters/fcd41z2",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/26VsEbim7VmngdM8VKiKBa/4e4315690b174189b68e0909a4abbb2c/ECOLI_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Exclusive research carried out by ITV News and Watershed Investigations found some shellfish areas have seven times the E. coli levels deemed safe for eating.",
+            "dateTime": "2023-05-26T18:00:00Z",
+            "duration": 279
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The chaos and confusion caused by the ever-expanding power of A.I",
+            "episodeId": "8sdkmv7",
+            "titleSlug": "the-chaos-and-confusion-caused-by-the-ever-expanding-power-of-ai",
+            "href": "the-chaos-and-confusion-caused-by-the-ever-expanding-power-of-ai/8sdkmv7",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/35TL7N5nvPlcD56XeU41Wk/7610e438dd58c0f3efce7ea92115069c/AI_THUMB_PR.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "An ITV News documentary has been exploring the risks posed by artificial intelligence, such as its power to undermine democracy or impersonate individuals.",
+            "dateTime": "2023-05-25T12:15:51.23Z",
+            "duration": 257
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Fresh claims of misogyny and bullying behaviour within Metropolitan Police",
+            "episodeId": "c096zvf",
+            "titleSlug": "fresh-claims-of-misogyny-and-bullying-behaviour-within-metropolitan-police",
+            "href": "fresh-claims-of-misogyny-and-bullying-behaviour-within-metropolitan-police/c096zvf",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5H9891QUZGb7o1yTP9UO0S/789d3d0bde98777fd78d40d1cfe2a01a/POLICE7.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A former detective within the Met has given an inside account of her time in the force. Jess McDonald\u2019s book 'No Comment' is out on Thursday, May 25.",
+            "dateTime": "2023-05-24T18:22:00Z",
+            "duration": 318
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Bludgeoned from behind: Survivor of alleged Levi Bellfield attack speaks out",
+            "episodeId": "0zjspjy",
+            "titleSlug": "bludgeoned-from-behind-survivor-of-alleged-levi-bellfield-attack-speaks-out",
+            "href": "bludgeoned-from-behind-survivor-of-alleged-levi-bellfield-attack-speaks-out/0zjspjy",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7AX1sDSuoh6H5c4uxYDaL6/57163f42c47641207ce10cb34652cd31/BELLFIELD_EXC.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A woman who believes she was attacked by Millie Dowler's killer Levi Bellfield has told ITV News how police failed to tell her of his alleged confession.",
+            "dateTime": "2023-05-22T18:32:00Z",
+            "duration": 346
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Exclusive figures reveal a third of children being exposed to vape adverts online",
+            "episodeId": "7y97qwy",
+            "titleSlug": "exclusive-figures-reveal-a-third-of-children-being-exposed-to-vape-adverts-online",
+            "href": "exclusive-figures-reveal-a-third-of-children-being-exposed-to-vape-adverts-online/7y97qwy",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1VYwidUORwBdb3VEYAVTMe/bce19b92ae9aa206742bae50962c9c76/vaping_7pm.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The Advertising Standards Authority say they are increasingly concerned about e-cigarette promotions targeting young people online.",
+            "dateTime": "2023-05-17T18:34:00Z",
+            "duration": 369
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "How a group of volunteer British doctors are helping to save lives in Syria",
+            "episodeId": "8sgkd0n",
+            "titleSlug": "how-a-group-of-volunteer-british-doctors-are-helping-to-save-lives-in-syria",
+            "href": "how-a-group-of-volunteer-british-doctors-are-helping-to-save-lives-in-syria/8sgkd0n",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4w5KULqY7kfxn0KYVAobOF/659420618236b07032049495d97d5ac6/7PM_SYRIA_THUMB_STRAPS.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The doctors from the UK are training and supporting local medics still dealing with the aftermath of February's devastating earthquakes.",
+            "dateTime": "2023-05-16T21:40:00Z",
+            "duration": 260
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The people pushed to their limits by the cost of living crisis",
+            "episodeId": "77yys1f",
+            "titleSlug": "the-people-pushed-to-their-limits-by-the-cost-of-living-crisis",
+            "href": "the-people-pushed-to-their-limits-by-the-cost-of-living-crisis/77yys1f",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4sFxue6JSJxGKmNHn1cPiy/eaeda32022e702b88904e11354427328/HEWITT_DOCO_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Watch 'Life & Debt: Stories from the Edge', an ITV News documentary looking at the true impact the squeeze in living standards is having on people in the UK.",
+            "dateTime": "2023-05-01T16:53:07.416Z",
+            "duration": 2826
+          }
+        ]
+      },
+      {
+        "title": "News Explained",
+        "clips": [
+          {
+            "imagePresets": {},
+            "episodeTitle": "Hayfever feeling worse than ever? Why some people are blaming male trees ",
+            "episodeId": "1cp8b09",
+            "titleSlug": "hayfever-feeling-worse-than-ever-why-some-people-are-blaming-male-trees",
+            "href": "hayfever-feeling-worse-than-ever-why-some-people-are-blaming-male-trees/1cp8b09",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5VEL6EuG2waH9plYfi0537/ed9e69e717687ba89a185121bc30403f/HAYFEVER_TN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "You may have heard that symptoms in urban areas have been amplified by the planting of 'male trees' - but could there be any truth to these claims? ",
+            "dateTime": "2023-06-09T03:00:00Z",
+            "duration": 139
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "What were the key moments from Prince Harry's time on the stand?",
+            "episodeId": "0z625kw",
+            "titleSlug": "what-were-the-key-moments-from-prince-harrys-time-on-the-stand",
+            "href": "what-were-the-key-moments-from-prince-harrys-time-on-the-stand/0z625kw",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7H4CzYo9xhGuMsZgOf291H/8d91fa1b2b9c3e7d8387d6d9354e0df7/EXPLAINER_THUMB_FINAL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "After two days of giving evidence at the High Court in his case against Mirror Group Newspapers, ITV News examines what we have learnt from Harry's testimony.",
+            "dateTime": "2023-06-07T19:19:00Z",
+            "duration": 168
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "What could the consequences be of the Ukraine dam attack?",
+            "episodeId": "l2br9n1",
+            "titleSlug": "what-could-the-consequences-be-of-the-ukraine-dam-attack",
+            "href": "what-could-the-consequences-be-of-the-ukraine-dam-attack/l2br9n1",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3ljlwul8KTdFP3JYjnF4mQ/3d1085b60418677e36b699d8c88d3061/dam_wall_tn.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The collapse of the Kakhovka dam is likely to have far-reaching and long-lasting effects on the southern region of Ukraine and beyond.",
+            "dateTime": "2023-06-07T18:45:00Z",
+            "duration": 153
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Duke of Sussex V Mirror Group Newspapers: What is the trial about?",
+            "episodeId": "qn01pp5",
+            "titleSlug": "duke-of-sussex-v-mirror-group-newspapers-what-is-the-trial-about",
+            "href": "duke-of-sussex-v-mirror-group-newspapers-what-is-the-trial-about/qn01pp5",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4fxrFDvjVuMeU4lJIHMke4/4307c758c18ca28cc3633c2d07fb3d06/harry_thumb_final_explainer.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Prince Harry will be cross-examined in the High Court this week as he gives evidence in his legal action against Mirror Group Newspapers.",
+            "dateTime": "2023-06-06T05:09:00Z",
+            "duration": 146
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Covid-19 Inquiry: Why is the government taking legal action?",
+            "episodeId": "chmjddl",
+            "titleSlug": "covid-19-inquiry-why-is-the-government-taking-legal-action",
+            "href": "covid-19-inquiry-why-is-the-government-taking-legal-action/chmjddl",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2JMhxPKo1ydhBqd1BbN4LF/a25ac62e44e2e5fde09910deb09c197d/covid_inquiry_explainer.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A preliminary hearing of the Covid Inquiry is underway, with the chair addressing the government's planned legal action over the release of material.",
+            "dateTime": "2023-06-06T09:46:00Z",
+            "duration": 122
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Heat health Alert Service: What is it and how will it work?",
+            "episodeId": "43sy6sn",
+            "titleSlug": "heat-health-alert-service-what-is-it-and-how-will-it-work",
+            "href": "heat-health-alert-service-what-is-it-and-how-will-it-work/43sy6sn",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/39hq8JvacHQ8cBJtbucWDF/21cec4924fc1adf339dd0521cdb00996/heat_explainer_v22.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "As the first heat health alert of the year comes into force today, we explain what the new weather alert system aims to do.",
+            "dateTime": "2023-06-09T05:16:00Z",
+            "duration": 105
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "How seriously should we take warnings that AI could lead to our extinction?",
+            "episodeId": "0h61ytq",
+            "titleSlug": "how-seriously-should-we-take-warnings-that-ai-could-lead-to-our-extinction",
+            "href": "how-seriously-should-we-take-warnings-that-ai-could-lead-to-our-extinction/0h61ytq",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4D66rxhPfyUWeuqY51nAg9/e7061e43bf969c51800d5bf9ad2f4cae/AI_EXTINCTION_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Experts have warned that mitigating the risk of 'extinction' should be a global priority on the same level as pandemics and wars. ",
+            "dateTime": "2023-05-31T19:55:00Z",
+            "duration": 150
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Women's World Cup: What you need to know ahead of the tournament",
+            "episodeId": "hzb4lml",
+            "titleSlug": "womens-world-cup-what-you-need-to-know-ahead-of-the-tournament",
+            "href": "womens-world-cup-what-you-need-to-know-ahead-of-the-tournament/hzb4lml",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5BqSZcyn8ZfX8lDz5051HG/e3460b194e093b89788ae49c25787d9c/WOMEN-S_WORLD_CUP_THUMB_V3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "As Sarina Wiegman announces her squad for the summer World Cup, what else do we know about the competition?",
+            "dateTime": "2023-05-31T19:58:00Z",
+            "duration": 103
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "Another rail operator to ban electric scooters - where and why?",
+            "episodeId": "6sh0735",
+            "titleSlug": "another-rail-operator-to-ban-electric-scooters-where-and-why",
+            "href": "another-rail-operator-to-ban-electric-scooters-where-and-why/6sh0735",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5FeliEM9KBWt9oHaV1ZFyw/1b29fdbc1414e0ce76ec1e78411a8762/new_scooter_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "South Western Railway is joining rail operator Great Western Railway, Transport for London and Nexus in banning e-scooters across the country.",
+            "dateTime": "2023-05-31T10:55:00Z",
+            "duration": 120
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "What are the key events in the disappearance of Madeleine McCann?",
+            "episodeId": "ddqrmlt",
+            "titleSlug": "what-are-the-key-events-in-the-disappearance-of-madeleine-mccann",
+            "href": "what-are-the-key-events-in-the-disappearance-of-madeleine-mccann/ddqrmlt",
+            "imageUrl": "https://assets.ctfassets.net/go68aep20o4s/3W1X9APOXOiuRRX6cVClUd/68b18beaabb658b8f0f912b7adb29df5/FINAL_THUMB_MADDIE.bmp?w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "synopsis": "In the week police divers searched a dam in Portugal, we look back at the 16 year long investigation into the disappearance of three-year-old Madeleine McCann.",
+            "dateTime": "2023-05-27T03:00:00Z",
+            "duration": 172
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "The top four scams to be on the lookout for",
+            "episodeId": "fm43jn2",
+            "titleSlug": "the-top-four-scams-to-be-on-the-lookout-for",
+            "href": "the-top-four-scams-to-be-on-the-lookout-for/fm43jn2",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/47LO9i1P8tiufXY6SrxLCy/e106c820bc48dddd0f97bbbb09d6e416/scams_thumbnail.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Online scams are on the rise - from suspicious links in emails, to adverts for investment opportunities on social media. Here's what to look out for.",
+            "dateTime": "2023-05-22T20:42:00Z",
+            "duration": 120
+          },
+          {
+            "imagePresets": {},
+            "episodeTitle": "What has the human and financial cost of climate change been?",
+            "episodeId": "ybjsxbw",
+            "titleSlug": "what-has-the-human-and-financial-cost-of-climate-change-been",
+            "href": "what-has-the-human-and-financial-cost-of-climate-change-been/ybjsxbw",
+            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2Rf8nNCRa2mmCur1iThxEQ/41ac9b53877d32ec0f74597f123c73fc/CLIMATE_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "New statistics show the extent of damage climate change is already causing. From floods in Italy to wildfires in Canada, we explain the results.",
+            "dateTime": "2023-05-22T16:54:00Z",
+            "duration": 128
+          }
+        ]
+      }
+    ]
+  }
+}
