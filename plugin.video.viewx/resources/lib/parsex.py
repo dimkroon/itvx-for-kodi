@@ -240,9 +240,15 @@ def parse_trending_collection_item(trending_item):
 
 
 def parse_category_item(prog, category):
-    content_info = prog['contentInfo']
-    # TODO: This is bound to break
-    is_playable = 'series' not in content_info.lower()
+    # At least all items without an encodedEpisodeId are playable.
+    # Unfortunately there are items that do have an episodeId, but are in fact single
+    # episodes, and thus playable, but there is no reliable way of detecting these.
+    #
+    # The previous method of detecting the presence of 'series' in contentInfo proved
+    # to be very unreliable; frequently contentInfo contains playing time on items
+    # that are in fact programmes with multiple episodes.
+    is_playable = prog['encodedEpisodeId']['letterA'] == ''
+    playtime = utils.duration_2_seconds(prog['contentInfo'])
     title = prog['title']
 
     if 'FREE' in prog['tier']:
@@ -254,7 +260,8 @@ def parse_category_item(prog, category):
         'label': title,
         'art': {'thumb': prog['imageTemplate'].format(**IMG_PROPS_THUMB),
                 'fanart': prog['imageTemplate'].format(**IMG_PROPS_FANART)},
-        'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
+        'info': {'title': title if is_playable
+                          else '[B]{}[/B] {}'.format(title, prog['contentInfo'] if not playtime else ''),
                  'plot': plot,
                  'sorttitle': sort_title(title)},
     }
@@ -263,7 +270,7 @@ def parse_category_item(prog, category):
         programme_item['art']['poster'] = prog['imageTemplate'].format(**IMG_PROPS_POSTER)
 
     if is_playable:
-        programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+        programme_item['info']['duration'] = playtime
         programme_item['params'] = {'url': build_url(title, prog['encodedProgrammeId']['letterA'])}
     else:
         programme_item['params'] = {'url': build_url(title,

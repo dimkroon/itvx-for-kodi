@@ -5,6 +5,7 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
+from __future__ import annotations
 import logging
 import time
 import string
@@ -194,7 +195,7 @@ def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
     return srt_doc
 
 
-def duration_2_seconds(duration: str):
+def duration_2_seconds(duration: str) -> int | None:
     """Convert a string containing duration in various formats to the corresponding number of seconds.
 
     supported formats:
