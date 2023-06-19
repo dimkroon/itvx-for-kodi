@@ -290,16 +290,10 @@ class Categories(unittest.TestCase):
             self.assertIsInstance(programmes, list)
             for progr in programmes:
                 check_category_item(progr)
-                # has_keys(progr, 'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'description',
-                #          'imageTemplate', 'contentInfo', 'contentOwner', 'tier')
-                # self.assertTrue(is_encoded_programme_or_episode_id(progr['encodedProgrammeId']))
-                # self.assertTrue(is_encoded_programme_or_episode_id(progr['encodedEpisodeId']))
-                # cont_inf = progr['contentInfo']
-                # self.assertTrue(cont_inf.lower().startswith('series') or
-                #                 utils.duration_2_seconds(cont_inf) is not None,
-                #                 "invalid contentInfo '{}' for item '{}'".format(cont_inf, progr['title']))
-            # print("Fetched categorie {} in {:0.3f} s, parsed in {:0.3f}s, total {:0.3f}s.".format(
-            #     cat, t_1 - t_s, t_2 - t_1, t_2 - t_s))
+            if cat == 'films':
+                # All films must be playable items.
+                playables = [p for p in programmes if p['encodedEpisodeId']['letterA'] == '']
+                self.assertEqual(len(playables), len(programmes))
 
     def test_category_news(self):
         url = 'https://www.itv.com/watch/categories/news'
