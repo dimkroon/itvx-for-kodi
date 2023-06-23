@@ -163,6 +163,14 @@ class CollectionPage(unittest.TestCase):
         for show in shows:
             check_shows(self, show, data['collection']['sliderName'])
 
+    def test_collection_our_picks(self):
+        page = fetch.get_document('https://www.itv.com/watch/collections/our-top-picks/6MsT8KM2RTzIw4g5pE2P4w')
+        data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/collection_our-top-picks.json')
+        shows = data['collection']['shows']
+        for show in shows:
+            check_shows(self, show, data['collection']['sliderName'])
+
 
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
