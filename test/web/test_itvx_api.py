@@ -151,16 +151,24 @@ class LiveSchedules(unittest.TestCase):
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
-                object_checks.has_keys(program, 'titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
-                                       'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
-                                       'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
-                                       'startAgainSimulcast', 'shortSynopsis')
-                self.assertIsNotNone(program['displayTitle'])
-                self.assertTrue(object_checks.is_iso_utc_time(program['start']))
-                self.assertTrue(object_checks.is_iso_utc_time(program['end']))
-                if program['broadcastAt'] is not None:      # is None on fast channels
-                    self.assertTrue(program['broadcastAt'].endswith('Z'))
-                    self.assertTrue(20, len(program['broadcastAt']))
+                progr_keys = ('titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
+                              'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
+                              'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
+                              'startAgainSimulcast', 'shortSynopsis')
+                object_checks.has_keys(program, *progr_keys)
+                if program['displayTitle'] is None:
+                    # If displayTitle is None all other fields are None or False as well.
+                    # Noticed 25-6-2023, only on the FAST channel named 'Unwind', which in fact
+                    # does not really broadcast programmes.
+                    for k in progr_keys:
+                        self.assertFalse(program[k])
+                    self.assertEqual('unwind', chan['name'].lower())
+                else:
+                    self.assertTrue(object_checks.is_iso_utc_time(program['start']))
+                    self.assertTrue(object_checks.is_iso_utc_time(program['end']))
+                    if program['broadcastAt'] is not None:      # is None on fast channels
+                        self.assertTrue(program['broadcastAt'].endswith('Z'))
+                        self.assertTrue(20, len(program['broadcastAt']))
 
 
 class Search(unittest.TestCase):

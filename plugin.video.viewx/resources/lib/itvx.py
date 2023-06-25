@@ -83,6 +83,11 @@ def get_now_next_schedule(local_tz=None):
             else:
                 details = prog['displayTitle']
 
+            if details is None:
+                # Some schedules have all fields set to None or False, i.e. no programme info available.
+                # In practice, if displayTitle is None, everything else is as well.
+                continue
+
             start_t = prog['start'][:19]
             utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6]), tzinfo=utc_tz)
 
