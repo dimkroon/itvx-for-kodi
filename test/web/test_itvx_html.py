@@ -175,11 +175,21 @@ class CollectionPage(unittest.TestCase):
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
         """Check the now/next schedule data returned from an HTML page.
-        It is very simular to the data returned by `nownext.oasvc.itv.com`, but not quite the same."""
-        has_keys(progr_data, 'titleId', 'title', 'prodId', 'brandTitle', 'broadcastAt', 'guidance', 'rating',
+        It is very simular to the data returned by `nownext.oasvc.itv.com`, but not just quite the same.
+
+        """
+        all_keys = ('titleId', 'title', 'prodId', 'brandTitle', 'broadcastAt', 'guidance', 'rating',
                  'contentEntityType', 'episodeNumber', 'seriesNumber', 'startAgainPlaylistUrl', 'shortSynopsis',
                  'displayTitle', 'detailedDisplayTitle', 'timestamp',
-                 'broadcastEndTimestamp', 'productionId', obj_name=obj_name)
+                 'broadcastEndTimestamp', 'productionId')
+
+        # As of 25-6-2023 all fields of the FAST channel 'Unwind' are either None or False. There
+        # some fields missing as well, but there is no point in checking that.
+        if all(not progr_data.get(k) for k in all_keys):
+            self.assertTrue(obj_name.lower().startswith('unwind'))
+            return
+
+        has_keys(progr_data, *all_keys, obj_name=obj_name)
         # These times are in a format like '2022-11-22T20:00Z'
         self.assertTrue(is_iso_utc_time(progr_data['start']))
         self.assertTrue(is_iso_utc_time(progr_data['end']))

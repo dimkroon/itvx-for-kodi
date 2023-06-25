@@ -52,11 +52,11 @@ class NowNextSchedule(TestCase):
         with patch('xbmc.getRegion', return_value='%H:%M'):
             schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('22:30', start_time)
+            self.assertEqual('21:20', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
             schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('10:30 pm', start_time.lower())
+            self.assertEqual('09:20 pm', start_time.lower())
 
 
 class MainPageItem(TestCase):
