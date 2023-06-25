@@ -181,16 +181,23 @@ def sub_menu_live(_):
 
     for item in tv_schedule:
         chan_name = item['name']
-        now_on = item['slot'][0]
+        if item['slot']:
+            now_on = item['slot'][0]
+            program_start_time = now_on['orig_start']
+            prog_title = now_on['programmeTitle']
+        else:
+            program_start_time = None
+            prog_title = ''
+
         programs = ('{} - {}'.format(program['startTime'],
                                      program.get('programme_details') or program['programmeTitle'])
                     for program in item['slot'])
-        label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, now_on['programmeTitle'])
-        program_start_time = now_on['orig_start']
+        label = '{}    [COLOR orange]{}[/COLOR]'.format(chan_name, prog_title)
+
         callback_kwargs = {
                 'channel': chan_name,
                 'url': item['streamUrl'],
-                'title': now_on['programmeTitle'],
+                'title': prog_title,
                 'start_time': program_start_time
                 }
 
