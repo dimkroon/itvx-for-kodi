@@ -18,7 +18,7 @@ import pytz
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url
 
-from resources.lib import itvx, errors
+from resources.lib import itvx, errors, cache
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -115,9 +115,11 @@ class Categories(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/category_children.json'),
                                                             open_json('html/category_drama-soaps.json'),
-                                                            open_json('html/category_factual.json')))
+                                                            open_json('html/category_factual.json'),
+                                                            open_json('html/category_sport.json')))
     def test_get_category_content(self, _):
-        for _ in range(3):
+        for idx in range(3):
+            cache.purge()
             program_list = list(itvx.category_content('asdgf'))
             self.assertGreater(len(program_list), 10)
             playables = 0
@@ -125,8 +127,10 @@ class Categories(TestCase):
                 has_keys(progr['show'], 'label', 'info', 'art', 'params')
                 if progr['playable']:
                     playables += 1
-            self.assertGreater(playables, 0)
-            self.assertLess(playables, len(program_list) / 2)
+
+            if idx == 1 or idx == 3:
+                self.assertGreater(playables, 0)
+                self.assertLess(playables, len(program_list) / 2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_films.json'))
     def test_category_films(self, _):

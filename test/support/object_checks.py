@@ -290,11 +290,14 @@ def check_category_item(item):
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
     assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
+    assert item['encodedProgrammeId'] != item['encodedEpisodeId']
+    if item['encodedEpisodeId'] == '':
+        assert 'series' not in item['contentInfo'].lower()
     assert isinstance(item['description'], str) and item['description'], "Invalid description in '{}'.".format(title)
     assert is_url(item['imageTemplate']), "Invalid imageTemple in '{}'.".format(title)
     # ContentInfo is at this moment what is being shown on the web, but can be empty, or have
     # info like 'series 1'.
-    assert isinstance(item['contentInfo'], str), "Invalid contentInfo in '{}'.".format(title)
+    assert isinstance(item['contentInfo'], str), "Invalid type of contentInfo in '{}'.".format(title)
     assert (item['contentInfo'].lower().startswith('series')
             or utils.duration_2_seconds(item['contentInfo']) is not None
             or item['contentInfo'] == ''), \
