@@ -1,5 +1,9 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022 Dimitri Kroon.
+#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  This file is part of plugin.video.viwx.
+#  SPDX-License-Identifier: GPL-2.0-or-later
+#  See LICENSE.txt
+# ----------------------------------------------------------------------------------------------------------------------
 #
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  This file is part of plugin.video.itvx
