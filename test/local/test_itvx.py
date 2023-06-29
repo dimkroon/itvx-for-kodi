@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.viewx.
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
@@ -60,12 +60,19 @@ class NowNextSchedule(TestCase):
 
 
 class MainPageItem(TestCase):
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/index.html'))
     def test_list_main_page_items(self):
-        items = list(itvx.main_page_items())
-        self.assertGreater(len(items), 6)
-        for item in items:
-            is_li_compatible_dict(self, item['show'])
+        page_data = open_json('html/index-data.json')
+        with patch('resources.lib.itvx.get_page_data', return_value=page_data):
+            items = list(itvx.main_page_items())
+            items_count = len(items)
+            self.assertEqual(8, items_count)
+            for item in items:
+                is_li_compatible_dict(self, item['show'])
+        # Hero item of unknown type is disregarded.
+        page_data['heroContent'][1]['contentType'] = 'someNewType'
+        with patch('resources.lib.itvx.get_page_data', return_value=page_data):
+            items = list(itvx.main_page_items())
+            self.assertEqual(items_count - 1, len(items))
 
 
 class Collections(TestCase):

@@ -138,7 +138,9 @@ def get_live_channels(local_tz=None):
 def main_page_items():
     main_data = get_page_data('https://www.itv.com', cache_time=None)
     for hero_data in main_data['heroContent']:
-        yield parsex.parse_hero_content(hero_data)
+        hero_item = parsex.parse_hero_content(hero_data)
+        if hero_item:
+            yield hero_item
     if 'trendingSliderContent' in main_data.keys():
         yield {'type': 'collection',
                'show': {'label': 'Trending', 'params': {'slider': 'trendingSliderContent'}}}

@@ -65,6 +65,10 @@ class Generic(unittest.TestCase):
             obj = parsex.parse_hero_content(item_data)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
+        # An item of unknown type
+        item = data['heroContent'][0]
+        item['contentType'] = 'some new type'
+        self.assertIsNone(parsex.parse_hero_content(item))
 
     def test_parse_slider(self):
         data = open_json('html/index-data.json')

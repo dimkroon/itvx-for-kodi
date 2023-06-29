@@ -121,6 +121,7 @@ def parse_hero_content(hero_data):
                           'name': title}
     else:
         logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
+        return None
     return {'type': item_type, 'show': item}
 
 
