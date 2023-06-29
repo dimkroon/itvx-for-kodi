@@ -8562,8 +8562,8 @@
       },
       "channel": "itv4",
       "encodedEpisodeId": {
-        "letterA": "10a3319a0022",
-        "underscore": "10_3319_0022"
+        "letterA": "",
+        "underscore": ""
       },
       "description": "Dramatic love story of two teens - based on a bestselling manga series",
       "imageTemplate": "https://ovp.itv.com/images/programme/dw1gpmx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",

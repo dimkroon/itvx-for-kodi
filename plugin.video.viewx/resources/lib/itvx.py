@@ -303,17 +303,14 @@ def category_news_content(url, sub_cat, rail=None, hide_paid=False):
             return [parsex.parse_category_item(prog, None) for prog in items_list]
 
     # News clips, like the news collection
+    items_list = None
     if rail:
-        items_list = None
         for subcat in news_sub_cats.get(sub_cat, []):
             if subcat.get('title') == rail:
                 items_list = subcat.get('clips', [])
                 break
-
     elif sub_cat == 'heroAndLatestData':
         items_list = news_sub_cats.get(sub_cat)
-    else:
-        return False
 
     if not items_list:
         return []

@@ -59,62 +59,6 @@
     {
       "imagePresets": {},
       "contentType": "series",
-      "title": "Smallville",
-      "tagName": null,
-      "imageTemplate": "https://ovp.itv.com/images/series/45km6dt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/xxkttdf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "33408",
-      "encodedProgrammeId": {
-        "letterA": "33408",
-        "underscore": "33408"
-      },
-      "encodedEpisodeId": {
-        "letterA": "916256",
-        "underscore": "916256"
-      },
-      "categories": [
-        "DRAMA_AND_SOAPS"
-      ],
-      "description": "Superman - the early years... catch every episode of this hit show",
-      "series": 1,
-      "ctaLabel": "Watch Now",
-      "genre": "Drama & Soaps",
-      "contentInfo": [
-        "Drama & Soaps",
-        "Series 1"
-      ]
-    },
-    {
-      "imagePresets": {},
-      "contentType": "series",
-      "title": "The Sex Lives of College Girls",
-      "tagName": null,
-      "imageTemplate": "https://ovp.itv.com/images/series/k7x1bpg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/1mmwvc6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "10/2553",
-      "encodedProgrammeId": {
-        "letterA": "10a2553",
-        "underscore": "10_2553"
-      },
-      "encodedEpisodeId": {
-        "letterA": "10a2553a0011",
-        "underscore": "10_2553_0011"
-      },
-      "categories": [
-        "COMEDY"
-      ],
-      "description": "Revel in a rowdy world of college - stream the latest series now",
-      "series": 2,
-      "ctaLabel": "Watch Now",
-      "genre": "Comedy",
-      "contentInfo": [
-        "Comedy",
-        "Series 2"
-      ]
-    },
-    {
-      "imagePresets": {},
-      "contentType": "series",
       "title": "The Reunion",
       "tagName": null,
       "imageTemplate": "https://ovp.itv.com/images/series/nxvtv9h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -170,6 +114,23 @@
       "channel": "fast7",
       "ctaLabel": "Watch Now",
       "contentInfo": []
+    },
+    {"imagePresets": {},
+      "contentType": "film",
+      "title": "Coyote Ugly",
+      "tagName": null,
+      "imageTemplate": "https://ovp.itv.com/images/film/nch31g7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isPaid": false,
+      "ccid": "nch31g7",
+      "programmeId": "17523",
+      "encodedProgrammeId": {"letterA": "17523", "underscore": "17523"},
+      "description": "It’s time to get up & boogie on the bar in this irresistible comedy-drama",
+      "productionYear": 2000,
+      "dateTime": "2023-06-25T17:55:00Z",
+      "duration": "2h",
+      "ctaLabel": "Watch Film",
+      "genre": ["Films", "Comedy", "Romantic"],
+      "contentInfo": [["Films", "Comedy", "Romantic"], "2h", 2000]
     }
   ],
   "editorialSliders": {

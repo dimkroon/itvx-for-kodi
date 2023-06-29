@@ -11,7 +11,6 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import unittest
-from unittest.mock import MagicMock, patch
 
 from support.testutils import open_doc, open_json
 from support.object_checks import has_keys, is_url, is_li_compatible_dict
