@@ -1,5 +1,5 @@
 V1.0.0
-- renamed viewx
+- renamed addon to viwx
 
 v0.7.3
 - Fixed playable items in collections failed with error 'Not Found' caused by changes at itvX.
