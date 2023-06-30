@@ -5,7 +5,7 @@ V1.0.0-beta.1
 - Fix: category 'News' failed to open caused by changes at itvX.
 - Fix: search sometimes does not return results when it should.
 - Fix: suport more types of hero items.
-- Local time zone is now obtained from Kodi's settings, rather than the OS.
+- When available, local time zone is now obtained from Kodi's settings, rather than the OS.
 - VOD content in HD (720p, depending on the age of the episode).
 - Support more colours in subtitles
 
