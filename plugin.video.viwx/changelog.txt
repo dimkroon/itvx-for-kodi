@@ -1,5 +1,13 @@
-V1.0.0
-- renamed addon to viwx
+V1.0.0-beta.1
+- Renamed addon to viwx
+- Fix: some programmes with multiple episodes in categories were listed as single playable item, caused by changes at itvX.
+- Fix: page 'Live' failed to open with error 'NoneType is not subscriptable' caused by changes at itvX.
+- Fix: category 'News' failed to open caused by changes at itvX.
+- Fix: search sometimes does not return results when it should.
+- Fix: suport more types of hero items.
+- Local time zone is now obtained from Kodi's settings, rather than the OS.
+- VOD content in HD (720p, depending on the age of the episode).
+- Support more colours in subtitles
 
 v0.7.3
 - Fixed playable items in collections failed with error 'Not Found' caused by changes at itvX.

@@ -1,6 +1,6 @@
 # Kodi Media Center language file
-# Addon Name: itvX
-# Addon id: plugin.video.itvx
+# Addon Name: viwX
+# Addon id: plugin.video.viwx
 # Addon Provider: Dim Kroon
 
 msgid ""
