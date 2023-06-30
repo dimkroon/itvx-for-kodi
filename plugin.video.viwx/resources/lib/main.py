@@ -176,7 +176,13 @@ def root(_):
 
 @Route.register(content_type='videos')
 def sub_menu_live(_):
-    local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
+    try:
+        local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
+    except ValueError:
+        # To be Matrix compatible
+        from tzlocal import get_localzone
+        local_tz = get_localzone()
+
     tv_schedule = itvx.get_live_channels(local_tz)
 
     for item in tv_schedule:

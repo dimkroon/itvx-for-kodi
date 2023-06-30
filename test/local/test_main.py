@@ -43,9 +43,9 @@ class MainMenu(TestCase):
             self.assertIsInstance(item, Listitem)
 
 
-@patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
-                                                    open_json('schedule/live_4hrs.json')))
 class LiveChannels(TestCase):
+    @patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
+                                                        open_json('schedule/live_4hrs.json')))
     @patch('resources.lib.kodi_utils.get_system_setting', return_value='America/Regina')
     def test_list_live_channels(self, _, mocked_get_json):
         cache.purge()
@@ -57,6 +57,14 @@ class LiveChannels(TestCase):
         # Next call is from cache
         main.sub_menu_live.test()
         self.assertEqual(2, mocked_get_json.call_count)
+
+    @patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
+                                                        open_json('schedule/live_4hrs.json')))
+    @patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError)
+    def test_list_live_channels_no_tz_settings(self, _, mocked_get_json):
+        cache.purge()
+        chans = main.sub_menu_live.test()
+        self.assertIsInstance(chans, list)
 
 
 class Collections(TestCase):
