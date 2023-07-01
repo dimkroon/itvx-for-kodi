@@ -67,7 +67,10 @@ class ItvSession:
             acc_data = {}
         else:
             if acc_data.get('vers') != SESS_DATA_VERS:
+                logger.info("Converting account data from version '%s' to version '%s'",
+                            acc_data.get('vers'), SESS_DATA_VERS)
                 acc_data = convert_session_data(acc_data)
+                self.save_account_data()
         self.account_data = acc_data
 
     def save_account_data(self):
@@ -212,7 +215,7 @@ def fetch_authenticated(funct, url, **kwargs):
 
 def convert_session_data(acc_data: dict) -> dict:
     acc_data['vers'] = SESS_DATA_VERS
-    sess_data = acc_data['itv_session']
+    sess_data = acc_data.get('itv_session', '')
     acc_data['cookies'] = {'Itv.Session': build_cookie(sess_data)}
     acc_data.pop('passw', None)
     return acc_data

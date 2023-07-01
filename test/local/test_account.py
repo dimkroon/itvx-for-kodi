@@ -222,9 +222,16 @@ class Misc(unittest.TestCase):
             # test manual read
             ct_sess.read_account_data()
             self.assertEqual(account_data_v1, ct_sess.account_data)
+        # Account data file not presents
         with patch('resources.lib.itv_account.open', side_effect=OSError):
             ct_sess.read_account_data()
             self.assertEqual({}, ct_sess.account_data)
+        # Account data file is an empty dict, e.g. after logout
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps({}))):
+            ct_sess.read_account_data()
+            self.assertTrue('vers' in ct_sess.account_data.keys())
+            self.assertTrue('cookies' in ct_sess.account_data.keys())
+            self.assertFalse('itv_session' in ct_sess.account_data.keys())
 
     def test_read_account_converts_to_new_format(self):
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v0))):
