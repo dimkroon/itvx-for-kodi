@@ -25,6 +25,8 @@ from test.support.testutils import open_json
 from test.support.object_checks import has_keys
 
 from resources.lib import itv
+from resources.lib import itv_account
+from resources.lib import errors
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -63,3 +65,9 @@ class LiveSchedule(TestCase):
             schedule = itv.get_live_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('07:30 pm', start_time.lower())
+
+
+class RequestStreamData(TestCase):
+    def test_request_with_auth_failure(self):
+        itv_account.itv_session().log_out()
+        self.assertRaises(errors.AuthenticationError, itv._request_stream_data, 'some/url')

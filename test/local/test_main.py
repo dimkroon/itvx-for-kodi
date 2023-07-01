@@ -22,6 +22,8 @@ from test.support import object_checks
 from resources.lib import main
 from resources.lib import errors
 from resources.lib import cache
+from resources.lib import itv_account
+
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -290,6 +292,13 @@ class PlayStreamLive(TestCase):
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
 
+    @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
+    def test_play_stream_live_without_credentials(self, _):
+        itv_account.itv_session().log_out()
+        itv_account._itv_session_obj = None
+        result = main.play_stream_live.test(channel='ITV', url=None)
+        self.assertFalse(result)
+
 
 class PlayStreamCatchup(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
@@ -301,6 +310,14 @@ class PlayStreamCatchup(TestCase):
     def test_play_premium_episode(self, _):
         result = main.play_stream_catchup.test('url', '')
         self.assertIs(result, False)
+
+    @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
+    def test_play_catchup_without_credentials(self, _):
+        # Ensure we have an empty session object
+        itv_account.itv_session().log_out()
+        itv_account._itv_session_obj = None
+        result = main.play_stream_catchup.test('url', '')
+        self.assertFalse(result)
 
 
 class PlayTitle(TestCase):

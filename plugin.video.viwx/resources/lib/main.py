@@ -444,7 +444,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
         return False
     except Exception as e:
-        logger.error('Error retrieving live stream urls: %r' % e)
+        logger.error('Error retrieving live stream urls: %r' % e, exc_info=True)
         return
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')

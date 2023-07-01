@@ -85,31 +85,37 @@ class TestLogin(unittest.TestCase):
     def test_login_encounters_http_errors(self, p_save):
         with patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError):
             ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
             self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
         with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(400, '')):
             ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
             self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
         with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(401, '')):
             ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
             self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
         with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(403, '')):
             ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
             self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
         with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(404, '')):
             ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
             self.assertRaises(errors.HttpError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
         with patch('resources.lib.fetch.post_json', side_effect=errors.GeoRestrictedError):
             ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
             self.assertRaises(errors.GeoRestrictedError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
@@ -143,6 +149,7 @@ class Refresh(unittest.TestCase):
     @patch('resources.lib.fetch.get_json', return_value={'token': '2nd_token', 'refreshToken': '2nd_refresh'})
     def test_refresh_without_account_data(self, p_post, p_save):
         ct_sess = itv_account.ItvSession()
+        p_save.reset_mock()
         ct_sess.account_data = None
         self.assertFalse(ct_sess.refresh())
         p_post.assert_not_called()
@@ -249,6 +256,7 @@ class Misc(unittest.TestCase):
     @patch("resources.lib.itv_account.ItvSession.save_account_data")
     def test_logout(self, p_save):
         ct_sess = itv_account.ItvSession()
+        p_save.reset_mock()
         ct_sess.account_data = {"some data"}
         ct_sess.log_out()
         self.assertEqual(ct_sess.account_data, {})

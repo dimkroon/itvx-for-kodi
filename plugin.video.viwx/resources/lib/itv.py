@@ -128,7 +128,7 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
                 if kodi_utils.show_msg_not_logged_in():
                     from xbmc import executebuiltin
                     executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info.id))
-                return False
+                raise
         else:
             raise
 
