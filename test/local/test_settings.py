@@ -19,6 +19,9 @@ from resources.lib import errors
 
 
 class Login(unittest.TestCase):
+    """
+    Ensure login() does not return a value. A Script's return value is treated as a redirect url by codequick.
+    """
     @patch('resources.lib.itv_account.ItvSession.login')
     @patch("resources.lib.kodi_utils.ask_credentials", return_value=('my_name', 'my_passw'))
     # noinspection PyMethodMayBeStatic
@@ -33,14 +36,14 @@ class Login(unittest.TestCase):
         """Test all situation where NOT both username and password are provided.
         The last one should practically never occur though."""
         for _ in range(3):
-            self.assertFalse(settings.login())
+            self.assertIsNone(settings.login())
         p_login.assert_not_called()
 
     @patch("resources.lib.kodi_utils.ask_credentials", return_value=('my_name', 'my_password'))
     @patch("resources.lib.kodi_utils.ask_login_retry", return_value=False)
     def test_login_encounters_http_errors_without_retry(self, p_ask_retry, p_ask_cred):
         with patch('resources.lib.itv_account.ItvSession.login', side_effect=errors.AuthenticationError):
-            self.assertFalse(settings.login())
+            self.assertIsNone(settings.login())
             p_ask_retry.assert_called_once()
             p_ask_cred.assert_called_once()
 
@@ -61,7 +64,7 @@ class Login(unittest.TestCase):
     @patch("resources.lib.kodi_utils.ask_login_retry", return_value=True)
     @patch('resources.lib.itv_account.ItvSession.login', side_effect=(errors.AuthenticationError, True))
     def test_login_succeeds_after_retry(self, p_login, p_ask_retry, p_ask_cred):
-        self.assertTrue(settings.login())
+        self.assertIsNone(settings.login())
         self.assertEqual(2, p_login.call_count)
         self.assertEqual(2, p_ask_cred.call_count)
         p_ask_retry.assert_called_once()

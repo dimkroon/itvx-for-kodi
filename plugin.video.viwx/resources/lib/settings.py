@@ -33,15 +33,15 @@ def login(_=None):
         uname, passw = kodi_utils.ask_credentials(uname, passw)
         if not all((uname, passw)):
             logger.info("Entering login credentials canceled by user")
-            return False
+            return
         try:
             itv_account.itv_session().login(uname, passw)
             kodi_utils.show_login_result(success=True)
-            return True
+            return
         except errors.AuthenticationError as e:
             if not kodi_utils.ask_login_retry(str(e)):
                 logger.info("Login retry canceled by user")
-                return False
+                return
 
 
 @Script.register()
