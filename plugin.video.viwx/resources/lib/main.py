@@ -400,7 +400,6 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
             'Origin=https://www.itv.com&'
             'Sec-Fetch-Dest=empty&'
             'Sec-Fetch-Mode=cors&'
-            
             'Sec-Fetch-Site=same-site&'
             'Cookie=',
             cookiestr))
@@ -449,18 +448,12 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
     if list_item:
-        # list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+        list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
         if start_time and start_time in manifest_url:
-            # cut the first few seconds of video without audio
-            list_item.property['ResumeTime'] = '8'
             list_item.property['inputstream.adaptive.play_timeshift_buffer'] = 'true'
             logger.debug("play live stream - timeshift_buffer enabled")
         else:
-            # compensate for the 20 sec back used to get the time shift stream of a live channel
-            # list_item.property['ResumeTime'] = '14'
-            # list_item.property['inputstream.adaptive.play_timeshift_buffer'] = 'true'
             logger.debug("play live stream  timeshift_buffer disabled")
-        # list_item.property['TotalTime'] = '43200'
     return list_item
 
 
