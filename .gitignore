@@ -67,6 +67,7 @@ dmypy.json
 
 # Project specific
 account_login.py
+# a directory created by tests which may contain user account data
 addon_profile_dir/
 
 

@@ -1,17 +1,18 @@
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+
 from test.support import fixtures
 fixtures.global_setup()
 
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 from typing import MutableMapping
 
-from resources.lib import main, parsex, itvx
+from resources.lib import main, itvx
 from support import object_checks
 
 setUpModule = fixtures.setup_web_test
@@ -22,7 +23,8 @@ class TestMenu(unittest.TestCase):
         items = list(main.root(MagicMock()))
         self.assertGreaterEqual(len(items), 6)
 
-    def test_menu_live(self):
+    @patch('resources.lib.kodi_utils.get_system_setting', return_value='America/Regina')
+    def test_menu_live(self, _):
         items = list(main.sub_menu_live(MagicMock()))
         self.assertGreaterEqual(len(items), 10)
         # for item in items:
@@ -43,6 +45,10 @@ class TstCategories(unittest.TestCase):
     def test_categorey_drama_and_soaps(self):
         items = main.list_category(MagicMock(), path='/watch/categories/drama-soaps')
         self.assertGreater(len(items), 10)
+
+    def test_news_subcategory_latest_stories(self):
+        items = main.list_news_sub_category(MagicMock(), '/watch/categories/news', 'heroAndLatestData')
+        self.assertGreater(len(items), 5)
 
 
 class TestGetProductions(unittest.TestCase):

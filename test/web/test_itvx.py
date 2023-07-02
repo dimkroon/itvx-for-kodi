@@ -1,15 +1,13 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
-
 from test.support import fixtures
 fixtures.global_setup()
-
 
 import unittest
 
@@ -49,11 +47,21 @@ class TestItvX(unittest.TestCase):
     def test_all_categories_content(self):
         categories = itvx.categories()
         for cat in categories:
+            if cat['label'] == 'News':
+                # Category news has a different structure
+                continue
             result = list(itvx.category_content(cat['params']['path']))
             self.assertGreater(len(result), 1)      # News has only a few items
             for item in result:
                 self.assertIsInstance(item['playable'], bool)
                 is_li_compatible_dict(self, item['show'])
+
+    def test_category_news(self):
+        sub_cat_list = list(itvx.category_news('/watch/categories/news'))
+        self.assertGreater(len(sub_cat_list), 4)
+        for item in sub_cat_list:
+            is_li_compatible_dict(self, item)
+
 
     def test_search(self):
         items = itvx.search('the chase')

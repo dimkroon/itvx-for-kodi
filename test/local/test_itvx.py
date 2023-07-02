@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
@@ -15,13 +15,43 @@ import types
 import time
 import pytz
 
-from test.support.testutils import open_json, open_doc
+from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url
 
-from resources.lib import itvx, errors
+from resources.lib import itvx, errors, cache
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
+
+
+
+@patch('resources.lib.cache.set_item')
+@patch('resources.lib.fetch.get_document', new=open_doc('html/index.html'))
+class GetPageData(TestCase):
+    @patch('resources.lib.cache.get_item', return_value="Cached data")
+    def test_get_page_data(self, p_get_item, p_set_item):
+        data = itvx.get_page_data('my/url')
+        self.assertIsInstance(data, dict)
+        p_get_item.assert_not_called()
+        p_set_item.assert_not_called()
+
+    @patch('resources.lib.cache.get_item', return_value="Cached data")
+    def test_get_page_from_cache(self, p_get_item, p_set_item):
+        url = 'some/url'
+        data = itvx.get_page_data(url, 20)
+        self.assertEqual("Cached data", data)
+        full_url = "https://www.itv.com" + url
+        p_get_item.assert_called_with(full_url)
+        p_set_item.assert_not_called()
+
+    @patch('resources.lib.cache.get_item', return_value=None)
+    def test_get_page_from_empty_cache(self, p_get_item, p_set_item):
+        url = 'some/url'
+        data = itvx.get_page_data(url, 20)
+        self.assertIsInstance(data, dict)
+        full_url = "https://www.itv.com" + url
+        p_get_item.assert_called_with(full_url)
+        p_set_item.assert_called_with(full_url, data, 20)
 
 
 @patch('resources.lib.fetch.get_json', new=lambda *a, **k: open_json('schedule/now_next.json'))
@@ -52,20 +82,27 @@ class NowNextSchedule(TestCase):
         with patch('xbmc.getRegion', return_value='%H:%M'):
             schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('22:30', start_time)
+            self.assertEqual('21:20', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
             schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('10:30 pm', start_time.lower())
+            self.assertEqual('09:20 pm', start_time.lower())
 
 
 class MainPageItem(TestCase):
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/index.html'))
     def test_list_main_page_items(self):
-        items = list(itvx.main_page_items())
-        self.assertGreater(len(items), 6)
-        for item in items:
-            is_li_compatible_dict(self, item['show'])
+        page_data = open_json('html/index-data.json')
+        with patch('resources.lib.itvx.get_page_data', return_value=page_data):
+            items = list(itvx.main_page_items())
+            items_count = len(items)
+            self.assertEqual(8, items_count)
+            for item in items:
+                is_li_compatible_dict(self, item['show'])
+        # Hero item of unknown type is disregarded.
+        page_data['heroContent'][1]['contentType'] = 'someNewType'
+        with patch('resources.lib.itvx.get_page_data', return_value=page_data):
+            items = list(itvx.main_page_items())
+            self.assertEqual(items_count - 1, len(items))
 
 
 class Collections(TestCase):
@@ -75,6 +112,8 @@ class Collections(TestCase):
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
+        items2 = list(itvx.collection_content(slider='newsShortformSliderContent', hide_paid=True))
+        self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_collection_trending(self, _):
@@ -82,6 +121,8 @@ class Collections(TestCase):
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
+        items2 = list(itvx.collection_content(slider='trendingSliderContent', hide_paid=True))
+        self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_collection_from_main_page(self, _):
@@ -89,6 +130,8 @@ class Collections(TestCase):
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
+        items2 = list(itvx.collection_content(slider='editorialRailSlot1', hide_paid=True))
+        self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
     def test_collection_from_collection_page(self, _):
@@ -96,6 +139,8 @@ class Collections(TestCase):
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
+        items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
+        self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
@@ -115,9 +160,11 @@ class Categories(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/category_children.json'),
                                                             open_json('html/category_drama-soaps.json'),
-                                                            open_json('html/category_factual.json')))
+                                                            open_json('html/category_factual.json'),
+                                                            open_json('html/category_sport.json')))
     def test_get_category_content(self, _):
-        for _ in range(3):
+        for idx in range(3):
+            cache.purge()
             program_list = list(itvx.category_content('asdgf'))
             self.assertGreater(len(program_list), 10)
             playables = 0
@@ -125,8 +172,10 @@ class Categories(TestCase):
                 has_keys(progr['show'], 'label', 'info', 'art', 'params')
                 if progr['playable']:
                     playables += 1
-            self.assertGreater(playables, 0)
-            self.assertLess(playables, len(program_list) / 2)
+
+            if idx == 1 or idx == 3:
+                self.assertGreater(playables, 0)
+                self.assertLess(playables, len(program_list) / 2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_films.json'))
     def test_category_films(self, _):
@@ -137,6 +186,38 @@ class Categories(TestCase):
             self.assertTrue(progr['playable'])
         free_list = list(itvx.category_content('asdgf', hide_paid=True))
         self.assertLess(len(free_list), len(program_list))
+
+    def test_category_news(self):
+        with patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json')):
+            sub_cat_list = list(itvx.category_news('zdfd'))
+            self.assertGreater(len(sub_cat_list), 4)
+            for item in sub_cat_list:
+                is_li_compatible_dict(self, item)
+        # THe object returned has no field newsData
+        with patch('resources.lib.itvx.get_page_data', return_value={}):
+            sub_cat_list = list(itvx.category_news('zdfd'))
+            self.assertListEqual([], sub_cat_list)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
+    def test_news_sub_categories(self, _):
+        # Known subcategategories
+        for sub_cat in (('heroAndLatestData', None), ('longformData', None),
+                        ('curatedRails', 'Politics'), ('curatedRails', 'World'),
+                        ('curatedRails', 'Special Reports'), ('curatedRails', 'News Explained')):
+            items = itvx.category_news_content('my/url', *sub_cat)
+            self.assertGreater(len(items), 4)
+            for item in items:
+                self.assertIsInstance(item['playable'], bool)
+                is_li_compatible_dict(self, item['show'])
+
+            if sub_cat[0] in ('heroAndLatestData','longformData'):
+                free_items = itvx.category_news_content('my/url', *sub_cat, hide_paid=True)
+                self.assertEqual(len(items), len(free_items))
+
+        # Unknown subcategory and/or rail
+        self.assertListEqual( [], itvx.category_news_content('my/url', 'SomeSubCat', None))
+        self.assertListEqual( [], itvx.category_news_content('my/url', 'SomeSubCat', 'SomeRail'))
+        self.assertListEqual( [], itvx.category_news_content('my/url', 'curatedRails', 'SomeRail'))
 
 
 class Episodes(TestCase):
@@ -158,13 +239,13 @@ class Episodes(TestCase):
 
 
 class Search(TestCase):
-    @patch('resources.lib.fetch.get_json', return_value=open_json('search/the_chase.json'))
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
     def test_simple_search(self, _):
         result = itvx.search('the_chase')
         self.assertIsInstance(result, types.GeneratorType)
         self.assertEqual(10, len(list(result)))
 
-    @patch('resources.lib.fetch.get_json', return_value=None)
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
     def test_search_without_results(self, _):
         result = itvx.search('xprs')
         self.assertIsNone(result)

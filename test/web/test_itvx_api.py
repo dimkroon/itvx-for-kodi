@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
@@ -19,6 +19,7 @@ from resources.lib import fetch
 from resources.lib import parsex
 from resources.lib import itvx
 from test.support import object_checks
+from test.support import testutils
 
 setUpModule = fixtures.setup_web_test
 
@@ -52,8 +53,12 @@ class LiveSchedules(unittest.TestCase):
             programs = channel_data['_embedded']['slot']
             for program in programs:
                 object_checks.has_keys(program, 'programmeTitle', 'startTime', 'onAirTimeUTC', 'productionId')
-                self.assertTrue(program['startTime'].endswith('Z'))     # start time is in format '2022-11-22T20:00Z'
-                self.assertEqual(17, len(program['startTime']))         # has no seconds
+                self.assertTrue(program['startTime'].endswith('Z') or program['startTime'].endswith('+01:00'))     # start time is in format '2022-11-22T20:00Z'
+                # Ascertain startTime has no seconds
+                if program['startTime'].endswith('Z'):
+                    self.assertEqual(17, len(program['startTime']))
+                else:
+                    self.assertEqual(22, len(program['startTime']))
             channel_info = channel_data['_embedded']['channel']
             object_checks.has_keys(channel_info, 'name', 'strapline', '_links')
             self.assertTrue(channel_info['_links']['playlist']['href'].startswith('https'))
@@ -146,16 +151,24 @@ class LiveSchedules(unittest.TestCase):
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
-                object_checks.has_keys(program, 'titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
-                                       'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
-                                       'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
-                                       'startAgainSimulcast', 'shortSynopsis')
-                self.assertIsNotNone(program['displayTitle'])
-                self.assertTrue(object_checks.is_iso_time(program['start']))
-                self.assertTrue(object_checks.is_iso_time(program['end']))
-                if program['broadcastAt'] is not None:      # is None on fast channels
-                    self.assertTrue(program['broadcastAt'].endswith('Z'))
-                    self.assertTrue(20, len(program['broadcastAt']))
+                progr_keys = ('titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
+                              'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
+                              'rating', 'episodeNumber', 'seriesNumber', 'startAgainVod',
+                              'startAgainSimulcast', 'shortSynopsis')
+                object_checks.has_keys(program, *progr_keys)
+                if program['displayTitle'] is None:
+                    # If displayTitle is None all other fields are None or False as well.
+                    # Noticed 25-6-2023, only on the FAST channel named 'Unwind', which in fact
+                    # does not really broadcast programmes.
+                    for k in progr_keys:
+                        self.assertFalse(program[k])
+                    self.assertEqual('unwind', chan['name'].lower())
+                else:
+                    self.assertTrue(object_checks.is_iso_utc_time(program['start']))
+                    self.assertTrue(object_checks.is_iso_utc_time(program['end']))
+                    if program['broadcastAt'] is not None:      # is None on fast channels
+                        self.assertTrue(program['broadcastAt'].endswith('Z'))
+                        self.assertTrue(20, len(program['broadcastAt']))
 
 
 class Search(unittest.TestCase):
@@ -213,7 +226,7 @@ class Search(unittest.TestCase):
         self.assertTrue(item_data['legacyId']['officialFormat'])
 
     def test_search_normal_chase(self):
-        self.search_params['query'] = 'the chases'
+        self.search_params['query'] = 'the chase'
         resp = requests.get(self.search_url, params=self.search_params).json()
         self.check_result(resp)
         self.assertGreater(len(resp['results']), 3)
@@ -235,11 +248,23 @@ class Search(unittest.TestCase):
             self.assertListEqual([], resp.json()['results'])
 
     def test_search_with_non_free_results(self):
-        """Results contain Doctor Foster programme which is can only be watch with a premium account."""
+        """Results contains a Doctor Foster programme which can only be watch with a premium account."""
+        # Search including paid
         self.search_params['query'] = 'doctor foster'
         resp = requests.get(self.search_url, params=self.search_params).json()
         self.check_result(resp)
         self.assertEqual('PAID', resp['results'][0]['data']['tier'])
+
+        # Search exclude paid
+        self.search_params['onlyFree'] = 'true'
+        try:
+            resp = requests.get(self.search_url, params=self.search_params).json()
+        finally:
+            self.search_params['onlyFree'] = 'false'
+        self.assertGreater(len(resp['results']), 0)
+        self.check_result(resp)
+        for result in resp['results']:
+            self.assertEqual('FREE', result['data']['tier'])
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -291,7 +316,7 @@ class Playlists(unittest.TestCase):
         return post_data
 
     def get_playlist_live(self, channel):
-        """Get the playlists of the main live channels
+        """Get the playlist of one of the itvx live channels
 
         For all channels other than ITV the headers User Agent and Origin are required.
         And the cookie consent cookies must present. If any of those are missing the request will time out.
@@ -320,13 +345,19 @@ class Playlists(unittest.TestCase):
         strm_data = resp.json()
         return strm_data
 
-    def test_get_playlist_live(self):
+    def test_get_playlist_simulcast(self):
         for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
             strm_data = self.get_playlist_live(channel)
             object_checks.check_live_stream_info(strm_data['Playlist'])
 
+    def test_get_playlist_fast(self):
+        for chan_id in range(1, 21):
+            channel = 'FAST{}'.format(chan_id)
+            strm_data = self.get_playlist_live(channel)
+            object_checks.check_live_stream_info(strm_data['Playlist'])
+
     def test_manifest_live(self):
-        strm_data = self.get_playlist_live('ITV')
+        strm_data = self.get_playlist_live('FAST16')
         mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['Url']
         resp = requests.get(
                 mpd_url,
@@ -339,8 +370,30 @@ class Playlists(unittest.TestCase):
                 timeout=10
         )
         manifest = resp.text
+        # testutils.save_doc(manifest, 'mpd/fast16.mpd')
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
+
+    def test_manifest_live_playagain(self):
+        """As of approximately 05-2023 play-again appears not to be available for fast channels"""
+        strm_data = self.get_playlist_live('FAST16')
+        start_time = datetime.strftime(datetime.now() - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S' )
+        mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl'].format(START_TIME=start_time)
+        resp = requests.get(
+                mpd_url,
+                headers={
+                    'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                    'Origin':           'https://www.itv.com',
+                },
+                cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
+                timeout=10
+        )
+        self.assertEqual(404, resp.status_code)
+        # manifest = resp.text
+        # # testutils.save_doc(manifest, 'mpd/fast16.mpd')
+        # self.assertGreater(len(manifest), 1000)
+        # self.assertTrue(manifest.startswith('<?xml version='))
 
     def get_playlist_catchup(self, url=None):
         """Request stream of a catchup episode (i.e. production)
@@ -428,6 +481,6 @@ class Playlists(unittest.TestCase):
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
             if is_short:
-                object_checks.check_news_stream_info(strm_data['Playlist'])
+                object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
                 object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])

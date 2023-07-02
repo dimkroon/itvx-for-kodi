@@ -1,6 +1,6 @@
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
@@ -11,7 +11,6 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import unittest
-from unittest.mock import MagicMock, patch
 
 from support.testutils import open_doc, open_json
 from support.object_checks import has_keys, is_url, is_li_compatible_dict
@@ -65,6 +64,10 @@ class Generic(unittest.TestCase):
             obj = parsex.parse_hero_content(item_data)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
+        # An item of unknown type
+        item = data['heroContent'][0]
+        item['contentType'] = 'some new type'
+        self.assertIsNone(parsex.parse_hero_content(item))
 
     def test_parse_slider(self):
         data = open_json('html/index-data.json')

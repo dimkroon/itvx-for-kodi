@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
-#  This file is part of plugin.video.itvx
+#  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,15 @@ import unittest
 import requests
 
 from resources.lib import fetch, parsex, utils, errors
-from support.object_checks import has_keys, misses_keys, is_url, is_iso_time
+from support.object_checks import (
+    has_keys,
+    expect_keys,
+    misses_keys,
+    is_url,
+    is_iso_utc_time,
+    check_news_category_clip_item,
+    check_category_item
+)
 from support import testutils
 
 setUpModule = fixtures.setup_web_test
@@ -79,15 +87,22 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description',
+            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
                      'contentInfo', 'tagName', obj_name=item['title'])
-            self.assertTrue(item['contentType'] in ('simulcastspot', 'series', 'film', 'special'))
+            self.assertTrue(item['contentType'] in ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand'))
+            self.assertIsInstance(item['contentInfo'], list)
 
-            if item['contentType'] != 'simulcastspot':
-                has_keys(item, 'encodedProgrammeId', 'programmeId', 'genre', obj_name=item['title'])
+            if item['contentType']in ('simulcastspot', 'fastchannelspot'):
+                has_keys(item, 'channel', obj_name=item['title'])
+            else:
+                has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
+                # As of 06-2023 field genre seems to be removed from all types of hero content.
+                # Just keep the check in for a while.
+                expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
 
             if item['contentType'] == 'special':
-                has_keys(item, 'encodedEpisodeId', 'dateTime', 'duration', obj_name=item['title'])
+                # Field 'dateTime' not always present in special title
+                has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
 
             if item['contentType'] == 'series':
                 has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
@@ -95,6 +110,10 @@ class MainPage(unittest.TestCase):
             if item['contentType'] == 'film':
                 # Fields not always present:  'dateTime'
                 has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
+
+            if item['contentType'] == 'brand':
+                # Just to check over time if this is always true
+                self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
@@ -144,27 +163,45 @@ class CollectionPage(unittest.TestCase):
         for show in shows:
             check_shows(self, show, data['collection']['sliderName'])
 
+    def test_collection_our_picks(self):
+        page = fetch.get_document('https://www.itv.com/watch/collections/our-top-picks/6MsT8KM2RTzIw4g5pE2P4w')
+        data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/collection_our-top-picks.json')
+        shows = data['collection']['shows']
+        for show in shows:
+            check_shows(self, show, data['collection']['sliderName'])
+
 
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
         """Check the now/next schedule data returned from an HTML page.
-        It is very simular to the data returned by `nownext.oasvc.itv.com`, but not quite the same."""
-        has_keys(progr_data, 'titleId', 'title', 'prodId', 'brandTitle', 'broadcastAt', 'guidance', 'rating',
+        It is very simular to the data returned by `nownext.oasvc.itv.com`, but not just quite the same.
+
+        """
+        all_keys = ('titleId', 'title', 'prodId', 'brandTitle', 'broadcastAt', 'guidance', 'rating',
                  'contentEntityType', 'episodeNumber', 'seriesNumber', 'startAgainPlaylistUrl', 'shortSynopsis',
                  'displayTitle', 'detailedDisplayTitle', 'timestamp',
-                 'broadcastEndTimestamp', 'productionId', obj_name=obj_name)
+                 'broadcastEndTimestamp', 'productionId')
+
+        # As of 25-6-2023 all fields of the FAST channel 'Unwind' are either None or False. There
+        # some fields missing as well, but there is no point in checking that.
+        if all(not progr_data.get(k) for k in all_keys):
+            self.assertTrue(obj_name.lower().startswith('unwind'))
+            return
+
+        has_keys(progr_data, *all_keys, obj_name=obj_name)
         # These times are in a format like '2022-11-22T20:00Z'
-        self.assertTrue(is_iso_time(progr_data['start']))
-        self.assertTrue(is_iso_time(progr_data['end']))
+        self.assertTrue(is_iso_utc_time(progr_data['start']))
+        self.assertTrue(is_iso_utc_time(progr_data['end']))
 
         if chan_type == 'fast':
-            misses_keys(progr_data, 'broadcastStartTimestamp')
+            misses_keys(progr_data, 'broadcastStartTimestamp', obj_name=obj_name)
             self.assertIsNone(progr_data['broadcastAt'])
             self.assertIsNone(progr_data['broadcastEndTimestamp'])
 
         if chan_type != 'fast':
-            has_keys(progr_data, 'broadcastStartTimestamp')
-            self.assertTrue(is_iso_time(progr_data['broadcastAt']))
+            has_keys(progr_data, 'broadcastStartTimestamp', obj_name=obj_name)
+            self.assertTrue(is_iso_utc_time(progr_data['broadcastAt']))
             # check timestamps are integers
             self.assertGreater(int(progr_data['broadcastStartTimestamp']), 0)
             self.assertGreater(int(progr_data['broadcastEndTimestamp']), 0)
@@ -181,12 +218,14 @@ class WatchPages(unittest.TestCase):
         page = fetch.get_document('https://www.itv.com/watch?channel=itv')
         # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parsex.scrape_json(page)
-        channel_data = data['channelsMetaData']
-        # check presence and type of backdrop image
-        self.assertTrue(len(channel_data['images']), 1)     # only backdrop image is available
-        self.assertTrue(is_url(channel_data['images']['backdrop'], '.jpeg'))
 
-        for chan in channel_data['channels']:
+        # !!! Field channelsMetaData absent since 18-3-2023 !!!
+        # channel_data = data['channelsMetaData']
+        # # check presence and type of backdrop image
+        # self.assertTrue(len(channel_data['images']), 1)     # only backdrop image is available
+        # self.assertTrue(is_url(channel_data['images']['backdrop'], '.jpeg'))
+
+        for chan in data['channels']:
             chan_type = chan['channelType']
             self.check_schedule_channel_info(chan)
             self.check_schedule_now_next_slot(chan['slots']['now'], chan_type,
@@ -254,6 +293,9 @@ class Categories(unittest.TestCase):
 
     def test_all_categories(self):
         for cat in self.all_categories:
+            if cat == 'news':
+                # As of May 2023 category news returns a different data structure and has its own test.
+                continue
             url = 'https://www.itv.com/watch/categories/' + cat
             t_s = time.time()
             page = fetch.get_document(url)
@@ -265,11 +307,28 @@ class Categories(unittest.TestCase):
             t_2 = time.time()
             self.assertIsInstance(programmes, list)
             for progr in programmes:
-                has_keys(progr, 'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'description',
-                         'imageTemplate', 'contentInfo', 'contentOwner', 'tier')
-                self.assertTrue(progr['encodedProgrammeId']['letterA'])
-                self.assertIsNotNone(progr['encodedEpisodeId']['letterA'])
-                self.assertTrue(progr['contentInfo'].lower().startswith('series') or
-                                utils.duration_2_seconds(progr['contentInfo']) is not None)
-            # print("Fetched categorie {} in {:0.3f} s, parsed in {:0.3f}s, total {:0.3f}s.".format(
-            #     cat, t_1 - t_s, t_2 - t_1, t_2 - t_s))
+                check_category_item(progr)
+            if cat == 'films':
+                # All films must be playable items.
+                playables = [p for p in programmes if p['encodedEpisodeId']['letterA'] == '']
+                self.assertEqual(len(playables), len(programmes))
+
+    def test_category_news(self):
+        url = 'https://www.itv.com/watch/categories/news'
+        t_s = time.time()
+        page = fetch.get_document(url)
+        t_1 = time.time()
+        data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/category_news.json')
+        # Field `programmes` is still present, but contains no data anymore
+        self.assertIsNone(data['programmes'])
+        news_data = data['newsData']
+        # Check the hero rail
+        for item in news_data['heroAndLatestData']:
+            check_news_category_clip_item(item)
+        for item in news_data['longformData']:
+            check_category_item(item)
+        for  rail in news_data['curatedRails']:
+            self.assertTrue(isinstance(rail['title'], str) and rail['title'])
+            for item in rail['clips']:
+                check_news_category_clip_item(item)
