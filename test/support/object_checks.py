@@ -266,7 +266,9 @@ def check_news_category_clip_item(item):
     assert isinstance(item['episodeId'], str) and item['episodeId']
     assert isinstance(item['titleSlug'], str) and item['titleSlug']
     assert isinstance(item['href'], str) and item['href'] and not is_url(item['href'])
-    assert is_url(item['imageUrl'], '.jpg') or is_url(item['imageUrl'], '.png') or is_url(item['imageUrl'], '.bmp')
+    assert is_url(item['imageUrl'], '.jpg') or is_url(item['imageUrl'], '.jpeg') or is_url(item['imageUrl'], '.png') \
+           or is_url(item['imageUrl'], '.bmp'), \
+           "item '{}' has not a valid imageUrl".format(item['episodeTitle'])
     assert is_iso_utc_time(item['dateTime'])
     if item.get('synopsis'):
         assert isinstance(item['synopsis'], str,) and item['synopsis']
