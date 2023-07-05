@@ -104,6 +104,19 @@ class MainPageItem(TestCase):
             items = list(itvx.main_page_items())
             self.assertEqual(items_count - 1, len(items))
 
+    def test_missing_or_empty_herocontent_field(self):
+        with patch('resources.lib.itvx.get_page_data', return_value={}):
+            items = list(itvx.main_page_items())
+            self.assertListEqual([], items)
+
+        with patch('resources.lib.itvx.get_page_data', return_value={'heroContent': None}):
+            items = list(itvx.main_page_items())
+            self.assertListEqual([], items)
+
+        with patch('resources.lib.itvx.get_page_data', return_value={'heroContent': []}):
+            items = list(itvx.main_page_items())
+            self.assertListEqual([], items)
+
 
 class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
