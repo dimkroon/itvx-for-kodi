@@ -19,7 +19,7 @@ from .errors import *
 
 
 logger = logging.getLogger(logger_id + '.account')
-SESS_DATA_VERS = 1
+SESS_DATA_VERS = 2
 
 
 class ItvSession:
@@ -64,19 +64,22 @@ class ItvSession:
                 acc_data = json.load(f)
         except (OSError, IOError, ValueError) as err:
             logger.error("Failed to read account data: %r" % err)
-            acc_data = {}
+            self.account_data = {}
+            return
+
+        if acc_data.get('vers') != SESS_DATA_VERS:
+            logger.info("Converting account data from version '%s' to version '%s'",
+                        acc_data.get('vers'), SESS_DATA_VERS)
+            self.account_data = convert_session_data(acc_data)
+            self.save_account_data()
         else:
-            if acc_data.get('vers') != SESS_DATA_VERS:
-                logger.info("Converting account data from version '%s' to version '%s'",
-                            acc_data.get('vers'), SESS_DATA_VERS)
-                acc_data = convert_session_data(acc_data)
-                self.save_account_data()
-        self.account_data = acc_data
+            self.account_data = acc_data
 
     def save_account_data(self):
         session_file = os.path.join(utils.addon_info.profile, "itv_session")
+        data_str = json.dumps(self.account_data)
         with open(session_file, 'w') as f:
-            json.dump(self.account_data, f)
+            f.write(data_str)
         logger.info("ITV account data saved to file")
 
     def login(self, uname: str, passw: str):
@@ -107,6 +110,7 @@ class ItvSession:
             )
 
             self.account_data = {
+                'vers': SESS_DATA_VERS,
                 'refreshed': time.time(),
                 'itv_session': session_data,
                 'cookies': {'Itv.Session': build_cookie(session_data)}
@@ -218,4 +222,5 @@ def convert_session_data(acc_data: dict) -> dict:
     sess_data = acc_data.get('itv_session', '')
     acc_data['cookies'] = {'Itv.Session': build_cookie(sess_data)}
     acc_data.pop('passw', None)
+    acc_data.pop('uname', None)
     return acc_data
