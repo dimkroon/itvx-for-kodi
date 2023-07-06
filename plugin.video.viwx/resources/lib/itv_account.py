@@ -19,7 +19,7 @@ from .errors import *
 
 
 logger = logging.getLogger(logger_id + '.account')
-SESS_DATA_VERS = 1
+SESS_DATA_VERS = 2
 
 
 class ItvSession:
@@ -222,4 +222,5 @@ def convert_session_data(acc_data: dict) -> dict:
     sess_data = acc_data.get('itv_session', '')
     acc_data['cookies'] = {'Itv.Session': build_cookie(sess_data)}
     acc_data.pop('passw', None)
+    acc_data.pop('uname', None)
     return acc_data

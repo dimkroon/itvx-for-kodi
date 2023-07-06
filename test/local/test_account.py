@@ -34,13 +34,13 @@ account_data_v0 = {'uname': 'my_uname', 'passw': 'my_passw',
                    'cookies': {'Itv.Cid': 'xxxxxxxxxxxx'}
                    }
 
-account_data_v1 = {'uname': 'my_uname',
+account_data_v2 = {
                    'refreshed': account_data_v0['refreshed'],
                    'itv_session': {'access_token': 'my-token',
                                    'refresh_token': 'my-refresh-token'},
                    'cookies': {'Itv.Session': '{"sticky": true, "tokens": {"content": {"access_token": "my-token", '
                                               '"refresh_token": "my-refresh-token"}}}'},
-                   'vers': 1
+                   'vers': 2
                    }
 
 
@@ -162,8 +162,8 @@ class PropAccessToken(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh')
     def test_prop_access_token(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = account_data_v1
-        self.assertEqual(account_data_v1['itv_session']['access_token'], ct_sess.access_token)
+        ct_sess.account_data = account_data_v2
+        self.assertEqual(account_data_v2['itv_session']['access_token'], ct_sess.access_token)
         p_refresh.assert_not_called()
         p_login.assert_not_called()
 
@@ -181,7 +181,7 @@ class PropAccessToken(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     def test_prop_access_token_with_cache_timed_out_invokes_refresh(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = deepcopy(account_data_v1)
+        ct_sess.account_data = deepcopy(account_data_v2)
         ct_sess.account_data['refreshed'] = time.time() - 13 * 3600     # force a timeout
         _ = ct_sess.access_token
         p_login.assert_not_called()
@@ -193,8 +193,8 @@ class PropCookie(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh')
     def test_prop_cookie(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = account_data_v1
-        self.assertEqual(account_data_v1['cookies'], ct_sess.cookie)
+        ct_sess.account_data = account_data_v2
+        self.assertEqual(account_data_v2['cookies'], ct_sess.cookie)
         p_refresh.assert_not_called()
         p_login.assert_not_called()
 
@@ -212,7 +212,7 @@ class PropCookie(unittest.TestCase):
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     def test_prop_cookie_with_cache_timed_out_invokes_refresh(self, p_refresh, p_login):
         ct_sess = itv_account.ItvSession()
-        ct_sess.account_data = deepcopy(account_data_v1)
+        ct_sess.account_data = deepcopy(account_data_v2)
         ct_sess.account_data['refreshed'] = time.time() - 13 * 3600     # force a timeout
         _ = ct_sess.cookie
         p_login.assert_not_called()
@@ -221,15 +221,15 @@ class PropCookie(unittest.TestCase):
 
 class Misc(unittest.TestCase):
     def test_read_account_data(self):
-        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v1))):
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v2))):
             # test data is being read at class instantiation
             ct_sess = itv_account.ItvSession()
             has_keys(ct_sess.account_data, 'itv_session', 'cookies', 'refreshed', 'vers')
-            self.assertEqual(account_data_v1, ct_sess.account_data)
+            self.assertEqual(account_data_v2, ct_sess.account_data)
             ct_sess.account_data = None
             # test manual read
             ct_sess.read_account_data()
-            self.assertEqual(account_data_v1, ct_sess.account_data)
+            self.assertEqual(account_data_v2, ct_sess.account_data)
         # Account data file not presents
         with patch('resources.lib.itv_account.open', side_effect=OSError):
             ct_sess.read_account_data()
@@ -249,7 +249,7 @@ class Misc(unittest.TestCase):
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v0))):
             ct_sess = itv_account.ItvSession()
             has_keys(ct_sess.account_data, 'itv_session', 'cookies', 'refreshed', 'vers')
-            self.assertEqual(account_data_v1, ct_sess.account_data)
+            self.assertEqual(account_data_v2, ct_sess.account_data)
 
     def test_save_account_data(self):
         ct_sess = itv_account.ItvSession()
