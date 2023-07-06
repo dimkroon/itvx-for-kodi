@@ -81,6 +81,7 @@ class TestLogin(unittest.TestCase):
         has_keys(post_kwargs, 'username', 'password', 'nonce', 'grant_type', obj_name='post_json kwargs')
         self.assertEqual('my_name', post_kwargs['username'])
         self.assertEqual('my_passw', post_kwargs['password'])
+        self.assertEqual(itv_account.SESS_DATA_VERS, ct_sess.account_data['vers'])
 
     def test_login_encounters_http_errors(self, p_save):
         with patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError):
@@ -234,11 +235,15 @@ class Misc(unittest.TestCase):
             ct_sess.read_account_data()
             self.assertEqual({}, ct_sess.account_data)
         # Account data file is an empty dict, e.g. after logout
-        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps({}))):
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps({})), create=True) as patched_open:
             ct_sess.read_account_data()
             self.assertTrue('vers' in ct_sess.account_data.keys())
             self.assertTrue('cookies' in ct_sess.account_data.keys())
             self.assertFalse('itv_session' in ct_sess.account_data.keys())
+            # Check if converted account data has been saved correctly
+            data_str = patched_open.return_value.write.call_args[0][0]
+            data_written = json.loads(data_str)
+            self.assertEqual(itv_account.SESS_DATA_VERS, data_written['vers'])
 
     def test_read_account_converts_to_new_format(self):
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v0))):
