@@ -83,4 +83,5 @@ class TestItvX(unittest.TestCase):
 
         # Premium episode Downton-abbey S1E1
         episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
-        self.assertRaises(errors.AccessRestrictedError, itvx.get_playlist_url_from_episode_page, episode_url)
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))

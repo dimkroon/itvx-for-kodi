@@ -62,9 +62,10 @@ def check_title(self, title, parent_name):
     is_url(title['imageUrl'])
     is_url(title['playlistUrl'])
     self.assertIsNotNone(title['numberedEpisodeTitle'])
+    self.assertTrue('FREE' in title['tier'] or 'PAID' in title['tier'])
 
-    if title['titleType'] in ('EPISODE', 'FILM'):
-        self.assertFalse(title['duration'].startswith('P'))    # duration is not is iso format
+    if title['titleType'] in ('EPISODE', 'FILM', 'SPECIAL'):
+        self.assertFalse(title['duration'].startswith('P'))    # duration is not in iso format
 
     if title['titleType'] == 'FILM':
         has_keys(title, 'productionYear',
@@ -249,11 +250,27 @@ class WatchPages(unittest.TestCase):
             for series in title_data['brand']['series']:
                 check_series(self, series, title_data['brand']['title'])
 
+    def test_premium_episode_page(self):
+        url = 'https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001'
+        page = fetch.get_document(url)
+        # testutils.save_doc(page, 'html/paid_episode_downton-abbey-s1e1.html')
+        data = parsex.scrape_json(page)
+        title_data = data['title']
+        check_title(self, title_data, 'downton abbey s1e1')
+        self.assertListEqual(['PAID'], title_data['tier'])
+
     def test_film_details_page(self):
         page = fetch.get_document('https://www.itv.com/watch/danny-collins/10a3142')
-        # testutils.save_doc(page, 'html/film_love-actually.html')
+        # testutils.save_doc(page, 'html/film_danny-collins.html')
         data = parsex.scrape_json(page)
-        check_title(self, data['title'], 'love-actually')
+        check_title(self, data['title'], 'film-danny collins')
+        self.assertListEqual(['FREE'], data['title']['tier'])
+
+    def test_special_details_page(self):
+        page = fetch.get_document('https://www.itv.com/watch/how-to-catch-a-cat-killer/10a1951')
+        data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/special_how-to-catch-a-cat-killer_data.json')
+        check_title(self, data['title'], 'how to catch a killer')
 
 
 class TvGuide(unittest.TestCase):
