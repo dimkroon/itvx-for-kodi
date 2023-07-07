@@ -156,7 +156,8 @@ class Paginator:
             return self._generate_page()
 
 
-@Route.register(content_type='videos')
+# MJR002: change Main page content type to 'files'
+@Route.register(content_type='files')
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     # yield Listitem.from_dict(sub_menu_shows, 'Shows')
@@ -174,7 +175,8 @@ def root(_):
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
 
 
-@Route.register(content_type='videos')
+# MJR002: change Live page content type to 'games'
+@Route.register(content_type='games')
 def sub_menu_live(_):
     try:
         local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
@@ -234,7 +236,8 @@ def sub_menu_live(_):
         yield li
 
 
-@Route.register(content_type='videos')
+# MJR002: change Collections page content type to 'files'
+@Route.register(content_type='files')
 def list_collections(_):
     slider_data = itvx.get_page_data('https://www.itv.com', cache_time=3600)['editorialSliders']
     return [Listitem.from_dict(list_collection_content, **parsex.parse_slider(*slider)['show'])
@@ -253,7 +256,8 @@ def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=
     yield from paginator
 
 
-@Route.register(content_type='videos')  # 24 * 60)
+# MJR002: change Categories page content type to 'files'
+@Route.register(content_type='files')  # 24 * 60)
 def list_categories(addon):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                            xbmcplugin.SORT_METHOD_TITLE,
@@ -264,7 +268,8 @@ def list_categories(addon):
     return items
 
 
-@Route.register(content_type='videos')
+# MJR002: change Sub-Categories page content type to 'files'
+@Route.register(content_type='files')
 @dynamic_listing
 def list_category(addon, path, filter_char=None, page_nr=0):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
@@ -285,7 +290,8 @@ def list_category(addon, path, filter_char=None, page_nr=0):
     yield from paginator
 
 
-@Route.register(content_type='videos')
+# MJR002: change News Sub-Category page content type to 'files'
+@Route.register(content_type='files')
 @dynamic_listing
 def list_news_sub_category(addon, path, subcat, rail=None, filter_char=None, page_nr=0):
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_DATE,
@@ -298,9 +304,11 @@ def list_news_sub_category(addon, path, subcat, rail=None, filter_char=None, pag
     yield from Paginator(shows_list, filter_char, page_nr, subcat=subcat, rail=rail)
 
 
-@Route.register(content_type='videos')
+# MJR002: content_type moved to def to enable dynamic changes
+@Route.register()
 @dynamic_listing
-def list_productions(plugin, url, series_idx=None):
+# MJR002: addon added to parameters to enable dynamic changes
+def list_productions(plugin, url, series_idx=None, content_type="videos"):
 
     logger.info("Getting productions for series '%s' of '%s'", series_idx, url)
 
@@ -329,13 +337,16 @@ def list_productions(plugin, url, series_idx=None):
                 li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
             yield li
     else:
+        # MJR002: change content_type to 'files' for list of series
+        content_type = 'files'
         # List folders of all series
         for series in series_map.values():
             li = Listitem.from_dict(list_productions, **series['series'])
             yield li
 
 
-@Route.register(content_type='videos')
+# MJR002: change Search page content type to 'files'
+@Route.register(content_type='files')
 @dynamic_listing
 def do_search(addon, search_query):
     search_results = itvx.search(search_term=search_query, hide_paid=addon.setting.get_boolean('hide_paid'))
