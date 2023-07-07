@@ -137,14 +137,15 @@ def get_live_channels(local_tz=None):
 
 def main_page_items():
     main_data = get_page_data('https://www.itv.com', cache_time=None)
-    hero_content = main_data.get('heroContent')
-    if hero_content:
-        for hero_data in hero_content:
-            hero_item = parsex.parse_hero_content(hero_data)
-            if hero_item:
-                yield hero_item
-    else:
-        logger.info("No heroContent in main page.")
+    # MJR001: remove "hero" items from main page
+    # hero_content = main_data.get('heroContent')
+    # if hero_content:
+        # for hero_data in hero_content:
+            # hero_item = parsex.parse_hero_content(hero_data)
+            # if hero_item:
+                # yield hero_item
+    # else:
+        # logger.info("No heroContent in main page.")
 
     if 'trendingSliderContent' in main_data.keys():
         yield {'type': 'collection',
