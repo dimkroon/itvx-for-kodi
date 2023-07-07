@@ -335,15 +335,11 @@ def get_playlist_url_from_episode_page(page_url):
     import re
 
     logger.info("Get playlist from episode page - url=%s", page_url)
-    html_doc = fetch.get_document(page_url)
-    logger.debug("successfully retrieved page %s", page_url)
-    match = re.compile('data-video-id="(.+?)"').search(html_doc)
-    if match:
-        return match[1]
-    else:
-        # Premium content does not have a 'data-video-id' property in the episode page.
-        # TODO: Check if it does when the user has a premium account.
-        raise errors.AccessRestrictedError
+    data = get_page_data(page_url)
+    try:
+        return data['title']['playlistUrl']
+    except KeyError:
+        return data['episode']['playlistUrl']
 
 
 def search(search_term, hide_paid=False):
