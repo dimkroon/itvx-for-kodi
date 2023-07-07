@@ -265,7 +265,7 @@ class Search(TestCase):
 
 
 class GetPLaylistUrl(TestCase):
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/film_love-actually.html'))
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/film_danny-collins.html'))
     def test_get_playlist_from_film_page(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
@@ -277,4 +277,11 @@ class GetPLaylistUrl(TestCase):
 
     @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
     def test_get_playlist_from_premium_episode(self):
-        self.assertRaises(errors.AccessRestrictedError, itvx.get_playlist_url_from_episode_page, 'page')
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+
+    @patch('resources.lib.itvx.get_page_data',
+           return_value=open_json('html/special_how-to-catch-a-cat-killer_data.json'))
+    def test_get_playlist_from_special_item(self, _):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
