@@ -111,8 +111,8 @@ class TestPlayCatchup(unittest.TestCase):
     def test_play_short_news_item(self):
         # get the first news item from the main page
         page_data = itvx.get_page_data('https://www.itv.com/')
-        news_item = page_data['newsShortformSliderContent']['items'][0]
-        item_url = 'https://www.itv.com/watch/news/' + news_item['href']
+        news_item = page_data['shortFormSliderContent'][0]['items'][0]
+        item_url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
         # play the item
         result = main.play_title(MagicMock(), item_url, 'news item')
         self.assertIsInstance(result.params, MutableMapping)

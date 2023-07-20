@@ -465,7 +465,7 @@ class Playlists(unittest.TestCase):
     def test_playlist_news_collection_items(self):
         """Short news items form the collection 'news' are all just mp4 files."""
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
-        for item in page_data['newsShortformSliderContent']['items']:
+        for item in page_data['shortFormSliderContent'][0]['items']:
             is_short = True
             if 'encodedProgrammeId' in item.keys():
                 # The new item is a 'normal' catchup title
@@ -477,7 +477,7 @@ class Playlists(unittest.TestCase):
                 is_short = False
             else:
                 # This news item is a 'short' item
-                url = 'https://www.itv.com/watch/news/' + item['href']
+                url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
             if is_short:

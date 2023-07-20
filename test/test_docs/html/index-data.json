@@ -115,7 +115,8 @@
       "ctaLabel": "Watch Now",
       "contentInfo": []
     },
-    {"imagePresets": {},
+    {
+      "imagePresets": {},
       "contentType": "film",
       "title": "Coyote Ugly",
       "tagName": null,
@@ -123,14 +124,29 @@
       "isPaid": false,
       "ccid": "nch31g7",
       "programmeId": "17523",
-      "encodedProgrammeId": {"letterA": "17523", "underscore": "17523"},
+      "encodedProgrammeId": {
+        "letterA": "17523",
+        "underscore": "17523"
+      },
       "description": "It’s time to get up & boogie on the bar in this irresistible comedy-drama",
       "productionYear": 2000,
       "dateTime": "2023-06-25T17:55:00Z",
       "duration": "2h",
       "ctaLabel": "Watch Film",
-      "genre": ["Films", "Comedy", "Romantic"],
-      "contentInfo": [["Films", "Comedy", "Romantic"], "2h", 2000]
+      "genre": [
+        "Films",
+        "Comedy",
+        "Romantic"
+      ],
+      "contentInfo": [
+        [
+          "Films",
+          "Comedy",
+          "Romantic"
+        ],
+        "2h",
+        2000
+      ]
     }
   ],
   "editorialSliders": {
@@ -11472,183 +11488,182 @@
       }
     }
   },
-  "newsShortformSliderContent": {
-    "header": {
-      "title": "",
-      "logo": {
-        "iconSrc": "<svg viewBox=\"0 0 300 56\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7.25 14.388C2.768 14.388 0 11.205 0 7.194 0 3.184 2.767 0 7.25 0c4.484 0 7.255 3.183 7.255 7.194 0 4.01-2.767 7.194-7.254 7.194Zm29.7 34.807-.014.014c-4.451-3.878-6.528-9.35-6.528-15.208v1.397c0 4.523-.722 6.976-2.322 8.694-1.404 1.508-3.613 2.328-6.044 2.328-2.37 0-4.473-.791-5.725-2.113-1.31-1.382-1.918-3.298-1.918-6.13V20.444c0-.76-.29-1.117-1.147-1.117H1.221c-.846 0-1.125.332-1.125 1.124v16.014c0 6.392 1.649 10.055 4.525 12.92 3.74 3.739 10.139 5.411 16.204 5.411 6.057 0 12.372-2.143 16.11-5.587h.002l.014-.014Zm67.596-29.654c1.048.319 3.139.956 3.914 1.204.803.243 1.153.666 1.153 1.17 0 .499-.292 1.29-.691 2.367l-.016.044c-3.256 8.827-7.757 18.402-13.065 26.499-2.017 3.086-4.26 3.982-7.994 3.982-3.942 0-5.704-1.046-7.636-3.91-1.029-1.506-2.088-3.147-3.387-5.16-.363-.563-.745-1.155-1.15-1.78l-.003-.005c-4.17 6.818-11.31 10.83-21.024 10.83-7.36 0-14.023-2.256-17.693-5.597-4.451-3.879-6.529-9.358-6.529-15.216V8.186c0-1.328.347-2.249 1.097-2.933 1.108-1.006 3.38-1.497 6.062-1.497 2.682 0 4.961.491 6.062 1.497.743.684 1.097 1.597 1.097 2.933v11.148h11.323c.857 0 1.158.343 1.158 1.117v6.804c0 .759-.301 1.117-1.157 1.117h-6.37a12.604 12.604 0 0 1-4.954-.863v7.072c0 4.215.888 6.74 2.714 8.616 1.918 1.977 4.858 3.051 8.67 3.051 8.032 0 12.19-5.042 12.19-10.61 0-2.214-.646-4.017-1.935-6.227l-.032-.05c-1.154-1.967-1.465-2.801-1.465-3.911 0-3.277 5.8-6.786 9.713-6.786 1.395 0 2.29.34 3.238 1.457.391.48.746.989 1.062 1.522.96 1.563 2.556 4.366 4.374 7.556v.001c.89 1.561 1.831 3.215 2.777 4.862 1.865 3.245 3.868 6.847 4.955 8.917 3.312-5.68 7.024-14.8 9.462-22.918.244-.813.626-1.207 1.334-1.207.375 0 1.009.157 2.746.687ZM285.178 8.138c4.34 0 8.68.668 12.151 1.67l-.801 7.878c-3.271-.802-7.21-1.536-10.816-1.536-5.675 0-8.145 1.803-8.145 5.074 0 2.871 1.803 4.073 6.61 5.408l3.538 1.002c5.675 1.602 8.012 3.07 9.681 5.207 1.669 2.137 2.604 4.74 2.604 8.546 0 10.349-7.01 14.087-17.759 14.087-5.275 0-10.683-.934-13.887-1.936-1.069-.334-1.469-.734-1.469-1.87 0-1.134.334-3.004.734-4.406.401-1.402.868-1.736 1.469-1.736.267 0 .601.067 1.269.267 3.071.868 6.876 1.67 11.082 1.67 6.21 0 8.747-1.736 8.747-5.475 0-3.338-2.07-4.607-6.744-6.009l-4.473-1.335c-3.872-1.135-6.476-2.404-8.279-4.34-1.802-1.936-3.071-4.74-3.071-8.746 0-8.079 5.608-13.42 17.559-13.42ZM144.84 52.27l-16.891-30.178v31.046c0 1.335-.868 2.003-4.607 2.003-3.872 0-4.473-.668-4.473-2.07V8.806h11.283l19.095 34.183V8.806h9.08V52.27c0 2.203-2.604 2.737-6.209 2.737-4.474 0-6.276-.935-7.278-2.737Zm19.679-41.328c0-1.602.601-2.136 2.337-2.136h28.976v7.878h-21.565v10.75h18.427v7.81h-18.427v11.684h21.965v7.879h-29.376c-1.736 0-2.337-.534-2.337-2.137V10.942Zm75.184 41.127c.4 2.003 2.47 2.738 7.945 2.738 5.474 0 7.344-.534 7.945-2.738 3.204-12.284 6.743-27.974 9.48-43.263h-10.281c-2.137 14.488-4.14 25.304-6.81 37.455h-.868l-7.278-35.652c-.267-1.336-.934-1.803-2.27-1.803H226.55c-1.335 0-2.003.467-2.27 1.803l-6.877 35.652h-.868c-2.67-12.151-4.673-22.967-6.876-37.455h-10.416c2.805 15.289 6.143 30.912 9.481 43.263.601 2.204 2.47 2.738 7.945 2.738s7.544-.735 7.945-2.738l7.077-34.383h.668l7.344 34.383Z\" fill=\"currentColor\"/></svg>",
-        "name": "logoItvNewsMono"
-      }
-    },
-    "items": [
-      {
-        "imagePresets": {},
-        "episodeTitle": "The latest ITV News headlines - as Zahawi faces ethics probe over tax dispute",
-        "episodeId": "6js5d0f",
-        "titleSlug": "the-latest-itv-news-headlines-as-zahawi-faces-ethics-probe-over-tax-dispute",
-        "href": "the-latest-itv-news-headlines-as-zahawi-faces-ethics-probe-over-tax-dispute/6js5d0f",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3Y7BWqIj0NLVTdF1879KED/57b99c9d17219474fa689471bf0cde4b/ITVX_CHARLENE_BULLETIN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch a short summary of today's top stories from the ITV News team.",
-        "dateTime": "2023-01-23T14:00:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/3Y7BWqIj0NLVTdF1879KED/57b99c9d17219474fa689471bf0cde4b/ITVX_CHARLENE_BULLETIN.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Robber convicted of \u00a3700k raid on cyclist Mark Cavendish and wife at home in Essex",
-        "episodeId": "bg7k5hc",
-        "titleSlug": "robber-convicted-of-pound700k-raid-on-cyclist-mark-cavendish-and-wife-at-home-in-essex",
-        "href": "robber-convicted-of-pound700k-raid-on-cyclist-mark-cavendish-and-wife-at-home-in-essex/bg7k5hc",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/68uL1JTjgAl2Yz3rBxsha9/7c1e31447778a404768bea5d42b620db/cavendish_breaking.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Romario Henry has been found guilty of robbing Mark Cavendish and his wife Peta during a raid at their home in November 2021.",
-        "dateTime": "2023-01-23T15:03:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/68uL1JTjgAl2Yz3rBxsha9/7c1e31447778a404768bea5d42b620db/cavendish_breaking.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "PM asks ethics adviser to look into Nadhim Zahawi case",
-        "episodeId": "66kglnl",
-        "titleSlug": "pm-asks-ethics-adviser-to-look-into-nadhim-zahawi-case",
-        "href": "pm-asks-ethics-adviser-to-look-into-nadhim-zahawi-case/66kglnl",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/0AGjn4Aa0vQF3NSZrIMT1/6ed130935dd99308d35a2f3c4881f050/ZAHAWI_INVESTIGATION_THUMB.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Rishi Sunak has asked the independent adviser on ministers' interests to look into Tory chairman Nadhim Zahawi's taxes. Mr Zahawi says he \"acted properly\".",
-        "dateTime": "2023-01-23T13:41:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/0AGjn4Aa0vQF3NSZrIMT1/6ed130935dd99308d35a2f3c4881f050/ZAHAWI_INVESTIGATION_THUMB.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Homes to get discounts for cutting electricity use as temperatures fall",
-        "episodeId": "nyr4v90",
-        "titleSlug": "homes-to-get-discounts-for-cutting-electricity-use-as-temperatures-fall",
-        "href": "homes-to-get-discounts-for-cutting-electricity-use-as-temperatures-fall/nyr4v90",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/YAvRrd9HBlQODbsHw36hS/e6eb8dc800653b4b6c70baf57e33bc09/pylonITVX_STORY_THUMBNAIL.00_00_08_03.Still006.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The National Grid will give discounts to some households if they switch off between 5pm and 6pm this evening, and potentially tomorrow too.",
-        "dateTime": "2023-01-23T15:24:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/YAvRrd9HBlQODbsHw36hS/e6eb8dc800653b4b6c70baf57e33bc09/pylonITVX_STORY_THUMBNAIL.00_00_08_03.Still006.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Thousands of ambulance workers on strike again across England and Wales",
-        "episodeId": "7hgl46l",
-        "titleSlug": "thousands-of-ambulance-workers-on-strike-again-across-england-and-wales",
-        "href": "thousands-of-ambulance-workers-on-strike-again-across-england-and-wales/7hgl46l",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4ZXLKxokRWKO1O42AF2CXi/21eabf01096f7e62d0412bf22eb4e68a/AMBULANCE_STRIKES_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "999 calls that aren't life-threatening may not be responded to today, as ambulance staff strike for the third time this winter.",
-        "dateTime": "2023-01-23T14:21:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/4ZXLKxokRWKO1O42AF2CXi/21eabf01096f7e62d0412bf22eb4e68a/AMBULANCE_STRIKES_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "The Rundown: ITV News' daily update for teenagers",
-        "episodeId": "d0sgy38",
-        "titleSlug": "the-rundown-itv-news-daily-update-for-teenagers",
-        "href": "the-rundown-itv-news-daily-update-for-teenagers/d0sgy38",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6ROsSytG5aYCR29XXr9sMz/085058f22e7ddd4e073329811fe727d3/THE_RUNDOWN_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch a new edition of The Rundown every afternoon.",
-        "dateTime": "2023-01-23T15:23:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/6ROsSytG5aYCR29XXr9sMz/085058f22e7ddd4e073329811fe727d3/THE_RUNDOWN_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Ofgem announces review following spike in households forced onto prepayment meters",
-        "episodeId": "z97x0j2",
-        "titleSlug": "ofgem-announces-review-following-spike-in-households-forced-onto-prepayment-meters",
-        "href": "ofgem-announces-review-following-spike-in-households-forced-onto-prepayment-meters/z97x0j2",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/Ia4GkiogPfJA6qNjVahV9/b89d7a78899d91fe3ca4aef2fd84ba33/PREPAYMENT_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Hundreds of thousands of energy customers struggling with their bills have been moved to more costly prepayment meters - often without their knowledge.",
-        "dateTime": "2023-01-23T13:53:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/Ia4GkiogPfJA6qNjVahV9/b89d7a78899d91fe3ca4aef2fd84ba33/PREPAYMENT_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "BBC chairman asks panel to review how he was hired following Johnson loan claims",
-        "episodeId": "9wdccp2",
-        "titleSlug": "bbc-chairman-asks-panel-to-review-how-he-was-hired-following-johnson-loan-claims",
-        "href": "bbc-chairman-asks-panel-to-review-how-he-was-hired-following-johnson-loan-claims/9wdccp2",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2KkRiXwXei6PMdeHylstyt/688f64d27f58366ccab99c607b250acb/BBC_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "BBC chairman Richard Sharp has asked for a scrutiny panel to examine potential conflicts of interest over his role in helping Boris Johnson secure a loan.",
-        "dateTime": "2023-01-23T13:32:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/2KkRiXwXei6PMdeHylstyt/688f64d27f58366ccab99c607b250acb/BBC_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Rishi Sunak tells ITV News he is \"doing what's right\" as walkouts continue ",
-        "episodeId": "z3szftf",
-        "titleSlug": "rishi-sunak-tells-itv-news-he-is-doing-whats-right-as-walkouts-continue",
-        "href": "rishi-sunak-tells-itv-news-he-is-doing-whats-right-as-walkouts-continue/z3szftf",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3eIxVW1CKD1ko2AQCe6iLF/35e5f9aa51e4515ba97ea2f50d567416/SUNAK_STRIKES.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The prime minister said the biggest challenge the country faces is inflation and that's what his government is focusing on. ",
-        "dateTime": "2023-01-23T13:30:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/3eIxVW1CKD1ko2AQCe6iLF/35e5f9aa51e4515ba97ea2f50d567416/SUNAK_STRIKES.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Thousands of passengers stuck at Heathrow as flights cancelled due to freezing fog",
-        "episodeId": "m08jlmw",
-        "titleSlug": "thousands-of-passengers-stuck-at-heathrow-as-flights-cancelled-due-to-freezing-fog",
-        "href": "thousands-of-passengers-stuck-at-heathrow-as-flights-cancelled-due-to-freezing-fog/m08jlmw",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/41Z0PuwWJCo4DYyqgTfJxw/0380dc195df5d423c414da2fa9e49fef/HEATHROW_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Plunging temperatures have caused major disruption at the UK's busiest airport, with British Airways axeing around 80 flights this morning.",
-        "dateTime": "2023-01-23T14:23:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/41Z0PuwWJCo4DYyqgTfJxw/0380dc195df5d423c414da2fa9e49fef/HEATHROW_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Hollywood star Ryan Reynolds comes to rescue of children's football team",
-        "episodeId": "vq38v57",
-        "titleSlug": "hollywood-star-ryan-reynolds-comes-to-rescue-of-childrens-football-team",
-        "href": "hollywood-star-ryan-reynolds-comes-to-rescue-of-childrens-football-team/vq38v57",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2PNZp2Mny4ynfXS5Dux3PT/11d091eba6f145fd20c25042c4fdc19a/ITVX_REYNOLDS_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The Deadpool star made a \u00a31,600 donation towards new kits for the Under 12s team at Wrexham FC, where Reynolds is co-chairman with fellow actor Rob McElhenney.",
-        "dateTime": "2023-01-23T14:27:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/2PNZp2Mny4ynfXS5Dux3PT/11d091eba6f145fd20c25042c4fdc19a/ITVX_REYNOLDS_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Cold and clear: The latest ITV Weather forecast",
-        "episodeId": "t6r5brk",
-        "titleSlug": "cold-and-clear-the-latest-itv-weather-forecast",
-        "href": "cold-and-clear-the-latest-itv-weather-forecast/t6r5brk",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1TLEbE7wYHHf240ABNVkEb/1c75d340c5a76194b81dd2467f402a81/ITVX_PROGRAM_THUMBNAIL_WEATHER.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch the latest UK forecast from the ITV Weather team.",
-        "dateTime": "2023-01-22T14:29:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/1TLEbE7wYHHf240ABNVkEb/1c75d340c5a76194b81dd2467f402a81/ITVX_PROGRAM_THUMBNAIL_WEATHER.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Watch Monday's ITV Lunchtime News",
-        "episodeId": "y0g65dr",
-        "titleSlug": "watch-mondays-itv-lunchtime-news",
-        "href": "watch-mondays-itv-lunchtime-news/y0g65dr",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/zGGo34j6UwCeUkVajpXX7/713cc59372d091efc21046ecdf3eb405/ITVX_CHARLENE_PROG_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Catch up with the most recent edition of ITV News.",
-        "dateTime": "2023-01-23T14:50:00Z",
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/zGGo34j6UwCeUkVajpXX7/713cc59372d091efc21046ecdf3eb405/ITVX_CHARLENE_PROG_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "imagePresets": {},
-        "episodeTitle": "Watch Thursday's ITV Evening News",
-        "encodedEpisodeId": {
-          "letterA": "2a4545a1846",
-          "underscore": "2_4545_1846"
+  "shortFormSliderContent": [
+    {
+      "header": {
+        "title": "",
+        "logo": {
+          "iconSrc": "<svg viewBox=\"0 0 300 56\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7.25 14.388C2.768 14.388 0 11.205 0 7.194 0 3.184 2.767 0 7.25 0c4.484 0 7.255 3.183 7.255 7.194 0 4.01-2.767 7.194-7.254 7.194Zm29.7 34.807-.014.014c-4.451-3.878-6.528-9.35-6.528-15.208v1.397c0 4.523-.722 6.976-2.322 8.694-1.404 1.508-3.613 2.328-6.044 2.328-2.37 0-4.473-.791-5.725-2.113-1.31-1.382-1.918-3.298-1.918-6.13V20.444c0-.76-.29-1.117-1.147-1.117H1.221c-.846 0-1.125.332-1.125 1.124v16.014c0 6.392 1.649 10.055 4.525 12.92 3.74 3.739 10.139 5.411 16.204 5.411 6.057 0 12.372-2.143 16.11-5.587h.002l.014-.014Zm67.596-29.654c1.048.319 3.139.956 3.914 1.204.803.243 1.153.666 1.153 1.17 0 .499-.292 1.29-.691 2.367l-.016.044c-3.256 8.827-7.757 18.402-13.065 26.499-2.017 3.086-4.26 3.982-7.994 3.982-3.942 0-5.704-1.046-7.636-3.91-1.029-1.506-2.088-3.147-3.387-5.16-.363-.563-.745-1.155-1.15-1.78l-.003-.005c-4.17 6.818-11.31 10.83-21.024 10.83-7.36 0-14.023-2.256-17.693-5.597-4.451-3.879-6.529-9.358-6.529-15.216V8.186c0-1.328.347-2.249 1.097-2.933 1.108-1.006 3.38-1.497 6.062-1.497 2.682 0 4.961.491 6.062 1.497.743.684 1.097 1.597 1.097 2.933v11.148h11.323c.857 0 1.158.343 1.158 1.117v6.804c0 .759-.301 1.117-1.157 1.117h-6.37a12.604 12.604 0 0 1-4.954-.863v7.072c0 4.215.888 6.74 2.714 8.616 1.918 1.977 4.858 3.051 8.67 3.051 8.032 0 12.19-5.042 12.19-10.61 0-2.214-.646-4.017-1.935-6.227l-.032-.05c-1.154-1.967-1.465-2.801-1.465-3.911 0-3.277 5.8-6.786 9.713-6.786 1.395 0 2.29.34 3.238 1.457.391.48.746.989 1.062 1.522.96 1.563 2.556 4.366 4.374 7.556v.001c.89 1.561 1.831 3.215 2.777 4.862 1.865 3.245 3.868 6.847 4.955 8.917 3.312-5.68 7.024-14.8 9.462-22.918.244-.813.626-1.207 1.334-1.207.375 0 1.009.157 2.746.687ZM285.178 8.138c4.34 0 8.68.668 12.151 1.67l-.801 7.878c-3.271-.802-7.21-1.536-10.816-1.536-5.675 0-8.145 1.803-8.145 5.074 0 2.871 1.803 4.073 6.61 5.408l3.538 1.002c5.675 1.602 8.012 3.07 9.681 5.207 1.669 2.137 2.604 4.74 2.604 8.546 0 10.349-7.01 14.087-17.759 14.087-5.275 0-10.683-.934-13.887-1.936-1.069-.334-1.469-.734-1.469-1.87 0-1.134.334-3.004.734-4.406.401-1.402.868-1.736 1.469-1.736.267 0 .601.067 1.269.267 3.071.868 6.876 1.67 11.082 1.67 6.21 0 8.747-1.736 8.747-5.475 0-3.338-2.07-4.607-6.744-6.009l-4.473-1.335c-3.872-1.135-6.476-2.404-8.279-4.34-1.802-1.936-3.071-4.74-3.071-8.746 0-8.079 5.608-13.42 17.559-13.42ZM144.84 52.27l-16.891-30.178v31.046c0 1.335-.868 2.003-4.607 2.003-3.872 0-4.473-.668-4.473-2.07V8.806h11.283l19.095 34.183V8.806h9.08V52.27c0 2.203-2.604 2.737-6.209 2.737-4.474 0-6.276-.935-7.278-2.737Zm19.679-41.328c0-1.602.601-2.136 2.337-2.136h28.976v7.878h-21.565v10.75h18.427v7.81h-18.427v11.684h21.965v7.879h-29.376c-1.736 0-2.337-.534-2.337-2.137V10.942Zm75.184 41.127c.4 2.003 2.47 2.738 7.945 2.738 5.474 0 7.344-.534 7.945-2.738 3.204-12.284 6.743-27.974 9.48-43.263h-10.281c-2.137 14.488-4.14 25.304-6.81 37.455h-.868l-7.278-35.652c-.267-1.336-.934-1.803-2.27-1.803H226.55c-1.335 0-2.003.467-2.27 1.803l-6.877 35.652h-.868c-2.67-12.151-4.673-22.967-6.876-37.455h-10.416c2.805 15.289 6.143 30.912 9.481 43.263.601 2.204 2.47 2.738 7.945 2.738s7.544-.735 7.945-2.738l7.077-34.383h.668l7.344 34.383Z\" fill=\"currentColor\"/></svg>",
+          "name": "logoItvNewsMono"
         },
-        "encodedProgrammeId": {
-          "letterA": "2a4545",
-          "underscore": "2_4545"
+        "iconTitle": "ITV News",
+        "linkHref": "/watch/categories/news",
+        "linkText": "View All"
+      },
+      "items": [
+        {
+          "imagePresets": {},
+          "episodeTitle": "The latest ITV News headlines - as thousands of NHS consultants go on strike ",
+          "episodeId": "6js5d0f",
+          "titleSlug": "the-latest-itv-news-headlines-as-thousands-of-nhs-consultants-go-on-strike",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6Hbjrkr1wDEO4dHjdO4wpK/1a1e8ed0d6a61fa165da0a36599b934e/LU_DTRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Watch a short summary of today's top stories from the ITV News team.",
+          "dateTime": "2023-07-20T15:52:00Z",
+          "duration": 117,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/1oitOHUXMIYCdttQBYtqRo/4803e3ff8e4ec42db5a82e88b2760eaa/lu_poster.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
         },
-        "titleSlug": "watch-thursdays-itv-evening-news",
-        "programmeTitle": "ITV Evening News",
-        "episodeId": "2/4545/1846",
-        "programmeId": "2/4545",
-        "href": "watch-thursdays-itv-evening-news/2/4545/2/4545/1846",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/66dXNkJouk34NWDufivLCv/05f5673cbe921e17dbdaa143b82de6d5/Mary_Programme_Thumbnail.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "dateTime": "2023-02-02T20:34:00Z"
-      }
-    ],
-    "key": "newsShortform",
-    "isRail": true,
-    "dataTestId": "news-rail",
-    "tileType": "news"
-  },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Thousands of senior doctors in England begin a 48-hour walkout ",
+          "episodeId": "5npt32k",
+          "titleSlug": "thousands-of-senior-doctors-in-england-begin-a-48-hour-walkout",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4WR4JHWnIn2T7SndwQ3bVt/b413fdbe46eb6f1bdd23ecb0e0db24f7/CONSULTANTS_NEW_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Consultant doctors and hospital-based dentists have begun a two-day strike in England. NHS bosses have warned planned care will come to a \"virtual standstill\".",
+          "dateTime": "2023-07-20T12:54:00Z",
+          "duration": 326,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/1kz8ctBvi4PPFBN7JdZ2sI/2f2ccf90e6d2786e756c97b5f2284338/CONSULTANTS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Some supermarkets not displaying prices as clearly as they should, watchdog says",
+          "episodeId": "k2qdqwj",
+          "titleSlug": "some-supermarkets-not-displaying-prices-as-clearly-as-they-should-watchdog-says",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4qX9bX2b2Vr1GN1SgjDsZP/5091d85d16be422932fa31e5f05bc777/CAROLINE_THUMBS.00_00_02_15.Still008.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "The Competition and Markets Authority has said this could be preventing shoppers from comparing prices effectively.",
+          "dateTime": "2023-07-20T12:55:00Z",
+          "duration": 130,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/dPmcuhKlnAg5wEcStz2xO/37a9b4161487a00cc9a0fcaaaeb0b6c6/NOSTRAP_GROCERY.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Temperatures in America's Death Valley continue to soar after one tourist dies",
+          "episodeId": "v9mbwpr",
+          "titleSlug": "temperatures-in-americas-death-valley-continue-to-soar-after-one-tourist-dies",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/wOfCBfpMQyJeHhSeofl0L/f99e2e58406647ef5d10138ece06df22/death_valley.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Temperatures in Death Valley, in California have soared higher than 50C in recent days as the world struggles with record-breaking heat.",
+          "dateTime": "2023-07-20T12:56:00Z",
+          "duration": 81,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/2TvcPeNBG9snXVQWA43wdU/71fc78a5d2305fb9f30ba84190468e73/dan_pic.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Women's World Cup kicks off in New Zealand and Australia",
+          "episodeId": "7tnp1pb",
+          "titleSlug": "womens-world-cup-kicks-off-in-new-zealand-and-australia",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/588YHdTe0ql4PkNY5XU2ya/b31132e18c96e1d26096eefa21fe5a71/ITVX_THUMB_WC_LTN_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "The opening ceremony took place in Auckland ahead of the first games. England's Lionesses will kick off their campaign on Saturday against Haiti.",
+          "dateTime": "2023-07-20T09:30:00Z",
+          "duration": 61,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/1tJxbIJcd3LU4t9yWH5mLX/72d32f7ebebdb36c9069dbc4ab7b3f90/2.73056762.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "The journey of women's football: From outright ban to record Women's World Cup",
+          "episodeId": "lg1k27m",
+          "titleSlug": "the-journey-of-womens-football-from-outright-ban-to-record-womens-world-cup",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/35YLqJ6E4TZrEG7Nh7CY2B/6c9bf51414b5682f941188e43e216188/football_3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "After their memorable win at the Euros last year, England's Lionesses have become household names - but the journey to get there hasn't been an easy one.",
+          "dateTime": "2023-07-20T11:50:00Z",
+          "duration": 177,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/zs7JSO4mLMgrWIyKrdrhD/d62caad880b7fef78bab3f6646966c13/FOOTBALL_NEW.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "How difficult is it to travel on holiday sustainably? ",
+          "episodeId": "hjjmvm8",
+          "titleSlug": "how-difficult-is-it-to-travel-on-holiday-sustainably",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1EHzrqvA2WDv76Pe716MQT/b7c70fe0ff9a4d85e7543958818cff6e/TRAINVPLANE_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Greenpeace are calling on the government to ban short-haul flights as southern Europe feels the scorching impact of climate change. ",
+          "dateTime": "2023-07-20T15:37:00Z",
+          "duration": 111,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/6iiATUhJoNGmxgIWT76In5/12c19107ce47d7c0415e166c7891cec8/TRAIN_NO_S.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "20,000 RMT members walk out in latest rail strike at start of school holidays",
+          "episodeId": "79v86rg",
+          "titleSlug": "20000-rmt-members-walk-out-in-latest-rail-strike-at-start-of-school-holidays",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7gFqx4wggeCj1vWbA486aQ/01238fd6cf2161fbaa001b57e9d057b6/ITVX_THUMB_LTN_RAIL_STRIKES_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Rail workers in the RMT union are walking out for 24-hours over pay and conditions, ahead of further strike action on the 22nd and 29th of July.",
+          "dateTime": "2023-07-20T12:56:00Z",
+          "duration": 167,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/G06dBSViYGuxrR6QgJG8a/b10c164772d059dcca30f1dd8aece01d/2.72455090.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Two people killed after gunman opened fire in Auckland, police confirm",
+          "episodeId": "vwjs2c3",
+          "titleSlug": "two-people-killed-after-gunman-opened-fire-in-auckland-police-confirm",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/gdwbL8u4U45AsnDjr5VcW/a6d25aa87f456e353ce00ed6499d8138/ITVX_THUMB_NZ_SHOOTING_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "The New Zealand Prime Minister has confirmed that two people are dead after a gunman stormed a construction site. The shooter is also dead.",
+          "dateTime": "2023-07-20T13:53:00Z",
+          "duration": 195,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/UYO2XqsHMI0N4q69Ry1KT/7f853b634c79f36b2f4c9cb15fe686a2/2.73055017.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Funding of monarchy recalculated after Crown Estate\u2019s boost from wind farm deals",
+          "episodeId": "q53r0fz",
+          "titleSlug": "funding-of-monarchy-recalculated-after-crown-estates-boost-from-wind-farm-deals",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4KWyFZDOWC9u5Eg6nzyMZg/050ce1ec6f6ace91669cc4eeb987258f/SOVEREIGN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "The Sovereign Grant - used to fund the monarchy's official duties - will be 12% of the Crown Estate's net profits next year, down from 25%.",
+          "dateTime": "2023-07-20T13:00:00Z",
+          "duration": 102,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/4JmCjfmVrOCx1hggL9PPu8/67510730cac838719fc46f3c580ce4d3/SOVEREIGN_NO_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "The Rundown: ITV News' daily update for teenagers",
+          "episodeId": "d0sgy38",
+          "titleSlug": "the-rundown-itv-news-daily-update-for-teenagers",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5FjKNHjnLplbYtN2dNb26P/ec6fa78add2b584a311f123f1e020217/rundown.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Watch a new edition of The Rundown every afternoon.",
+          "dateTime": "2023-07-20T15:36:00Z",
+          "duration": 105,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/5FjKNHjnLplbYtN2dNb26P/ec6fa78add2b584a311f123f1e020217/rundown.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Sunny spells and scattered showers: The latest ITV Weather",
+          "episodeId": "t6r5brk",
+          "titleSlug": "sunny-spells-and-scattered-showers-the-latest-itv-weather",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7fl401gxYnSc7iHF2D7A0N/b57743a6d09e1edb981f48bc674bce46/WEATHERF.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Watch the latest UK forecast from the ITV Weather team.",
+          "dateTime": "2023-07-20T12:13:00Z",
+          "duration": 63,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/7MaWXmgQPE2UgKGXzaTUt3/552f790cd7901cad21c7dcfa39846599/LUCY.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Watch Thursday's ITV Lunchtime News",
+          "episodeId": "lmq6wpt",
+          "titleSlug": "watch-thursdays-itv-lunchtime-news",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4iLgz55VkJECf8TK0Ea8H7/457213027c633b8c54d5ea068ac3f8e6/GERAINT_NEWS.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Catch up with the latest edition of ITV News.",
+          "dateTime": "2023-07-20T14:33:00Z",
+          "duration": 1336,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/4iLgz55VkJECf8TK0Ea8H7/457213027c633b8c54d5ea068ac3f8e6/GERAINT_NEWS.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "href": "/watch/news/undefined"
+        }
+      ],
+      "key": "newsShortForm",
+      "isRail": true,
+      "dataTestId": "news-rail",
+      "tileType": "news"
+    }
+  ],
   "trendingSliderContent": {
     "header": {
       "title": "Trending"
