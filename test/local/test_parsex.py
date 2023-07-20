@@ -106,16 +106,18 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, item['show'])
 
     def test_parse_news_collection_item(self):
-        data = open_json('html/index-data.json')['newsShortformSliderContent']['items']
+        data = open_json('html/index-data.json')['shortFormSliderContent'][0]['items']
         tz_uk = pytz.timezone('Europe/London')
         # a short new item
         item = parsex.parse_news_collection_item(data[1], tz_uk, "%H-%M-%S")
         has_keys(item, 'playable', 'show')
         is_li_compatible_dict(self, item['show'])
+        # NOTE: As of 20-7-23 all news collection item appear to have the same structure
+        #       Just need to test a bit longer to be sure.
         # a new item like a normal catchup episode
-        item = parsex.parse_news_collection_item(data[-1], tz_uk, "%H-%M-%S")
-        has_keys(item, 'playable', 'show')
-        is_li_compatible_dict(self, item['show'])
+        # item = parsex.parse_news_collection_item(data[-1], tz_uk, "%H-%M-%S")
+        # has_keys(item, 'playable', 'show')
+        # is_li_compatible_dict(self, item['show'])
 
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
