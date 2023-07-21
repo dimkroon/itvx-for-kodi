@@ -250,22 +250,27 @@ def check_news_collection_stream_info(playlist):
     assert is_url(video_inf['Base'] + strm_inf[0]['Href'], '.mp4')
 
 
-def check_news_category_clip_item(item):
-    """Check the content of a news clip from category 'News'
+def check_news_clip_item(item):
+    """Check the content of a news clip from collection or category 'News'
 
-    Hero items have an extra field `posterImage`, but it's not used in the addon.
+    Items from collection or from Hero of category have an extra field `posterImage`, but it's not used in the addon.
     """
     has_keys(
         item,
-        'episodeTitle', 'episodeId', 'titleSlug', 'href', 'imageUrl', 'dateTime',
+        'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime',
         obj_name=item['episodeTitle'])
-    expect_keys(item, 'duration', 'synopsis', obj_name=item['episodeTitle'])
+    # Some items, in particular hero items referring to a whole programme, like ITV Evening News, have a slightly
+    # different structure. Recognisable by the presence of e.g. encodedProgrammeId, but similar enough to be
+    # parsable as clip, but the fields below are missing.
+    expect_keys(item, 'synopsis', 'duration', obj_name=item['episodeTitle'])
     # imagePresets is currently an empty dict.
     assert isinstance(item['imagePresets'], dict) and not item['imagePresets']
     assert isinstance(item['episodeTitle'], str) and item['episodeTitle']
     assert isinstance(item['episodeId'], str) and item['episodeId']
+    if 'encodedProgrammeId' not in item.keys():
+        # episodeId on real clips does not require letterA encoding
+        assert '/' not in item['episodeId']
     assert isinstance(item['titleSlug'], str) and item['titleSlug']
-    assert isinstance(item['href'], str) and item['href'] and not is_url(item['href'])
     assert is_url(item['imageUrl'], '.jpg') or is_url(item['imageUrl'], '.jpeg') or is_url(item['imageUrl'], '.png') \
            or is_url(item['imageUrl'], '.bmp'), \
            "item '{}' has not a valid imageUrl".format(item['episodeTitle'])

@@ -20,7 +20,7 @@ from support.object_checks import (
     misses_keys,
     is_url,
     is_iso_utc_time,
-    check_news_category_clip_item,
+    check_news_clip_item,
     check_category_item
 )
 from support import testutils
@@ -84,7 +84,7 @@ class MainPage(unittest.TestCase):
         # testutils.save_doc(page, 'html/index.html')
         page_props = parsex.scrape_json(page)
         # testutils.save_json(page_props, 'html/index-data.json')
-        has_keys(page_props, 'heroContent', 'editorialSliders', 'newsShortformSliderContent', 'trendingSliderContent')
+        has_keys(page_props, 'heroContent', 'editorialSliders', 'shortFormSliderContent', 'trendingSliderContent')
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
@@ -134,13 +134,11 @@ class MainPage(unittest.TestCase):
             # is no way to check the item's type
             # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
 
-        self.assertIsInstance(page_props['newsShortformSliderContent'], dict)
-        for item in page_props['newsShortformSliderContent']['items']:
-            # Field 'synopsys' may be absent occasionally.
-            has_keys(item, 'episodeTitle', 'imageUrl', 'href', 'dateTime',
-                     'titleSlug', obj_name='news-slider')
-            self.assertFalse(is_url(item['href']))
-            self.assertFalse(item['href'].startswith('/'))
+        self.assertIsInstance(page_props['shortFormSliderContent'], list)
+        # Currently the list contains only the news rail.
+        self.assertEqual(1, len(page_props['shortFormSliderContent']))
+        for item in page_props['shortFormSliderContent'][0]['items']:
+            check_news_clip_item(item)
 
     def test_get_itvx_logo(self):
         resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'
@@ -342,10 +340,10 @@ class Categories(unittest.TestCase):
         news_data = data['newsData']
         # Check the hero rail
         for item in news_data['heroAndLatestData']:
-            check_news_category_clip_item(item)
+            check_news_clip_item(item)
         for item in news_data['longformData']:
             check_category_item(item)
         for  rail in news_data['curatedRails']:
             self.assertTrue(isinstance(rail['title'], str) and rail['title'])
             for item in rail['clips']:
-                check_news_category_clip_item(item)
+                check_news_clip_item(item)

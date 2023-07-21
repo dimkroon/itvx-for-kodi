@@ -77,7 +77,7 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_get_collection_news(self, _):
-        shows = list(filter(None, main.list_collection_content.test(slider='newsShortformSliderContent')))
+        shows = list(filter(None, main.list_collection_content.test(slider='shortFormSliderContent')))
         self.assertGreater(len(shows), 10)
         for item in shows:
             self.assertIsInstance(item, Listitem)
@@ -156,7 +156,7 @@ class Categories(TestCase):
         """News now returns a list of sub categories."""
         items = main.list_category.test('category/news')
         self.assertIsInstance(items, list)
-        self.assertEqual(6, len(items))
+        self.assertEqual(7, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_hero_items(self, _):
@@ -169,7 +169,7 @@ class Categories(TestCase):
         """These are in fact the tv shows in the category news."""
         items = main.list_news_sub_category.test('my/url', 'longformData', None)
         self.assertIsInstance(items, list)
-        self.assertEqual(8, len(items))
+        self.assertEqual(10, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_rails(self, _):
@@ -291,7 +291,6 @@ class PlayStreamLive(TestCase):
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
-
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):
         itv_account.itv_session().log_out()
