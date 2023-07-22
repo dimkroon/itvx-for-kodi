@@ -15,6 +15,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
 from codequick import Listitem
+from xbmcgui import ListItem as XbmcListItem
 
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support import object_checks
@@ -287,7 +288,7 @@ class PlayStreamLive(TestCase):
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': 'blabla'})
     def test_play_live_by_channel_name(self, _, __, p_req_strm):
         result = main.play_stream_live.test(channel='ITV', url=None)
-        self.assertIsInstance(result, Listitem)
+        self.assertIsInstance(result, XbmcListItem)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
@@ -303,7 +304,7 @@ class PlayStreamCatchup(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_play_short_news_item(self, _):
         result = main.play_stream_catchup.test('some/url', 'a short news item')
-        self.assertIsInstance(result, Listitem)
+        self.assertIsInstance(result, XbmcListItem)
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):

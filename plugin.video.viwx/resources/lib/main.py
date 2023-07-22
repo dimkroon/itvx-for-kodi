@@ -11,6 +11,7 @@ import string
 
 import pytz
 import xbmcplugin
+from xbmcgui import ListItem
 
 from codequick import Route, Resolver, Listitem, Script, run
 from codequick.support import logger_id, build_path, dispatcher
@@ -351,7 +352,7 @@ def do_search(addon, search_query):
     return items
 
 
-def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=None):
+def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_time=None):
     # noinspection PyImport,PyUnresolvedReferences
     import inputstreamhelper
     from resources.lib.itv_account import itv_session
@@ -378,22 +379,17 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
     if not is_helper.check_inputstream():
         return False
 
-    play_item = Listitem()
-    play_item.label = name
-    play_item.set_path(manifest_url, is_playable=True)
+    play_item = ListItem(offscreen=True)
+    if name:
+        play_item.setLabel(name)
+        play_item.setInfo('video', {'title': name})
 
-    play_item.listitem.setContentLookup(False)
-    play_item.listitem.setMimeType('application/dash+xml')
-
-    play_item.property['inputstream'] = is_helper.inputstream_addon
-    play_item.property['inputstream.adaptive.manifest_type'] = PROTOCOL
-    play_item.property['inputstream.adaptive.license_type'] = DRM
-    # Ensure to clear the Content-Type header to force curl to make the right request.
-    play_item.property['inputstream.adaptive.license_key'] = ''.join((
-            key_service_url, '|Content-Type=application/octet-stream|R{SSM}|'))
+    play_item.setPath(manifest_url)
+    play_item.setContentLookup(False)
+    play_item.setMimeType('application/dash+xml')
 
     cookiestr = ''.join(('Itv.Session: ', itv_session().cookie['Itv.Session'], '; hdntl=', hdntl_cookie))
-    play_item.property['inputstream.adaptive.stream_headers'] = ''.join((
+    stream_headers = ''.join((
             'User-Agent=',
             fetch.USER_AGENT,
             '&Referer=https://www.itv.com/&'
@@ -404,23 +400,36 @@ def create_dash_stream_item(name, manifest_url, key_service_url, resume_time=Non
             'Cookie=',
             cookiestr))
 
+    play_item.setProperties({
+        'IsPlayable': 'true',
+        'inputstream': is_helper.inputstream_addon,
+        'inputstream.adaptive.manifest_type': PROTOCOL,
+        'inputstream.adaptive.license_type': DRM,
+        # Ensure to clear the Content-Type header to force curl to make the right request.
+        'inputstream.adaptive.license_key': ''.join(
+                (key_service_url, '|Content-Type=application/octet-stream|R{SSM}|')),
+        'inputstream.adaptive.stream_headers': stream_headers
+    })
+
     if resume_time:
-        play_item.property['ResumeTime'] = resume_time
-        play_item.property['TotalTime'] = '1'
+        play_item.setProperties({
+            'ResumeTime': str(resume_time),
+            'TotalTime': '7200'
+        })
 
     return play_item
 
 
 def create_mp4_file_item(name, file_url):
-    # noinspection PyImport,PyUnresolvedReferences
-    from resources.lib.itv_account import itv_session
-
     logger.debug('mp4 file url: %s', file_url)
-    play_item = Listitem()
-    play_item.label = name
-    play_item.set_path(file_url, is_playable=True)
-    # play_item.listitem.setContentLookup(False)
-    play_item.listitem.setMimeType('video/mp4')
+    play_item = ListItem(offscreen=True)
+    if name:
+        play_item.setLabel(name)
+        play_item.setInfo('video', {'title': name})
+    play_item.setPath(file_url)
+    play_item.setProperty('IsPlayable', 'true')
+    play_item.setContentLookup(False)
+    play_item.setMimeType('video/mp4')
     return play_item
 
 
@@ -448,9 +457,9 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
 
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
     if list_item:
-        list_item.property['inputstream.adaptive.manifest_update_parameter'] = 'full'
+        list_item.setProperty('inputstream.adaptive.manifest_update_parameter', 'full')
         if 't=' in manifest_url:
-            list_item.property['inputstream.adaptive.play_timeshift_buffer'] = 'true'
+            list_item.setProperty('inputstream.adaptive.play_timeshift_buffer', 'true')
             # list_item.property['inputstream.adaptive.live_delay'] = '2'
             logger.debug("play live stream - timeshift_buffer enabled")
         else:
@@ -481,8 +490,9 @@ def play_stream_catchup(_, url, name):
         return create_mp4_file_item(name, manifest_url)
     else:
         list_item = create_dash_stream_item(name, manifest_url, key_service_url)
-        if list_item:
-            list_item.subtitles = itv.get_vtt_subtitles(subtitle_url)
+        subtitles = itv.get_vtt_subtitles(subtitle_url)
+        if list_item and subtitles:
+            list_item.setSubtitles(subtitles)
         return list_item
 
 
