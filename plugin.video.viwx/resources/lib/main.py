@@ -8,11 +8,12 @@
 import logging
 import typing
 import string
+import sys
 
 import pytz
 import xbmcplugin
 
-from codequick import Route, Resolver, Listitem, Script, run
+from codequick import Route, Resolver, Listitem, Script, run as cc_run
 from codequick.support import logger_id, build_path, dispatcher
 
 from resources.lib import itv, itv_account, itvx
@@ -501,3 +502,8 @@ def play_title(plugin, url, name=''):
         kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
         return False
     return play_stream_catchup(plugin, url, name)
+
+
+def run():
+    if isinstance(cc_run(), Exception):
+        xbmcplugin.endOfDirectory(int(sys.argv[1]), False)
