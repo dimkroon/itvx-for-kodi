@@ -433,8 +433,8 @@ class Playlists(unittest.TestCase):
         return resp
 
     def test_get_playlist_catchup(self):
-        resp = self.get_playlist_catchup()
-        strm_data = resp
+        strm_data = self.get_playlist_catchup()
+        # testutils.save_json(strm_data, 'playlists/doc_martin.json')
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
 
     def test_get_playlist_premium_catchup(self):

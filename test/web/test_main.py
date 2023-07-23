@@ -14,7 +14,7 @@ from typing import MutableMapping
 
 from xbmcgui import ListItem as XbmcListItem
 
-from resources.lib import main, itvx
+from resources.lib import main, itvx, itv
 from support import object_checks
 
 setUpModule = fixtures.setup_web_test
@@ -92,14 +92,24 @@ class TestGetProductions(unittest.TestCase):
 class TestPlayCatchup(unittest.TestCase):
     def test_play_itv_1(self):
         result = main.play_stream_live(MagicMock(), "itv", 'https://simulcast.itv.com/playlist/itvonline/itv', None)
-        # self.assertEqual('itv', result.getLabel())
+        self.assertEqual('itv', result.getLabel())
         self.assertIsInstance(result, XbmcListItem)
 
     def test_play_vod_a_touch_of_frost(self):
         result = main.play_stream_catchup(MagicMock(),
                                           url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y',
                                           name='A Touch of Frost')
-        # self.assertEqual('A Touch of Frost', result.getLabel())
+        self.assertEqual('A Touch of Frost', result.getLabel())
+        self.assertRaises(AttributeError, getattr, result, '_subtitles')
+        self.assertIsInstance(result, XbmcListItem)
+
+    def test_play_vod_frost_with_subtitles(self):
+        with patch.object(itv.Script, 'setting', new={'subtitles_show': 'true', 'subtitles_color': 'true'}):
+            result = main.play_stream_catchup(MagicMock(),
+                                              url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y',
+                                              name='A Touch of Frost')
+        self.assertEqual('A Touch of Frost', result.getLabel())
+        self.assertEqual(1, len(result._subtitles))
         self.assertIsInstance(result, XbmcListItem)
 
     def test_play_vod_episode_julia_bradbury(self):
@@ -108,7 +118,7 @@ class TestPlayCatchup(unittest.TestCase):
                                           name='Walks with Julia Bradbury')
         self.assertEqual('Walks with Julia Bradbury', result.getLabel())
         self.assertIsInstance(result, XbmcListItem)
-        # self.assertTrue(object_checks.is_url(result.getPath(), '.mpd'))
+        self.assertTrue(object_checks.is_url(result.getPath(), '.mpd'))
 
     def test_play_short_news_item(self):
         # get the first news item from the main page
@@ -118,7 +128,7 @@ class TestPlayCatchup(unittest.TestCase):
         # play the item
         result = main.play_title.test(item_url, 'news item')
         self.assertIsInstance(result, XbmcListItem)
-        # self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
+        self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 
 
 class TestSearch(unittest.TestCase):
