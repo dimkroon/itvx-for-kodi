@@ -11,6 +11,7 @@ import string
 import sys
 
 import pytz
+import requests
 import xbmcplugin
 from xbmcgui import ListItem
 
@@ -362,12 +363,15 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
     logger.debug('dash key service url: %s', key_service_url)
 
     try:
-        # Usually the first request to the manifest is being redirected several times, but at the first
-        # response a hdntl cookie is set that is required for all subsequent requests to media data.
-        # Since we loose that cookie using the proxy, we make a single request to obtain the cookie
-        # before handling it over to inputstream helper.
-        resp = itv_account.fetch_authenticated(fetch.web_request, manifest_url, method='GET', allow_redirects=False)
+        # Ensure to get a fresh hdntl cookie as they expire after 12 or 24.
+        # Use a plain requests.get to prevent sending an existing hdntl cookie,
+        # and other cookies are not required.
+        resp = requests.get(url=manifest_url,
+                            allow_redirects=False,
+                            headers={'user-agent': fetch.USER_AGENT},
+                            timeout=fetch.WEB_TIMEOUT)
         hdntl_cookie = resp.cookies.get('hdntl', '')
+        logger.debug("Received hdntl cookie: %s", hdntl_cookie)
     except FetchError as err:
         logger.error('Error retrieving dash manifest - url: %r' % err)
         Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
@@ -389,7 +393,6 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
     play_item.setContentLookup(False)
     play_item.setMimeType('application/dash+xml')
 
-    cookiestr = ''.join(('Itv.Session: ', itv_session().cookie['Itv.Session'], '; hdntl=', hdntl_cookie))
     stream_headers = ''.join((
             'User-Agent=',
             fetch.USER_AGENT,
@@ -398,8 +401,7 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
             'Sec-Fetch-Dest=empty&'
             'Sec-Fetch-Mode=cors&'
             'Sec-Fetch-Site=same-site&'
-            'Cookie=',
-            cookiestr))
+            'Cookie=', 'hdntl=', hdntl_cookie))
 
     play_item.setProperties({
         'IsPlayable': 'true',
@@ -417,6 +419,7 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
             'ResumeTime': str(resume_time),
             'TotalTime': '7200'
         })
+        logger.debug("Resume time '%s' set on ListItem", resume_time)
 
     return play_item
 

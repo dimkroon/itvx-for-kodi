@@ -284,7 +284,7 @@ class Search(TestCase):
 
 class PlayStreamLive(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
+    @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': 'blabla'})
     def test_play_live_by_channel_name(self, _, __, p_req_strm):
@@ -319,7 +319,7 @@ class PlayStreamCatchup(TestCase):
         self.assertIsInstance(result, XbmcListItem)
 
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
+    @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode(self, _, __):
         result = main.play_stream_catchup.test('some/url', 'my episode')
@@ -332,7 +332,7 @@ class PlayStreamCatchup(TestCase):
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
+    @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode_without_title(self, _, __):
         result = main.play_stream_catchup.test('some/url', '')

@@ -11,6 +11,7 @@ fixtures.global_setup()
 
 import unittest
 import requests
+from requests.cookies import RequestsCookieJar
 import copy
 from datetime import datetime, timedelta
 
@@ -294,12 +295,16 @@ stream_req_data = {
             'min': ['mpeg-dash', 'widevine'],
             'max': ['mpeg-dash', 'widevine', 'hd']
         },
-        'platformTag': 'ctv'
+        'platformTag': 'dotcom'
     }
 }
 
 
 class Playlists(unittest.TestCase):
+    manifest_headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+        'Origin': 'https://www.itv.com'}
+
     @staticmethod
     def create_post_data(stream_type):
         acc_data = itv_account.itv_session()
@@ -318,8 +323,10 @@ class Playlists(unittest.TestCase):
     def get_playlist_live(self, channel):
         """Get the playlist of one of the itvx live channels
 
-        For all channels other than ITV the headers User Agent and Origin are required.
-        And the cookie consent cookies must present. If any of those are missing the request will time out.
+        For all channels other than the headers User Agent and Origin are required.
+        And the cookie consent cookies must be present. If any of those are missing the request will time out.
+
+        Since accessToken is provided in the body, authentication by cookie or header is not needed.
         """
         acc_data = itv_account.itv_session()
         acc_data.refresh()
@@ -327,21 +334,13 @@ class Playlists(unittest.TestCase):
 
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         resp = requests.post(
-                url,
-                headers={
-                    'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
-                    'Origin':           'https://www.itv.com',
-                },
+            url,
+            headers={
+                'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+                'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                'Origin': 'https://www.itv.com'},
                 cookies=fetch.HttpSession().cookies,  # acc_data.cookie,
-                json=post_data,
-                timeout=10
-        )
-        # strm_data = fetch.post_json(
-        #     url, data=post_data,
-        #     headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json'},
-        #     cookies=acc_data.cookie)
-        # self.assertEqual(200, resp.status_code)
+            json=post_data, timeout=10)
         strm_data = resp.json()
         return strm_data
 
@@ -356,39 +355,59 @@ class Playlists(unittest.TestCase):
             strm_data = self.get_playlist_live(channel)
             object_checks.check_live_stream_info(strm_data['Playlist'])
 
-    def test_manifest_live(self):
+    def test_playlist_live_cookie_requirement(self):
+        """Test that consent cookies are required for a playlist request and that these are the
+        only required cookies.
+
+        """
+        url = 'https://simulcast.itv.com/playlist/itvonline/ITV'
+        headers = {
+            'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
+            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+            'Origin': 'https://www.itv.com'}
+        existing_cookies = fetch.HttpSession().cookies
+
+        with self.assertRaises(requests.exceptions.ReadTimeout):
+            requests.post(url, headers=headers, json=self.create_post_data('live'), timeout=2)
+
+        jar = RequestsCookieJar()
+        for cookie in existing_cookies:
+            if cookie.name.startswith("Cassie"):
+                jar.set_cookie(cookie)
+        self.assertTrue(len(jar.items()), "No Cassie consent cookies")
+        requests.post(url, headers=headers, cookies=jar, json=self.create_post_data('live'), timeout=2)
+
+    def test_manifest_live_simulcast(self):
+        strm_data = self.get_playlist_live('ITV')
+        start_again_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+        start_time = datetime.utcnow() - timedelta(seconds=30)
+        mpd_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
+        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
+        manifest = resp.text
+        # testutils.save_doc(manifest, 'mpd/itv1.mpd')
+        self.assertGreater(len(manifest), 1000)
+        self.assertTrue(manifest.startswith('<?xml version='))
+        self.assertTrue('hdntl' in resp.cookies)        # assert manifest response sets an hdntl cookie
+
+    def test_manifest_live_FAST(self):
         strm_data = self.get_playlist_live('FAST16')
         mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['Url']
-        resp = requests.get(
-                mpd_url,
-                headers={
-                    'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
-                    'Origin':           'https://www.itv.com',
-                },
-                # cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
-                timeout=10
-        )
+        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10, allow_redirects=False)
+        # Manifest of FAST channels can have several redirects. The hdntl cookie is set in the first response.
+        self.assertTrue('hdntl' in resp.cookies)
+        if resp.status_code == 302:
+            resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
         # testutils.save_doc(manifest, 'mpd/fast16.mpd')
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
 
-    def test_manifest_live_playagain(self):
+    def test_manifest_live_FAST_playagain(self):
         """As of approximately 05-2023 play-again appears not to be available for fast channels"""
         strm_data = self.get_playlist_live('FAST16')
         start_time = datetime.strftime(datetime.now() - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S' )
         mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl'].format(START_TIME=start_time)
-        resp = requests.get(
-                mpd_url,
-                headers={
-                    'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
-                    'Origin':           'https://www.itv.com',
-                },
-                cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
-                timeout=10
-        )
+        resp = requests.get(mpd_url, headers=self.manifest_headers, cookies=fetch.HttpSession().cookies)
         self.assertEqual(404, resp.status_code)
         # manifest = resp.text
         # # testutils.save_doc(manifest, 'mpd/fast16.mpd')
@@ -398,28 +417,13 @@ class Playlists(unittest.TestCase):
     def get_playlist_catchup(self, url=None):
         """Request stream of a catchup episode (i.e. production)
 
-        Webbrowsers send several cookies in one single Cookie header:
-            - Itv.Session
-            - Itv.Cid
-            - mid
-            - All Syrenisxxx concerning cookie consent
-            - _ga_D6PQ6YDTQK
-            - _ga
-            - Itv.Region
-
-        However, we test with only Itv.Session cookie set and that seems to work fine.
-
+        Unlike live channels, pLaylist requests for VOD don't need any cookie.
         """
         post_data = self.create_post_data('vod')
 
         if not url:
             # request playlist of an episode of Doc Martin
             url = 'https://magni.itv.com/playlist/itvonline/ITV/1_7665_0049.001'
-
-            # The bigger trip - episode 1
-            # url = 'https://magni.itv.com/playlist/itvonline/ITV/10_2772_0001.001'
-
-            # url = 'https://magni.itv.com/playlist/itvonline/ITV/CFD0332_0001.001'
 
         resp = requests.post(
             url,
@@ -449,18 +453,11 @@ class Playlists(unittest.TestCase):
         base_url = strm_data['Playlist']['Video']['Base']
         path = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
         mpd_url = base_url + path
-        resp = requests.get(
-            mpd_url,
-            headers={'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
-                     'Origin': 'https://www.itv.com',
-                     },
-            # cookies=fetch.HttpSession().cookies,  #acc_data.cookie,
-            timeout=10
-        )
+        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
+        self.assertTrue('hdntl' in resp.cookies)    # assert manifest response sets an hdntl cookie
 
     def test_playlist_news_collection_items(self):
         """Short news items form the collection 'news' are all just mp4 files."""
