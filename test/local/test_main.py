@@ -4,6 +4,7 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+import xbmcgui
 
 from test.support import fixtures
 fixtures.global_setup()
@@ -12,9 +13,10 @@ import types
 import json
 
 from unittest import TestCase
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from codequick import Listitem
+from xbmcgui import ListItem as XbmcListItem
 
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support import object_checks
@@ -287,10 +289,13 @@ class PlayStreamLive(TestCase):
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': 'blabla'})
     def test_play_live_by_channel_name(self, _, __, p_req_strm):
         result = main.play_stream_live.test(channel='ITV', url=None)
-        self.assertIsInstance(result, Listitem)
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertEqual('ITV', result.getLabel())
+        self.assertEqual('true', result._props['IsPlayable'])
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
+
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):
         itv_account.itv_session().log_out()
@@ -300,21 +305,65 @@ class PlayStreamLive(TestCase):
 
 
 class PlayStreamCatchup(TestCase):
+    def setUp(self) -> None:
+        itv_account._itv_session_obj = None
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        # Ensure to clear patched session objects
+        itv_account._itv_session_obj = None
+
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_play_short_news_item(self, _):
         result = main.play_stream_catchup.test('some/url', 'a short news item')
-        self.assertIsInstance(result, Listitem)
+        self.assertIsInstance(result, XbmcListItem)
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
+    @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
+    def test_play_episode(self, _, __):
+        result = main.play_stream_catchup.test('some/url', 'my episode')
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertEqual('my episode', result.getLabel())
+        self.assertEqual('my episode', result._info['video']['title'])
+        with self.assertRaises(KeyError):
+            result._info['video']['plot']
+        self.assertEqual('true', result._props['IsPlayable'])
+        self.assertRaises(AttributeError, getattr, result, '_subtitles')
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=HttpResponse())
+    @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
+    def test_play_episode_without_title(self, _, __):
+        result = main.play_stream_catchup.test('some/url', '')
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertEqual('', result.getLabel())
+        with self.assertRaises(KeyError):
+            result._info['video']['title']
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
+    @patch('resources.lib.itv.get_vtt_subtitles', return_value=('my/subs.file', ))
+    def test_play_episode_with_subtitles(self, _, __, ___):
+        result = main.play_stream_catchup.test('some/url', 'my episode')
+        self.assertEqual(len(result._subtitles), 1)
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
+    @patch('resources.lib.itv.get_vtt_subtitles', return_value=None)
+    def test_play_episode_without_subtitles(self, _, __, ___):
+        result = main.play_stream_catchup.test('some/url', 'my episode')
+        self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
         result = main.play_stream_catchup.test('url', '')
         self.assertIs(result, False)
 
-    @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
+    @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_doc_martin.json'))
     def test_play_catchup_without_credentials(self, _):
-        # Ensure we have an empty session object
+        # Ensure we have an empty file and session object
         itv_account.itv_session().log_out()
-        itv_account._itv_session_obj = None
         result = main.play_stream_catchup.test('url', '')
         self.assertFalse(result)
 

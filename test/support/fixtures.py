@@ -6,6 +6,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
+from typing import Dict, List, Tuple
 
 from unittest.mock import patch
 
@@ -37,6 +38,9 @@ def global_setup():
             pass
         patch('xbmcaddon.Addon.getSettingString',
               new=lambda self, item: 'file' if item == 'log-handler' else '').start()
+
+        # Use an xbmcgui.ListItem that stores the values which have been set.
+        patch_listitem()
 
 
 patch_1 = None
@@ -85,3 +89,89 @@ def setup_web_test(*args):
     # Sign in once per test run.
     if not credentials_set:
         set_credentials()
+
+
+def patch_listitem():
+    import xbmcgui
+
+    class LI(xbmcgui.ListItem):
+        def __init__(self, label: str = "",
+                     label2: str = "",
+                     path: str = "",
+                     offscreen: bool = False) -> None:
+            super().__init__()
+            assert isinstance(label, str)
+            assert isinstance(label2, str)
+            assert isinstance(path, str)
+            assert isinstance(offscreen, bool)
+            self._label = label
+            self._label2 = label2
+            self._path = path
+            self._offscreen = offscreen
+            self._is_folder = False
+            self._art = {}
+            self._info = {}
+            self._props = {}
+
+        def getLabel(self) -> str:
+            return self._label
+
+        def getLabel2(self) -> str:
+            return self._label2
+
+        def setLabel(self, label: str) -> None:
+            assert isinstance(label, str), "Argument 'label' must be a string."
+            self._label = label
+
+        def setLabel2(self, label: str) -> None:
+            assert isinstance(label, str), "Argument 'label' must be a string."
+            self._label2 = label
+
+        def setArt(self, dictionary: Dict[str, str]) -> None:
+            assert isinstance(dictionary, dict), "Argument 'dictionary' must be a dict."
+            self._art.update(dictionary)
+
+        def setIsFolder(self, isFolder: bool) -> None:
+            assert isinstance(isFolder, bool), "Argument 'isFolder' must be a boolean."
+            self._is_folder = isFolder
+
+        def setInfo(self, type: str, infoLabels: Dict[str, str]) -> None:
+            assert isinstance(type, str), "Argument 'type' must be a string."
+            assert isinstance(infoLabels, dict), "Argument 'infoLabels' must be a dict."
+            assert type in ('video', 'music', 'pictures', 'game')
+            info_dict = self._info.setdefault(type, {})
+            info_dict.update(infoLabels)
+
+        def setProperty(self, key: str, value: str) -> None:
+            assert isinstance(key, str), "Argument 'key' must be a string."
+            assert isinstance(value, str), "Argument 'value' must be a string."
+            self._props[key] = value
+
+        def setProperties(self, dictionary: Dict[str, str]) -> None:
+            assert isinstance(dictionary, dict), "Argument 'dictionary' must be a dict."
+            self._props.update(dictionary)
+
+        def getProperty(self, key: str) -> str:
+            assert isinstance(key, str), "Argument 'key' must be a string."
+            return self._props['key']
+
+        def setPath(self, path: str) -> None:
+            assert isinstance(path, str), "Argument 'path' must be a string."
+            self._path = path
+
+        def setMimeType(self, mimetype: str) -> None:
+            assert isinstance(mimetype, str), "Argument 'mimetype' must be a string."
+            self._mimetype = mimetype
+
+        def setContentLookup(self, enable: bool) -> None:
+            assert isinstance(enable, bool), "Argument 'enable' must be a boolean."
+            self._content_lookup = enable
+
+        def setSubtitles(self, subtitleFiles: List[str]) -> None:
+            assert isinstance(subtitleFiles, (list, tuple)), "Argument 'subtitleFiles' must be a tuple or a list."
+            self._subtitles = subtitleFiles
+
+        def getPath(self) -> str:
+            return self._path
+
+    xbmcgui.ListItem = LI
