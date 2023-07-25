@@ -291,7 +291,7 @@ class PlayStreamLive(TestCase):
         result = main.play_stream_live.test(channel='ITV', url=None)
         self.assertIsInstance(result, XbmcListItem)
         self.assertEqual('ITV', result.getLabel())
-        self.assertEqual('true', result._props['IsPlayable'])
+        self.assertFalse('IsPlayable' in result._props)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
@@ -328,7 +328,7 @@ class PlayStreamCatchup(TestCase):
         self.assertEqual('my episode', result._info['video']['title'])
         with self.assertRaises(KeyError):
             result._info['video']['plot']
-        self.assertEqual('true', result._props['IsPlayable'])
+        self.assertFalse('IsPlayable' in result._props)
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))

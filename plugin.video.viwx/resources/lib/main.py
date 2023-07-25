@@ -404,7 +404,6 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
             'Cookie=', 'hdntl=', hdntl_cookie))
 
     play_item.setProperties({
-        'IsPlayable': 'true',
         'inputstream': is_helper.inputstream_addon,
         'inputstream.adaptive.manifest_type': PROTOCOL,
         'inputstream.adaptive.license_type': DRM,
@@ -431,7 +430,6 @@ def create_mp4_file_item(name, file_url):
         play_item.setLabel(name)
         play_item.setInfo('video', {'title': name})
     play_item.setPath(file_url)
-    play_item.setProperty('IsPlayable', 'true')
     play_item.setContentLookup(False)
     play_item.setMimeType('video/mp4')
     return play_item
@@ -459,9 +457,9 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
         logger.error('Error retrieving live stream urls: %r' % e, exc_info=True)
         return
 
-    list_item = create_dash_stream_item(channel, manifest_url, key_service_url)  # , resume_time='43200')
+    list_item = create_dash_stream_item(channel, manifest_url, key_service_url)
     if list_item:
-        list_item.setProperty('inputstream.adaptive.manifest_update_parameter', 'full')
+        # list_item.setProperty('inputstream.adaptive.manifest_update_parameter', 'full')
         if 't=' in manifest_url:
             list_item.setProperty('inputstream.adaptive.play_timeshift_buffer', 'true')
             # list_item.property['inputstream.adaptive.live_delay'] = '2'
