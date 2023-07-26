@@ -121,11 +121,11 @@ class MainPageItem(TestCase):
 class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_collection_news(self, _):
-        items = list(itvx.collection_content(slider='newsShortformSliderContent'))
+        items = list(itvx.collection_content(slider='shortFormSliderContent'))
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
-        items2 = list(itvx.collection_content(slider='newsShortformSliderContent', hide_paid=True))
+        items2 = list(itvx.collection_content(slider='shortFormSliderContent', hide_paid=True))
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
@@ -145,6 +145,11 @@ class Collections(TestCase):
             has_keys(item, 'playable', 'show')
         items2 = list(itvx.collection_content(slider='editorialRailSlot1', hide_paid=True))
         self.assertListEqual(items, items2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_non_existing_collection_from_main_page(self, _):
+        items = list(itvx.collection_content(slider='SomeNonExistingSlider'))
+        self.assertListEqual([], items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
     def test_collection_from_collection_page(self, _):

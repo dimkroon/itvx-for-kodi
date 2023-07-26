@@ -44,13 +44,17 @@ class PersistentCookieJar(RequestsCookieJar):
 
     def set_cookie(self, cookie, *args, **kwargs):
         super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)
-        logger.debug("Cookiejar sets cookie %s to %s", cookie.name, cookie.value)
+        logger.debug("Cookiejar sets cookie %s for %s%s to %s", cookie.name, cookie.domain, cookie.path, cookie.value)
         self._has_changed |= cookie.name != 'hdntl'
 
     def clear(self, domain=None, path=None, name=None) -> None:
-        super(PersistentCookieJar, self).clear(domain, path, name)
-        logger.debug("Cookiejar clears cookie %s", name)
-        self._has_changed = True
+        try:
+            super(PersistentCookieJar, self).clear(domain, path, name)
+            logger.debug("Cookies cleared for domain: %s, path: %s, name %s", domain, path, name)
+            self._has_changed = True
+        except KeyError:
+            logger.debug("No cookies to clear for domain: %s, path: %s, name: %s ", domain, path, name)
+            pass
 
 
 class HttpSession(requests.sessions.Session):
@@ -111,10 +115,10 @@ def _create_cookiejar():
             # The internally stored filename of the saved file may be different to the current filename
             # if the file has been copied from another system.
             cj.filename = cookie_file
-            logger.debug("Restored cookies from file")
+            logger.info("Restored cookies from file")
     except (FileNotFoundError, pickle.UnpicklingError):
         cj = set_default_cookies(PersistentCookieJar(cookie_file))
-        logger.debug("Created new cookiejar")
+        logger.info("Created new cookiejar")
     return cj
 
 

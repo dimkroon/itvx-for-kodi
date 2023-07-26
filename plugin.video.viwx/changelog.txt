@@ -1,3 +1,12 @@
+V1.0.0-beta.5
+- Start live streams a few seconds more in the past to fix stuttering and buffering issues.
+- Cleanup of some cookie and property black magic to fix other issues with stuttering and stalling live streams.
+- Adapt to changes at ITV which fixes:
+    - Missing 'News' collection on the add-on's home page.
+    - Most items in category 'News' fail to play.
+- Fix: All items now have the correct title and plot in the info screen while playing.
+- Fix: The addon becomes unresponsive for a very long time after an error.
+
 V1.0.0-beta.4
 - Fix: Very frequently a sign in to itvx is required.
 - Fix: Free playable items in collections and categories failed, claiming to be premium.
