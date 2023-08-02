@@ -142,7 +142,9 @@ class Paginator:
             next_page_nr = 0
 
         for show in shows_list:
-            if show['playable']:
+            if show.get('type') == 'collection':
+                yield Listitem.from_dict(list_collection_content, **show['show'])
+            elif show['playable']:
                 yield Listitem.from_dict(play_title, **show['show'])
             else:
                 yield Listitem.from_dict(list_productions, **show['show'])

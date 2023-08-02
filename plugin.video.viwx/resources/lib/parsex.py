@@ -137,7 +137,10 @@ def parse_slider(slider_name, slider_data):
         params = {'slider': slider_name}
 
     return {'type': 'collection',
-            'show': {'label': coll_data['headingTitle'], 'params': params}}
+            'playable': False,
+            'show': {'label': coll_data['headingTitle'],
+                     'params': params,
+                     'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
 
 
 def parse_collection_item(show_data):

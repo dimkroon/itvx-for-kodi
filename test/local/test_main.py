@@ -98,6 +98,13 @@ class Collections(TestCase):
         for item in shows:
             self.assertIsInstance(item, Listitem)
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-kids.json'))
+    def test_get_collection_from_collection_page_with_rails(self, _):
+        shows = list(filter(None, main.list_collection_content.test(url='itvs-kids')))
+        self.assertGreater(len(shows), 10)
+        for item in shows:
+            self.assertIsInstance(item, Listitem)
+
 
 class Categories(TestCase):
     def tearDown(self) -> None:

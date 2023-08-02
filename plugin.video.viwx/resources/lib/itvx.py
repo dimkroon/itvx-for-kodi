@@ -162,13 +162,24 @@ def main_page_items():
 
 def collection_content(url=None, slider=None, hide_paid=False):
     if url:
-        items_list = get_page_data(url, cache_time=43200)['collection']['shows']
-        if hide_paid:
-            progr_list = [parsex.parse_collection_item(item)
-                          for item in items_list
-                          if not item.get('isPaid')]
+        page_data = get_page_data(url, cache_time=43200)
+        collection = page_data['collection']
+        rails = page_data.get('rails')
+        if collection is not None:
+            col_items = collection.get('shows', [])
+            if hide_paid:
+                progr_list = [parsex.parse_collection_item(item)
+                              for item in col_items if not item.get('isPaid')]
+            else:
+                progr_list = [parsex.parse_collection_item(item) for item in col_items]
+
+        elif rails:
+            # Do not sort this list on title
+            return [parsex.parse_slider('', rail) for rail in rails]
         else:
-            progr_list = [parsex.parse_collection_item(item) for item in items_list]
+            logger.warning("Missing both collections and rails in data from '%s'.", url)
+            return []
+
     else:
         # A Collection that has all it's data on the main page and does not have its own page.
         page_data = get_page_data('https://www.itv.com', cache_time=3600)

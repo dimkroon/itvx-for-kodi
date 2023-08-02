@@ -30,11 +30,14 @@ setUpModule = fixtures.setup_web_test
 
 def check_shows(self, show, parent_name):
     # Not always present: 'contentInfo'
+    self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode', 'page'), "{}: Unexpected title type '{}'.".format(
+        '.'.join((parent_name, show['title'])), show['contentType']))
+    if show['contentType'] == 'page':
+        # We ignore this type, is not actually a show
+        return True
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
-    self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode'), "{}: Unexpected title type '{}'.".format(
-        '.'.join((parent_name, show['title'])), show['contentType']))
-    is_url(show['imageTemplate'], '.png')
+    self.assertTrue(is_url(show['imageTemplate']))
 
 
 def check_brand(self, brand, parent_name):
@@ -42,7 +45,7 @@ def check_brand(self, brand, parent_name):
     has_keys(brand, 'title', 'imageUrl', 'synopses', 'legacyId', 'availableEpisodeCount', 'guidance', 'series', 'tier',
              obj_name=obj_name)
     self.assertIsInstance(brand['series'], list)
-    is_url(brand['imageUrl'])
+    self.assertTrue(is_url(brand['imageUrl']))
 
 
 def check_series(self, series, parent_name):
@@ -59,8 +62,8 @@ def check_title(self, title, parent_name):
     has_keys(title, 'titleType', 'episodeTitle', 'broadcastDateTime', 'isChildrenCategory', 'legacyId', 'guidance',
              'imageUrl', 'playlistUrl', 'productionId', 'synopsis', 'tier', 'numberedEpisodeTitle',
              'isChildrenCategory', obj_name=obj_name)
-    is_url(title['imageUrl'])
-    is_url(title['playlistUrl'])
+    self.assertTrue(is_url(title['imageUrl']))
+    self.assertTrue(is_url(title['playlistUrl']))
     self.assertIsNotNone(title['numberedEpisodeTitle'])
     self.assertTrue('FREE' in title['tier'] or 'PAID' in title['tier'])
 
@@ -153,22 +156,23 @@ class MainPage(unittest.TestCase):
         # testutils.save_binary(img, 'html/itvx-logo-dark-bg.jpg')
 
 
-class CollectionPage(unittest.TestCase):
+class CollectionPages(unittest.TestCase):
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""
         def check_rail(url):
             page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
-            if 'Hundreds of great shows' in page_data['headingTitle']:
-                testutils.save_json(page_data, 'html/collection-itvx_kids.json')
+            # if 'Hundreds of great shows' in page_data['headingTitle']:
+            #     testutils.save_json(page_data, 'html/collection_itvx-kids.json')
             has_keys(page_data, 'headingTitle', 'collection', 'rails')
             collection = page_data['collection']
+            rails = page_data['rails']
             if collection is not None:
+                self.assertIsNone(rails)       # The parser ignores rails if collection has content!
                 has_keys(collection, 'headingTitle', 'shows', obj_name=collection['sliderName'])
                 expect_keys(collection, 'isChildrenCollection', obj_name=collection['sliderName'])
                 for show in collection['shows']:
                     check_shows(self, show, collection['sliderName'])
             # Some collection have their content divided up in rails.
-            rails = page_data['rails']
             if rails is not None:
                 for rail in rails:
                     pagelink = rail['collection'].get('headingLink', {}).get('href')
@@ -253,12 +257,11 @@ class WatchPages(unittest.TestCase):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/series_midsummer-murders.json')
-            title_data = data['title']
-            check_title(self, title_data, '')
-            check_brand(self, title_data['brand'], '')
-            for series in title_data['brand']['series']:
-                check_series(self, series, title_data['brand']['title'])
+            # testutils.save_json(data, 'html/agatha-christies-marple.json')
+            programme_data = data['programme']
+            check_brand(self, programme_data['brandList'], '')
+            for series in programme_data['series']:
+                check_series(self, series, programme_data['brand']['title'])
 
     def test_premium_episode_page(self):
         url = 'https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001'

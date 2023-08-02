@@ -160,6 +160,13 @@ class Collections(TestCase):
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-kids.json'))
+    def test_collection_from_collection_page_with_rails(self, _):
+        items = list(itvx.collection_content(url='itvx_kids'))
+        self.assertGreater(len(items), 10)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
     def test_collection_with_paid_items(self, _):
