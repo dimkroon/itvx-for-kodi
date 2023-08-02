@@ -5,6 +5,7 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
+from __future__ import annotations
 import time
 import unittest
 
@@ -64,19 +65,22 @@ def expect_misses_keys(dict_obj, *keys, obj_name='dictionary'):
         return False
 
 
-def is_url(url: str, ext: str = None) -> bool:
+def is_url(url: str, ext: str| list | tuple | None = None) -> bool:
     """Short and simple check if the string `url` is indeed a URL.
     This is in no way intended to completely validate the URL - it is just to check
     that the string is not just a path without protocol specification, or just some
     other string that is not a URL at all.
 
     :param url: str: String to check.
-    :param ext: Optional file extension (including preceding dot) of the document requested in the URL.
+    :param ext: Optional file extension(s) (including preceding dot) of the document requested in the URL.
 
     """
     result = url.startswith('https://')
-    if ext:
-        result = result and (url.endswith(ext) or ext + '?' in url)
+    if ext is not None:
+        if isinstance(ext, (tuple, list)):
+            result = result and any(url.endswith(extension) or extension + '?' in url for extension in ext)
+        else:
+            result = result and (url.endswith(ext) or ext + '?' in url)
     return result
 
 
