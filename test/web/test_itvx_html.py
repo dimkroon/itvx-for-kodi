@@ -125,8 +125,14 @@ class MainPage(unittest.TestCase):
             # , 'imageTreatment', 'imageAspectRatio', 'imageClass'
             has_keys(collection, 'headingTitle', 'shows',
                      obj_name='collection-' + collection['headingTitle'])
+            # TODO: Is there any point in checking the whole contents of collections that have their own page?
+            #       The items on the main page will never be used.
             for show in collection['shows']:
                 check_shows(self, show, collection['headingTitle'])
+                if show['contentType'] == 'page':
+                    # If there is a show of type page, expect the whole collection to have its own page
+                    # from where its content will be obtained.
+                    self.assertTrue(collection['headingLink'])
 
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])

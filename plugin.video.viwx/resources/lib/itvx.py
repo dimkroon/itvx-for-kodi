@@ -167,15 +167,10 @@ def collection_content(url=None, slider=None, hide_paid=False):
         rails = page_data.get('rails')
         if collection is not None:
             col_items = collection.get('shows', [])
-            if hide_paid:
-                progr_list = [parsex.parse_collection_item(item)
-                              for item in col_items if not item.get('isPaid')]
-            else:
-                progr_list = [parsex.parse_collection_item(item) for item in col_items]
-
+            progr_gen = (parsex.parse_collection_item(item, hide_paid) for item in col_items)
         elif rails:
             # Do not sort this list on title
-            return [parsex.parse_slider('', rail) for rail in rails]
+            return list(filter(None, (parsex.parse_slider('', rail) for rail in rails)))
         else:
             logger.warning("Missing both collections and rails in data from '%s'.", url)
             return []
@@ -188,22 +183,13 @@ def collection_content(url=None, slider=None, hide_paid=False):
             uk_tz = pytz.timezone('Europe/London')
             time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
             items_list = page_data['shortFormSliderContent'][0]['items']
-            if hide_paid:
-                progr_list = [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
-                              for news_item in items_list
-                              if not news_item.get('isPaid')]
-            else:
-                progr_list = [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
-                              for news_item in items_list]
+            progr_gen = (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt, hide_paid)
+                          for news_item in items_list)
 
         elif slider == 'trendingSliderContent':
             items_list = page_data['trendingSliderContent']['items']
-            if hide_paid:
-                progr_list = [parsex.parse_trending_collection_item(trending_item)
-                              for trending_item in items_list
-                              if not trending_item.get('isPaid')]
-            else:
-                progr_list = [parsex.parse_trending_collection_item(trending_item) for trending_item in items_list]
+            progr_gen = (parsex.parse_trending_collection_item(trending_item, hide_paid)
+                          for trending_item in items_list)
 
         else:
             try:
@@ -211,11 +197,9 @@ def collection_content(url=None, slider=None, hide_paid=False):
             except KeyError:
                 logger.error("Failed to parse collection content: Unknown slider '%s'", slider)
                 return []
-            if hide_paid:
-                progr_list = [parsex.parse_collection_item(item) for item in items_list if not item.get('isPaid')]
-            else:
-                progr_list = [parsex.parse_collection_item(item) for item in items_list]
-    progr_list.sort(key=lambda prog: prog['show']['info']['sorttitle'])
+            progr_gen = (parsex.parse_collection_item(item, hide_paid) for item in items_list)
+
+    progr_list = sorted(filter(None, progr_gen), key=lambda prog: prog['show']['info']['sorttitle'])
     return progr_list
 
 

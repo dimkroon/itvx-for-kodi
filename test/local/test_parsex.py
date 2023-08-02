@@ -98,6 +98,9 @@ class Generic(unittest.TestCase):
         has_keys(item, 'playable', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertIs(item['playable'], False)
+        # An invalid item
+        item = parsex.parse_collection_item({})
+        self.assertIsNone(item)
 
     def test_parse_collection_title_from_main_page(self):
         data = open_json('html/index-data.json')['editorialSliders']['editorialRailSlot1']['collection']['shows']
@@ -119,11 +122,19 @@ class Generic(unittest.TestCase):
         # has_keys(item, 'playable', 'show')
         # is_li_compatible_dict(self, item['show'])
 
+        # An invalid item
+        item = parsex.parse_news_collection_item({}, None, None)
+        self.assertIsNone(item)
+
+
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
         item = parsex.parse_trending_collection_item(data[1])
         has_keys(item, 'playable', 'show')
         is_li_compatible_dict(self, item['show'])
+        # An invalid item
+        item = parsex.parse_trending_collection_item({})
+        self.assertIsNone(item)
 
     def test_parse_episode_title(self):
         data = open_json('html/series_miss-marple_data.json')
