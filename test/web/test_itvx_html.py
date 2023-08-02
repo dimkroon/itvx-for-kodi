@@ -154,21 +154,33 @@ class MainPage(unittest.TestCase):
 
 
 class CollectionPage(unittest.TestCase):
-    def test_collection_just_in(self):
-        page = fetch.get_document('https://www.itv.com/watch/collections/just-in/2RQpkypwh3w8m6738sUHQH')
-        data = parsex.scrape_json(page)
-        # testutils.save_json(data, 'html/collection_just-in_data.json')
-        shows = data['collection']['shows']
-        for show in shows:
-            check_shows(self, show, data['collection']['sliderName'])
+    def test_all_collections(self):
+        """Obtain links to collection pages from the main page and test them all."""
+        def check_rail(url):
+            page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
+            if 'Hundreds of great shows' in page_data['headingTitle']:
+                testutils.save_json(page_data, 'html/collection-itvx_kids.json')
+            has_keys(page_data, 'headingTitle', 'collection', 'rails')
+            collection = page_data['collection']
+            if collection is not None:
+                has_keys(collection, 'headingTitle', 'shows', obj_name=collection['sliderName'])
+                expect_keys(collection, 'isChildrenCollection', obj_name=collection['sliderName'])
+                for show in collection['shows']:
+                    check_shows(self, show, collection['sliderName'])
+            # Some collection have their content divided up in rails.
+            rails = page_data['rails']
+            if rails is not None:
+                for rail in rails:
+                    pagelink = rail['collection'].get('headingLink', {}).get('href')
+                    check_rail(pagelink)
 
-    def test_collection_our_picks(self):
-        page = fetch.get_document('https://www.itv.com/watch/collections/our-top-picks/6MsT8KM2RTzIw4g5pE2P4w')
-        data = parsex.scrape_json(page)
-        # testutils.save_json(data, 'html/collection_our-top-picks.json')
-        shows = data['collection']['shows']
-        for show in shows:
-            check_shows(self, show, data['collection']['sliderName'])
+        page = fetch.get_document('https://www.itv.com/')
+        editorial_sliders = parsex.scrape_json(page)['editorialSliders']
+        for rail in editorial_sliders.values():
+            pagelink = rail['collection'].get('headingLink', {}).get('href')
+            if not pagelink:
+                continue
+            check_rail(pagelink)
 
 
 class WatchPages(unittest.TestCase):
