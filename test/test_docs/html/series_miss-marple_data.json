@@ -1,1953 +1,1260 @@
 {
-  "title": {
-    "audioDescription": false,
-    "availableUntil": "2024-11-30T23:59:59.999Z",
-    "broadcastDateTime": "2022-11-19T00:05:00Z",
-    "categories": {
-      "queryable": [
-        "DRAMA_AND_SOAPS"
-      ],
-      "formatted": [
-        "DRAMA & SOAPS"
-      ],
-      "formattedCapitalised": [
-        "Drama & Soaps"
-      ]
-    },
-    "isChildrenCategory": false,
-    "channel": "ITV3",
-    "daysLeft": "",
-    "duration": "1h 55m",
-    "legacyId": "1/5576/0015",
-    "brandLegacyId": "L1286",
-    "episodeNumber": 3,
-    "episodeTitle": "Endless Night",
-    "guidance": "Violent & sexual content. Scenes viewers may find upsetting.",
-    "hasBrand": true,
-    "headerTitle": "Agatha Christie's Marple - Series 6 - Episode 3",
-    "href": "/agatha-christies-marple/L1286",
-    "imageUrl": "https://ovp.itv.com/images/episode/b54y99r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-    "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0015.004",
-    "productionId": "1/5576/0015#004",
-    "productionIdEncoded": "1-5576-0015#004",
+  "navAdServerParams": {
+    "area": "video",
     "programmeTitle": "Agatha Christie's Marple",
-    "regionalisation": false,
-    "seriesNumber": 6,
-    "showTitle": "Agatha Christie's Marple",
-    "showTitleSlug": "agatha-christies-marple",
-    "subtitles": false,
-    "synopsis": "While staying with a recently widowed friend, Miss Marple meets charming young drifter Mike Rogers. Then events take a sinister turn when a dangerous killer strikes.",
-    "titleType": "EPISODE",
-    "variants": [],
-    "CTAText": "Series 6, Episode 3",
-    "longRunning": false,
-    "description": {
-      "descriptionTextStrong": "",
-      "descriptionTextNormal": "Join Marple and a host of famous faces in this classic whodunnit "
+    "channel": null,
+    "category": [
+      "DRAMA_AND_SOAPS"
+    ],
+    "episodeId": "L1286"
+  },
+  "forceRefresh": true,
+  "isAccessibleByKids": false,
+  "newsVideos": null,
+  "subnav": null,
+  "programme": {
+    "programmeId": "L1286",
+    "encodedProgrammeId": {
+      "letterA": "L1286",
+      "underscore": "L1286"
     },
-    "relativeBroadcastDateTime": "Sat 19 Nov 12.05am",
-    "accessibilityTags": [
-      "ad",
-      "s"
+    "title": "Agatha Christie's Marple",
+    "longDescription": "Classic whodunnit starring Agatha Christie's favourite female sleuth. As her peers fade into their twilight years, Marple keeps on deducing the truth behind murderous crimes. ",
+    "description": "Join Marple and a host of famous faces in this classic whodunnit ",
+    "image": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "categories": [
+      "DRAMA_AND_SOAPS"
     ],
-    "contentInfo": [
-      "DRAMA & SOAPS",
-      "1h 55m"
-    ],
+    "titleSlug": "agatha-christies-marple",
     "contentOwner": null,
     "partnership": null,
     "tier": [
       "FREE"
     ],
-    "numberedEpisodeTitle": "3. Endless Night",
-    "titleText": "Agatha Christie's Marple",
+    "numberOfAvailableSeries": 6,
     "imagePresets": {
       "0": {
-        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=767&q=65&blur=0&bg=false",
-        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1534&q=65&blur=0&bg=false"
+        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"
       },
       "768": {
-        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1279&q=80&blur=0&bg=false",
-        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=2558&q=80&blur=0&bg=false"
+        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"
       },
       "1280": {
-        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1597&q=80&blur=0&bg=false",
-        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=3194&q=80&blur=0&bg=false"
+        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
       },
       "1920": {
-        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1597&q=80&blur=0&bg=false",
-        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=3194&q=80&blur=0&bg=false"
+        "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
       }
-    },
-    "brand": {
-      "imagePresets": {},
-      "legacyId": "L1286",
-      "tier": [
-        "FREE"
-      ],
-      "title": "Agatha Christie's Marple",
-      "imageUrl": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "synopses": {
-        "ninety": "Join Marple and a host of famous faces in this classic whodunnit "
-      },
-      "series": [
-        {
-          "title": "Series 1",
-          "seriesNumber": 1,
-          "seriesAvailableEpisodeCount": 4,
-          "fullSeries": true,
-          "longRunning": false,
-          "legacyId": "F280",
-          "episodes": [
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2023-01-04T00:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "9D/13066",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 1,
-              "episodeTitle": "The Body in the Library",
-              "guidance": "Contains violence, moderate language and scenes that some viewers may find distressing",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 1 - Episode 1",
-              "href": "/agatha-christies-marple/L1286/9Da13066",
-              "imageUrl": "https://ovp.itv.com/images/episode/t1d18hg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13066.008",
-              "productionId": "9D/13066#008",
-              "productionIdEncoded": "9D-13066#008",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 1,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Miss Marple is called by an old friend to help discover who strangled a young dancer in the library of Gossington Hall.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 1, Episode 1",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "1. The Body in the Library",
-                "descriptionTextNormal": "Miss Marple is called by an old friend to help discover who strangled a young dancer in the library of Gossington Hall."
-              },
-              "relativeBroadcastDateTime": "Wed 4 Jan 12.10am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "1. The Body in the Library"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-10-24T23:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h 5m",
-              "legacyId": "9D/13043",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 2,
-              "episodeTitle": "The Murder at the Vicarage",
-              "guidance": "",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 1 - Episode 2",
-              "href": "/agatha-christies-marple/L1286/9Da13043",
-              "imageUrl": "https://ovp.itv.com/images/episode/4xk5w1y/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13043.001",
-              "productionId": "9D/13043#001",
-              "productionIdEncoded": "9D-13043#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 1,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Colonel Protheroe is intensely disliked, but when he is found slumped over the desk in a vicarage study, Miss Marple must unpick the truth.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 1, Episode 2",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "2. The Murder at the Vicarage",
-                "descriptionTextNormal": "Colonel Protheroe is intensely disliked, but when he is found slumped over the desk in a vicarage study, Miss Marple must unpick the truth."
-              },
-              "relativeBroadcastDateTime": "Tue 25 Oct 12.10am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h 5m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "2. The Murder at the Vicarage"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-04-27T14:50:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "9D/13065",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 3,
-              "episodeTitle": "4:50 from Paddington",
-              "guidance": null,
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 1 - Episode 3",
-              "href": "/agatha-christies-marple/L1286/9Da13065",
-              "imageUrl": "https://ovp.itv.com/images/episode/ndgkvgk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13065.001",
-              "productionId": "9D/13065#001",
-              "productionIdEncoded": "9D-13065#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 1,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "When Elspeth McGillicuddy sees a woman on a train being strangled, the authorities think that she has been dreaming, but Miss Marple knows better...",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 1, Episode 3",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "3. 4:50 from Paddington",
-                "descriptionTextNormal": "When Elspeth McGillicuddy sees a woman on a train being strangled, the authorities think that she has been dreaming, but Miss Marple knows better..."
-              },
-              "relativeBroadcastDateTime": "Wed 27 Apr 3.50pm",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "3. 4:50 from Paddington"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-10-26T23:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h 5m",
-              "legacyId": "9D/13067",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 4,
-              "episodeTitle": "A Murder Is Announced",
-              "guidance": "",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 1 - Episode 4",
-              "href": "/agatha-christies-marple/L1286/9Da13067",
-              "imageUrl": "https://ovp.itv.com/images/episode/34njkq5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13067.003",
-              "productionId": "9D/13067#003",
-              "productionIdEncoded": "9D-13067#003",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 1,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Zo\u00eb Wanamaker guest stars when Miss Marple sets about uncovering a village's dark secrets, following the announcement of a murder in the personal columns of a local paper.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 1, Episode 4",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "4. A Murder Is Announced",
-                "descriptionTextNormal": "Zo\u00eb Wanamaker guest stars when Miss Marple sets about uncovering a village's dark secrets, following the announcement of a murder in the personal columns of a local paper."
-              },
-              "relativeBroadcastDateTime": "Thur 27 Oct 12.10am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h 5m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "4. A Murder Is Announced"
-            }
-          ]
-        },
-        {
-          "title": "Series 2",
-          "seriesNumber": 2,
-          "seriesAvailableEpisodeCount": 4,
-          "fullSeries": true,
-          "longRunning": false,
-          "legacyId": "F460",
-          "episodes": [
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2011-09-03T23:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "9D/13133",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 1,
-              "episodeTitle": "Sleeping Murder",
-              "guidance": "Violence and the aftermath of violence.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 2 - Episode 1",
-              "href": "/agatha-christies-marple/L1286/9Da13133",
-              "imageUrl": "https://ovp.itv.com/images/episode/hf1g32f/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13133.001",
-              "productionId": "9D/13133#001",
-              "productionIdEncoded": "9D-13133#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 2,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "When Gwenda Halliday moves in to the home of her dreams, she begins to see ghostly apparitions which leads Miss Marple to an unsolved murder.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 2, Episode 1",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "1. Sleeping Murder",
-                "descriptionTextNormal": "When Gwenda Halliday moves in to the home of her dreams, she begins to see ghostly apparitions which leads Miss Marple to an unsolved murder."
-              },
-              "relativeBroadcastDateTime": "Sun 4 Sept 2011",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "1. Sleeping Murder"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-10-28T23:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "9D/13135",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 2,
-              "episodeTitle": "The Moving Finger",
-              "guidance": null,
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 2 - Episode 2",
-              "href": "/agatha-christies-marple/L1286/9Da13135",
-              "imageUrl": "https://ovp.itv.com/images/episode/gm6qmd6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13135.002",
-              "productionId": "9D/13135#002",
-              "productionIdEncoded": "9D-13135#002",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 2,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "In the town of Lymstock an outbreak of anonymous hate mail results in a woman's suicide. As the letters become even more deadly, the village is thrown into turmoil.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 2, Episode 2",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "2. The Moving Finger",
-                "descriptionTextNormal": "In the town of Lymstock an outbreak of anonymous hate mail results in a woman's suicide. As the letters become even more deadly, the village is thrown into turmoil."
-              },
-              "relativeBroadcastDateTime": "Sat 29 Oct 12.10am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "2. The Moving Finger"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-05-03T14:45:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h 5m",
-              "legacyId": "9D/13134",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 3,
-              "episodeTitle": "By the Pricking of My Thumbs",
-              "guidance": null,
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 2 - Episode 3",
-              "href": "/agatha-christies-marple/L1286/9Da13134",
-              "imageUrl": "https://ovp.itv.com/images/episode/bpdsb3h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13134.001",
-              "productionId": "9D/13134#001",
-              "productionIdEncoded": "9D-13134#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 2,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Tommy and Tuppence enlist Miss Marple's help when their elderly aunt dies suddenly and a friend of the dead woman goes missing.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 2, Episode 3",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "3. By the Pricking of My Thumbs",
-                "descriptionTextNormal": "Tommy and Tuppence enlist Miss Marple's help when their elderly aunt dies suddenly and a friend of the dead woman goes missing."
-              },
-              "relativeBroadcastDateTime": "Tue 3 May 3.45pm",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h 5m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "3. By the Pricking of My Thumbs"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-02T00:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "9D/13136",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 4,
-              "episodeTitle": "The Sittaford Mystery",
-              "guidance": "Contains some violence.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 2 - Episode 4",
-              "href": "/agatha-christies-marple/L1286/9Da13136",
-              "imageUrl": "https://ovp.itv.com/images/episode/9yckttf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13136.001",
-              "productionId": "9D/13136#001",
-              "productionIdEncoded": "9D-13136#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 2,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Miss Marple visits a house in Devon - when an Ouija board accurately predicts the demise of the house's owner, she must work out the cause of death.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 2, Episode 4",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "4. The Sittaford Mystery",
-                "descriptionTextNormal": "Miss Marple visits a house in Devon - when an Ouija board accurately predicts the demise of the house's owner, she must work out the cause of death."
-              },
-              "relativeBroadcastDateTime": "Wed 2 Nov 12.10am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "4. The Sittaford Mystery"
-            }
-          ]
-        },
-        {
-          "title": "Series 3",
-          "seriesNumber": 3,
-          "seriesAvailableEpisodeCount": 4,
-          "fullSeries": true,
-          "longRunning": false,
-          "legacyId": "1/5576-01",
-          "episodes": [
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2012-08-11T21:00:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0004",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 1,
-              "episodeTitle": "At Bertram's Hotel",
-              "guidance": "Contains use of racially discriminatory language and some mild crime scene images.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 3 - Episode 1",
-              "href": "/agatha-christies-marple/L1286/1a5576a0004",
-              "imageUrl": "https://ovp.itv.com/images/episode/18zbpb7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0004.001",
-              "productionId": "1/5576/0004#001",
-              "productionIdEncoded": "1-5576-0004#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 3,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Miss Marple arrives at Bertram's Hotel to find that there are secrets lurking there. When a maid is murdered, things take an even more sinister turn.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 3, Episode 1",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "1. At Bertram's Hotel",
-                "descriptionTextNormal": "Miss Marple arrives at Bertram's Hotel to find that there are secrets lurking there. When a maid is murdered, things take an even more sinister turn."
-              },
-              "relativeBroadcastDateTime": "Sat 11 Aug 2012",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "1. At Bertram's Hotel"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-04T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0003",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 2,
-              "episodeTitle": "Ordeal by Innocence",
-              "guidance": "Contains some moderate language.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 3 - Episode 2",
-              "href": "/agatha-christies-marple/L1286/1a5576a0003",
-              "imageUrl": "https://ovp.itv.com/images/episode/k4cts2v/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0003.002",
-              "productionId": "1/5576/0003#002",
-              "productionIdEncoded": "1-5576-0003#002",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 3,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Miss Marple is invited to a wedding, and finds a house full of secrets as well as a family coming to terms with the wrongful hanging of their brother.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 3, Episode 2",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "2. Ordeal by Innocence",
-                "descriptionTextNormal": "Miss Marple is invited to a wedding, and finds a house full of secrets as well as a family coming to terms with the wrongful hanging of their brother."
-              },
-              "relativeBroadcastDateTime": "Fri 4 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "2. Ordeal by Innocence"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-08T00:10:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0002",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 3,
-              "episodeTitle": "Towards Zero",
-              "guidance": "Contains occasional use of moderate language and crime scene gore.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 3 - Episode 3",
-              "href": "/agatha-christies-marple/L1286/1a5576a0002",
-              "imageUrl": "https://ovp.itv.com/images/episode/822c715/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0002_Z",
-              "productionId": "1/5576/0002/Z",
-              "productionIdEncoded": "1-5576-0002-Z",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 3,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "When her holiday at a friend's coastal villa is interrupted by the mysterious death of one of her fellow guests, hours after he had told a ghostly tale, Miss Marple investigates.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 3, Episode 3",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "3. Towards Zero",
-                "descriptionTextNormal": "When her holiday at a friend's coastal villa is interrupted by the mysterious death of one of her fellow guests, hours after he had told a ghostly tale, Miss Marple investigates."
-              },
-              "relativeBroadcastDateTime": "Tue 8 Nov 12.10am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "3. Towards Zero"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-05-10T14:50:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0001",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 4,
-              "episodeTitle": "Nemesis",
-              "guidance": "Contains peril and some mild swearing.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 3 - Episode 4",
-              "href": "/agatha-christies-marple/L1286/1a5576a0001",
-              "imageUrl": "https://ovp.itv.com/images/episode/v1rmkbg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0001.001",
-              "productionId": "1/5576/0001#001",
-              "productionIdEncoded": "1-5576-0001#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 3,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "After receiving instructions from a recently deceased friend, Miss Marple finds herself on a mystery coach tour with her nephew Raymond West and some intriguing passengers.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 3, Episode 4",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "4. Nemesis",
-                "descriptionTextNormal": "After receiving instructions from a recently deceased friend, Miss Marple finds herself on a mystery coach tour with her nephew Raymond West and some intriguing passengers."
-              },
-              "relativeBroadcastDateTime": "Tue 10 May 3.50pm",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "4. Nemesis"
-            }
-          ]
-        },
-        {
-          "title": "Series 4",
-          "seriesNumber": 4,
-          "seriesAvailableEpisodeCount": 4,
-          "fullSeries": true,
-          "longRunning": false,
-          "legacyId": "1/5576-02",
-          "episodes": [
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-09T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h 5m",
-              "legacyId": "1/5576/0005",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 1,
-              "episodeTitle": "A Pocket Full of Rye",
-              "guidance": "Contains sexual scenes and some use of moderate language",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 4 - Episode 1",
-              "href": "/agatha-christies-marple/L1286/1a5576a0005",
-              "imageUrl": "https://ovp.itv.com/images/episode/fqbtqtn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0005.005",
-              "productionId": "1/5576/0005#005",
-              "productionIdEncoded": "1-5576-0005#005",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 4,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "When a business magnate is killed, Miss Marple realises the circumstances of his death recall a nursery rhyme - but what does it mean?",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 4, Episode 1",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "1. A Pocket Full of Rye",
-                "descriptionTextNormal": "When a business magnate is killed, Miss Marple realises the circumstances of his death recall a nursery rhyme - but what does it mean?"
-              },
-              "relativeBroadcastDateTime": "Wed 9 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h 5m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "1. A Pocket Full of Rye"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2011-06-11T20:00:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0006",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 2,
-              "episodeTitle": "Murder Is Easy",
-              "guidance": "Contains some moderate crime scene images.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 4 - Episode 2",
-              "href": "/agatha-christies-marple/L1286/1a5576a0006",
-              "imageUrl": "https://ovp.itv.com/images/episode/5g6xcbr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0006.003",
-              "productionId": "1/5576/0006#003",
-              "productionIdEncoded": "1-5576-0006#003",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 4,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Benedict Cumberbatch guest stars as detective Luke Fitzwilliam and joins Miss Marple to investigate unexpected deaths in the village of Wychwood-under-Ashe.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 4, Episode 2",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "2. Murder Is Easy",
-                "descriptionTextNormal": "Benedict Cumberbatch guest stars as detective Luke Fitzwilliam and joins Miss Marple to investigate unexpected deaths in the village of Wychwood-under-Ashe."
-              },
-              "relativeBroadcastDateTime": "Sat 11 Jun 2011",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "2. Murder Is Easy"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-11T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0008",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 3,
-              "episodeTitle": "They Do It with Mirrors",
-              "guidance": "Contains bloody crime scenes, violence and some moderate language.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 4 - Episode 3",
-              "href": "/agatha-christies-marple/L1286/1a5576a0008",
-              "imageUrl": "https://ovp.itv.com/images/episode/p9m1p5p/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0008.008",
-              "productionId": "1/5576/0008#008",
-              "productionIdEncoded": "1-5576-0008#008",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 4,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Joan Collins plays Miss Marple's crime-busting chum Ruth Van Rydock to help dig deeper into a murder that takes place during a rehearsal of an amateur stage show.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 4, Episode 3",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "3. They Do It with Mirrors",
-                "descriptionTextNormal": "Joan Collins plays Miss Marple's crime-busting chum Ruth Van Rydock to help dig deeper into a murder that takes place during a rehearsal of an amateur stage show."
-              },
-              "relativeBroadcastDateTime": "Fri 11 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "3. They Do It with Mirrors"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-12T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h 5m",
-              "legacyId": "1/5576/0007",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 4,
-              "episodeTitle": "Why Didn't They Ask Evans?",
-              "guidance": "Contains the aftermath of violent crimes, moderate language and scenes some viewers may find upsetting.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 4 - Episode 4",
-              "href": "/agatha-christies-marple/L1286/1a5576a0007",
-              "imageUrl": "https://ovp.itv.com/images/episode/mszs0w2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0007.009",
-              "productionId": "1/5576/0007#009",
-              "productionIdEncoded": "1-5576-0007#009",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 4,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Rafe Spall plays a distracting piano teacher as supersleuth Miss Marple digs into the devastating truth behind a series of murders - and a dying man's enigmatic last words.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 4, Episode 4",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "4. Why Didn't They Ask Evans?",
-                "descriptionTextNormal": "Rafe Spall plays a distracting piano teacher as supersleuth Miss Marple digs into the devastating truth behind a series of murders - and a dying man's enigmatic last words."
-              },
-              "relativeBroadcastDateTime": "Sat 12 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h 5m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "4. Why Didn't They Ask Evans?"
-            }
-          ]
-        },
-        {
-          "title": "Series 5",
-          "seriesNumber": 5,
-          "seriesAvailableEpisodeCount": 4,
-          "fullSeries": true,
-          "longRunning": false,
-          "legacyId": "1/5576-03",
-          "episodes": [
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-13T22:00:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "1h 55m",
-              "legacyId": "1/5576/0012",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 1,
-              "episodeTitle": "The Pale Horse",
-              "guidance": "Contains pagan and occult rituals, crime scenes and moderate language.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 5 - Episode 1",
-              "href": "/agatha-christies-marple/L1286/1a5576a0012",
-              "imageUrl": "https://ovp.itv.com/images/episode/vjc574b/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0012.004",
-              "productionId": "1/5576/0012#004",
-              "productionIdEncoded": "1-5576-0012#004",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 5,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "After a friend is murdered, Miss Marple vows to seek justice. A clue leads her to an inn run by modern-day witches who claim to be able to kill by black magic.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 5, Episode 1",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "1. The Pale Horse",
-                "descriptionTextNormal": "After a friend is murdered, Miss Marple vows to seek justice. A clue leads her to an inn run by modern-day witches who claim to be able to kill by black magic."
-              },
-              "relativeBroadcastDateTime": "Sun 13 Nov 10pm",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "1h 55m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "1. The Pale Horse"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-15T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0010",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 2,
-              "episodeTitle": "The Secret of Chimneys",
-              "guidance": "Violent scenes.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 5 - Episode 2",
-              "href": "/agatha-christies-marple/L1286/1a5576a0010",
-              "imageUrl": "https://ovp.itv.com/images/episode/k1ddf02/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0010.001",
-              "productionId": "1/5576/0010#001",
-              "productionIdEncoded": "1-5576-0010#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 5,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Ruth Jones plays an intriguing guest of the host of a country estate. When someone is killed at the stately home, Miss Marple discovers a coded message and a dark secret.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 5, Episode 2",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "2. The Secret of Chimneys",
-                "descriptionTextNormal": "Ruth Jones plays an intriguing guest of the host of a country estate. When someone is killed at the stately home, Miss Marple discovers a coded message and a dark secret."
-              },
-              "relativeBroadcastDateTime": "Tue 15 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "2. The Secret of Chimneys"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-16T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0011",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 3,
-              "episodeTitle": "The Blue Geranium",
-              "guidance": "Violence. Moderate language. ",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 5 - Episode 3",
-              "href": "/agatha-christies-marple/L1286/1a5576a0011",
-              "imageUrl": "https://ovp.itv.com/images/episode/78b3dpn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0011.001",
-              "productionId": "1/5576/0011#001",
-              "productionIdEncoded": "1-5576-0011#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 5,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Did a woman really die of shock when the geranium in her wallpaper turned blue? Can Marple stop a trial before the wrong person is found guilty of murder?",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 5, Episode 3",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "3. The Blue Geranium",
-                "descriptionTextNormal": "Did a woman really die of shock when the geranium in her wallpaper turned blue? Can Marple stop a trial before the wrong person is found guilty of murder?"
-              },
-              "relativeBroadcastDateTime": "Wed 16 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "3. The Blue Geranium"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-17T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0009",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 4,
-              "episodeTitle": "The Mirror Crack'd from Side to Side",
-              "guidance": "Moderate language. Drug references. ",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 5 - Episode 4",
-              "href": "/agatha-christies-marple/L1286/1a5576a0009",
-              "imageUrl": "https://ovp.itv.com/images/episode/zt8h7vx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0009.001",
-              "productionId": "1/5576/0009#001",
-              "productionIdEncoded": "1-5576-0009#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 5,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Joanna Lumley is Miss Marple's friend Dolly Bantry, who attends a fateful Hollywood party. When a fan dies after drinking a poisoned cocktail, our sleuth wonders if was planned.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 5, Episode 4",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "4. The Mirror Crack'd from Side to Side",
-                "descriptionTextNormal": "Joanna Lumley is Miss Marple's friend Dolly Bantry, who attends a fateful Hollywood party. When a fan dies after drinking a poisoned cocktail, our sleuth wonders if was planned."
-              },
-              "relativeBroadcastDateTime": "Thur 17 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "4. The Mirror Crack'd from Side to Side"
-            }
-          ]
-        },
-        {
-          "title": "Series 6",
-          "seriesNumber": 6,
-          "seriesAvailableEpisodeCount": 3,
-          "fullSeries": false,
-          "longRunning": false,
-          "legacyId": "1/5576-04",
-          "episodes": [
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-20T22:50:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0013",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 1,
-              "episodeTitle": "A Caribbean Mystery",
-              "guidance": "Gory crimes, Scary scenes. ",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 6 - Episode 1",
-              "href": "/agatha-christies-marple/L1286/1a5576a0013",
-              "imageUrl": "https://ovp.itv.com/images/episode/gtk17pn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0013.006",
-              "productionId": "1/5576/0013#006",
-              "productionIdEncoded": "1-5576-0013#006",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 6,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "While holidaying on a Caribbean island, Miss Marple is drawn into a web of deceit and death, and with the help of a tycoon, sets to work unravelling the truth.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 6, Episode 1",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "1. A Caribbean Mystery",
-                "descriptionTextNormal": "While holidaying on a Caribbean island, Miss Marple is drawn into a web of deceit and death, and with the help of a tycoon, sets to work unravelling the truth."
-              },
-              "relativeBroadcastDateTime": "Sun 20 Nov 10.50pm",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "1. A Caribbean Mystery"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-18T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "2h",
-              "legacyId": "1/5576/0014",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 2,
-              "episodeTitle": "Greenshaw's Folly",
-              "guidance": "Contains violence, crime scene gore and moderate language.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 6 - Episode 2",
-              "href": "/agatha-christies-marple/L1286/1a5576a0014",
-              "imageUrl": "https://ovp.itv.com/images/episode/79vg654/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0014.001",
-              "productionId": "1/5576/0014#001",
-              "productionIdEncoded": "1-5576-0014#001",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 6,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "Miss Marple helps a friend seek refuge at Greenshaw's Folly. But a shadow soon begins to fall over the various inhabitants living there.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 6, Episode 2",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "2. Greenshaw's Folly",
-                "descriptionTextNormal": "Miss Marple helps a friend seek refuge at Greenshaw's Folly. But a shadow soon begins to fall over the various inhabitants living there."
-              },
-              "relativeBroadcastDateTime": "Fri 18 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "2h"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "2. Greenshaw's Folly"
-            },
-            {
-              "audioDescription": false,
-              "availableUntil": "2024-11-30T23:59:59.999Z",
-              "broadcastDateTime": "2022-11-19T00:05:00Z",
-              "categories": {
-                "queryable": [
-                  "DRAMA_AND_SOAPS"
-                ],
-                "formatted": [
-                  "DRAMA & SOAPS"
-                ],
-                "formattedCapitalised": [
-                  "Drama & Soaps"
-                ]
-              },
-              "isChildrenCategory": false,
-              "channel": "ITV3",
-              "daysLeft": "",
-              "duration": "1h 55m",
-              "legacyId": "1/5576/0015",
-              "brandLegacyId": "L1286",
-              "episodeNumber": 3,
-              "episodeTitle": "Endless Night",
-              "guidance": "Violent & sexual content. Scenes viewers may find upsetting.",
-              "hasBrand": true,
-              "headerTitle": "Agatha Christie's Marple - Series 6 - Episode 3",
-              "href": "/agatha-christies-marple/L1286/1a5576a0015",
-              "imageUrl": "https://ovp.itv.com/images/episode/b54y99r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-              "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0015.004",
-              "productionId": "1/5576/0015#004",
-              "productionIdEncoded": "1-5576-0015#004",
-              "programmeTitle": "Agatha Christie's Marple",
-              "regionalisation": false,
-              "seriesNumber": 6,
-              "showTitle": "Agatha Christie's Marple",
-              "showTitleSlug": "agatha-christies-marple",
-              "subtitles": false,
-              "synopsis": "While staying with a recently widowed friend, Miss Marple meets charming young drifter Mike Rogers. Then events take a sinister turn when a dangerous killer strikes.",
-              "titleType": "EPISODE",
-              "variants": [],
-              "CTAText": "Series 6, Episode 3",
-              "longRunning": false,
-              "description": {
-                "descriptionTextStrong": "3. Endless Night",
-                "descriptionTextNormal": "While staying with a recently widowed friend, Miss Marple meets charming young drifter Mike Rogers. Then events take a sinister turn when a dangerous killer strikes."
-              },
-              "relativeBroadcastDateTime": "Sat 19 Nov 12.05am",
-              "accessibilityTags": [
-                "ad",
-                "s"
-              ],
-              "contentInfo": [
-                "DRAMA & SOAPS",
-                "1h 55m"
-              ],
-              "contentOwner": null,
-              "partnership": null,
-              "tier": [
-                "FREE"
-              ],
-              "numberedEpisodeTitle": "3. Endless Night"
-            }
-          ]
-        }
-      ],
-      "guidance": null,
-      "channel": "ITV3",
-      "categories": {
-        "queryable": [
-          "DRAMA_AND_SOAPS"
-        ],
-        "formatted": [
-          "DRAMA & SOAPS"
-        ],
-        "formattedCapitalised": [
-          "Drama & Soaps"
-        ]
-      },
-      "latestEpisode": null,
-      "contentOwner": null,
-      "partnership": null,
-      "availableEpisodeCount": 23,
-      "href": "/agatha-christies-marple/L1286"
     }
   },
-  "categories": {
-    "queryable": [
-      "DRAMA_AND_SOAPS"
-    ],
-    "formatted": [
-      "DRAMA & SOAPS"
-    ],
-    "formattedCapitalised": [
-      "Drama & Soaps"
-    ]
-  },
-  "episodeHeroWrapperProps": {
-    "heroProps": {
-      "imagePresets": {
-        "0": {
-          "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=767&q=65&blur=0&bg=false",
-          "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1534&q=65&blur=0&bg=false"
+  "seriesList": [
+    {
+      "seriesNumber": "1",
+      "seriesLabel": "Series 1",
+      "legacyId": "F280",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 4,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:54:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 1",
+          "contentInfo": "S1, E1. The Body in the Library",
+          "contentOwner": null,
+          "dateTime": "2023-01-04T00:10:00.000Z",
+          "description": "Miss Marple investigates the death of a young dancer in the library of Gossington Hall.",
+          "duration": "2h 5m",
+          "encodedEpisodeId": {
+            "letterA": "9Da13066",
+            "underscore": "9D_13066"
+          },
+          "episode": 1,
+          "episodeId": "9D/13066",
+          "episodeTitle": "The Body in the Library",
+          "fullSeriesRange": [],
+          "guidance": "Contains violence, moderate language and scenes that some viewers may find distressing",
+          "image": "https://ovp.itv.com/images/episode/t1d18hg/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Miss Marple is called by an old friend to help discover who strangled a young dancer in the library of Gossington Hall.",
+          "longRunning": false,
+          "nextProductionId": "9D/13043",
+          "notFormattedDuration": "PT2H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13066.008",
+          "premium": false,
+          "productionId": "9D/13066#008",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 1,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
         },
-        "768": {
-          "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1279&q=80&blur=0&bg=false",
-          "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=2558&q=80&blur=0&bg=false"
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 2",
+          "contentInfo": "S1, E2. The Murder at the Vicarage",
+          "contentOwner": null,
+          "dateTime": "2022-10-24T23:10:00.000Z",
+          "description": "A man disliked by everyone in his village is found dead in the local vicarage's study.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13043",
+            "underscore": "9D_13043"
+          },
+          "episode": 2,
+          "episodeId": "9D/13043",
+          "episodeTitle": "The Murder at the Vicarage",
+          "fullSeriesRange": [],
+          "guidance": "",
+          "image": "https://ovp.itv.com/images/episode/4xk5w1y/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Colonel Protheroe is intensely disliked, but when he is found slumped over the desk in a vicarage study, Miss Marple must unpick the truth.",
+          "longRunning": false,
+          "nextProductionId": "9D/13065",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13043.001",
+          "premium": false,
+          "productionId": "9D/13043#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 1,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
         },
-        "1280": {
-          "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1597&q=80&blur=0&bg=false",
-          "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=3194&q=80&blur=0&bg=false"
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 3",
+          "contentInfo": "S1, E3. 4:50 from Paddington",
+          "contentOwner": null,
+          "dateTime": "2022-10-22T12:00:00.000Z",
+          "description": "An old friend of Miss Marple sees a woman on a train being strangled.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13065",
+            "underscore": "9D_13065"
+          },
+          "episode": 3,
+          "episodeId": "9D/13065",
+          "episodeTitle": "4:50 from Paddington",
+          "fullSeriesRange": [],
+          "guidance": null,
+          "image": "https://ovp.itv.com/images/episode/ndgkvgk/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "When Elspeth McGillicuddy sees a woman on a train being strangled, the authorities think that she has been dreaming, but Miss Marple knows better...",
+          "longRunning": false,
+          "nextProductionId": "9D/13067",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13065.001",
+          "premium": false,
+          "productionId": "9D/13065#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 1,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
         },
-        "1920": {
-          "1x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=1597&q=80&blur=0&bg=false",
-          "2x": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=&fallback=standard&treatment=&w=3194&q=80&blur=0&bg=false"
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 4",
+          "contentInfo": "S1, E4. A Murder Is Announced",
+          "contentOwner": null,
+          "dateTime": "2022-10-26T23:10:00.000Z",
+          "description": "Zo\u00eb Wanamaker guest stars as Miss Marple sets about uncovering a village's dark secrets.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13067",
+            "underscore": "9D_13067"
+          },
+          "episode": 4,
+          "episodeId": "9D/13067",
+          "episodeTitle": "A Murder Is Announced",
+          "fullSeriesRange": [],
+          "guidance": "",
+          "image": "https://ovp.itv.com/images/episode/34njkq5/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Zo\u00eb Wanamaker guest stars when Miss Marple sets about uncovering a village's dark secrets, following the announcement of a murder in the personal columns of a local paper.",
+          "longRunning": false,
+          "nextProductionId": "9D/13133",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13067.003",
+          "premium": false,
+          "productionId": "9D/13067#003",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 1,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
         }
-      },
-      "titleText": "Agatha Christie's Marple",
-      "description": {
-        "descriptionTextStrong": "",
-        "descriptionTextNormal": "Join Marple and a host of famous faces in this classic whodunnit ",
-        "ref": {}
-      },
-      "guidance": {
-        "guidanceText": "Violent & sexual content. Scenes viewers may find upsetting.",
-        "link": {
-          "text": "Turn on Parental controls",
-          "ref": {}
+      ],
+      "longRunning": false
+    },
+    {
+      "seriesNumber": "2",
+      "seriesLabel": "Series 2",
+      "legacyId": "F460",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 4,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 2, Episode 1",
+          "contentInfo": "S2, E1. Sleeping Murder",
+          "contentOwner": null,
+          "dateTime": "2023-01-10T00:05:00.000Z",
+          "description": "Ghostly apparitions lead Miss Marple to an unsolved murder.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13133",
+            "underscore": "9D_13133"
+          },
+          "episode": 1,
+          "episodeId": "9D/13133",
+          "episodeTitle": "Sleeping Murder",
+          "fullSeriesRange": [],
+          "guidance": "Violence and the aftermath of violence.",
+          "image": "https://ovp.itv.com/images/episode/hf1g32f/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "When Gwenda Halliday moves in to the home of her dreams, she begins to see ghostly apparitions which leads Miss Marple to an unsolved murder.",
+          "longRunning": false,
+          "nextProductionId": "9D/13135",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13133.001",
+          "premium": false,
+          "productionId": "9D/13133#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 2,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 2, Episode 2",
+          "contentInfo": "S2, E2. The Moving Finger",
+          "contentOwner": null,
+          "dateTime": "2022-10-28T23:10:00.000Z",
+          "description": "In the town of Lymstock an outbreak of anonymous hate mail results in a woman's suicide.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13135",
+            "underscore": "9D_13135"
+          },
+          "episode": 2,
+          "episodeId": "9D/13135",
+          "episodeTitle": "The Moving Finger",
+          "fullSeriesRange": [],
+          "guidance": null,
+          "image": "https://ovp.itv.com/images/episode/gm6qmd6/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "In the town of Lymstock an outbreak of anonymous hate mail results in a woman's suicide. As the letters become even more deadly, the village is thrown into turmoil.",
+          "longRunning": false,
+          "nextProductionId": "9D/13134",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13135.002",
+          "premium": false,
+          "productionId": "9D/13135#002",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 2,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 2, Episode 3",
+          "contentInfo": "S2, E3. By the Pricking of My Thumbs",
+          "contentOwner": null,
+          "dateTime": "2023-01-11T09:15:00.000Z",
+          "description": "Tommy and Tuppence enlist Miss Marple's help when their elderly aunt dies suddenly.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13134",
+            "underscore": "9D_13134"
+          },
+          "episode": 3,
+          "episodeId": "9D/13134",
+          "episodeTitle": "By the Pricking of My Thumbs",
+          "fullSeriesRange": [],
+          "guidance": null,
+          "image": "https://ovp.itv.com/images/episode/bpdsb3h/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Tommy and Tuppence enlist Miss Marple's help when their elderly aunt dies suddenly and a friend of the dead woman goes missing.",
+          "longRunning": false,
+          "nextProductionId": "9D/13136",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13134.001",
+          "premium": false,
+          "productionId": "9D/13134#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 2,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 2, Episode 4",
+          "contentInfo": "S2, E4. The Sittaford Mystery",
+          "contentOwner": null,
+          "dateTime": "2022-11-02T00:10:00.000Z",
+          "description": "Miss Marple takes refuge at a house where a ouija board predicts the death of the owner.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "9Da13136",
+            "underscore": "9D_13136"
+          },
+          "episode": 4,
+          "episodeId": "9D/13136",
+          "episodeTitle": "The Sittaford Mystery",
+          "fullSeriesRange": [],
+          "guidance": "Contains some violence.",
+          "image": "https://ovp.itv.com/images/episode/9yckttf/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Miss Marple visits a house in Devon - when an Ouija board accurately predicts the demise of the house's owner, she must work out the cause of death.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0004",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13136.001",
+          "premium": false,
+          "productionId": "9D/13136#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 2,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
         }
-      },
-      "CTAText": "Series 6, Episode 3",
-      "accessibilityTags": [
-        "ad",
-        "s"
       ],
-      "contentInfo": [
-        "DRAMA & SOAPS",
-        "1h 55m"
-      ],
-      "contentOwner": null,
-      "partnership": null
+      "longRunning": false
     },
-    "modalProps": {
-      "programmeTitle": "Agatha Christie's Marple",
-      "episodeCount": 23,
-      "synopsis": "While staying with a recently widowed friend, Miss Marple meets charming young drifter Mike Rogers. Then events take a sinister turn when a dangerous killer strikes.",
-      "contentOwner": null,
-      "partnership": null,
-      "programmeCategory": "DRAMA & SOAPS"
-    },
-    "playerProps": {
-      "tier": [
-        "FREE"
+    {
+      "seriesNumber": "3",
+      "seriesLabel": "Series 3",
+      "legacyId": "1/5576-01",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 4,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 3, Episode 1",
+          "contentInfo": "S3, E1. At Bertram's Hotel",
+          "contentOwner": null,
+          "dateTime": "2023-05-27T22:00:00.000Z",
+          "description": "When a maid at Bertram's Hotel is murdered, Miss Marple investigates.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0004",
+            "underscore": "1_5576_0004"
+          },
+          "episode": 1,
+          "episodeId": "1/5576/0004",
+          "episodeTitle": "At Bertram's Hotel",
+          "fullSeriesRange": [],
+          "guidance": "Use of racially discriminatory language. Moderate crime scene images.",
+          "image": "https://ovp.itv.com/images/episode/18zbpb7/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Miss Marple arrives at Bertram's Hotel to find that there are secrets lurking there. When a maid is murdered, things take an even more sinister turn.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0003",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0004.001",
+          "premium": false,
+          "productionId": "1/5576/0004#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 3,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 3, Episode 2",
+          "contentInfo": "S3, E2. Ordeal by Innocence",
+          "contentOwner": null,
+          "dateTime": "2022-11-04T00:05:00.000Z",
+          "description": "Miss Marple meets a family coming to terms with the wrongful hanging of their brother.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0003",
+            "underscore": "1_5576_0003"
+          },
+          "episode": 2,
+          "episodeId": "1/5576/0003",
+          "episodeTitle": "Ordeal by Innocence",
+          "fullSeriesRange": [],
+          "guidance": "Contains some moderate language.",
+          "image": "https://ovp.itv.com/images/episode/k4cts2v/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Miss Marple is invited to a wedding, and finds a house full of secrets as well as a family coming to terms with the wrongful hanging of their brother.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0002",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0003.002",
+          "premium": false,
+          "productionId": "1/5576/0003#002",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 3,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS",
+            "OUTBAND_WEBVTT"
+          ],
+          "availabilityFrom": "2022-02-14T09:59:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 3, Episode 3",
+          "contentInfo": "S3, E3. Towards Zero",
+          "contentOwner": null,
+          "dateTime": "2022-11-08T00:10:00.000Z",
+          "description": "Miss Marple's holiday is interrupted by the mysterious death of one of her fellow guests.",
+          "duration": "2h 10m",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0002",
+            "underscore": "1_5576_0002"
+          },
+          "episode": 3,
+          "episodeId": "1/5576/0002",
+          "episodeTitle": "Towards Zero",
+          "fullSeriesRange": [],
+          "guidance": "Contains occasional use of moderate language and crime scene gore.",
+          "image": "https://ovp.itv.com/images/episode/822c715/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "When her holiday at a friend's coastal villa is interrupted by the mysterious death of one of her fellow guests, hours after he had told a ghostly tale, Miss Marple investigates.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0001",
+          "notFormattedDuration": "PT2H10M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0002_Z",
+          "premium": false,
+          "productionId": "1/5576/0002/Z",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 3,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:54:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 3, Episode 4",
+          "contentInfo": "S3, E4. Nemesis",
+          "contentOwner": null,
+          "dateTime": "1970-01-01T00:00:00.000Z",
+          "description": "Miss Marple goes on a mystery coach tour with a number of intriguing passengers.",
+          "duration": "2h 5m",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0001",
+            "underscore": "1_5576_0001"
+          },
+          "episode": 4,
+          "episodeId": "1/5576/0001",
+          "episodeTitle": "Nemesis",
+          "fullSeriesRange": [],
+          "guidance": "Contains peril and some mild swearing.",
+          "image": "https://ovp.itv.com/images/episode/v1rmkbg/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "After receiving instructions from a recently deceased friend, Miss Marple finds herself on a mystery coach tour with her nephew Raymond and some intriguing passengers.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0005",
+          "notFormattedDuration": "PT2H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0001.001",
+          "premium": false,
+          "productionId": "1/5576/0001#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 3,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        }
       ],
-      "episodeNumber": 3,
-      "seriesNumber": 6,
-      "CTAText": "Series 6, Episode 3",
-      "isChildrenCategory": false,
-      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0015.004",
-      "productionId": "1/5576/0015#004",
-      "productionIdEncoded": "1-5576-0015#004",
-      "categories": {
-        "queryable": [
-          "DRAMA_AND_SOAPS"
-        ],
-        "formatted": [
-          "DRAMA & SOAPS"
-        ],
-        "formattedCapitalised": [
-          "Drama & Soaps"
-        ]
-      },
-      "guidance": "Violent & sexual content. Scenes viewers may find upsetting.",
-      "regionalisation": false,
-      "programmeTitle": "Agatha Christie's Marple",
-      "imageUrl": "https://ovp.itv.com/images/episode/b54y99r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "channel": "itv3",
-      "episodeId": "1/5576/0015",
-      "broadcastDateTime": "Sat 19 Nov 12.05am",
-      "episodeInfo": "3. Endless Night"
+      "longRunning": false
+    },
+    {
+      "seriesNumber": "4",
+      "seriesLabel": "Series 4",
+      "legacyId": "1/5576-02",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 4,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 4, Episode 1",
+          "contentInfo": "S4, E1. A Pocket Full of Rye",
+          "contentOwner": null,
+          "dateTime": "2022-11-09T00:05:00.000Z",
+          "description": "When a business magnate is killed, the circumstances of his death recall a nursery rhyme.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0005",
+            "underscore": "1_5576_0005"
+          },
+          "episode": 1,
+          "episodeId": "1/5576/0005",
+          "episodeTitle": "A Pocket Full of Rye",
+          "fullSeriesRange": [],
+          "guidance": "Contains sexual scenes and some use of moderate language",
+          "image": "https://ovp.itv.com/images/episode/fqbtqtn/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "When a business magnate is killed, Miss Marple realises the circumstances of his death recall a nursery rhyme - but what does it mean?",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0006",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0005.005",
+          "premium": false,
+          "productionId": "1/5576/0005#005",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 4,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 4, Episode 2",
+          "contentInfo": "S4, E2. Murder Is Easy",
+          "contentOwner": null,
+          "dateTime": "2011-06-11T20:00:00.000Z",
+          "description": "Benedict Cumberbatch joins Miss Marple to investigate unexpected deaths in a village.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0006",
+            "underscore": "1_5576_0006"
+          },
+          "episode": 2,
+          "episodeId": "1/5576/0006",
+          "episodeTitle": "Murder Is Easy",
+          "fullSeriesRange": [],
+          "guidance": "Contains some moderate crime scene images.",
+          "image": "https://ovp.itv.com/images/episode/5g6xcbr/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Benedict Cumberbatch guest stars as detective Luke Fitzwilliam and joins Miss Marple to investigate unexpected deaths in the village of Wychwood-under-Ashe.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0008",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0006.003",
+          "premium": false,
+          "productionId": "1/5576/0006#003",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 4,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2022-02-14T09:54:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 4, Episode 3",
+          "contentInfo": "S4, E3. They Do It with Mirrors",
+          "contentOwner": null,
+          "dateTime": "2022-11-11T00:05:00.000Z",
+          "description": "Joan Collins plays Miss Marple's crime-busting chum Ruth for a showy investigation.",
+          "duration": "2h 5m",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0008",
+            "underscore": "1_5576_0008"
+          },
+          "episode": 3,
+          "episodeId": "1/5576/0008",
+          "episodeTitle": "They Do It with Mirrors",
+          "fullSeriesRange": [],
+          "guidance": "Contains bloody crime scenes, violence and some moderate language.",
+          "image": "https://ovp.itv.com/images/episode/p9m1p5p/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Joan Collins plays Miss Marple's crime-busting chum Ruth Van Rydock to help dig deeper into a murder that takes place during a rehearsal of an amateur stage show.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0007",
+          "notFormattedDuration": "PT2H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0008.008",
+          "premium": false,
+          "productionId": "1/5576/0008#008",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 4,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS",
+            "OUTBAND_WEBVTT"
+          ],
+          "availabilityFrom": "2022-02-14T09:54:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 4, Episode 4",
+          "contentInfo": "S4, E4. Why Didn't They Ask Evans?",
+          "contentOwner": null,
+          "dateTime": "2022-11-12T00:05:00.000Z",
+          "description": "Rafe Spall plays a distracting piano teacher as Miss Marple unpicks a series of murders.",
+          "duration": "2h 5m",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0007",
+            "underscore": "1_5576_0007"
+          },
+          "episode": 4,
+          "episodeId": "1/5576/0007",
+          "episodeTitle": "Why Didn't They Ask Evans?",
+          "fullSeriesRange": [],
+          "guidance": "Contains the aftermath of violent crimes, moderate language and scenes some viewers may find upsetting.",
+          "image": "https://ovp.itv.com/images/episode/mszs0w2/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Rafe Spall plays a distracting piano teacher as supersleuth Miss Marple digs into the devastating truth behind a series of murders - and a dying man's enigmatic last words.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0012",
+          "notFormattedDuration": "PT2H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0007.009",
+          "premium": false,
+          "productionId": "1/5576/0007#009",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 4,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        }
+      ],
+      "longRunning": false
+    },
+    {
+      "seriesNumber": "5",
+      "seriesLabel": "Series 5",
+      "legacyId": "1/5576-03",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 4,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 5, Episode 1",
+          "contentInfo": "S5, E1. The Pale Horse",
+          "contentOwner": null,
+          "dateTime": "1970-01-01T00:00:00.000Z",
+          "description": "Marple investigates an inn run by witches who claim to be able to kill by black magic.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0012",
+            "underscore": "1_5576_0012"
+          },
+          "episode": 1,
+          "episodeId": "1/5576/0012",
+          "episodeTitle": "The Pale Horse",
+          "fullSeriesRange": [],
+          "guidance": "Contains pagan and occult rituals, crime scenes and moderate language.",
+          "image": "https://ovp.itv.com/images/episode/vjc574b/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "After a friend is murdered, Miss Marple vows to seek justice. A clue leads her to an inn run by modern-day witches who claim to be able to kill by black magic.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0010",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0012.004",
+          "premium": false,
+          "productionId": "1/5576/0012#004",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 5,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS",
+            "OUTBAND_WEBVTT"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 5, Episode 2",
+          "contentInfo": "S5, E2. The Secret of Chimneys",
+          "contentOwner": null,
+          "dateTime": "2022-11-15T00:05:00.000Z",
+          "description": "Ruth Jones plays a curious guest at a stately home. Which secret will Miss Marple uncover?",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0010",
+            "underscore": "1_5576_0010"
+          },
+          "episode": 2,
+          "episodeId": "1/5576/0010",
+          "episodeTitle": "The Secret of Chimneys",
+          "fullSeriesRange": [],
+          "guidance": "Violent scenes.",
+          "image": "https://ovp.itv.com/images/episode/k1ddf02/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Ruth Jones plays an intriguing guest of the host of a country estate. When someone is killed at the stately home, Miss Marple discovers a coded message and a dark secret.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0011",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0010.001",
+          "premium": false,
+          "productionId": "1/5576/0010#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 5,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS"
+          ],
+          "availabilityFrom": "2022-02-14T09:54:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 5, Episode 3",
+          "contentInfo": "S5, E3. The Blue Geranium",
+          "contentOwner": null,
+          "dateTime": "2022-11-16T00:05:00.000Z",
+          "description": "Did a woman really die of shock when the geranium in her wallpaper turned blue?",
+          "duration": "2h 5m",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0011",
+            "underscore": "1_5576_0011"
+          },
+          "episode": 3,
+          "episodeId": "1/5576/0011",
+          "episodeTitle": "The Blue Geranium",
+          "fullSeriesRange": [],
+          "guidance": "Violence. Moderate language. ",
+          "image": "https://ovp.itv.com/images/episode/78b3dpn/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Did a woman really die of shock when the geranium in her wallpaper turned blue? Can Marple stop a trial before the wrong person is found guilty of murder?",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0009",
+          "notFormattedDuration": "PT2H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0011.001",
+          "premium": false,
+          "productionId": "1/5576/0011#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 5,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:54:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 5, Episode 4",
+          "contentInfo": "S5, E4. The Mirror Crack'd from Side to Side",
+          "contentOwner": null,
+          "dateTime": "2022-11-17T00:05:00.000Z",
+          "description": "Joanna Lumley is Miss Marple's friend Dolly Bantry, who attends a fateful Hollywood party.",
+          "duration": "2h 5m",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0009",
+            "underscore": "1_5576_0009"
+          },
+          "episode": 4,
+          "episodeId": "1/5576/0009",
+          "episodeTitle": "The Mirror Crack'd from Side to Side",
+          "fullSeriesRange": [],
+          "guidance": "Moderate language. Drug references. ",
+          "image": "https://ovp.itv.com/images/episode/zt8h7vx/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "Joanna Lumley is Miss Marple's friend Dolly Bantry, who attends a fateful Hollywood party. When a fan dies after drinking a poisoned cocktail, our sleuth wonders if was planned.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0013",
+          "notFormattedDuration": "PT2H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0009.001",
+          "premium": false,
+          "productionId": "1/5576/0009#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 5,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        }
+      ],
+      "longRunning": false
+    },
+    {
+      "seriesNumber": "6",
+      "seriesLabel": "Series 6",
+      "legacyId": "1/5576-04",
+      "fullSeries": false,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 3,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS",
+            "OUTBAND_WEBVTT"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 6, Episode 1",
+          "contentInfo": "S6, E1. A Caribbean Mystery",
+          "contentOwner": null,
+          "dateTime": "2023-08-04T22:00:00.000Z",
+          "description": "While holidaying on the island of St Honore, Miss Marple is drawn into a web of deceit.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0013",
+            "underscore": "1_5576_0013"
+          },
+          "episode": 1,
+          "episodeId": "1/5576/0013",
+          "episodeTitle": "A Caribbean Mystery",
+          "fullSeriesRange": [],
+          "guidance": "Gory crimes, Scary scenes. ",
+          "image": "https://ovp.itv.com/images/episode/gtk17pn/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": false,
+          "linearContent": false,
+          "longDescription": "While holidaying on a Caribbean island, Miss Marple is drawn into a web of deceit and death, and with the help of a tycoon, sets to work unravelling the truth.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0014",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0013.006",
+          "premium": false,
+          "productionId": "1/5576/0013#006",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 6,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 6, Episode 2",
+          "contentInfo": "S6, E2. Greenshaw's Folly",
+          "contentOwner": null,
+          "dateTime": "2022-11-18T00:05:00.000Z",
+          "description": "Miss Marple helps a family friend seek refuge at a house known as Greenshaw's Folly.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0014",
+            "underscore": "1_5576_0014"
+          },
+          "episode": 2,
+          "episodeId": "1/5576/0014",
+          "episodeTitle": "Greenshaw's Folly",
+          "fullSeriesRange": [],
+          "guidance": "Contains violence, crime scene gore and moderate language.",
+          "image": "https://ovp.itv.com/images/episode/79vg654/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": false,
+          "linearContent": false,
+          "longDescription": "Miss Marple helps a friend seek refuge at Greenshaw's Folly. But a shadow soon begins to fall over the various inhabitants living there.",
+          "longRunning": false,
+          "nextProductionId": "1/5576/0015",
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0014.001",
+          "premium": false,
+          "productionId": "1/5576/0014#001",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 6,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        },
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY"
+          ],
+          "availabilityFrom": "2022-02-14T09:49:00Z",
+          "availabilityUntil": "2024-11-30T23:59:59.999Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 6, Episode 3",
+          "contentInfo": "S6, E3. Endless Night",
+          "contentOwner": null,
+          "dateTime": "2022-11-19T00:05:00.000Z",
+          "description": "While staying with a recently widowed friend, Miss Marple meets a charming young drifter.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a5576a0015",
+            "underscore": "1_5576_0015"
+          },
+          "episode": 3,
+          "episodeId": "1/5576/0015",
+          "episodeTitle": "Endless Night",
+          "fullSeriesRange": [],
+          "guidance": "Violent & sexual content. Scenes viewers may find upsetting.",
+          "image": "https://ovp.itv.com/images/episode/b54y99r/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": false,
+          "linearContent": false,
+          "longDescription": "While staying with a recently widowed friend, Miss Marple meets charming young drifter Mike Rogers. Then events take a sinister turn when a dangerous killer strikes.",
+          "longRunning": false,
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_5576_0015.004",
+          "premium": false,
+          "productionId": "1/5576/0015#004",
+          "productionType": "EPISODE",
+          "programmeId": "L1286",
+          "series": 6,
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        }
+      ],
+      "longRunning": false
     }
-  },
-  "sponsorship": {},
-  "moreFromThisCategory": [
-    {
-      "title": "A Confession",
-      "titleSlug": "a-confession",
-      "encodedProgrammeId": {
-        "letterA": "2a5507",
-        "underscore": "2_5507"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "2a5507a0006",
-        "underscore": "2_5507_0006"
-      },
-      "description": "Martin Freeman plays a tenacious detective - chilling true crime drama",
-      "imageTemplate": "https://ovp.itv.com/images/programme/j997h50/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "A Mother's Son",
-      "titleSlug": "a-mothers-son",
-      "encodedProgrammeId": {
-        "letterA": "1a9851",
-        "underscore": "1_9851"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "1a9851a0002",
-        "underscore": "1_9851_0002"
-      },
-      "description": "Hermione Norris and Martin Clunes face a dilemma in this gripping drama",
-      "imageTemplate": "https://ovp.itv.com/images/programme/8mr7hj2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "A Spy Among Friends",
-      "titleSlug": "a-spy-among-friends",
-      "encodedProgrammeId": {
-        "letterA": "2a7931",
-        "underscore": "2_7931"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "2a7931a0006",
-        "underscore": "2_7931_0006"
-      },
-      "description": "Damian Lewis & Guy Pearce star in ITVX\u2019s brand new spy thriller",
-      "imageTemplate": "https://ovp.itv.com/images/programme/l7sw4ly/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "A Touch of Frost",
-      "titleSlug": "a-touch-of-frost",
-      "encodedProgrammeId": {
-        "letterA": "Ya1774",
-        "underscore": "Y_1774"
-      },
-      "channel": "itv3",
-      "encodedEpisodeId": {
-        "letterA": "Ya1774a0042",
-        "underscore": "Y_1774_0042"
-      },
-      "description": "Don't miss this hit crime drama starring David Jason as the grumpy DI",
-      "imageTemplate": "https://ovp.itv.com/images/programme/bjsmz9b/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "14 Series",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "ANZAC Girls",
-      "titleSlug": "anzac-girls",
-      "encodedProgrammeId": {
-        "letterA": "10a3720",
-        "underscore": "10_3720"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a3720a0006",
-        "underscore": "10_3720_0006"
-      },
-      "description": "Extraordinary true stories, rarely told... meet the ANZAC nurses of WWII",
-      "imageTemplate": "https://ovp.itv.com/images/programme/g809mw2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "Above Suspicion",
-      "titleSlug": "above-suspicion",
-      "encodedProgrammeId": {
-        "letterA": "35460",
-        "underscore": "35460"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "1a7862a0009",
-        "underscore": "1_7862_0009"
-      },
-      "description": "Kelly Reilly and Ciar\u00e1n Hinds - don't miss this gritty crime thriller",
-      "imageTemplate": "https://ovp.itv.com/images/programme/pyvktq0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 4",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "Agatha Christie's Marple",
-      "titleSlug": "agatha-christies-marple",
-      "encodedProgrammeId": {
-        "letterA": "L1286",
-        "underscore": "L1286"
-      },
-      "channel": "itv3",
-      "encodedEpisodeId": {
-        "letterA": "1a5576a0015",
-        "underscore": "1_5576_0015"
-      },
-      "description": "Join Marple and a host of famous faces in this classic whodunnit ",
-      "imageTemplate": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 6",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "Agatha Christie's Poirot",
-      "titleSlug": "agatha-christies-poirot",
-      "encodedProgrammeId": {
-        "letterA": "L0830",
-        "underscore": "L0830"
-      },
-      "channel": "itv3",
-      "encodedEpisodeId": {
-        "letterA": "1a5274a0013",
-        "underscore": "1_5274_0013"
-      },
-      "description": "He's the super sleuth with a sharp mind and a peculiar manner",
-      "imageTemplate": "https://ovp.itv.com/images/programme/qww56vx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 13",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "All American",
-      "titleSlug": "all-american",
-      "encodedProgrammeId": {
-        "letterA": "10a2705",
-        "underscore": "10_2705"
-      },
-      "channel": "itv2",
-      "encodedEpisodeId": {
-        "letterA": "10a2705a0071",
-        "underscore": "10_2705_0071"
-      },
-      "description": "Follow the story of a young footballer on the rise in LA - hit US drama",
-      "imageTemplate": "https://ovp.itv.com/images/programme/0z6p0pz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 4",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "Angela Black",
-      "titleSlug": "angela-black",
-      "encodedProgrammeId": {
-        "letterA": "2a6722",
-        "underscore": "2_6722"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "2a6722a0006",
-        "underscore": "2_6722_0006"
-      },
-      "description": "Mighty psychological thriller - Joanne Froggatt stars",
-      "imageTemplate": "https://ovp.itv.com/images/programme/wyxjmzt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "Anne",
-      "titleSlug": "anne",
-      "encodedProgrammeId": {
-        "letterA": "2a5505",
-        "underscore": "2_5505"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "2a5505a0004",
-        "underscore": "2_5505_0004"
-      },
-      "description": "Maxine Peake stars as the Hillsborough campaigner fighting for justice",
-      "imageTemplate": "https://ovp.itv.com/images/programme/9rjsbz5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
-      "title": "Appropriate Adult",
-      "titleSlug": "appropriate-adult",
-      "encodedProgrammeId": {
-        "letterA": "1a6304",
-        "underscore": "1_6304"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "1a6304a0002",
-        "underscore": "1_6304_0002"
-      },
-      "description": "Rediscover the woman who helped uncover the Wests' heinous crimes",
-      "imageTemplate": "https://ovp.itv.com/images/programme/jbkwp08/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    }
-  ],
-  "forceRefresh": true
+  ]
 }

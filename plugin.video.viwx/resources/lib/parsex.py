@@ -137,109 +137,130 @@ def parse_slider(slider_name, slider_data):
         params = {'slider': slider_name}
 
     return {'type': 'collection',
-            'show': {'label': coll_data['headingTitle'], 'params': params}}
+            'playable': False,
+            'show': {'label': coll_data['headingTitle'],
+                     'params': params,
+                     'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
 
 
-def parse_collection_item(show_data):
+def parse_collection_item(show_data, hide_paid=False):
     """Parse a show item from a collection page
 
     Very much like category content, but not quite.
     """
-    content_type = show_data.get('contentType') or show_data['type']
-    is_playable = content_type in ('episode', 'film', 'special', 'title')
-    title = show_data['title']
-    content_info = show_data.get('contentInfo', '')
+    try:
+        content_type = show_data.get('contentType') or show_data['type']
+        is_playable = content_type in ('episode', 'film', 'special', 'title')
+        title = show_data['title']
+        content_info = show_data.get('contentInfo', '')
 
-    if show_data.get('isPaid'):
-        plot = premium_plot(show_data['description'])
-    else:
-        plot = show_data['description']
+        if show_data.get('isPaid'):
+            if hide_paid:
+                return None
+            plot = premium_plot(show_data['description'])
+        else:
+            plot = show_data['description']
 
-    programme_item = {
-        'label': title,
-        'art': {'thumb': show_data['imageTemplate'].format(**IMG_PROPS_THUMB),
-                'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
-        'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
-                 'plot': plot,
-                 'sorttitle': sort_title(title)},
-    }
+        programme_item = {
+            'label': title,
+            'art': {'thumb': show_data['imageTemplate'].format(**IMG_PROPS_THUMB),
+                    'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+            'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
+                     'plot': plot,
+                     'sorttitle': sort_title(title)},
+        }
 
-    if 'FILMS' in show_data['categories']:
-        programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
+        if 'FILMS' in show_data['categories']:
+            programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
 
-    if is_playable:
-        programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
-        programme_item['params'] = {'url': build_url(show_data['titleSlug'],
-                                                     show_data['encodedProgrammeId']['letterA'])}
-    else:
-        programme_item['params'] = {'url': build_url(show_data['titleSlug'],
-                                                     show_data['encodedProgrammeId']['letterA'],
-                                                     show_data['encodedEpisodeId']['letterA'])}
-    return {'playable': is_playable,
-            'show': programme_item}
-
+        if is_playable:
+            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+            programme_item['params'] = {'url': build_url(show_data['titleSlug'],
+                                                         show_data['encodedProgrammeId']['letterA'])}
+        else:
+            programme_item['params'] = {'url': build_url(show_data['titleSlug'],
+                                                         show_data['encodedProgrammeId']['letterA'],
+                                                         show_data['encodedEpisodeId']['letterA'])}
+        return {'playable': is_playable,
+                'show': programme_item}
+    except Exception:
+        logger.warning("Failed to parse collection_item:\n%s", json.dumps(show_data, indent=4))
+        return None
 
 # noinspection GrazieInspection
-def parse_news_collection_item(news_item, time_zone, time_fmt):
+def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
     """Parse data found in news collection and in short news clips from news sub-categories
 
     """
+    try:
+        if 'encodedProgrammeId' in news_item.keys():
+            # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
+            # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
+            url = '/'.join(('https://www.itv.com/watch',
+                            news_item['titleSlug'],
+                            news_item['encodedProgrammeId']['letterA'],
+                            news_item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
+        else:
+            # This news item is a 'short item', aka 'news clip'.
+            url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
 
-    if 'encodedProgrammeId' in news_item.keys():
-        # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
-        # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
-        url = '/'.join(('https://www.itv.com/watch',
-                        news_item['titleSlug'],
-                        news_item['encodedProgrammeId']['letterA'],
-                        news_item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
-    else:
-        # This news item is a 'short item', aka 'news clip'.
-        url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
+        # dateTime field occasionally has milliseconds. Strip these when present.
+        item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
+        loc_time = item_time.astimezone(time_zone)
+        title = news_item.get('episodeTitle')
+        plot = '\n'.join((loc_time.strftime(time_fmt), news_item.get('synopsis', title)))
 
-    # dateTime field occasionally has milliseconds. Strip these when present.
-    item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
-    loc_time = item_time.astimezone(time_zone)
-    title = news_item.get('episodeTitle')
-    plot = '\n'.join((loc_time.strftime(time_fmt), news_item.get('synopsis', title)))
+        # Does paid news exists?
+        if news_item.get('isPaid'):
+            if hide_paid:
+                return None
+            plot = premium_plot(plot)
 
-    # Does paid news exists?
-    if news_item.get('isPaid'):
-        plot = premium_plot(plot)
-
-    # TODO: consider adding poster image, but it is not always present
-    return {
-        'playable': True,
-        'show': {
-            'label': title,
-            'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': plot, 'sorttitle': sort_title(title), 'duration': news_item.get('duration')},
-            'params': {'url': url }
+        # TODO: consider adding poster image, but it is not always present
+        return {
+            'playable': True,
+            'show': {
+                'label': title,
+                'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
+                'info': {'plot': plot, 'sorttitle': sort_title(title), 'duration': news_item.get('duration')},
+                'params': {'url': url }
+            }
         }
-    }
+    except Exception:
+        logger.warning("Failed to parse news_collection_item:\n%s", json.dumps(news_item, indent=4))
+        return None
 
 
-def parse_trending_collection_item(trending_item):
-    # No idea if premium content can be trending, but just to be sure.
-    plot = '\n'.join((trending_item['description'], trending_item['contentInfo']))
-    if trending_item.get('isPaid'):
-        plot = premium_plot(plot)
 
-    # NOTE:
-    # Especially titles of type 'special' may lack a field episodeID. For those titles it
-    # should not be necessary, but for episodes they are a requirement otherwise the page
-    # will always return the first episode.
+def parse_trending_collection_item(trending_item, hide_paid=False):
+    try:
+        # No idea if premium content can be trending, but just to be sure.
+        plot = '\n'.join((trending_item['description'], trending_item['contentInfo']))
+        if trending_item.get('isPaid'):
+            if hide_paid:
+                return None
+            plot = premium_plot(plot)
 
-    return{
-        'playable': True,
-        'show': {
-            'label': trending_item['title'],
-            'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': plot, 'sorttitle': sort_title(trending_item['title'])},
-            'params': {'url': build_url(trending_item['titleSlug'],
-                                        trending_item['encodedProgrammeId']['letterA'],
-                                        trending_item.get('encodedEpisodeId', {}).get('letterA'))}
+        # NOTE:
+        # Especially titles of type 'special' may lack a field encodedEpisodeID. For those titles it
+        # should not be necessary, but for episodes they are a requirement otherwise the page
+        # will always return the first episode.
+
+        return{
+            'playable': True,
+            'show': {
+                'label': trending_item['title'],
+                'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
+                'info': {'plot': plot, 'sorttitle': sort_title(trending_item['title'])},
+                'params': {'url': build_url(trending_item['titleSlug'],
+                                            trending_item['encodedProgrammeId']['letterA'],
+                                            trending_item.get('encodedEpisodeId', {}).get('letterA'))}
+            }
         }
-    }
+    except Exception:
+        logger.warning("Failed to parse trending_collection_item:\n%s", json.dumps(trending_item, indent=4))
+        return None
+
 
 
 def parse_category_item(prog, category):
@@ -285,6 +306,40 @@ def parse_category_item(prog, category):
 
 def parse_episode_title(title_data, brand_fanart=None):
     """Parse a title from episodes listing"""
+    # Note: episodeTitle may be None
+    title = title_data['episodeTitle'] or title_data['heroCtaLabel']
+    img_url = title_data['image']
+    plot = '\n\n'.join((title_data['longDescription'], title_data['guidance'] or ''))
+    if title_data['premium']:
+        plot = premium_plot(plot)
+
+    episode_nr = title_data.get('episode')
+    if episode_nr and title_data['episodeTitle'] is not None:
+        info_title = '{}. {}'.format(episode_nr, title_data['episodeTitle'])
+    else:
+        info_title = title_data['heroCtaLabel']
+
+    title_obj = {
+        'label': title,
+        'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
+                'fanart': brand_fanart,
+                # 'poster': img_url.format(**IMG_PROPS_POSTER)
+                },
+        'info': {'title': info_title,
+                 'plot': plot,
+                 'duration': int(utils.iso_duration_2_seconds(title_data['notFormattedDuration'])),
+                 'date': title_data['dateTime'],
+                 'episode': episode_nr,
+                 'season': title_data.get('series'),
+                 'year': title_data.get('productionYear')},
+        'params': {'url': title_data['playlistUrl'], 'name': title}
+    }
+
+    return title_obj
+
+
+def parse_legacy_episode_title(title_data, brand_fanart=None):
+    """Parse a title from episodes listing in old format"""
     # Note: episodeTitle may be None
     title = title_data['episodeTitle'] or title_data['numberedEpisodeTitle']
     img_url = title_data['imageUrl']
