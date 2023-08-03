@@ -1,3 +1,8 @@
+v1.0.0-beta.6
+- Adapt to changes at ITVX which fixes:
+    - Almost all VOD fail to play.
+    - Programme folders fail to open.
+
 V1.0.0-beta.5
 - Start live streams a few seconds more in the past to fix stuttering and buffering issues.
 - Cleanup of some cookie and property black magic to fix other issues with stuttering and stalling live streams.
