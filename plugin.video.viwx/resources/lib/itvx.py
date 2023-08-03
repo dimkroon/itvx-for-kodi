@@ -215,6 +215,59 @@ def episodes(url, use_cache=False):
         if cached_data is not None:
             return cached_data
 
+    page_data = get_page_data(url, cache_time=0)
+    try:
+        programme = page_data['programme']
+    except KeyError:
+        logger.warning("Trying to parse episodes in legacy format for programme %s", url)
+        return legacy_episodes(url)
+    programme_title = programme['title']
+    programme_thumb = programme['image'].format(**parsex.IMG_PROPS_THUMB)
+    programme_fanart = programme['image'].format(**parsex.IMG_PROPS_FANART)
+    description  = programme.get('longDescription') or programme.get('description') or programme_title
+    if 'FREE' in programme['tier']:
+        brand_description = description
+    else:
+        brand_description = parsex.premium_plot(description)
+
+    series_data = page_data.get('seriesList')
+    if not series_data:
+        return {}
+
+    # The field 'seriesNumber' is not guaranteed to be unique - and not guaranteed an integer either.
+    # Midsummer murder for instance has 2 series with seriesNumber 4
+    # By using this mapping, setdefault() and extend() on the episode list, series with the same
+    # seriesNumber are automatically merged.
+    series_map = {}
+    for series in series_data:
+        title = series['seriesLabel']
+        series_idx = series['seriesNumber']
+        series_obj = series_map.setdefault(
+            series_idx, {
+                'series': {
+                    'label': title,
+                    'art': {'thumb': programme_thumb, 'fanart': programme_fanart},
+                    # TODO: add more info, like series number, number of episodes
+                    'info': {'title': '[B]{} - {}[/B]'.format(programme_title, title),
+                             'plot': '{}\n\n{} - {} episodes'.format(
+                                 brand_description, title, series['numberOfAvailableEpisodes'])},
+
+                    'params': {'url': url, 'series_idx': series_idx}
+                },
+                'episodes': []
+            })
+        series_obj['episodes'].extend(
+            [parsex.parse_episode_title(episode, programme_fanart) for episode in series['titles']])
+    cache.set_item(url, series_map, expire_time=1800)
+    return series_map
+
+
+def legacy_episodes(url):
+    """Get a listing of series and their episodes
+
+    Use legacy data structure that was in use before 2-8-23.
+
+    """
     brand_data = get_page_data(url, cache_time=0)['title']['brand']
     brand_title = brand_data['title']
     brand_thumb = brand_data['imageUrl'].format(**parsex.IMG_PROPS_THUMB)
@@ -251,7 +304,7 @@ def episodes(url, use_cache=False):
                 'episodes': []
             })
         series_obj['episodes'].extend(
-            [parsex.parse_episode_title(episode, brand_fanart) for episode in series['episodes']])
+            [parsex.parse_legacy_episode_title(episode, brand_fanart) for episode in series['episodes']])
     cache.set_item(url, series_map, expire_time=1800)
     return series_map
 
@@ -336,15 +389,17 @@ def category_news_content(url, sub_cat, rail=None, hide_paid=False):
 
 def get_playlist_url_from_episode_page(page_url):
     """Obtain the url to the episode's playlist from the episode's HTML page.
-    """
-    import re
 
+    """
     logger.info("Get playlist from episode page - url=%s", page_url)
     data = get_page_data(page_url)
+
     try:
-        return data['title']['playlistUrl']
+        return data['seriesList'][0]['titles'][0]['playlistUrl']
     except KeyError:
+        # news item
         return data['episode']['playlistUrl']
+
 
 
 def search(search_term, hide_paid=False):

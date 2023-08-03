@@ -1,0 +1,117 @@
+{
+  "navAdServerParams": {
+    "area": "video",
+    "programmeTitle": "Danny Collins",
+    "channel": "ITV2",
+    "category": [
+      "FILM"
+    ],
+    "episodeId": "10_3142"
+  },
+  "forceRefresh": true,
+  "isAccessibleByKids": false,
+  "newsVideos": null,
+  "subnav": null,
+  "programme": {
+    "programmeId": "10_3142",
+    "encodedProgrammeId": {
+      "letterA": "10a3142",
+      "underscore": "10_3142"
+    },
+    "title": "Danny Collins",
+    "longDescription": "Inspired by a true story, Al Pacino stars as an ageing rocker who can't ditch the hard-living. Could an undelivered letter from 40 years ago convince him to change his ways? ",
+    "description": "An ageing rocker can't ditch the hard living - inspired by a true story ",
+    "image": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "channel": {
+      "name": "ITV2"
+    },
+    "categories": [
+      "FILM"
+    ],
+    "titleSlug": "danny-collins",
+    "contentOwner": null,
+    "partnership": null,
+    "tier": [
+      "FREE"
+    ],
+    "imagePresets": {
+      "0": {
+        "1x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"
+      },
+      "768": {
+        "1x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"
+      },
+      "1280": {
+        "1x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      },
+      "1920": {
+        "1x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      }
+    }
+  },
+  "seriesList": [
+    {
+      "seriesNumber": "others",
+      "seriesLabel": "Other Episodes",
+      "legacyId": 0,
+      "fullSeries": true,
+      "seriesType": "FILM",
+      "numberOfAvailableEpisodes": 1,
+      "titles": [
+        {
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HD",
+            "HLS",
+            "SINGLE_TRACK"
+          ],
+          "availabilityFrom": "2022-10-01T05:35:00Z",
+          "availabilityUntil": "2024-09-30T22:59:59.999Z",
+          "categories": [
+            "FILM"
+          ],
+          "channel": "ITV2",
+          "heroCtaLabel": "Watch Film",
+          "contentInfo": "1h 46m",
+          "contentOwner": null,
+          "dateTime": "1970-01-01T00:00:00.000Z",
+          "description": "An ageing rocker can't ditch the hard living - inspired by a true story ",
+          "duration": "1h 46m",
+          "encodedEpisodeId": {
+            "letterA": "10a3142a0001",
+            "underscore": "10_3142_0001"
+          },
+          "episodeId": "10/3142/0001",
+          "episodeTitle": "Danny Collins",
+          "fullSeriesRange": [],
+          "guidance": "Contains strong language throughout, scenes of drug use, adult themes & nudity.",
+          "image": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": false,
+          "longDescription": "Inspired by a true story, Al Pacino stars as an ageing rocker who can't ditch the hard-living. Could an undelivered letter from 40 years ago convince him to change his ways? ",
+          "longRunning": false,
+          "notFormattedDuration": "PT1H46M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_3142_0001.001",
+          "premium": false,
+          "productionId": "10/3142/0001#001",
+          "productionType": "FILM",
+          "productionYear": 2015,
+          "programmeId": "10/3142",
+          "subtitled": true,
+          "tagName": null,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        }
+      ],
+      "longRunning": false
+    }
+  ]
+}

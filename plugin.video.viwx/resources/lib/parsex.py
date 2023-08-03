@@ -307,6 +307,40 @@ def parse_category_item(prog, category):
 def parse_episode_title(title_data, brand_fanart=None):
     """Parse a title from episodes listing"""
     # Note: episodeTitle may be None
+    title = title_data['episodeTitle'] or title_data['heroCtaLabel']
+    img_url = title_data['image']
+    plot = '\n\n'.join((title_data['longDescription'], title_data['guidance'] or ''))
+    if title_data['premium']:
+        plot = premium_plot(plot)
+
+    episode_nr = title_data.get('episode')
+    if episode_nr and title_data['episodeTitle'] is not None:
+        info_title = '{}. {}'.format(episode_nr, title_data['episodeTitle'])
+    else:
+        info_title = title_data['heroCtaLabel']
+
+    title_obj = {
+        'label': title,
+        'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
+                'fanart': brand_fanart,
+                # 'poster': img_url.format(**IMG_PROPS_POSTER)
+                },
+        'info': {'title': info_title,
+                 'plot': plot,
+                 'duration': int(utils.iso_duration_2_seconds(title_data['notFormattedDuration'])),
+                 'date': title_data['dateTime'],
+                 'episode': episode_nr,
+                 'season': title_data.get('series'),
+                 'year': title_data.get('productionYear')},
+        'params': {'url': title_data['playlistUrl'], 'name': title}
+    }
+
+    return title_obj
+
+
+def parse_legacy_episode_title(title_data, brand_fanart=None):
+    """Parse a title from episodes listing in old format"""
+    # Note: episodeTitle may be None
     title = title_data['episodeTitle'] or title_data['numberedEpisodeTitle']
     img_url = title_data['imageUrl']
     plot = '\n\n'.join((title_data['synopsis'], title_data['guidance'] or ''))
