@@ -138,30 +138,25 @@ class Generic(unittest.TestCase):
 
     def test_parse_episode_title(self):
         data = open_json('html/series_miss-marple_data.json')
-        item = parsex.parse_episode_title(data['title'])
+        item = parsex.parse_episode_title(data['seriesList'][0]['titles'][0])
         is_li_compatible_dict(self, item)
 
         # Episodes where field episodeTitle = None
         data = open_json('html/series_bad-girls_data.json')
-        title_obj = data['title']['brand']['series'][6]['episodes'][0]
+        title_obj = data['seriesList'][6]['titles'][0]
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
         # Episode where field seriesNumber is not a number, but 'other episodes'.
         data = open_json('html/series_midsummer-murders.json')
-        series = data['title']['brand']['series'][-1]
-        self.assertEqual('Other Episodes', series['title'])
-        title_obj = series['episodes'][0]
-        item = parsex.parse_episode_title(title_obj)
-        is_li_compatible_dict(self, item)
-
-        # Although not seen in the wild, check a title with a non-integer field 'episodeNumber'
-        title_obj['episodeNumber'] = 'abvc'
+        series = data['seriesList'][-1]
+        self.assertEqual('Other Episodes', series['seriesLabel'])
+        title_obj = series['titles'][0]
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
         # Paid episode
-        title_obj['tier'] = ['PAID']
+        title_obj['premium'] = True
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
         self.assertTrue('premium' in item['info']['plot'].lower())

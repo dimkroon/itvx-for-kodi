@@ -208,34 +208,35 @@ class Productions(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
     def test_episodes_marple_series_4(self, _):
         """Test listing opened at series 4"""
-        list_items = main.list_productions.test('some/url/to/marple', series_idx=4)
+        list_items = main.list_productions.test('some/url/to/marple', series_idx='4')
         self.assertIsInstance(list_items, list)
         self.assertEqual(4, len(list_items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsummer-murders.json'))
     def test_episodes_midsummer_murders_series_other_episodes(self, _):
         """Test listing opened at the non-integer seriesNUmber 'other episodes'."""
-        list_items = main.list_productions.test('/some/url//to/midsumer', series_idx='other-episodes')
+        list_items = main.list_productions.test('/some/url//to/midsumer', series_idx='others')
         self.assertIsInstance(list_items, list)
         self.assertEqual(1, len(list_items))      # 22 series, 1 episode
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsummer-murders.json'))
     def test_episodes_midsummer_murders_series_4(self, _):
         """Midsummer murder has 2 different series numbered series-4. These should be merged into one"""
-        list_items = main.list_productions.test('some/url/to/midsumer', series_idx=4)
+        list_items = main.list_productions.test('some/url/to/midsumer', series_idx='4')
         self.assertIsInstance(list_items, list)
         self.assertEqual(6, len(list_items))      # 22 series, 5 episode in series 4-1, 1 episode in series 4-2
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_bad-girls_data.json'))
     def test_episodes_bad_girls_series_5(self, _):
         """Test listing opened at series 4"""
-        list_items = main.list_productions.test('some/url/to/bad girls', series_idx=5)
+        list_items = main.list_productions.test('some/url/to/bad girls', series_idx='5')
         self.assertIsInstance(list_items, list)
         self.assertEqual(16, len(list_items))
 
     def test_episode_of_show_with_only_one_series(self):
+        # FIXME: Not quite sure what we are actually testing here.
         data = open_json('html/series_miss-marple_data.json')
-        series = data['title']['brand']['series']
+        series = data['seriesList']
         # Remove all but the first series
         while len(series) > 1:
             series.pop()

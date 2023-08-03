@@ -288,11 +288,6 @@ class GetPLaylistUrl(TestCase):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/episode_marple_s6e3.html'))
-    def test_get_playlist_from_episode_page(self):
-        result = itvx.get_playlist_url_from_episode_page('page')
-        self.assertTrue(is_url(result))
-
     @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
     def test_get_playlist_from_premium_episode(self):
         result = itvx.get_playlist_url_from_episode_page('page')

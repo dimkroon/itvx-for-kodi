@@ -167,6 +167,15 @@ def is_tier_info(item) -> bool:
     return 'FREE' in item or 'PAID' in item
 
 
+def is_not_empty(item, type):
+    if not isinstance(item, type):
+        return False
+    if type in (int, float):
+        return True
+    else:
+        return bool(item)
+
+
 def check_live_stream_info(playlist):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.online.playlist.sim.v3+json, which is

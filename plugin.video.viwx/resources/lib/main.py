@@ -331,7 +331,10 @@ def list_productions(plugin, url, series_idx=None):
             li = Listitem.from_dict(play_stream_catchup, **episode)
             date = episode['info'].get('date')
             if date:
-                li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
+                try:
+                    li.info.date(date, '%Y-%m-%dT%H:%M:%S.%fZ')
+                except ValueError:
+                    li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
             yield li
     else:
         # List folders of all series

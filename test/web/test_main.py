@@ -61,15 +61,15 @@ class TestGetProductions(unittest.TestCase):
         self.assertGreater(len(items), 1)
 
     def test_get_productions_midsummer_murder_folder_1(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx=1)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='1')
         self.assertGreater(len(items), 1)
 
     def test_get_productions_midsummer_murder_folder_other_episodes(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='other-episodes')
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='others')
         self.assertEqual(len(items), 1)
 
     def test_get_productions_above_suspicion_folder_1(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/above-suspicion/35460', series_idx=1)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/above-suspicion/35460', series_idx='1')
         self.assertEqual(len(items), 2)
 
     def test_get_productions_the_chase(self):

@@ -12,6 +12,7 @@ fixtures.global_setup()
 import time
 import unittest
 import requests
+from datetime import datetime
 
 from resources.lib import fetch, parsex, utils, errors
 from support.object_checks import (
@@ -20,6 +21,10 @@ from support.object_checks import (
     misses_keys,
     is_url,
     is_iso_utc_time,
+    is_tier_info,
+    is_not_empty,
+    is_encoded_programme_id,
+    is_encoded_episode_id,
     check_news_clip_item,
     check_category_item
 )
@@ -29,6 +34,7 @@ setUpModule = fixtures.setup_web_test
 
 
 def check_shows(self, show, parent_name):
+    """Check an item of a collection page or in a rail on the main page."""
     # Not always present: 'contentInfo'
     self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode', 'page'), "{}: Unexpected title type '{}'.".format(
         '.'.join((parent_name, show['title'])), show['contentType']))
@@ -40,39 +46,92 @@ def check_shows(self, show, parent_name):
     self.assertTrue(is_url(show['imageTemplate']))
 
 
-def check_brand(self, brand, parent_name):
-    obj_name = '{}-{}'.format(parent_name, brand['title'])
-    has_keys(brand, 'title', 'imageUrl', 'synopses', 'legacyId', 'availableEpisodeCount', 'guidance', 'series', 'tier',
+def check_programme(self, progr_data):
+    """Formerly known as 'Brand'"""
+    obj_name = progr_data['title']
+    has_keys(progr_data, 'title', 'image', 'longDescription', 'description',
+             'encodedProgrammeId', 'titleSlug', 'tier',
              obj_name=obj_name)
-    self.assertIsInstance(brand['series'], list)
-    self.assertTrue(is_url(brand['imageUrl']))
+    expect_keys(progr_data, 'imagePresets', 'categories', 'programmeId')
+    self.assertTrue(is_encoded_programme_id(progr_data['encodedProgrammeId']))
+    self.assertTrue(is_not_empty(progr_data['title'], str))
+    self.assertTrue(is_not_empty(progr_data['longDescription'], str))
+    self.assertTrue(is_not_empty(progr_data['description'], str))
+    self.assertTrue(is_url(progr_data['image']))
+    self.assertTrue(is_not_empty(progr_data['categories'], list))
+    self.assertTrue(is_not_empty(progr_data['titleSlug'], str))
+    self.assertTrue(is_tier_info(progr_data['tier']))
+    if 'numberOfAvailableSeries' in progr_data:
+        self.assertTrue(is_not_empty(progr_data['numberOfAvailableSeries'], int))
 
 
 def check_series(self, series, parent_name):
-    obj_name = '{}-{}'.format(parent_name, series['title'])
-    # Field 'legacyId' is not always present, but is not used anyway.
-    has_keys(series, 'title', 'seriesNumber', 'seriesAvailableEpisodeCount', 'fullSeries', 'episodes',
+    obj_name = '{}-{}'.format(parent_name, series['seriesLabel'])
+    has_keys(series, 'seriesLabel', 'seriesNumber', 'numberOfAvailableEpisodes', 'titles',
              obj_name=obj_name)
-    for episode in series['episodes']:
-        check_episode(self, episode, obj_name)
+    expect_keys(series, 'legacyId', 'fullSeries', 'seriesType', 'longRunning')
+    self.assertTrue(is_not_empty(series['seriesNumber'], str))
+    self.assertTrue(is_not_empty(series['seriesLabel'], str))
+    # A programme can have single episodes not belonging to a series, like the Christmas special.
+    # These are of type 'EPISODE'.
+    self.assertTrue(series['seriesType'] in ('SERIES', 'FILM', 'EPISODE'))
+    self.assertTrue(is_not_empty(series['numberOfAvailableEpisodes'], int))
+    for episode in series['titles']:
+        check_title(self, episode, obj_name)
 
 
 def check_title(self, title, parent_name):
     obj_name = '{}-title-{}'.format(parent_name, title['episodeTitle'])
-    has_keys(title, 'titleType', 'episodeTitle', 'broadcastDateTime', 'isChildrenCategory', 'legacyId', 'guidance',
-             'imageUrl', 'playlistUrl', 'productionId', 'synopsis', 'tier', 'numberedEpisodeTitle',
-             'isChildrenCategory', obj_name=obj_name)
-    self.assertTrue(is_url(title['imageUrl']))
+    has_keys(title, 'availabilityFrom', 'availabilityUntil', 'contentInfo', 'dateTime', 'description',
+             'duration', 'encodedEpisodeId', 'episodeTitle', 'guidance', 'image', 'longDescription',
+             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', obj_name=obj_name)
+
+    expect_keys(title, 'audioDescribed', 'availabilityFeatures', 'categories', 'heroCtaLabel', 'episodeId',
+                'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
+                'productionId', 'programmeId', 'subtitled', 'visuallySigned', 'regionalisation', obj_name=obj_name)
+
+    self.assertIsInstance(title['audioDescribed'], bool)
+    self.assertTrue(is_iso_utc_time(title['availabilityFrom']))
+    self.assertTrue(is_iso_utc_time(title['availabilityUntil']))
+    self.assertIsInstance(title['categories'], list)
+    self.assertTrue(is_not_empty(title['contentInfo'], str))
+    self.assertTrue(is_iso_utc_time(title['dateTime']))
+    self.assertTrue(is_not_empty(title['description'], str))
+    self.assertTrue(is_not_empty(title['duration'], str))
+    self.assertFalse(title['duration'].startswith('P'))  # duration is not in iso format
+    self.assertTrue(is_encoded_episode_id(title['encodedEpisodeId']))
+    self.assertTrue(is_not_empty(title['episodeTitle'], str) or title['episodeTitle'] is None)
+    self.assertTrue(is_not_empty(title['longDescription'], str))
+    self.assertTrue(is_url(title['image']))
     self.assertTrue(is_url(title['playlistUrl']))
-    self.assertIsNotNone(title['numberedEpisodeTitle'])
-    self.assertTrue('FREE' in title['tier'] or 'PAID' in title['tier'])
+    self.assertIsInstance(title['premium'], bool)
+    self.assertTrue(title['productionType'] in('EPISODE', 'FILM', 'SPECIAL'))
+    self.assertIsInstance(title['subtitled'], bool)
+    if title['premium']:
+        self.assertListEqual(['PAID'], title['tier'])
+    else:
+        self.assertListEqual(['FREE'], title['tier'])
 
-    if title['titleType'] in ('EPISODE', 'FILM', 'SPECIAL'):
-        self.assertFalse(title['duration'].startswith('P'))    # duration is not in iso format
+    if title['productionType'] == 'EPISODE':
+        expect_keys(title, 'isFullSeries', 'nextProductionId', )
+        self.assertTrue(is_not_empty(title['episode'], int))
+        # Some episodes do not belong to a series, like the Christmas special
+        self.assertTrue(is_not_empty(title['series'], int) or title['series'] is None)
 
-    if title['titleType'] == 'FILM':
-        has_keys(title, 'productionYear',
-                 obj_name=obj_name)
+    if title['productionType'] == 'SPECIAL':
+        self.assertIsNone(title['episode'])
+        self.assertTrue('series' not in title)
+        self.assertGreater(title['productionYear'], 1900)
+        # Specials have been observed with a title['dataTime'] of 1-1-1970, but also real dates occur.
+
+    if title['productionType'] in ('EPISODE', 'FILM', 'SPECIAL'):
+        pass
+
+    if title['productionType'] == 'FILM':
+        self.assertGreater(title['productionYear'], 1900)
+        self.assertTrue('episode' not in title)
+        self.assertTrue('series' not in title)
+        self.assertEqual(utils.strptime(title['dateTime'], '%Y-%m-%dT%H:%M:%S.%fZ'), datetime(1970, 1, 1))
 
 
 def check_episode(self, episode, parent_name):
@@ -131,7 +190,7 @@ class MainPage(unittest.TestCase):
                 check_shows(self, show, collection['headingTitle'])
                 if show['contentType'] == 'page':
                     # If there is a show of type page, expect the whole collection to have its own page
-                    # from where its content will be obtained.
+                    # from where its content will be obtained, so there's no change this is to be parsed.
                     self.assertTrue(collection['headingLink'])
 
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
@@ -261,35 +320,53 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
                 ):
             page = fetch.get_document(url)
-            # testutils.save_doc(page, 'html/series_bad-girls.html')
+            # testutils.save_doc(page, 'html/series_miss-marple.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/agatha-christies-marple.json')
+            # testutils.save_json(data, 'html/series_midsummer-murders.json')
             programme_data = data['programme']
-            check_brand(self, programme_data['brandList'], '')
-            for series in programme_data['series']:
-                check_series(self, series, programme_data['brand']['title'])
+            check_programme(self, programme_data)
+            for series in data['seriesList']:
+                check_series(self, series, programme_data['title'])
 
     def test_premium_episode_page(self):
         url = 'https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001'
         page = fetch.get_document(url)
         # testutils.save_doc(page, 'html/paid_episode_downton-abbey-s1e1.html')
         data = parsex.scrape_json(page)
-        title_data = data['title']
-        check_title(self, title_data, 'downton abbey s1e1')
-        self.assertListEqual(['PAID'], title_data['tier'])
+        programme_data = data['programme']
+        check_programme(self, programme_data)
+        self.assertListEqual(['PAID'], programme_data['tier'])
+        for series in data['seriesList']:
+            check_series(self, series, programme_data['title'])
+            for title in series['titles']:
+                self.assertTrue(title['premium'])
 
     def test_film_details_page(self):
         page = fetch.get_document('https://www.itv.com/watch/danny-collins/10a3142')
         # testutils.save_doc(page, 'html/film_danny-collins.html')
         data = parsex.scrape_json(page)
-        check_title(self, data['title'], 'film-danny collins')
-        self.assertListEqual(['FREE'], data['title']['tier'])
+        # testutils.save_json(data, 'html/film_danny-collins.json')
+        check_programme(self, data['programme'])
+        self.assertEqual(1, len(data['seriesList']))
+        self.assertEqual(1, len(data['seriesList'][0]['titles']))
+        check_series(self, data['seriesList'][0], data['programme']['title'])
 
     def test_special_details_page(self):
         page = fetch.get_document('https://www.itv.com/watch/how-to-catch-a-cat-killer/10a1951')
         data = parsex.scrape_json(page)
         # testutils.save_json(data, 'html/special_how-to-catch-a-cat-killer_data.json')
-        check_title(self, data['title'], 'how to catch a killer')
+        check_programme(self, data['programme'])
+        self.assertEqual(1, len(data['seriesList']))
+        self.assertEqual(1, len(data['seriesList'][0]['titles']))
+        check_series(self, data['seriesList'][0], data['programme']['title'])
+
+    def test_news_item_tonight(self):
+        page = fetch.get_document('https://www.itv.com/watch/tonight/1a2803/1a9757a0137')
+        # testutils.save_doc(page, 'html/news-tonight.html')
+        data = parsex.scrape_json(page)
+        # Check 'Tonight' is still in old format.
+        with self.assertRaises(KeyError):
+            check_programme(self, data['programme'])
 
 
 class TvGuide(unittest.TestCase):
