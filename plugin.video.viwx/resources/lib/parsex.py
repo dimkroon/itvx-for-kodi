@@ -184,6 +184,7 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
     """Parse data found in news collection and in short news clips from news sub-categories
 
     """
+
     if 'encodedProgrammeId' in news_item.keys():
         # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
         # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
@@ -193,7 +194,7 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
                         news_item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
     else:
         # This news item is a 'short item', aka 'news clip'.
-        url = 'https://www.itv.com/watch/news/' + news_item['href']
+        url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
 
     # dateTime field occasionally has milliseconds. Strip these when present.
     item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
@@ -205,12 +206,13 @@ def parse_news_collection_item(news_item, time_zone, time_fmt):
     if news_item.get('isPaid'):
         plot = premium_plot(plot)
 
+    # TODO: consider adding poster image, but it is not always present
     return {
         'playable': True,
         'show': {
             'label': title,
             'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-            'info': {'plot': plot, 'sorttitle': sort_title(title)},
+            'info': {'plot': plot, 'sorttitle': sort_title(title), 'duration': news_item.get('duration')},
             'params': {'url': url }
         }
     }

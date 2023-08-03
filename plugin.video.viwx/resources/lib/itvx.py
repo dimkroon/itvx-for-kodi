@@ -145,14 +145,19 @@ def main_page_items():
             # if hero_item:
                 # yield hero_item
     # else:
-        # logger.info("No heroContent in main page.")
+        # logger.info("Main page has no heroContent.")
 
     if 'trendingSliderContent' in main_data.keys():
         yield {'type': 'collection',
                'show': {'label': 'Trending', 'params': {'slider': 'trendingSliderContent'}}}
-    if 'newsShortformSliderContent' in main_data.keys():
+    else:
+        logger.info("Main page has no 'Trending' slider.")
+
+    if 'shortFormSliderContent' in main_data.keys():
         yield {'type': 'collection',
-               'show': {'label': 'News', 'params': {'slider': 'newsShortformSliderContent'}}}
+               'show': {'label': 'News', 'params': {'slider': 'shortFormSliderContent'}}}
+    else:
+        logger.info("Main page has no 'News' slider.")
 
 
 def collection_content(url=None, slider=None, hide_paid=False):
@@ -168,10 +173,10 @@ def collection_content(url=None, slider=None, hide_paid=False):
         # A Collection that has all it's data on the main page and does not have its own page.
         page_data = get_page_data('https://www.itv.com', cache_time=3600)
 
-        if slider == 'newsShortformSliderContent':
+        if slider == 'shortFormSliderContent':
             uk_tz = pytz.timezone('Europe/London')
             time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
-            items_list = page_data['newsShortformSliderContent']['items']
+            items_list = page_data['shortFormSliderContent'][0]['items']
             if hide_paid:
                 progr_list = [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
                               for news_item in items_list
@@ -190,7 +195,11 @@ def collection_content(url=None, slider=None, hide_paid=False):
                 progr_list = [parsex.parse_trending_collection_item(trending_item) for trending_item in items_list]
 
         else:
-            items_list = page_data['editorialSliders'][slider]['collection']['shows']
+            try:
+                items_list = page_data['editorialSliders'][slider]['collection']['shows']
+            except KeyError:
+                logger.error("Failed to parse collection content: Unknown slider '%s'", slider)
+                return []
             if hide_paid:
                 progr_list = [parsex.parse_collection_item(item) for item in items_list if not item.get('isPaid')]
             else:
@@ -264,10 +273,10 @@ def category_news(path):
     data = get_page_data(path, cache_time=86400).get('newsData')
     if not data:
         return []
-    items = [{'label': 'Latest stories', 'params': {'path': path, 'subcat': 'heroAndLatestData'}}]
+    items = [{'label': 'Latest Stories', 'params': {'path': path, 'subcat': 'heroAndLatestData'}}]
     items.extend({'label': item['title'], 'params': {'path': path, 'subcat': 'curatedRails', 'rail': item['title']}}
                  for item in data['curatedRails'])
-    items.extend(({'label': 'Programmes', 'params': {'path': path, 'subcat': 'longformData'}},))
+    items.extend(({'label': 'Latest Programmes', 'params': {'path': path, 'subcat': 'longformData'}},))
     return items
 
 
