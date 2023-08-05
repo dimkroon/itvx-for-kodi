@@ -142,7 +142,9 @@ class Paginator:
             next_page_nr = 0
 
         for show in shows_list:
-            if show['playable']:
+            if show.get('type') == 'collection':
+                yield Listitem.from_dict(list_collection_content, **show['show'])
+            elif show['playable']:
                 yield Listitem.from_dict(play_title, **show['show'])
             else:
                 yield Listitem.from_dict(list_productions, **show['show'])
@@ -337,7 +339,10 @@ def list_productions(plugin, url, series_idx=None, content_type="videos"):
             li = Listitem.from_dict(play_stream_catchup, **episode)
             date = episode['info'].get('date')
             if date:
-                li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
+                try:
+                    li.info.date(date, '%Y-%m-%dT%H:%M:%S.%fZ')
+                except ValueError:
+                    li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
             yield li
     else:
         # MJR002: change content_type to 'files' for list of series

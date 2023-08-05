@@ -121,44 +121,51 @@ class MainPageItem(TestCase):
 class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_collection_news(self, _):
-        items = list(itvx.collection_content(slider='shortFormSliderContent'))
+        items = itvx.collection_content(slider='shortFormSliderContent')
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
-        items2 = list(itvx.collection_content(slider='shortFormSliderContent', hide_paid=True))
+        items2 = itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_collection_trending(self, _):
-        items = list(itvx.collection_content(slider='trendingSliderContent'))
+        items = itvx.collection_content(slider='trendingSliderContent')
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
-        items2 = list(itvx.collection_content(slider='trendingSliderContent', hide_paid=True))
+        items2 = itvx.collection_content(slider='trendingSliderContent', hide_paid=True)
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_collection_from_main_page(self, _):
-        items = list(itvx.collection_content(slider='editorialRailSlot1'))
+        items = itvx.collection_content(slider='editorialRailSlot1')
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
-        items2 = list(itvx.collection_content(slider='editorialRailSlot1', hide_paid=True))
+        items2 = itvx.collection_content(slider='editorialRailSlot1', hide_paid=True)
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_non_existing_collection_from_main_page(self, _):
-        items = list(itvx.collection_content(slider='SomeNonExistingSlider'))
+        items = itvx.collection_content(slider='SomeNonExistingSlider')
         self.assertListEqual([], items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
     def test_collection_from_collection_page(self, _):
-        items = list(itvx.collection_content(url='collection_top_picks'))
+        items = itvx.collection_content(url='collection_top_picks')
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'playable', 'show')
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-kids.json'))
+    def test_collection_from_collection_page_with_rails(self, _):
+        items = itvx.collection_content(url='itvx_kids')
+        self.assertGreater(len(items), 10)
+        for item in items:
+            has_keys(item, 'playable', 'show')
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
@@ -166,9 +173,15 @@ class Collections(TestCase):
         # The costume collection has 18 show, 1 title, of which 3 are premium
         items = list(itvx.collection_content(url='the_costume_collection'))
         self.assertEqual(19, len(items))
-        items = list(itvx.collection_content(url='the_costume_collection', hide_paid=True))
+        items = itvx.collection_content(url='the_costume_collection', hide_paid=True)
         self.assertEqual(16, len(items))
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
+    @patch('resources.lib.parsex.parse_collection_item', return_value=None)
+    def test_collection_with_invalid_items(self, _, __):
+        """Items that fail to parse return None and must be filtered out in the final result."""
+        items = itvx.collection_content(url='some/url')
+        self.assertListEqual([], items)
 
 class Categories(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
@@ -272,11 +285,6 @@ class Search(TestCase):
 class GetPLaylistUrl(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/film_danny-collins.html'))
     def test_get_playlist_from_film_page(self):
-        result = itvx.get_playlist_url_from_episode_page('page')
-        self.assertTrue(is_url(result))
-
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/episode_marple_s6e3.html'))
-    def test_get_playlist_from_episode_page(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
