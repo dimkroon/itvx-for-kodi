@@ -170,7 +170,7 @@ def is_tier_info(item) -> bool:
 def is_not_empty(item, type):
     if not isinstance(item, type):
         return False
-    if type in (int, float):
+    if type in (int, float, bool):
         return True
     else:
         return bool(item)
