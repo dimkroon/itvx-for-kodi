@@ -150,10 +150,12 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
-                     'contentInfo', 'tagName', obj_name=item['title'])
-            self.assertTrue(item['contentType'] in ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand'))
-            self.assertIsInstance(item['contentInfo'], list)
+            self.assertTrue(item['contentType'] in
+                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand', 'collection'))
+            if item['conentType'] != 'collection':
+                has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
+                         'contentInfo', 'tagName', obj_name=item['title'])
+                self.assertIsInstance(item['contentInfo'], list)
 
             if item['contentType']in ('simulcastspot', 'fastchannelspot'):
                 has_keys(item, 'channel', obj_name=item['title'])
@@ -177,6 +179,11 @@ class MainPage(unittest.TestCase):
             if item['contentType'] == 'brand':
                 # Just to check over time if this is always true
                 self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
+
+            if item['contentType'] == 'collection':
+                has_keys(item, 'contentType', 'title', 'imageTemplate', 'ctaLabel', 'collectionId', 'titleSlug')
+                expect_keys(item, 'ariaLabel', 'imagePresets')
+                self.assertFalse(is_not_empty(item['imagePresets'], dict))
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():

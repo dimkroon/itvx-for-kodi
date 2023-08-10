@@ -95,7 +95,7 @@ class MainPageItem(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(8, items_count)
+            self.assertEqual(9, items_count)
             for item in items:
                 is_li_compatible_dict(self, item['show'])
         # Hero item of unknown type is disregarded.

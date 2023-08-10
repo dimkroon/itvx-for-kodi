@@ -119,6 +119,12 @@ def parse_hero_content(hero_data):
                             duration=utils.duration_2_seconds(hero_data['duration']))
         item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                           'name': title}
+
+    elif item_type == 'collection':
+        item['info']['plot'] = hero_data.get('ctaLabel')
+        item['params'] = {'url': '/'.join(('https://www.itv.com/watch/collections',
+                                           hero_data.get('titleSlug', ''),
+                                           hero_data.get('collectionId')))}
     else:
         logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
         return None

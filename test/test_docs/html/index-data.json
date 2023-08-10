@@ -147,6 +147,16 @@
         "2h",
         2000
       ]
+    },
+    {
+      "imagePresets": {},
+      "contentType": "collection",
+      "title": "Harry Potter Collection",
+      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/harrypottercollection/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "ariaLabel": "Watch Now",
+      "ctaLabel": "View Collection",
+      "collectionId": "2ZBEiOkKZHOU1LNiJSK1cJ",
+      "titleSlug": "harry-potter-collection"
     }
   ],
   "editorialSliders": {
