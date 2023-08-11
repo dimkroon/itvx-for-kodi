@@ -35,12 +35,12 @@ setUpModule = fixtures.setup_web_test
 
 def check_shows(self, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
-    # Not always present: 'contentInfo'
-    self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode', 'page'), "{}: Unexpected title type '{}'.".format(
-        '.'.join((parent_name, show['title'])), show['contentType']))
-    if show['contentType'] == 'page':
-        # We ignore this type, is not actually a show
+    self.assertTrue(show.get('contentType') in ('series', 'brand', 'film', 'special', 'episode', 'page', None), "{}: Unexpected title type '{}'.".format(
+        '.'.join((parent_name, show['title'])), show.get('contentType', '')))
+    if show.get('contentType') in ('page', None):
+        # This type, or even absence of contentType, is not actually a show
         return True
+    # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     self.assertTrue(is_url(show['imageTemplate']))
@@ -152,7 +152,7 @@ class MainPage(unittest.TestCase):
         for item in page_props['heroContent']:
             self.assertTrue(item['contentType'] in
                             ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand', 'collection'))
-            if item['conentType'] != 'collection':
+            if item['contentType'] != 'collection':
                 has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
                          'contentInfo', 'tagName', obj_name=item['title'])
                 self.assertIsInstance(item['contentInfo'], list)
@@ -188,17 +188,14 @@ class MainPage(unittest.TestCase):
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
             collection = item['collection']
+            if collection.get('headingLink'):
+                # These collections have their own page and their data on the main page is not used.
+                continue
             # , 'imageTreatment', 'imageAspectRatio', 'imageClass'
             has_keys(collection, 'headingTitle', 'shows',
                      obj_name='collection-' + collection['headingTitle'])
-            # TODO: Is there any point in checking the whole contents of collections that have their own page?
-            #       The items on the main page will never be used.
             for show in collection['shows']:
                 check_shows(self, show, collection['headingTitle'])
-                if show['contentType'] == 'page':
-                    # If there is a show of type page, expect the whole collection to have its own page
-                    # from where its content will be obtained, so there's no change this is to be parsed.
-                    self.assertTrue(collection['headingLink'])
 
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])

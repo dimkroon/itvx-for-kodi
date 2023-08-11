@@ -85,7 +85,7 @@ class TestGetProductions(unittest.TestCase):
     def test_get_productions_bad_girls(self):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/bad-girls/7a0129')
         self.assertEqual(8, len(items))
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/bad-girls/7a0129', series_idx=6)
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/bad-girls/7a0129', series_idx='6')
         self.assertEqual(12, len(items))
 
 

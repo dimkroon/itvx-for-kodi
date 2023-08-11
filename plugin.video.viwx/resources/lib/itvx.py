@@ -415,6 +415,7 @@ def search(search_term, hide_paid=False):
     # no results.
     url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
           'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=dotcom&query=' + quote(
+
         search_term)
     headers = {
         'User-Agent': fetch.USER_AGENT,

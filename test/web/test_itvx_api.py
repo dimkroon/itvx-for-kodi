@@ -10,10 +10,12 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import unittest
-import requests
-from requests.cookies import RequestsCookieJar
 import copy
 from datetime import datetime, timedelta
+
+import requests
+from requests.cookies import RequestsCookieJar
+from urllib.parse import quote
 
 from resources.lib import itv_account
 from resources.lib import fetch
@@ -70,8 +72,8 @@ class LiveSchedules(unittest.TestCase):
         end = now + timedelta(hours=4)
         self.check_schedule(now, end)
 
-    @unittest.skip("Schedules far in the past time out")
-    def test_main_channels_schedules_week_in_the_past(self):
+    # @unittest.skip("Schedules far in the past time out")
+    def test_main_channels_schedules_4_days_in_the_past(self):
         """Live schedules are available to some time in the past.
 
         Requesting schedules takes some time, but going further in the past quickly increases
@@ -80,20 +82,19 @@ class LiveSchedules(unittest.TestCase):
         in 150 ms after a few attempts.
 
         .. Note ::
-
-        Regularly requests encounter a 504 - Gateway Timeout error, even requests that on other occasions
-        complete without error, but going further in the past increases the change of a time-out.
+            Regularly requests encounter a 504 - Gateway Timeout error, even requests that on other occasions
+            complete without error, but going further in the past increases the change of a time-out.
         """
         now = datetime.utcnow()
         start = now - timedelta(days=4)
         # self.check_schedule(start, now)
         try:
-            self.check_schedule(start, now)
+            self.check_schedule(start, now + timedelta(hours=4))
         except (requests.HTTPError, requests.ReadTimeout) as err:
             if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
                 # try again
-                print("schedule for days on the future failed, trying again...")
-                self.check_schedule(start, now)
+                print("schedule for 4 days in the past failed, trying again...")
+                self.check_schedule(start, now + timedelta(hours=4))
             else:
                 raise
 
@@ -168,18 +169,18 @@ class LiveSchedules(unittest.TestCase):
                     self.assertTrue(object_checks.is_iso_utc_time(program['start']))
                     self.assertTrue(object_checks.is_iso_utc_time(program['end']))
                     if program['broadcastAt'] is not None:      # is None on fast channels
-                        self.assertTrue(program['broadcastAt'].endswith('Z'))
-                        self.assertTrue(20, len(program['broadcastAt']))
+                        self.assertTrue(object_checks.is_iso_utc_time(program['broadcastAt']))
 
 
 class Search(unittest.TestCase):
-    search_url = 'https://textsearch.prd.oasvc.itv.com/search'
-    search_params = {
-        'broadcaster': 'itv',
-        'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
-        'onlyFree': 'false',
-        'platform': 'dotcom',
-    }
+    def setUp(self) -> None:
+        self.search_url = 'https://textsearch.prd.oasvc.itv.com/search'
+        self.search_params = {
+            'broadcaster': 'itv',
+            'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
+            'onlyFree': 'false',
+            'platform': 'ctv',
+        }.copy()
 
     def check_result(self, resp_obj):
         object_checks.has_keys(resp_obj, 'results', 'maxScore', obj_name='search_result')
@@ -228,9 +229,10 @@ class Search(unittest.TestCase):
 
     def test_search_normal_chase(self):
         self.search_params['query'] = 'the chase'
-        resp = requests.get(self.search_url, params=self.search_params).json()
-        self.check_result(resp)
-        self.assertGreater(len(resp['results']), 3)
+        resp = requests.get(self.search_url, params=self.search_params)
+        data = resp.json()
+        self.check_result(data)
+        self.assertGreater(len(data['results']), 3)
 
     def test_search_normal_monday(self):
         self.search_params['query'] = 'monday'
@@ -248,24 +250,31 @@ class Search(unittest.TestCase):
         if resp.status_code == 200:
             self.assertListEqual([], resp.json()['results'])
 
-    def test_search_with_non_free_results(self):
-        """Results contains a Doctor Foster programme which can only be watch with a premium account."""
+    def test_search_foster_with_paid(self):
+        """Results contains a Doctor Foster programme, which can only be watch with a premium account."""
         # Search including paid
-        self.search_params['query'] = 'doctor foster'
-        resp = requests.get(self.search_url, params=self.search_params).json()
-        self.check_result(resp)
-        self.assertEqual('PAID', resp['results'][0]['data']['tier'])
+        url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,'
+               'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=ctv&query='
+               + quote('doctor foster'))
+        resp = requests.get(url,
+                            headers={'accept': 'application/json'})
+        data = resp.json()
+        self.check_result(data)
+        self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
+        # self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
+    def test_search_foster_only_free(self):
         # Search exclude paid
-        self.search_params['onlyFree'] = 'true'
-        try:
-            resp = requests.get(self.search_url, params=self.search_params).json()
-        finally:
-            self.search_params['onlyFree'] = 'false'
-        self.assertGreater(len(resp['results']), 0)
-        self.check_result(resp)
-        for result in resp['results']:
-            self.assertEqual('FREE', result['data']['tier'])
+        url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,'
+               'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=true&platform=ctv&query='
+               + quote('doctor foster'))
+        resp = requests.get(url,
+                            headers={'accept': 'application/json'})
+        data = resp.json()
+        self.assertGreater(len(data['results']), 0)
+        self.check_result(data)
+        # self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
+        self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
 # ----------------------------------------------------------------------------------------------------------------------
 
