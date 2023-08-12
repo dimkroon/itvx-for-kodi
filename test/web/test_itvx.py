@@ -66,14 +66,6 @@ class TestItvX(unittest.TestCase):
         for item in sub_cat_list:
             is_li_compatible_dict(self, item)
 
-    @unittest.skip("not to interfere with tests of bugfix branch")
-    def test_search(self):
-        items = itvx.search('the chase')
-        self.assertGreater(len(list(items)), 2)
-        items = itvx.search('xprgs')     # should return None or empty results, depending on how ITV responds.
-        if items is not None:
-            self.assertEqual(len(list(items)), 0)
-
     def test_get_playlist_url_from_episode_page(self):
         # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002
         episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
@@ -113,3 +105,25 @@ class TestItvX(unittest.TestCase):
         # invalid user ID
         recom_list = itvx.recommended('dgsd')
         self.assertGreater(len(recom_list), 12)
+
+class ItvxSearch(unittest.TestCase):
+    def test_search(self):
+        items = itvx.search('the chase')
+        self.assertGreater(len(list(items)), 2)
+
+    def test_search_normal_monday(self):
+        items = itvx.search('monday')
+        self.assertGreater(len(list(items)), 3)
+
+    def test_searchterm_without_results(self):
+        items = itvx.search('xprgs')  # should return None or empty results, depending on how ITV responds.
+        if items is not None:
+            self.assertEqual(len(list(items)), 0)
+
+    def test_without_paid(self):
+        items = list(itvx.search('doctor foster', hide_paid=True))
+        self.assertFalse(any(item['show']['info']['plot'].startswith("[COLOR yellow]itvX premium") for item in items))
+
+    def test_with_paid(self):
+        items = list(itvx.search('doctor foster'))
+        self.assertTrue(any(item['show']['info']['plot'].startswith("[COLOR yellow]itvX premium") for item in items))
