@@ -77,58 +77,62 @@ def scrape_json(html_page):
 
 
 def parse_hero_content(hero_data):
-    item_type = hero_data['contentType']
-    title = hero_data['title']
-    item = {
-        'label': hero_data['title'],
-        'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
-                'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
-        'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(title)}
+    # noinspection PyBroadException
+    try:
+        item_type = hero_data['contentType']
+        title = hero_data['title']
+        item = {
+            'label': hero_data['title'],
+            'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
+                    'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+            'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(title)}
 
-    }
-    brand_img = item.get('brandImageTemplate')
+        }
+        brand_img = item.get('brandImageTemplate')
 
-    if brand_img:
-        item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
+        if brand_img:
+            item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
 
-    if item_type in ('simulcastspot', 'fastchannelspot'):
-        item['params'] = {'channel': hero_data['channel'], 'url': None}
-        item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
+        if item_type in ('simulcastspot', 'fastchannelspot'):
+            item['params'] = {'channel': hero_data['channel'], 'url': None}
+            item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
 
-    elif item_type == 'series':
-        item['info'].update(plot='[B]Series {}[/B]\n{}'.format(hero_data.get('series', '?'),
-                                                               hero_data.get('description')))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'series_idx': hero_data.get('series')}
+        elif item_type == 'series':
+            item['info'].update(plot='[B]Series {}[/B]\n{}'.format(hero_data.get('series', '?'),
+                                                                   hero_data.get('description')))
+            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                              'series_idx': hero_data.get('series')}
 
-    # Occasionally hero items are of type 'brand'. Possibly a mistake at ITV, but try to handle it anyway.
-    elif item_type == 'brand':
-        logger.info("Hero item %s is of type 'brand'", title)
-        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'name': title}
+        # Occasionally hero items are of type 'brand'. Possibly a mistake at ITV, but try to handle it anyway.
+        elif item_type == 'brand':
+            logger.info("Hero item %s is of type 'brand'", title)
+            item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'))
+            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                              'name': title}
 
-    elif item_type == 'special':
-        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
-                            duration=utils.duration_2_seconds(hero_data.get('duration')))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'name': title}
+        elif item_type == 'special':
+            item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
+                                duration=utils.duration_2_seconds(hero_data.get('duration')))
+            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                              'name': title}
 
-    elif item_type == 'film':
-        item['info'].update(plot='[B]Watch Film[/B]\n' + hero_data.get('description'),
-                            duration=utils.duration_2_seconds(hero_data['duration']))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'name': title}
+        elif item_type == 'film':
+            item['info'].update(plot='[B]Watch Film[/B]\n' + hero_data.get('description'),
+                                duration=utils.duration_2_seconds(hero_data['duration']))
+            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                              'name': title}
 
-    elif item_type == 'collection':
-        item['info']['plot'] = hero_data.get('ctaLabel')
-        item['params'] = {'url': '/'.join(('https://www.itv.com/watch/collections',
-                                           hero_data.get('titleSlug', ''),
-                                           hero_data.get('collectionId')))}
-    else:
-        logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
-        return None
-    return {'type': item_type, 'show': item}
+        elif item_type == 'collection':
+            item['info']['plot'] = hero_data.get('ctaLabel')
+            item['params'] = {'url': '/'.join(('https://www.itv.com/watch/collections',
+                                               hero_data.get('titleSlug', ''),
+                                               hero_data.get('collectionId')))}
+        else:
+            logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
+            return None
+        return {'type': item_type, 'show': item}
+    except:
+        logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title','unknown title'), exc_info=True)
 
 
 def parse_slider(slider_name, slider_data):
