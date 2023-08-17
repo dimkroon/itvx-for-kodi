@@ -501,6 +501,10 @@ def play_stream_catchup(_, url, name):
         subtitles = itv.get_vtt_subtitles(subtitle_url)
         if list_item and subtitles:
             list_item.setSubtitles(subtitles)
+            list_item.setProperties({
+                'subtitles.translate.file': subtitles[0],
+                'subtitles.translate.orig_lang': 'en',
+                'subtitles.translate.type': 'srt'})
         return list_item
 
 
