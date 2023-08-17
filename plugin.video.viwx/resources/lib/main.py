@@ -168,6 +168,7 @@ def root(_):
     callb_map = {
         'collection': list_collection_content,
         'series': list_productions,
+        'brand': list_productions,
         'simulcastspot': play_stream_live,
         'fastchannelspot': play_stream_live
     }

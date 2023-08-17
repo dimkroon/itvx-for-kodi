@@ -97,28 +97,17 @@ def parse_hero_content(hero_data):
             item['params'] = {'channel': hero_data['channel'], 'url': None}
             item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
 
-        elif item_type == 'series':
-            item['info'].update(plot='[B]Series {}[/B]\n{}'.format(hero_data.get('series', '?'),
-                                                                   hero_data.get('description')))
+        elif item_type in ('series', 'brand'):
+            item['info'].update(plot=''.join((hero_data.get('ariaLabel', ''), '\n\n', hero_data.get('description'))))
             item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                               'series_idx': hero_data.get('series')}
 
-        # Occasionally hero items are of type 'brand'. Possibly a mistake at ITV, but try to handle it anyway.
-        elif item_type == 'brand':
-            logger.info("Hero item %s is of type 'brand'", title)
-            item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'))
-            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                              'name': title}
-
-        elif item_type == 'special':
-            item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
+        elif item_type in ('special', 'film'):
+            item['info'].update(plot=''.join(('[B]Watch ',
+                                              'FILM' if item_type == 'film' else 'NOW',
+                                              '[/B]\n',
+                                              hero_data.get('description'))),
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
-            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                              'name': title}
-
-        elif item_type == 'film':
-            item['info'].update(plot='[B]Watch Film[/B]\n' + hero_data.get('description'),
-                                duration=utils.duration_2_seconds(hero_data['duration']))
             item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                               'name': title}
 

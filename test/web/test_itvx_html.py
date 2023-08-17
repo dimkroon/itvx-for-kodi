@@ -153,13 +153,13 @@ class MainPage(unittest.TestCase):
             self.assertTrue(item['contentType'] in
                             ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand', 'collection'))
             if item['contentType'] != 'collection':
-                has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
+                has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel', 'ariaLabel',
                          'contentInfo', 'tagName', obj_name=item['title'])
                 self.assertIsInstance(item['contentInfo'], list)
 
             if item['contentType']in ('simulcastspot', 'fastchannelspot'):
                 has_keys(item, 'channel', obj_name=item['title'])
-            else:
+            elif item['contentType'] != 'collection':
                 has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
                 # As of 06-2023 field genre seems to be removed from all types of hero content.
                 # Just keep the check in for a while.
