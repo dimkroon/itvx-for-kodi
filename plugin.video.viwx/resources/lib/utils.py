@@ -119,10 +119,10 @@ def ttml_to_srt(ttml_data, outfile):
 def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
     """Convert a string containing subtitles in vtt format into a format kodi accepts.
 
-    Very simple converter that does not expect much styling, position or colours and tries
+    Very simple converter that does not expect much styling, position, etc. and tries
     to ignore most fancy vtt stuff. But seems to be enough for most itv subtitles.
 
-    All styling, except bold, italic and underline defined by HTML text in the cue payload is
+    All styling, except bold, italic, underline and colour in the cue payload is
     removed, as well as position information.
 
     """
@@ -172,9 +172,9 @@ def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
 
     if colourize:
         # Remove any markup tag other than the supported bold, italic underline and colour.
-        srt_doc = re.sub(r'<([^biuc]).*?>(.*)</\1.*?>', r'\2', srt_doc)
+        srt_doc = re.sub(r'<([^biuc]).*?>(.*?)</\1.*?>', r'\2', srt_doc)
 
-        # convert color tags, accept only simple colour names.
+        # convert color tags, accept RGB(A) colours and named colours supported by Kodi.
         def sub_color_tags(match):
             colour = match[1]
             if colour in ('white', 'yellow', 'green', 'cyan', 'red'):
@@ -188,10 +188,10 @@ def vtt_to_srt(vtt_doc: str, colourize=True) -> str:
                 logger.debug("Unsupported colour '%s' in vtt file", colour)
                 return match[2]
 
-        srt_doc = re.sub(r'<c\.(.*?)>(.*)</c>', sub_color_tags, srt_doc)
+        srt_doc = re.sub(r'<c\.(.*?)>(.*?)</c>', sub_color_tags, srt_doc)
     else:
         # Remove any markup tag other than the supported bold, italic underline.
-        srt_doc = re.sub(r'<([^biu]).*?>(.*)</\1.*?>', r'\2', srt_doc)
+        srt_doc = re.sub(r'<([^biu]).*?>(.*?)</\1.*?>', r'\2', srt_doc)
     return srt_doc
 
 
