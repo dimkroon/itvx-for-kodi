@@ -1,0 +1,459 @@
+{
+  "editorialSliders": {
+    "testRailSlot1": {
+      "containerType": "Rail",
+      "displayType": "Promo Portrait",
+      "collection": {
+        "imageTreatment": "Title",
+        "imageAspectRatio": "2x3",
+        "imageClass": "07_RailTilePortrait",
+        "headingTitle": "Our Top Picks",
+        "page": "homepage",
+        "sliderName": "test_rail",
+        "shows": [
+          {
+            "imagePresets": {},
+            "contentType": "brand",
+            "title": "Love Island",
+            "channel": "itv2",
+            "description": "Grab love by the horns with a brand new series - new episodes every day",
+            "tagNames": null,
+            "episodeId": "2/3697/0395",
+            "programmeId": "2/3697",
+            "encodedEpisodeId": {
+              "letterA": "2a3697a0395",
+              "underscore": "2_3697_0395"
+            },
+            "encodedProgrammeId": {
+              "letterA": "2a3697",
+              "underscore": "2_3697"
+            },
+            "titleSlug": "love-island",
+            "dateTime": "2023-01-22T21:00:00Z",
+            "categories": [
+              "ENTERTAINMENT"
+            ],
+            "numberOfAvailableSeries": 9,
+            "contentInfo": "Series 1 - 9",
+            "partnership": null,
+            "contentOwner": null,
+            "imageTemplate": "https://ovp.itv.com/images/programme/wkk03p7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "Smallville",
+            "channel": "itv",
+            "description": "Superman - the early years... catch every episode of this hit show",
+            "tagNames": null,
+            "episodeId": "916256",
+            "programmeId": "33408",
+            "encodedEpisodeId": {
+              "letterA": "916256",
+              "underscore": "916256"
+            },
+            "encodedProgrammeId": {
+              "letterA": "33408",
+              "underscore": "33408"
+            },
+            "titleSlug": "smallville",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1 - 10",
+            "partnership": null,
+            "contentOwner": null,
+            "series": [
+              {
+                "seriesNumber": 1
+              },
+              {
+                "seriesNumber": 2
+              },
+              {
+                "seriesNumber": 3
+              },
+              {
+                "seriesNumber": 4
+              },
+              {
+                "seriesNumber": 5
+              },
+              {
+                "seriesNumber": 6
+              },
+              {
+                "seriesNumber": 7
+              },
+              {
+                "seriesNumber": 8
+              },
+              {
+                "seriesNumber": 9
+              },
+              {
+                "seriesNumber": 10
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/45km6dt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "title",
+            "title": "The Masked Singer",
+            "channel": "itv",
+            "description": "Who\u2019s behind the mask? Stream new eps weekly of this hit singing show ",
+            "tagNames": null,
+            "episodeId": "2/6976/0028",
+            "programmeId": "2/6976",
+            "encodedEpisodeId": {
+              "letterA": "2a6976a0028",
+              "underscore": "2_6976_0028"
+            },
+            "encodedProgrammeId": {
+              "letterA": "2a6976",
+              "underscore": "2_6976"
+            },
+            "titleSlug": "the-masked-singer",
+            "dateTime": "2023-01-21T19:00:00Z",
+            "categories": [
+              "ENTERTAINMENT"
+            ],
+            "seriesNumber": 4,
+            "episodeNumber": 4,
+            "titleItem": {
+              "audioDescription": false,
+              "broadcastDateTime": "2023-01-21T19:00:00Z",
+              "categories": {
+                "queryable": [
+                  "ENTERTAINMENT"
+                ],
+                "formatted": [
+                  "ENTERTAINMENT"
+                ],
+                "formattedCapitalised": [
+                  "Entertainment"
+                ]
+              },
+              "isChildrenCategory": false,
+              "channel": "ITV",
+              "legacyId": "2/6976/0028",
+              "brandLegacyId": "2/6976",
+              "episodeNumber": 4,
+              "episodeTitle": null,
+              "hasBrand": true,
+              "headerTitle": "The Masked Singer - Series 4 - Episode 4",
+              "href": "/the-masked-singer/2a6976/2a6976a0028",
+              "imageUrl": "https://ovp.itv.com/images/episode/g5sxw53/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+              "playlistUrl": "undefined",
+              "productionIdEncoded": "",
+              "programmeTitle": "The Masked Singer",
+              "regionalisation": false,
+              "seriesNumber": 4,
+              "showTitle": "The Masked Singer",
+              "showTitleSlug": "the-masked-singer",
+              "subtitles": false,
+              "titleType": "EPISODE",
+              "variants": [],
+              "CTAText": "Series 4, Episode 4",
+              "description": {
+                "descriptionTextStrong": "Episode 4"
+              },
+              "relativeBroadcastDateTime": "Sat 21 Jan 7pm",
+              "accessibilityTags": [],
+              "contentInfo": [
+                "ENTERTAINMENT"
+              ],
+              "contentOwner": null,
+              "partnership": null,
+              "tier": [
+                "FREE"
+              ],
+              "numberedEpisodeTitle": "Episode 4"
+            },
+            "partnership": null,
+            "contentOwner": null,
+            "imageTemplate": "https://ovp.itv.com/images/episode/g5sxw53/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "title",
+            "title": "Unstoppable",
+            "channel": "itv",
+            "description": "Denzel Washington, Chris Pine & a fast-paced race to avoid disaster",
+            "tagNames": null,
+            "episodeId": "10/3389/0001",
+            "programmeId": "10/3389",
+            "encodedEpisodeId": {
+              "letterA": "10a3389a0001",
+              "underscore": "10_3389_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a3389",
+              "underscore": "10_3389"
+            },
+            "titleSlug": "unstoppable",
+            "dateTime": "2022-12-29T22:45:00Z",
+            "categories": [
+              "FILMS"
+            ],
+            "duration": "PT1H38M",
+            "titleItem": {
+              "audioDescription": false,
+              "broadcastDateTime": "2022-12-29T22:45:00Z",
+              "categories": {
+                "queryable": [
+                  "FILM"
+                ],
+                "formatted": [
+                  "FILMS"
+                ],
+                "formattedCapitalised": [
+                  "Films"
+                ]
+              },
+              "isChildrenCategory": false,
+              "channel": "ITV",
+              "duration": "1h 38m",
+              "legacyId": "10/3389/0001",
+              "brandLegacyId": "10/3389",
+              "episodeTitle": "Unstoppable",
+              "hasBrand": false,
+              "headerTitle": "Unstoppable",
+              "href": "/unstoppable/10a3389",
+              "imageUrl": "https://ovp.itv.com/images/film/8kf1qsx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+              "playlistUrl": "undefined",
+              "productionIdEncoded": "",
+              "programmeTitle": "Unstoppable",
+              "regionalisation": false,
+              "showTitle": "Unstoppable",
+              "showTitleSlug": "unstoppable",
+              "subtitles": false,
+              "titleType": "FILM",
+              "variants": [],
+              "CTAText": "Watch Film",
+              "description": {
+                "descriptionTextStrong": "Unstoppable"
+              },
+              "relativeBroadcastDateTime": "Thur 29 Dec 10.45pm",
+              "accessibilityTags": [],
+              "contentInfo": [
+                "FILMS",
+                "1h 38m"
+              ],
+              "contentOwner": null,
+              "partnership": null,
+              "tier": [
+                "FREE"
+              ],
+              "numberedEpisodeTitle": "Unstoppable"
+            },
+            "partnership": null,
+            "contentOwner": null,
+            "imageTemplate": "https://ovp.itv.com/images/film/8kf1qsx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "title",
+            "title": "Vera",
+            "channel": "itv",
+            "description": "Vera investigates the washing up of a young woman's body by the River Tyne.",
+            "tagNames": null,
+            "episodeId": "1/7314/0050",
+            "programmeId": "1/7314",
+            "encodedEpisodeId": {
+              "letterA": "1a7314a0050",
+              "underscore": "1_7314_0050"
+            },
+            "encodedProgrammeId": {
+              "letterA": "1a7314",
+              "underscore": "1_7314"
+            },
+            "titleSlug": "vera",
+            "dateTime": "2023-01-22T20:00:00Z",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 11,
+            "episodeNumber": 6,
+            "episodeTitle": "The Way The Wind Blows",
+            "titleItem": {
+              "audioDescription": false,
+              "broadcastDateTime": "2023-01-22T20:00:00Z",
+              "categories": {
+                "queryable": [
+                  "DRAMA_AND_SOAPS"
+                ],
+                "formatted": [
+                  "DRAMA & SOAPS"
+                ],
+                "formattedCapitalised": [
+                  "Drama & Soaps"
+                ]
+              },
+              "isChildrenCategory": false,
+              "channel": "ITV",
+              "legacyId": "1/7314/0050",
+              "brandLegacyId": "1/7314",
+              "episodeNumber": 6,
+              "episodeTitle": "The Way The Wind Blows",
+              "hasBrand": true,
+              "headerTitle": "Vera - Series 11 - Episode 6",
+              "href": "/vera/1a7314/1a7314a0050",
+              "imageUrl": "https://ovp.itv.com/images/episode/tfks2ws/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+              "playlistUrl": "undefined",
+              "productionIdEncoded": "",
+              "programmeTitle": "Vera",
+              "regionalisation": false,
+              "seriesNumber": 11,
+              "showTitle": "Vera",
+              "showTitleSlug": "vera",
+              "subtitles": false,
+              "titleType": "EPISODE",
+              "variants": [],
+              "CTAText": "Series 11, Episode 6",
+              "description": {
+                "descriptionTextStrong": "6. The Way The Wind Blows"
+              },
+              "relativeBroadcastDateTime": "Yesterday 8pm",
+              "accessibilityTags": [],
+              "contentInfo": [
+                "DRAMA & SOAPS"
+              ],
+              "contentOwner": null,
+              "partnership": null,
+              "tier": [
+                "FREE"
+              ],
+              "numberedEpisodeTitle": "6. The Way The Wind Blows"
+            },
+            "partnership": null,
+            "contentOwner": null,
+            "imageTemplate": "https://ovp.itv.com/images/episode/tfks2ws/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "Tell Me Everything",
+            "channel": "itv2",
+            "description": "Death, drugs... destruction? Stream the twisty drama the critics love",
+            "tagNames": null,
+            "episodeId": "10/1188/0001",
+            "programmeId": "10/1188",
+            "encodedEpisodeId": {
+              "letterA": "10a1188a0001",
+              "underscore": "10_1188_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a1188",
+              "underscore": "10_1188"
+            },
+            "titleSlug": "tell-me-everything",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1",
+            "partnership": null,
+            "contentOwner": null,
+            "series": [
+              {
+                "seriesNumber": 1
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/0ln19dm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "title",
+            "title": "Ant and Dec's Limitless Win",
+            "channel": "itv",
+            "description": "Catch the latest episode of the gameshow offering TV's biggest prize",
+            "tagNames": null,
+            "episodeId": "10/1813/0009",
+            "programmeId": "10/1813",
+            "encodedEpisodeId": {
+              "letterA": "10a1813a0009",
+              "underscore": "10_1813_0009"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a1813",
+              "underscore": "10_1813"
+            },
+            "titleSlug": "ant-and-decs-limitless-win",
+            "dateTime": "2023-01-21T20:30:00Z",
+            "categories": [
+              "ENTERTAINMENT"
+            ],
+            "seriesNumber": 2,
+            "episodeNumber": 4,
+            "titleItem": {
+              "audioDescription": false,
+              "broadcastDateTime": "2023-01-21T20:30:00Z",
+              "categories": {
+                "queryable": [
+                  "ENTERTAINMENT"
+                ],
+                "formatted": [
+                  "ENTERTAINMENT"
+                ],
+                "formattedCapitalised": [
+                  "Entertainment"
+                ]
+              },
+              "isChildrenCategory": false,
+              "channel": "ITV",
+              "legacyId": "10/1813/0009",
+              "brandLegacyId": "10/1813",
+              "episodeNumber": 4,
+              "episodeTitle": null,
+              "hasBrand": true,
+              "headerTitle": "Ant and Dec's Limitless Win - Series 2 - Episode 4",
+              "href": "/ant-and-decs-limitless-win/10a1813/10a1813a0009",
+              "imageUrl": "https://ovp.itv.com/images/episode/7gq70gg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+              "playlistUrl": "undefined",
+              "productionIdEncoded": "",
+              "programmeTitle": "Ant and Dec's Limitless Win",
+              "regionalisation": false,
+              "seriesNumber": 2,
+              "showTitle": "Ant and Dec's Limitless Win",
+              "showTitleSlug": "ant-and-decs-limitless-win",
+              "subtitles": false,
+              "titleType": "EPISODE",
+              "variants": [],
+              "CTAText": "Series 2, Episode 4",
+              "description": {
+                "descriptionTextStrong": "Episode 4"
+              },
+              "relativeBroadcastDateTime": "Sat 21 Jan 8.30pm",
+              "accessibilityTags": [],
+              "contentInfo": [
+                "ENTERTAINMENT"
+              ],
+              "contentOwner": null,
+              "partnership": null,
+              "tier": [
+                "FREE"
+              ],
+              "numberedEpisodeTitle": "Episode 4"
+            },
+            "partnership": null,
+            "contentOwner": null,
+            "imageTemplate": "https://ovp.itv.com/images/episode/7gq70gg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "collection",
+            "title": "Wizarding World of Harry Potter Collection",
+            "channel": "",
+            "titleSlug": "wizarding-world-of-harry-potter-collection",
+            "collectionId": "2ZBEiOkKZHOU1LNiJSK1cJ",
+            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/wizardingworldofharrypotter/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          }
+        ],
+        "isChildrenCollection": false
+      }
+    }
+  }
+}

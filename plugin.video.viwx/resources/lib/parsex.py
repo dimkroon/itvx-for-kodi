@@ -112,10 +112,10 @@ def parse_hero_content(hero_data):
                               'name': title}
 
         elif item_type == 'collection':
-            item['info']['plot'] = hero_data.get('ctaLabel')
-            item['params'] = {'url': '/'.join(('https://www.itv.com/watch/collections',
-                                               hero_data.get('titleSlug', ''),
-                                               hero_data.get('collectionId')))}
+            item = parse_item_type_collection(hero_data)
+            info = item['show']['info']
+            info['title'] = ''.join(('[COLOR orange]', info['title'], '[/COLOR]'))
+            return item
         else:
             logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
             return None
@@ -152,6 +152,9 @@ def parse_collection_item(show_data, hide_paid=False):
         is_playable = content_type in ('episode', 'film', 'special', 'title')
         title = show_data['title']
         content_info = show_data.get('contentInfo', '')
+
+        if content_type == 'collection':
+            return parse_item_type_collection(show_data)
 
         if show_data.get('isPaid'):
             if hide_paid:
@@ -298,6 +301,29 @@ def parse_category_item(prog, category):
                                                      prog['encodedEpisodeId']['letterA'])}
     return {'playable': is_playable,
             'show': programme_item}
+
+
+def parse_item_type_collection(item_data):
+    """Parse an item of type 'collection' found in heroContent or a collection.
+    The collection items refer to another collection.
+
+    .. note::
+        Only items from heroContent seem to have a field `ctaLabel`.
+
+    """
+    title = item_data['title']
+    item = {
+        'label': title,
+        'art': {'thumb': item_data['imageTemplate'].format(**IMG_PROPS_THUMB),
+                'fanart': item_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+        'info': {'title': '[B]{}[/B]'.format(title),
+                 'plot': item_data.get('ctaLabel', 'Collection'),
+                 'sorttitle': sort_title(title)},
+        'params': {'url': '/'.join(('https://www.itv.com/watch/collections',
+                                    item_data.get('titleSlug', ''),
+                                    item_data.get('collectionId')))}
+    }
+    return {'type': 'collection', 'playable': False, 'show': item}
 
 
 def parse_episode_title(title_data, brand_fanart=None):

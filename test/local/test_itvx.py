@@ -146,6 +146,17 @@ class Collections(TestCase):
         items2 = itvx.collection_content(slider='editorialRailSlot1', hide_paid=True)
         self.assertListEqual(items, items2)
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/editorial_slider.json'))
+    def test_collection_from_test_rail(self, _):
+        """Test a specially crafted slider with all possible types of items."""
+        items = itvx.collection_content(slider='testRailSlot1')
+        self.assertEqual(len(items), 8)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+        self.assertTrue(items[7]['type'] == 'collection')
+        items2 = itvx.collection_content(slider='testRailSlot1', hide_paid=True)
+        self.assertListEqual(items, items2)
+
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_non_existing_collection_from_main_page(self, _):
         items = itvx.collection_content(slider='SomeNonExistingSlider')

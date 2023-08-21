@@ -35,11 +35,15 @@ setUpModule = fixtures.setup_web_test
 
 def check_shows(self, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
-    self.assertTrue(show.get('contentType') in ('series', 'brand', 'film', 'special', 'episode', 'page', None), "{}: Unexpected title type '{}'.".format(
-        '.'.join((parent_name, show['title'])), show.get('contentType', '')))
+    self.assertTrue(show.get('contentType') in
+                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'page', None),
+                    "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
+                                                             show.get('contentType', '')))
     if show.get('contentType') in ('page', None):
         # This type, or even absence of contentType, is not actually a show
         return True
+    if show['contentType'] == 'collection':
+        return check_rail_item_type_collection(self, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
@@ -140,6 +144,18 @@ def check_episode(self, episode, parent_name):
     has_keys(episode, 'daysLeft', 'seriesNumber', 'episodeNumber', 'href', 'programmeTitle', obj_name=obj_name)
 
 
+def check_rail_item_type_collection(self, item, parent_name):
+    """Check items of type collection found on heroContent and editorialSliders."""
+    has_keys(item, 'contentType', 'title', 'titleSlug', 'collectionId', 'imageTemplate',
+             obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    expect_keys(item, 'imagePresets', 'channel', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    self.assertFalse(is_not_empty(item['imagePresets'], dict))
+    self.assertTrue(is_url(item['imageTemplate']))
+    self.assertTrue(is_not_empty(item['title'], str))
+    self.assertTrue(is_not_empty(item['titleSlug'], str))
+    self.assertTrue(is_not_empty(item['collectionId'], str))
+
+
 class MainPage(unittest.TestCase):
     def test_main_page(self):
         page = fetch.get_document('https://www.itv.com/')
@@ -181,9 +197,9 @@ class MainPage(unittest.TestCase):
                 self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
             if item['contentType'] == 'collection':
-                has_keys(item, 'contentType', 'title', 'imageTemplate', 'ctaLabel', 'collectionId', 'titleSlug')
-                expect_keys(item, 'ariaLabel', 'imagePresets')
-                self.assertFalse(is_not_empty(item['imagePresets'], dict))
+                check_rail_item_type_collection(self, item, 'heroContent')
+                # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
+                has_keys(item, 'ariaLabel')
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
