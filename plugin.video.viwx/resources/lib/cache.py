@@ -42,7 +42,7 @@ def get_item(key):
 
 
 def set_item(key, data, expire_time=DFLT_EXPIRE_TIME):
-    """Cache `data` in memory for the lifetime of the addon, to a maximum of `expire_time` in seconds
+    """Cache `data` in memory for the lifetime of the addon, to a maximum of `expire_time` in seconds.
 
     """
     item = dict(expires=time.monotonic() + expire_time,
@@ -52,7 +52,7 @@ def set_item(key, data, expire_time=DFLT_EXPIRE_TIME):
 
 
 def clean():
-    """Remove expired items from the cache"""
+    """Remove expired items from the cache."""
     now = time.monotonic()
     for key, item in list(__cache.items()):
         if item['expires'] < now:
@@ -61,7 +61,7 @@ def clean():
 
 
 def purge():
-    """Empty the cache"""
+    """Empty the cache."""
     __cache.clear()
 
 

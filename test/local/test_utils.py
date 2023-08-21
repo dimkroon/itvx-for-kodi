@@ -45,7 +45,7 @@ class Generic(TestCase):
         self.assertEqual(50 * 60, utils.duration_2_seconds('50 min'))
         self.assertEqual(123 * 60, utils.duration_2_seconds('123 min'))
         self.assertEqual(62 * 60, utils.duration_2_seconds('62'))
-        self.assertEqual(4500, utils.duration_2_seconds('1.25 hrs'))
+        self.assertEqual(4503, utils.duration_2_seconds('1.2511 hrs'))
         self.assertEqual(4500, utils.duration_2_seconds('1h 15m'))
         self.assertEqual(7200, utils.duration_2_seconds('2h'))
         self.assertEqual(52 * 60, utils.duration_2_seconds('52m'))

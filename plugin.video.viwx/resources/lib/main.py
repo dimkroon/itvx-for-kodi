@@ -363,14 +363,13 @@ def do_search(addon, search_query):
 def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_time=None):
     # noinspection PyImport,PyUnresolvedReferences
     import inputstreamhelper
-    from resources.lib.itv_account import itv_session
 
     logger.debug('dash manifest url: %s', manifest_url)
     logger.debug('dash key service url: %s', key_service_url)
 
     try:
-        # Ensure to get a fresh hdntl cookie as they expire after 12 or 24.
-        # Use a plain requests.get to prevent sending an existing hdntl cookie,
+        # Ensure to get a fresh hdntl cookie as they expire after 12 or 24 hrs.
+        # Use a plain requests.get() to prevent sending an existing hdntl cookie,
         # and other cookies are not required.
         resp = requests.get(url=manifest_url,
                             allow_redirects=False,

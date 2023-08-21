@@ -203,7 +203,7 @@ def get_vtt_subtitles(subtitles_url):
     try:
         vtt_doc = fetch.get_document(subtitles_url)
 
-        # vtt_file = os.path.join(utils.addon_info['profile'], 'subtitles.vtt')
+        # vtt_file = os.path.join(utils.addon_info.profile, 'subtitles.vtt')
         # with open(vtt_file, 'w', encoding='utf8') as f:
         #     f.write(vtt_doc)
 

@@ -204,6 +204,7 @@ def duration_2_seconds(duration: str) -> int | None:
     * '1,32 hrs'  - hours as float
     * '78 min' - number of minutes as integer
     * '1h 35m' - hours and minutes, where both hours and minutes are optional.
+    * 'PT1H32M' - ISO 8601 duration.
 
     """
 
@@ -224,7 +225,7 @@ def duration_2_seconds(duration: str) -> int | None:
                 return int(splits[0]) * 60
             if splits[1] == 'hrs':
                 # format '1.56 hrs'
-                return float(splits[0]) * 3600
+                return int(float(splits[0]) * 3600)
 
         for t_str in splits:
             if t_str.endswith('h'):

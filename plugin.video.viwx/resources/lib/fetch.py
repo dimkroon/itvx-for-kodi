@@ -202,8 +202,8 @@ def web_request(method, url, headers=None, data=None, **kwargs):
             try:
                 resp_data = resp.json()
             except:
-                # Intentional broad exception as requests can raise various types of errors depending on python
-                # version and requests.JSONDecodeError does not always seem to catch them.
+                # Intentional broad exception as requests can raise various types of errors
+                # depending on python, etc.
                 pass
             else:
                 if resp_data.get('error') in ('invalid_grant', 'invalid_request'):
@@ -240,6 +240,7 @@ def post_json(url, data, headers=None, **kwargs):
 
 
 def get_json(url, headers=None, **kwargs):
+    """Make a GET reguest and expect JSON data back."""
     dflt_headers = {'Accept': 'application/json'}
     if headers:
         dflt_headers.update(headers)

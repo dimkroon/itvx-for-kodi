@@ -82,10 +82,10 @@ def parse_hero_content(hero_data):
         item_type = hero_data['contentType']
         title = hero_data['title']
         item = {
-            'label': hero_data['title'],
+            'label': title,
             'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
                     'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
-            'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(title)}
+            'info': {'title': ''.join(('[B][COLOR orange]', title, '[/COLOR][/B]'))}
 
         }
         brand_img = item.get('brandImageTemplate')
@@ -147,6 +147,7 @@ def parse_collection_item(show_data, hide_paid=False):
 
     Very much like category content, but not quite.
     """
+    # noinspection PyBroadException
     try:
         content_type = show_data.get('contentType') or show_data['type']
         is_playable = content_type in ('episode', 'film', 'special', 'title')
@@ -215,7 +216,8 @@ def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
                 return None
             plot = premium_plot(plot)
 
-        # TODO: consider adding poster image, but it is not always present
+        # TODO: consider adding poster image, but it is not always present.
+        #       Add date.
         return {
             'playable': True,
             'show': {
@@ -230,8 +232,13 @@ def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
         return None
 
 
-
 def parse_trending_collection_item(trending_item, hide_paid=False):
+    """Parse an item in the collection 'Trending'
+    The only real difference with the regular parse_collection_item() is
+    adding field `contentInfo` to plot and the fact that all items are being
+    treated as playable.
+
+    """
     try:
         # No idea if premium content can be trending, but just to be sure.
         plot = '\n'.join((trending_item['description'], trending_item['contentInfo']))
@@ -261,15 +268,17 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
         return None
 
 
-
 def parse_category_item(prog, category):
     # At least all items without an encodedEpisodeId are playable.
     # Unfortunately there are items that do have an episodeId, but are in fact single
-    # episodes, and thus playable, but there is no reliable way of detecting these.
-    #
+    # episodes, and thus playable, but there is no reliable way of detecting these,
+    # since category items lack a field like `contentType`.
     # The previous method of detecting the presence of 'series' in contentInfo proved
-    # to be very unreliable; frequently contentInfo contains playing time on items
-    # that are in fact programmes with multiple episodes.
+    # to be very unreliable.
+    #
+    # All items with episodeId are returned as series folder, with the odd change some
+    # contain only one item.
+
     is_playable = prog['encodedEpisodeId']['letterA'] == ''
     playtime = utils.duration_2_seconds(prog['contentInfo'])
     title = prog['title']
