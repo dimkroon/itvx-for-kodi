@@ -77,52 +77,51 @@ def scrape_json(html_page):
 
 
 def parse_hero_content(hero_data):
-    item_type = hero_data['contentType']
-    title = hero_data['title']
-    item = {
-        'label': hero_data['title'],
-        'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
-                'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
-        'info': {'title': '[B][COLOR orange]{}[/COLOR][/B]'.format(title)}
+    # noinspection PyBroadException
+    try:
+        item_type = hero_data['contentType']
+        title = hero_data['title']
+        item = {
+            'label': title,
+            'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
+                    'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+            'info': {'title': ''.join(('[B][COLOR orange]', title, '[/COLOR][/B]'))}
 
-    }
-    brand_img = item.get('brandImageTemplate')
+        }
+        brand_img = item.get('brandImageTemplate')
 
-    if brand_img:
-        item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
+        if brand_img:
+            item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
 
-    if item_type in ('simulcastspot', 'fastchannelspot'):
-        item['params'] = {'channel': hero_data['channel'], 'url': None}
-        item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
+        if item_type in ('simulcastspot', 'fastchannelspot'):
+            item['params'] = {'channel': hero_data['channel'], 'url': None}
+            item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
 
-    elif item_type == 'series':
-        item['info'].update(plot='[B]Series {}[/B]\n{}'.format(hero_data.get('series', '?'),
-                                                               hero_data.get('description')))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'series_idx': hero_data.get('series')}
+        elif item_type in ('series', 'brand'):
+            item['info'].update(plot=''.join((hero_data.get('ariaLabel', ''), '\n\n', hero_data.get('description'))))
+            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                              'series_idx': hero_data.get('series')}
 
-    # Occasionally hero items are of type 'brand'. Possibly a mistake at ITV, but try to handle it anyway.
-    elif item_type == 'brand':
-        logger.info("Hero item %s is of type 'brand'", title)
-        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'name': title}
+        elif item_type in ('special', 'film'):
+            item['info'].update(plot=''.join(('[B]Watch ',
+                                              'FILM' if item_type == 'film' else 'NOW',
+                                              '[/B]\n',
+                                              hero_data.get('description'))),
+                                duration=utils.duration_2_seconds(hero_data.get('duration')))
+            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+                              'name': title}
 
-    elif item_type == 'special':
-        item['info'].update(plot='[B]Watch Now[/B]\n' + hero_data.get('description'),
-                            duration=utils.duration_2_seconds(hero_data.get('duration')))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'name': title}
-
-    elif item_type == 'film':
-        item['info'].update(plot='[B]Watch Film[/B]\n' + hero_data.get('description'),
-                            duration=utils.duration_2_seconds(hero_data['duration']))
-        item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                          'name': title}
-    else:
-        logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
-        return None
-    return {'type': item_type, 'show': item}
+        elif item_type == 'collection':
+            item = parse_item_type_collection(hero_data)
+            info = item['show']['info']
+            info['title'] = ''.join(('[COLOR orange]', info['title'], '[/COLOR]'))
+            return item
+        else:
+            logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
+            return None
+        return {'type': item_type, 'show': item}
+    except:
+        logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title','unknown title'), exc_info=True)
 
 
 def parse_slider(slider_name, slider_data):
@@ -148,11 +147,15 @@ def parse_collection_item(show_data, hide_paid=False):
 
     Very much like category content, but not quite.
     """
+    # noinspection PyBroadException
     try:
         content_type = show_data.get('contentType') or show_data['type']
         is_playable = content_type in ('episode', 'film', 'special', 'title')
         title = show_data['title']
         content_info = show_data.get('contentInfo', '')
+
+        if content_type == 'collection':
+            return parse_item_type_collection(show_data)
 
         if show_data.get('isPaid'):
             if hide_paid:
@@ -168,6 +171,9 @@ def parse_collection_item(show_data, hide_paid=False):
             'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
                      'plot': plot,
                      'sorttitle': sort_title(title)},
+            'params': {'url': build_url(show_data['titleSlug'],
+                                        show_data['encodedProgrammeId']['letterA'],
+                                        show_data.get('encodedEpisodeId', {}).get('letterA'))}
         }
 
         if 'FILMS' in show_data['categories']:
@@ -175,12 +181,6 @@ def parse_collection_item(show_data, hide_paid=False):
 
         if is_playable:
             programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
-            programme_item['params'] = {'url': build_url(show_data['titleSlug'],
-                                                         show_data['encodedProgrammeId']['letterA'])}
-        else:
-            programme_item['params'] = {'url': build_url(show_data['titleSlug'],
-                                                         show_data['encodedProgrammeId']['letterA'],
-                                                         show_data['encodedEpisodeId']['letterA'])}
         return {'playable': is_playable,
                 'show': programme_item}
     except Exception:
@@ -216,7 +216,8 @@ def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
                 return None
             plot = premium_plot(plot)
 
-        # TODO: consider adding poster image, but it is not always present
+        # TODO: consider adding poster image, but it is not always present.
+        #       Add date.
         return {
             'playable': True,
             'show': {
@@ -231,8 +232,13 @@ def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
         return None
 
 
-
 def parse_trending_collection_item(trending_item, hide_paid=False):
+    """Parse an item in the collection 'Trending'
+    The only real difference with the regular parse_collection_item() is
+    adding field `contentInfo` to plot and the fact that all items are being
+    treated as playable.
+
+    """
     try:
         # No idea if premium content can be trending, but just to be sure.
         plot = '\n'.join((trending_item['description'], trending_item['contentInfo']))
@@ -262,15 +268,17 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
         return None
 
 
-
 def parse_category_item(prog, category):
     # At least all items without an encodedEpisodeId are playable.
     # Unfortunately there are items that do have an episodeId, but are in fact single
-    # episodes, and thus playable, but there is no reliable way of detecting these.
-    #
+    # episodes, and thus playable, but there is no reliable way of detecting these,
+    # since category items lack a field like `contentType`.
     # The previous method of detecting the presence of 'series' in contentInfo proved
-    # to be very unreliable; frequently contentInfo contains playing time on items
-    # that are in fact programmes with multiple episodes.
+    # to be very unreliable.
+    #
+    # All items with episodeId are returned as series folder, with the odd change some
+    # contain only one item.
+
     is_playable = prog['encodedEpisodeId']['letterA'] == ''
     playtime = utils.duration_2_seconds(prog['contentInfo'])
     title = prog['title']
@@ -302,6 +310,29 @@ def parse_category_item(prog, category):
                                                      prog['encodedEpisodeId']['letterA'])}
     return {'playable': is_playable,
             'show': programme_item}
+
+
+def parse_item_type_collection(item_data):
+    """Parse an item of type 'collection' found in heroContent or a collection.
+    The collection items refer to another collection.
+
+    .. note::
+        Only items from heroContent seem to have a field `ctaLabel`.
+
+    """
+    title = item_data['title']
+    item = {
+        'label': title,
+        'art': {'thumb': item_data['imageTemplate'].format(**IMG_PROPS_THUMB),
+                'fanart': item_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+        'info': {'title': '[B]{}[/B]'.format(title),
+                 'plot': item_data.get('ctaLabel', 'Collection'),
+                 'sorttitle': sort_title(title)},
+        'params': {'url': '/'.join(('https://www.itv.com/watch/collections',
+                                    item_data.get('titleSlug', ''),
+                                    item_data.get('collectionId')))}
+    }
+    return {'type': 'collection', 'playable': False, 'show': item}
 
 
 def parse_episode_title(title_data, brand_fanart=None):

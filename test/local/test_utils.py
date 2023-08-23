@@ -45,7 +45,7 @@ class Generic(TestCase):
         self.assertEqual(50 * 60, utils.duration_2_seconds('50 min'))
         self.assertEqual(123 * 60, utils.duration_2_seconds('123 min'))
         self.assertEqual(62 * 60, utils.duration_2_seconds('62'))
-        self.assertEqual(4500, utils.duration_2_seconds('1.25 hrs'))
+        self.assertEqual(4503, utils.duration_2_seconds('1.2511 hrs'))
         self.assertEqual(4500, utils.duration_2_seconds('1h 15m'))
         self.assertEqual(7200, utils.duration_2_seconds('2h'))
         self.assertEqual(52 * 60, utils.duration_2_seconds('52m'))
@@ -224,8 +224,8 @@ STYLE
         self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1\n', srt)
         srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<ruby>text 1</ruby>')
         self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1\n', srt)
-        srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<rt>text 1</rt>')
-        self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1\n', srt)
+        srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<rt>text 1</rt>, <rt>text 2</rt>')
+        self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1, text 2\n', srt)
 
     def test_keep_supported_markup_tags(self):
         srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<b>text 1</b>')
@@ -238,8 +238,14 @@ STYLE
     def test_convert_colour_tags(self):
         srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.yellow>text 1</c>')
         self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\n<font color="yellow">text 1</font>\n', srt)
+        srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.yellow>text 1</c> <c.red>text 2</c>')
+        self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\n<font color="yellow">text 1</font> <font color="red">text 2</font>\n', srt)
+
+    def test_remove_colour(self):
         srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.yellow>text 1</c>', False)
         self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1\n', srt)
+        srt = utils.vtt_to_srt('01:02:03.234 --> 01:02:04.567\n<c.yellow>text 1 </c><c.red>text 2</c>', False)
+        self.assertEqual('\n1\n01:02:03,234 --> 01:02:04,567\ntext 1 text 2\n', srt)
 
     def test_convert_named_colours(self):
         for colour in ('white', 'yellow', 'green', 'cyan', 'red'):
@@ -261,4 +267,3 @@ STYLE
                 vtt = f.read()
             srt = utils.vtt_to_srt(vtt)
             self.assertGreater(len(srt), 100)
-

@@ -106,7 +106,7 @@ msgid "The number of items per page. Listings with more items are split up into 
 msgstr ""
 
 msgctxt "#30306"
-msgid "When a category or collection has more items than specified here, an A-Z list will be used."
+msgid "When a category or collection has more items than specified here, items will be alphabetically subdivided."
 msgstr ""
 
 msgctxt "#30311"
@@ -118,7 +118,8 @@ msgid "Target of itvX logging.\n"
 msgstr ""
 
 msgctxt "#30321"
-msgid "Whenever possible, offer the option to play the current program from the start each time a live channel is being started.\n"
+msgid "Show a dialog with the option to play the current program from the start each time a live channel is being started.\n"
+"When disabled 'play form the start' is still available on the context menu of the main live channels."
 msgstr ""
 
 msgctxt "#30401"
@@ -152,7 +153,7 @@ msgstr ""
 
 msgctxt "#30611"
 msgid "You need to sign in to your itvX account.\n"
-"You can always sign in and out on the addon's settings page."
+"You can sign in and out on the addon's settings page."
 msgstr ""
 
 msgctxt "#30612"

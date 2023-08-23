@@ -95,7 +95,7 @@ class MainPageItem(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(8, items_count)
+            self.assertEqual(9, items_count)
             for item in items:
                 is_li_compatible_dict(self, item['show'])
         # Hero item of unknown type is disregarded.
@@ -144,6 +144,17 @@ class Collections(TestCase):
         for item in items:
             has_keys(item, 'playable', 'show')
         items2 = itvx.collection_content(slider='editorialRailSlot1', hide_paid=True)
+        self.assertListEqual(items, items2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/editorial_slider.json'))
+    def test_collection_from_test_rail(self, _):
+        """Test a specially crafted slider with all possible types of items."""
+        items = itvx.collection_content(slider='testRailSlot1')
+        self.assertEqual(len(items), 8)
+        for item in items:
+            has_keys(item, 'playable', 'show')
+        self.assertTrue(items[7]['type'] == 'collection')
+        items2 = itvx.collection_content(slider='testRailSlot1', hide_paid=True)
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))

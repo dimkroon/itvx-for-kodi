@@ -32,7 +32,7 @@ class KodiLogHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord) -> None:
         msg = self.format(record)
-        # as per kodi requirements only log at debug level to kodi log
+        # As per kodi requirements; only log at debug level to kodi log
         xbmc.log(msg, xbmc.LOGDEBUG)
 
 

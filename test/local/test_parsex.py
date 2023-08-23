@@ -68,6 +68,9 @@ class Generic(unittest.TestCase):
         item = data['heroContent'][0]
         item['contentType'] = 'some new type'
         self.assertIsNone(parsex.parse_hero_content(item))
+        # Invalid item
+        item = {'contentType': 'special', 'title': False}
+        self.assertIsNone(parsex.parse_hero_content(item))
 
     def test_parse_slider(self):
         data = open_json('html/index-data.json')

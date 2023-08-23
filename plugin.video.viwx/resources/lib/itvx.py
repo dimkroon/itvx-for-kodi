@@ -16,7 +16,7 @@ import xbmc
 
 from codequick.support import logger_id
 
-from . import fetch, errors
+from . import fetch
 from . import parsex
 from . import cache
 
@@ -78,7 +78,7 @@ def get_now_next_schedule(local_tz=None):
 
         programs_list = []
         for prog in (slots['now'], slots['next']):
-            if prog['detailedDisplayTitle']:
+            if prog.get('detailedDisplayTitle'):
                 details = ': '.join((prog['displayTitle'], prog['detailedDisplayTitle']))
             else:
                 details = prog['displayTitle']
@@ -145,19 +145,19 @@ def main_page_items():
             if hero_item:
                 yield hero_item
     else:
-        logger.info("Main page has no heroContent.")
+        logger.warning("Main page has no heroContent.")
 
     if 'trendingSliderContent' in main_data.keys():
         yield {'type': 'collection',
                'show': {'label': 'Trending', 'params': {'slider': 'trendingSliderContent'}}}
     else:
-        logger.info("Main page has no 'Trending' slider.")
+        logger.warning("Main page has no 'Trending' slider.")
 
     if 'shortFormSliderContent' in main_data.keys():
         yield {'type': 'collection',
                'show': {'label': 'News', 'params': {'slider': 'shortFormSliderContent'}}}
     else:
-        logger.info("Main page has no 'News' slider.")
+        logger.warning("Main page has no 'News' slider.")
 
 
 def collection_content(url=None, slider=None, hide_paid=False):
@@ -415,6 +415,7 @@ def search(search_term, hide_paid=False):
     # no results.
     url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
           'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=dotcom&query=' + quote(
+
         search_term)
     headers = {
         'User-Agent': fetch.USER_AGENT,

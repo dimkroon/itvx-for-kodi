@@ -35,12 +35,16 @@ setUpModule = fixtures.setup_web_test
 
 def check_shows(self, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
-    # Not always present: 'contentInfo'
-    self.assertTrue(show['contentType'] in ('series', 'brand', 'film', 'special', 'episode', 'page'), "{}: Unexpected title type '{}'.".format(
-        '.'.join((parent_name, show['title'])), show['contentType']))
-    if show['contentType'] == 'page':
-        # We ignore this type, is not actually a show
+    self.assertTrue(show.get('contentType') in
+                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'page', None),
+                    "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
+                                                             show.get('contentType', '')))
+    if show.get('contentType') in ('page', None):
+        # This type, or even absence of contentType, is not actually a show
         return True
+    if show['contentType'] == 'collection':
+        return check_rail_item_type_collection(self, show, parent_name)
+    # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     self.assertTrue(is_url(show['imageTemplate']))
@@ -140,6 +144,18 @@ def check_episode(self, episode, parent_name):
     has_keys(episode, 'daysLeft', 'seriesNumber', 'episodeNumber', 'href', 'programmeTitle', obj_name=obj_name)
 
 
+def check_rail_item_type_collection(self, item, parent_name):
+    """Check items of type collection found on heroContent and editorialSliders."""
+    has_keys(item, 'contentType', 'title', 'titleSlug', 'collectionId', 'imageTemplate',
+             obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    expect_keys(item, 'imagePresets', 'channel', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    self.assertFalse(is_not_empty(item['imagePresets'], dict))
+    self.assertTrue(is_url(item['imageTemplate']))
+    self.assertTrue(is_not_empty(item['title'], str))
+    self.assertTrue(is_not_empty(item['titleSlug'], str))
+    self.assertTrue(is_not_empty(item['collectionId'], str))
+
+
 class MainPage(unittest.TestCase):
     def test_main_page(self):
         page = fetch.get_document('https://www.itv.com/')
@@ -150,14 +166,16 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel',
-                     'contentInfo', 'tagName', obj_name=item['title'])
-            self.assertTrue(item['contentType'] in ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand'))
-            self.assertIsInstance(item['contentInfo'], list)
+            self.assertTrue(item['contentType'] in
+                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand', 'collection'))
+            if item['contentType'] != 'collection':
+                has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel', 'ariaLabel',
+                         'contentInfo', 'tagName', obj_name=item['title'])
+                self.assertIsInstance(item['contentInfo'], list)
 
             if item['contentType']in ('simulcastspot', 'fastchannelspot'):
                 has_keys(item, 'channel', obj_name=item['title'])
-            else:
+            elif item['contentType'] != 'collection':
                 has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
                 # As of 06-2023 field genre seems to be removed from all types of hero content.
                 # Just keep the check in for a while.
@@ -178,20 +196,22 @@ class MainPage(unittest.TestCase):
                 # Just to check over time if this is always true
                 self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
+            if item['contentType'] == 'collection':
+                check_rail_item_type_collection(self, item, 'heroContent')
+                # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
+                has_keys(item, 'ariaLabel')
+
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
             collection = item['collection']
+            if collection.get('headingLink'):
+                # These collections have their own page and their data on the main page is not used.
+                continue
             # , 'imageTreatment', 'imageAspectRatio', 'imageClass'
             has_keys(collection, 'headingTitle', 'shows',
                      obj_name='collection-' + collection['headingTitle'])
-            # TODO: Is there any point in checking the whole contents of collections that have their own page?
-            #       The items on the main page will never be used.
             for show in collection['shows']:
                 check_shows(self, show, collection['headingTitle'])
-                if show['contentType'] == 'page':
-                    # If there is a show of type page, expect the whole collection to have its own page
-                    # from where its content will be obtained, so there's no change this is to be parsed.
-                    self.assertTrue(collection['headingLink'])
 
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])

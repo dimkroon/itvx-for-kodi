@@ -203,12 +203,12 @@ def get_vtt_subtitles(subtitles_url):
     try:
         vtt_doc = fetch.get_document(subtitles_url)
 
-        # vtt_file = os.path.join(utils.addon_info['profile'], 'subtitles.vtt')
+        # vtt_file = os.path.join(utils.addon_info.profile, 'subtitles.vtt')
         # with open(vtt_file, 'w', encoding='utf8') as f:
         #     f.write(vtt_doc)
 
         srt_doc = utils.vtt_to_srt(vtt_doc, colourize=Script.setting['subtitles_color'] != 'false')
-        srt_file = os.path.join(utils.addon_info.profile, 'subitles.srt')
+        srt_file = os.path.join(utils.addon_info.profile, 'hearing impaired.en.srt')
         with open(srt_file, 'w', encoding='utf8') as f:
             f.write(srt_doc)
 

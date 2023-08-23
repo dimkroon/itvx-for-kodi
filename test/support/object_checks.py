@@ -170,7 +170,7 @@ def is_tier_info(item) -> bool:
 def is_not_empty(item, type):
     if not isinstance(item, type):
         return False
-    if type in (int, float):
+    if type in (int, float, bool):
         return True
     else:
         return bool(item)
@@ -239,6 +239,8 @@ def check_catchup_dash_stream_info(playlist):
     if subtitles is not None:
         for subt in subtitles:
             assert is_url(subt['Href'], '.vtt')
+        # Of little value right now, because only a few streams are checked.
+        assert len(subtitles) == 1
 
 
 def check_news_collection_stream_info(playlist):
@@ -299,12 +301,13 @@ def check_category_item(item):
 
     """
     # TODO: Check if this is the same as a normal episode
-    # Note: it misses a `titleType` field.
     has_keys(
         item,
         'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'channel', 'description', 'imageTemplate',
         'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId'
     )
+    # Ensure it still misses a `titleType` or similar field.
+    misses_keys(item, 'titleType', 'contentType', 'type')
     assert isinstance(item['title'], str) and item['title']
     title = item['title']
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
