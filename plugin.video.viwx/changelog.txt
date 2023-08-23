@@ -1,3 +1,10 @@
+v1.0.0-rc.1
+- Support hero items and collection items of type collection.
+- Added some protection against future changes to ITVX's main page.
+- Fix: Some parts of subtitles missing when more than one colour was used on a single line.
+- Added support for an experimental addon that performs automatic subtitles translation.
+- Some other minor changes and improvements.
+
 v1.0.0-beta.6
 - Adapt to changes at ITVX which fixes:
     - Almost all VOD fail to play.
