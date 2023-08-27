@@ -34,10 +34,10 @@ Only Kodi 19 (Matrix) and Kodi 20 (Nexus) are supported.
 At present the add-on can only be installed as zip file.
 
 * Ensure that installing from unknown sources is enabled in Kodi. Click here for
-  [instructions](https://dimkroon.net/guides/enable-unknown-sources.html).
+  [instructions](https://dimkroon.net/en/guides/enable-unknown-sources.html).
 * Download the latest release. 
   You can add https://dimkroon.net/kodi-addons as file source to Kodi's file 
-  manager ([instructions](https://dimkroon.net/guides/howto-add-file-source.html)), 
+  manager ([instructions](https://dimkroon.net/en/guides/howto-add-file-source.html)), 
   so you can easily download the zip file from Kodi.
   Alternatively, download the latest zip file manually from the
   [GitHub releases](https://github.com/dimkroon/itvx-for-kodi/releases) 
@@ -45,7 +45,7 @@ At present the add-on can only be installed as zip file.
 * Choose _install from zip_ from Kodi's add-on menu, browse to the file 
   source you've just created and install the latest version, or install the 
   manually downloaded zip file.
-  Check [how to install from zip file](https://dimkroon.net/guides/install-from-zip.html) 
+  Check [how to install from zip file](https://dimkroon.net/en/guides/install-from-zip.html) 
   for detailed instructions.
 
 
