@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viwx" name="viwX" version="1.0.0-rc.1" provider-name="Dimitri Kroon">
+<addon id="plugin.video.viwx" name="viwX" version="1.0.0" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.5"/>
-    <import addon="script.module.requests"/>
+    <import addon="script.module.requests" version="2.31.0"/>
     <import addon="script.module.pytz"/>
     <import addon="script.module.tzlocal"/>
-    <import addon="script.module.codequick"/>
+    <import addon="script.module.codequick" version="1.0.3"/>
     <import addon="script.module.inputstreamhelper"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
@@ -30,7 +30,7 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
-      Support hero items and collection items of type collection.[CR]Added some protection against future changes to ITVX's main page.[CR]Fix: Some parts of subtitles missing when more than one colour was used on a single line.[CR]Added support for an experimental addon that performs automatic subtitles translation.[CR]Some other minor changes and improvements.
+      First stable release
     </news>
     <reuselanguageinvoker>true</reuselanguageinvoker>
   </extension>
