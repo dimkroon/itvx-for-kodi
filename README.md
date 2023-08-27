@@ -52,7 +52,7 @@ At present the add-on can only be installed as zip file.
 ## Support
 
 Head for support, questions and general discussions regarding this addon to 
-[this thread](https://forum.kodi.tv/showthread.php?tid=369757) on the Kodi 
+[this thread](https://forum.kodi.tv/showthread.php?tid=374239) on the Kodi 
 forum. 
 If you are confident you've found a bug please open an issue on github.
 
