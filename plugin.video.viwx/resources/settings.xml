@@ -67,7 +67,7 @@
 				</setting>
 				<setting id="log-level" label="30113" type="integer" help="30313">
 					<level>3</level>
-					<default>0</default>
+					<default>2</default>
 					<constraints>
 						<options>
 							<option label="debug">0</option>

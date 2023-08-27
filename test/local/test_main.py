@@ -32,10 +32,15 @@ tearDownModule = fixtures.tear_down_local_tests
 
 
 class Paginator(TestCase):
-    def test_paginate_empty_list(self):
-        pg = main.Paginator([], filter_char=None, page_nr=0)
-        result = list(pg)
-        self.assertListEqual([], result)
+    def test_no_items(self):
+        for items_list in ([], None, False):
+            pg = main.Paginator(items_list, filter_char=None, page_nr=0)
+            result = list(pg)
+            self.assertListEqual([], result)
+
+    def test_invalid_type_of_list(self):
+        pg = main.Paginator(1234, filter_char=None, page_nr=0)
+        self.assertRaises(errors.ParseError, list, pg)
 
 
 @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))

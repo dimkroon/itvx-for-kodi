@@ -136,12 +136,11 @@ def _request_stream_data(url, stream_type='live', retry_on_error=True):
 def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
-    .. Note::
-        Subtitles are usually not available on live streams, but in order to be compatible with
-        data returned by get_catchup_urls(...) None is returned.
+    .. note::
+        Subtitles are usually embedded in live streams. Just return None in order to be compatible with
+        data returned by get_catchup_urls(...).
 
     """
-    # import web_pdb; web_pdb.set_trace()
     channel = url.rsplit('/', 1)[1]
 
     stream_data = _request_stream_data(url)
