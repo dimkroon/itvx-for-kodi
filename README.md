@@ -30,8 +30,27 @@ with a generic web browser also apply to this addon:
 
 ## Installation
 
-Only Kodi 19 (Matrix) and Kodi 20 (Nexus) are supported.
-At present the add-on can only be installed as zip file.
+Only Kodi 19 (Matrix) and higher are supported.
+
+
+#### Preferred Method
+
+ViwX is available from official Kodi addon repository. Installing from the 
+kodi repo is the easiest the most secure way of installing this add-on, and is 
+the only method that supports automatic updates. 
+
+To install from the official Kodi repo, select `Settings -> Addons -> Install 
+from repository -> Kodi Add-on repository -> Video add-ons`. Scroll down to 
+viwX, select and install.
+
+After installation open the add-on's settings to sign in to your ITVX 
+account.
+
+
+#### Alternative Method
+
+For those who prefer to install add-ons manually, or want immediate access to 
+new versions, this method of installing from zip remains available:
 
 * Ensure that installing from unknown sources is enabled in Kodi. Click here for
   [instructions](https://dimkroon.net/en/guides/enable-unknown-sources.html).
