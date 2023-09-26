@@ -185,11 +185,12 @@ def check_live_stream_info(playlist):
     has_keys(playlist, *mandatory_keys, obj_name='Playlist')
 
     video_inf = playlist['Video']
-    has_keys(video_inf, 'Duration', 'Subtitles', 'Token', 'VideoLocations', obj_name="Playlist['Video']")
+    has_keys(video_inf, 'Duration', 'Subtitles', 'VideoLocations', obj_name="Playlist['Video']")
+    # Field token has always been None and was removed in 2023-09
+    misses_keys(video_inf, 'token', obj_name="Playlist['Video']")
 
     assert isinstance(video_inf['Duration'], str)
     assert isinstance(video_inf['Subtitles'], (type(None), str))
-    assert isinstance(video_inf['Token'], (type(None), str))
 
     strm_inf = video_inf['VideoLocations']
     assert isinstance(strm_inf, list), 'VideoLocations is not a list but {}'.format(type(strm_inf))
