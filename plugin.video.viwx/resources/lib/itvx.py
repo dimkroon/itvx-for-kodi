@@ -164,15 +164,15 @@ def collection_content(url=None, slider=None, hide_paid=False):
     if url:
         page_data = get_page_data(url, cache_time=43200)
         collection = page_data['collection']
-        rails = page_data.get('rails')
+        editorial_sliders = page_data.get('editorialSliders')
         if collection is not None:
             col_items = collection.get('shows', [])
             progr_gen = (parsex.parse_collection_item(item, hide_paid) for item in col_items)
-        elif rails:
+        elif editorial_sliders:
             # Do not sort this list on title
-            return list(filter(None, (parsex.parse_slider('', rail) for rail in rails)))
+            return list(filter(None, (parsex.parse_slider('', slider) for slider in editorial_sliders)))
         else:
-            logger.warning("Missing both collections and rails in data from '%s'.", url)
+            logger.warning("Missing both collections and editorial_sliders in data from '%s'.", url)
             return []
 
     else:

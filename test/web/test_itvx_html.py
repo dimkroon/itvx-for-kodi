@@ -246,7 +246,7 @@ class CollectionPages(unittest.TestCase):
         """Obtain links to collection pages from the main page and test them all."""
         def check_rail(url):
             page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
-            # if 'Hundreds of great shows' in page_data['headingTitle']:
+            # if 'Funny Favourites' in page_data['headingTitle']:
             #     testutils.save_json(page_data, 'html/collection_itvx-kids.json')
             has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
                      'pageImageUrl', 'isAccessibleByKids')
