@@ -99,8 +99,12 @@ class Paginator:
         try:
             list_len = len(items_list)
         except TypeError:
-            logger.warning("Items list is '%s'", items_list)
-            return False
+            logger.warning("Items list is not a list: '%s'", items_list)
+            if items_list in (None, False):
+                # None and False are valid values for 'no items'.
+                return False
+            else:
+                raise ParseError
         if not self._filter and az_len and list_len >= az_len:
             logger.debug("List size %s exceeds maximum of %s items; creating A-Z subdivision", list_len, az_len)
             return True
