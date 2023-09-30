@@ -307,7 +307,7 @@ class PlayStreamLive(TestCase):
         self.assertFalse('IsPlayable' in result._props)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
-        self.assertTrue(object_checks.is_url(p_req_strm.call_args_list[0], '/ITV'))
+        self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/ITV'))
 
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):
