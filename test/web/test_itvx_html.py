@@ -25,7 +25,8 @@ from support.object_checks import (
     is_not_empty,
     is_encoded_programme_id,
     is_encoded_episode_id,
-    check_news_clip_item,
+    check_short_form_slider,
+    check_short_form_item,
     check_category_item
 )
 from support import testutils
@@ -174,7 +175,7 @@ class MainPage(unittest.TestCase):
         page = fetch.get_document('https://www.itv.com/')
         # testutils.save_doc(page, 'html/index.html')
         page_props = parsex.scrape_json(page)
-        # testutils.save_json(page_props, 'html/index-data.json')
+        # testutils.save_json(page_props, 'html/index-data_new.json')
         has_keys(page_props, 'heroContent', 'editorialSliders', 'shortFormSliderContent', 'trendingSliderContent')
 
         self.assertIsInstance(page_props['heroContent'], list)
@@ -236,10 +237,15 @@ class MainPage(unittest.TestCase):
             # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
 
         self.assertIsInstance(page_props['shortFormSliderContent'], list)
-        # Currently the list contains only the news rail.
-        self.assertEqual(1, len(page_props['shortFormSliderContent']))
-        for item in page_props['shortFormSliderContent'][0]['items']:
-            check_news_clip_item(item)
+        # Currently the list contains only the news rail and possibly a sport rail.
+        self.assertTrue(len(page_props['shortFormSliderContent']) in (1, 2))
+        for slider in page_props['shortFormSliderContent']:
+            check_short_form_slider(self, slider, name='mainpage.shortform')
+            header  = slider['header']
+            # ShortFromSlider on the main page should have a reference to the collection page.
+            self.assertFalse(is_url(header['linkHref']))                # is a relative link
+            self.assertTrue(header['linkHref'].startswith('/watch'))    # starts with '/watch', unlike editorialSliders
+
 
     def test_get_itvx_logo(self):
         resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'
@@ -258,14 +264,14 @@ class CollectionPages(unittest.TestCase):
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""
         def check_rail(url):
-            page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
-            # if 'ITVX Live' in page_data['headingTitle']:
-            #     testutils.save_json(page_data, 'html/collection_itvx-live.json')
+            page_data = parsex.scrape_json(fetch.get_document(url))
+            # if 'Rugby World Cup' in page_data['headingTitle']:
+            #     testutils.save_json(page_data, 'html/collection_rugby-world-cup.json')
             has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
                      'pageImageUrl', 'isAccessibleByKids')
             collection = page_data['collection']
             editorial_sliders = page_data['editorialSliders']
-            self.assertIsNone(page_data['shortFormSlider'])        # new field, but currently always None
+            shortform_slider = page_data['shortFormSlider']
 
             if collection is not None:
                 # Page without rails has no image, notify when that changes.
@@ -275,22 +281,34 @@ class CollectionPages(unittest.TestCase):
                 expect_keys(collection, 'isChildrenCollection', obj_name=collection['sliderName'])
                 for show in collection['shows']:
                     check_shows(self, show, collection['sliderName'])
+
             # Some collection have their content divided up in rails.
             if editorial_sliders is not None:
                 # Page with rails has an image
                 is_url(page_data['pageImageUrl'])
                 for slider in editorial_sliders:
                     pagelink = slider['collection'].get('headingLink', {}).get('href')
-                    check_rail(pagelink)
+                    check_rail('https://www.itv.com/watch' + pagelink)
 
-        page = fetch.get_document('https://www.itv.com/')
-        editorial_sliders = parsex.scrape_json(page)['editorialSliders']
+            # The same as the original shortFromSlider from the main page now made available on the collection page
+            if shortform_slider is not None:
+                check_short_form_slider(self, shortform_slider, name='collection-' + page_data['headingTitle'])
+
+        page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
+        editorial_sliders = page_data['editorialSliders']
         for rail in editorial_sliders.values():
             pagelink = rail['collection'].get('headingLink', {}).get('href')
             if not pagelink:
                 continue
-            check_rail(pagelink)
+            check_rail('https://www.itv.com/watch' + pagelink)
 
+        for slider in page_data['shortFormSliderContent']:
+            if slider['key'] == 'newsShortForm':
+                # News is only used from the main page, or as category, not as collection
+                continue
+            # We consider a page link mandatory
+            pagelink = slider['header']['linkHref']
+            check_rail('https://www.itv.com' + pagelink)
 
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
@@ -479,10 +497,10 @@ class Categories(unittest.TestCase):
         news_data = data['newsData']
         # Check the hero rail
         for item in news_data['heroAndLatestData']:
-            check_news_clip_item(item)
+            check_short_form_item(item)
         for item in news_data['longformData']:
             check_category_item(item)
-        for  rail in news_data['curatedRails']:
+        for rail in news_data['curatedRails']:
             self.assertTrue(isinstance(rail['title'], str) and rail['title'])
             for item in rail['clips']:
-                check_news_clip_item(item)
+                check_short_form_item(item)
