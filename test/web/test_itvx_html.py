@@ -246,21 +246,28 @@ class CollectionPages(unittest.TestCase):
         """Obtain links to collection pages from the main page and test them all."""
         def check_rail(url):
             page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
-            # if 'Hundreds of great shows' in page_data['headingTitle']:
+            # if 'Funny Favourites' in page_data['headingTitle']:
             #     testutils.save_json(page_data, 'html/collection_itvx-kids.json')
-            has_keys(page_data, 'headingTitle', 'collection', 'rails')
+            has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
+                     'pageImageUrl', 'isAccessibleByKids')
             collection = page_data['collection']
-            rails = page_data['rails']
+            editorial_sliders = page_data['editorialSliders']
+            self.assertIsNone(page_data['shortFormSlider'])        # new field, but currently always None
+
             if collection is not None:
-                self.assertIsNone(rails)       # The parser ignores rails if collection has content!
+                # Page without rails has no image, notify when that changes.
+                self.assertEqual(page_data['pageImageUrl'], '')
+                self.assertIsNone(editorial_sliders)       # The parser ignores rails if collection has content!
                 has_keys(collection, 'headingTitle', 'shows', obj_name=collection['sliderName'])
                 expect_keys(collection, 'isChildrenCollection', obj_name=collection['sliderName'])
                 for show in collection['shows']:
                     check_shows(self, show, collection['sliderName'])
             # Some collection have their content divided up in rails.
-            if rails is not None:
-                for rail in rails:
-                    pagelink = rail['collection'].get('headingLink', {}).get('href')
+            if editorial_sliders is not None:
+                # Page with rails has an image
+                is_url(page_data['pageImageUrl'])
+                for slider in editorial_sliders:
+                    pagelink = slider['collection'].get('headingLink', {}).get('href')
                     check_rail(pagelink)
 
         page = fetch.get_document('https://www.itv.com/')
