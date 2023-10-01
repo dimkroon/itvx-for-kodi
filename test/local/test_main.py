@@ -80,7 +80,7 @@ class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_get_collections(self, _):
         coll = main.list_collections.test()
-        self.assertAlmostEqual(20, len(coll), delta=5)
+        self.assertEqual(20, len(coll))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_get_collection_news(self, _):
