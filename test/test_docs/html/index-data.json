@@ -11672,6 +11672,199 @@
       "isRail": true,
       "dataTestId": "news-rail",
       "tileType": "news"
+    },
+    {
+      "header": {
+        "title": "Rugby World Cup 2023",
+        "linkHref": "/watch/collections/rugby-world-cup/1KzCNc9sdix5qQdR7cGiG3?ind",
+        "linkText": "View All"
+      },
+      "items": [
+        {
+          "imagePresets": {},
+          "episodeTitle": "Famous New Zealand actor Taika Waititi looks back on All Blacks glory years",
+          "episodeId": "byccw46",
+          "titleSlug": "famous-new-zealand-actor-taika-waititi-looks-back-on-all-blacks-glory-years",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/6nmvFfBwATOGLXrGyOeCs1/52a51672aa94bdfd9764e8d10fd9a462/ALL_BLACKS_FT.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "It's a trip down memory lane for New Zealand actor and film director Taika Waititi, with a special mention for ITV panelist Sean Fitzpatrick!",
+          "dateTime": "2023-09-29T21:23:56.701Z",
+          "duration": 204,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/1h4uaImSBQUVPm1Kl03kqp/e648ba3e9431f09348e10691e4b0b0dd/ALL_BLACKS_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Barrett: We controlled the ball well against Italy",
+          "episodeId": "ln1zbfb",
+          "titleSlug": "barrett-we-controlled-the-ball-well-against-italy",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/3FhNBpUobpeH313tTMHv4u/0a592be25db23cc8024efd800fd22c68/BARRETT.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "New Zealand star Jordie Barrett believes his side were much improved in their clash with Italy, and says good preparation key for final game against Uruguay",
+          "dateTime": "2023-09-29T21:10:53.763Z",
+          "duration": 78,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6yg1FdLmt0IL3a2Wv6Cu4d/7f43eb25f125e5067e09e25f1757ddba/BARRETT_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Ioane and Capuozzo combine for Italy",
+          "episodeId": "rm8v6yf",
+          "titleSlug": "ioane-and-capuozzo-combine-for-italy",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7i1uuykfyevCIdsoaeOJQ9/cb82cdd2352f58687408cc8b5999df01/capuozzo_try.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Ange Capuozzo gives Italy a glimmer of hope with a superb try, as Italy look to get back in the game against a dominant All Blacks side",
+          "dateTime": "2023-09-29T20:20:05.555Z",
+          "duration": 90,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6a83CrKALcqYghGRrPjWmT/2ff336794c5260d3546eb27bcc6ff524/capuozzo_clean.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Analysis - New Zealand run riot in the first half against Italy",
+          "episodeId": "spwbmv2",
+          "titleSlug": "analysis-new-zealand-run-riot-in-the-first-half-against-italy",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7IOPQAWVVgYAh07OEJmxSE/1d55b1c684b8e0781431742df2401f2c/NZ_-_HT_CHAT.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "ITV's panel look at how New Zealand dismantled Italy, running in seven tries in a commanding first half display",
+          "dateTime": "2023-09-29T20:01:47.898Z",
+          "duration": 260,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/4yaRmEP5v2hIPpHHGePFBB/007675e38b55ff4252a99cbc5b3c89d6/NZ_HT_CHAT_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "New Zealand start fast against Italy with Will Jordan try",
+          "episodeId": "1kw9gt1",
+          "titleSlug": "new-zealand-start-fast-against-italy-with-will-jordan-try",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7xlAhyKOBKWHtBeah7O84M/b790aa0fb0af25ad6e42eec4ed000180/JORDAN_TRY.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "New Zealand get off to the perfect start thanks to Will Jordan's 24th Test try against Italy",
+          "dateTime": "2023-09-29T19:14:54.556Z",
+          "duration": 85,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6EX6U9XJ1eQNZNHd4sbouF/2fef94dcba31ef6525d01b9198cd3655/JORDAN_TRY_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Highlights - Japan v Samoa",
+          "episodeId": "xc0l3ts",
+          "titleSlug": "highlights-japan-v-samoa",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4dFleYbHNl4mlcC057fei8/650d0b25e3f686b83d383f99611548ae/RWC-2023-Highlights-Pool-JPN-V-SAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Check out the highlights from Japan v Samoa in Pool D",
+          "dateTime": "2023-09-28T21:43:43.097Z",
+          "duration": 649,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/3qymEtJJuYtgMuSAA0Weym/49c6bab49283eb0bd5ab7c4e9818e35f/RWC-2023-Highlights-Pool-JPN-V-SAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "All Black's Jordie Barrett wary of Italy threat",
+          "episodeId": "kzwd6zm",
+          "titleSlug": "all-blacks-jordie-barrett-wary-of-italy-threat",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/68HJANmCahetXtvE2UaqnE/dce8f0123f59c6c9be68d174ac6ad56f/nz_preview_.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "New Zealand Jordie Barrett believes Italy will pose a huge threat to New Zealand when the sides meet on Friday",
+          "dateTime": "2023-09-28T21:26:22.702Z",
+          "duration": 257,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5TVxPom5uAVfd7R0wUsme1/1835be3aa623e9a43a0b5ed9954b0032/nz_preview_-_clean.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Grand Slammers - England's 2003 Rugby World Cup-winning stars train a group of prison inmates",
+          "encodedEpisodeId": {
+            "letterA": "10a4742a0001",
+            "underscore": "10_4742_0001"
+          },
+          "encodedProgrammeId": {
+            "letterA": "2a4138",
+            "underscore": "2_4138"
+          },
+          "titleSlug": "grand-slammers-englands-2003-rugby-world-cup-winning-stars-train-a-group-of-prison-inmates",
+          "programmeTitle": "Rugby World Cup",
+          "episodeId": "10/4742/0001",
+          "programmeId": "2/4138",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/21ZftgjZCKGNUhVupVwekz/b85eedc92d30bf209111910959231930/GrandSlammers_S01_k4pc5j1_04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "dateTime": "2023-09-28T20:40:15.763Z",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Scotland ring the changes for Romania clash",
+          "episodeId": "q09nvgf",
+          "titleSlug": "scotland-ring-the-changes-for-romania-clash",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4FoSXusZKPV8KjL3WXUEa9/1a89e2ab346482c738e75471d29bc0f6/SCOTLAND_FT.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Scotland Head Coach Gregor Townsend makes 13 changes including switching out talisman Finn Russell for world cup debutant Ben Healy",
+          "dateTime": "2023-09-28T18:42:30.652Z",
+          "duration": 86,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/A6ZojOcql9wggVcyS2fT0/c8a08443a3f8807bf36dc919bf35e3f5/SCOTLAND_FT_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "We wind back to a memorable Rugby World Cup in Japan in 2019",
+          "episodeId": "08lbl5h",
+          "titleSlug": "we-wind-back-to-a-memorable-rugby-world-cup-in-japan-in-2019",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5xx9tkgDxQvukrRcmRZfcu/809490f069c80cfc86399a2ad471e62e/rugby_rewind.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "A look back on a thrilling Rugby World Cup in Japan 2019, where South Africa came out as World Cup winners!",
+          "dateTime": "2023-09-28T18:32:56.653Z",
+          "duration": 142,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6L4yKgTBbPB2q2NzQdqIaT/2b91a8394e8466512a4cf87c8410795e/rugby_rewind_-_clean.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Michael Leitch puts Japan in control against Samoa",
+          "episodeId": "xm3r9t7",
+          "titleSlug": "michael-leitch-puts-japan-in-control-against-samoa",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5yNbPOiPWMm27HcdOADLNo/68c50866cdf3a9fd5f6aae58f13a9788/japan_try_2_-_gfx.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Japan asserted their authority in the first half as Michael Leitch finished off a smart move for The Brave Blossoms",
+          "dateTime": "2023-09-28T19:43:48.193Z",
+          "duration": 107,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/3xh3OWorkPF3YE0x5sTWyF/411553a555bc61544d9a853d51ac7e04/japan_try_2.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "ITV Panel: Poor discipline Samoa's downfall",
+          "episodeId": "trblw00",
+          "titleSlug": "itv-panel-poor-discipline-samoas-downfall",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5zirplBqy99pz1PHfcGFZZ/a98ebc7b48b0c57741ff5507c194b6b8/ANALYSIS_-_JAPAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "ITV's panelists discuss the Japan v Samoa Pool D match, with Samoa's hopes hampered by a red card during the match",
+          "dateTime": "2023-09-28T21:11:49.332Z",
+          "duration": 492,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/1VEDcLZUMoI8zDNX8J5N2T/39166f975b01667369ae7c4de791728a/ANALYSIS_-_JAPAN_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "imagePresets": {},
+          "episodeTitle": "Highlights - Uruguay v Namibia",
+          "episodeId": "j109002",
+          "titleSlug": "highlights-uruguay-v-namibia",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5imO6FbkoZmQLBl0Yomrqd/3a978c9c61771a42afaeb12f76eb2104/RWC-2023-Highlights-Pool-URU-V-NAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Check out the highlights from Uruguay v Namibia in Pool A ",
+          "dateTime": "2023-09-27T18:44:57.754Z",
+          "duration": 519,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/4V6R0agpOQxDOecH2RNflv/441764cb58a35032f6cac6d5fec5b4e5/RWC-2023-Highlights-Pool-URU-V-NAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        }
+      ],
+      "key": "sportShortForm",
+      "genre": "sport",
+      "isRail": true,
+      "dataTestId": "sport-rail",
+      "tileType": "news",
+      "trackingProps": {
+        "contentType": "news clip"
+      }
     }
   ],
   "trendingSliderContent": {
