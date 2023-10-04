@@ -83,24 +83,24 @@ class Generic(unittest.TestCase):
         data = open_json('html/collection_just-in_data.json')['collection']['shows']
         # film - Valentine's Day
         item = parsex.parse_collection_item(data[2])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], True)
+        self.assertEqual('film', item['type'])
         # series - The Twelve
         item = parsex.parse_collection_item(data[1])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], False)
+        self.assertEqual('series', item['type'])
         # episode - Kavos Weekender
         item = parsex.parse_collection_item(data[3])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], True)
+        self.assertEqual('episode', item['type'])
         # Brand - Jonathan Ross' Must-Watch Films
         item = parsex.parse_collection_item(data[13])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], False)
+        self.assertEqual('brand', item['type'])
         # An invalid item
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)
@@ -108,7 +108,7 @@ class Generic(unittest.TestCase):
     def test_parse_collection_title_from_main_page(self):
         data = open_json('html/index-data.json')['editorialSliders']['editorialRailSlot1']['collection']['shows']
         item = parsex.parse_collection_item(data[0])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
 
     def test_parse_news_collection_item(self):
@@ -116,7 +116,7 @@ class Generic(unittest.TestCase):
         tz_uk = pytz.timezone('Europe/London')
         # a short new item
         item = parsex.parse_news_collection_item(data[1], tz_uk, "%H-%M-%S")
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         # NOTE: As of 20-7-23 all news collection item appear to have the same structure
         #       Just need to test a bit longer to be sure.
@@ -133,7 +133,7 @@ class Generic(unittest.TestCase):
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
         item = parsex.parse_trending_collection_item(data[1])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         # An invalid item
         item = parsex.parse_trending_collection_item({})
@@ -170,7 +170,7 @@ class Generic(unittest.TestCase):
             data = open_json(file)
             for result_item in data['results']:
                 item = parsex.parse_search_result(result_item)
-                has_keys(item, 'playable', 'show')
+                has_keys(item, 'type', 'show')
                 is_li_compatible_dict(self, item['show'])
 
         # unknown entity type

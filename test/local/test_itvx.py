@@ -124,7 +124,7 @@ class Collections(TestCase):
         items = itvx.collection_content(slider='shortFormSliderContent')
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'playable', 'show')
+            has_keys(item, 'type', 'show')
         items2 = itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)
         self.assertListEqual(items, items2)
 
@@ -133,7 +133,7 @@ class Collections(TestCase):
         items = itvx.collection_content(slider='trendingSliderContent')
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'playable', 'show')
+            has_keys(item, 'type', 'show')
         items2 = itvx.collection_content(slider='trendingSliderContent', hide_paid=True)
         self.assertListEqual(items, items2)
 
@@ -142,7 +142,7 @@ class Collections(TestCase):
         items = itvx.collection_content(slider='editorialRailSlot1')
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'playable', 'show')
+            has_keys(item, 'type', 'show')
         items2 = itvx.collection_content(slider='editorialRailSlot1', hide_paid=True)
         self.assertListEqual(items, items2)
 
@@ -152,7 +152,7 @@ class Collections(TestCase):
         items = itvx.collection_content(slider='testRailSlot1')
         self.assertEqual(len(items), 8)
         for item in items:
-            has_keys(item, 'playable', 'show')
+            has_keys(item, 'type', 'show')
         self.assertTrue(items[7]['type'] == 'collection')
         items2 = itvx.collection_content(slider='testRailSlot1', hide_paid=True)
         self.assertListEqual(items, items2)
@@ -167,7 +167,7 @@ class Collections(TestCase):
         items = itvx.collection_content(url='collection_top_picks')
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'playable', 'show')
+            has_keys(item, 'type', 'show')
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
 
@@ -176,7 +176,7 @@ class Collections(TestCase):
         items = itvx.collection_content(url='itvx_kids')
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'playable', 'show')
+            has_keys(item, 'type', 'show')
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
@@ -212,7 +212,7 @@ class Categories(TestCase):
             playables = 0
             for progr in program_list:
                 has_keys(progr['show'], 'label', 'info', 'art', 'params')
-                if progr['playable']:
+                if progr['type'] in ('episode', 'special', 'title', 'film'):
                     playables += 1
 
             if idx == 1 or idx == 3:
@@ -225,7 +225,7 @@ class Categories(TestCase):
         self.assertGreater(len(program_list), 10)
         for progr in program_list:
             has_keys(progr['show'], 'label', 'info', 'art', 'params')
-            self.assertTrue(progr['playable'])
+            self.assertEqual('title', progr['type'])
         free_list = list(itvx.category_content('asdgf', hide_paid=True))
         self.assertLess(len(free_list), len(program_list))
 
@@ -249,7 +249,7 @@ class Categories(TestCase):
             items = itvx.category_news_content('my/url', *sub_cat)
             self.assertGreater(len(items), 4)
             for item in items:
-                self.assertIsInstance(item['playable'], bool)
+                self.assertIsInstance(item['type'], str)
                 is_li_compatible_dict(self, item['show'])
 
             if sub_cat[0] in ('heroAndLatestData','longformData'):
