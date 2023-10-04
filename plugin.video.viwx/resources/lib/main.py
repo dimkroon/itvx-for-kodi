@@ -146,12 +146,11 @@ class Paginator:
             next_page_nr = 0
 
         for show in shows_list:
-            if show.get('type') == 'collection':
-                yield Listitem.from_dict(list_collection_content, **show['show'])
-            elif show['playable']:
-                yield Listitem.from_dict(play_title, **show['show'])
-            else:
-                yield Listitem.from_dict(list_productions, **show['show'])
+            try:
+                yield Listitem.from_dict(callb_map[show['type']], **show['show'])
+            except KeyError:
+                logger.warning("Cannot list '%s': unknown item type '%s'",
+                               show['show'].get('info', {}).get('sorttitle', ''), show['type'])
 
         if next_page_nr:
             li = Listitem.next_page(filter_char=self._filter, page_nr=next_page_nr, **self._kwargs)
@@ -169,13 +168,6 @@ class Paginator:
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     # yield Listitem.from_dict(sub_menu_shows, 'Shows')
-    callb_map = {
-        'collection': list_collection_content,
-        'series': list_productions,
-        'brand': list_productions,
-        'simulcastspot': play_stream_live,
-        'fastchannelspot': play_stream_live
-    }
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)
         yield Listitem.from_dict(callback, **item['show'])
@@ -356,9 +348,7 @@ def do_search(addon, search_query):
         return
 
     items = [
-        Listitem.from_dict(play_title, **result['show'])
-        if result['playable']
-        else Listitem.from_dict(list_productions, **result['show'])
+        Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
         for result in search_results if result is not None
     ]
     return items
@@ -531,3 +521,22 @@ def play_title(plugin, url, name=''):
 def run():
     if isinstance(cc_run(), Exception):
         xbmcplugin.endOfDirectory(int(sys.argv[1]), False)
+
+
+"""
+Mapping of item types to callback.
+Used to map items in collections, categories and search result to the right handler.
+"""
+
+callb_map = {
+    'collection': list_collection_content,
+    'series': list_productions,
+    'brand': list_productions,
+    'programme': list_productions,
+    'simulcastspot': play_stream_live,
+    'fastchannelspot': play_stream_live,
+    'episode': play_title,
+    'special': play_title,
+    'film': play_title,
+    'title': play_title
+}

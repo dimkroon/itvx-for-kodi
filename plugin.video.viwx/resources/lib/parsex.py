@@ -76,6 +76,7 @@ def scrape_json(html_page):
     raise ParseError('No data available')
 
 
+# noinspection PyTypedDict
 def parse_hero_content(hero_data):
     # noinspection PyBroadException
     try:
@@ -86,7 +87,6 @@ def parse_hero_content(hero_data):
             'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
                     'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
             'info': {'title': ''.join(('[B][COLOR orange]', title, '[/COLOR][/B]'))}
-
         }
         brand_img = item.get('brandImageTemplate')
 
@@ -136,7 +136,6 @@ def parse_slider(slider_name, slider_data):
         params = {'slider': slider_name}
 
     return {'type': 'collection',
-            'playable': False,
             'show': {'label': coll_data['headingTitle'],
                      'params': params,
                      'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
@@ -181,7 +180,7 @@ def parse_collection_item(show_data, hide_paid=False):
 
         if is_playable:
             programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
-        return {'playable': is_playable,
+        return {'type': content_type,
                 'show': programme_item}
     except Exception:
         logger.warning("Failed to parse collection_item:\n%s", json.dumps(show_data, indent=4))
@@ -219,7 +218,7 @@ def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
         # TODO: consider adding poster image, but it is not always present.
         #       Add date.
         return {
-            'playable': True,
+            'type': 'title',
             'show': {
                 'label': title,
                 'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
@@ -253,7 +252,7 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
         # will always return the first episode.
 
         return{
-            'playable': True,
+            'type': 'title',
             'show': {
                 'label': trending_item['title'],
                 'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
@@ -308,7 +307,7 @@ def parse_category_item(prog, category):
         programme_item['params'] = {'url': build_url(title,
                                                      prog['encodedProgrammeId']['letterA'],
                                                      prog['encodedEpisodeId']['letterA'])}
-    return {'playable': is_playable,
+    return {'type': 'title' if is_playable else 'series',
             'show': programme_item}
 
 
@@ -332,7 +331,7 @@ def parse_item_type_collection(item_data):
                                     item_data.get('titleSlug', ''),
                                     item_data.get('collectionId')))}
     }
-    return {'type': 'collection', 'playable': False, 'show': item}
+    return {'type': 'collection', 'show': item}
 
 
 def parse_episode_title(title_data, brand_fanart=None):
@@ -443,7 +442,7 @@ def parse_search_result(search_data):
         return None
 
     return {
-        'playable': entity_type != 'programme',
+        'type': entity_type,
         'show': {
             'label': prog_name,
             'art': {'thumb': img_url.format(**IMG_PROPS_THUMB)},
