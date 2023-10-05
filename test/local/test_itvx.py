@@ -178,6 +178,13 @@ class Collections(TestCase):
         for item in items:
             has_keys(item, 'type', 'show')
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-fast.json'))
+    def test_collection_of_live_fast_channels(self, _):
+        items = itvx.collection_content(url='itvx_fast')
+        self.assertEqual(3, len(items))
+        for item in items:
+            has_keys(item, 'type', 'show')
+
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
     def test_collection_with_paid_items(self, _):
