@@ -88,8 +88,8 @@ def parse_hero_content(hero_data):
                     'fanart': hero_data['imageTemplate'].format(**IMG_PROPS_FANART)},
             'info': {'title': ''.join(('[B][COLOR orange]', title, '[/COLOR][/B]'))}
         }
-        brand_img = item.get('brandImageTemplate')
 
+        brand_img = hero_data.get('brandImageTemplate')
         if brand_img:
             item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
 
