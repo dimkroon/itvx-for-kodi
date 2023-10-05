@@ -170,20 +170,24 @@ def parse_collection_item(show_data, hide_paid=False):
             'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
                      'plot': plot,
                      'sorttitle': sort_title(title)},
-            'params': {'url': build_url(show_data['titleSlug'],
-                                        show_data['encodedProgrammeId']['letterA'],
-                                        show_data.get('encodedEpisodeId', {}).get('letterA'))}
         }
 
-        if 'FILMS' in show_data['categories']:
+        if content_type == 'fastchannelspot':
+            programme_item['params'] = {'channel': show_data['channel'], 'url': None}
+        else:
+            programme_item['params'] = {'url': build_url(show_data['titleSlug'],
+                                        show_data['encodedProgrammeId']['letterA'],
+                                        show_data.get('encodedEpisodeId', {}).get('letterA'))}
+
+        if 'FILMS' in show_data.get('categories', ''):
             programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
 
         if is_playable:
             programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
         return {'type': content_type,
                 'show': programme_item}
-    except Exception:
-        logger.warning("Failed to parse collection_item:\n%s", json.dumps(show_data, indent=4))
+    except Exception as err:
+        logger.warning("Failed to parse collection_item: %r\n%s", err, json.dumps(show_data, indent=4))
         return None
 
 # noinspection GrazieInspection

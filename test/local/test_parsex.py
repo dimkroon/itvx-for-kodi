@@ -101,6 +101,12 @@ class Generic(unittest.TestCase):
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('brand', item['type'])
+        # fastchannelspot
+        data = open_json('html/collection_itvx-fast.json')['collection']['shows']
+        item = parsex.parse_collection_item(data[0])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('fastchannelspot', item['type'])
         # An invalid item
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)
