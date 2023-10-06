@@ -124,22 +124,48 @@ def parse_hero_content(hero_data):
         logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title','unknown title'), exc_info=True)
 
 
-def parse_slider(slider_name, slider_data):
-    coll_data = slider_data['collection']
-    page_link = coll_data.get('headingLink')
-    base_url = 'https://www.itv.com/watch'
-    if page_link:
-        # Link to the collection's page if available
-        params = {'url': base_url + page_link['href']}
-    else:
-        # Provide the slider name when the collection content is to be obtained from the main page.
-        params = {'slider': slider_name}
+def parse_short_form_slider(slider_data):
+    # noinspection PyBroadException
+    try:
+        header = slider_data['header']
+        link = header.get('linkHref')
+        title = header.get('title') or header.get('iconTitle', '')
+        if not link:
+            return None
+        return {'type': 'collection',
+                'playable': False,
+                'show': {'label': title,
+                         'params': {'url': 'https://www.itv.com' + link},
+                         'info': {'sorttitle': sort_title(title)}
+                         }
+                }
+    except:
+        logger.error("Unexpected error parsing shorFormSlider.", exc_info=True)
+        return None
 
-    return {'type': 'collection',
-            'playable': False,
-            'show': {'label': coll_data['headingTitle'],
-                     'params': params,
-                     'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
+
+def parse_slider(slider_name, slider_data):
+    """Parse editorialSliders from the main page."""
+    # noinspection PyBroadException
+    try:
+        coll_data = slider_data['collection']
+        page_link = coll_data.get('headingLink')
+        base_url = 'https://www.itv.com/watch'
+        if page_link:
+            # Link to the collection's page if available
+            params = {'url': base_url + page_link['href']}
+        else:
+            # Provide the slider name when the collection content is to be obtained from the main page.
+            params = {'slider': slider_name}
+
+        return {'type': 'collection',
+                'playable': False,
+                'show': {'label': coll_data['headingTitle'],
+                         'params': params,
+                         'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
+    except:
+        logger.error("Unexpected error parsing editorialSlider %s", slider_name, exc_info=True)
+        return None
 
 
 def parse_collection_item(show_data, hide_paid=False):

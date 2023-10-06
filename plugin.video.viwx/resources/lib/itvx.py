@@ -180,11 +180,19 @@ def collection_content(url=None, slider=None, hide_paid=False):
         page_data = get_page_data('https://www.itv.com', cache_time=3600)
 
         if slider == 'shortFormSliderContent':
-            uk_tz = pytz.timezone('Europe/London')
-            time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
-            items_list = page_data['shortFormSliderContent'][0]['items']
-            progr_gen = (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt, hide_paid)
-                          for news_item in items_list)
+            # Currently only handling News short form. The only other known shorFromSlider is
+            # 'Sport' and is handled as a full collection.
+            items_list = None
+            for slider in page_data['shortFormSliderContent']:
+                if slider['key'] == 'newsShortForm':
+                    uk_tz = pytz.timezone('Europe/London')
+                    time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
+                    items_list = slider['items']
+                    progr_gen = (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt, hide_paid)
+                                 for news_item in items_list)
+            if items_list is None:
+                logger.warning("News shortFormSlider unexpectedly absent from main page")
+                return []
 
         elif slider == 'trendingSliderContent':
             items_list = page_data['trendingSliderContent']['items']
