@@ -269,34 +269,65 @@ def check_news_collection_stream_info(playlist):
     assert is_url(video_inf['Base'] + strm_inf[0]['Href'], '.mp4')
 
 
+def check_short_form_slider(testcase, slider, name=''):
+    has_keys(slider, 'header', 'items', 'key', obj_name=name)
+    expect_keys(slider, 'genre', 'isRail', 'dataTestId', 'titleType')
+    testcase.assertTrue(slider['key'] in ('newsShortForm', 'sportShortForm'))
+    testcase.assertEqual(slider['tileType'], 'news')  # also for slider sport, flag if it changes.
+    header = slider['header']
+    if not header['title']:
+        # News's title is empty, but has a field iconTitle instead
+        testcase.assertTrue(is_not_empty(header['iconTitle'], str))
+    for item in slider['items']:
+        check_short_form_item(item)
+
+
 def check_short_form_item(item):
-    """Check the content of a shortForm item from a collection or category 'News'
+    """Check the content of a shortForm item from a collection or from category 'News'
+
+    In both new and collections shortForm items are mostly short mp4 files, but a few are
+    normal programmes, like a full news programme, or a full sports match.
 
     Items from collection or from Hero of category have an extra field `posterImage`, but it's not used in the addon.
+
     """
     has_keys(
         item,
         'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime',
         obj_name=item['episodeTitle'])
-    # Some items, in particular hero items referring to a whole programme, like ITV Evening News, have a slightly
-    # different structure. Recognisable by the presence of e.g. encodedProgrammeId, but similar enough to be
-    # parsable as clip, but the fields below are missing.
-    expect_keys(item, 'synopsis', 'duration', obj_name=item['episodeTitle'])
-    # imagePresets is currently an empty dict.
-    assert isinstance(item['imagePresets'], dict) and not item['imagePresets']
-    assert isinstance(item['episodeTitle'], str) and item['episodeTitle']
-    assert isinstance(item['episodeId'], str) and item['episodeId']
-    if 'encodedProgrammeId' not in item.keys():
+    misses_keys(item, 'isPaid', 'tier')
+
+    if 'encodedProgrammeId' in item.keys():
+        # 'Normal' programmes
+        has_keys(item, 'programmeTitle', 'encodedEpisodeId')
+        misses_keys(item, 'duration', 'synopsis')
+        expect_keys(item, 'programmeTitle')  # not used by the parser.
+        assert is_not_empty(item['encodedEpisodeId'], dict)
+        # episodeId on regular programmes DO require letterA encoding
+        assert '/' in item['episodeId']
+    else:
+        # items like news and sport clips
+        has_keys(item, 'duration', 'synopsis')
+        misses_keys(item, 'programmeTitle', 'encodedProgrammeId', 'encodedEpisodeId')
+        assert isinstance(item['synopsis'], str, ) and item['synopsis']
+        assert isinstance(item.get('duration'), int)
         # episodeId on real clips does not require letterA encoding
         assert '/' not in item['episodeId']
-    assert isinstance(item['titleSlug'], str) and item['titleSlug']
-    assert is_url(item['imageUrl'], '.jpg') or is_url(item['imageUrl'], '.jpeg') or is_url(item['imageUrl'], '.png') \
-           or is_url(item['imageUrl'], '.bmp'), \
+
+    # imagePresets is always an empty dict.
+    assert isinstance(item['imagePresets'], dict) and not item['imagePresets']
+    assert is_not_empty(item['episodeTitle'], str)
+    assert is_not_empty(item['episodeId'], str)
+    assert is_not_empty(item['titleSlug'], str)
+    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp')), \
            "item '{}' has not a valid imageUrl".format(item['episodeTitle'])
     assert is_iso_utc_time(item['dateTime'])
-    if item.get('synopsis'):
-        assert isinstance(item['synopsis'], str,) and item['synopsis']
     assert isinstance(item.get('duration'), (int, type(None)))
+    # True shortform items have a field 'href', but items produced by heroAndLatest and curatedRails
+    # on the news category page don't.
+    if 'href' in item:
+        assert item['href'].startswith('/')
+        assert item['href'].endswith('undefined')
 
 
 def check_category_item(item):
