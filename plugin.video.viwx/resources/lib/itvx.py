@@ -161,13 +161,28 @@ def main_page_items():
 
 
 def collection_content(url=None, slider=None, hide_paid=False):
+    uk_tz = pytz.timezone('Europe/London')
+    time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
+
     if url:
+        # A collection that has its own dedicated page.
         page_data = get_page_data(url, cache_time=43200)
+        if slider == 'shortFormSlider':
+            # return the items from the collection's shortFormSlider
+            for item in page_data['shortFormSlider']['items']:
+                yield parsex.parse_shortform_item(item, uk_tz, time_fmt)
+            return
+
         collection = page_data['collection']
         editorial_sliders = page_data.get('editorialSliders')
+        shortform_slider = page_data.get('shortFormSlider')
+
+        if shortform_slider is not None:
+            yield parsex.parse_short_form_slider(shortform_slider, url)
+
         if collection is not None:
-            col_items = collection.get('shows', [])
-            progr_gen = (parsex.parse_collection_item(item, hide_paid) for item in col_items)
+            for item in collection.get('shows', []):
+                yield parsex.parse_collection_item(item, hide_paid)
         elif editorial_sliders:
             # Do not sort this list on title
             return list(filter(None, (parsex.parse_slider('', slider) for slider in editorial_sliders)))
@@ -185,19 +200,17 @@ def collection_content(url=None, slider=None, hide_paid=False):
             items_list = None
             for slider in page_data['shortFormSliderContent']:
                 if slider['key'] == 'newsShortForm':
-                    uk_tz = pytz.timezone('Europe/London')
-                    time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
-                    items_list = slider['items']
-                    progr_gen = (parsex.parse_news_collection_item(news_item, uk_tz, time_fmt, hide_paid)
-                                 for news_item in items_list)
+                    for news_item in slider['items']:
+                        yield parsex.parse_shortform_item(news_item, uk_tz, time_fmt, hide_paid)
+
             if items_list is None:
                 logger.warning("News shortFormSlider unexpectedly absent from main page")
-                return []
+                return
 
         elif slider == 'trendingSliderContent':
             items_list = page_data['trendingSliderContent']['items']
-            progr_gen = (parsex.parse_trending_collection_item(trending_item, hide_paid)
-                          for trending_item in items_list)
+            for trending_item in items_list:
+                yield parsex.parse_trending_collection_item(trending_item, hide_paid)
 
         else:
             try:
@@ -205,10 +218,9 @@ def collection_content(url=None, slider=None, hide_paid=False):
             except KeyError:
                 logger.error("Failed to parse collection content: Unknown slider '%s'", slider)
                 return []
-            progr_gen = (parsex.parse_collection_item(item, hide_paid) for item in items_list)
+            for item in items_list:
+                yield parsex.parse_collection_item(item, hide_paid)
 
-    progr_list = sorted(filter(None, progr_gen), key=lambda prog: prog['show']['info']['sorttitle'])
-    return progr_list
 
 
 def episodes(url, use_cache=False):
@@ -387,11 +399,11 @@ def category_news_content(url, sub_cat, rail=None, hide_paid=False):
         return []
 
     if hide_paid:
-        return [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+        return [parsex.parse_shortform_item(news_item, uk_tz, time_fmt)
                 for news_item in items_list
                 if not news_item.get('isPaid')]
     else:
-        return [parsex.parse_news_collection_item(news_item, uk_tz, time_fmt)
+        return [parsex.parse_shortform_item(news_item, uk_tz, time_fmt)
                 for news_item in items_list]
 
 

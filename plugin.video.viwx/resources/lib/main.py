@@ -257,10 +257,11 @@ def list_collections(_):
 @Route.register(cache_ttl=-1, content_type='videos')
 @dynamic_listing
 def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=0):
+    """Return the contents of a collection"""
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                            disable_autosort=True)
-    shows_list = itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))
+    shows_list = list(filter(None, itvx.collection_content(url, slider, addon.setting.get_boolean('hide_paid'))))
     logger.info("Listed collection %s%s with %s items", url, slider, len(shows_list) if shows_list else 0)
     paginator = Paginator(shows_list, filter_char, page_nr, url=url)
     yield from paginator
