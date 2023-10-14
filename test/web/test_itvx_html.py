@@ -287,9 +287,9 @@ class CollectionPages(unittest.TestCase):
                 # Page with rails has an image
                 is_url(page_data['pageImageUrl'])
                 for slider in editorial_sliders:
-                    pagelink = slider['collection'].get('headingLink', {}).get('href')
-                    if pagelink != url:
-                        check_rail('https://www.itv.com/watch' + pagelink)
+                    page_ref = 'https://www.itv.com/watch' + slider['collection'].get('headingLink', {}).get('href')
+                    if page_ref != url:
+                        check_rail(page_ref)
 
             # The same as the original shortFromSlider from the main page now made available on the collection page
             if shortform_slider is not None:
