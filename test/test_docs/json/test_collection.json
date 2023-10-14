@@ -1,0 +1,242 @@
+{
+  "headingTitle": "Rugby World Cup",
+  "headingDescription": "Stream all the latest and classic matches for free",
+  "pageImageUrl": "https://ovp.itv.com/images/content-partner-banner/rugbyworldcup/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "collection": null,
+  "editorialSliders": [
+    {
+      "containerType": "Rail",
+      "displayType": "Standard",
+      "id": "zyqPJaRe6vOFftNzu4HY8",
+      "collection": {
+        "headingTitle": "Don't miss a moment...",
+        "headingLink": {
+          "href": "/collections/dont-miss-a-moment/3ctGv6rzQ2etzrAmPOvWsh",
+          "text": "View All"
+        },
+        "sliderName": "editorial_rail_slot1",
+        "itemCount": 38,
+        "shows": [
+          {
+            "imagePresets": {},
+            "contentType": "simulcastspot",
+            "title": "Rugby World Cup 2023: Ireland v Scotland",
+            "channel": "itv",
+            "tagNames": [
+              "live"
+            ],
+            "description": "Ireland v Scotland",
+            "contentInfo": "19:15-22:20",
+            "genre": "Sport",
+            "startDateTime": "2023-10-07T18:15:00Z",
+            "endDateTime": "2023-10-07T21:20:00Z",
+            "progress": 41,
+            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/rwcirlvsco/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "fastchannelspot",
+            "title": "Rugby World Cup Classics",
+            "channel": "fast13",
+            "tagNames": [
+              "live"
+            ],
+            "description": "Classic matches, 24/7",
+            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-rugbyworldcup/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "Grand Slammers: Inside HMP The Mount",
+            "channel": "itv",
+            "ccid": "k4pc5j1",
+            "description": "Rugby goes behind bars - can these sporting legends recreate history? ",
+            "isPaid": false,
+            "episodeId": "10/4742/0001",
+            "programmeId": "10/4742",
+            "encodedEpisodeId": {
+              "letterA": "10a4742a0001",
+              "underscore": "10_4742_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a4742",
+              "underscore": "10_4742"
+            },
+            "titleSlug": "grand-slammers-inside-hmp-the-mount",
+            "dateTime": "2023-10-03T21:45:00Z",
+            "categories": [
+              "FACTUAL"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1",
+            "series": [
+              {
+                "seriesNumber": 1
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/k4pc5j1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "episode",
+            "title": "Rugby World Cup 2023 Highlights",
+            "channel": "itv",
+            "ccid": "tkc3ff2",
+            "description": "All the best bits!",
+            "isPaid": false,
+            "episodeId": "10/4850/0035",
+            "programmeId": "10/4850",
+            "encodedEpisodeId": {
+              "letterA": "10a4850a0035",
+              "underscore": "10_4850_0035"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a4850",
+              "underscore": "10_4850"
+            },
+            "titleSlug": "rugby-world-cup-2023-highlights",
+            "categories": [
+              "SPORT"
+            ],
+            "seriesNumber": 1,
+            "episodeNumber": 35,
+            "episodeTitle": "Wales v Georgia (Group Stages) - 7 Oct",
+            "contentInfo": "S1, E35. Wales v Georgia (Group Stages) - 7 Oct",
+            "imageTemplate": "https://ovp.itv.com/images/episode/tkc3ff2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "brand",
+            "title": "SailGP 2023/24",
+            "channel": "itv",
+            "ccid": "yzqyd1g",
+            "description": "High-octane action - ten international teams compete in identical boats",
+            "isPaid": false,
+            "episodeId": "10/4771/0008",
+            "programmeId": "10/4771",
+            "encodedEpisodeId": {
+              "letterA": "10a4771a0008",
+              "underscore": "10_4771_0008"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a4771",
+              "underscore": "10_4771"
+            },
+            "titleSlug": "sailgp-202324",
+            "categories": [
+              "SPORT"
+            ],
+            "numberOfAvailableSeries": 1,
+            "contentInfo": "Series 1",
+            "imageTemplate": "https://ovp.itv.com/images/programme/yzqyd1g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "special",
+            "title": "England's Grand",
+            "channel": "itv",
+            "ccid": "q7qlkcc",
+            "description": "Gareth Southgate, Harry Kane & more celebrate England 1,000th match",
+            "isPaid": false,
+            "episodeId": "2/7654/0001",
+            "programmeId": "2/7654",
+            "encodedEpisodeId": {
+              "letterA": "2a7654a0001",
+              "underscore": "2_7654_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "2a7654",
+              "underscore": "2_7654"
+            },
+            "titleSlug": "englands-grand",
+            "dateTime": "2020-11-10T23:45:00Z",
+            "categories": [
+              "SPORT"
+            ],
+            "duration": "PT1H30M",
+            "contentInfo": "1h 30m",
+            "imageTemplate": "https://ovp.itv.com/images/special/q7qlkcc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "film",
+            "title": "This Sporting Life",
+            "channel": "itv2",
+            "ccid": "6v54nq5",
+            "description": "Richard Harris is remarkable as a miner who wants to quit his job",
+            "isPaid": false,
+            "episodeId": "CFD0696/0001",
+            "programmeId": "CFD0696",
+            "encodedEpisodeId": {
+              "letterA": "CFD0696a0001",
+              "underscore": "CFD0696_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "CFD0696",
+              "underscore": "CFD0696"
+            },
+            "titleSlug": "this-sporting-life",
+            "categories": [
+              "FILMS"
+            ],
+            "duration": "PT2H10M",
+            "contentInfo": "2h 10m",
+            "imageTemplate": "https://ovp.itv.com/images/film/6v54nq5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          }
+        ],
+        "isChildrenCollection": false
+      }
+    }
+  ],
+  "shortFormSlider": {
+    "header": {
+      "title": "Rugby World Cup 2023"
+    },
+    "items": [
+      {
+        "imagePresets": {},
+        "episodeTitle": "Ireland fast out of the traps against Scotland",
+        "episodeId": "8qcqkf3",
+        "titleSlug": "ireland-fast-out-of-the-traps-against-scotland",
+        "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4D7T3zPffEVecnBx0g8ypg/b28cca6f9a19fb68b2575e7828df2231/LOWE_TRY_IRL.png?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "James Lowe races in for the first try of the evening!",
+        "dateTime": "2023-10-07T19:14:01.185Z",
+        "duration": 83,
+        "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/2567qDAyWPMPI8lwN6RK8E/7bad58785fac58ce184695781cf7fabf/lowe_try_irl.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "genre": "sport",
+        "href": "/watch/sport/undefined"
+      },
+      {
+        "imagePresets": {},
+        "episodeTitle": "Full Match: Ireland v Scotland",
+        "encodedEpisodeId": {"letterA": "2a4138a0037", "underscore": "2_4138_0037"},
+        "encodedProgrammeId": {"letterA": "2a4138", "underscore": "2_4138"},
+        "titleSlug": "full-match-ireland-v-scotland",
+        "programmeTitle": "Rugby World Cup",
+        "episodeId": "2/4138/0037",
+        "programmeId": "2/4138",
+        "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7AjUyh0LGctJ2RpAyukwpO/9d4310b3044e786a5b56c1e4a396c07c/RWC-2023-Live-Match-Pool-IRL-V-SCO_05_TabletMobile_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "dateTime": "2023-10-08T10:47:39.946Z",
+        "genre": "sport",
+        "href": "/watch/sport/undefined"
+      }
+    ],
+    "key": "sportShortForm",
+    "genre": "sport",
+    "isRail": true,
+    "dataTestId": "sport-rail",
+    "tileType": "news",
+    "trackingProps": {
+      "contentType": "news clip"
+    }
+  },
+  "navAdServerParams": {
+    "area": "collections",
+    "category": [],
+    "appname": "dotcom",
+    "appversion": "2.127.2",
+    "size": "hubsponsorbutton"
+  },
+  "collectionSlug": "rugby-world-cup",
+  "isAccessibleByKids": false
+}

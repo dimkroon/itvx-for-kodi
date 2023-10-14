@@ -72,16 +72,24 @@ class Generic(unittest.TestCase):
         item = {'contentType': 'special', 'title': False}
         self.assertIsNone(parsex.parse_hero_content(item))
 
-    def test_parse_short_form_slider(self):
+    def test_parse_main_page_short_form_slider(self):
         data = open_json('html/index-data.json')
         for slider in data['shortFormSliderContent']:
             obj = parsex.parse_short_form_slider(slider)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
+            self.assertFalse('slider' in obj['show']['params'])
         # Return None on parse errors
         self.assertIsNone(parsex.parse_short_form_slider([]))
         # Return None when a 'view all items' link to collection page is absent from the header
         self.assertIsNone(parsex.parse_short_form_slider({'header': {}}))
+
+    def test_parse_collection_short_form_slider(self):
+        data = open_json('json/test_collection.json')
+        obj = parsex.parse_short_form_slider(data['shortFormSlider'], url='https://mypage')
+        has_keys(obj, 'type', 'show')
+        is_li_compatible_dict(self, obj['show'])
+        self.assertEqual('shortFormSlider', obj['show']['params']['slider'])
 
     def test_parse_editorial_slider(self):
         data = open_json('html/index-data.json')
@@ -130,22 +138,29 @@ class Generic(unittest.TestCase):
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
 
-    def test_parse_news_collection_item(self):
-        data = open_json('html/index-data.json')['shortFormSliderContent'][0]['items']
+    def test_parse_shortform_item(self):
         tz_uk = pytz.timezone('Europe/London')
-        # a short new item
-        item = parsex.parse_news_collection_item(data[1], tz_uk, "%H-%M-%S")
+
+        # ShortForm from collection
+        data = open_json('json/test_collection.json')
+        sf_item = data['shortFormSlider']['items'][0]
+        obj = parsex.parse_shortform_item(sf_item, tz_uk, "%H-%M-%S")
+        self.assertEqual('title', obj['type'])
+        is_li_compatible_dict(self, obj['show'])
+
+        # an item like a normal catchup episode
+        item = parsex.parse_shortform_item(data['shortFormSlider']['items'][0], tz_uk, "%H-%M-%S")
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        # NOTE: As of 20-7-23 all news collection item appear to have the same structure
-        #       Just need to test a bit longer to be sure.
-        # a new item like a normal catchup episode
-        # item = parsex.parse_news_collection_item(data[-1], tz_uk, "%H-%M-%S")
-        # has_keys(item, 'playable', 'show')
-        # is_li_compatible_dict(self, item['show'])
+
+        # shortForm news item from the main page
+        data = open_json('html/index-data.json')['shortFormSliderContent'][0]['items']
+        item = parsex.parse_shortform_item(data[1], tz_uk, "%H-%M-%S")
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
 
         # An invalid item
-        item = parsex.parse_news_collection_item({}, None, None)
+        item = parsex.parse_shortform_item({}, None, None)
         self.assertIsNone(item)
 
 
