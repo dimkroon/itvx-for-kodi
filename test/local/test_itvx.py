@@ -119,13 +119,25 @@ class MainPageItem(TestCase):
 
 
 class Collections(TestCase):
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_news(self, _):
         items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
-        self.assertGreater(len(items), 10)
+        self.assertEqual(8, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            self.assertEqual('title', item['type'])
+            self.assertTrue(is_li_compatible_dict(self, item['show']))
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)))
+        self.assertListEqual(items, items2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
+    def test_collection_content_shortForm(self, _):
+        """The contents of a shortForm slider on a collection page."""
+        items = list(filter(None, itvx.collection_content(slider='shortFormSlider')))
+        self.assertEqual(2, len(items))
+        for item in items:
+            self.assertEqual('title', item['type'])
+            self.assertTrue(is_li_compatible_dict(self, item['show']))
+        items2 = list(filter(None, itvx.collection_content(slider='shortFormSlider', hide_paid=True)))
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
@@ -137,39 +149,42 @@ class Collections(TestCase):
         items2 = list(filter(None, itvx.collection_content(slider='trendingSliderContent', hide_paid=True)))
         self.assertListEqual(items, items2)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_from_main_page(self, _):
-        items = list(itvx.collection_content(slider='editorialRailSlot1'))
-        self.assertGreater(len(items), 10)
+        items = list(itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1'))
+        self.assertEqual(4, len(items))
         for item in items:
             has_keys(item, 'type', 'show')
-        items2 = list(filter(None, itvx.collection_content(slider='editorialRailSlot1', hide_paid=True)))
+        items2 = list(filter(None, itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1', hide_paid=True)))
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/editorial_slider.json'))
     def test_collection_from_test_rail(self, _):
         """Test a specially crafted slider with all possible types of items."""
-        items = list(filter(None, itvx.collection_content(slider='testRailSlot1')))
-        self.assertEqual(len(items), 8)
+        items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='test_rail')))
+        self.assertEqual(10, len(items))
         for item in items:
             has_keys(item, 'type', 'show')
-        self.assertTrue(items[7]['type'] == 'collection')
-        items2 = list(filter(None, itvx.collection_content(slider='testRailSlot1', hide_paid=True)))
+        self.assertEqual('simulcastspot', items[0]['type'])
+        self.assertEqual('fastchannelspot', items[1]['type'])
+        self.assertEqual('collection', items[8]['type'])
+        self.assertEqual('collection', items[9]['type'])
+        items2 = list(filter(None, itvx.collection_content('https://www.itv.com', slider='test_rail', hide_paid=True)))
         self.assertListEqual(items, items2)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
-    def test_non_existing_collection_from_main_page(self, _):
-        items = list(filter(None, itvx.collection_content(slider='SomeNonExistingSlider')))
-        self.assertListEqual([], items)
-
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
-    def test_collection_from_collection_page(self, _):
+    def test_collection_contentfrom_collection_page(self, _):
         items = list(itvx.collection_content(url='collection_top_picks'))
         self.assertGreater(len(items), 10)
         for item in items:
             has_keys(item, 'type', 'show')
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    def test_non_existing_collection(self, _):
+        items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='SomeNonExistingSlider')))
+        self.assertListEqual([], items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-kids.json'))
     def test_collection_from_collection_page_with_rails(self, _):
@@ -188,13 +203,13 @@ class Collections(TestCase):
     def test_collection_with_shortform_slider(self):
         page_data = open_json('json/test_collection.json')
         page_data['collection'] = None
+        page_data['editorialSliders'] = None
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.collection_content(url='https://www.itvx_coll'))
-            self.assertEqual(2, len(items))
+            self.assertEqual(1, len(items))
             for item in items:
-                has_keys(item, 'type', 'show')
+                self.assertEqual('collection', item['type'])
                 is_li_compatible_dict(self, item['show'])
-
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))

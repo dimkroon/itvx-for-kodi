@@ -82,6 +82,13 @@ def parse_hero_content(hero_data):
     try:
         item_type = hero_data['contentType']
         title = hero_data['title']
+
+        if item_type in ('collection', 'page'):
+            item = parse_item_type_collection(hero_data)
+            info = item['show']['info']
+            info['title'] = ''.join(('[COLOR orange]', info['title'], '[/COLOR]'))
+            return item
+
         item = {
             'label': title,
             'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
@@ -111,11 +118,6 @@ def parse_hero_content(hero_data):
             item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                               'name': title}
 
-        elif item_type == 'collection':
-            item = parse_item_type_collection(hero_data)
-            info = item['show']['info']
-            info['title'] = ''.join(('[COLOR orange]', info['title'], '[/COLOR]'))
-            return item
         else:
             logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
             return None
@@ -155,26 +157,31 @@ def parse_short_form_slider(slider_data, url=None):
         return None
 
 
-def parse_slider(slider_name, slider_data):
+def parse_editorial_slider(url, slider_data):
     """Parse editorialSliders from the main page or from a collection."""
     # noinspection PyBroadException
     try:
         coll_data = slider_data['collection']
+        if not coll_data.get('shows'):
+            # Has happened. Items without field `shows` have an invalid headingLink
+            return
         page_link = coll_data.get('headingLink')
         base_url = 'https://www.itv.com/watch'
         if page_link:
             # Link to the collection's page if available
             params = {'url': base_url + page_link['href']}
         else:
-            # Provide the slider name when the collection content is to be obtained from the main page.
-            params = {'slider': slider_name}
+            # Provide the slider name when the collection contents are the
+            # items in the slider on the original page.
+            slider_name = slider_data['collection']['sliderName']
+            params = {'url': url, 'slider': slider_name}
 
         return {'type': 'collection',
                 'show': {'label': coll_data['headingTitle'],
                          'params': params,
                          'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
     except:
-        logger.error("Unexpected error parsing editorialSlider %s", slider_name, exc_info=True)
+        logger.error("Unexpected error parsing editorialSlider from %s", url, exc_info=True)
         return None
 
 
@@ -191,7 +198,7 @@ def parse_collection_item(show_data, hide_paid=False):
         title = show_data['title']
         content_info = show_data.get('contentInfo', '')
 
-        if content_type == 'collection':
+        if content_type in ('collection', 'page'):
             return parse_item_type_collection(show_data)
 
         if show_data.get('isPaid'):
@@ -363,13 +370,21 @@ def parse_category_item(prog, category):
 
 
 def parse_item_type_collection(item_data):
-    """Parse an item of type 'collection' found in heroContent or a collection.
+    """Parse an item of type 'collection' or type 'page' found in heroContent or
+    a collection.
     The collection items refer to another collection.
 
     .. note::
         Only items from heroContent seem to have a field `ctaLabel`.
 
     """
+    url = '/'.join(('https://www.itv.com/watch/collections',
+                   item_data.get('titleSlug', ''),
+                   item_data.get('collectionId') or item_data['pageId']))
+    if item_data['contentType'] == 'page':
+        # This querystring is required for page items
+        url += '?ind'
+
     title = item_data['title']
     item = {
         'label': title,
@@ -378,9 +393,7 @@ def parse_item_type_collection(item_data):
         'info': {'title': '[B]{}[/B]'.format(title),
                  'plot': item_data.get('ctaLabel', 'Collection'),
                  'sorttitle': sort_title(title)},
-        'params': {'url': '/'.join(('https://www.itv.com/watch/collections',
-                                    item_data.get('titleSlug', ''),
-                                    item_data.get('collectionId')))}
+        'params': {'url': url}
     }
     return {'type': 'collection', 'show': item}
 
