@@ -36,7 +36,7 @@ setUpModule = fixtures.setup_web_test
 def check_shows(self, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
     self.assertTrue(show.get('contentType') in
-                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'page', None),
+                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'fastchannelspot', 'page', None),
                     "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
                                                              show.get('contentType', '')))
     if show.get('contentType') in ('page', None):
@@ -44,6 +44,8 @@ def check_shows(self, show, parent_name):
         return True
     if show['contentType'] == 'collection':
         return check_rail_item_type_collection(self, show, parent_name)
+    if show['contentType'] == 'fastchannelspot':
+        return check_collection_item_type_fastchannelspot(self, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
@@ -156,6 +158,17 @@ def check_rail_item_type_collection(self, item, parent_name):
     self.assertTrue(is_not_empty(item['collectionId'], str))
 
 
+def check_collection_item_type_fastchannelspot(self, item, parent_name):
+    has_keys(item, 'contentType', 'title', 'channel', 'description', 'imageTemplate',
+             obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    expect_keys(item, 'imagePresets', 'tagNames', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    self.assertEqual({}, item['imagePresets'])
+    self.assertTrue(is_url(item['imageTemplate']))
+    self.assertTrue(is_not_empty(item['title'], str))
+    self.assertTrue(is_not_empty(item['channel'], str))
+    self.assertTrue(is_url(item['imageTemplate']))
+
+
 class MainPage(unittest.TestCase):
     def test_main_page(self):
         page = fetch.get_document('https://www.itv.com/')
@@ -246,8 +259,8 @@ class CollectionPages(unittest.TestCase):
         """Obtain links to collection pages from the main page and test them all."""
         def check_rail(url):
             page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
-            # if 'Funny Favourites' in page_data['headingTitle']:
-            #     testutils.save_json(page_data, 'html/collection_itvx-kids.json')
+            # if 'ITVX Live' in page_data['headingTitle']:
+            #     testutils.save_json(page_data, 'html/collection_itvx-live.json')
             has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
                      'pageImageUrl', 'isAccessibleByKids')
             collection = page_data['collection']

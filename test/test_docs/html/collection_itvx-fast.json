@@ -1,0 +1,62 @@
+{
+  "headingTitle": "ITVX Live Channels: Choose a Channel to match your mood!",
+  "headingDescription": "",
+  "pageImageUrl": "",
+  "collection": {
+    "subsequentJourney": {
+      "name": "FAST channels rail sub journey",
+      "label": "View All",
+      "destinationUrl": " /collections/58DOqcyNCNMqcAWNIFvXzJ"
+    },
+    "headingTitle": "ITVX Live Channels: Choose a Channel to match your mood!",
+    "page": "collections",
+    "sliderName": "itvx_live_channels_choose_a_channel_to_match_your_mood",
+    "shows": [
+      {
+        "imagePresets": {},
+        "contentType": "fastchannelspot",
+        "title": "Crime Drama Channel",
+        "channel": "fast7",
+        "tagNames": [
+          "live"
+        ],
+        "description": "All-time greats & brand new exclusives",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-crimedrama/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "contentType": "fastchannelspot",
+        "title": "Comedy 24/7 Channel",
+        "channel": "fast16",
+        "tagNames": [
+          "live"
+        ],
+        "description": "The channel dedicated to big laughs!",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-comedy247/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      },
+      {
+        "imagePresets": {},
+        "contentType": "fastchannelspot",
+        "title": "True Crime International Channel",
+        "channel": "fast20",
+        "tagNames": [
+          "live"
+        ],
+        "description": "Back-to-back documentaries",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-truecrimeint/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+      }
+    ],
+    "isChildrenCollection": false
+  },
+  "editorialSliders": null,
+  "shortFormSlider": null,
+  "navAdServerParams": {
+    "area": "collections",
+    "category": [],
+    "appname": "dotcom",
+    "appversion": "2.126.1",
+    "size": "hubsponsorbutton"
+  },
+  "collectionSlug": "itvx-live-channels-choose-a-channel-to-match-your-mood",
+  "isAccessibleByKids": false
+}
