@@ -159,6 +159,44 @@ def check_rail_item_type_collection(self, item, parent_name):
     self.assertTrue(is_not_empty(item['collectionId'], str))
 
 
+def check_item_type_page(testcase, item, parent_name):
+    """Check items of type page.
+    Items of type page have been found in heroContent on the main page and as a
+    show in a collection, In the latter page items are disregarded, so this
+    function currently only checks hero items.
+
+    Page items are very similar to items of type collection. The only difference
+    is the use of field 'pageId' instead of 'collectionId'.
+
+    """
+    has_keys(item, 'contentType', 'title', 'titleSlug', 'pageId', 'ctaLabel', 'imageTemplate',
+             obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    expect_keys(item, 'imagePresets', 'ariaLabel', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    testcase.assertFalse(is_not_empty(item['imagePresets'], dict))
+    testcase.assertTrue(is_url(item['imageTemplate']))
+    testcase.assertTrue(is_not_empty(item['title'], str))
+    testcase.assertTrue(is_not_empty(item['titleSlug'], str))
+    testcase.assertTrue(is_not_empty(item['pageId'], str))
+    testcase.assertTrue(is_not_empty(item['ariaLabel'], str))
+    testcase.assertTrue(is_not_empty(item['ctaLabel'], str))
+    # Currently items of type page require a querystring added to the url
+    # The only instance of a page item found so far, referred to the collection 'funny-favourites'
+    # and returned HTTP error 404 unless query string ?ind was added to the url.
+
+    # Check that the plain url does not succeed
+    url = 'https://www.itv.com/watch/collections/' + item['titleSlug'] + '/' + item['pageId']
+    headers = {
+        # Without these headers the requests will time out.
+        'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
+        'Origin': 'https: /www.itv.com',
+    }
+    resp = requests.get(url, headers=headers, timeout=4)
+    testcase.assertEqual(404, resp.status_code)
+    # check that adding the querystring succeeds
+    resp = requests.get(url + '?ind', headers=headers, timeout=4)
+    testcase.assertEqual(200, resp.status_code)
+
+
 def check_collection_item_type_fastchannelspot(self, item, parent_name):
     has_keys(item, 'contentType', 'title', 'channel', 'description', 'imageTemplate',
              obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
@@ -181,39 +219,42 @@ class MainPage(unittest.TestCase):
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
             self.assertTrue(item['contentType'] in
-                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand', 'collection'))
-            if item['contentType'] != 'collection':
+                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand',
+                             'collection', 'page'))
+            content_type = item['contentType']
+            if content_type == 'collection':
+                check_rail_item_type_collection(self, item, 'heroContent')
+                # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
+                has_keys(item, 'ariaLabel')
+            elif content_type == 'page':
+                check_item_type_page(self, item, 'mainpage.hero')
+            else:
                 has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel', 'ariaLabel',
                          'contentInfo', 'tagName', obj_name=item['title'])
                 self.assertIsInstance(item['contentInfo'], list)
 
-            if item['contentType']in ('simulcastspot', 'fastchannelspot'):
-                has_keys(item, 'channel', obj_name=item['title'])
-            elif item['contentType'] != 'collection':
-                has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
-                # As of 06-2023 field genre seems to be removed from all types of hero content.
-                # Just keep the check in for a while.
-                expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
+                if item['contentType']in ('simulcastspot', 'fastchannelspot'):
+                    has_keys(item, 'channel', obj_name=item['title'])
+                else:
+                    has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
+                    # As of 06-2023 field genre seems to be removed from all types of hero content.
+                    # Just keep the check in for a while.
+                    expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
 
-            if item['contentType'] == 'special':
-                # Field 'dateTime' not always present in special title
-                has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
+                if item['contentType'] == 'special':
+                    # Field 'dateTime' not always present in special title
+                    has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
 
-            if item['contentType'] == 'series':
-                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
+                if item['contentType'] == 'series':
+                    has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
 
-            if item['contentType'] == 'film':
-                # Fields not always present:  'dateTime'
-                has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
+                if item['contentType'] == 'film':
+                    # Fields not always present:  'dateTime'
+                    has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
 
-            if item['contentType'] == 'brand':
-                # Just to check over time if this is always true
-                self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
-
-            if item['contentType'] == 'collection':
-                check_rail_item_type_collection(self, item, 'heroContent')
-                # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
-                has_keys(item, 'ariaLabel')
+                if item['contentType'] == 'brand':
+                    # Just to check over time if this is always true
+                    self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
