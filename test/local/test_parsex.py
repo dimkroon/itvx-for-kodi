@@ -72,12 +72,25 @@ class Generic(unittest.TestCase):
         item = {'contentType': 'special', 'title': False}
         self.assertIsNone(parsex.parse_hero_content(item))
 
-    def test_parse_slider(self):
+    def test_parse_short_form_slider(self):
+        data = open_json('html/index-data.json')
+        for slider in data['shortFormSliderContent']:
+            obj = parsex.parse_short_form_slider(slider)
+            has_keys(obj, 'type', 'show')
+            is_li_compatible_dict(self, obj['show'])
+        # Return None on parse errors
+        self.assertIsNone(parsex.parse_short_form_slider([]))
+        # Return None when a 'view all items' link to collection page is absent from the header
+        self.assertIsNone(parsex.parse_short_form_slider({'header': {}}))
+
+    def test_parse_editorial_slider(self):
         data = open_json('html/index-data.json')
         for item_name, item_data in data['editorialSliders'].items():
             obj = parsex.parse_slider(item_name, item_data)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
+        # Return None on parse errors
+        self.assertIsNone(parsex.parse_slider('', ''))
 
     def test_parse_collection_title(self):
         data = open_json('html/collection_just-in_data.json')['collection']['shows']

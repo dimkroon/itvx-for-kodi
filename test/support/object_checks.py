@@ -75,7 +75,10 @@ def is_url(url: str, ext: str| list | tuple | None = None) -> bool:
     :param ext: Optional file extension(s) (including preceding dot) of the document requested in the URL.
 
     """
+    if not isinstance(url, str):
+        return False
     result = url.startswith('https://')
+    result = result and url.find('//', 7) == -1
     if ext is not None:
         if isinstance(ext, (tuple, list)):
             result = result and any(url.endswith(extension) or extension + '?' in url for extension in ext)
@@ -266,8 +269,8 @@ def check_news_collection_stream_info(playlist):
     assert is_url(video_inf['Base'] + strm_inf[0]['Href'], '.mp4')
 
 
-def check_news_clip_item(item):
-    """Check the content of a news clip from collection or category 'News'
+def check_short_form_item(item):
+    """Check the content of a shortForm item from a collection or category 'News'
 
     Items from collection or from Hero of category have an extra field `posterImage`, but it's not used in the addon.
     """
