@@ -124,18 +124,27 @@ def parse_hero_content(hero_data):
         logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title','unknown title'), exc_info=True)
 
 
-def parse_short_form_slider(slider_data):
+def parse_short_form_slider(slider_data, url=None):
+    """Parse a shortFormSlider from the main page or a collection page.
+
+    """
     # noinspection PyBroadException
     try:
         header = slider_data['header']
         link = header.get('linkHref')
         title = header.get('title') or header.get('iconTitle', '')
-        if not link:
-            return None
+        if url:
+            # A shortFormSlider from a collection page.
+            params = {'url': url, 'slider': 'shortFormSlider'}
+        elif link:
+            # A shortFormSlider from the main page
+            params = {'url': 'https://www.itv.com' + link}
+        else:
+            return
+
         return {'type': 'collection',
-                'playable': False,
                 'show': {'label': title,
-                         'params': {'url': 'https://www.itv.com' + link},
+                         'params': params,
                          'info': {'sorttitle': sort_title(title)}
                          }
                 }
@@ -145,7 +154,7 @@ def parse_short_form_slider(slider_data):
 
 
 def parse_slider(slider_name, slider_data):
-    """Parse editorialSliders from the main page."""
+    """Parse editorialSliders from the main page or from a collection."""
     # noinspection PyBroadException
     try:
         coll_data = slider_data['collection']
@@ -217,30 +226,37 @@ def parse_collection_item(show_data, hide_paid=False):
         return None
 
 # noinspection GrazieInspection
-def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
+def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
+    """Parse an item from a shortFormSlider.
+
+    ShortFormSliders are found on the main page, some collection pages.
+    Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
+
+    """
     """Parse data found in news collection and in short news clips from news sub-categories
 
     """
     try:
-        if 'encodedProgrammeId' in news_item.keys():
+        if 'encodedProgrammeId' in item_data.keys():
             # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
             # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
             url = '/'.join(('https://www.itv.com/watch',
-                            news_item['titleSlug'],
-                            news_item['encodedProgrammeId']['letterA'],
-                            news_item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
+                            item_data['titleSlug'],
+                            item_data['encodedProgrammeId']['letterA'],
+                            item_data.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
         else:
-            # This news item is a 'short item', aka 'news clip'.
-            url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
+            # This item is a 'short item', aka 'news clip'.
+            href = item_data.get('href', '/watch/news/undefined')
+            url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
 
         # dateTime field occasionally has milliseconds. Strip these when present.
-        item_time = pytz.UTC.localize(utils.strptime(news_item['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
+        item_time = pytz.UTC.localize(utils.strptime(item_data['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
         loc_time = item_time.astimezone(time_zone)
-        title = news_item.get('episodeTitle')
-        plot = '\n'.join((loc_time.strftime(time_fmt), news_item.get('synopsis', title)))
+        title = item_data.get('episodeTitle')
+        plot = '\n'.join((loc_time.strftime(time_fmt), item_data.get('synopsis', title)))
 
         # Does paid news exists?
-        if news_item.get('isPaid'):
+        if item_data.get('isPaid'):
             if hide_paid:
                 return None
             plot = premium_plot(plot)
@@ -251,13 +267,13 @@ def parse_news_collection_item(news_item, time_zone, time_fmt, hide_paid=False):
             'type': 'title',
             'show': {
                 'label': title,
-                'art': {'thumb': news_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-                'info': {'plot': plot, 'sorttitle': sort_title(title), 'duration': news_item.get('duration')},
-                'params': {'url': url }
+                'art': {'thumb': item_data['imageUrl'].format(**IMG_PROPS_THUMB)},
+                'info': {'plot': plot, 'sorttitle': sort_title(title), 'duration': item_data.get('duration')},
+                'params': {'url': url}
             }
         }
-    except Exception:
-        logger.warning("Failed to parse news_collection_item:\n%s", json.dumps(news_item, indent=4))
+    except Exception as err:
+        logger.error("Unexpected error parsing a shortForm item: %r\n%s", err, json.dumps(item_data, indent=4))
         return None
 
 

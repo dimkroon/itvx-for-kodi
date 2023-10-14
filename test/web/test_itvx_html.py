@@ -288,7 +288,8 @@ class CollectionPages(unittest.TestCase):
                 is_url(page_data['pageImageUrl'])
                 for slider in editorial_sliders:
                     pagelink = slider['collection'].get('headingLink', {}).get('href')
-                    check_rail('https://www.itv.com/watch' + pagelink)
+                    if pagelink != url:
+                        check_rail('https://www.itv.com/watch' + pagelink)
 
             # The same as the original shortFromSlider from the main page now made available on the collection page
             if shortform_slider is not None:

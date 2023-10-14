@@ -38,7 +38,7 @@ class TestMenu(unittest.TestCase):
         self.assertAlmostEqual(len(items), 8, delta=2)
 
     def test_menu_collections(self):
-        items = main.list_collections(MagicMock())
+        items = main.list_collections.test()
         self.assertIsInstance(items, list)
         self.assertAlmostEqual(len(items), 20, delta=4)
 

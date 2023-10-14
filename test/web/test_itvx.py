@@ -53,7 +53,7 @@ class TestItvX(unittest.TestCase):
             result = list(itvx.category_content(cat['params']['path']))
             self.assertGreater(len(result), 1)      # News has only a few items
             for item in result:
-                self.assertIsInstance(item['type'], str)
+                self.assertTrue(item['type'] in ('series', 'brand', 'programme', 'episode', 'special', 'film', 'title'))
                 is_li_compatible_dict(self, item['show'])
 
     def test_category_news(self):
