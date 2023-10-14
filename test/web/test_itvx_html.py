@@ -292,8 +292,9 @@ class WatchPages(unittest.TestCase):
 
         # As of 25-6-2023 all fields of the FAST channel 'Unwind' are either None or False. There
         # some fields missing as well, but there is no point in checking that.
+        # From 10-2023 fields of 'citv' are also all None or False. Most likely to be removed in the future.
         if all(not progr_data.get(k) for k in all_keys):
-            self.assertTrue(obj_name.lower().startswith('unwind'))
+            self.assertTrue(obj_name.lower().startswith('unwind') or obj_name.lower().startswith('citv'))
             return
 
         has_keys(progr_data, *all_keys, obj_name=obj_name)
