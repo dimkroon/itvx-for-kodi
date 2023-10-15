@@ -18,11 +18,16 @@ import pytz
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
-from resources.lib import itvx, errors, cache
+from resources.lib import itvx, errors, main, cache
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
 
+
+def check_item(testcase, item):
+    has_keys(item, 'type', 'show')
+    testcase.assertTrue(item['type'] in main.callb_map.keys())
+    is_li_compatible_dict(testcase, item['show'])
 
 
 @patch('resources.lib.cache.set_item')
@@ -97,7 +102,7 @@ class MainPageItem(TestCase):
             items_count = len(items)
             self.assertEqual(9, items_count)
             for item in items:
-                is_li_compatible_dict(self, item['show'])
+                check_item(self, item)
         # Hero item of unknown type is disregarded.
         page_data['heroContent'][1]['contentType'] = 'someNewType'
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
@@ -124,8 +129,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
         self.assertEqual(8, len(items))
         for item in items:
-            self.assertEqual('title', item['type'])
-            self.assertTrue(is_li_compatible_dict(self, item['show']))
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -135,8 +139,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content(slider='shortFormSlider')))
         self.assertEqual(2, len(items))
         for item in items:
-            self.assertEqual('title', item['type'])
-            self.assertTrue(is_li_compatible_dict(self, item['show']))
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSlider', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -145,7 +148,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content(slider='trendingSliderContent')))
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='trendingSliderContent', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -154,7 +157,7 @@ class Collections(TestCase):
         items = list(itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1'))
         self.assertEqual(4, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -164,7 +167,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='test_rail')))
         self.assertEqual(10, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         self.assertEqual('simulcastspot', items[0]['type'])
         self.assertEqual('fastchannelspot', items[1]['type'])
         self.assertEqual('collection', items[8]['type'])
@@ -173,11 +176,11 @@ class Collections(TestCase):
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
-    def test_collection_contentfrom_collection_page(self, _):
+    def test_collection_content_from_collection_page(self, _):
         items = list(itvx.collection_content(url='collection_top_picks'))
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
 
@@ -191,14 +194,14 @@ class Collections(TestCase):
         items = list(itvx.collection_content(url='itvx_kids'))
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-fast.json'))
     def test_collection_of_live_fast_channels(self, _):
         items = list(itvx.collection_content(url='itvx_fast'))
         self.assertEqual(3, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
 
     def test_collection_with_shortform_slider(self):
         page_data = open_json('json/test_collection.json')
@@ -206,10 +209,11 @@ class Collections(TestCase):
         page_data['editorialSliders'] = None
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.collection_content(url='https://www.itvx_coll'))
+            # 1 folder from the shortFormSlider
             self.assertEqual(1, len(items))
             for item in items:
                 self.assertEqual('collection', item['type'])
-                is_li_compatible_dict(self, item['show'])
+                check_item(self, item)
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
@@ -282,8 +286,7 @@ class Categories(TestCase):
             items = itvx.category_news_content('my/url', *sub_cat)
             self.assertGreater(len(items), 4)
             for item in items:
-                self.assertIsInstance(item['type'], str)
-                is_li_compatible_dict(self, item['show'])
+                check_item(self, item)
 
             if sub_cat[0] in ('heroAndLatestData','longformData'):
                 free_items = itvx.category_news_content('my/url', *sub_cat, hide_paid=True)
