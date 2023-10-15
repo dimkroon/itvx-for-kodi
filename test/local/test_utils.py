@@ -74,8 +74,8 @@ class Generic(TestCase):
         self.assertEqual(30, utils.iso_duration_2_seconds('PT.5M'))
 
         self.assertEqual(20, utils.iso_duration_2_seconds('PT20S'))
-        self.assertEqual(2.4, utils.iso_duration_2_seconds('PT2.4S'))
-        self.assertEqual(0.5, utils.iso_duration_2_seconds('PT.5S'))
+        self.assertEqual(2, utils.iso_duration_2_seconds('PT2.4S'))
+        self.assertEqual(0, utils.iso_duration_2_seconds('PT.5S'))
 
         self.assertIsNone(utils.iso_duration_2_seconds('23m'))          # illegal duration string
         self.assertIsNone(utils.iso_duration_2_seconds('PT1h30m3s'))    # lower case
@@ -92,6 +92,9 @@ class Generic(TestCase):
         self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3H'))     # 2 decimal points - not a number
         self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3M'))     # 2 decimal points - not a number
         self.assertIsNone(utils.iso_duration_2_seconds('PT1.2.3S'))     # 2 decimal points - not a number
+        self.assertIsNone(utils.iso_duration_2_seconds(None))
+        self.assertIsNone(utils.iso_duration_2_seconds(''))
+        self.assertIsNone(utils.iso_duration_2_seconds(1234))
 
     def test_reformat_date(self):
         self.assertEqual(utils.reformat_date('1982-05-02T14:38:32Z', '%Y-%m-%dT%H:%M:%SZ', '%d.%m.%y %H:%M'),
