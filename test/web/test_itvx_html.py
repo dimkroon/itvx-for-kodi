@@ -25,7 +25,8 @@ from support.object_checks import (
     is_not_empty,
     is_encoded_programme_id,
     is_encoded_episode_id,
-    check_news_clip_item,
+    check_short_form_slider,
+    check_short_form_item,
     check_category_item
 )
 from support import testutils
@@ -36,7 +37,7 @@ setUpModule = fixtures.setup_web_test
 def check_shows(self, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
     self.assertTrue(show.get('contentType') in
-                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'page', None),
+                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'fastchannelspot', 'page', None),
                     "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
                                                              show.get('contentType', '')))
     if show.get('contentType') in ('page', None):
@@ -44,6 +45,10 @@ def check_shows(self, show, parent_name):
         return True
     if show['contentType'] == 'collection':
         return check_rail_item_type_collection(self, show, parent_name)
+    if show['contentType'] == 'fastchannelspot':
+        return check_collection_item_type_fastchannelspot(self, show, parent_name)
+    if show['contentType'] == 'simulcastspot':
+        return check_item_type_simulcastspot(self, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
@@ -156,50 +161,136 @@ def check_rail_item_type_collection(self, item, parent_name):
     self.assertTrue(is_not_empty(item['collectionId'], str))
 
 
+def check_item_type_page(testcase, item, parent_name):
+    """Check items of type page.
+    Items of type page have been found in heroContent on the main page and as a
+    show in a collection, In the latter page items are disregarded, so this
+    function currently only checks hero items.
+
+    Page items are very similar to items of type collection. The only difference
+    is the use of field 'pageId' instead of 'collectionId'.
+
+    """
+    has_keys(item, 'contentType', 'title', 'titleSlug', 'pageId', 'ctaLabel', 'imageTemplate',
+             obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    expect_keys(item, 'imagePresets', 'ariaLabel', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    testcase.assertFalse(is_not_empty(item['imagePresets'], dict))
+    testcase.assertTrue(is_url(item['imageTemplate']))
+    testcase.assertTrue(is_not_empty(item['title'], str))
+    testcase.assertTrue(is_not_empty(item['titleSlug'], str))
+    testcase.assertTrue(is_not_empty(item['pageId'], str))
+    testcase.assertTrue(is_not_empty(item['ariaLabel'], str))
+    testcase.assertTrue(is_not_empty(item['ctaLabel'], str))
+    # Currently items of type page require a querystring added to the url
+    # The only instance of a page item found so far, referred to the collection 'funny-favourites'
+    # and returned HTTP error 404 unless query string ?ind was added to the url.
+
+    # Check that the plain url does not succeed
+    url = 'https://www.itv.com/watch/collections/' + item['titleSlug'] + '/' + item['pageId']
+    headers = {
+        # Without these headers the requests will time out.
+        'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
+        'Origin': 'https: /www.itv.com',
+    }
+    resp = requests.get(url, headers=headers, timeout=4)
+    testcase.assertEqual(404, resp.status_code)
+    # check that adding the querystring succeeds
+    resp = requests.get(url + '?ind', headers=headers, timeout=4)
+    testcase.assertEqual(200, resp.status_code)
+
+
+def check_collection_item_type_fastchannelspot(self, item, parent_name):
+    name = '{}.{}'.format(parent_name, item.get('title', 'unknown'))
+    has_keys(item, 'contentType', 'title', 'channel', 'description', 'imageTemplate',
+             obj_name=name)
+    expect_keys(item, 'contentInfo', 'imagePresets', 'tagNames', obj_name=name)
+    # Keys available in simulcastspot, but not found in fastchannelspots. Flag any changes
+    misses_keys(item, 'genre', 'startDateTime', 'endDateTime', 'progress', obj_name=name)
+    self.assertEqual({}, item['imagePresets'])
+    self.assertTrue(is_url(item['imageTemplate']))
+    self.assertTrue(is_not_empty(item['title'], str))
+    self.assertTrue(is_not_empty(item['channel'], str))
+    self.assertTrue(is_url(item['imageTemplate']))
+
+
+def check_item_type_simulcastspot(self, item, parent_name):
+    """Simulcastspots are very similar to fastchannelspots, but have a few additional fields.
+
+    """
+    name = '{}.{}'.format(parent_name, item.get('title', 'unknown'))
+    has_keys(item, 'contentType', 'title', 'channel', 'description', 'imageTemplate',
+             'genre', 'startDateTime', 'endDateTime',
+             obj_name=name)
+    expect_keys(item, 'contentInfo', 'imagePresets', 'tagNames', obj_name=name)
+    self.assertEqual({}, item['imagePresets'])
+    self.assertTrue(is_url(item['imageTemplate']))
+    self.assertTrue(is_not_empty(item['title'], str))
+    self.assertTrue(is_not_empty(item['channel'], str))
+    self.assertTrue(is_url(item['imageTemplate']))
+    # Generic check on start and end time. Items from hero use different format than those from collection.
+    # Hero and collection will each perform additional checks on the format.
+    self.assertTrue(is_not_empty(item['startDateTime'], str))
+    self.assertTrue(is_not_empty(item['endDateTime'], str))
+
+
 class MainPage(unittest.TestCase):
     def test_main_page(self):
         page = fetch.get_document('https://www.itv.com/')
         # testutils.save_doc(page, 'html/index.html')
         page_props = parsex.scrape_json(page)
-        # testutils.save_json(page_props, 'html/index-data.json')
+        # testutils.save_json(page_props, 'html/index-data_new.json')
         has_keys(page_props, 'heroContent', 'editorialSliders', 'shortFormSliderContent', 'trendingSliderContent')
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            self.assertTrue(item['contentType'] in
-                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand', 'collection'))
-            if item['contentType'] != 'collection':
+            content_type = item['contentType']
+            self.assertTrue(content_type in
+                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand',
+                             'collection', 'page'))
+            if content_type == 'simulcastspot':
+                check_item_type_simulcastspot(self, item, parent_name='hero-item')
+                # Flag if key normally only present in collections become available in hero items as well
+                misses_keys(item, 'contentinfo', 'progress', obj_name='hero-item.'+ item['title'])
+                # Start and end times in Simulcastspots in hero are normally not in iso format.
+                # Flag if this changes.
+                self.assertFalse(is_iso_utc_time(item['startDateTime']))
+                self.assertFalse(is_iso_utc_time(item['endDateTime']))
+            #  TODO: Merge check with similar items from shortFormatSliders and collections
+            # elif content_type == 'fastchannelspot':
+            #     check_collection_item_type_fastchannelspot(self, item, parent_name='hero-item')
+            elif content_type == 'collection':
+                check_rail_item_type_collection(self, item, 'heroContent')
+                # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
+                has_keys(item, 'ariaLabel')
+            elif content_type == 'page':
+                check_item_type_page(self, item, 'mainpage.hero')
+            else:
                 has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel', 'ariaLabel',
                          'contentInfo', 'tagName', obj_name=item['title'])
                 self.assertIsInstance(item['contentInfo'], list)
 
-            if item['contentType']in ('simulcastspot', 'fastchannelspot'):
-                has_keys(item, 'channel', obj_name=item['title'])
-            elif item['contentType'] != 'collection':
-                has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
-                # As of 06-2023 field genre seems to be removed from all types of hero content.
-                # Just keep the check in for a while.
-                expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
+                if item['contentType']in ('simulcastspot', 'fastchannelspot'):
+                    has_keys(item, 'channel', obj_name=item['title'])
+                else:
+                    has_keys(item, 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
+                    # As of 06-2023 field genre seems to be removed from all types of hero content.
+                    # Just keep the check in for a while.
+                    expect_keys(item, 'genre', obj_name='Hero-item ' + item['title'])
 
-            if item['contentType'] == 'special':
-                # Field 'dateTime' not always present in special title
-                has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
+                if item['contentType'] == 'special':
+                    # Field 'dateTime' not always present in special title
+                    has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
 
-            if item['contentType'] == 'series':
-                has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
+                if item['contentType'] == 'series':
+                    has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
 
-            if item['contentType'] == 'film':
-                # Fields not always present:  'dateTime'
-                has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
+                if item['contentType'] == 'film':
+                    # Fields not always present:  'dateTime'
+                    has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
 
-            if item['contentType'] == 'brand':
-                # Just to check over time if this is always true
-                self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
-
-            if item['contentType'] == 'collection':
-                check_rail_item_type_collection(self, item, 'heroContent')
-                # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
-                has_keys(item, 'ariaLabel')
+                if item['contentType'] == 'brand':
+                    # Just to check over time if this is always true
+                    self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
         self.assertIsInstance(page_props['editorialSliders'], dict)
         for item in page_props['editorialSliders'].values():
@@ -223,10 +314,14 @@ class MainPage(unittest.TestCase):
             # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
 
         self.assertIsInstance(page_props['shortFormSliderContent'], list)
-        # Currently the list contains only the news rail.
-        self.assertEqual(1, len(page_props['shortFormSliderContent']))
-        for item in page_props['shortFormSliderContent'][0]['items']:
-            check_news_clip_item(item)
+        # Currently the list contains only the news rail and possibly a sport rail.
+        self.assertTrue(len(page_props['shortFormSliderContent']) in (1, 2))
+        for slider in page_props['shortFormSliderContent']:
+            check_short_form_slider(self, slider, name='mainpage.shortform')
+            header  = slider['header']
+            # ShortFromSlider on the main page should have a reference to the collection page.
+            self.assertFalse(is_url(header['linkHref']))                # is a relative link
+            self.assertTrue(header['linkHref'].startswith('/watch'))    # starts with '/watch', unlike editorialSliders
 
     def test_get_itvx_logo(self):
         resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'
@@ -245,32 +340,52 @@ class CollectionPages(unittest.TestCase):
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""
         def check_rail(url):
-            page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/watch' + url))
-            # if 'Hundreds of great shows' in page_data['headingTitle']:
-            #     testutils.save_json(page_data, 'html/collection_itvx-kids.json')
-            has_keys(page_data, 'headingTitle', 'collection', 'rails')
+            page_data = parsex.scrape_json(fetch.get_document(url))
+            # if 'Rugby World Cup' in page_data['headingTitle']:
+            #     testutils.save_json(page_data, 'html/collection_rugby-world-cup.json')
+            has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
+                     'pageImageUrl', 'isAccessibleByKids')
             collection = page_data['collection']
-            rails = page_data['rails']
+            editorial_sliders = page_data['editorialSliders']
+            shortform_slider = page_data['shortFormSlider']
+
             if collection is not None:
-                self.assertIsNone(rails)       # The parser ignores rails if collection has content!
+                # Page without rails has no image, notify when that changes.
+                self.assertEqual(page_data['pageImageUrl'], '')
+                self.assertIsNone(editorial_sliders)       # The parser ignores rails if collection has content!
                 has_keys(collection, 'headingTitle', 'shows', obj_name=collection['sliderName'])
                 expect_keys(collection, 'isChildrenCollection', obj_name=collection['sliderName'])
                 for show in collection['shows']:
                     check_shows(self, show, collection['sliderName'])
-            # Some collection have their content divided up in rails.
-            if rails is not None:
-                for rail in rails:
-                    pagelink = rail['collection'].get('headingLink', {}).get('href')
-                    check_rail(pagelink)
 
-        page = fetch.get_document('https://www.itv.com/')
-        editorial_sliders = parsex.scrape_json(page)['editorialSliders']
+            # Some collection have their content divided up in rails.
+            if editorial_sliders is not None:
+                # Page with rails has an image
+                is_url(page_data['pageImageUrl'])
+                for slider in editorial_sliders:
+                    page_ref = 'https://www.itv.com/watch' + slider['collection'].get('headingLink', {}).get('href')
+                    if page_ref != url:
+                        check_rail(page_ref)
+
+            # The same as the original shortFromSlider from the main page now made available on the collection page
+            if shortform_slider is not None:
+                check_short_form_slider(self, shortform_slider, name='collection-' + page_data['headingTitle'])
+
+        page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
+        editorial_sliders = page_data['editorialSliders']
         for rail in editorial_sliders.values():
             pagelink = rail['collection'].get('headingLink', {}).get('href')
             if not pagelink:
                 continue
-            check_rail(pagelink)
+            check_rail('https://www.itv.com/watch' + pagelink)
 
+        for slider in page_data['shortFormSliderContent']:
+            if slider['key'] == 'newsShortForm':
+                # News is only used from the main page, or as category, not as collection
+                continue
+            # We consider a page link mandatory
+            pagelink = slider['header']['linkHref']
+            check_rail('https://www.itv.com' + pagelink)
 
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
@@ -285,8 +400,9 @@ class WatchPages(unittest.TestCase):
 
         # As of 25-6-2023 all fields of the FAST channel 'Unwind' are either None or False. There
         # some fields missing as well, but there is no point in checking that.
+        # From 10-2023 fields of 'citv' are also all None or False. Most likely to be removed in the future.
         if all(not progr_data.get(k) for k in all_keys):
-            self.assertTrue(obj_name.lower().startswith('unwind'))
+            self.assertTrue(obj_name.lower().startswith('unwind') or obj_name.lower().startswith('citv'))
             return
 
         has_keys(progr_data, *all_keys, obj_name=obj_name)
@@ -381,12 +497,10 @@ class WatchPages(unittest.TestCase):
         check_series(self, data['seriesList'][0], data['programme']['title'])
 
     def test_news_item_tonight(self):
-        page = fetch.get_document('https://www.itv.com/watch/tonight/1a2803/1a9757a0137')
+        page = fetch.get_document('https://www.itv.com/watch/tonight-can-britain-get-talking/1a2803/1a2803a9382')
         # testutils.save_doc(page, 'html/news-tonight.html')
         data = parsex.scrape_json(page)
-        # Check 'Tonight' is still in old format.
-        with self.assertRaises(KeyError):
-            check_programme(self, data['programme'])
+        check_programme(self, data['programme'])
 
 
 class TvGuide(unittest.TestCase):
@@ -458,10 +572,10 @@ class Categories(unittest.TestCase):
         news_data = data['newsData']
         # Check the hero rail
         for item in news_data['heroAndLatestData']:
-            check_news_clip_item(item)
+            check_short_form_item(item)
         for item in news_data['longformData']:
             check_category_item(item)
-        for  rail in news_data['curatedRails']:
+        for rail in news_data['curatedRails']:
             self.assertTrue(isinstance(rail['title'], str) and rail['title'])
             for item in rail['clips']:
-                check_news_clip_item(item)
+                check_short_form_item(item)

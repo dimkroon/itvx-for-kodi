@@ -72,35 +72,68 @@ class Generic(unittest.TestCase):
         item = {'contentType': 'special', 'title': False}
         self.assertIsNone(parsex.parse_hero_content(item))
 
-    def test_parse_slider(self):
+    def test_parse_main_page_short_form_slider(self):
+        data = open_json('html/index-data.json')
+        for slider in data['shortFormSliderContent']:
+            obj = parsex.parse_short_form_slider(slider)
+            has_keys(obj, 'type', 'show')
+            is_li_compatible_dict(self, obj['show'])
+            self.assertFalse('slider' in obj['show']['params'])
+        # Return None on parse errors
+        self.assertIsNone(parsex.parse_short_form_slider([]))
+        # Return None when a 'view all items' link to collection page is absent from the header
+        self.assertIsNone(parsex.parse_short_form_slider({'header': {}}))
+
+    def test_parse_collection_short_form_slider(self):
+        data = open_json('json/test_collection.json')
+        obj = parsex.parse_short_form_slider(data['shortFormSlider'], url='https://mypage')
+        has_keys(obj, 'type', 'show')
+        is_li_compatible_dict(self, obj['show'])
+        self.assertEqual('shortFormSlider', obj['show']['params']['slider'])
+
+    def test_parse_editorial_slider(self):
         data = open_json('html/index-data.json')
         for item_name, item_data in data['editorialSliders'].items():
             obj = parsex.parse_slider(item_name, item_data)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
+        # Return None on parse errors
+        self.assertIsNone(parsex.parse_slider('', ''))
 
     def test_parse_collection_title(self):
         data = open_json('html/collection_just-in_data.json')['collection']['shows']
         # film - Valentine's Day
         item = parsex.parse_collection_item(data[2])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], True)
+        self.assertEqual('film', item['type'])
         # series - The Twelve
         item = parsex.parse_collection_item(data[1])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], False)
+        self.assertEqual('series', item['type'])
         # episode - Kavos Weekender
         item = parsex.parse_collection_item(data[3])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], True)
+        self.assertEqual('episode', item['type'])
         # Brand - Jonathan Ross' Must-Watch Films
         item = parsex.parse_collection_item(data[13])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertIs(item['playable'], False)
+        self.assertEqual('brand', item['type'])
+        # fastchannelspot
+        data = open_json('html/collection_itvx-fast.json')['collection']['shows']
+        item = parsex.parse_collection_item(data[0])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('fastchannelspot', item['type'])
+        # simulcastspot
+        data = open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows']
+        item = parsex.parse_collection_item(data[0])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('simulcastspot', item['type'])
         # An invalid item
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)
@@ -108,32 +141,38 @@ class Generic(unittest.TestCase):
     def test_parse_collection_title_from_main_page(self):
         data = open_json('html/index-data.json')['editorialSliders']['editorialRailSlot1']['collection']['shows']
         item = parsex.parse_collection_item(data[0])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
 
-    def test_parse_news_collection_item(self):
-        data = open_json('html/index-data.json')['shortFormSliderContent'][0]['items']
+    def test_parse_shortform_item(self):
         tz_uk = pytz.timezone('Europe/London')
-        # a short new item
-        item = parsex.parse_news_collection_item(data[1], tz_uk, "%H-%M-%S")
-        has_keys(item, 'playable', 'show')
+
+        # ShortForm from collection
+        data = open_json('json/test_collection.json')
+        sf_item = data['shortFormSlider']['items'][0]
+        obj = parsex.parse_shortform_item(sf_item, tz_uk, "%H-%M-%S")
+        self.assertEqual('title', obj['type'])
+        is_li_compatible_dict(self, obj['show'])
+
+        # an item like a normal catchup episode
+        item = parsex.parse_shortform_item(data['shortFormSlider']['items'][0], tz_uk, "%H-%M-%S")
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        # NOTE: As of 20-7-23 all news collection item appear to have the same structure
-        #       Just need to test a bit longer to be sure.
-        # a new item like a normal catchup episode
-        # item = parsex.parse_news_collection_item(data[-1], tz_uk, "%H-%M-%S")
-        # has_keys(item, 'playable', 'show')
-        # is_li_compatible_dict(self, item['show'])
+
+        # shortForm news item from the main page
+        data = open_json('html/index-data.json')['shortFormSliderContent'][0]['items']
+        item = parsex.parse_shortform_item(data[1], tz_uk, "%H-%M-%S")
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
 
         # An invalid item
-        item = parsex.parse_news_collection_item({}, None, None)
+        item = parsex.parse_shortform_item({}, None, None)
         self.assertIsNone(item)
-
 
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
         item = parsex.parse_trending_collection_item(data[1])
-        has_keys(item, 'playable', 'show')
+        has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         # An invalid item
         item = parsex.parse_trending_collection_item({})
@@ -170,7 +209,7 @@ class Generic(unittest.TestCase):
             data = open_json(file)
             for result_item in data['results']:
                 item = parsex.parse_search_result(result_item)
-                has_keys(item, 'playable', 'show')
+                has_keys(item, 'type', 'show')
                 is_li_compatible_dict(self, item['show'])
 
         # unknown entity type

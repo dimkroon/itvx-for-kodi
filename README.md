@@ -8,7 +8,7 @@ on-demand from ITVX; the web streaming service of British broadcaster ITV.
 
 This is an unofficial addon. It is not created or endorsed by ITV, nor is 
 the developer in any way associated with ITV. The addons just provides 
-access to ITV's web services from Kodi, so same limitations you encounter 
+access to ITV's web services from Kodi, so the same limitations encountered
 with a generic web browser also apply to this addon:
   * You can only watch ITVX in the UK.
   * You need and ITVX account to watch live or VOD content. 
@@ -35,7 +35,7 @@ Only Kodi 19 (Matrix) and higher are supported.
 
 #### Preferred Method
 
-ViwX is available from official Kodi addon repository. Installing from the 
+ViwX is available in the official Kodi addon repository. Installing from the 
 kodi repo is the easiest the most secure way of installing this add-on, and is 
 the only method that supports automatic updates. 
 

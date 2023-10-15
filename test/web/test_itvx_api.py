@@ -164,7 +164,7 @@ class LiveSchedules(unittest.TestCase):
                     # does not really broadcast programmes.
                     for k in progr_keys:
                         self.assertFalse(program[k])
-                    self.assertEqual('unwind', chan['name'].lower())
+                    self.assertTrue(chan['name'].lower() in ('unwind', 'citv'))
                 else:
                     self.assertTrue(object_checks.is_iso_utc_time(program['start']))
                     self.assertTrue(object_checks.is_iso_utc_time(program['end']))
