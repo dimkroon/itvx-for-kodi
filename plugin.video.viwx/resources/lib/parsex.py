@@ -57,7 +57,7 @@ def sort_title(title: str):
     The returned sort title is lowercase and stripped of a possible leading 'The'
     """
     l_title = title.lower()
-    return l_title[4:] if l_title. startswith('the ') else l_title
+    return l_title[4:] if l_title.startswith('the ') else l_title
 
 
 def scrape_json(html_page):
@@ -121,11 +121,13 @@ def parse_hero_content(hero_data):
             return None
         return {'type': item_type, 'show': item}
     except:
-        logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title','unknown title'), exc_info=True)
+        logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title', 'unknown title'), exc_info=True)
 
 
 def parse_short_form_slider(slider_data, url=None):
     """Parse a shortFormSlider from the main page or a collection page.
+
+    Returns the link to the collection page associated with the shortFormSlider.
 
     """
     # noinspection PyBroadException
@@ -179,7 +181,8 @@ def parse_slider(slider_name, slider_data):
 def parse_collection_item(show_data, hide_paid=False):
     """Parse a show item from a collection page
 
-    Very much like category content, but not quite.
+    Very much like category content, but not just quite.
+
     """
     # noinspection PyBroadException
     try:
@@ -225,6 +228,7 @@ def parse_collection_item(show_data, hide_paid=False):
     except Exception as err:
         logger.warning("Failed to parse collection_item: %r\n%s", err, json.dumps(show_data, indent=4))
         return None
+
 
 # noinspection GrazieInspection
 def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
@@ -298,7 +302,7 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
         # should not be necessary, but for episodes they are a requirement otherwise the page
         # will always return the first episode.
 
-        return{
+        return {
             'type': 'title',
             'show': {
                 'label': trending_item['title'],

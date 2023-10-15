@@ -169,7 +169,6 @@ class Generic(unittest.TestCase):
         item = parsex.parse_shortform_item({}, None, None)
         self.assertIsNone(item)
 
-
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
         item = parsex.parse_trending_collection_item(data[1])

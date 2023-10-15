@@ -184,6 +184,7 @@ def collection_content(url=None, slider=None, hide_paid=False):
             for item in collection.get('shows', []):
                 yield parsex.parse_collection_item(item, hide_paid)
         elif editorial_sliders:
+            # Folders, or kind of sub-collections in a collection.
             for slider in editorial_sliders:
                 yield parsex.parse_slider('', slider)
         else:

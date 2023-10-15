@@ -18,7 +18,7 @@ from xbmcgui import ListItem
 from codequick import Route, Resolver, Listitem, Script, run as cc_run
 from codequick.support import logger_id, build_path, dispatcher
 
-from resources.lib import itv, itv_account, itvx
+from resources.lib import itv, itvx
 from resources.lib import utils
 from resources.lib import parsex
 from resources.lib import fetch
@@ -167,7 +167,6 @@ class Paginator:
 @Route.register(content_type='videos')
 def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
-    # yield Listitem.from_dict(sub_menu_shows, 'Shows')
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)
         yield Listitem.from_dict(callback, **item['show'])
@@ -269,6 +268,7 @@ def list_collection_content(addon, url='', slider='', filter_char=None, page_nr=
 
 @Route.register(content_type='videos')  # 24 * 60)
 def list_categories(addon):
+    """Return a list of all available categories."""
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                            xbmcplugin.SORT_METHOD_TITLE,
                            disable_autosort=True)
@@ -281,6 +281,7 @@ def list_categories(addon):
 @Route.register(content_type='videos')
 @dynamic_listing
 def list_category(addon, path, filter_char=None, page_nr=0):
+    """Return the contents of a category"""
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                            xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
                            disable_autosort=True)
@@ -315,7 +316,10 @@ def list_news_sub_category(addon, path, subcat, rail=None, filter_char=None, pag
 @Route.register(content_type='videos')
 @dynamic_listing
 def list_productions(plugin, url, series_idx=None):
+    """List the series of a programme (now called brand) or the episodes of a particular
+    series if parameter `series_idx` is not None.
 
+    """
     logger.info("Getting productions for series '%s' of '%s'", series_idx, url)
 
     plugin.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
