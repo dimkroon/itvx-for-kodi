@@ -128,6 +128,12 @@ class Generic(unittest.TestCase):
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('fastchannelspot', item['type'])
+        # simulcastspot
+        data = open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows']
+        item = parsex.parse_collection_item(data[0])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('simulcastspot', item['type'])
         # An invalid item
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)
