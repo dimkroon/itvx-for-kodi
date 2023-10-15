@@ -184,7 +184,7 @@ def parse_collection_item(show_data, hide_paid=False):
     # noinspection PyBroadException
     try:
         content_type = show_data.get('contentType') or show_data['type']
-        is_playable = content_type in ('episode', 'film', 'special', 'title')
+        is_playable = content_type in ('episode', 'film', 'special', 'title', 'fastchannelspot', 'simulcastspot')
         title = show_data['title']
         content_info = show_data.get('contentInfo', '')
 
@@ -207,8 +207,9 @@ def parse_collection_item(show_data, hide_paid=False):
                      'sorttitle': sort_title(title)},
         }
 
-        if content_type == 'fastchannelspot':
+        if content_type in ('fastchannelspot', 'simulcastspot'):
             programme_item['params'] = {'channel': show_data['channel'], 'url': None}
+            # TODO: Enable watch from the start on simulcastspots
         else:
             programme_item['params'] = {'url': build_url(show_data['titleSlug'],
                                         show_data['encodedProgrammeId']['letterA'],

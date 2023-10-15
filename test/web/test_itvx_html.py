@@ -47,6 +47,8 @@ def check_shows(self, show, parent_name):
         return check_rail_item_type_collection(self, show, parent_name)
     if show['contentType'] == 'fastchannelspot':
         return check_collection_item_type_fastchannelspot(self, show, parent_name)
+    if show['contentType'] == 'simulcastspot':
+        return check_item_type_simulcastspot(self, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
@@ -198,14 +200,37 @@ def check_item_type_page(testcase, item, parent_name):
 
 
 def check_collection_item_type_fastchannelspot(self, item, parent_name):
+    name = '{}.{}'.format(parent_name, item.get('title', 'unknown'))
     has_keys(item, 'contentType', 'title', 'channel', 'description', 'imageTemplate',
-             obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
-    expect_keys(item, 'imagePresets', 'tagNames', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+             obj_name=name)
+    expect_keys(item, 'contentInfo', 'imagePresets', 'tagNames', obj_name=name)
+    # Keys available in simulcastspot, but not found in fastchannelspots. Flag any changes
+    misses_keys(item, 'genre', 'startDateTime', 'endDateTime', 'progress', obj_name=name)
     self.assertEqual({}, item['imagePresets'])
     self.assertTrue(is_url(item['imageTemplate']))
     self.assertTrue(is_not_empty(item['title'], str))
     self.assertTrue(is_not_empty(item['channel'], str))
     self.assertTrue(is_url(item['imageTemplate']))
+
+
+def check_item_type_simulcastspot(self, item, parent_name):
+    """Simulcastspots are very similar to fastchannelspots, but have a few additional fields.
+
+    """
+    name = '{}.{}'.format(parent_name, item.get('title', 'unknown'))
+    has_keys(item, 'contentType', 'title', 'channel', 'description', 'imageTemplate',
+             'genre', 'startDateTime', 'endDateTime',
+             obj_name=name)
+    expect_keys(item, 'contentInfo', 'imagePresets', 'tagNames', obj_name=name)
+    self.assertEqual({}, item['imagePresets'])
+    self.assertTrue(is_url(item['imageTemplate']))
+    self.assertTrue(is_not_empty(item['title'], str))
+    self.assertTrue(is_not_empty(item['channel'], str))
+    self.assertTrue(is_url(item['imageTemplate']))
+    # Generic check on start and end time. Items from hero use different format than those from collection.
+    # Hero and collection will each perform additional checks on the format.
+    self.assertTrue(is_not_empty(item['startDateTime'], str))
+    self.assertTrue(is_not_empty(item['endDateTime'], str))
 
 
 class MainPage(unittest.TestCase):
@@ -218,11 +243,22 @@ class MainPage(unittest.TestCase):
 
         self.assertIsInstance(page_props['heroContent'], list)
         for item in page_props['heroContent']:
-            self.assertTrue(item['contentType'] in
+            content_type = item['contentType']
+            self.assertTrue(content_type in
                             ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand',
                              'collection', 'page'))
-            content_type = item['contentType']
-            if content_type == 'collection':
+            if content_type == 'simulcastspot':
+                check_item_type_simulcastspot(self, item, parent_name='hero-item')
+                # Flag if key normally only present in collections become available in hero items as well
+                misses_keys(item, 'contentinfo', 'progress', obj_name='hero-item.'+ item['title'])
+                # Start and end times in Simulcastspots in hero are normally not in iso format.
+                # Flag if this changes.
+                self.assertFalse(is_iso_utc_time(item['startDateTime']))
+                self.assertFalse(is_iso_utc_time(item['endDateTime']))
+            #  TODO: Merge check with similar items from shortFormatSliders and collections
+            # elif content_type == 'fastchannelspot':
+            #     check_collection_item_type_fastchannelspot(self, item, parent_name='hero-item')
+            elif content_type == 'collection':
                 check_rail_item_type_collection(self, item, 'heroContent')
                 # ariaLabel seems only present on heroContent, not on collection items in editorialSliders.
                 has_keys(item, 'ariaLabel')
@@ -286,7 +322,6 @@ class MainPage(unittest.TestCase):
             # ShortFromSlider on the main page should have a reference to the collection page.
             self.assertFalse(is_url(header['linkHref']))                # is a relative link
             self.assertTrue(header['linkHref'].startswith('/watch'))    # starts with '/watch', unlike editorialSliders
-
 
     def test_get_itvx_logo(self):
         resp = requests.get('https://app.10ft.itv.com/itvstatic/assets/images/brands/itvx/itvx-logo-for-light-'
