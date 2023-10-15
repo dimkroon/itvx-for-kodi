@@ -462,12 +462,10 @@ class WatchPages(unittest.TestCase):
         check_series(self, data['seriesList'][0], data['programme']['title'])
 
     def test_news_item_tonight(self):
-        page = fetch.get_document('https://www.itv.com/watch/tonight/1a2803/1a9757a0137')
+        page = fetch.get_document('https://www.itv.com/watch/tonight-can-britain-get-talking/1a2803/1a2803a9382')
         # testutils.save_doc(page, 'html/news-tonight.html')
         data = parsex.scrape_json(page)
-        # Check 'Tonight' is still in old format.
-        with self.assertRaises(KeyError):
-            check_programme(self, data['programme'])
+        check_programme(self, data['programme'])
 
 
 class TvGuide(unittest.TestCase):
