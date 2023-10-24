@@ -37,7 +37,8 @@ setUpModule = fixtures.setup_web_test
 def check_shows(self, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
     self.assertTrue(show.get('contentType') in
-                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'fastchannelspot', 'page', None),
+                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'fastchannelspot',
+                     'simulcastspot', 'page', None),
                     "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
                                                              show.get('contentType', '')))
     if show.get('contentType') in ('page', None):
