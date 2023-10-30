@@ -2,28 +2,28 @@
 ITVX for Kodi
 =============
 
-Project for the development of plugin.video.viwx - an addon for 
+Project for the development of plugin.video.viwx - an add-on for 
 [Kodi media center](https://kodi.tv) enabling access to live and video 
 on-demand from ITVX; the web streaming service of British broadcaster ITV. 
 
-This is an unofficial addon. It is not created or endorsed by ITV, nor is 
-the developer in any way associated with ITV. The addons just provides 
+This is an unofficial add-on. It is not created or endorsed by ITV, nor is 
+the developer in any way associated with ITV. The add-on just provides 
 access to ITV's web services from Kodi, so the same limitations encountered
-with a generic web browser also apply to this addon:
+with a generic web browser also apply to this add-on:
   * You can only watch ITVX in the UK.
-  * You need and ITVX account to watch live or VOD content. 
+  * You need an ITVX account to watch live or VOD content. 
 
 
 ## Features
 
 * Watch the main ITV live channels.
-* Watch the stream only FAST channels.
-* All video on-demand offered by ITVX. Premium content is of course only 
-  available to user with a paid ITVX premium account.
+* Watch the stream-only FAST channels.
+* Watch all video on-demand offered by ITVX. Premium content is of course only 
+  available to users with a paid ITVX premium account.
 * Search
 * Play from the start for programmes on the main live channels.
 * Option to hide premium content from listings.
-* Option to show Subtitles on VOD content, with the option to enable/disable 
+* Option to show subtitles on VOD content, with the option to enable/disable 
   colourisation of subtitles.
 * Support for embedded subtitles on live streams.
 
@@ -35,15 +35,15 @@ Only Kodi 19 (Matrix) and higher are supported.
 
 #### Preferred Method
 
-ViwX is available in the official Kodi addon repository. Installing from the 
-kodi repo is the easiest the most secure way of installing this add-on, and is 
+ViwX is available in the official Kodi add-on repository. Installing from the 
+Kodi repo is the easiest and most secure way of installing this add-on, and is 
 the only method that supports automatic updates. 
 
-To install from the official Kodi repo, select `Settings -> Addons -> Install 
+To install from the official Kodi repo, select `Settings -> Add-ons -> Install 
 from repository -> Kodi Add-on repository -> Video add-ons`. Scroll down to 
 viwX, select and install.
 
-After installation open the add-on's settings to sign in to your ITVX 
+After installation, open the add-on's settings to sign in to your ITVX 
 account.
 
 
@@ -70,15 +70,15 @@ new versions, this method of installing from zip remains available:
 
 ## Support
 
-Head for support, questions and general discussions regarding this addon to 
+Head for support, questions and general discussions regarding this add-on to 
 [this thread](https://forum.kodi.tv/showthread.php?tid=374239) on the Kodi 
 forum. 
-If you are confident you've found a bug please open an issue on github.
+If you are confident you've found a bug, please open an issue on GitHub.
 
 --------------------------------------------------------------------------------
 
 ### Disclaimer ###
 
-This addon is distributed in the hope that it will be useful, but WITHOUT ANY 
+This add-on is distributed in the hope that it will be useful, but WITHOUT ANY 
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR 
 A PARTICULAR PURPOSE.
