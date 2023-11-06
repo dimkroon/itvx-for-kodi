@@ -396,7 +396,7 @@ class Playlists(unittest.TestCase):
         # testutils.save_doc(manifest, 'mpd/itv1.mpd')
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
-        self.assertTrue('hdntl' in resp.cookies)        # assert manifest response sets an hdntl cookie
+        self.assertFalse('hdntl' in resp.cookies)        # assert manifest response sets an hdntl cookie
 
     def test_manifest_live_FAST(self):
         strm_data = self.get_playlist_live('FAST16')
