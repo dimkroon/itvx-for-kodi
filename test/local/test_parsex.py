@@ -16,6 +16,8 @@ from support.testutils import open_doc, open_json
 from support.object_checks import has_keys, is_url, is_li_compatible_dict
 from resources.lib import parsex
 from resources.lib import errors
+from resources.lib import main
+
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -63,6 +65,7 @@ class Generic(unittest.TestCase):
         for item_data in data['heroContent']:
             obj = parsex.parse_hero_content(item_data)
             has_keys(obj, 'type', 'show')
+            self.assertTrue(obj['type'] in main.callb_map.keys())
             is_li_compatible_dict(self, obj['show'])
         # An item of unknown type
         item = data['heroContent'][0]
@@ -91,49 +94,62 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, obj['show'])
         self.assertEqual('shortFormSlider', obj['show']['params']['slider'])
 
-    def test_parse_editorial_slider(self):
-        data = open_json('html/index-data.json')
-        for item_name, item_data in data['editorialSliders'].items():
-            obj = parsex.parse_slider(item_name, item_data)
+    def test_parse_editorial_slider_items(self):
+        # Sliders on the main page
+        data = open_json('json/index-data.json')
+        for item_data in data['editorialSliders'].values():
+            obj = parsex.parse_editorial_slider('https://www.itv.com', item_data)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
+        # Sliders on a collection page
+        slider_list = open_json('json/test_collection.json')['editorialSliders']
+        for i in range(2):
+            obj = parsex.parse_editorial_slider('https://www.itv.com', slider_list[i])
+            has_keys(obj, 'type', 'show')
+            is_li_compatible_dict(self, obj['show'])
+        # A Slider without shows - should return None
+        obj = parsex.parse_editorial_slider('https://www.itv.com', slider_list[-1])
+        self.assertIsNone(obj)
         # Return None on parse errors
-        self.assertIsNone(parsex.parse_slider('', ''))
+        self.assertIsNone(parsex.parse_editorial_slider('', ''))
 
     def test_parse_collection_title(self):
-        data = open_json('html/collection_just-in_data.json')['collection']['shows']
-        # film - Valentine's Day
-        item = parsex.parse_collection_item(data[2])
+        data = open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows']
+        # film
+        item = parsex.parse_collection_item(data[6])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('film', item['type'])
-        # series - The Twelve
-        item = parsex.parse_collection_item(data[1])
+        # series
+        item = parsex.parse_collection_item(data[2])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('series', item['type'])
-        # episode - Kavos Weekender
+        # episode
         item = parsex.parse_collection_item(data[3])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('episode', item['type'])
-        # Brand - Jonathan Ross' Must-Watch Films
-        item = parsex.parse_collection_item(data[13])
+        # Brand
+        item = parsex.parse_collection_item(data[4])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('brand', item['type'])
         # fastchannelspot
-        data = open_json('html/collection_itvx-fast.json')['collection']['shows']
-        item = parsex.parse_collection_item(data[0])
+        item = parsex.parse_collection_item(data[1])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('fastchannelspot', item['type'])
         # simulcastspot
-        data = open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows']
         item = parsex.parse_collection_item(data[0])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('simulcastspot', item['type'])
+        # page
+        item = parsex.parse_collection_item(data[7])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('collection', item['type'])
         # An invalid item
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)

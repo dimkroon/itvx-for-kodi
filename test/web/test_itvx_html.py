@@ -34,25 +34,62 @@ from support import testutils
 setUpModule = fixtures.setup_web_test
 
 
-def check_shows(self, show, parent_name):
+def check_editorial_slider(testcase, slider_data, parent_name):
+    """Check an editorial slider from the main page, or a (sub) collection page
+
+    Some sliders have a 'view all' link to another (sub) collection page.
+    Others do not and the content in `['collections']['shows']` is all they have.
+    This is primarily found in collections that are already sub-collections, in
+    particular in collections of type `page`.
+
+    Returns either a tuple of (url, parent_name), where url is a link to the page with
+    the full collection, or None, when all available shows are in the slider.
+
+    """
+    collection_data = slider_data['collection']
+    has_keys(collection_data, 'headingTitle', 'sliderName')
+    obj_name = parent_name + '.' + collection_data['headingTitle']
+    if 'shows' in collection_data:
+        testcase.assertTrue(is_not_empty(collection_data['shows'], list))
+        testcase.assertTrue(is_not_empty(collection_data['itemCount'], int))
+    else:
+        # Item is invalid. Has been observed in a sub-collection of a sub-collection.
+        # These items did have a headingLink, but that link was invalid.
+        # The entry was also not shown on the website.
+        testcase.assertFalse('itemCount' in collection_data)
+        print('NOTICE: No shows in Slider ' + obj_name)
+        return
+    href = collection_data.get('headingLink')
+    if href:
+        page_ref = 'https://www.itv.com/watch' + href
+        return page_ref, obj_name
+    else:
+        for show in collection_data['shows']:
+            check_shows(testcase, show, obj_name)
+
+
+def check_shows(testcase, show, parent_name):
     """Check an item of a collection page or in a rail on the main page."""
-    self.assertTrue(show.get('contentType') in
-                    ('series', 'brand', 'film', 'special', 'episode', 'collection', 'fastchannelspot', 'page', None),
-                    "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
-                                                             show.get('contentType', '')))
-    if show.get('contentType') in ('page', None):
-        # This type, or even absence of contentType, is not actually a show
+    testcase.assertTrue(show.get('contentType') in
+                        ('series', 'brand', 'film', 'special', 'episode', 'collection', 'fastchannelspot',
+                        'simulcastspot', 'page', None),
+                        "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
+                                                                 show.get('contentType', '')))
+    if show.get('contentType') is None:
+        # This type is not actually a show
         return True
     if show['contentType'] == 'collection':
-        return check_rail_item_type_collection(self, show, parent_name)
+        return check_rail_item_type_collection(testcase, show, parent_name)
     if show['contentType'] == 'fastchannelspot':
-        return check_collection_item_type_fastchannelspot(self, show, parent_name)
+        return check_collection_item_type_fastchannelspot(testcase, show, parent_name)
     if show['contentType'] == 'simulcastspot':
-        return check_item_type_simulcastspot(self, show, parent_name)
+        return check_item_type_simulcastspot(testcase, show, parent_name)
+    if show['contentType'] == 'page':
+        return check_item_type_page(testcase, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
-    self.assertTrue(is_url(show['imageTemplate']))
+    testcase.assertTrue(is_url(show['imageTemplate']))
 
 
 def check_programme(self, progr_data):
@@ -164,23 +201,26 @@ def check_rail_item_type_collection(self, item, parent_name):
 def check_item_type_page(testcase, item, parent_name):
     """Check items of type page.
     Items of type page have been found in heroContent on the main page and as a
-    show in a collection, In the latter page items are disregarded, so this
+    show in a collection. In the latter, page items are disregarded, so this
     function currently only checks hero items.
 
     Page items are very similar to items of type collection. The only difference
     is the use of field 'pageId' instead of 'collectionId'.
-
+    Furthermore, the urls of page appear to require a querystring to return without error.
     """
-    has_keys(item, 'contentType', 'title', 'titleSlug', 'pageId', 'ctaLabel', 'imageTemplate',
+    has_keys(item, 'contentType', 'title', 'titleSlug', 'pageId', 'imageTemplate',
              obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
-    expect_keys(item, 'imagePresets', 'ariaLabel', obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
+    # ctalable and arialabel seem to be specific to Hero items
+    expect_keys(item, 'imagePresets', 'ctaLabel', 'ariaLabel',
+                obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
     testcase.assertFalse(is_not_empty(item['imagePresets'], dict))
     testcase.assertTrue(is_url(item['imageTemplate']))
     testcase.assertTrue(is_not_empty(item['title'], str))
     testcase.assertTrue(is_not_empty(item['titleSlug'], str))
     testcase.assertTrue(is_not_empty(item['pageId'], str))
-    testcase.assertTrue(is_not_empty(item['ariaLabel'], str))
-    testcase.assertTrue(is_not_empty(item['ctaLabel'], str))
+    if 'ariaLabel' in item:
+        testcase.assertTrue(is_not_empty(item['ariaLabel'], str))
+        testcase.assertTrue(is_not_empty(item['ctaLabel'], str))
     # Currently items of type page require a querystring added to the url
     # The only instance of a page item found so far, referred to the collection 'funny-favourites'
     # and returned HTTP error 404 unless query string ?ind was added to the url.
@@ -192,11 +232,11 @@ def check_item_type_page(testcase, item, parent_name):
         'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
         'Origin': 'https: /www.itv.com',
     }
+    # Check url without query string fails
     resp = requests.get(url, headers=headers, timeout=4)
     testcase.assertEqual(404, resp.status_code)
-    # check that adding the querystring succeeds
-    resp = requests.get(url + '?ind', headers=headers, timeout=4)
-    testcase.assertEqual(200, resp.status_code)
+    # Check the contents of the collection page with querystring added to url
+    CollectionPages.check_page(testcase, url + '?ind', parent_name)
 
 
 def check_collection_item_type_fastchannelspot(self, item, parent_name):
@@ -302,7 +342,7 @@ class MainPage(unittest.TestCase):
             has_keys(collection, 'headingTitle', 'shows',
                      obj_name='collection-' + collection['headingTitle'])
             for show in collection['shows']:
-                check_shows(self, show, collection['headingTitle'])
+                check_shows(self, show, 'MainPage.ES[' + collection['headingTitle'] + ']')
 
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])
@@ -337,39 +377,75 @@ class MainPage(unittest.TestCase):
 
 
 class CollectionPages(unittest.TestCase):
+    @staticmethod
+    def check_page(testcase, url, parent_name=''):
+        """Check a collection page.
+
+        """
+        page_data = parsex.scrape_json(fetch.get_document(url))
+
+        if parent_name:
+            parent_name = parent_name + '.' + page_data['headingTitle'] + '.'
+        else:
+            parent_name = page_data['headingTitle'] + '.'
+
+        # if 'Rugby World Cup' in page_data['headingTitle']:
+        #     testutils.save_json(page_data, 'html/collection_rugby-world-cup.json')
+        has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
+                 'pageImageUrl', 'isAccessibleByKids', obj_name=parent_name[:-1])
+        expect_keys(page_data, 'headingDescription', obj_name=parent_name[:-1])
+        collection = page_data['collection']
+        editorial_sliders = page_data['editorialSliders']
+        shortform_slider = page_data['shortFormSlider']
+
+        if collection is not None:
+            # Page without rails has no image, notify when that changes.
+            testcase.assertEqual(page_data['pageImageUrl'], '')
+            testcase.assertIsNone(editorial_sliders)  # The parser ignores rails if collection has content!
+            has_keys(collection, 'headingTitle', 'shows', obj_name=parent_name + collection['sliderName'])
+            expect_keys(collection, 'isChildrenCollection', obj_name=parent_name + collection['sliderName'])
+            for show in collection['shows']:
+                check_shows(testcase, show, parent_name + collection['sliderName'])
+
+        # Some collection have their content divided up in rails.
+        if editorial_sliders is not None:
+            # Page with rails has an image
+            is_url(page_data['pageImageUrl'])
+
+            for slider in editorial_sliders:
+                collection_data = slider['collection']
+                has_keys(collection_data, 'headingTitle', 'sliderName')
+                obj_name = parent_name + collection_data['headingTitle']
+                # Standard keys in sliders, but not used in the parser.
+                expect_keys(slider, 'containerType', 'displayType', 'id', 'isChildrenCollection', obj_name=obj_name)
+
+                if 'shows' in collection_data:
+                    testcase.assertTrue(is_not_empty(collection_data['shows'], list))
+                    testcase.assertTrue(is_not_empty(collection_data['itemCount'], int))
+                else:
+                    # Item is invalid. Has been observed in a sub-collection of a sub-collection.
+                    # These items did have a headingLink, but that link was invalid.
+                    # The entry was also not shown on the website.
+                    testcase.assertFalse('itemCount' in collection_data)
+                    print('NOTICE: No shows in Slider', obj_name, '!')
+                    return
+                heading_link = collection_data.get('headingLink')
+                if heading_link:
+                    page_ref = 'https://www.itv.com/watch' + heading_link['href']
+                    if page_ref != url:
+                        # Some sliders have a 'view all' reference to their own page.
+                        # Which is not so bad on a website and in Kodi, but disastrous in this test.
+                        CollectionPages.check_page(testcase, page_ref, parent_name)
+                else:
+                    for show in collection_data['shows']:
+                        check_shows(testcase, show, obj_name)
+
+        # The same as the original shortFromSlider from the main page now made available on the collection page
+        if shortform_slider is not None:
+            check_short_form_slider(testcase, shortform_slider, name='collection-' + page_data['headingTitle'])
+
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""
-        def check_rail(url):
-            page_data = parsex.scrape_json(fetch.get_document(url))
-            # if 'Rugby World Cup' in page_data['headingTitle']:
-            #     testutils.save_json(page_data, 'html/collection_rugby-world-cup.json')
-            has_keys(page_data, 'headingTitle', 'collection', 'editorialSliders', 'shortFormSlider',
-                     'pageImageUrl', 'isAccessibleByKids')
-            collection = page_data['collection']
-            editorial_sliders = page_data['editorialSliders']
-            shortform_slider = page_data['shortFormSlider']
-
-            if collection is not None:
-                # Page without rails has no image, notify when that changes.
-                self.assertEqual(page_data['pageImageUrl'], '')
-                self.assertIsNone(editorial_sliders)       # The parser ignores rails if collection has content!
-                has_keys(collection, 'headingTitle', 'shows', obj_name=collection['sliderName'])
-                expect_keys(collection, 'isChildrenCollection', obj_name=collection['sliderName'])
-                for show in collection['shows']:
-                    check_shows(self, show, collection['sliderName'])
-
-            # Some collection have their content divided up in rails.
-            if editorial_sliders is not None:
-                # Page with rails has an image
-                is_url(page_data['pageImageUrl'])
-                for slider in editorial_sliders:
-                    page_ref = 'https://www.itv.com/watch' + slider['collection'].get('headingLink', {}).get('href')
-                    if page_ref != url:
-                        check_rail(page_ref)
-
-            # The same as the original shortFromSlider from the main page now made available on the collection page
-            if shortform_slider is not None:
-                check_short_form_slider(self, shortform_slider, name='collection-' + page_data['headingTitle'])
 
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
         editorial_sliders = page_data['editorialSliders']
@@ -377,7 +453,7 @@ class CollectionPages(unittest.TestCase):
             pagelink = rail['collection'].get('headingLink', {}).get('href')
             if not pagelink:
                 continue
-            check_rail('https://www.itv.com/watch' + pagelink)
+            self.check_page(self, 'https://www.itv.com/watch' + pagelink)
 
         for slider in page_data['shortFormSliderContent']:
             if slider['key'] == 'newsShortForm':
@@ -385,7 +461,7 @@ class CollectionPages(unittest.TestCase):
                 continue
             # We consider a page link mandatory
             pagelink = slider['header']['linkHref']
-            check_rail('https://www.itv.com' + pagelink)
+            self.check_page(self, 'https://www.itv.com' + pagelink)
 
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):

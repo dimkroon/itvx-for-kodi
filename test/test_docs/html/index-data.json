@@ -58,34 +58,6 @@
     },
     {
       "imagePresets": {},
-      "contentType": "series",
-      "title": "The Reunion",
-      "tagName": null,
-      "imageTemplate": "https://ovp.itv.com/images/series/nxvtv9h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/y36nhcw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "10/2578",
-      "encodedProgrammeId": {
-        "letterA": "10a2578",
-        "underscore": "10_2578"
-      },
-      "encodedEpisodeId": {
-        "letterA": "10a2578a0001",
-        "underscore": "10_2578_0001"
-      },
-      "categories": [
-        "DRAMA_AND_SOAPS"
-      ],
-      "description": "Three friends, one tragic secret - don\u2019t miss ITVX\u2019s starry new thriller",
-      "series": 1,
-      "ctaLabel": "Watch Now",
-      "genre": "Drama & Soaps",
-      "contentInfo": [
-        "Drama & Soaps",
-        "Series 1"
-      ]
-    },
-    {
-      "imagePresets": {},
       "contentType": "simulcastspot",
       "title": "Six Nations Championship: England v Scotland",
       "tagName": null,
@@ -157,6 +129,16 @@
       "ctaLabel": "View Collection",
       "collectionId": "2ZBEiOkKZHOU1LNiJSK1cJ",
       "titleSlug": "harry-potter-collection"
+    },
+    {
+      "imagePresets": {},
+      "contentType": "page",
+      "title": "Funny Favourites",
+      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/kidscollection/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "ariaLabel": "Watch Now",
+      "ctaLabel": "View Collection",
+      "pageId": "3jTaOWIREqG2p2daqSHAkn",
+      "titleSlug": "funny-favourites"
     }
   ],
   "editorialSliders": {

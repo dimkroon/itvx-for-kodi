@@ -237,7 +237,8 @@ def sub_menu_live(_):
 
 @Route.register(content_type='videos')
 def list_collections(_):
-    main_page = itvx.get_page_data('https://www.itv.com', cache_time=3600)
+    url ='https://www.itv.com'
+    main_page = itvx.get_page_data(url, cache_time=3600)
     for slider in main_page['shortFormSliderContent']:
         if slider['key'] == 'newsShortForm':
             # News is already on the home page by default.
@@ -246,8 +247,8 @@ def list_collections(_):
         if item:
             yield Listitem.from_dict(list_collection_content, **item['show'])
 
-    for slider in main_page['editorialSliders'].items():
-        item = parsex.parse_slider(*slider)
+    for slider in main_page['editorialSliders'].values():
+        item = parsex.parse_editorial_slider(url, slider)
         if item:
             yield Listitem.from_dict(list_collection_content, **item['show'])
 

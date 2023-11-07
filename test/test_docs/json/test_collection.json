@@ -5,6 +5,7 @@
   "collection": null,
   "editorialSliders": [
     {
+      "test_comment": "A 'normal' editorialSlider with shows of all types and a headingLink",
       "containerType": "Rail",
       "displayType": "Standard",
       "id": "zyqPJaRe6vOFftNzu4HY8",
@@ -15,7 +16,7 @@
           "text": "View All"
         },
         "sliderName": "editorial_rail_slot1",
-        "itemCount": 38,
+        "itemCount": 8,
         "shows": [
           {
             "imagePresets": {},
@@ -182,9 +183,177 @@
             "duration": "PT2H10M",
             "contentInfo": "2h 10m",
             "imageTemplate": "https://ovp.itv.com/images/film/6v54nq5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "page",
+            "title": "Hundreds of drama boxsets... and all available for free!",
+            "channel": "",
+            "encodedProgrammeId": {"letterA": ""},
+            "titleSlug": "hundreds-of-drama-boxsets-and-all-available-for-free",
+            "pageId": "7t0D1BJZbgBhKQsyx7qWS2",
+            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/dramacollection/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
           }
         ],
         "isChildrenCollection": false
+      }
+    },
+    {
+      "test_comment": "An editorialSlider without a headingLink",
+      "containerType": "Rail",
+      "displayType": "Promo Portrait",
+      "id": "1qO1Pb87LraYmK0ru2uFEv",
+      "collection": {
+        "headingTitle": "Drama: Top Picks",
+        "sliderName": "editorial_rail_slot2",
+        "itemCount": 4,
+        "shows": [
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "The Twelve",
+            "channel": "itv",
+            "ccid": "82bwch8",
+            "description": "The secret lives of jurors - Sam Neill stars in this twisty thriller",
+            "isPaid": false,
+            "episodeId": "10/3480/0001",
+            "programmeId": "10/3480",
+            "encodedEpisodeId": {
+              "letterA": "10a3480a0001",
+              "underscore": "10_3480_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a3480",
+              "underscore": "10_3480"
+            },
+            "titleSlug": "the-twelve",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1",
+            "series": [
+              {
+                "seriesNumber": 1
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/82bwch8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "The Long Shadow",
+            "channel": "itv",
+            "ccid": "g08kdx5",
+            "description": "One of the most notorious & shocking serial killers - stream the boxset",
+            "isPaid": false,
+            "episodeId": "10/1937/0001",
+            "programmeId": "10/1937",
+            "encodedEpisodeId": {
+              "letterA": "10a1937a0001",
+              "underscore": "10_1937_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a1937",
+              "underscore": "10_1937"
+            },
+            "titleSlug": "the-long-shadow",
+            "dateTime": "2023-09-25T20:00:00Z",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1",
+            "series": [
+              {
+                "seriesNumber": 1
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/g08kdx5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "The Lying Game",
+            "channel": "itv",
+            "ccid": "k6vjwy2",
+            "description": "Twisty teen mystery drama about estranged twins who trade places",
+            "isPaid": false,
+            "episodeId": "10/2754/0001",
+            "programmeId": "10/2754",
+            "encodedEpisodeId": {
+              "letterA": "10a2754a0001",
+              "underscore": "10_2754_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a2754",
+              "underscore": "10_2754"
+            },
+            "titleSlug": "the-lying-game",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1 - 2",
+            "partnership": "ITVX",
+            "contentOwner": "WARNER",
+            "series": [
+              {
+                "seriesNumber": 1
+              },
+              {
+                "seriesNumber": 2
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/k6vjwy2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          },
+          {
+            "imagePresets": {},
+            "contentType": "series",
+            "title": "Love & Death",
+            "channel": "itv",
+            "ccid": "wq1bm4z",
+            "description": "Mother, lover... murderer? Gripping crime drama starring Elizabeth Olsen",
+            "isPaid": false,
+            "episodeId": "10/3774/0001",
+            "programmeId": "10/3774",
+            "encodedEpisodeId": {
+              "letterA": "10a3774a0001",
+              "underscore": "10_3774_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a3774",
+              "underscore": "10_3774"
+            },
+            "titleSlug": "love-and-death",
+            "categories": [
+              "DRAMA & SOAPS"
+            ],
+            "seriesNumber": 1,
+            "contentInfo": "Series 1",
+            "series": [
+              {
+                "seriesNumber": 1
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/images/series/wq1bm4z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+          }
+        ],
+        "isChildrenCollection": false
+      }
+    },
+    {
+      "test_comment": "An editorialSlider without shows. It's headingLink is invalid. This slider not shown in a web browser",
+      "containerType": "Rail",
+      "displayType": "Standard",
+      "id": "2GEQCjxI0s7INA1vhWH1XQ",
+      "collection": {
+        "headingTitle": "The stars of the street pick their favourite episodes",
+        "headingLink": {
+          "href": "/collections/the-stars-of-the-street-pick-their-favourite-episodes/5ovCezDKJsOO074ikPODQl",
+          "text": "View All"
+        },
+        "sliderName": "editorial_rail_slot3"
       }
     }
   ],
@@ -209,8 +378,14 @@
       {
         "imagePresets": {},
         "episodeTitle": "Full Match: Ireland v Scotland",
-        "encodedEpisodeId": {"letterA": "2a4138a0037", "underscore": "2_4138_0037"},
-        "encodedProgrammeId": {"letterA": "2a4138", "underscore": "2_4138"},
+        "encodedEpisodeId": {
+          "letterA": "2a4138a0037",
+          "underscore": "2_4138_0037"
+        },
+        "encodedProgrammeId": {
+          "letterA": "2a4138",
+          "underscore": "2_4138"
+        },
         "titleSlug": "full-match-ireland-v-scotland",
         "programmeTitle": "Rugby World Cup",
         "episodeId": "2/4138/0037",

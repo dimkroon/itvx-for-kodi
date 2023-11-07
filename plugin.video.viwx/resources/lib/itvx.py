@@ -161,18 +161,65 @@ def main_page_items():
 
 
 def collection_content(url=None, slider=None, hide_paid=False):
+    """Obtain the collection page defined by `url` and return the contents. If `slider`
+    is not None, return the contents of that particular slider on the collection page.
+
+    """
     uk_tz = pytz.timezone('Europe/London')
     time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
+    is_main_page = url == 'https://www.itv.com'
 
-    if url:
-        # A collection that has its own dedicated page.
-        page_data = get_page_data(url, cache_time=43200)
+    page_data = get_page_data(url, cache_time=3600 if is_main_page else 43200)
+
+    if slider:
+        # Return the contents of the specified slider
         if slider == 'shortFormSlider':
-            # return the items from the collection's shortFormSlider
+            # return the items from the shortFormSlider on a collection page.
             for item in page_data['shortFormSlider']['items']:
                 yield parsex.parse_shortform_item(item, uk_tz, time_fmt)
             return
 
+        elif slider == 'shortFormSliderContent':
+            # Return items form the main page's News short form. The only other known shorFromSlider
+            # on the main page is 'Sport' and is handled as a full collection.
+            for slider in page_data['shortFormSliderContent']:
+                if slider['key'] == 'newsShortForm':
+                    for news_item in slider['items']:
+                        yield parsex.parse_shortform_item(news_item, uk_tz, time_fmt, hide_paid)
+            return
+
+        elif slider == 'trendingSliderContent':
+            # Only found on main page
+            items_list = page_data['trendingSliderContent']['items']
+            for trending_item in items_list:
+                yield parsex.parse_trending_collection_item(trending_item, hide_paid)
+            return
+
+        else:
+            # `slider` is the name of an editorialSlider.
+            # On the main page editorialSliders is a dict, on collection pages it is a list.
+            # Although a dict on the main page, the names of the sliders are not exactly the
+            # same as the keys of the dict.
+            # Until now all editorial sliders on the main page have a 'view all' button, so
+            # the contents of the slider itself should never be used, but better allow it
+            # now in case it ever changes.
+            if is_main_page:
+                sliders_list = page_data['editorialSliders'].values()
+            else:
+                sliders_list = page_data['editorialSliders']
+            items_list = None
+            for slider_item in sliders_list:
+                if slider_item['collection']['sliderName'] == slider:
+                    items_list = slider_item['collection']['shows']
+                    break
+            if items_list is None:
+                logger.error("Failed to parse collection content: Unknown slider '%s'", slider)
+                return
+            for item in items_list:
+                yield parsex.parse_collection_item(item, hide_paid)
+    else:
+        # Return the contents of the page, e.i. a listing of individual items for the shortFromSlider
+        # of the internal collection list, or a list of sub-collections from editorial sliders
         collection = page_data['collection']
         editorial_sliders = page_data.get('editorialSliders')
         shortform_slider = page_data.get('shortFormSlider')
@@ -186,42 +233,10 @@ def collection_content(url=None, slider=None, hide_paid=False):
         elif editorial_sliders:
             # Folders, or kind of sub-collections in a collection.
             for slider in editorial_sliders:
-                yield parsex.parse_slider('', slider)
+                yield parsex.parse_editorial_slider(url, slider)
         else:
             logger.warning("Missing both collections and editorial_sliders in data from '%s'.", url)
             return
-
-    else:
-        # A Collection that has all it's data on the main page and does not have its own page.
-        page_data = get_page_data('https://www.itv.com', cache_time=3600)
-
-        if slider == 'shortFormSliderContent':
-            # Currently only handling News short form. The only other known shorFromSlider is
-            # 'Sport' and is handled as a full collection.
-            items_list = None
-            for slider in page_data['shortFormSliderContent']:
-                if slider['key'] == 'newsShortForm':
-                    for news_item in slider['items']:
-                        yield parsex.parse_shortform_item(news_item, uk_tz, time_fmt, hide_paid)
-
-            if items_list is None:
-                logger.warning("News shortFormSlider unexpectedly absent from main page")
-                return
-
-        elif slider == 'trendingSliderContent':
-            items_list = page_data['trendingSliderContent']['items']
-            for trending_item in items_list:
-                yield parsex.parse_trending_collection_item(trending_item, hide_paid)
-
-        else:
-            try:
-                items_list = page_data['editorialSliders'][slider]['collection']['shows']
-            except KeyError:
-                logger.error("Failed to parse collection content: Unknown slider '%s'", slider)
-                return
-            for item in items_list:
-                yield parsex.parse_collection_item(item, hide_paid)
-
 
 
 def episodes(url, use_cache=False):
