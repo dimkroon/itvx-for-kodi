@@ -24,6 +24,7 @@ from resources.lib import itvx
 from test.support import object_checks
 from test.support import testutils
 
+
 setUpModule = fixtures.setup_web_test
 
 
@@ -396,7 +397,10 @@ class Playlists(unittest.TestCase):
         # testutils.save_doc(manifest, 'mpd/itv1.mpd')
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
-        self.assertFalse('hdntl' in resp.cookies)        # assert manifest response sets an hdntl cookie
+        if resp.history:
+            self.assertTrue('hdntl' in resp.history[0].cookies)        # assert manifest response sets an hdntl cookie
+        else:
+            self.assertTrue('hdntl' in resp.cookies)
 
     def test_manifest_live_FAST(self):
         strm_data = self.get_playlist_live('FAST16')
