@@ -166,6 +166,7 @@ class Paginator:
 
 @Route.register(content_type='videos')
 def root(_):
+    yield Listitem.from_dict(sub_menu_my_itvx, 'My itvX')
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)
@@ -173,6 +174,12 @@ def root(_):
     yield Listitem.from_dict(list_collections, 'Collections')
     yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
+
+
+@Route.register(content_type='videos')
+@dynamic_listing
+def sub_menu_my_itvx(_):
+    return
 
 
 @Route.register(content_type='videos')
