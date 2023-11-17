@@ -337,6 +337,8 @@ def parse_category_item(prog, category):
     # All items with episodeId are returned as series folder, with the odd change some
     # contain only one item.
 
+    # TODO: Both regular and news category items now have a field contentType
+
     is_playable = prog['encodedEpisodeId']['letterA'] == ''
     playtime = utils.duration_2_seconds(prog['contentInfo'])
     title = prog['title']

@@ -348,10 +348,12 @@ class MainPage(unittest.TestCase):
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])
         for item in page_props['trendingSliderContent']['items']:
             has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'contentType',
-                     'contentInfo', 'titleSlug', obj_name='trending-slider_' + item['title'])
+                     'contentInfo', 'titleSlug', obj_name='trending.' + item['title'])
             # Must have either an episode id when the underlying item is an episode, but there
             # is no way to check the item's type
             # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
+            # Trending is probably always FREE, but it has no fields indicating whether it is.
+            misses_keys(item, 'tier', 'isPaid', obj_name='trending.' + item['title'])
 
         self.assertIsInstance(page_props['shortFormSliderContent'], list)
         # Currently the list contains only the news rail and possibly a sport rail.
@@ -577,6 +579,14 @@ class WatchPages(unittest.TestCase):
         # testutils.save_doc(page, 'html/news-tonight.html')
         data = parsex.scrape_json(page)
         check_programme(self, data['programme'])
+
+    def test_short_news_item(self):
+        page = fetch.get_document('https://www.itv.com/watch/news/met-police-officers-investigated-for-gross-misconduct-over-stephen-port-case/fxmdtwy')
+        # testutils.save_doc(page, 'html/news-short_item.html')
+        data = parsex.scrape_json(page)
+        self.assertFalse('programme' in data)
+        self.assertTrue('episode' in data)
+        self.assertTrue(is_url(data['episode']['playlistUrl']))
 
 
 class TvGuide(unittest.TestCase):

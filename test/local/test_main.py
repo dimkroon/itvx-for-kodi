@@ -189,14 +189,14 @@ class Categories(TestCase):
         """These are in fact the tv shows in the category news."""
         items = main.list_news_sub_category.test('my/url', 'longformData', None)
         self.assertIsInstance(items, list)
-        self.assertEqual(10, len(items))
+        self.assertEqual(13, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_rails(self, _):
         """Very much the same as collection news, but divided in various sub categories."""
         items = main.list_news_sub_category.test('my/url', 'curatedRails', 'Politics')
         self.assertIsInstance(items, list)
-        self.assertEqual(12, len(items))
+        self.assertEqual(13, len(items))
 
 
 @patch("resources.lib.cache.get_item", new=lambda *a, **k: None)     # disable cache

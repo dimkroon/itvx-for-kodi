@@ -342,16 +342,17 @@ def check_category_item(item):
     and other news related programmes.
 
     """
+    title = item['title']
     # TODO: Check if this is the same as a normal episode
     has_keys(
         item,
         'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'channel', 'description', 'imageTemplate',
-        'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId'
+        'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId', 'contentType',
+        obj_name=f'categoryItem-{title}'
     )
-    # Ensure it still misses a `titleType` or similar field.
-    misses_keys(item, 'titleType', 'contentType', 'type')
-    assert isinstance(item['title'], str) and item['title']
-    title = item['title']
+
+    assert is_not_empty(item['title'], str)
+    assert item['contentType'] in ('series', 'special', 'film', 'episode'), "Unexpected contentType '{item['contentType']}'."
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
     assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)

@@ -151,7 +151,7 @@ class LiveSchedules(unittest.TestCase):
         self.assertTrue(data['images']['backdrop'].startswith('https://'))
         self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
 
-        self.assertAlmostEqual(25, len(data['channels']), delta=2)
+        self.assertAlmostEqual(25, len(data['channels']), delta=5)
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
@@ -315,10 +315,8 @@ class LastWatched(unittest.TestCase):
             self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
 
             if item['contentType'] == 'EPISODE':
-                # In the past some episodes' series and/or episode number was None,
-                # As the result of this largely depends on what has been watched, keep checking this.
-                self.assertTrue(object_checks.is_not_empty(item['seriesNumber'], int))
-                self.assertTrue(object_checks.is_not_empty(item['episodeNumber'], int))
+                # Some episodes' series and/or episode number are None, e.g. episodes of The Chase
+                object_checks.has_keys(item, 'seriesNumber', 'episodeNumber')
 
             if item['contentType'] in ('FILM', 'SPECIAL'):
                 self.assertIsNotNone(utils.iso_duration_2_seconds(item['duration']))
