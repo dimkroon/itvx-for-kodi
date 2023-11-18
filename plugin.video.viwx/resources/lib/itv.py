@@ -19,8 +19,6 @@ from . import utils
 from . import fetch
 from . import kodi_utils
 
-from .errors import AuthenticationError
-
 
 logger = logging.getLogger(logger_id + '.itv')
 

@@ -319,8 +319,9 @@ class PlayStreamLive(TestCase):
     def test_play_stream_live_without_credentials(self, _):
         itv_account.itv_session().log_out()
         itv_account._itv_session_obj = None
-        result = main.play_stream_live.test(channel='ITV', url=None)
-        self.assertFalse(result)
+        with self.assertRaises(SystemExit) as cm:
+            main.play_stream_live.test(channel='ITV', url=None)
+        self.assertEqual(1, cm.exception.code)
 
 
 class PlayStreamCatchup(TestCase):
@@ -383,8 +384,9 @@ class PlayStreamCatchup(TestCase):
     def test_play_catchup_without_credentials(self, _):
         # Ensure we have an empty file and session object
         itv_account.itv_session().log_out()
-        result = main.play_stream_catchup.test('url', '')
-        self.assertFalse(result)
+        with self.assertRaises(SystemExit) as cm:
+            main.play_stream_catchup.test('url', '')
+        self.assertEqual(1, cm.exception.code)
 
 
 class PlayTitle(TestCase):

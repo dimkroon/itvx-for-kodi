@@ -24,8 +24,8 @@ SESS_DATA_VERS = 2
 
 class ItvSession:
     def __init__(self):
-        self._user_id = None
-        self._user_nickname = None
+        self._user_id = ''
+        self._user_nickname = ''
         self._expire_time = 0
         self.account_data = {}
         self.read_account_data()

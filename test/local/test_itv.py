@@ -70,4 +70,6 @@ class LiveSchedule(TestCase):
 class RequestStreamData(TestCase):
     def test_request_with_auth_failure(self):
         itv_account.itv_session().log_out()
-        self.assertRaises(errors.AuthenticationError, itv._request_stream_data, 'some/url')
+        with self.assertRaises(SystemExit) as cm:
+            itv._request_stream_data('some/url')
+        self.assertEqual(1, cm.exception.code)
