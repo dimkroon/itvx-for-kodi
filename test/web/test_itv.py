@@ -53,7 +53,7 @@ class TestItv(unittest.TestCase):
         for url in urls:
             result = itv.get_catchup_urls(url)
             self.assertIsInstance(result, tuple)
-            self.assertEqual(len(result), 4)
+            self.assertEqual(len(result), 5)
             # print(result)
 
     def test_get_vtt_subtitles(self):

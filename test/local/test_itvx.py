@@ -326,6 +326,27 @@ class Search(TestCase):
         self.assertIsNone(result)
 
 
+class LastWatched(TestCase):
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched.json'))
+    def test_get_last_watched(self, _):
+        results = itvx.get_last_watched()
+        self.assertIsInstance(results, list)     # requirement for paginator
+        self.assertGreater(len(results), 0)
+        for item in results:
+            self.assertIsInstance(item, dict)
+
+    def test_get_resume_point(self):
+        with patch('resources.lib.itv_account.fetch_authenticated',
+                   return_value=open_json('usercontent/resume_point.json')):
+            result = itvx.get_resume_point('aa')
+            self.assertGreater(result, 0)
+            self.assertIsInstance(result, float)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError):
+            # ITV returns HTTP status 404 when the programme has no resume point.
+            result = itvx.get_resume_point('aa')
+            self.assertIsNone(result)
+
+
 class GetPLaylistUrl(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/film_danny-collins.html'))
     def test_get_playlist_from_film_page(self):

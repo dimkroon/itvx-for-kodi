@@ -232,3 +232,11 @@ class Generic(unittest.TestCase):
         search_result = data['results'][0]
         search_result['entityType'] = 'dfgs'
         self.assertIsNone(parsex.parse_search_result(search_result))
+
+    def test_parse_last_watched(self):
+        data = open_json('usercontent/last_watched.json')
+        for item in data:
+            show = parsex.parse_last_watched_item(item)
+            has_keys(show, 'type', 'show')
+            self.assertEqual('vodstream', show['type'])
+            is_li_compatible_dict(self, show['show'])

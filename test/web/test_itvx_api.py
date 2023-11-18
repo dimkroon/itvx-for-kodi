@@ -21,6 +21,7 @@ from resources.lib import itv_account
 from resources.lib import fetch
 from resources.lib import parsex
 from resources.lib import itvx
+from resources.lib import utils
 from test.support import object_checks
 from test.support import testutils
 
@@ -276,6 +277,117 @@ class Search(unittest.TestCase):
         self.check_result(data)
         # self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
         self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
+
+
+class LastWatched(unittest.TestCase):
+    def check_vnd_user_content_v1_json(self, data):
+        """Check the data returned by lastwatched
+        - EpisodeNumber and ProgrammeNumber can be None, even in data of type EPISODE
+        - tier is of type string, instead of the usual list
+        """
+        self.assertIsInstance(data, list)
+        for item in data:
+            object_checks.has_keys(
+                item, 'availabilityEnd', "broadcastDatetime", "contentType", "duration",
+                "episodeNumber", "episodeTitle", "isNextEpisode", "itvxImageLink", "percentageWatched",
+                "productionId", "programmeTitle", "seriesNumber", "synopsis", "tier", "viewedOn",
+                obj_name=item['programmeTitle'])
+
+            object_checks.expect_keys(item, 'categories', "channel", "channelLink", "contentOwner", "imageLink",
+                                      "episodeId", "programmeId", "longRunning", "partnership",
+                                      obj_name='Watching: {}'.format(item['programmeTitle']))
+            self.assertTrue(item['contentType']in ('EPISODE', 'FILM', 'SPECIAL'))
+            self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
+            self.assertTrue(object_checks.is_iso_utc_time(item['broadcastDatetime']))
+            self.assertTrue(object_checks.is_not_empty(item['episodeId'], str))
+            self.assertTrue(object_checks.is_not_empty(item['isNextEpisode'], bool))
+            self.assertTrue(object_checks.is_url(item['itvxImageLink']))
+            self.assertTrue(object_checks.is_url(item['itvxImageLink']))
+            self.assertTrue(object_checks.is_not_empty(item['percentageWatched'], float))
+            self.assertLessEqual(item['percentageWatched'], 1.0)
+            self.assertTrue(object_checks.is_not_empty(item['productionId'], str))
+            self.assertTrue(object_checks.is_not_empty(item['programmeTitle'], str))
+            self.assertTrue(object_checks.is_not_empty(item['synopsis'], str))
+            # tier is usually of type list, but is string here. The parser accepts both
+            self.assertTrue(object_checks.is_not_empty(item['tier'], str))
+            self.assertTrue(object_checks.is_iso_utc_time(item['viewedOn']))
+
+            self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
+
+            if item['contentType'] == 'EPISODE':
+                # In the past some episodes' series and/or episode number was None,
+                # As the result of this largely depends on what has been watched, keep checking this.
+                self.assertTrue(object_checks.is_not_empty(item['seriesNumber'], int))
+                self.assertTrue(object_checks.is_not_empty(item['episodeNumber'], int))
+
+            if item['contentType'] in ('FILM', 'SPECIAL'):
+                self.assertIsNotNone(utils.iso_duration_2_seconds(item['duration']))
+            else:
+                self.assertIsNone(item['duration'])
+
+    def test_get_last_watched(self):
+        """Get last watch without specifying accept header returns content-type application/json,
+        with exactly the same content as the original application/vnd.user.content.v1+json.
+        """
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+              'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/last_watched.json')
+        self.assertEqual('application/vnd.user.content.v1+json', resp.headers['content-type'])
+        self.check_vnd_user_content_v1_json(data)
+
+    def test_get_last_watched_without_accept_type(self):
+        """Get last watch without specifying accept header returns content-type application/json,
+        with exactly the same content as the original application/vnd.user.content.v1+json.
+        """
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+              'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        data = resp.json()
+        self.check_vnd_user_content_v1_json(data)
+
+    def test_get_resume_time_of_production(self):
+        """Get the resume point if a production
+
+        NOTE:
+            The content type returned by ITV is the same type as returned by last watched,
+            though the content is quite different.
+
+        """
+        # Get the productionId of the first last-watched programme
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+              'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
+        last_watched = itv_account.fetch_authenticated(fetch.get_json, url)
+        prod_id = last_watched[0]['productionId'].replace('/', '_').replace('#', '.')
+
+        url = 'https://content.prd.user.itv.com/resume/user/{}/productionid/{}'.format(
+            itv_account.itv_session().user_id,
+            prod_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual('application/vnd.user.content.v1+json', resp.headers['content-type'])
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/resume_point.json')
+
+        object_checks.has_keys(data, 'progress', 'tier', 'timestamp')
+        self.assertIsInstance(data['progress']['percentage'], float)
+        self.assertIsInstance(data['progress']['time'], str)
+        # Ascertain that time is in a format HH:MM:SS.ms - with seconds as float, rather than the
+        # unusual format HH:MM:SS:ms returned by playlists.
+        self.assertEqual(3, len(data['progress']['time'].split(':')))
+
+        # Request without specifying accept content type return type application/json, but the data is the same.
+        del headers['accept']
+        resp = requests.get(url, headers=headers)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        self.assertDictEqual(data, resp.json())
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 
