@@ -37,27 +37,19 @@ class ItvSession:
 
         """
         try:
-            if self.account_data['refreshed'] < time.time() - 4 * 3600:
-                # renew tokens periodically
-                logger.debug("Token cache time has expired.")
-                self.refresh()
-
             return self.account_data['itv_session']['access_token']
         except (KeyError, TypeError):
             logger.debug("Cannot produce access token from account data: %s", self.account_data)
-            raise AuthenticationError
+            return ''
 
     @property
     def cookie(self):
         """Return a dict containing the cookie required for authentication"""
         try:
-            if self.account_data['refreshed'] < time.time() - 4 * 3600:
-                # renew tokens periodically
-                self.refresh()
             return self.account_data['cookies']
         except (KeyError, TypeError):
             logger.debug("Cannot produce cookies from account data: %s", self.account_data)
-            raise AuthenticationError from None
+            return {}
 
     @property
     def user_id(self):
@@ -179,6 +171,8 @@ class ItvSession:
     def log_out(self):
         self.account_data = {}
         self.save_account_data()
+        self._user_id = None
+        self._user_nickname = None
         return True
 
 
@@ -223,7 +217,7 @@ def itv_session():
     return _itv_session_obj
 
 
-def fetch_authenticated(funct, url, **kwargs):
+def fetch_authenticated(funct, url, login=True, **kwargs):
     """Call one of the fetch function with user authentication.
 
     Call the specified function with authentication header and return the result.
