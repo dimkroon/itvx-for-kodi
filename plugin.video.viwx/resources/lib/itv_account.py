@@ -4,7 +4,7 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
+import sys
 import time
 import os
 import json
@@ -233,22 +233,38 @@ def fetch_authenticated(funct, url, login=True, **kwargs):
 
     for tries in range(2):
         try:
+            access_token = account.access_token
+            auth_cookies = account.cookie
+            if not (access_token and auth_cookies):
+                raise AuthenticationError
+
+            try:
+                if account.account_data['refreshed'] < time.time() - 4 * 3600:
+                    # renew tokens periodically
+                    logger.debug("Token cache time has expired.")
+                    raise AuthenticationError
+            except (KeyError, TypeError):
+                raise AuthenticationError
+
             cookies = kwargs.setdefault('cookies', {})
             headers = kwargs.setdefault('headers', {})
             headers['authorization'] = 'Bearer ' + account.access_token
-            cookies.update(account.cookie)
+            cookies.update(auth_cookies)
             return funct(url=url, **kwargs)
         except AuthenticationError:
-            if tries == 0:
-                logger.debug("Authentication failed on first attempt")
-                if account.refresh() is False:
-                    logger.debug("")
-                    from . import settings
-                    if not (kodi_utils.show_msg_not_logged_in() and settings.login()):
-                        raise
-            else:
+            if tries > 0:
                 logger.warning("Authentication failed on second attempt")
                 raise AccessRestrictedError
+
+            logger.debug("Authentication failed on first attempt")
+            if account.refresh() is False:
+                if login:
+                    if kodi_utils.show_msg_not_logged_in():
+                        from xbmc import executebuiltin
+                        executebuiltin('Addon.OpenSettings({})'.format(utils.addon_info.id))
+                    sys.exit(1)
+                else:
+                    raise
 
 
 def convert_session_data(acc_data: dict) -> dict:
