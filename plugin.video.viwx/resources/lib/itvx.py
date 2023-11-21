@@ -9,7 +9,7 @@
 import time
 import logging
 
-from datetime import datetime
+from datetime import datetime, timezone
 import pytz
 import requests
 import xbmc
@@ -494,8 +494,9 @@ def get_last_watched():
     url = 'https://content.prd.user.itv.com/lastwatched/user/{}/{}?features={}'.format(
             itv_account.itv_session().user_id, PLATFORM_TAG, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
+    utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
     data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
-    watched_list = [parsex.parse_last_watched_item(item) for item in data]
+    watched_list = [parsex.parse_last_watched_item(item, utc_now) for item in data]
     cache.set_item(cache_key, watched_list, 600)
     return watched_list
 

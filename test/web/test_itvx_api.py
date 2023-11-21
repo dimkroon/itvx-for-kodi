@@ -361,7 +361,13 @@ class LastWatched(unittest.TestCase):
         url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         last_watched = itv_account.fetch_authenticated(fetch.get_json, url)
-        prod_id = last_watched[0]['productionId'].replace('/', '_').replace('#', '.')
+        prod_id = None
+        for item in last_watched:
+            # Find the first programme that has a resume point
+            if not item['isNextEpisode']:
+                prod_id = item['productionId'].replace('/', '_').replace('#', '.')
+                break
+        self.assertIsNotNone(prod_id, "No Last watched programme available that can be resumed")
 
         url = 'https://content.prd.user.itv.com/resume/user/{}/productionid/{}'.format(
             itv_account.itv_session().user_id,

@@ -76,11 +76,11 @@ class LiveChannels(TestCase):
         self.assertIsInstance(chans, list)
 
 class MyItvx(TestCase):
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
     @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
     def test_list_last_watched(self, _, __):
         shows = list(main.list_last_watched.route.unittest_caller(filter_char=None))
-        self.assertEqual(12, len(shows))
+        self.assertEqual(7, len(shows))
 
 class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))

@@ -4,13 +4,15 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
-import pytz
-
 from test.support import fixtures
 fixtures.global_setup()
 
+import pytz
+from datetime import datetime, timedelta
+
 import unittest
+
+from datetime import datetime, timezone
 
 from support.testutils import open_doc, open_json
 from support.object_checks import has_keys, is_url, is_li_compatible_dict
@@ -234,9 +236,54 @@ class Generic(unittest.TestCase):
         self.assertIsNone(parsex.parse_search_result(search_result))
 
     def test_parse_last_watched(self):
-        data = open_json('usercontent/last_watched.json')
+        data = open_json('usercontent/last_watched_all.json')
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
         for item in data:
-            show = parsex.parse_last_watched_item(item)
+            show = parsex.parse_last_watched_item(item, utc_now)
             has_keys(show, 'type', 'show')
             self.assertEqual('vodstream', show['type'])
             is_li_compatible_dict(self, show['show'])
+
+    def test_parse_last_watched_availability(self):
+        data = open_json('usercontent/last_watched_all.json')[0]
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+
+        some_years = (datetime.utcnow() + timedelta(days=370)).replace(microsecond=0)
+        data['availabilityEnd'] = some_years.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('over a year' in item['show']['info']['plot'])
+
+        some_months = (datetime.utcnow() + timedelta(days=62)).replace(microsecond=0)
+        data['availabilityEnd'] = some_months.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('2 months' in item['show']['info']['plot'])
+
+        one_months = (datetime.utcnow() + timedelta(days=32)).replace(microsecond=0)
+        data['availabilityEnd'] = one_months.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 month' in item['show']['info']['plot'])
+
+        some_days = (datetime.utcnow() + timedelta(days=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_days.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('4 days available' in item['show']['info']['plot'])
+
+        one_day = (datetime.utcnow() + timedelta(days=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_day.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 day available' in item['show']['info']['plot'])
+
+        some_hours = (datetime.utcnow() + timedelta(hours=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_hours.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('4 hours available' in item['show']['info']['plot'])
+
+        one_hours = (datetime.utcnow() + timedelta(hours=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_hours.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 hour available' in item['show']['info']['plot'])
+
+        zero_hours = (datetime.utcnow() + timedelta(minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = zero_hours.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('0 hours available' in item['show']['info']['plot'])

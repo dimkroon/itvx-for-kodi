@@ -327,13 +327,18 @@ class Search(TestCase):
 
 
 class LastWatched(TestCase):
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched.json'))
-    def test_get_last_watched(self, _):
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
+    def test_get_last_watched(self, patched_fetch):
         results = itvx.get_last_watched()
         self.assertIsInstance(results, list)     # requirement for paginator
         self.assertGreater(len(results), 0)
         for item in results:
             self.assertIsInstance(item, dict)
+        patched_fetch.assert_called_once()
+        # --- check cache ---
+        results_cache = itvx.get_last_watched()
+        self.assertListEqual(results, results_cache)
+        patched_fetch.assert_called_once()     # fetch not called for the second time
 
     def test_get_resume_point(self):
         with patch('resources.lib.itv_account.fetch_authenticated',
@@ -341,8 +346,21 @@ class LastWatched(TestCase):
             result = itvx.get_resume_point('aa')
             self.assertGreater(result, 0)
             self.assertIsInstance(result, float)
-        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError):
+        # --- No resume point available, e.i. next episode ---
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError(404, 'not found')):
             # ITV returns HTTP status 404 when the programme has no resume point.
+            result = itvx.get_resume_point('aa')
+            self.assertIsNone(result)
+        # --- Other HTTP error ---
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError(500, 'server error')):
+            result = itvx.get_resume_point('aa')
+            self.assertIsNone(result)
+        # --- Other fetch error ---
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.FetchError):
+            result = itvx.get_resume_point('aa')
+            self.assertIsNone(result)
+        # --- Invalid resume data ---
+        with patch('resources.lib.itv_account.fetch_authenticated', return_value={'some': 'invalid data'}):
             result = itvx.get_resume_point('aa')
             self.assertIsNone(result)
 

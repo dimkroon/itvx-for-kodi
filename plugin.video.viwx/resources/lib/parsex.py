@@ -520,14 +520,14 @@ def parse_search_result(search_data):
     }
 
 
-def parse_last_watched_item(item):
+def parse_last_watched_item(item, utc_now):
     progr_name = item.get('programmeTitle', '')
     episode_name = item.get('episodeTitle')
     series_nr = item.get('seriesNumber')
     episode_nr = item.get('episodeNumber')
     img_link = item.get('itvxImageLink', '')
-    available_dt = utils.strptime(item['availabilityEnd'], "%Y-%m-%dT%H:%M:%SZ") -  datetime.now()
-    days_available = int(available_dt.days + 0.99)
+    available_td = utils.strptime(item['availabilityEnd'], "%Y-%m-%dT%H:%M:%SZ") - utc_now
+    days_available = int(available_td.days + 0.99)
 
     if days_available > 365:
         availability = '\nAvailable for over a year.'
@@ -538,9 +538,9 @@ def parse_last_watched_item(item):
         availability = '\n[COLOR orange]Only {} day{} available.[/COLOR]'.format(
             days_available, 's' if days_available > 1 else '')
     else:
-        hours_available = int(available_dt.seconds / 3600)
-        availability = '\n[COLOR orange]Only {} hours{} available.[/COLOR]'.format(
-            hours_available, 's' if hours_available == 1 else '')
+        hours_available = int(available_td.seconds / 3600)
+        availability = '\n[COLOR orange]Only {} hour{} available.[/COLOR]'.format(
+            hours_available, 's' if hours_available != 1 else '')
 
     info = ''.join((
         item['synopsis'] if 'FREE' in item['tier'] else premium_plot(item['synopsis']),
