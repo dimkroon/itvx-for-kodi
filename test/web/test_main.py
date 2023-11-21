@@ -62,7 +62,7 @@ class TestMyItvx(unittest.TestCase):
 
     def test_continue_watching_not_signed_in(self):
         with patch.object(itv_account._itv_session_obj, 'account_data', new={}):
-            self.assertRaises(errors.AuthenticationError, main.list_last_watched.test, filter_char=None)
+            self.assertRaises(SystemExit, main.list_last_watched.test, filter_char=None)
 
 
 class TstCategories(unittest.TestCase):

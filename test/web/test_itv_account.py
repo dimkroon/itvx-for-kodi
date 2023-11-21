@@ -4,18 +4,17 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-import json
-import time
-
-from support import testutils
 from test.support import fixtures
 fixtures.global_setup()
 
+import json
+import time
 import binascii
 import unittest
 from unittest.mock import patch
 
 from resources.lib import itv_account
+from test.support import testutils
 from test.support import object_checks
 from test.local.test_account import ACCESS_TKN_FIELDS, REFRESH_TKN_FIELDS, PROFILE_TKN_FIELDS
 
@@ -45,7 +44,6 @@ class TestLogin(unittest.TestCase):
 
 class TestTokens(unittest.TestCase):
     @classmethod
-    @patch("resources.lib.kodi_utils.ask_credentials", new=lambda x, y: (x, y))
     def setUpClass(cls) -> None:
         cls.itv_sess = sess = itv_account.itv_session()
         # Fetch the tokens
