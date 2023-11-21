@@ -181,6 +181,41 @@ class PutJson(TestCase):
         self.assertEqual('some content', resp.text)
 
 
+class DeleteJson(TestCase):
+    """Delete_json makes a delete request and may get data back. The return value is
+    the as get_json; data as object when the response contained data, or None"""
+
+    @patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'{"a": 1}'))
+    def test_delete_json_plain_with_response(self, mocked_req):
+        resp = fetch.delete_json(URL, {'id': 1})
+        mocked_req.assert_called_once_with('DELETE', URL, {'Accept': 'application/json'}, {'id': 1})
+        self.assertEqual({'a': 1}, resp)
+
+    @patch("resources.lib.fetch.web_request", return_value=HttpResponse(status_code=204))
+    def test_delete_json_returns_no_content(self, mocked_req):
+        resp = fetch.delete_json(URL, {'id': 1})
+        mocked_req.assert_called_once_with('DELETE', URL, {'Accept': 'application/json'}, {'id': 1})
+        self.assertIsNone(resp)
+
+    @patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'{"a": 1}'))
+    # noinspection PyMethodMayBeStatic
+    def test_delete_json_adds_extra_headers(self, mocked_req):
+        fetch.delete_json(URL, {'id': 1}, headers={'MyHeader': 'myval'})
+        has_keys(mocked_req.call_args[0][2], 'Accept', 'MyHeader')
+
+    @patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'{"a": 1}'))
+    def test_delete_json_replaces_existing_header(self, mocked_req):
+        fetch.delete_json(URL, {'id': 1}, headers={'Accept': 'text/plain'})
+        self.assertEqual('text/plain', mocked_req.call_args[0][2]['Accept'])
+
+    def test_delete_json_invalid_response(self):
+        """delete_json() expects a json response."""
+        with patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'')):
+            self.assertRaises(errors.FetchError, fetch.delete_json, URL, {'id': 1})
+        with patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'some text')):
+            self.assertRaises(errors.FetchError, fetch.delete_json, URL, {'id': 1})
+
+
 class GetDocument(TestCase):
     @patch("resources.lib.fetch.web_request", return_value=HttpResponse(content=b'blabla'))
     def test_document_plain_with_response(self, mocked_req):

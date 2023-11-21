@@ -251,7 +251,7 @@ def episodes(url, use_cache=False):
     if use_cache:
         cached_data = cache.get_item(url)
         if cached_data is not None:
-            return cached_data
+            return cached_data['series_map'], cached_data['programme_id']
 
     page_data = get_page_data(url, cache_time=0)
     try:
@@ -259,6 +259,7 @@ def episodes(url, use_cache=False):
     except KeyError:
         logger.warning("Trying to parse episodes in legacy format for programme %s", url)
         return legacy_episodes(url)
+    programme_id = programme.get('encodedProgrammeId', {}).get('underscore')
     programme_title = programme['title']
     programme_thumb = programme['image'].format(**parsex.IMG_PROPS_THUMB)
     programme_fanart = programme['image'].format(**parsex.IMG_PROPS_FANART)
@@ -270,7 +271,7 @@ def episodes(url, use_cache=False):
 
     series_data = page_data.get('seriesList')
     if not series_data:
-        return {}
+        return {}, None
 
     # The field 'seriesNumber' is not guaranteed to be unique - and not guaranteed an integer either.
     # Midsummer murder for instance has 2 series with seriesNumber 4
@@ -296,8 +297,10 @@ def episodes(url, use_cache=False):
             })
         series_obj['episodes'].extend(
             [parsex.parse_episode_title(episode, programme_fanart) for episode in series['titles']])
-    cache.set_item(url, series_map, expire_time=1800)
-    return series_map
+
+    programme_data = {'programme_id': programme_id, 'series_map': series_map}
+    cache.set_item(url, programme_data, expire_time=1800)
+    return series_map, programme_id
 
 
 def legacy_episodes(url):
@@ -344,7 +347,7 @@ def legacy_episodes(url):
         series_obj['episodes'].extend(
             [parsex.parse_legacy_episode_title(episode, brand_fanart) for episode in series['episodes']])
     cache.set_item(url, series_map, expire_time=1800)
-    return series_map
+    return series_map, None
 
 
 def categories():
@@ -483,6 +486,37 @@ def search(search_term, hide_paid=False):
     if not results:
         logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
     return (parsex.parse_search_result(result) for result in results)
+
+
+def my_list(user_id, programme_id=None, operation=None, offer_login=True):
+    """Get itvX's 'My List', or add or remove an item from 'My List' and return the updated list.
+
+    """
+    if operation in ('add', 'remove'):
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features={}&platform={}'.format(
+            user_id, programme_id, FEATURE_SET, PLATFORM_TAG)
+    else:
+        cached_list = cache.get_item('mylist')
+        if cached_list is not None:
+            return cached_list
+        else:
+            url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform={}'.format(
+                user_id, FEATURE_SET, PLATFORM_TAG)
+
+    fetcher = {
+        'get': fetch.get_json,
+        'add': fetch.post_json,
+        'remove': fetch.delete_json}.get(operation, fetch.get_json)
+
+    data = itv_account.fetch_authenticated(fetcher, url, data=None, login=offer_login)
+    # Empty lists will return HTTP status 204, which results in data being None
+    if data:
+        my_list_items = [parsex.parse_my_list_item(item) for item in data]
+    else:
+        my_list_items = []
+    cache.set_item('mylist', my_list_items, 1800)
+    cache.my_list_programmes = list(item['programme_id'] for item in my_list_items)
+    return my_list_items
 
 
 def get_last_watched():

@@ -50,6 +50,8 @@ class MainMenu(TestCase):
         self.assertGreater(len(items), 10)
         for item in items:
             self.assertIsInstance(item, Listitem)
+        # Check 'My I=itvX' is present
+        self.assertTrue(items[0].label == 'My itvX')
 
 
 class LiveChannels(TestCase):
@@ -75,12 +77,69 @@ class LiveChannels(TestCase):
         chans = main.sub_menu_live.test()
         self.assertIsInstance(chans, list)
 
+
 class MyItvx(TestCase):
+    def setUpModule(self):
+        cache.purge()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
+    def test_submenu_my_itvx(self, _):
+        list_items = main.sub_menu_my_itvx.test()
+        self.assertEqual(2, len(list_items))
+
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
     @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
     def test_list_last_watched(self, _, __):
         shows = list(main.list_last_watched.route.unittest_caller(filter_char=None))
         self.assertEqual(7, len(shows))
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_initialise_my_list(self, _):
+        main._initialise_my_list()
+
+    def test_initialise_my_list_not_logged_in(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AuthenticationError):
+            main._initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            main._initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            main._initialise_my_list()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_list_mylist(self, _):
+        li_items = main.list_my_list.test(filter_char=None, page_nr=None)
+        self.assertIsInstance(li_items, list)
+        for item in li_items:
+            self.assertIsInstance(item, Listitem)
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_add_mylist_item(self, _):
+        result = main.update_mylist.test(progr_id='10_1511', operation='add')
+        # Callbacks of type Script should not return data
+        self.assertIsNone(result)
+
+    def test_add_mylist_item_with_auth_error(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            result = main.update_mylist.test(progr_id='10_1511', operation='add')
+            # Callbacks of type Script should not return data
+            self.assertIsNone(result)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            self.assertRaises(SystemExit, main.update_mylist.test, progr_id='10_1511', operation='add')
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_delete_mylist_item(self, _):
+        result = main.update_mylist.test(progr_id='10_1511', operation='remove')
+        # Callbacks of type Script should not return data
+        self.assertIsNone(result)
+
+    def test_delete_mylist_item_with_auth_error(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            result = main.update_mylist.test(progr_id='10_1511', operation='remove')
+            # Callbacks of type Script should not return data
+            self.assertIsNone(result)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            self.assertRaises(SystemExit, main.update_mylist.test, progr_id='10_1511', operation='remove')
+
 
 class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))

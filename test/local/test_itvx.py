@@ -16,7 +16,7 @@ import time
 import pytz
 
 from test.support.testutils import open_json, open_doc, HttpResponse
-from test.support.object_checks import has_keys, is_li_compatible_dict, is_url
+from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
 from resources.lib import itvx, errors, cache
 
@@ -298,16 +298,17 @@ class Categories(TestCase):
 class Episodes(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/series_miss-marple.html'))
     def test_episodes_marple(self):
-        series_listing = itvx.episodes('asd')
+        series_listing, programme_id = itvx.episodes('asd')
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
+        self.assertTrue(is_not_empty(programme_id, str))
 
     @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
     def test_episodes_with_cache(self, p_fetch):
-        series_listing = itvx.episodes('asd', use_cache=False)
+        series_listing, programme_id = itvx.episodes('asd', use_cache=False)
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
-        series_listing = itvx.episodes('asd', use_cache=True)
+        series_listing, programme_id = itvx.episodes('asd', use_cache=True)
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
         p_fetch.assert_called_once()
@@ -381,3 +382,46 @@ class GetPLaylistUrl(TestCase):
     def test_get_playlist_from_special_item(self, _):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
+
+
+class GetMyList(TestCase):
+    def setUp(self):
+        cache.purge()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_get_mylist(self, p_fetch):
+        result_1 = itvx.my_list('156-45xsghf75-4sf569')
+        self.assertEqual(len(list(result_1)), 4)
+        for item in result_1:
+            is_li_compatible_dict(self, item['show'])
+        p_fetch.assert_called_once()
+        # second call should be fetched from cache
+        result_2 = itvx.my_list('156-45xsghf75-4sf569')
+        p_fetch.assert_called_once()
+        self.assertListEqual(result_1, result_2)
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=None)
+    def test_get_empty_mylist(self, p_fetch):
+        result_1 = itvx.my_list('156-45xsghf75-4sf569')
+        self.assertListEqual(result_1, [])
+        p_fetch.assert_called_once()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit)
+    def test_get_mylist_not_signed_in(self, p_fetch):
+        self.assertRaises(SystemExit, itvx.my_list, '156-45xsghf75-4sf569')
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_add_mylist_item(self, p_fetch):
+        result = itvx.my_list('156-45xsghf75-4sf569', '10_3408', 'add')
+        self.assertEqual(len(list(result)), 4)
+        for item in result:
+            is_li_compatible_dict(self, item['show'])
+        p_fetch.assert_called_once()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_remove_mylist_item(self, p_delete):
+        result = itvx.my_list('156-45xsghf75-4sf569', '10_3408', 'remove')
+        self.assertEqual(len(list(result)), 4)
+        for item in result:
+            is_li_compatible_dict(self, item['show'])
+        p_delete.assert_called_once()

@@ -15,7 +15,7 @@ from typing import Generator
 
 from codequick import Route
 
-from resources.lib import itvx, errors
+from resources.lib import itvx, errors, itv_account
 from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
 
 setUpModule = fixtures.setup_web_test
@@ -85,3 +85,8 @@ class TestItvX(unittest.TestCase):
         episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
+
+    def test_get_mylist(self):
+        uid = itv_account.itv_session().user_id
+        items = itvx.my_list(uid)
+        self.assertGreater(len(items), 1)

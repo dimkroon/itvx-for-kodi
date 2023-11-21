@@ -31,6 +31,9 @@ def global_setup():
                          new=lambda self, item: profile_dir if item == 'profile' else '')
         patch_g.start()
 
+        # prevent requesting MyList items at the import of main.
+        patch("resources.lib.cache.my_list_programmes", new=list()).start()
+
         # Enable logging to file during tests with a new file each test run.
         try:
             os.remove(os.path.join(profile_dir, 'addon.log'))

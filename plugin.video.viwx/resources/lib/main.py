@@ -12,13 +12,14 @@ import sys
 
 import pytz
 import requests
+import xbmc
 import xbmcplugin
 from xbmcgui import ListItem
 
 from codequick import Route, Resolver, Listitem, Script, run as cc_run
 from codequick.support import logger_id, build_path, dispatcher
 
-from resources.lib import itv, itvx
+from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
 from resources.lib import parsex
 from resources.lib import fetch
@@ -92,9 +93,17 @@ class Paginator:
         self._filter = filter_char
         self._page_nr = page_nr
         self._kwargs = kwargs
+        self._is_az_list = None
         self._addon = utils.addon_info.addon
 
-    def _show_az_list(self):
+    @property
+    def is_az_list(self):
+        """True if the paginator will return only A to Z folders"""
+        if self._is_az_list is None:
+            self._is_az_list = self._get_show_az_list()
+        return self._is_az_list
+
+    def _get_show_az_list(self):
         az_len = self._addon.getSettingInt('a-z_size')
         items_list = self._items_list
         try:
@@ -148,7 +157,11 @@ class Paginator:
 
         for show in shows_list:
             try:
-                yield Listitem.from_dict(callb_map[show['type']], **show['show'])
+                li = Listitem.from_dict(callb_map[show['type']], **show['show'])
+                # Create 'My List' add/remove context menu entries here, so as to be able to update these
+                # entries after adding/removing an item, even when the underlying data is cached.
+                _my_list_context_mnu(li, show.get('programme_id'))
+                yield li
             except KeyError:
                 logger.warning("Cannot list '%s': unknown item type '%s'",
                                show['show'].get('info', {}).get('sorttitle', ''), show['type'])
@@ -159,7 +172,7 @@ class Paginator:
             yield li
 
     def __iter__(self):
-        if self._show_az_list():
+        if self.is_az_list:
             return self._generate_az()
         else:
             return self._generate_page()
@@ -171,7 +184,9 @@ def root(_):
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)
-        yield Listitem.from_dict(callback, **item['show'])
+        li = Listitem.from_dict(callback, **item['show'])
+        _my_list_context_mnu(li, item.get('programme_id'))
+        yield li
     yield Listitem.from_dict(list_collections, 'Collections')
     yield Listitem.from_dict(list_categories, 'Categories')
     yield Listitem.search(do_search, Script.localize(TXT_SEARCH))
@@ -179,7 +194,61 @@ def root(_):
 
 @Route.register(content_type='videos')
 def sub_menu_my_itvx(_):
+    # Ensure to add at least one parameter to persuade dynamic listing that we actually call the list.
+    yield Listitem.from_dict(list_my_list, 'My List', params={'filter_char': None})
     yield Listitem.from_dict(list_last_watched, 'Continue watching', params={'filter_char': None})
+
+
+def _initialise_my_list():
+    """Get all items from itvX's 'My List'.
+    Used when the module is first imported to initialise the cached list of
+    programme ID's before the plugin lists programmes.
+
+    """
+    try:
+        itvx.my_list(itv_account.itv_session().user_id, offer_login=False)
+        logger.info("Updated MyList programme ID's.")
+    except:
+        # Since this runs before codequick.run() all exceptions must be caught to prevent them
+        # crashing the addon before the main menu is shown.
+        # Most likely the user is not (yet) logged in, but at the start of the addon connection
+        # errors could also occur, depending on the network setup.
+        pass
+
+
+def _my_list_context_mnu(list_item, programme_id):
+    """If `show_item` contains a programme_id, check if the id is in 'My List'
+    and add a context menu to add or remove the item from the list accordingly.
+
+    """
+    if not programme_id:
+        return
+    try:
+        if programme_id in cache.my_list_programmes:
+            list_item.context.script(update_mylist, "Remove from My List", progr_id=programme_id, operation='remove')
+        else:
+            list_item.context.script(update_mylist, "Add to My List", progr_id=programme_id, operation='add')
+    except TypeError:
+        # The cached list of programme ID's is not intialised; do not set a context menu
+        logger.warning("Cannot create 'My List' context menu")
+
+
+
+@Route.register(content_type='videos')
+@dynamic_listing
+def list_my_list(addon, filter_char=None, page_nr=0):
+    """List the contents of itvX's 'My List'.
+
+    """
+    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
+                           xbmcplugin.SORT_METHOD_TITLE,
+                           xbmcplugin.SORT_METHOD_DATE,
+                           disable_autosort=True)
+    shows_list = itvx.my_list(itv_account.itv_session().user_id)
+    logger.info("Listed My List with % items", len(shows_list))
+    # Mylist can contain 52 items,
+    paginator = Paginator(shows_list, filter_char, page_nr)
+    yield from paginator
 
 
 @Route.register(content_type='videos')
@@ -346,9 +415,11 @@ def list_productions(plugin, url, series_idx=None):
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    series_map = itvx.episodes(url, use_cache=True)
-    if not series_map:
+    result = itvx.episodes(url, use_cache=True)
+    if not result:
         return
+
+    series_map, programme_id = result
 
     if len(series_map) == 1:
         # List the episodes if there is only 1 series
@@ -372,6 +443,7 @@ def list_productions(plugin, url, series_idx=None):
         # List folders of all series
         for series in series_map.values():
             li = Listitem.from_dict(list_productions, **series['series'])
+            _my_list_context_mnu(li, programme_id)
             yield li
 
 
@@ -382,11 +454,12 @@ def do_search(addon, search_query):
     if not search_results:
         return
 
-    items = [
-        Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
-        for result in search_results if result is not None
-    ]
-    return items
+    for result in search_results:
+        if result is None:
+            continue
+        li = Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
+        _my_list_context_mnu(li, result['programme_id'])
+        yield li
 
 
 def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_time=None):
@@ -566,6 +639,26 @@ def play_title(plugin, url, name=''):
     return play_stream_catchup(plugin, url, name)
 
 
+@Script.register
+def update_mylist(_, progr_id, operation):
+    """Context menu handler to add or remove a programme from itvX's 'My List'.
+
+    @param str progr_id: The underscore encoded programme ID.
+    @param str operation: The operation to apply; either 'add' or 'remove'.
+
+    """
+    try:
+        itvx.my_list(itv_account.itv_session().user_id, progr_id, operation)
+    except (ValueError, IndexError, FetchError):
+        if operation == 'add':
+            kodi_utils.msg_dlg('Failed to add this item to My List', 'My List Error')
+        else:
+            kodi_utils.msg_dlg('Failed to remove this item from My List', 'My List Error')
+        return
+    logger.info("Updated MyList: %s programme %s", operation, progr_id)
+    xbmc.executebuiltin('Container.Refresh')
+
+
 def run():
     if isinstance(cc_run(), Exception):
         xbmcplugin.endOfDirectory(int(sys.argv[1]), False)
@@ -589,3 +682,8 @@ callb_map = {
     'title': play_title,
     'vodstream': play_stream_catchup
 }
+
+
+# Ensure to update the cached list of programmeId's in itvx's My List each time the addon starts.
+if cache.my_list_programmes is None:
+    _initialise_my_list()

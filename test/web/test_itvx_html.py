@@ -14,7 +14,7 @@ import unittest
 import requests
 from datetime import datetime
 
-from resources.lib import fetch, parsex, utils, errors
+from resources.lib import fetch, parsex, utils, errors, main, itv_account
 from support.object_checks import (
     has_keys,
     expect_keys,
@@ -251,6 +251,21 @@ def check_collection_item_type_fastchannelspot(self, item, parent_name):
     self.assertTrue(is_not_empty(item['title'], str))
     self.assertTrue(is_not_empty(item['channel'], str))
     self.assertTrue(is_url(item['imageTemplate']))
+
+
+def check_mylist_item(testcase, item, parent_name):
+    obj_name = '.'.join((parent_name, item['programmeTitle']))
+    has_keys(item, 'categories', 'contentType', 'contentOwner', 'dateAdded', 'duration',
+             'imageLink', 'itvxImageLink', 'longRunning', 'numberOfAvailableSeries',
+             'numberOfEpisodes', 'partnership', 'programmeId', 'programmeTitle', 'synopsis',
+             'tier', obj_name=obj_name)
+    testcase.assertTrue(item['contentType'].lower() in main.callb_map.keys())
+    testcase.assertIsInstance(item['numberOfAvailableSeries'], list)
+    testcase.assertIsInstance(item['numberOfEpisodes'], (int, type(None)))
+    testcase.assertTrue(item['tier'] in ('FREE', 'PAID'))
+    testcase.assertTrue(is_iso_utc_time(item['dateAdded']))
+    testcase.assertTrue(is_url(item['itvxImageLink']))
+    testcase.assertFalse(is_encoded_programme_id(item['programmeId']))  # Programme ID in My List is NOT encoded.
 
 
 def check_item_type_simulcastspot(self, item, parent_name):
@@ -665,3 +680,84 @@ class Categories(unittest.TestCase):
             self.assertTrue(isinstance(rail['title'], str) and rail['title'])
             for item in rail['clips']:
                 check_short_form_item(item)
+
+
+class MyList(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.token = itv_account.itv_session().access_token
+        cls. userid = itv_account.itv_session().user_id
+
+    def test_get_my_list_no_content_type(self):
+        """Request My List without specifying header content-type
+
+        """
+        # Query parameters 'features' and 'platform' are required!!
+        # NOTE:
+        #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
+        #   presented and playable on the website.
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+        headers = {'authorization': 'Bearer ' + self.token}
+        # Both webbrowser and app authenticate with header, without any cookie.
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'mylist/mylist_data.json')
+
+        # When no particular type of content is requested a dict is returned
+        self.assertIsInstance(data, dict)
+        self.assertEqual(resp.headers['content-type'], 'application/vnd.itv.online.perso.my-list.v1+json')
+
+        my_items = data['items']
+        self.assertEqual(data['availableSlots'], 52 - len(my_items))
+        if len(my_items) == 0:
+            print("WARNING - No LastWatched items")
+        for item in my_items:
+            check_mylist_item(self, item, parent_name='MyList')
+
+    def test_get_my_list_content_type_json(self):
+        """Request My List with content-type = application/json"""
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+        headers = {'authorization': 'Bearer ' + self.token,
+                   'accept': 'application/json'}
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'mylist/mylist_json_data.json')
+
+        self.assertIsInstance(data, list)
+        self.assertEqual(resp.headers['content-type'], 'application/json')
+
+    def test_add_and_remove_programme(self):
+        """At present only programmes can be added to the list, no individual episodes.
+
+        Itv always returns HTTP status 200 when a syntactical valid request has been made. However,
+        that is no guarantee that the requested programme is in fact added to My List.
+
+        """
+        progr_id = '2_7931'     # A spy among friends
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid, progr_id)
+        # Both webbrowser and app authenticate with header, without any cookie.
+        headers = {'authorization': 'Bearer ' + self.token}
+
+        # Add the item to the list, only to ensure it is present when it is removed next.
+        resp = requests.post(url, headers=headers)
+        data = resp.json()['items']
+        for item in data:
+            check_mylist_item(self, item, 'MyList')
+        self.assertTrue(progr_id in (item['programmeId'].replace('/', '_') for item in data))
+
+        # Delete the item
+        resp = requests.delete(url, headers=headers)
+        data = resp.json()['items']
+        for item in data:
+            check_mylist_item(self, item, 'MyList')
+        self.assertFalse(progr_id in (item['programmeId'].replace('/', '_') for item in data))
+
+        # Add it again now it's certain that the item was not on the list.
+        resp = requests.post(url, headers=headers)
+        data = resp.json()['items']
+        for item in data:
+            check_mylist_item(self, item, 'MyList')
+        self.assertTrue(progr_id in (item['programmeId'].replace('/', '_') for item in data))
