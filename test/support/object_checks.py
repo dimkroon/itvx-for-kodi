@@ -373,3 +373,30 @@ def check_category_item(item):
     assert item['broadcastDateTime'] is None or is_iso_utc_time(item['broadcastDateTime']), \
         "Invalid broadcastDateTime in '{}'.".format(title)
     assert isinstance(item['programmeId'], str) and item['programmeId'], "Invalid programmeId in '{}'.".format(title)
+
+
+def check_item_type_programme(testcase, progr_data, parent):
+    """Check an item of type `programme` as return in lists of recommendations.
+    Not to be confused with the programme info in category items.
+
+    Very similar to MyList items, but with fewer fields and some field names are slightly different.
+
+    """
+    obj_name = '{}.{}'.format(parent, progr_data['title'])
+    has_keys(progr_data, 'contentType', 'duration', 'imageUrl', 'itvxImageUrl', 'programmeId',
+             'synopsis', 'tier', 'title', obj_name=obj_name)
+    expect_keys(progr_data, 'coldStart', 'contentOwner', 'latestProduction', 'longRunning', obj_name=obj_name)
+
+    misses_keys(progr_data, 'encodedProgrammeId', 'categories', 'longRunningimagePresets')
+
+    testcase.assertTrue(progr_data['contentType'] in ('PROGRAMME', 'SPECIAL', 'FILM'))
+    testcase.assertTrue(is_not_empty(progr_data['title'], str))
+    testcase.assertTrue(is_not_empty(progr_data['synopsis'], str))
+    testcase.assertTrue(is_url(progr_data['imageUrl']))
+    testcase.assertTrue(is_url(progr_data['itvxImageUrl']))
+    testcase.assertFalse(is_encoded_programme_id(progr_data['programmeId']))
+    testcase.assertTrue(is_not_empty(progr_data['programmeId'], str))
+    testcase.assertTrue(progr_data['tier'] in('FREE', 'PAID'))
+
+    testcase.assertIsInstance(progr_data['numberOfAvailableSeries'], list)
+    testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))
