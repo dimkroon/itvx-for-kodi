@@ -17,7 +17,10 @@ import pytz
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
-from resources.lib import itvx, errors, main, cache, parsex
+from resources.lib import itvx, errors, main, cache, parsex, itv_account
+
+from future.moves import itertools
+
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -473,3 +476,96 @@ class GetMyList(TestCase):
         for item in result:
             is_li_compatible_dict(self, item['show'])
         p_delete.assert_called_once()
+
+
+class Recommendations(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        itv_account.itv_session()
+
+    def setUp(self):
+        cache.purge()
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/byw.json'))
+    def test_because_you_watched(self, p_fetch):
+        res1 = itvx.because_you_watched('my_user_id')
+        self.assertIsInstance(res1, list)
+        self.assertEqual(12, len(res1))
+        p_fetch.assert_called_once()
+        for item in res1:
+            has_keys(item, 'programme_id', 'type', 'show')
+            is_li_compatible_dict(self, item['show'])
+        # test second call gets from cache
+        res2 = itvx.because_you_watched('my_user_id')
+        p_fetch.assert_called_once()
+        self.assertListEqual(res1, res2)
+        # Other user ID not from cache
+        p_fetch.reset_mock()
+        itvx.because_you_watched('other_user_id')
+        p_fetch.assert_called_once()
+        # Filter paid
+        res3 = itvx.because_you_watched('my_user_id', hide_paid=True)
+        self.assertEqual(11, len(res3))
+
+        # not logged in
+        res1 = itvx.because_you_watched('')
+        self.assertIs(res1, None)
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/byw.json'))
+    def test_byw_name_only(self, p_fetch):
+        res1 = itvx.because_you_watched('my_user_id', name_only=True)
+        p_fetch.assert_called_once()
+        self.assertEqual('Van Der Valk (Original)', res1)
+        # from cache
+        res2 = itvx.because_you_watched('my_user_id', name_only=True)
+        p_fetch.assert_called_once()
+        self.assertEqual(res2, res1)
+        # Other user ID not from cache
+        p_fetch.reset_mock()
+        itvx.because_you_watched('other_user_id', name_only=True)
+        p_fetch.assert_called_once()
+        # not logged in
+        res1 = itvx.because_you_watched('')
+        self.assertIs(res1, None)
+
+    @patch('resources.lib.fetch.get_json', return_value=None)
+    def test_byw_fetch_errors(self, p_fetch):
+        res = itvx.because_you_watched('my_user_id')
+        p_fetch.assert_called_once()
+        self.assertIs(res, None)
+        p_fetch.reset_mock()
+        res = itvx.because_you_watched('my_user_id', name_only=True)
+        p_fetch.assert_called_once()
+        self.assertIs(res, None)
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/recommended.json'))
+    def test_recommended(self, p_fetch):
+        res1 = itvx.recommended('my_user_id')
+        self.assertIsInstance(res1, list)
+        self.assertEqual(12, len(res1))
+        p_fetch.assert_called_once()
+        for item in res1:
+            has_keys(item, 'programme_id', 'type', 'show')
+            is_li_compatible_dict(self, item['show'])
+        # test second call gets from cache
+        res2 = itvx.recommended('my_user_id')
+        p_fetch.assert_called_once()
+        self.assertListEqual(res1, res2)
+        # Other user ID not from cache
+        p_fetch.reset_mock()
+        itvx.recommended('other_user_id')
+        p_fetch.assert_called_once()
+        # Filter paid
+        res3 = itvx.recommended('my_user_id', hide_paid=True)
+        self.assertEqual(1, len(res1) - len(res3))
+        # not logged in - just returns data as normal.
+        p_fetch.reset_mock()
+        res4 = itvx.recommended('')
+        p_fetch.assert_called_once()
+        self.assertListEqual(res1, res4)
+
+    @patch('resources.lib.fetch.get_json', return_value=None)
+    def test_recommended_fetch_errors(self, p_fetch):
+        res = itvx.recommended('my_user_id')
+        p_fetch.assert_called_once()
+        self.assertIs(res, None)

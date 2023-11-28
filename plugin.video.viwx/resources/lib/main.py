@@ -195,8 +195,12 @@ def root(_):
 @Route.register(content_type='videos')
 def sub_menu_my_itvx(_):
     # Ensure to add at least one parameter to persuade dynamic listing that we actually call the list.
-    yield Listitem.from_dict(list_my_list, 'My List', params={'filter_char': None})
-    yield Listitem.from_dict(list_last_watched, 'Continue watching', params={'filter_char': None})
+    yield Listitem.from_dict(generic_list, 'My List', params={'list_type':'mylist', 'filter_char': None})
+    yield Listitem.from_dict(generic_list, 'Continue Watching', params={'list_type':'watching', 'filter_char': None})
+    last_programme = itvx.because_you_watched(itv_account.itv_session().user_id, name_only=True)
+    if last_programme:
+        yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type':'byw'})
+    yield Listitem.from_dict(generic_list, 'Recommended for You', params={'list_type':'recommended'})
 
 
 def _initialise_my_list():
@@ -217,7 +221,7 @@ def _initialise_my_list():
 
 
 def _my_list_context_mnu(list_item, programme_id):
-    """If `show_item` contains a programme_id, check if the id is in 'My List'
+    """If `list_item` contains a programme_id, check if the id is in 'My List'
     and add a context menu to add or remove the item from the list accordingly.
 
     """
@@ -233,22 +237,30 @@ def _my_list_context_mnu(list_item, programme_id):
         logger.warning("Cannot create 'My List' context menu")
 
 
-
 @Route.register(content_type='videos')
 @dynamic_listing
-def list_my_list(addon, filter_char=None, page_nr=0):
-    """List the contents of itvX's 'My List'.
+def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
+    """List the contents of itvX's 'My List', 'Continue Watching', 'Because You Watched' and 'Recommended'.
 
     """
     addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
                            xbmcplugin.SORT_METHOD_TITLE,
-                           xbmcplugin.SORT_METHOD_DATE,
                            disable_autosort=True)
-    shows_list = itvx.my_list(itv_account.itv_session().user_id)
-    logger.info("Listed My List with % items", len(shows_list))
-    # Mylist can contain 52 items,
-    paginator = Paginator(shows_list, filter_char, page_nr)
-    yield from paginator
+    if list_type == 'mylist':
+        addon.add_sort_methods(xbmcplugin.SORT_METHOD_DATE)
+        shows_list = itvx.my_list(itv_account.itv_session().user_id)
+    elif list_type == 'watching':
+        addon.add_sort_methods(xbmcplugin.SORT_METHOD_DATE)
+        shows_list = itvx.get_last_watched()
+    elif list_type == 'byw':
+        shows_list = itvx.because_you_watched(itv_account.itv_session().user_id,
+                                              hide_paid=addon.setting.get_boolean('hide_paid'))
+    elif list_type == 'recommended':
+        shows_list = itvx.recommended(itv_account.itv_session().user_id,
+                                      hide_paid=addon.setting.get_boolean('hide_paid'))
+    else:
+        raise ValueError(f"Unknown generic list type: '{list_type}'.")
+    yield from Paginator(shows_list, filter_char, page_nr)
 
 
 @Route.register(content_type='videos')
@@ -309,17 +321,6 @@ def sub_menu_live(_):
                 build_path(play_stream_live, play_from_start=True, **callback_kwargs))
             li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
         yield li
-
-
-@Route.register(content_type='videos')
-@dynamic_listing
-def list_last_watched(addon, filter_char=None, page_nr=0):
-    """List items to continue watching for submenu My itvX"""
-    addon.add_sort_methods(xbmcplugin.SORT_METHOD_UNSORTED,
-                           xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE,
-                           xbmcplugin.SORT_METHOD_DATE,
-                           disable_autosort=True)
-    yield from Paginator(itvx.get_last_watched(), filter_char, page_nr)
 
 
 @Route.register(content_type='videos')
