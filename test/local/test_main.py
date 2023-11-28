@@ -4,8 +4,6 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-import xbmcgui
-
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -16,6 +14,7 @@ from unittest import TestCase
 from unittest.mock import patch
 
 from codequick import Listitem
+import xbmcgui
 from xbmcgui import ListItem as XbmcListItem
 
 from test.support.testutils import open_json, open_doc, HttpResponse
@@ -42,6 +41,11 @@ class Paginator(TestCase):
         pg = main.Paginator(1234, filter_char=None, page_nr=0)
         self.assertRaises(errors.ParseError, list, pg)
 
+    def test_unknown_item_type(self):
+        items_list = [{'type': 'zdfhs', 'show': {}}]
+        pg = main.Paginator(items_list, filter_char=None, page_nr=0)
+        result = list(pg)
+        self.assertListEqual([], result)
 
 @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
 class MainMenu(TestCase):
@@ -79,7 +83,7 @@ class LiveChannels(TestCase):
 
 
 class MyItvx(TestCase):
-    def setUpModule(self):
+    def setUp(self):
         cache.purge()
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
@@ -111,6 +115,10 @@ class MyItvx(TestCase):
         self.assertIsInstance(li_items, list)
         for item in li_items:
             self.assertIsInstance(item, Listitem)
+
+    @patch('resources.lib.cache.my_list_programmes', new=None)
+    def test_my_list_context_menu_not_logged_in(self):
+        main._my_list_context_mnu(Listitem(), '1234')
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_add_mylist_item(self, _):
@@ -193,6 +201,12 @@ class Categories(TestCase):
         self.assertGreater(len(programmes), 100)
         for prog in programmes:
             self.assertIsInstance(prog, (Listitem, type(None)))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_films.json'))
+    def test_category_film(self, _):
+        items = main.list_category.test('category/films')
+        self.assertIsInstance(items, list)
+        self.assertEqual(601, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_get_category_children_paginated(self, _):
@@ -360,6 +374,17 @@ class Search(TestCase):
         self.assertIs(results, False)
 
 
+@patch('requests.get', return_value=HttpResponse())
+class CreateDashStreamItem(TestCase):
+    def test_create_dash_stream_item(self, _):
+        result = main.create_dash_stream_item('my stream', 'manifest.url', 'key.service.url')
+        self.assertIsInstance(result, xbmcgui.ListItem)
+
+    @patch('inputstreamhelper.Helper.check_inputstream', return_value=False)
+    def test_create_dash_stream_item_intputstream_adaptive_not_present(self, _, __):
+        result = main.create_dash_stream_item('my stream', 'manifest.url', 'key.service.url')
+        self.assertIs(result, False)
+
 class PlayStreamLive(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     @patch('requests.get', return_value=HttpResponse())
@@ -370,9 +395,19 @@ class PlayStreamLive(TestCase):
         self.assertIsInstance(result, XbmcListItem)
         self.assertEqual('ITV', result.getLabel())
         self.assertFalse('IsPlayable' in result._props)
+        self.assertTrue('inputstream.adaptive.play_timeshift_buffer' in result._props)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/ITV'))
+        # -- A FAST channel --
+        p_req_strm.reset_mock()
+        result = main.play_stream_live.test(channel='FAST16', url=None)
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertEqual('FAST16', result.getLabel())
+        self.assertFalse('inputstream.adaptive.play_timeshift_buffer' in result._props)
+        # Assert channel name is converted to a full url
+        self.assertEqual(1, len(p_req_strm.call_args_list))
+        self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/FAST16'))
 
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):
@@ -381,6 +416,10 @@ class PlayStreamLive(TestCase):
         with self.assertRaises(SystemExit) as cm:
             main.play_stream_live.test(channel='ITV', url=None)
         self.assertEqual(1, cm.exception.code)
+
+    @patch('resources.lib.itv.get_live_urls', side_effect=ValueError)
+    def test_play_stream_live_without_other_error(self, _):
+        self.assertRaises(ValueError, main.play_stream_live.test, channel='ITV', url=None)
 
 
 class PlayStreamCatchup(TestCase):
@@ -434,6 +473,14 @@ class PlayStreamCatchup(TestCase):
         result = main.play_stream_catchup.test('some/url', 'my episode')
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
+    @patch('resources.lib.itvx.get_resume_point', return_value=32)
+    def test_play_episode_with_resume(self, _, __, ___):
+        result = main.play_stream_catchup.test('some/url', 'my episode', set_resume_point=True)
+        self.assertEqual('32', result._props['ResumeTime'])
+        self.assertTrue('TotalTime' in result._props)
+
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
         result = main.play_stream_catchup.test('url', '')
@@ -447,9 +494,35 @@ class PlayStreamCatchup(TestCase):
             main.play_stream_catchup.test('url', '')
         self.assertEqual(1, cm.exception.code)
 
+    @patch('resources.lib.itv.get_catchup_urls', side_effect=ValueError)
+    def test_play_catchup_with_other_error(self, _):
+        self.assertRaises(ValueError, main.play_stream_catchup.test, 'url', '')
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.main.create_dash_stream_item', return_value=False)
+    def test_play_catchup_inputstream_adaptive_not_installed(self, _, __):
+        result = main.play_stream_catchup.test('url', '')
+        self.assertIs(result, False)
+
 
 class PlayTitle(TestCase):
+    @patch('resources.lib.itvx.get_playlist_url_from_episode_page', return_value='my.url')
+    @patch('resources.lib.main.play_stream_catchup', return_value='play_success')
+    def test_play_episode(self, _, p_get_playlist):
+        result = main.play_title.test('page.url')
+        p_get_playlist.assert_called_once_with('page.url')
+        self.assertEqual('play_success', result)
+
     @patch('resources.lib.itvx.get_playlist_url_from_episode_page', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
         result = main.play_title.test('page')
         self.assertIs(result, False)
+
+
+class Run(TestCase):
+    @patch('sys.argv', return_value=['script', '1'])
+    @patch('resources.lib.main.cc_run', return_value=ValueError())
+    @patch('xbmcplugin.endOfDirectory')
+    def test_run_failure(self, p_end_of_dir, _, __):
+        main.run()
+        p_end_of_dir.assert_called_once_with(1, False)

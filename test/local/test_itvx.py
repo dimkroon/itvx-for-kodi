@@ -18,7 +18,7 @@ import pytz
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
-from resources.lib import itvx, errors, main, cache
+from resources.lib import itvx, errors, main, cache, parsex
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -124,6 +124,9 @@ class MainPageItem(TestCase):
 
 
 class Collections(TestCase):
+    def setUp(self):
+        cache.purge()
+
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_news(self, _):
         items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
@@ -184,6 +187,13 @@ class Collections(TestCase):
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
+    def test_editorial_slider_from_collection(self, _):
+        items = list(itvx.collection_content(url='my_test_collection', slider='editorial_rail_slot2'))
+        self.assertEqual(4, len(items))
+        for item in items:
+            check_item(self, item)
+
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_non_existing_collection(self, _):
         items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='SomeNonExistingSlider')))
@@ -230,6 +240,7 @@ class Collections(TestCase):
         """Items that fail to parse return None and must be filtered out in the final result."""
         items = list(itvx.collection_content(url='some/url'))
         self.assertListEqual([None] * 113, items)
+
 
 class Categories(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
@@ -306,15 +317,45 @@ class Episodes(TestCase):
         self.assertEqual(len(series_listing), 6)
         self.assertTrue(is_not_empty(programme_id, str))
 
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
+    def test_paid_episodes(self):
+        series_listing, programme_id = itvx.episodes('asd')
+        self.assertIsInstance(series_listing, dict)
+        self.assertEqual(7, len(series_listing))
+        self.assertEqual(7, len(series_listing['1']['episodes']))
+        self.assertTrue(is_not_empty(programme_id, str))
+
     @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
     def test_episodes_with_cache(self, p_fetch):
+        series_listing1, programme_id1 = itvx.episodes('asd', use_cache=False)
+        self.assertIsInstance(series_listing1, dict)
+        self.assertEqual(len(series_listing1), 6)
+        self.assertTrue(is_not_empty(programme_id1, str))
+        series_listing2, programme_id2 = itvx.episodes('asd', use_cache=True)
+        self.assertDictEqual(series_listing1, series_listing2)
+        self.assertEqual(programme_id1, programme_id2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/paid_legacy_series.json'))
+    def test_episodes_legacy_format(self, p_fetch):
         series_listing, programme_id = itvx.episodes('asd', use_cache=False)
         self.assertIsInstance(series_listing, dict)
-        self.assertEqual(len(series_listing), 6)
+        self.assertEqual(1, len(series_listing))
+        self.assertEqual(6, len(series_listing[1]['episodes']))
+        # From cache:
+        p_fetch.reset_mock()
         series_listing, programme_id = itvx.episodes('asd', use_cache=True)
-        self.assertIsInstance(series_listing, dict)
-        self.assertEqual(len(series_listing), 6)
-        p_fetch.assert_called_once()
+        p_fetch.assert_not_called()
+        self.assertEqual(1, len(series_listing))
+        self.assertEqual(6, len(series_listing[1]['episodes']))
+        self.assertIsNone(programme_id)
+
+    def test_missing_episodes_data(self):
+        data = parsex.scrape_json(open_doc('html/series_miss-marple.html')())
+        del data['seriesList']
+        with patch('resources.lib.itvx.get_page_data', return_value=data):
+            series_listing, programme_id = itvx.episodes('asd')
+            self.assertFalse(is_not_empty(series_listing, dict))
+            self.assertIsNone(programme_id)
 
 
 class Search(TestCase):
@@ -383,6 +424,11 @@ class GetPLaylistUrl(TestCase):
     @patch('resources.lib.itvx.get_page_data',
            return_value=open_json('html/special_how-to-catch-a-cat-killer_data.json'))
     def test_get_playlist_from_special_item(self, _):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/news-short_item.html'))
+    def test_get_playlist_from_news_shortform_item(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
