@@ -568,7 +568,7 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)
     if list_item:
         # list_item.setProperty('inputstream.adaptive.manifest_update_parameter', 'full')
-        if 't=' in manifest_url:
+        if '?t=' in manifest_url or '&t=' in manifest_url:
             list_item.setProperty('inputstream.adaptive.play_timeshift_buffer', 'true')
             # list_item.property['inputstream.adaptive.live_delay'] = '2'
             logger.debug("play live stream - timeshift_buffer enabled")
