@@ -421,7 +421,6 @@ def get_playlist_url_from_episode_page(page_url, prefer_bsl=False):
         return episode['playlistUrl']
 
 
-
 def search(search_term, hide_paid=False):
     """Make a query on `search_term`
 
@@ -444,12 +443,11 @@ def search(search_term, hide_paid=False):
         'sec-fetch-dest': 'empty'
     }
 
+    # Mimic the search term being typed in a web browser.
+    # Request a few intermediate results over the same connection. Disregard everything but the last result.
     with requests.Session() as http_sess:
-        # Mimic the search term being typed in a web browser.
-        # Request results after each letter. Disregard everything but the last result.
-        for i in range(1, len(search_term) + 1):
-            url = base_url + quote(search_term[:i])
-            resp = http_sess.request('GET', url, headers=headers, timeout=fetch.WEB_TIMEOUT)
+        for s_term in(quote(search_term[0]), quote(search_term[:-2]), quote(search_term[:-1]), quote(search_term)):
+            resp = http_sess.request('GET', url=base_url + s_term, headers=headers, timeout=fetch.WEB_TIMEOUT)
 
     if resp.status_code != 200:
         logger.info("Search for '%s' failed with HTTP status %s. (hide_paid=%s)",
