@@ -113,13 +113,14 @@ class TestItvX(unittest.TestCase):
         self.assertEqual(len(recom_list), 12)
 
 
+
 class ItvxSearch(unittest.TestCase):
-    def test_search(self):
-        items = list(itvx.search('the chase'))
+    def test_search_potter(self):
+        items = list(itvx.search('potter'))
         self.assertGreater(len(list(items)), 2)
 
-    def test_search_normal_monday(self):
-        items = list(itvx.search('monday'))
+    def test_search_normal_garden(self):
+        items = list(itvx.search('garden'))
         self.assertGreater(len(list(items)), 3)
 
     def test_searchterm_without_results(self):
@@ -128,9 +129,9 @@ class ItvxSearch(unittest.TestCase):
             self.assertEqual(len(list(items)), 0)
 
     def test_without_paid(self):
-        items = list(itvx.search('doctor foster', hide_paid=True))
+        items = list(itvx.search('army', hide_paid=True))
         self.assertFalse(any(item['show']['info']['plot'].startswith("[COLOR yellow]itvX premium") for item in items))
 
     def test_with_paid(self):
-        items = list(itvx.search('doctor foster'))
+        items = list(itvx.search('army'))
         self.assertTrue(any(item['show']['info']['plot'].startswith("[COLOR yellow]itvX premium") for item in items))
