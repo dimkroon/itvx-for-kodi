@@ -301,7 +301,9 @@ class MainPage(unittest.TestCase):
             content_type = item['contentType']
             self.assertTrue(content_type in
                             ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand',
-                             'collection', 'page'))
+                             'collection', 'page', 'upsellspot'))
+            if content_type == 'upsellspot':
+                continue
             if content_type == 'simulcastspot':
                 check_item_type_simulcastspot(self, item, parent_name='hero-item')
                 # Flag if key normally only present in collections become available in hero items as well
