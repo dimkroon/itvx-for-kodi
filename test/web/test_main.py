@@ -180,14 +180,14 @@ class TestPlayCatchup(unittest.TestCase):
 
 @unittest.skip("not to interfere with tests of bugfix branch")
 class TestSearch(unittest.TestCase):
-    def test_search_chase(self):
-        items = main.do_search(MagicMock(), 'chase')
+    def test_search_danger(self):
+        items = main.do_search(MagicMock(), 'danger')
         self.assertGreater(len(items), 4)
 
-    def test_search_mear(self):
-        items = main.do_search(MagicMock(), 'mear')
+    def test_search_mear(self, _):
+        items = main.do_search.test('mear')
         self.assertGreater(len(items), 4)
 
-    def test_search_monday(self):
-        items = main.do_search(MagicMock(), 'monday')
+    def test_search_dream(self):
+        items = main.do_search(MagicMock(), 'dream')
         self.assertGreater(len(items), 4)
