@@ -469,20 +469,15 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
     logger.debug('dash manifest url: %s', manifest_url)
     logger.debug('dash key service url: %s', key_service_url)
 
-    try:
-        # Ensure to get a fresh hdntl cookie as they expire after 12 or 24 hrs.
-        # Use a plain requests.get() to prevent sending an existing hdntl cookie,
-        # and other cookies are not required.
-        resp = requests.get(url=manifest_url,
-                            allow_redirects=False,
-                            headers={'user-agent': fetch.USER_AGENT},
-                            timeout=fetch.WEB_TIMEOUT)
-        hdntl_cookie = resp.cookies.get('hdntl', '')
-        logger.debug("Received hdntl cookie: %s", hdntl_cookie)
-    except FetchError as err:
-        logger.error('Error retrieving dash manifest - url: %r' % err)
-        Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
-        return False
+    # Ensure to get a fresh hdntl cookie as they expire after 12 or 24 hrs.
+    # Use a plain requests.get() to prevent sending an existing hdntl cookie,
+    # and other cookies are not required.
+    resp = requests.get(url=manifest_url,
+                        allow_redirects=False,
+                        headers={'user-agent': fetch.USER_AGENT},
+                        timeout=fetch.WEB_TIMEOUT)
+    hdntl_cookie = resp.cookies.get('hdntl', '')
+    logger.debug("Received hdntl cookie: %s", hdntl_cookie)
 
     PROTOCOL = 'mpd'
     DRM = 'com.widevine.alpha'
@@ -552,19 +547,10 @@ def play_stream_live(addon, channel, url, title=None, start_time=None, play_from
     if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
         start_time = None
 
-    try:
-        manifest_url, key_service_url, subtitle_url = itv.get_live_urls(url,
-                                                                        title,
-                                                                        start_time,
-                                                                        play_from_start)
-    except FetchError as err:
-        logger.error('Error retrieving live stream urls: %r' % err)
-        Script.notify('ITV', str(err), Script.NOTIFY_ERROR)
-        return False
-    except Exception as e:
-        logger.error('Error retrieving live stream urls: %r' % e, exc_info=True)
-        return
-
+    manifest_url, key_service_url, subtitle_url = itv.get_live_urls(url,
+                                                                    title,
+                                                                    start_time,
+                                                                    play_from_start)
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)
     if list_item:
         # list_item.setProperty('inputstream.adaptive.manifest_update_parameter', 'full')
@@ -587,13 +573,6 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
         kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
-        return False
-    except FetchError as err:
-        logger.error('Error retrieving episode stream urls: %r' % err)
-        Script.notify(utils.addon_info.name, str(err), Script.NOTIFY_ERROR)
-        return False
-    except Exception:
-        logger.error('Error retrieving catchup stream urls:', exc_info=True)
         return False
 
     if stream_type == 'SHORT':
