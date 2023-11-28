@@ -384,7 +384,7 @@ class Search(TestCase):
         result = itvx.search('the chase')
         self.assertIsInstance(result, types.GeneratorType)
         self.assertEqual(10, len(list(result)))
-        self.assertEqual(9, p_send.call_count)      # Called once for every character in search term.
+        self.assertEqual(3, p_send.call_count)      # Called for the first and last two characters.
         self.assertTrue(p_send.call_args.args[0].url.endswith("the%20chase"))   # last call is the whole search term.
 
     def test_search_without_results(self, ):

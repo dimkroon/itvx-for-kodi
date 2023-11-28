@@ -115,11 +115,11 @@ class TestItvX(unittest.TestCase):
 
 class ItvxSearch(unittest.TestCase):
     def test_search(self):
-        items = itvx.search('the chase')
+        items = list(itvx.search('the chase'))
         self.assertGreater(len(list(items)), 2)
 
     def test_search_normal_monday(self):
-        items = itvx.search('monday')
+        items = list(itvx.search('monday'))
         self.assertGreater(len(list(items)), 3)
 
     def test_searchterm_without_results(self):
