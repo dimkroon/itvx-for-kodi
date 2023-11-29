@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
@@ -18,11 +17,16 @@ import pytz
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
-from resources.lib import itvx, errors, cache
+from resources.lib import itvx, errors, main, cache, parsex
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
 
+
+def check_item(testcase, item):
+    has_keys(item, 'type', 'show')
+    testcase.assertTrue(item['type'] in main.callb_map.keys())
+    is_li_compatible_dict(testcase, item['show'])
 
 
 @patch('resources.lib.cache.set_item')
@@ -97,7 +101,7 @@ class MainPageItem(TestCase):
             items_count = len(items)
             self.assertEqual(9, items_count)
             for item in items:
-                is_li_compatible_dict(self, item['show'])
+                check_item(self, item)
         # Hero item of unknown type is disregarded.
         page_data['heroContent'][1]['contentType'] = 'someNewType'
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
@@ -119,13 +123,15 @@ class MainPageItem(TestCase):
 
 
 class Collections(TestCase):
+    def setUp(self):
+        cache.purge()
+
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_news(self, _):
         items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
         self.assertEqual(8, len(items))
         for item in items:
-            self.assertEqual('title', item['type'])
-            self.assertTrue(is_li_compatible_dict(self, item['show']))
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -135,8 +141,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content(slider='shortFormSlider')))
         self.assertEqual(2, len(items))
         for item in items:
-            self.assertEqual('title', item['type'])
-            self.assertTrue(is_li_compatible_dict(self, item['show']))
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSlider', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -145,7 +150,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content(slider='trendingSliderContent')))
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='trendingSliderContent', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -154,7 +159,7 @@ class Collections(TestCase):
         items = list(itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1'))
         self.assertEqual(4, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1', hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -164,7 +169,7 @@ class Collections(TestCase):
         items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='test_rail')))
         self.assertEqual(10, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         self.assertEqual('simulcastspot', items[0]['type'])
         self.assertEqual('fastchannelspot', items[1]['type'])
         self.assertEqual('collection', items[8]['type'])
@@ -173,13 +178,20 @@ class Collections(TestCase):
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
-    def test_collection_contentfrom_collection_page(self, _):
+    def test_collection_content_from_collection_page(self, _):
         items = list(itvx.collection_content(url='collection_top_picks'))
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
         items2 = list(itvx.collection_content(url='collection_top_picks', hide_paid=True))
         self.assertListEqual(items, items2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
+    def test_editorial_slider_from_collection(self, _):
+        items = list(itvx.collection_content(url='my_test_collection', slider='editorial_rail_slot2'))
+        self.assertEqual(4, len(items))
+        for item in items:
+            check_item(self, item)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_non_existing_collection(self, _):
@@ -191,14 +203,14 @@ class Collections(TestCase):
         items = list(itvx.collection_content(url='itvx_kids'))
         self.assertGreater(len(items), 10)
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-fast.json'))
     def test_collection_of_live_fast_channels(self, _):
         items = list(itvx.collection_content(url='itvx_fast'))
         self.assertEqual(3, len(items))
         for item in items:
-            has_keys(item, 'type', 'show')
+            check_item(self, item)
 
     def test_collection_with_shortform_slider(self):
         page_data = open_json('json/test_collection.json')
@@ -206,10 +218,11 @@ class Collections(TestCase):
         page_data['editorialSliders'] = None
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.collection_content(url='https://www.itvx_coll'))
+            # 1 folder from the shortFormSlider
             self.assertEqual(1, len(items))
             for item in items:
                 self.assertEqual('collection', item['type'])
-                is_li_compatible_dict(self, item['show'])
+                check_item(self, item)
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
                                                             open_json('html/collection_the-costume-collection.json')))
@@ -226,6 +239,7 @@ class Collections(TestCase):
         """Items that fail to parse return None and must be filtered out in the final result."""
         items = list(itvx.collection_content(url='some/url'))
         self.assertListEqual([None] * 113, items)
+
 
 class Categories(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
@@ -282,8 +296,7 @@ class Categories(TestCase):
             items = itvx.category_news_content('my/url', *sub_cat)
             self.assertGreater(len(items), 4)
             for item in items:
-                self.assertIsInstance(item['type'], str)
-                is_li_compatible_dict(self, item['show'])
+                check_item(self, item)
 
             if sub_cat[0] in ('heroAndLatestData','longformData'):
                 free_items = itvx.category_news_content('my/url', *sub_cat, hide_paid=True)
@@ -303,15 +316,45 @@ class Episodes(TestCase):
         self.assertEqual(len(series_listing), 6)
         self.assertTrue(is_not_empty(programme_id, str))
 
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
+    def test_paid_episodes(self):
+        series_listing, programme_id = itvx.episodes('asd')
+        self.assertIsInstance(series_listing, dict)
+        self.assertEqual(7, len(series_listing))
+        self.assertEqual(7, len(series_listing['1']['episodes']))
+        self.assertTrue(is_not_empty(programme_id, str))
+
     @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
     def test_episodes_with_cache(self, p_fetch):
+        series_listing1, programme_id1 = itvx.episodes('asd', use_cache=False)
+        self.assertIsInstance(series_listing1, dict)
+        self.assertEqual(len(series_listing1), 6)
+        self.assertTrue(is_not_empty(programme_id1, str))
+        series_listing2, programme_id2 = itvx.episodes('asd', use_cache=True)
+        self.assertDictEqual(series_listing1, series_listing2)
+        self.assertEqual(programme_id1, programme_id2)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/paid_legacy_series.json'))
+    def test_episodes_legacy_format(self, p_fetch):
         series_listing, programme_id = itvx.episodes('asd', use_cache=False)
         self.assertIsInstance(series_listing, dict)
-        self.assertEqual(len(series_listing), 6)
+        self.assertEqual(1, len(series_listing))
+        self.assertEqual(6, len(series_listing[1]['episodes']))
+        # From cache:
+        p_fetch.reset_mock()
         series_listing, programme_id = itvx.episodes('asd', use_cache=True)
-        self.assertIsInstance(series_listing, dict)
-        self.assertEqual(len(series_listing), 6)
-        p_fetch.assert_called_once()
+        p_fetch.assert_not_called()
+        self.assertEqual(1, len(series_listing))
+        self.assertEqual(6, len(series_listing[1]['episodes']))
+        self.assertIsNone(programme_id)
+
+    def test_missing_episodes_data(self):
+        data = parsex.scrape_json(open_doc('html/series_miss-marple.html')())
+        del data['seriesList']
+        with patch('resources.lib.itvx.get_page_data', return_value=data):
+            series_listing, programme_id = itvx.episodes('asd')
+            self.assertFalse(is_not_empty(series_listing, dict))
+            self.assertIsNone(programme_id)
 
 
 class Search(TestCase):
@@ -380,6 +423,11 @@ class GetPLaylistUrl(TestCase):
     @patch('resources.lib.itvx.get_page_data',
            return_value=open_json('html/special_how-to-catch-a-cat-killer_data.json'))
     def test_get_playlist_from_special_item(self, _):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/news-short_item.html'))
+    def test_get_playlist_from_news_shortform_item(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 

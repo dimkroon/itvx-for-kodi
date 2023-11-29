@@ -8,14 +8,12 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import pytz
-from datetime import datetime, timedelta
-
 import unittest
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 from support.testutils import open_doc, open_json
-from support.object_checks import has_keys, is_url, is_li_compatible_dict
+from support.object_checks import has_keys, is_li_compatible_dict
 from resources.lib import parsex
 from resources.lib import errors
 from resources.lib import main

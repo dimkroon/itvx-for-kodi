@@ -78,7 +78,7 @@ class TestMyItvx(unittest.TestCase):
 
 
 class TstCategories(unittest.TestCase):
-    def test_categorey_drama_and_soaps(self):
+    def test_category_drama_and_soaps(self):
         items = main.list_category(MagicMock(), path='/watch/categories/drama-soaps')
         self.assertGreater(len(items), 10)
 

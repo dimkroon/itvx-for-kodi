@@ -346,7 +346,7 @@ def legacy_episodes(url):
             })
         series_obj['episodes'].extend(
             [parsex.parse_legacy_episode_title(episode, brand_fanart) for episode in series['episodes']])
-    cache.set_item(url, series_map, expire_time=1800)
+    cache.set_item(url, {'programme_id': None, 'series_map': series_map}, expire_time=1800)
     return series_map, None
 
 
