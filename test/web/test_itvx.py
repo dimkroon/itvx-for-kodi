@@ -62,7 +62,6 @@ class TestItvX(unittest.TestCase):
         for item in sub_cat_list:
             is_li_compatible_dict(self, item)
 
-
     def test_search(self):
         items = itvx.search('the chase')
         self.assertGreater(len(list(items)), 2)

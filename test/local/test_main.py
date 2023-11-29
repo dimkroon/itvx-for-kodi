@@ -7,7 +7,6 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import types
 import json
 
 from unittest import TestCase
@@ -76,7 +75,7 @@ class LiveChannels(TestCase):
     @patch('resources.lib.fetch.get_json', side_effect=(open_json('schedule/now_next.json'),
                                                         open_json('schedule/live_4hrs.json')))
     @patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError)
-    def test_list_live_channels_no_tz_settings(self, _, mocked_get_json):
+    def test_list_live_channels_no_tz_settings(self, _, __):
         cache.purge()
         chans = main.sub_menu_live.test()
         self.assertIsInstance(chans, list)

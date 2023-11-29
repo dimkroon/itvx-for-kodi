@@ -133,14 +133,14 @@ def set_default_cookies(cookiejar: RequestsCookieJar = None):
     Return the cookiejar
 
     """
+    s = requests.Session()
+    if isinstance(cookiejar, RequestsCookieJar):
+        s.cookies = cookiejar
+    elif cookiejar is not None:
+        raise ValueError("Parameter cookiejar must be an instance of RequestCookiejar")
+
     # noinspection PyBroadException
     try:
-        s = requests.Session()
-        if isinstance(cookiejar, RequestsCookieJar):
-            s.cookies = cookiejar
-        elif cookiejar is not None:
-            raise ValueError("Parameter cookiejar must be an instance of RequestCookiejar")
-
         # Make a request to reject all cookies.
         resp = s.get(
             'https://identityservice.syrenis.com/Home/SaveConsent',

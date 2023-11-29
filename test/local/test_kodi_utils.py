@@ -1,17 +1,14 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
-import unittest
-from unittest.mock import patch
-
 from test.support import fixtures
 fixtures.global_setup()
 
+import unittest
+from unittest.mock import patch
 
 from resources.lib import kodi_utils
 

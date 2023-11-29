@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
@@ -9,16 +8,19 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-from test.support.testutils import HttpResponse
-from test.support.object_checks import has_keys
-
 from unittest import TestCase
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, mock_open
 
+import json
 import requests
+from requests.cookies import RequestsCookieJar
 
 from resources.lib import fetch
 from resources.lib import errors
+from resources.lib import utils
+
+from test.support.testutils import HttpResponse
+from test.support.object_checks import has_keys
 
 
 setUpModule = fixtures.setup_local_tests
@@ -29,7 +31,42 @@ STD_HEADERS = ['User-Agent', 'Referer', 'Origin', 'Sec-Fetch-Dest', 'Sec-Fetch-M
                'Sec-Fetch-Site', 'Cache-Control', 'Pragma']
 
 
-class HttpSession(TestCase):
+class TestPersistentCookieJar(TestCase):
+    def test_persistent_jar(self):
+        jar = fetch.PersistentCookieJar('my/fle')
+
+    def test_save(self):
+        jar = fetch.PersistentCookieJar('my/file')
+        with patch('builtins.open', mock_open()) as m:
+            jar.save()
+            m.assert_not_called()
+            jar._has_changed = True
+            jar.save()
+            m.assert_called_once()
+
+    def test_set_cookie(self):
+        jar = fetch.PersistentCookieJar('my/file')
+        self.assertIs(jar._has_changed, False)
+        cookie = MagicMock()
+        cookie.name='hdntl'
+        jar.set_cookie(cookie)
+        self.assertIs(jar._has_changed, False)
+        jar.set_cookie(MagicMock())
+        self.assertIs(jar._has_changed, True)
+
+    def test_clear(self):
+        jar = fetch.PersistentCookieJar('my/file')
+        cookie = MagicMock()
+        cookie.domain = 'itv.com'
+        jar.set_cookie(cookie)
+        jar._has_changed = False
+        jar.clear(domain='bbc.com')
+        self.assertIs(jar._has_changed, False)
+        jar.clear(domain='itv.com')
+        self.assertIs(jar._has_changed, True)
+
+
+class TestHttpSession(TestCase):
     @patch('resources.lib.fetch._create_cookiejar')
     def test_http_session_is_singleton(self, p_create):
         fetch.HttpSession.instance = None   # remove a possible existing instance
@@ -47,6 +84,35 @@ class HttpSession(TestCase):
         # Remove the created instance so subsequent (web) requests don't end up with a
         # session with a patched cookiejar.
         fetch.HttpSession.instance = None
+
+    def test_http_session_non_existing_cookie_file(self):
+        fetch.HttpSession.instance = None  # remove a possible existing instance
+        with patch.object(utils.addon_info, 'profile', new='my/non/existing/path/'):
+            s = fetch.HttpSession()
+        jar = s.cookies
+        self.assertIsInstance(jar, fetch.PersistentCookieJar)
+        self.assertEqual('my/non/existing/path/cookies', jar.filename)
+
+
+class SetDefaultCookies(TestCase):
+    @patch('requests.Session.get', return_value=HttpResponse(content=b'{"CassieConsent": "{\\"my_cookie\\": \\"my_value\\"}"}'))
+    def test_get_default_cookies(self, _):
+        jar = RequestsCookieJar()
+        resp = fetch.set_default_cookies(jar)
+        self.assertIs(resp, jar)
+        self.assertTrue('my_cookie' in jar)
+        # without initial cookiejar, returns requests.Session's cookiejar
+        resp = fetch.set_default_cookies()
+        self.assertIsInstance(resp, RequestsCookieJar)
+        self.assertTrue('my_cookie' in resp)
+
+    def test_get_default_cookies_invalid_cookiejar(self):
+        self.assertRaises(ValueError, fetch.set_default_cookies, {})
+
+    @patch('requests.Session.get', side_effect=errors.HttpError)
+    def test_unexpected_response(self, _):
+        resp = fetch.set_default_cookies()
+        self.assertIs(resp, None)
 
 
 class WebRequest(TestCase):
@@ -87,10 +153,33 @@ class WebRequest(TestCase):
     def test_web_request_http_errors(self):
         with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=400)):
             self.assertRaises(errors.HttpError, fetch.web_request, 'get', URL)
+
         with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=401)):
             self.assertRaises(errors.AuthenticationError, fetch.web_request, 'get', URL)
+
         with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=403)):
             self.assertRaises(errors.HttpError, fetch.web_request, 'get', URL)
+
+        with patch('requests.sessions.Session.request', return_value=HttpResponse(
+                status_code=403, text=json.dumps({'error': 'invalid_grant'}))):
+            with self.assertRaises(errors.AuthenticationError) as cr:
+                fetch.web_request('get', URL)
+            self.assertEqual('Login failed', str(cr.exception))
+
+        with patch('requests.sessions.Session.request', return_value=HttpResponse(
+                status_code=403, text=json.dumps({'error': 'invalid_request'}))):
+            with self.assertRaises(errors.AuthenticationError) as cr:
+                fetch.web_request('get', URL)
+            self.assertEqual('Login failed', str(cr.exception))
+
+        with patch('requests.sessions.Session.request', return_value=HttpResponse(
+                status_code=403, text=json.dumps({'Message': 'User does not have entitlements'}))):
+            self.assertRaises(errors.AccessRestrictedError, fetch.web_request, 'get', URL)
+
+        with patch('requests.sessions.Session.request', return_value=HttpResponse(
+                status_code=403, text=json.dumps({'Message': 'Outside Of Allowed Geographic Region'}))):
+            self.assertRaises(errors.GeoRestrictedError, fetch.web_request, 'get', URL)
+
         with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=500, reason='server error')):
             with self.assertRaises(errors.HttpError) as err:
                 fetch.web_request('get', URL)

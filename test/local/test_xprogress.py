@@ -4,12 +4,11 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-import time
-
-from future.moves import itertools
-
 from test.support import fixtures
 fixtures.global_setup()
+
+import time
+import itertools
 
 from unittest import TestCase
 from unittest.mock import patch, Mock
