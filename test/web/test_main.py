@@ -52,29 +52,42 @@ class TestMyItvx(unittest.TestCase):
         cache.purge()
 
     def test_mylist(self):
-        items = main.list_my_list(MagicMock(), filter_char=None)
+        items = main.generic_list(MagicMock(), filter_char=None)
         self.assertGreater(len(items), 1)
 
     def test_mylist_wrong_user_id(self):
         with patch.object(itv_account._itv_session_obj, '_user_id', new=uuid.uuid4()):
-            self.assertRaises(errors.AccessRestrictedError, main.list_my_list.test, filter_char=None)
+            self.assertRaises(errors.AccessRestrictedError, main.generic_list.test, filter_char=None)
 
     def test_my_list_not_signed_in(self):
         with patch.object(itv_account._itv_session_obj, 'account_data', new={}):
-            self.assertRaises(SystemExit, main.list_my_list.test, filter_char=None)
+            self.assertRaises(SystemExit, main.generic_list.test, filter_char=None)
 
     @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
     def test_continue_watching(self, _):
-        items = main.list_last_watched.test(filter_char=None)
+        items = main.generic_list.test('watching', filter_char=None)
         self.assertGreater(len(items), 1)
 
     def test_continue_watching_with_wrong_userid(self):
-        with patch.object(itv_account._itv_session_obj, '_user_id', new=uuid.uuid4()):
-            self.assertRaises(errors.AccessRestrictedError, main.list_last_watched.test, filter_char=None)
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=str(uuid.uuid4())):
+            self.assertRaises(errors.AccessRestrictedError, main.generic_list.test, 'watching', filter_char=None)
 
     def test_continue_watching_not_signed_in(self):
         with patch.object(itv_account._itv_session_obj, 'account_data', new={}):
-            self.assertRaises(SystemExit, main.list_last_watched.test, filter_char=None)
+            self.assertRaises(SystemExit, main.generic_list.test, 'watching', filter_char=None)
+
+    def test_byw(self):
+        items = main.generic_list.test('byw')
+        self.assertEqual(12, len(items))
+
+    def test_byw_wrong_userid(self):
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=str(uuid.uuid4())):
+            items = main.generic_list.test('byw')
+            self.assertIs(items, False)
+
+    def test_recommended(self):
+        items = main.generic_list.test('recommended')
+        self.assertGreater(len(items), 12)
 
 
 class TstCategories(unittest.TestCase):

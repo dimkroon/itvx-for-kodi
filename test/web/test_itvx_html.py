@@ -265,6 +265,7 @@ def check_mylist_item(testcase, item, parent_name):
     testcase.assertTrue(item['tier'] in ('FREE', 'PAID'))
     testcase.assertTrue(is_iso_utc_time(item['dateAdded']))
     testcase.assertTrue(is_url(item['itvxImageLink']))
+    testcase.assertTrue(is_not_empty(item['programmeId'], str))
     testcase.assertFalse(is_encoded_programme_id(item['programmeId']))  # Programme ID in My List is NOT encoded.
 
 

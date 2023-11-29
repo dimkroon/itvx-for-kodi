@@ -85,16 +85,21 @@ class MyItvx(TestCase):
     def setUp(self):
         cache.purge()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
-    def test_submenu_my_itvx(self, _):
+    def test_submenu_my_itvx(self):
         list_items = main.sub_menu_my_itvx.test()
-        self.assertEqual(2, len(list_items))
+        self.assertEqual(3, len(list_items))
+        # Check 'Because You Watched' present when logged in
+        with patch.object(itv_account._itv_session_obj, '_user_id', 'dzgzdfgsf'):
+            with patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/byw.json')):
+                list_items = main.sub_menu_my_itvx.test()
+                self.assertEqual(4, len(list_items))
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
     @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
-    def test_list_last_watched(self, _, __):
-        shows = list(main.list_last_watched.route.unittest_caller(filter_char=None))
+    def test_list_last_watched(self, _, p_fetch):
+        shows = list(main.generic_list.test('watching', filter_char=None))
         self.assertEqual(7, len(shows))
+        p_fetch.assert_called_once()
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_initialise_my_list(self, _):
@@ -110,7 +115,7 @@ class MyItvx(TestCase):
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_list_mylist(self, _):
-        li_items = main.list_my_list.test(filter_char=None, page_nr=None)
+        li_items = main.generic_list.test(filter_char=None, page_nr=None)
         self.assertIsInstance(li_items, list)
         for item in li_items:
             self.assertIsInstance(item, Listitem)
@@ -146,6 +151,45 @@ class MyItvx(TestCase):
             self.assertIsNone(result)
         with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
             self.assertRaises(SystemExit, main.update_mylist.test, progr_id='10_1511', operation='remove')
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/byw.json'))
+    def test_because_you_watched(self, p_fetch):
+        # Not logged in
+        itv_account.itv_session()       # Ensure a session object exists
+        with patch.object(itv_account._itv_session_obj, '_user_id', ''):
+            result = main.generic_list.test('byw')
+            self.assertIs(result, False)
+            p_fetch.assert_not_called()
+        # Logged In
+        with patch.object(itv_account._itv_session_obj, '_user_id', 'dzgzdfgsf'):
+            result = main.generic_list.test('byw')
+        p_fetch.assert_called_once()
+        self.assertEqual(12, len(result))
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/recommended.json'))
+    def test_recommended(self, p_fetch):
+        # Not logged in
+        itv_account.itv_session()  # Ensure a session object exists
+        with patch.object(itv_account._itv_session_obj, '_user_id', ''):
+            result = main.generic_list.test('recommended')
+        p_fetch.assert_called_once()
+        self.assertEqual(12, len(result))
+
+        # Logged In
+        p_fetch.reset_mock()
+        cache.purge()
+        with patch.object(itv_account._itv_session_obj, '_user_id', 'dzgzdfgsf'):
+            result = main.generic_list.test('recommended')
+            p_fetch.assert_called_once()
+            self.assertEqual(12, len(result))
+
+            # Hide paid
+            with patch('xbmcaddon.Addon.getSetting', return_value='true'):
+                result = main.generic_list.test('recommended')
+            self.assertEqual(11, len(result))       # one paid item in the list.
+
+    def test_non_existing_type_of_generic_list(self):
+        self.assertRaises(ValueError, main.generic_list.test, 'non-existing-list')
 
 
 class Collections(TestCase):
@@ -459,14 +503,14 @@ class PlayStreamCatchup(TestCase):
             result._info['video']['title']
 
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
-    @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
+    @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=('my/subs.file', ))
     def test_play_episode_with_subtitles(self, _, __, ___):
         result = main.play_stream_catchup.test('some/url', 'my episode')
         self.assertEqual(len(result._subtitles), 1)
 
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
-    @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
+    @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=None)
     def test_play_episode_without_subtitles(self, _, __, ___):
         result = main.play_stream_catchup.test('some/url', 'my episode')

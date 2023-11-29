@@ -530,32 +530,43 @@ def parse_search_result(search_data):
     }
 
 
-def parse_my_list_item(item):
-    progr_name = item['programmeTitle']
-    progr_id = item['programmeId'].replace('/', '_')
-    num_episodes = item['numberOfEpisodes']
-    content_info = ' - {} episodes'.format(num_episodes) if num_episodes is not None else ''
-    img_link = item['itvxImageLink']
-    is_playable = item['contentType'].lower() != 'programme'
+def parse_my_list_item(item, hide_paid=False):
+    """Parser for items from My List, Recommended and Because You Watched."""
+    # noinspection PyBroadException
+    try:
+        if 'PAID' in item['tier']:
+            if hide_paid:
+                return None
+            description = premium_plot(item['synopsis'])
+        else:
+            description = item['synopsis']
+        progr_name = item.get('programmeTitle') or item['title']
+        progr_id = item['programmeId'].replace('/', '_')
+        num_episodes = item['numberOfEpisodes']
+        content_info = ' - {} episodes'.format(num_episodes) if num_episodes is not None else ''
+        img_link = item.get('itvxImageLink') or item.get('imageUrl')
+        is_playable = item['contentType'].lower() != 'programme'
 
-    item_dict = {
-        'type': item['contentType'].lower(),
-        'programme_id': progr_id,
-        'show': {
-            'label': progr_name,
-            'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
-                    'fanart': img_link.format(**IMG_PROPS_FANART)},
-            'info': {'title': progr_name if is_playable else '[B]{}[/B]{}'.format(progr_name, content_info),
-                     'plot': item['synopsis'] if item['tier'] == 'FREE' else premium_plot(item['synopsis']),
-                     'duration': utils.iso_duration_2_seconds(item['duration']),
-                     'sorttitle': sort_title(progr_name),
-                     'date': item['dateAdded']},
-            'params': {'url': build_url(progr_name, progr_id.replace('/', 'a'))}
+        item_dict = {
+            'type': item['contentType'].lower(),
+            'programme_id': progr_id,
+            'show': {
+                'label': progr_name,
+                'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
+                        'fanart': img_link.format(**IMG_PROPS_FANART)},
+                'info': {'title': progr_name if is_playable else '[B]{}[/B]{}'.format(progr_name, content_info),
+                         'plot':  description,
+                         'duration': utils.iso_duration_2_seconds(item.get('duration')),
+                         'sorttitle': sort_title(progr_name),
+                         'date': item.get('dateAdded')},
+                'params': {'url': build_url(progr_name, progr_id.replace('/', 'a'))}
+            }
         }
-    }
-    if item['contentType'] == 'FILM':
-        item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
-    return item_dict
+        if item['contentType'] == 'FILM':
+            item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
+        return item_dict
+    except:
+        logger.warning("Unexpected error parsing MyList item:\n", exc_info=True)
 
 
 def parse_last_watched_item(item, utc_now):

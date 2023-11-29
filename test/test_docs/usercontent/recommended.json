@@ -1,0 +1,388 @@
+[
+  {
+    "programmeId": "L0830",
+    "title": "Agatha Christie's Poirot",
+    "synopsis": "He's the super sleuth with a sharp mind and a peculiar manner",
+    "imageUrl": "https://ovp.itv.com/images/programme/qww56vx/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/qww56vx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 70,
+    "latestProduction": {
+      "episodeId": "1/5274/0013",
+      "channel": "ITV3",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-mono-neg.svg",
+      "series": 13,
+      "episode": 5,
+      "broadcastDateTime": "2022-02-14T09:49:00Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "10/4928",
+    "title": "Big Brother",
+    "synopsis": "Big Brother sees it all\u2026 stream the latest drama from the famous House",
+    "imageUrl": "https://ovp.itv.com/images/programme/r829kmj/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/r829kmj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 36,
+    "latestProduction": {
+      "episodeId": "10/4928/0036",
+      "channel": "ITV2",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv2/itv2-mono-neg.svg",
+      "series": 1,
+      "episode": 36,
+      "broadcastDateTime": "2023-11-17T22:30:24Z",
+      "categories": [
+        "ENTERTAINMENT"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "10/4518",
+    "title": "Mamma Mia! I Have a Dream",
+    "synopsis": "14 West End wannabes, four celebrity judges - the brand new reality show",
+    "imageUrl": "https://ovp.itv.com/images/programme/nsngvkx/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/nsngvkx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 6,
+    "latestProduction": {
+      "episodeId": "10/4518/0006",
+      "channel": "ITV",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg",
+      "series": 1,
+      "episode": 6,
+      "broadcastDateTime": "2023-11-26T19:27:59Z",
+      "categories": [
+        "ENTERTAINMENT"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": true,
+    "numberOfAvailableSeries": [
+      1
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "JOE90",
+    "title": "Joe 90",
+    "synopsis": "An ordinary boy with the power to protect humanity - 60s spy drama",
+    "imageUrl": "https://ovp.itv.com/images/programme/41wmqyv/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/41wmqyv/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 30,
+    "latestProduction": {
+      "episodeId": "ENT0865/0030",
+      "channel": "ITV",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg",
+      "series": 1,
+      "episode": 30,
+      "broadcastDateTime": "2023-10-28T06:00:00Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "10/1112",
+    "title": "Dad's Army",
+    "synopsis": "Don\u2019t panic! It\u2019s only Captain Mainwaring and his motley army ",
+    "imageUrl": "https://ovp.itv.com/images/programme/cg2n7nc/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/cg2n7nc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 78,
+    "latestProduction": {
+      "episodeId": "10/1112/0075",
+      "channel": "ITV",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg",
+      "series": 10,
+      "episode": 6,
+      "broadcastDateTime": "2022-09-21T23:01:00Z",
+      "categories": [
+        "COMEDY"
+      ]
+    },
+    "coldStart": false,
+    "tier": "PAID",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": "BBC",
+    "partnership": "BRITBOX"
+  },
+  {
+    "programmeId": "L1286",
+    "title": "Agatha Christie's Marple",
+    "synopsis": "Join Marple and a host of famous faces in this classic whodunnit ",
+    "imageUrl": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/1rstswq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 23,
+    "latestProduction": {
+      "episodeId": "1/5576/0015",
+      "channel": "ITV3",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-mono-neg.svg",
+      "series": 6,
+      "episode": 3,
+      "broadcastDateTime": "2022-02-14T09:49:00Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "2/5470",
+    "title": "Love Island: Australia",
+    "synopsis": "Fun, full on & ready for love - head Down Under with new eps daily",
+    "imageUrl": "https://ovp.itv.com/images/programme/s5txkkt/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/s5txkkt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 121,
+    "latestProduction": {
+      "episodeId": "2/5470/0124",
+      "channel": "ITVBE",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itvbe/itvbe-mono-neg.svg",
+      "series": 5,
+      "episode": 6,
+      "broadcastDateTime": "2023-11-27T07:00:00Z",
+      "categories": [
+        "ENTERTAINMENT"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": true,
+    "numberOfAvailableSeries": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "2/7401",
+    "title": "McDonald & Dodds",
+    "synopsis": "Rumbustious crime series about two detectives thrown together in Bath",
+    "imageUrl": "https://ovp.itv.com/images/programme/h187w24/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/h187w24/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 8,
+    "latestProduction": {
+      "episodeId": "2/7401/0008",
+      "channel": "ITV3",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-mono-neg.svg",
+      "series": 3,
+      "episode": 4,
+      "broadcastDateTime": "2022-07-10T20:56:48Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1,
+      2,
+      3
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "2/6976",
+    "title": "The Masked Singer",
+    "synopsis": "Who\u2019s behind the mask? Stream this BAFTA-winning singing show ",
+    "imageUrl": "https://ovp.itv.com/images/programme/71xn0cw/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/71xn0cw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 18,
+    "latestProduction": {
+      "episodeId": "2/6976/0062",
+      "channel": "ITV",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg",
+      "series": 5,
+      "episode": 9,
+      "broadcastDateTime": "2022-11-06T20:56:59Z",
+      "categories": [
+        "ENTERTAINMENT"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      3,
+      4,
+      5
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "2/7219",
+    "title": "Van der Valk",
+    "synopsis": "Fabulous remake of the 70s detective show - stream the boxset",
+    "imageUrl": "https://ovp.itv.com/images/programme/8c1kywk/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/8c1kywk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 6,
+    "latestProduction": {
+      "episodeId": "2/7219/0009",
+      "channel": "ITV3",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv3/itv3-mono-neg.svg",
+      "series": 3,
+      "episode": 3,
+      "broadcastDateTime": "2023-07-02T20:57:34Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      2,
+      3
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "CADFAEL",
+    "title": "Cadfael",
+    "synopsis": "Sir Derek Jacobi stars as a monk with a knack for solving mysteries",
+    "imageUrl": "https://ovp.itv.com/images/programme/1g5d59w/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/1g5d59w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 13,
+    "latestProduction": {
+      "episodeId": "23360/0003",
+      "channel": "ITV4",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv4/itv4-mono-neg.svg",
+      "series": 4,
+      "episode": 3,
+      "broadcastDateTime": "2022-09-12T06:29:00Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": false,
+    "numberOfAvailableSeries": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  },
+  {
+    "programmeId": "10/4934",
+    "title": "Deal or No Deal",
+    "synopsis": "The iconic red boxes are back! Join Stephen Mulhern for 2023's new series",
+    "imageUrl": "https://ovp.itv.com/images/programme/58sldx9/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "itvxImageUrl": "https://ovp.itv.com/images/programme/58sldx9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "numberOfEpisodes": 5,
+    "latestProduction": {
+      "episodeId": "10/4934/0005",
+      "channel": "ITV",
+      "channelLogoUrl": "http://fetd.prod.cps.awseuwest1.itvcloud.zone/itvstatic/assets/images/brands/itv/itv-mono-neg.svg",
+      "series": 1,
+      "episode": 5,
+      "broadcastDateTime": "2023-11-24T16:55:57Z",
+      "categories": [
+        "ENTERTAINMENT"
+      ]
+    },
+    "coldStart": false,
+    "tier": "FREE",
+    "longRunning": true,
+    "numberOfAvailableSeries": [
+      1
+    ],
+    "duration": null,
+    "contentType": "PROGRAMME",
+    "contentOwner": null,
+    "partnership": null
+  }
+]

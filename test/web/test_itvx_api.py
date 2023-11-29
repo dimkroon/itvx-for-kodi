@@ -27,6 +27,9 @@ from test.support import object_checks
 from test.support import testutils
 
 
+from . import test_itvx_html
+
+
 setUpModule = fixtures.setup_web_test
 
 
@@ -473,6 +476,88 @@ class LastWatched(unittest.TestCase):
         self.assertEqual('application/json', resp.headers['content-type'])
         self.assertDictEqual(data, resp.json())
 
+
+class Recommended(unittest.TestCase):
+    def setUp(self) -> None:
+        self.features_web = {
+                'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
+                'platform': 'dotcom',
+                'size': 12}
+        self.features_mobile = {
+                'features': 'mpeg-dash,widevine,widevine-download,inband-ttml,inband-webvtt,outband-webvtt,inband-audio-description',
+                'platform': 'mobile',
+                'size': 12}
+        self.userid = itv_account.itv_session().user_id
+        self.headers = {'accept': 'application/json'}
+
+    def test_get_recommendations_byw(self):
+        """Because You Watched - recommendations based on the (last) watched programme
+        Requires userid, but no login."""
+        url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/byw.json')
+        self.assertTrue(object_checks.is_not_empty(data['watched_programme'], str))
+        self.assertTrue(12, len(data['recommendations']))
+        for progr in data['recommendations']:
+            object_checks.check_item_type_programme(self, progr, 'BecauseYouWatched')
+
+        # without specifying content-type
+        resp = requests.get(url, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual('application/json', resp.headers['content-type'])
+
+        # invalid user ID
+        url = 'https://recommendations.prd.user.itv.com/recommendations/byw/none'
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(204, resp.status_code)
+
+    def test_recommendations_homepage(self):
+        """Regular recommendations place on the home page."""
+        self.features_web.update(tier='FREE', version='1')
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/recommended.json')
+        self.assertTrue(12, len(data))
+
+    def test_recommendations_homepage_with_invalid_userid(self):
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/none'
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertTrue(12, len(data))
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
+
+    def test_recommendations_homepage_without_invalid_userid(self):
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/'
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertTrue(12, len(data))
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
+
+    def test_recommendatation_homepage_more_items(self):
+        # request more than 12 items
+        self.features_web['size'] = 24
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        data = resp.json()
+        self.assertTrue(24, len(data))
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
+
+    def test_recommendations_homepage_mobile(self):
+        """This request fails without an apikey header"""
+        url = 'https://api.itv/hub/recommendations/homepage/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(401, resp.status_code)
 
 # ----------------------------------------------------------------------------------------------------------------------
 

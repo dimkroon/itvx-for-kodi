@@ -16,6 +16,7 @@ from typing import Generator
 from codequick import Route
 
 from resources.lib import itvx, errors, itv_account
+from resources.lib import cache
 from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
 
 setUpModule = fixtures.setup_web_test
@@ -27,6 +28,9 @@ def dummycallback():
 
 
 class TestItvX(unittest.TestCase):
+    def setUp(self):
+        cache.purge()
+
     def test_get_now_next_schedule(self):
         result = itvx.get_now_next_schedule()
         for item in result:
@@ -89,3 +93,23 @@ class TestItvX(unittest.TestCase):
         uid = itv_account.itv_session().user_id
         items = itvx.my_list(uid)
         self.assertGreater(len(items), 1)
+
+    def test_because_you_watched(self):
+        uid = itv_account.itv_session().user_id
+        byw_list = itvx.because_you_watched(uid)
+        self.assertEqual(12, len(byw_list))
+        # name only
+        progr_name = itvx.because_you_watched(uid, name_only=True)
+        self.assertIsInstance(progr_name, str)
+        # invalid user ID
+        byw_list = itvx.because_you_watched('kgnbjhgbjb')
+        self.assertIs(byw_list, None)
+        # name only
+
+    def test_recommended(self):
+        uid = itv_account.itv_session().user_id
+        recom_list = itvx.recommended(uid)
+        self.assertGreater(len(recom_list), 12)
+        # invalid user ID
+        recom_list = itvx.recommended('dgsd')
+        self.assertGreater(len(recom_list), 12)

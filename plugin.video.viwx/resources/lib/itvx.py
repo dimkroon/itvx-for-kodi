@@ -9,10 +9,11 @@
 import time
 import logging
 
-from datetime import datetime, timezone
 import pytz
 import requests
 import xbmc
+
+from datetime import datetime, timezone
 
 from codequick.support import logger_id
 
@@ -547,10 +548,49 @@ def get_resume_point(production_id: str):
     except errors.HttpError as err:
         if err.code == 404:
             # Normal response when no resume data is found, e.g. with 'next episodes'.
-            logger.warning("Resume point of production '%s' not available.", production_id)
+            logger.debug("Resume point of production '%s' not available.", production_id)
         else:
             logger.error("HTTP error %s: %s on request for resume point of production '%s'.",
                          err.code, err.reason, production_id)
     except:
         logger.error("Error obtaining resume point of production '%s'.", production_id, exc_info=True)
     return None
+
+
+def recommended(user_id, hide_paid=False):
+    """Get the list of recommendations from ITVX.
+    Always returns data, even if user_id is invalid or absent.
+
+    """
+    recommended_url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + user_id
+
+    recommended = cache.get_item(recommended_url)
+    if not recommended:
+        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24}
+        recommended = fetch.get_json(recommended_url, params=req_params)
+        if not recommended:
+            return None
+        cache.set_item(recommended_url, recommended, 43200)
+    return list(filter(None, (parsex.parse_my_list_item(item, hide_paid) for item in recommended)))
+
+
+def because_you_watched(user_id, name_only=False, hide_paid=False):
+    """Return the list of recommendation based on the last watched programme.
+
+    Returns 204 - No Content when user ID is invalid. Doesn't require authentication.
+    """
+    if not user_id:
+        return
+    byw_url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + user_id
+    byw = cache.get_item(byw_url)
+    if not byw:
+        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12}
+        byw = fetch.get_json(byw_url, params=req_params)
+        if not byw:
+            return
+        cache.set_item(byw_url, byw, 1800)
+
+    if name_only:
+        return byw['watched_programme']
+    else:
+        return list(filter(None, (parsex.parse_my_list_item(item, hide_paid) for item in byw['recommendations'])))
