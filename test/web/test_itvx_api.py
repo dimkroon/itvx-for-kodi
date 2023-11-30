@@ -248,6 +248,16 @@ class Search(unittest.TestCase):
         self.check_result(data)
         self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
+    def test_difference_between_platforms(self):
+        self.search_params.update({'query': 'doctor foster', 'platform': 'ctv'})
+        resp = requests.get(self.search_url, params=self.search_params, headers=self.headers)
+        data_ctv = resp.json()
+        self.search_params['plaform'] = 'dotcom'
+        resp = requests.get(self.search_url, params=self.search_params, headers=self.headers)
+        data_dotcom = resp.json()
+        self.assertDictEqual(data_dotcom, data_ctv)
+
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 
