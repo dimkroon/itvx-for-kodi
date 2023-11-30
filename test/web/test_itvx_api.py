@@ -183,6 +183,16 @@ class Search(unittest.TestCase):
             'onlyFree': 'false',
             'platform': 'ctv',
         }.copy()
+        self.headers = {
+            'user-agent':       'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0',
+            'accept':           'application/json',
+            'origin':           'https://www.itv.com',
+            'referer':          'https://www.itv.com/',
+            'accept-language':  'en-GB,en;q=0.5',
+            'sec-fetch-site':   'same-site',
+            'sec-fetch-mode':   'cors',
+            'sec-fetch-dest':   'empty'
+        }
 
     def check_result(self, resp_obj):
         object_checks.has_keys(resp_obj, 'results', 'maxScore', obj_name='search_result')
