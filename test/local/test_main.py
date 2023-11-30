@@ -130,6 +130,14 @@ class MyItvx(TestCase):
         # Callbacks of type Script should not return data
         self.assertIsNone(result)
 
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('xbmc.executebuiltin')
+    def test_add_mylist_item_container_refresh(self, p_exec_builtin, _):
+        main.update_mylist.test('10_1511', 'add', refresh=False)
+        p_exec_builtin.assert_not_called()
+        main.update_mylist.test('10_1511', 'add', refresh=True)
+        p_exec_builtin.assert_called_once_with('Container.Refresh')
+
     def test_add_mylist_item_with_auth_error(self):
         with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
             result = main.update_mylist.test(progr_id='10_1511', operation='add')
@@ -415,6 +423,13 @@ class Search(TestCase):
     def test_search_with_no_results(self, _):
         results = main.do_search.test('the chase')
         self.assertIs(results, False)
+
+    @patch('requests.sessions.Session.send',
+           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+    @patch('resources.lib.main._my_list_context_mnu')
+    def test_search_context_menu_does_not_refresh_container(self, p_ctx_mnu, _):
+        main.do_search.test('monday')
+        self.assertIs(False, p_ctx_mnu.call_args.kwargs['refresh'])
 
 
 @patch('requests.get', return_value=HttpResponse())

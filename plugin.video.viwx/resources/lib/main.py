@@ -220,7 +220,7 @@ def _initialise_my_list():
         pass
 
 
-def _my_list_context_mnu(list_item, programme_id):
+def _my_list_context_mnu(list_item, programme_id, refresh=True):
     """If `list_item` contains a programme_id, check if the id is in 'My List'
     and add a context menu to add or remove the item from the list accordingly.
 
@@ -229,9 +229,11 @@ def _my_list_context_mnu(list_item, programme_id):
         return
     try:
         if programme_id in cache.my_list_programmes:
-            list_item.context.script(update_mylist, "Remove from My List", progr_id=programme_id, operation='remove')
+            list_item.context.script(update_mylist, "Remove from My List",
+                                     progr_id=programme_id, operation='remove', refersh=refresh)
         else:
-            list_item.context.script(update_mylist, "Add to My List", progr_id=programme_id, operation='add')
+            list_item.context.script(update_mylist, "Add to My List",
+                                     progr_id=programme_id, operation='add', refresh=refresh)
     except TypeError:
         # The cached list of programme ID's is not intialised; do not set a context menu
         logger.warning("Cannot create 'My List' context menu")
@@ -459,7 +461,7 @@ def do_search(addon, search_query):
         if result is None:
             continue
         li = Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
-        _my_list_context_mnu(li, result['programme_id'])
+        _my_list_context_mnu(li, result['programme_id'], refresh=False)
         yield li
 
 
@@ -620,11 +622,12 @@ def play_title(plugin, url, name=''):
 
 
 @Script.register
-def update_mylist(_, progr_id, operation):
+def update_mylist(_, progr_id, operation, refresh=True):
     """Context menu handler to add or remove a programme from itvX's 'My List'.
 
     @param str progr_id: The underscore encoded programme ID.
     @param str operation: The operation to apply; either 'add' or 'remove'.
+    @param bool refresh: whether to perform a Container.Refresh
 
     """
     try:
@@ -636,7 +639,8 @@ def update_mylist(_, progr_id, operation):
             kodi_utils.msg_dlg('Failed to remove this item from My List', 'My List Error')
         return
     logger.info("Updated MyList: %s programme %s", operation, progr_id)
-    xbmc.executebuiltin('Container.Refresh')
+    if refresh:
+        xbmc.executebuiltin('Container.Refresh')
 
 
 def run():
