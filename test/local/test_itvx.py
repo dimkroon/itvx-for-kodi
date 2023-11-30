@@ -372,6 +372,15 @@ class Search(TestCase):
         result = itvx.search('xprs')
         self.assertIsNone(result)
 
+    @patch('requests.get')
+    def test_search_hide_paid(self, p_get):
+        itvx.search('xprs')
+        url = p_get.call_args.args[0]
+        self.assertTrue('onlyFree=false' in url)
+        itvx.search('xprs', hide_paid=True)
+        url = p_get.call_args.args[0]
+        self.assertTrue('onlyFree=true' in url)
+
 
 class LastWatched(TestCase):
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))

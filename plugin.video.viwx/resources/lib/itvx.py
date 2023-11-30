@@ -456,13 +456,9 @@ def search(search_term, hide_paid=False):
 
     """
     from urllib.parse import quote
-    # Include the querystring in url. If requests builds the querystring from parameters it will quote the
-    # commas in argument `featureset`, and ITV's search appears to have a problem with that and sometimes returns
-    # no results.
     url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
-          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=dotcom&query=' + quote(
-
-        search_term)
+          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree={}&platform=ctv&query={}'.format(
+        str(hide_paid).lower(), quote(search_term))
     headers = {
         'User-Agent': fetch.USER_AGENT,
         'accept': 'application/json',
