@@ -226,7 +226,7 @@ class Search(unittest.TestCase):
         self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
         # self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
-    def test_search_foster_only_free(self):
+    def test_search_foster_only_free_ctv(self):
         # Search exclude paid
         url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,'
                'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=true&platform=ctv&query='
@@ -237,6 +237,15 @@ class Search(unittest.TestCase):
         self.assertGreater(len(data['results']), 0)
         self.check_result(data)
         # self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
+        self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
+
+    def test_search_foster_only_free_dotcom(self):
+        # Search exclude paid
+        self.search_params.update({'query': 'doctor foster', 'onlyFree': 'true', 'platform': 'dotcom'})
+        resp = requests.get(self.search_url, params=self.search_params, headers=self.headers)
+        data = resp.json()
+        self.assertGreater(len(data['results']), 0)
+        self.check_result(data)
         self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
 
