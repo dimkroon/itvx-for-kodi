@@ -249,9 +249,6 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
     Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
 
     """
-    """Parse data found in news collection and in short news clips from news sub-categories
-
-    """
     try:
         if 'encodedProgrammeId' in item_data.keys():
             # The news item is a 'normal' catchup title. Is usually just the latest ITV news.

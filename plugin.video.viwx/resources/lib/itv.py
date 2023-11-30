@@ -166,7 +166,7 @@ def get_catchup_urls(episode_url):
 
 def get_vtt_subtitles(subtitles_url):
     """Return a tuple with the file paths to rst subtitles files. The tuple usually
-    has only one single element, but could contain more.
+    has only a single element, but could contain more.
 
     Return None if subtitles_url does not point to a valid Web-vvt subtitle file or
     subtitles are not te be shown by user setting.

@@ -39,7 +39,7 @@ class ItvSession:
         try:
             return self.account_data['itv_session']['access_token']
         except (KeyError, TypeError):
-            logger.debug("Cannot produce access token from account data: %s", self.account_data)
+            logger.debug("Cannot produce access token from account data: %s.", self.account_data)
             return ''
 
     @property
@@ -48,7 +48,7 @@ class ItvSession:
         try:
             return self.account_data['cookies']
         except (KeyError, TypeError):
-            logger.debug("Cannot produce cookies from account data: %s", self.account_data)
+            logger.debug("Cannot produce cookies from account data: %s.", self.account_data)
             return {}
 
     @property
@@ -85,7 +85,7 @@ class ItvSession:
         data_str = json.dumps(self.account_data)
         with open(session_file, 'w') as f:
             f.write(data_str)
-        logger.info("ITV account data saved to file")
+        logger.info("ITV account data saved to file.")
 
     def login(self, uname: str, passw: str):
         """Sign in to itv account with `uname` and `passw`.
@@ -130,7 +130,7 @@ class ItvSession:
             else:
                 raise
         else:
-            logger.info("Sign in successful")
+            logger.info("Sign in successful.")
             self._user_id, self._user_nickname, self._expire_time = parse_token(session_data.get('access_token'))
             self.save_account_data()
             return True
@@ -161,6 +161,7 @@ class ItvSession:
             self.account_data['refreshed'] = time.time()
             self._user_id, self._user_nickname, self._expire_time = parse_token(session_data.get('access_token'))
             self.save_account_data()
+            logger.info("Tokens refreshed.")
             return True
         except (KeyError, ValueError, FetchError) as e:
             logger.warning("Failed to refresh ITVtokens - %s: %s" % (type(e), e))

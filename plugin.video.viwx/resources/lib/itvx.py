@@ -245,8 +245,12 @@ def collection_content(url=None, slider=None, hide_paid=False):
 def episodes(url, use_cache=False):
     """Get a listing of series and their episodes
 
-    Return a list containing only relevant info in a format that can easily be
-    used by codequick Listitem.from_dict().
+    Return a tuple of a series map and a programmeId.
+    The series map is a dict where keys are series numbers and values are dicts
+    containing general info regarding the series itself and a list of episodes.
+    Both formatted in a way that can be used by ListItem.from_dict().
+    The programmeId is the programme ID used by ITVX, and is the same for each
+    series and each episode.
 
     """
     if use_cache:
@@ -275,7 +279,7 @@ def episodes(url, use_cache=False):
         return {}, None
 
     # The field 'seriesNumber' is not guaranteed to be unique - and not guaranteed an integer either.
-    # Midsummer murder for instance has 2 series with seriesNumber 4
+    # Midsummer murder for instance has had 2 series with seriesNumber 4
     # By using this mapping, setdefault() and extend() on the episode list, series with the same
     # seriesNumber are automatically merged.
     series_map = {}
@@ -510,7 +514,7 @@ def my_list(user_id, programme_id=None, operation=None, offer_login=True):
         'remove': fetch.delete_json}.get(operation, fetch.get_json)
 
     data = itv_account.fetch_authenticated(fetcher, url, data=None, login=offer_login)
-    # Empty lists will return HTTP status 204, which results in data being None
+    # Empty lists will return HTTP status 204, which results in data being None.
     if data:
         my_list_items = [parsex.parse_my_list_item(item) for item in data]
     else:

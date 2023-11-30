@@ -104,7 +104,6 @@ class TestItvX(unittest.TestCase):
         # invalid user ID
         byw_list = itvx.because_you_watched('kgnbjhgbjb')
         self.assertIs(byw_list, None)
-        # name only
 
     def test_recommended(self):
         uid = itv_account.itv_session().user_id

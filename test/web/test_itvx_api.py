@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
@@ -25,9 +24,6 @@ from resources.lib import utils
 from resources.lib import main
 from test.support import object_checks
 from test.support import testutils
-
-
-from . import test_itvx_html
 
 
 setUpModule = fixtures.setup_web_test
@@ -392,7 +388,7 @@ class LastWatched(unittest.TestCase):
             self.assertTrue(object_checks.is_not_empty(item['productionId'], str))
             self.assertTrue(object_checks.is_not_empty(item['programmeTitle'], str))
             self.assertTrue(object_checks.is_not_empty(item['synopsis'], str))
-            # tier is usually of type list, but is string here. The parser accepts both
+            # Tier is usually of type list, but is string here. The parser accepts both
             self.assertTrue(object_checks.is_not_empty(item['tier'], str))
             self.assertTrue(object_checks.is_iso_utc_time(item['viewedOn']))
             self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))

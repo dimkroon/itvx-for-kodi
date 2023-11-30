@@ -327,6 +327,7 @@ def sub_menu_live(_):
 
 @Route.register(content_type='videos')
 def list_collections(_):
+    """A list of all available collections."""
     url ='https://www.itv.com'
     main_page = itvx.get_page_data(url, cache_time=3600)
     for slider in main_page['shortFormSliderContent']:
