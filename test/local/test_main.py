@@ -102,18 +102,6 @@ class MyItvx(TestCase):
         p_fetch.assert_called_once()
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
-    def test_initialise_my_list(self, _):
-        main._initialise_my_list()
-
-    def test_initialise_my_list_not_logged_in(self):
-        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AuthenticationError):
-            main._initialise_my_list()
-        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
-            main._initialise_my_list()
-        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
-            main._initialise_my_list()
-
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_list_mylist(self, _):
         li_items = main.generic_list.test(filter_char=None, page_nr=None)
         self.assertIsInstance(li_items, list)

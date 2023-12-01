@@ -203,23 +203,6 @@ def sub_menu_my_itvx(_):
     yield Listitem.from_dict(generic_list, 'Recommended for You', params={'list_type':'recommended'})
 
 
-def _initialise_my_list():
-    """Get all items from itvX's 'My List'.
-    Used when the module is first imported to initialise the cached list of
-    programme ID's before the plugin lists programmes.
-
-    """
-    try:
-        itvx.my_list(itv_account.itv_session().user_id, offer_login=False)
-        logger.info("Updated MyList programme ID's.")
-    except:
-        # Since this runs before codequick.run() all exceptions must be caught to prevent them
-        # crashing the addon before the main menu is shown.
-        # Most likely the user is not (yet) logged in, but at the start of the addon connection
-        # errors could also occur, depending on the network setup.
-        pass
-
-
 def _my_list_context_mnu(list_item, programme_id, refresh=True):
     """If `list_item` contains a programme_id, check if the id is in 'My List'
     and add a context menu to add or remove the item from the list accordingly.
@@ -230,7 +213,7 @@ def _my_list_context_mnu(list_item, programme_id, refresh=True):
     try:
         if programme_id in cache.my_list_programmes:
             list_item.context.script(update_mylist, "Remove from My List",
-                                     progr_id=programme_id, operation='remove', refersh=refresh)
+                                     progr_id=programme_id, operation='remove', refresh=refresh)
         else:
             list_item.context.script(update_mylist, "Add to My List",
                                      progr_id=programme_id, operation='add', refresh=refresh)
@@ -669,6 +652,7 @@ callb_map = {
 }
 
 
-# Ensure to update the cached list of programmeId's in itvx's My List each time the addon starts.
-if cache.my_list_programmes is None:
-    _initialise_my_list()
+# A rather hacky method to ensure the cached list of programmeId's in itvx's My List
+# is updated each time the addon starts, but not on settings callbacks.
+if cache.my_list_programmes is None and 'resources/lib/settings' not in sys.argv[0]:
+    itvx.initialise_my_list()

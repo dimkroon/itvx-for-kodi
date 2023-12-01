@@ -496,6 +496,25 @@ class GetMyList(TestCase):
         p_delete.assert_called_once()
 
 
+class InitialiseMyList(TestCase):
+    def setUp(self):
+        cache.purge()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_initialise_my_list(self, _):
+        itvx.initialise_my_list()
+
+    def test_initialise_my_list_not_logged_in(self):
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AuthenticationError):
+            itvx.initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.AccessRestrictedError):
+            itvx.initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.FetchError):
+            itvx.initialise_my_list()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
+            self.assertRaises(SystemExit, itvx.initialise_my_list)
+
+
 class Recommendations(TestCase):
     @classmethod
     def setUpClass(cls):

@@ -489,7 +489,7 @@ def search(search_term, hide_paid=False):
     return (parsex.parse_search_result(result) for result in results)
 
 
-def my_list(user_id, programme_id=None, operation=None, offer_login=True):
+def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
     """Get itvX's 'My List', or add or remove an item from 'My List' and return the updated list.
 
     """
@@ -498,7 +498,7 @@ def my_list(user_id, programme_id=None, operation=None, offer_login=True):
             user_id, programme_id, FEATURE_SET, PLATFORM_TAG)
     else:
         cached_list = cache.get_item('mylist_' + user_id)
-        if cached_list is not None:
+        if use_cache and cached_list is not None:
             return cached_list
         else:
             url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform={}'.format(
@@ -518,6 +518,24 @@ def my_list(user_id, programme_id=None, operation=None, offer_login=True):
     cache.set_item('mylist_' + user_id, my_list_items, 1800)
     cache.my_list_programmes = list(item['programme_id'] for item in my_list_items)
     return my_list_items
+
+
+def initialise_my_list():
+    """Get all items from itvX's 'My List'.
+    Used when the module is first imported, or after account sign in to initialise
+    the cached list of programme ID's before the plugin lists programmes.
+
+    """
+    try:
+        my_list(itv_account.itv_session().user_id, offer_login=False, use_cache=False)
+        logger.info("Updated MyList programme ID's.")
+    except Exception as err:
+        # Since this runs before codequick.run() all exceptions must be caught to prevent them
+        # crashing the addon before the main menu is shown.
+        # Most likely the user is not (yet) logged in, but at the start of the addon connection
+        # errors could also occur, depending on the network setup.
+        logger.info("Failed to update MyList programme ID's: %r.", err)
+        pass
 
 
 def get_last_watched():

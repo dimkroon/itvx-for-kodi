@@ -170,6 +170,7 @@ class ItvSession:
         return False
 
     def log_out(self):
+        logger.info("Signing out to ITV account")
         self.account_data = {}
         self.save_account_data()
         self._user_id = None
