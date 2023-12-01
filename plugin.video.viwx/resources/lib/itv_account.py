@@ -53,11 +53,11 @@ class ItvSession:
 
     @property
     def user_id(self):
-        return self._user_id
+        return self._user_id or ''
 
     @property
     def user_nickname(self):
-        return self._user_nickname
+        return self._user_nickname or ''
 
     def read_account_data(self):
         session_file = os.path.join(utils.addon_info.profile, "itv_session")
@@ -170,6 +170,7 @@ class ItvSession:
         return False
 
     def log_out(self):
+        logger.info("Signing out to ITV account")
         self.account_data = {}
         self.save_account_data()
         self._user_id = None

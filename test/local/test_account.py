@@ -296,6 +296,14 @@ class PropUserId(unittest.TestCase):
         p_login.assert_not_called()
         p_refresh.assert_not_called()
 
+    def test_user_id_after_logout(self, _, __):
+        acc_data = deepcopy(account_data_v2)
+        acc_data['itv_session'] = session_dta['itv_session']
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
+            sess = itv_account.ItvSession()
+        sess.log_out()
+        self.assertEqual('', sess.user_id)
+
 
 @patch('resources.lib.itv_account.ItvSession.login')
 @patch('resources.lib.itv_account.ItvSession.refresh')
@@ -316,6 +324,14 @@ class PropUserNickName(unittest.TestCase):
         self.assertEqual('', sess.user_nickname)
         p_login.assert_not_called()
         p_refresh.assert_not_called()
+
+    def test_user_id_after_logout(self, _, __):
+        acc_data = deepcopy(account_data_v2)
+        acc_data['itv_session'] = session_dta['itv_session']
+        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
+            sess = itv_account.ItvSession()
+        sess.log_out()
+        self.assertEqual('', sess.user_nickname)
 
 
 class Misc(unittest.TestCase):
@@ -362,9 +378,13 @@ class Misc(unittest.TestCase):
         ct_sess = itv_account.ItvSession()
         p_save.reset_mock()
         ct_sess.account_data = {"some data"}
+        ct_sess._user_id = 'myuserid'
+        ct_sess._user_nickname = 'my-nick'
         ct_sess.log_out()
         self.assertEqual(ct_sess.account_data, {})
         p_save.assert_called_once()
+        self.assertEqual('', ct_sess.user_id)
+        self.assertEqual('', ct_sess.user_nickname)
 
     def test_parse_token(self):
         access_tkn, _, __ = build_test_tokens('My username')
