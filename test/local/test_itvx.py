@@ -328,7 +328,7 @@ class Episodes(TestCase):
         self.assertTrue(is_not_empty(programme_id, str))
 
     @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
-    def test_episodes_with_cache(self, p_fetch):
+    def test_episodes_with_cache(self, _):
         series_listing1, programme_id1 = itvx.episodes('asd', use_cache=False)
         self.assertIsInstance(series_listing1, dict)
         self.assertEqual(len(series_listing1), 6)
@@ -467,8 +467,17 @@ class GetMyList(TestCase):
         p_fetch.assert_called_once()
 
     @patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit)
-    def test_get_mylist_not_signed_in(self, p_fetch):
+    def test_get_mylist_not_signed_in(self, _):
         self.assertRaises(SystemExit, itvx.my_list, '156-45xsghf75-4sf569')
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    def test_get_my_list_cache_not_used_after_user_change(self, p_fetch):
+        itvx.my_list('156-45xsghf75-4sf569')
+        p_fetch.assert_called_once()
+        # Check cache is not used with another user ID
+        p_fetch.reset_mock()
+        itvx.my_list('xxx')
+        p_fetch.assert_called_once()
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_add_mylist_item(self, p_fetch):

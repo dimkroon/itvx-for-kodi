@@ -497,7 +497,7 @@ def my_list(user_id, programme_id=None, operation=None, offer_login=True):
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features={}&platform={}'.format(
             user_id, programme_id, FEATURE_SET, PLATFORM_TAG)
     else:
-        cached_list = cache.get_item('mylist')
+        cached_list = cache.get_item('mylist_' + user_id)
         if cached_list is not None:
             return cached_list
         else:
@@ -515,19 +515,20 @@ def my_list(user_id, programme_id=None, operation=None, offer_login=True):
         my_list_items = [parsex.parse_my_list_item(item) for item in data]
     else:
         my_list_items = []
-    cache.set_item('mylist', my_list_items, 1800)
+    cache.set_item('mylist_' + user_id, my_list_items, 1800)
     cache.my_list_programmes = list(item['programme_id'] for item in my_list_items)
     return my_list_items
 
 
 def get_last_watched():
-    cache_key = 'last_watched'
+    user_id = itv_account.itv_session().user_id
+    cache_key = 'last_watched_' + user_id
     cached_data = cache.get_item(cache_key)
     if cached_data is not None:
         return cached_data
 
     url = 'https://content.prd.user.itv.com/lastwatched/user/{}/{}?features={}'.format(
-            itv_account.itv_session().user_id, PLATFORM_TAG, FEATURE_SET)
+            user_id, PLATFORM_TAG, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
     data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
