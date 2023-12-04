@@ -13,7 +13,7 @@ import binascii
 import unittest
 from unittest.mock import patch
 
-from resources.lib import itv_account
+from resources.lib import itv_account, errors
 from test.support import testutils
 from test.support import object_checks
 from test.local.test_account import ACCESS_TKN_FIELDS, REFRESH_TKN_FIELDS, PROFILE_TKN_FIELDS
@@ -32,9 +32,14 @@ class TestItvSession(unittest.TestCase):
 
 class TestLogin(unittest.TestCase):
     def test_login(self):
-        itv_sess = itv_account.itv_session()
+        itv_sess = itv_account.ItvSession()
         resp = itv_sess.login(account_login.UNAME, account_login.PASSW)
         self.assertTrue(resp)
+
+    def test_login_with_invalid_credentials(self):
+        itv_sess = itv_account.ItvSession()
+        self.assertRaises(errors.AuthenticationError, itv_sess.login, 'user.name', account_login.PASSW)
+        self.assertRaises(errors.AuthenticationError, itv_sess.login, account_login.UNAME, 'password')
 
     def test_refresh(self):
         tv_sess = itv_account.itv_session()
