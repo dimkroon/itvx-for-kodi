@@ -634,12 +634,12 @@ class Categories(unittest.TestCase):
         categories = data['subnav']['items']
         t_2 = time.time()
         for item in categories:
-            has_keys(item, 'id', 'name', 'label', 'url')
+            has_keys(item, 'id', 'label', 'url')
             # url is the full path without domain
             self.assertTrue(item['url'].startswith('/watch/'))
 
         self.assertEqual(8, len(categories))        # the mobile app has an additional category AD (Audio Described)
-        self.assertListEqual([cat['label'].lower().replace(' & ', '-') for cat in categories], self.all_categories)
+        self.assertListEqual([cat['id'] for cat in categories], self.all_categories)
         # print('Categorie page fetched in {:0.3f}, parsed in {:0.3f}, total: {:0.3f}'.format(
         #     t_1 - t_s, t_2 - t_1, t_2 - t_s))
 
