@@ -359,7 +359,7 @@ def categories():
     """Return all available categorie names."""
     data = get_page_data('https://www.itv.com/watch/categories', cache_time=86400)
     cat_list = data['subnav']['items']
-    return ({'label': cat['name'], 'params': {'path': cat['url']}} for cat in cat_list)
+    return ({'label': cat['label'], 'params': {'path': cat['url']}} for cat in cat_list)
 
 
 def category_news(path):
