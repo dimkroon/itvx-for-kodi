@@ -41,6 +41,8 @@ def get_page_data(url, cache_time=None):
     if not url.startswith('https://'):
         url = 'https://www.itv.com' + url
 
+    # URL's with a trailing space have actually happened, but the web app doesn't seem to have a problem with it.
+    url = url.rstrip()
     if cache_time:
         cached_data = cache.get_item(url)
         if cached_data:

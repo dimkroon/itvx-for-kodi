@@ -451,7 +451,8 @@ class CollectionPages(unittest.TestCase):
                     return
                 heading_link = collection_data.get('headingLink')
                 if heading_link:
-                    page_ref = 'https://www.itv.com/watch' + heading_link['href']
+                    # Yes, strip trailing white space. It has actually happened...
+                    page_ref = 'https://www.itv.com/watch' + heading_link['href'].rstrip()
                     if page_ref != url:
                         # Some sliders have a 'view all' reference to their own page.
                         # Which is not so bad on a website and in Kodi, but disastrous in this test.

@@ -33,17 +33,26 @@ def check_item(testcase, item):
 
 
 @patch('resources.lib.cache.set_item')
-@patch('resources.lib.fetch.get_document', new=open_doc('html/index.html'))
+@patch('resources.lib.fetch.get_document', return_value=open_doc('html/index.html')())
 class GetPageData(TestCase):
     @patch('resources.lib.cache.get_item', return_value="Cached data")
-    def test_get_page_data(self, p_get_item, p_set_item):
-        data = itvx.get_page_data('my/url')
+    def test_get_page_data(self, p_get_item, p_get_doc, p_set_item):
+        data = itvx.get_page_data('/my/url')
         self.assertIsInstance(data, dict)
         p_get_item.assert_not_called()
         p_set_item.assert_not_called()
+        p_get_doc.assert_called_with('https://www.itv.com/my/url')
+        # full url with protocol
+        p_get_doc.reset_mock()
+        itvx.get_page_data('https://www.itv.com/my/url')
+        p_get_doc.assert_called_with('https://www.itv.com/my/url')
+        # with trailing space
+        p_get_doc.reset_mock()
+        itvx.get_page_data('/my/url ')
+        p_get_doc.assert_called_with('https://www.itv.com/my/url')
 
     @patch('resources.lib.cache.get_item', return_value="Cached data")
-    def test_get_page_from_cache(self, p_get_item, p_set_item):
+    def test_get_page_from_cache(self, p_get_item, _, p_set_item):
         url = 'some/url'
         data = itvx.get_page_data(url, 20)
         self.assertEqual("Cached data", data)
@@ -52,7 +61,7 @@ class GetPageData(TestCase):
         p_set_item.assert_not_called()
 
     @patch('resources.lib.cache.get_item', return_value=None)
-    def test_get_page_from_empty_cache(self, p_get_item, p_set_item):
+    def test_get_page_from_empty_cache(self, p_get_item, _, p_set_item):
         url = 'some/url'
         data = itvx.get_page_data(url, 20)
         self.assertIsInstance(data, dict)
