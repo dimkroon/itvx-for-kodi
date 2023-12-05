@@ -418,6 +418,10 @@ def parse_episode_title(title_data, brand_fanart=None):
     else:
         info_title = title_data['heroCtaLabel']
 
+    series_nr = title_data.get('series')
+    if not isinstance(series_nr, int):
+        series_nr = None
+
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -429,7 +433,7 @@ def parse_episode_title(title_data, brand_fanart=None):
                  'duration': utils.iso_duration_2_seconds(title_data['notFormattedDuration']),
                  'date': title_data['dateTime'],
                  'episode': episode_nr,
-                 'season': title_data.get('series'),
+                 'season': series_nr,
                  'year': title_data.get('productionYear')},
         'params': {'url': title_data['playlistUrl'], 'name': title}
     }

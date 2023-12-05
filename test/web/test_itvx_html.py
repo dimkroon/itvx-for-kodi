@@ -553,9 +553,9 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
                 ):
             page = fetch.get_document(url)
-            # testutils.save_doc(page, 'html/series_miss-marple.html')
+            # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/series_midsummer-murders.json')
+            # testutils.save_json(data, 'html/series_midsomer-murders.json')
             programme_data = data['programme']
             check_programme(self, programme_data)
             for series in data['seriesList']:

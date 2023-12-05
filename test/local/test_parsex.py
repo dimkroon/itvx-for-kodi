@@ -195,29 +195,25 @@ class Generic(unittest.TestCase):
         self.assertIsNone(item)
 
     def test_parse_episode_title(self):
-        data = open_json('html/series_miss-marple_data.json')
-        item = parsex.parse_episode_title(data['seriesList'][0]['titles'][0])
-        is_li_compatible_dict(self, item)
-
-        # Episodes where field episodeTitle = None
-        data = open_json('html/series_bad-girls_data.json')
-        title_obj = data['seriesList'][6]['titles'][0]
+        title_obj = open_json('json/episodes.json')[0]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
-        # Episode where field seriesNumber is not a number, but 'other episodes'.
-        data = open_json('html/series_midsummer-murders.json')
-        series = data['seriesList'][-1]
-        self.assertEqual('Other Episodes', series['seriesLabel'])
-        title_obj = series['titles'][0]
+        # Episodes where field episodeTitle = None
+        title_obj = open_json('json/episodes.json')[1]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
         # Paid episode
-        title_obj['premium'] = True
+        title_obj = open_json('json/episodes.json')[2]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
         self.assertTrue('premium' in item['info']['plot'].lower())
+
+        # Episode where field seriesNumber is not a number, but 'other episodes'.
+        title_obj = open_json('json/episodes.json')[3]['episode']
+        item = parsex.parse_episode_title(title_obj)
+        is_li_compatible_dict(self, item)
 
     def test_parse_search_result(self):
         # These files contain programmes, episodes, films and specials both and without a specialProgramm field.
