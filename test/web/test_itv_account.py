@@ -31,20 +31,22 @@ class TestItvSession(unittest.TestCase):
 
 
 class TestLogin(unittest.TestCase):
-    def test_login(self):
+    def test_login_and_refresh(self):
         itv_sess = itv_account.ItvSession()
-        resp = itv_sess.login(account_login.UNAME, account_login.PASSW)
-        self.assertTrue(resp)
+        with patch.object(itv_sess, 'save_account_data') as p_save:
+            # login
+            resp = itv_sess.login(account_login.UNAME, account_login.PASSW)
+            self.assertTrue(resp)
+            p_save.assert_called_once()
+            # refresh
+            resp = itv_sess.refresh()
+            self.assertTrue(resp)
+            self.assertEqual(2, p_save.call_count)
 
     def test_login_with_invalid_credentials(self):
         itv_sess = itv_account.ItvSession()
         self.assertRaises(errors.AuthenticationError, itv_sess.login, 'user.name', account_login.PASSW)
         self.assertRaises(errors.AuthenticationError, itv_sess.login, account_login.UNAME, 'password')
-
-    def test_refresh(self):
-        tv_sess = itv_account.itv_session()
-        resp = tv_sess.refresh()
-        self.assertTrue(resp)
 
 
 class TestTokens(unittest.TestCase):
