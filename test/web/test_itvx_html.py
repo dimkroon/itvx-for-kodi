@@ -648,7 +648,7 @@ class Categories(unittest.TestCase):
             if cat == 'news':
                 # As of May 2023 category news returns a different data structure and has its own test.
                 continue
-            url = 'https://www.itv.com/watch/categories/' + cat
+            url = 'https://www.itv.com/watch/categories/' + cat + '/all'
             t_s = time.time()
             page = fetch.get_document(url)
             t_1 = time.time()
