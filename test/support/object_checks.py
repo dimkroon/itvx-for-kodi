@@ -157,6 +157,10 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
                 testcase.assertTrue(art_type in ('thumb', 'fanart', 'poster'),
                                     'Unexpected artType: {}'.format(art_type))
                 testcase.assertTrue(not art_link or is_url(art_link))
+        if item_key == 'info':
+            for param, param_val in item_value.items():
+                if param in ('episode', 'season'):
+                    testcase.assertIsInstance(param_val, (int, type(None)))
         elif item_key == 'params':
             for param, param_val in item_value.items():
                 if param == 'url' and param_val:

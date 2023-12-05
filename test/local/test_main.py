@@ -335,19 +335,12 @@ class Productions(TestCase):
         self.assertIsInstance(list_items, list)
         self.assertEqual(4, len(list_items))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsummer-murders.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsomer-murders.json'))
     def test_episodes_midsummer_murders_series_other_episodes(self, _):
         """Test listing opened at the non-integer seriesNUmber 'other episodes'."""
         list_items = main.list_productions.test('/some/url//to/midsumer', series_idx='others')
         self.assertIsInstance(list_items, list)
         self.assertEqual(1, len(list_items))      # 22 series, 1 episode
-
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsummer-murders.json'))
-    def test_episodes_midsummer_murders_series_4(self, _):
-        """Midsummer murder has 2 different series numbered series-4. These should be merged into one"""
-        list_items = main.list_productions.test('some/url/to/midsumer', series_idx='4')
-        self.assertIsInstance(list_items, list)
-        self.assertEqual(6, len(list_items))      # 22 series, 5 episode in series 4-1, 1 episode in series 4-2
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_bad-girls_data.json'))
     def test_episodes_bad_girls_series_5(self, _):
@@ -369,6 +362,12 @@ class Productions(TestCase):
             # Check if all items are playable
             for episode in series_listing:
                 self.assertIs(episode.path, main.play_stream_catchup.route)
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
+    def test_programme_with_series_other(self, _):
+        list_items = main.list_productions.test('some/url/to/downton', series_idx='others')
+        self.assertIsInstance(list_items, list)
+        self.assertEqual(4, len(list_items))
 
 
 class Search(TestCase):

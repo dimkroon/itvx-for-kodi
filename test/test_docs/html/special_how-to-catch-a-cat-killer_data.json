@@ -1,1 +1,126 @@
-{"navAdServerParams": {"area": "video", "programmeTitle": "How to Catch a Cat Killer", "channel": "ITV", "category": ["FACTUAL"], "episodeId": "10_1951"}, "forceRefresh": true, "isAccessibleByKids": false, "newsVideos": null, "subnav": null, "programme": {"programmeId": "10_1951", "encodedProgrammeId": {"letterA": "10a1951", "underscore": "10_1951"}, "title": "How to Catch a Cat Killer", "longDescription": "Discover how sleuthing cat owners in Brighton came together to catch an unknown killer in this crime documentary. Just who was preying on their much-loved pets?", "description": "Super-sleuthing cat owners in Brighton band together to catch a killer", "image": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}", "channel": {"name": "ITV"}, "categories": ["FACTUAL"], "titleSlug": "how-to-catch-a-cat-killer", "contentOwner": null, "partnership": null, "tier": ["FREE"], "imagePresets": {"0": {"1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false", "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"}, "768": {"1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false", "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"}, "1280": {"1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false", "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"}, "1920": {"1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false", "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"}}}, "seriesList": [{"seriesNumber": "others", "seriesLabel": "Other Episodes", "legacyId": 0, "fullSeries": true, "seriesType": "FILM", "numberOfAvailableEpisodes": 1, "titles": [{"audioDescribed": true, "availabilityFeatures": ["FAIRPLAY", "HLS", "OUTBAND_WEBVTT"], "availabilityFrom": "2022-06-08T20:58:04Z", "availabilityUntil": "2027-03-28T22:59:00Z", "categories": ["FACTUAL"], "channel": "ITV", "heroCtaLabel": "Watch Episode", "contentInfo": "1h", "contentOwner": null, "dateTime": "2022-06-08T20:00:00.000Z", "description": "Super-sleuthing cat owners in Brighton band together to catch a killer", "duration": "1h", "encodedEpisodeId": {"letterA": "10a1951a0001", "underscore": "10_1951_0001"}, "episode": null, "episodeId": "10/1951/0001", "episodeTitle": "How to Catch a Cat Killer", "fullSeriesRange": [], "guidance": "With descriptions of animal cruelty", "image": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}", "linearContent": false, "longDescription": "Discover how sleuthing cat owners in Brighton came together to catch an unknown killer in this crime documentary. Just who was preying on their much-loved pets?", "longRunning": false, "notFormattedDuration": "PT1H", "partnership": null, "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1951_0001.002", "premium": false, "productionId": "10/1951/0001#002", "productionType": "SPECIAL", "productionYear": 2021, "programmeId": "10/1951", "subtitled": true, "tagName": null, "tier": ["FREE"], "visuallySigned": false, "regionalisation": false}], "longRunning": false}]}
+{
+  "navAdServerParams": {
+    "area": "video",
+    "programmeTitle": "How to Catch a Cat Killer",
+    "channel": "ITV",
+    "category": [
+      "FACTUAL"
+    ],
+    "episodeId": "10_1951"
+  },
+  "forceRefresh": true,
+  "isAccessibleByKids": false,
+  "newsVideos": null,
+  "subnav": null,
+  "programme": {
+    "ccid": "gx6nlcb",
+    "programmeId": "10_1951",
+    "encodedProgrammeId": {
+      "letterA": "10a1951",
+      "underscore": "10_1951"
+    },
+    "title": "How to Catch a Cat Killer",
+    "longDescription": "Discover how sleuthing cat owners in Brighton came together to catch an unknown killer in this crime documentary. Just who was preying on their much-loved pets?",
+    "description": "Super-sleuthing cat owners in Brighton band together to catch a killer",
+    "image": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "channel": {
+      "name": "ITV"
+    },
+    "categories": [
+      "FACTUAL"
+    ],
+    "titleSlug": "how-to-catch-a-cat-killer",
+    "contentOwner": null,
+    "partnership": null,
+    "tier": [
+      "FREE"
+    ],
+    "heroCtaLabel": "Watch Film",
+    "imagePresets": {
+      "0": {
+        "1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"
+      },
+      "768": {
+        "1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"
+      },
+      "1280": {
+        "1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      },
+      "1920": {
+        "1x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      }
+    }
+  },
+  "seriesList": [
+    {
+      "seriesNumber": "others",
+      "seriesLabel": "Other Episodes",
+      "legacyId": 0,
+      "fullSeries": false,
+      "seriesType": "FILM",
+      "numberOfAvailableEpisodes": 1,
+      "titles": [
+        {
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "FAIRPLAY",
+            "HLS",
+            "OUTBAND_WEBVTT"
+          ],
+          "availabilityFrom": "2022-06-08T20:58:04Z",
+          "availabilityUntil": "2027-03-28T22:59:00Z",
+          "broadcastDateTime": "2022-06-08T20:00:00Z",
+          "categories": [
+            "FACTUAL"
+          ],
+          "ccid": "gx6nlcb",
+          "channel": "ITV",
+          "heroCtaLabel": "Watch Episode",
+          "contentInfo": "1h",
+          "contentOwner": null,
+          "dateTime": "2022-06-08T20:00:00.000Z",
+          "description": "Super-sleuthing cat owners in Brighton band together to catch a killer",
+          "duration": "1h",
+          "encodedEpisodeId": {
+            "letterA": "10a1951a0001",
+            "underscore": "10_1951_0001"
+          },
+          "episode": null,
+          "episodeId": "10/1951/0001",
+          "episodeTitle": "How to Catch a Cat Killer",
+          "fullSeriesRange": [],
+          "guidance": "With descriptions of animal cruelty",
+          "image": "https://ovp.itv.com/images/special/gx6nlcb/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": false,
+          "longDescription": "Discover how sleuthing cat owners in Brighton came together to catch an unknown killer in this crime documentary. Just who was preying on their much-loved pets?",
+          "longRunning": false,
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1951_0001.002",
+          "premium": false,
+          "productionId": "10/1951/0001#002",
+          "productionType": "SPECIAL",
+          "productionYear": 2021,
+          "programmeId": "10/1951",
+          "series": "others",
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": false
+        }
+      ],
+      "longRunning": false
+    }
+  ],
+  "initialSelectedSeries": "others"
+}

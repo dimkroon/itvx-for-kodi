@@ -361,13 +361,26 @@ class Episodes(TestCase):
         self.assertIsNone(programme_id)
 
     def test_missing_episodes_data(self):
-        data = parsex.scrape_json(open_doc('html/series_miss-marple.html')())
+        data = open_json('html/series_miss-marple.json')
         del data['seriesList']
         with patch('resources.lib.itvx.get_page_data', return_value=data):
             series_listing, programme_id = itvx.episodes('asd')
             self.assertFalse(is_not_empty(series_listing, dict))
             self.assertIsNone(programme_id)
 
+    def test_merge_multiple_series_with_same_series_number(self):
+        data = open_json('html/series_miss-marple.json')
+        # Check we operate on the expected object.
+        series_list = data['seriesList']
+        self.assertEqual(series_list[1]['seriesNumber'], '2')
+        num_episodes_series_2 = len(series_list[1]['titles'])
+        self.assertEqual(series_list[2]['seriesNumber'], '3')
+        num_episodes_series_3 = len(series_list[2]['titles'])
+        # force a duplicate series number and check result
+        series_list[2]['seriesNumber'] = '2'
+        with patch('resources.lib.itvx.get_page_data', return_value=data):
+            series_listing, programme_id = itvx.episodes('asd')
+        self.assertEqual(len(series_listing['2']['episodes']), num_episodes_series_2 + num_episodes_series_3)
 
 class Search(TestCase):
     @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
