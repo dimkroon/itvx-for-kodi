@@ -366,7 +366,7 @@ def categories():
 
 def category_news(path):
     """Unlike other categories, news returns a list of sub-categories"""
-    data = get_page_data(path, cache_time=86400).get('newsData')
+    data = get_page_data(path, cache_time=86400).get('data')
     if not data:
         return []
     items = [{'label': 'Latest Stories', 'params': {'path': path, 'subcat': 'heroAndLatestData'}}]
@@ -400,7 +400,7 @@ def category_content(url: str, hide_paid=False):
 def category_news_content(url, sub_cat, rail=None, hide_paid=False):
     """Return the content of one of the news sub categories."""
     page_data = get_page_data(url, cache_time=900)
-    news_sub_cats = page_data['newsData']
+    news_sub_cats = page_data['data']
 
     uk_tz = pytz.timezone('Europe/London')
     time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
