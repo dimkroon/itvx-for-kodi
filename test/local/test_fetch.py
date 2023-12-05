@@ -67,9 +67,16 @@ class TestPersistentCookieJar(TestCase):
 
 
 class TestHttpSession(TestCase):
+    def setUp(self):
+        fetch.HttpSession.instance = None
+
+    def tearDown(self):
+        # Destroy the HttpSession we've been messing about with.
+        fetch.HttpSession.instance = None
+
     @patch('resources.lib.fetch._create_cookiejar')
     def test_http_session_is_singleton(self, p_create):
-        fetch.HttpSession.instance = None   # remove a possible existing instance
+           # remove a possible existing instance
         s = fetch.HttpSession()
         ss = fetch.HttpSession()
         self.assertTrue(s is ss)
@@ -79,11 +86,8 @@ class TestHttpSession(TestCase):
         del ss
         new_s = fetch.HttpSession()
         self.assertEqual(s_id, id(new_s))
-        # The session's __init__() creates a cookiejar, assert that it has happend only once.
+        # The session's __init__() creates a cookiejar, check that it has happend only once.
         p_create.assert_called_once()
-        # Remove the created instance so subsequent (web) requests don't end up with a
-        # session with a patched cookiejar.
-        fetch.HttpSession.instance = None
 
     def test_http_session_non_existing_cookie_file(self):
         fetch.HttpSession.instance = None  # remove a possible existing instance

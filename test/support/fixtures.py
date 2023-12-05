@@ -93,6 +93,9 @@ def set_credentials(session=None) -> None:
 def setup_web_test(*args):
     # Sign in once per test run.
     if not credentials_set:
+        # Ensure web tests start with a new HttpSession object to prevent ill effects from local tests.
+        from resources.lib import fetch
+        fetch.HttpSession.instance = None
         set_credentials()
 
 
