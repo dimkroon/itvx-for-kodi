@@ -672,9 +672,7 @@ class Categories(unittest.TestCase):
         t_1 = time.time()
         data = parsex.scrape_json(page)
         # testutils.save_json(data, 'html/category_news.json')
-        # Field `programmes` is still present, but contains no data anymore
-        self.assertIsNone(data['programmes'])
-        news_data = data['newsData']
+        news_data = data['data']
         # Check the hero rail
         for item in news_data['heroAndLatestData']:
             check_short_form_item(item)
