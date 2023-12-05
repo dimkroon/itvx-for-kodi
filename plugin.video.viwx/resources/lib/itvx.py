@@ -382,7 +382,7 @@ def category_content(url: str, hide_paid=False):
     if cached_data and cached_data['hide_paid'] == hide_paid:
         return cached_data['items_list']
 
-    cat_data = get_page_data(url, cache_time=0)
+    cat_data = get_page_data(url + '/all', cache_time=0)
     category = cat_data['category']['pathSegment']
     progr_list = cat_data.get('programmes')
 
