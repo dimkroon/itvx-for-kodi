@@ -130,7 +130,7 @@ def check_title(self, title, parent_name):
     obj_name = '{}-title-{}'.format(parent_name, title['episodeTitle'])
     has_keys(title, 'availabilityFrom', 'availabilityUntil', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'guidance', 'image', 'longDescription',
-             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', obj_name=obj_name)
+             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', obj_name=obj_name)
 
     expect_keys(title, 'audioDescribed', 'availabilityFeatures', 'categories', 'heroCtaLabel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
@@ -166,7 +166,7 @@ def check_title(self, title, parent_name):
 
     if title['productionType'] == 'SPECIAL':
         self.assertIsNone(title['episode'])
-        self.assertTrue('series' not in title)
+        self.assertEqual('others', title['series'])
         self.assertGreater(title['productionYear'], 1900)
         # Specials have been observed with a title['dataTime'] of 1-1-1970, but also real dates occur.
 
@@ -176,7 +176,7 @@ def check_title(self, title, parent_name):
     if title['productionType'] == 'FILM':
         self.assertGreater(title['productionYear'], 1900)
         self.assertTrue('episode' not in title)
-        self.assertTrue('series' not in title)
+        self.assertIsNone(title['series'])
         self.assertEqual(utils.strptime(title['dateTime'], '%Y-%m-%dT%H:%M:%S.%fZ'), datetime(1970, 1, 1))
 
 
