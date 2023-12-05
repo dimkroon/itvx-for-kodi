@@ -56,7 +56,7 @@ class TestMyItvx(unittest.TestCase):
         self.assertGreater(len(items), 1)
 
     def test_mylist_wrong_user_id(self):
-        with patch.object(itv_account._itv_session_obj, '_user_id', new=uuid.uuid4()):
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=str(uuid.uuid4())):
             self.assertRaises(errors.AccessRestrictedError, main.generic_list.test, filter_char=None)
 
     def test_my_list_not_signed_in(self):
