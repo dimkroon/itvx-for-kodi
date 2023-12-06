@@ -14,7 +14,7 @@ import unittest
 import requests
 from datetime import datetime
 
-from resources.lib import fetch, parsex, utils, errors
+from resources.lib import fetch, parsex, utils, errors, main, itv_account
 from support.object_checks import (
     has_keys,
     expect_keys,
@@ -130,7 +130,7 @@ def check_title(self, title, parent_name):
     obj_name = '{}-title-{}'.format(parent_name, title['episodeTitle'])
     has_keys(title, 'availabilityFrom', 'availabilityUntil', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'guidance', 'image', 'longDescription',
-             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', obj_name=obj_name)
+             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', obj_name=obj_name)
 
     expect_keys(title, 'audioDescribed', 'availabilityFeatures', 'categories', 'heroCtaLabel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
@@ -166,7 +166,7 @@ def check_title(self, title, parent_name):
 
     if title['productionType'] == 'SPECIAL':
         self.assertIsNone(title['episode'])
-        self.assertTrue('series' not in title)
+        self.assertEqual('others', title['series'])
         self.assertGreater(title['productionYear'], 1900)
         # Specials have been observed with a title['dataTime'] of 1-1-1970, but also real dates occur.
 
@@ -176,7 +176,7 @@ def check_title(self, title, parent_name):
     if title['productionType'] == 'FILM':
         self.assertGreater(title['productionYear'], 1900)
         self.assertTrue('episode' not in title)
-        self.assertTrue('series' not in title)
+        self.assertIsNone(title['series'])
         self.assertEqual(utils.strptime(title['dateTime'], '%Y-%m-%dT%H:%M:%S.%fZ'), datetime(1970, 1, 1))
 
 
@@ -253,6 +253,22 @@ def check_collection_item_type_fastchannelspot(self, item, parent_name):
     self.assertTrue(is_url(item['imageTemplate']))
 
 
+def check_mylist_item(testcase, item, parent_name):
+    obj_name = '.'.join((parent_name, item['programmeTitle']))
+    has_keys(item, 'categories', 'contentType', 'contentOwner', 'dateAdded', 'duration',
+             'imageLink', 'itvxImageLink', 'longRunning', 'numberOfAvailableSeries',
+             'numberOfEpisodes', 'partnership', 'programmeId', 'programmeTitle', 'synopsis',
+             'tier', obj_name=obj_name)
+    testcase.assertTrue(item['contentType'].lower() in main.callb_map.keys())
+    testcase.assertIsInstance(item['numberOfAvailableSeries'], list)
+    testcase.assertIsInstance(item['numberOfEpisodes'], (int, type(None)))
+    testcase.assertTrue(item['tier'] in ('FREE', 'PAID'))
+    testcase.assertTrue(is_iso_utc_time(item['dateAdded']))
+    testcase.assertTrue(is_url(item['itvxImageLink']))
+    testcase.assertTrue(is_not_empty(item['programmeId'], str))
+    testcase.assertFalse(is_encoded_programme_id(item['programmeId']))  # Programme ID in My List is NOT encoded.
+
+
 def check_item_type_simulcastspot(self, item, parent_name):
     """Simulcastspots are very similar to fastchannelspots, but have a few additional fields.
 
@@ -286,7 +302,9 @@ class MainPage(unittest.TestCase):
             content_type = item['contentType']
             self.assertTrue(content_type in
                             ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand',
-                             'collection', 'page'))
+                             'collection', 'page', 'upsellspot'))
+            if content_type == 'upsellspot':
+                continue
             if content_type == 'simulcastspot':
                 check_item_type_simulcastspot(self, item, parent_name='hero-item')
                 # Flag if key normally only present in collections become available in hero items as well
@@ -348,10 +366,12 @@ class MainPage(unittest.TestCase):
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])
         for item in page_props['trendingSliderContent']['items']:
             has_keys(item, 'title', 'imageUrl', 'description', 'encodedProgrammeId', 'contentType',
-                     'contentInfo', 'titleSlug', obj_name='trending-slider_' + item['title'])
+                     'contentInfo', 'titleSlug', obj_name='trending.' + item['title'])
             # Must have either an episode id when the underlying item is an episode, but there
             # is no way to check the item's type
             # has_keys(item, 'encodedEpisodeId', obj_name='trending-slider_' + item['title'])
+            # Trending is probably always FREE, but it has no fields indicating whether it is.
+            misses_keys(item, 'tier', 'isPaid', obj_name='trending.' + item['title'])
 
         self.assertIsInstance(page_props['shortFormSliderContent'], list)
         # Currently the list contains only the news rail and possibly a sport rail.
@@ -431,7 +451,8 @@ class CollectionPages(unittest.TestCase):
                     return
                 heading_link = collection_data.get('headingLink')
                 if heading_link:
-                    page_ref = 'https://www.itv.com/watch' + heading_link['href']
+                    # Yes, strip trailing white space. It has actually happened...
+                    page_ref = 'https://www.itv.com/watch' + heading_link['href'].rstrip()
                     if page_ref != url:
                         # Some sliders have a 'view all' reference to their own page.
                         # Which is not so bad on a website and in Kodi, but disastrous in this test.
@@ -532,9 +553,9 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
                 ):
             page = fetch.get_document(url)
-            # testutils.save_doc(page, 'html/series_miss-marple.html')
+            # testutils.save_doc(page, 'html/series_bad-girls.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/series_midsummer-murders.json')
+            # testutils.save_json(data, 'html/series_midsomer-murders.json')
             programme_data = data['programme']
             check_programme(self, programme_data)
             for series in data['seriesList']:
@@ -578,6 +599,14 @@ class WatchPages(unittest.TestCase):
         data = parsex.scrape_json(page)
         check_programme(self, data['programme'])
 
+    def test_short_news_item(self):
+        page = fetch.get_document('https://www.itv.com/watch/news/met-police-officers-investigated-for-gross-misconduct-over-stephen-port-case/fxmdtwy')
+        # testutils.save_doc(page, 'html/news-short_item.html')
+        data = parsex.scrape_json(page)
+        self.assertFalse('programme' in data)
+        self.assertTrue('episode' in data)
+        self.assertTrue(is_url(data['episode']['playlistUrl']))
+
 
 class TvGuide(unittest.TestCase):
     def test_guide_of_today(self):
@@ -605,12 +634,12 @@ class Categories(unittest.TestCase):
         categories = data['subnav']['items']
         t_2 = time.time()
         for item in categories:
-            has_keys(item, 'id', 'name', 'label', 'url')
+            has_keys(item, 'id', 'label', 'url')
             # url is the full path without domain
             self.assertTrue(item['url'].startswith('/watch/'))
 
         self.assertEqual(8, len(categories))        # the mobile app has an additional category AD (Audio Described)
-        self.assertListEqual([cat['label'].lower().replace(' & ', '-') for cat in categories], self.all_categories)
+        self.assertListEqual([cat['id'] for cat in categories], self.all_categories)
         # print('Categorie page fetched in {:0.3f}, parsed in {:0.3f}, total: {:0.3f}'.format(
         #     t_1 - t_s, t_2 - t_1, t_2 - t_s))
 
@@ -619,7 +648,7 @@ class Categories(unittest.TestCase):
             if cat == 'news':
                 # As of May 2023 category news returns a different data structure and has its own test.
                 continue
-            url = 'https://www.itv.com/watch/categories/' + cat
+            url = 'https://www.itv.com/watch/categories/' + cat + '/all'
             t_s = time.time()
             page = fetch.get_document(url)
             t_1 = time.time()
@@ -643,9 +672,7 @@ class Categories(unittest.TestCase):
         t_1 = time.time()
         data = parsex.scrape_json(page)
         # testutils.save_json(data, 'html/category_news.json')
-        # Field `programmes` is still present, but contains no data anymore
-        self.assertIsNone(data['programmes'])
-        news_data = data['newsData']
+        news_data = data['data']
         # Check the hero rail
         for item in news_data['heroAndLatestData']:
             check_short_form_item(item)
@@ -655,3 +682,84 @@ class Categories(unittest.TestCase):
             self.assertTrue(isinstance(rail['title'], str) and rail['title'])
             for item in rail['clips']:
                 check_short_form_item(item)
+
+
+class MyList(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.token = itv_account.itv_session().access_token
+        cls. userid = itv_account.itv_session().user_id
+
+    def test_get_my_list_no_content_type(self):
+        """Request My List without specifying header content-type
+
+        """
+        # Query parameters 'features' and 'platform' are required!!
+        # NOTE:
+        #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
+        #   presented and playable on the website.
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+        headers = {'authorization': 'Bearer ' + self.token}
+        # Both webbrowser and app authenticate with header, without any cookie.
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'mylist/mylist_data.json')
+
+        # When no particular type of content is requested a dict is returned
+        self.assertIsInstance(data, dict)
+        self.assertEqual(resp.headers['content-type'], 'application/vnd.itv.online.perso.my-list.v1+json')
+
+        my_items = data['items']
+        self.assertEqual(data['availableSlots'], 52 - len(my_items))
+        if len(my_items) == 0:
+            print("WARNING - No LastWatched items")
+        for item in my_items:
+            check_mylist_item(self, item, parent_name='MyList')
+
+    def test_get_my_list_content_type_json(self):
+        """Request My List with content-type = application/json"""
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+        headers = {'authorization': 'Bearer ' + self.token,
+                   'accept': 'application/json'}
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'mylist/mylist_json_data.json')
+
+        self.assertIsInstance(data, list)
+        self.assertEqual(resp.headers['content-type'], 'application/json')
+
+    def test_add_and_remove_programme(self):
+        """At present only programmes can be added to the list, no individual episodes.
+
+        Itv always returns HTTP status 200 when a syntactical valid request has been made. However,
+        that is no guarantee that the requested programme is in fact added to My List.
+
+        """
+        progr_id = '2_7931'     # A spy among friends
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid, progr_id)
+        # Both webbrowser and app authenticate with header, without any cookie.
+        headers = {'authorization': 'Bearer ' + self.token}
+
+        # Add the item to the list, only to ensure it is present when it is removed next.
+        resp = requests.post(url, headers=headers)
+        data = resp.json()['items']
+        for item in data:
+            check_mylist_item(self, item, 'MyList')
+        self.assertTrue(progr_id in (item['programmeId'].replace('/', '_') for item in data))
+
+        # Delete the item
+        resp = requests.delete(url, headers=headers)
+        data = resp.json()['items']
+        for item in data:
+            check_mylist_item(self, item, 'MyList')
+        self.assertFalse(progr_id in (item['programmeId'].replace('/', '_') for item in data))
+
+        # Add it again now it's certain that the item was not on the list.
+        resp = requests.post(url, headers=headers)
+        data = resp.json()['items']
+        for item in data:
+            check_mylist_item(self, item, 'MyList')
+        self.assertTrue(progr_id in (item['programmeId'].replace('/', '_') for item in data))

@@ -9,6 +9,7 @@
 import json
 import logging
 import pytz
+from datetime import datetime
 
 from codequick.support import logger_id
 
@@ -121,7 +122,9 @@ def parse_hero_content(hero_data):
         else:
             logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
             return None
-        return {'type': item_type, 'show': item}
+        return {'type': item_type,
+                'programme_id': hero_data.get('encodedProgrammeId', {}).get('underscore'),
+                'show': item}
     except:
         logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title', 'unknown title'), exc_info=True)
 
@@ -231,6 +234,7 @@ def parse_collection_item(show_data, hide_paid=False):
         if is_playable:
             programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
         return {'type': content_type,
+                'programme_id': show_data.get('encodedProgrammeId', {}).get('underscore'),
                 'show': programme_item}
     except Exception as err:
         logger.warning("Failed to parse collection_item: %r\n%s", err, json.dumps(show_data, indent=4))
@@ -243,9 +247,6 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
 
     ShortFormSliders are found on the main page, some collection pages.
     Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
-
-    """
-    """Parse data found in news collection and in short news clips from news sub-categories
 
     """
     try:
@@ -311,6 +312,7 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
 
         return {
             'type': 'title',
+            'programme_id': trending_item['encodedProgrammeId']['underscore'],
             'show': {
                 'label': trending_item['title'],
                 'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
@@ -335,6 +337,8 @@ def parse_category_item(prog, category):
     #
     # All items with episodeId are returned as series folder, with the odd change some
     # contain only one item.
+
+    # TODO: Both regular and news category items now have a field contentType
 
     is_playable = prog['encodedEpisodeId']['letterA'] == ''
     playtime = utils.duration_2_seconds(prog['contentInfo'])
@@ -366,6 +370,7 @@ def parse_category_item(prog, category):
                                                      prog['encodedProgrammeId']['letterA'],
                                                      prog['encodedEpisodeId']['letterA'])}
     return {'type': 'title' if is_playable else 'series',
+            'programme_id': prog['encodedProgrammeId']['underscore'],
             'show': programme_item}
 
 
@@ -413,6 +418,10 @@ def parse_episode_title(title_data, brand_fanart=None):
     else:
         info_title = title_data['heroCtaLabel']
 
+    series_nr = title_data.get('series')
+    if not isinstance(series_nr, int):
+        series_nr = None
+
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -424,7 +433,7 @@ def parse_episode_title(title_data, brand_fanart=None):
                  'duration': utils.iso_duration_2_seconds(title_data['notFormattedDuration']),
                  'date': title_data['dateTime'],
                  'episode': episode_nr,
-                 'season': title_data.get('series'),
+                 'season': series_nr,
                  'year': title_data.get('productionYear')},
         'params': {'url': title_data['playlistUrl'], 'name': title}
     }
@@ -479,7 +488,7 @@ def parse_search_result(search_data):
         prog_name = result_data['programmeTitle']
         title = '[B]{}[/B] - {} episodes'.format(prog_name, result_data.get('totalAvailableEpisodes', ''))
         img_url = result_data['latestAvailableEpisode']['imageHref']
-        api_prod_id = result_data['legacyId']['officialFormat']
+        api_prod_id = result_data['legacyId']['apiEncoded']
 
     elif entity_type == 'special':
         # A single programme without episodes
@@ -488,18 +497,22 @@ def parse_search_result(search_data):
 
         programme = result_data.get('specialProgramme')
         if programme:
-            prog_name = result_data['specialProgramme']['programmeTitle']
-            api_prod_id = result_data['specialProgramme']['legacyId']['officialFormat']
+            prog_name = programme['programmeTitle']
+            api_prod_id = programme['legacyId']['apiEncoded']
             api_episode_id = result_data['legacyId']['officialFormat']
         else:
             prog_name = title
-            api_prod_id = result_data['legacyId']['officialFormat']
+            api_prod_id = result_data['legacyId']['apiEncoded']
+            if api_prod_id.count('_') > 1:
+                api_prod_id = api_prod_id.rpartition('_')[0]
 
     elif entity_type == 'film':
         prog_name = result_data['filmTitle']
         title = '[B]Film[/B] - ' + result_data['filmTitle']
         img_url = result_data['imageHref']
-        api_prod_id = result_data['legacyId']['officialFormat']
+        api_prod_id = result_data['legacyId']['apiEncoded']
+        if api_prod_id.count('_') > 1:
+            api_prod_id = api_prod_id.rpartition('_')[0]
 
     else:
         logger.warning("Unknown search result item entityType %s", entity_type)
@@ -507,11 +520,119 @@ def parse_search_result(search_data):
 
     return {
         'type': entity_type,
+        'programme_id': api_prod_id,
         'show': {
             'label': prog_name,
             'art': {'thumb': img_url.format(**IMG_PROPS_THUMB)},
             'info': {'plot': plot,
                      'title': title},
-            'params': {'url': build_url(prog_name, api_prod_id.replace('/', 'a'), api_episode_id.replace('/', 'a'))}
+            'params': {'url': build_url(prog_name, api_prod_id.replace('_', 'a'), api_episode_id.replace('/', 'a'))}
         }
     }
+
+
+def parse_my_list_item(item, hide_paid=False):
+    """Parser for items from My List, Recommended and Because You Watched."""
+    # noinspection PyBroadException
+    try:
+        if 'PAID' in item['tier']:
+            if hide_paid:
+                return None
+            description = premium_plot(item['synopsis'])
+        else:
+            description = item['synopsis']
+        progr_name = item.get('programmeTitle') or item['title']
+        progr_id = item['programmeId'].replace('/', '_')
+        num_episodes = item['numberOfEpisodes']
+        content_info = ' - {} episodes'.format(num_episodes) if num_episodes is not None else ''
+        img_link = item.get('itvxImageLink') or item.get('imageUrl')
+        is_playable = item['contentType'].lower() != 'programme'
+
+        item_dict = {
+            'type': item['contentType'].lower(),
+            'programme_id': progr_id,
+            'show': {
+                'label': progr_name,
+                'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
+                        'fanart': img_link.format(**IMG_PROPS_FANART)},
+                'info': {'title': progr_name if is_playable else '[B]{}[/B]{}'.format(progr_name, content_info),
+                         'plot':  description,
+                         'duration': utils.iso_duration_2_seconds(item.get('duration')),
+                         'sorttitle': sort_title(progr_name),
+                         'date': item.get('dateAdded')},
+                'params': {'url': build_url(progr_name, progr_id.replace('/', 'a'))}
+            }
+        }
+        if item['contentType'] == 'FILM':
+            item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
+        return item_dict
+    except:
+        logger.warning("Unexpected error parsing MyList item:\n", exc_info=True)
+
+
+def parse_last_watched_item(item, utc_now):
+    progr_name = item.get('programmeTitle', '')
+    episode_name = item.get('episodeTitle')
+    series_nr = item.get('seriesNumber')
+    episode_nr = item.get('episodeNumber')
+    img_link = item.get('itvxImageLink', '')
+    available_td = utils.strptime(item['availabilityEnd'], "%Y-%m-%dT%H:%M:%SZ") - utc_now
+    days_available = int(available_td.days + 0.99)
+
+    if days_available > 365:
+        availability = '\nAvailable for over a year.'
+    elif days_available > 30:
+        months = int(days_available//30)
+        availability = '\nAvailable for {} month{}.'.format(months, 's' if months > 1 else '')
+    elif days_available >= 1:
+        availability = '\n[COLOR orange]Only {} day{} available.[/COLOR]'.format(
+            days_available, 's' if days_available > 1 else '')
+    else:
+        hours_available = int(available_td.seconds / 3600)
+        availability = '\n[COLOR orange]Only {} hour{} available.[/COLOR]'.format(
+            hours_available, 's' if hours_available != 1 else '')
+
+    info = ''.join((
+        item['synopsis'] if 'FREE' in item['tier'] else premium_plot(item['synopsis']),
+        '\n\n',
+        episode_name or '',
+        ' - ' if episode_name and series_nr else '',
+        'series {} episode {}'.format(series_nr, episode_nr) if series_nr else '',
+        availability
+    ))
+
+    if item.get('isNextEpisode'):
+        title = progr_name + ' - [I]next episode[/I]'
+    else:
+        title = '{} - [I]{}% watched[/I]'.format(progr_name, int(item['percentageWatched'] * 100))
+
+    item_dict = {
+        'type': 'vodstream',
+        'programme_id': item['programmeId'].replace('/', '_'),
+        'show': {
+            'label': episode_name or progr_name,
+            'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
+                    'fanart': img_link.format(**IMG_PROPS_FANART)},
+            'info': {'title': title ,
+                     'plot': info,
+                     'sorttitle': sort_title(title),
+                     'date': utils.reformat_date(item['viewedOn'], "%Y-%m-%dT%H:%M:%SZ", "%d.%m.%Y"),
+                     'duration': utils.duration_2_seconds(item['duration']),
+                     'season': series_nr,
+                     'episode': episode_nr},
+            'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
+                               item['productionId'].replace('/', '_').replace('#', '.' )),
+                       'name': progr_name,
+                       'set_resume_point': True},
+            'properties': {
+                # This causes Kodi not to offer the standard resume dialog, so we can obtain
+                # resume time at the time of resolving the video url and play from there, or show
+                # a 'resume from' dialog.
+                'resumetime': '0',
+                'totaltime': 60
+            }
+        }
+    }
+    if item['contentType'] == 'FILM':
+        item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
+    return item_dict

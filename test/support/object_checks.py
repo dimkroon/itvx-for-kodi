@@ -140,7 +140,7 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
     testcase.assertIsInstance(dict_obj, dict)
     has_keys(dict_obj, 'label', 'params')
     for item_key, item_value in dict_obj.items():
-        testcase.assertTrue(item_key in ('label', 'art', 'info', 'params'))
+        testcase.assertTrue(item_key in ('label', 'art', 'info', 'params', 'properties'))
         if item_key == 'label':
             testcase.assertIsInstance(dict_obj['label'], str)
             testcase.assertTrue(dict_obj['label'])
@@ -157,10 +157,21 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
                 testcase.assertTrue(art_type in ('thumb', 'fanart', 'poster'),
                                     'Unexpected artType: {}'.format(art_type))
                 testcase.assertTrue(not art_link or is_url(art_link))
+        if item_key == 'info':
+            for param, param_val in item_value.items():
+                if param in ('episode', 'season'):
+                    testcase.assertIsInstance(param_val, (int, type(None)))
         elif item_key == 'params':
             for param, param_val in item_value.items():
                 if param == 'url' and param_val:
                     testcase.assertTrue(is_url(param_val))
+        elif item_key == 'properties':
+            for param, param_val in item_value.items():
+                if param == 'resumetime':
+                    testcase.assertIsInstance(param_val, str)
+                    testcase.assertGreaterEqual(int(param_val), 0)
+                if param == 'totaltime':
+                    testcase.assertIsInstance(param_val, int)
     return True
 
 
@@ -335,16 +346,17 @@ def check_category_item(item):
     and other news related programmes.
 
     """
+    title = item['title']
     # TODO: Check if this is the same as a normal episode
     has_keys(
         item,
         'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'channel', 'description', 'imageTemplate',
-        'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId'
+        'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId', 'contentType',
+        obj_name=f'categoryItem-{title}'
     )
-    # Ensure it still misses a `titleType` or similar field.
-    misses_keys(item, 'titleType', 'contentType', 'type')
-    assert isinstance(item['title'], str) and item['title']
-    title = item['title']
+
+    assert is_not_empty(item['title'], str)
+    assert item['contentType'] in ('series', 'special', 'film', 'episode'), "Unexpected contentType '{item['contentType']}'."
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
     assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
@@ -365,3 +377,30 @@ def check_category_item(item):
     assert item['broadcastDateTime'] is None or is_iso_utc_time(item['broadcastDateTime']), \
         "Invalid broadcastDateTime in '{}'.".format(title)
     assert isinstance(item['programmeId'], str) and item['programmeId'], "Invalid programmeId in '{}'.".format(title)
+
+
+def check_item_type_programme(testcase, progr_data, parent):
+    """Check an item of type `programme` as return in lists of recommendations.
+    Not to be confused with the programme info in category items.
+
+    Very similar to MyList items, but with fewer fields and some field names are slightly different.
+
+    """
+    obj_name = '{}.{}'.format(parent, progr_data['title'])
+    has_keys(progr_data, 'contentType', 'duration', 'imageUrl', 'itvxImageUrl', 'programmeId',
+             'synopsis', 'tier', 'title', obj_name=obj_name)
+    expect_keys(progr_data, 'coldStart', 'contentOwner', 'latestProduction', 'longRunning', obj_name=obj_name)
+
+    misses_keys(progr_data, 'encodedProgrammeId', 'categories', 'longRunningimagePresets')
+
+    testcase.assertTrue(progr_data['contentType'] in ('PROGRAMME', 'SPECIAL', 'FILM'))
+    testcase.assertTrue(is_not_empty(progr_data['title'], str))
+    testcase.assertTrue(is_not_empty(progr_data['synopsis'], str))
+    testcase.assertTrue(is_url(progr_data['imageUrl']))
+    testcase.assertTrue(is_url(progr_data['itvxImageUrl']))
+    testcase.assertFalse(is_encoded_programme_id(progr_data['programmeId']))
+    testcase.assertTrue(is_not_empty(progr_data['programmeId'], str))
+    testcase.assertTrue(progr_data['tier'] in('FREE', 'PAID'))
+
+    testcase.assertIsInstance(progr_data['numberOfAvailableSeries'], list)
+    testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))

@@ -1,0 +1,229 @@
+[
+  {
+    "development_description": "Just a regular episode.",
+    "episode": {
+      "accessibilityTags": [
+        "s"
+      ],
+      "audioDescribed": false,
+      "availabilityFeatures": [
+        "MPEG_DASH",
+        "WIDEVINE"
+      ],
+      "availabilityFrom": "2022-02-14T09:54:00Z",
+      "availabilityUntil": "2024-11-30T23:59:59.999Z",
+      "broadcastDateTime": "2023-01-06T09:10:00Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "ccid": "34njkq5",
+      "channel": "ITV3",
+      "heroCtaLabel": "Series 1, Episode 4",
+      "contentInfo": "S1, E4. A Murder Is Announced",
+      "contentOwner": null,
+      "dateTime": "2023-01-06T09:10:00.000Z",
+      "description": "Zo\u00eb Wanamaker guest stars as Miss Marple sets about uncovering a village's dark secrets.",
+      "duration": "2h 5m",
+      "encodedEpisodeId": {
+        "letterA": "9Da13067",
+        "underscore": "9D_13067"
+      },
+      "episode": 4,
+      "episodeId": "9D/13067",
+      "episodeTitle": "A Murder Is Announced",
+      "fullSeriesRange": [],
+      "guidance": "",
+      "image": "https://ovp.itv.com/images/episode/34njkq5/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isFullSeries": true,
+      "linearContent": false,
+      "longDescription": "Zo\u00eb Wanamaker guest stars when Miss Marple sets about uncovering a village's dark secrets, following the announcement of a murder in the personal columns of a local paper.",
+      "longRunning": false,
+      "nextProductionId": "9D/13133",
+      "notFormattedDuration": "PT2H5M",
+      "partnership": null,
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13067.003",
+      "premium": false,
+      "productionId": "9D/13067#003",
+      "productionType": "EPISODE",
+      "programmeId": "L1286",
+      "series": 1,
+      "subtitled": true,
+      "tier": [
+        "FREE"
+      ],
+      "visuallySigned": false,
+      "regionalisation": false
+    }
+  },
+  {
+    "development_description": "Episode where field episodeTitle is null.",
+    "episode": {
+      "accessibilityTags": [
+        "s"
+      ],
+      "audioDescribed": false,
+      "availabilityFeatures": [
+        "MPEG_DASH",
+        "OUTBAND_WEBVTT",
+        "WIDEVINE"
+      ],
+      "availabilityFrom": "2025-05-31T22:59:00Z",
+      "availabilityUntil": "2025-05-31T22:59:59.999Z",
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "ccid": "7y5tkft",
+      "channel": "ITV",
+      "heroCtaLabel": "Series 7, Episode 1",
+      "contentInfo": "S7, E1",
+      "contentOwner": null,
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Fenner has a difficult time adjusting to life on the other side of the bars.",
+      "duration": "1h 30m",
+      "encodedEpisodeId": {
+        "letterA": "7a0129a0085",
+        "underscore": "7_0129_0085"
+      },
+      "episode": 1,
+      "episodeId": "7/0129/0085",
+      "episodeTitle": null,
+      "fullSeriesRange": [],
+      "guidance": "Contains strong language, violence, sex references and hard drug use.",
+      "image": "https://ovp.itv.com/images/episode/7y5tkft/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isFullSeries": false,
+      "linearContent": false,
+      "longDescription": "Fenner has a difficult time adjusting to life on the other side of the bars when some fellow inmates start harassing the former prison officer.",
+      "longRunning": false,
+      "nextProductionId": "7/0129/0086",
+      "notFormattedDuration": "PT1H30M",
+      "partnership": null,
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/7_0129_0085.002",
+      "premium": false,
+      "productionId": "7/0129/0085#002",
+      "productionType": "EPISODE",
+      "programmeId": "7/0129",
+      "series": 7,
+      "subtitled": true,
+      "tier": [
+        "FREE"
+      ],
+      "visuallySigned": false,
+      "regionalisation": false
+    }
+  },
+  {
+    "development_description": "Paid Episode.",
+    "episode": {
+      "accessibilityTags": [
+        "s"
+      ],
+      "audioDescribed": false,
+      "availabilityFeatures": [
+        "FAIRPLAY",
+        "HLS"
+      ],
+      "availabilityFrom": "2023-11-01T00:01:00Z",
+      "availabilityUntil": "2025-10-31T23:59:00Z",
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "ccid": "vf3jc2z",
+      "channel": "ITV",
+      "heroCtaLabel": "Series 1, Episode 7",
+      "contentInfo": "S1, E7",
+      "contentOwner": null,
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Glittering period drama. The family is stunned when Lady Cora finds that she is pregnant.",
+      "duration": "1h",
+      "encodedEpisodeId": {
+        "letterA": "1a8697a0007",
+        "underscore": "1_8697_0007"
+      },
+      "episode": 7,
+      "episodeId": "1/8697/0007",
+      "episodeTitle": null,
+      "fullSeriesRange": [],
+      "guidance": null,
+      "image": "https://ovp.itv.com/images/episode/vf3jc2z/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub\u0026fallback=standard\u0026w={width}\u0026h={height}\u0026q={quality}\u0026blur={blur}\u0026bg={bg}",
+      "isFullSeries": true,
+      "linearContent": false,
+      "longDescription": "Glittering period drama. The family is astonished when Lady Cora Crawley finds that she is pregnant, and the announcement leaves Mary wondering how to answer Matthew's proposal.",
+      "longRunning": false,
+      "nextProductionId": "1/8697/0008",
+      "notFormattedDuration": "PT1H",
+      "partnership": null,
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0007.003",
+      "premium": true,
+      "productionId": "1/8697/0007#003",
+      "productionType": "EPISODE",
+      "programmeId": "1/8697",
+      "series": 1,
+      "subtitled": true,
+      "tier": [
+        "PAID"
+      ],
+      "visuallySigned": false,
+      "regionalisation": false
+    }
+  },
+  {
+    "development_description": "{Paid episode with the non-integer series number 'other'.",
+    "episode": {
+      "accessibilityTags": [
+        "ad",
+        "s"
+      ],
+      "audioDescribed": true,
+      "availabilityFeatures": [
+        "FAIRPLAY",
+        "HD",
+        "HLS",
+        "SINGLE_TRACK"
+      ],
+      "availabilityFrom": "2023-11-01T00:01:00Z",
+      "availabilityUntil": "2025-10-31T23:59:00Z",
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "ccid": "53wt28m",
+      "channel": "ITV",
+      "heroCtaLabel": "Watch Episode",
+      "contentInfo": "2h",
+      "contentOwner": null,
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Tensions run high as the family host a lavish Christmas party",
+      "duration": "2h",
+      "encodedEpisodeId": {
+        "letterA": "1a8697a0016",
+        "underscore": "1_8697_0016"
+      },
+      "episode": null,
+      "episodeId": "1/8697/0016",
+      "episodeTitle": "Downton Abbey Christmas Special 2011 (Series 2)",
+      "fullSeriesRange": [],
+      "guidance": null,
+      "image": "https://ovp.itv.com/images/special/53wt28m/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub\u0026fallback=standard\u0026w={width}\u0026h={height}\u0026q={quality}\u0026blur={blur}\u0026bg={bg}",
+      "linearContent": false,
+      "longDescription": "It's Christmas 1919 and the family host a lavish Christmas party, but tensions are running high, and Bates' arrest has cast a shadow over the festivities.",
+      "longRunning": false,
+      "notFormattedDuration": "PT2H",
+      "partnership": null,
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0016.002",
+      "premium": true,
+      "productionId": "1/8697/0016#002",
+      "productionType": "SPECIAL",
+      "productionYear": 2011,
+      "programmeId": "1/8697",
+      "series": "others",
+      "subtitled": true,
+      "tier": [
+        "PAID"
+      ],
+      "visuallySigned": false,
+      "regionalisation": false
+    }
+  }
+]

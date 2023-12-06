@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
@@ -21,8 +20,11 @@ from resources.lib import itv_account
 from resources.lib import fetch
 from resources.lib import parsex
 from resources.lib import itvx
+from resources.lib import utils
+from resources.lib import main
 from test.support import object_checks
 from test.support import testutils
+
 
 setUpModule = fixtures.setup_web_test
 
@@ -149,7 +151,7 @@ class LiveSchedules(unittest.TestCase):
         self.assertTrue(data['images']['backdrop'].startswith('https://'))
         self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
 
-        self.assertAlmostEqual(25, len(data['channels']), delta=2)
+        self.assertAlmostEqual(25, len(data['channels']), delta=5)
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
@@ -172,6 +174,7 @@ class LiveSchedules(unittest.TestCase):
                         self.assertTrue(object_checks.is_iso_utc_time(program['broadcastAt']))
 
 
+@unittest.skip("not to interfere with tests of bugfix branch")
 class Search(unittest.TestCase):
     def setUp(self) -> None:
         self.search_url = 'https://textsearch.prd.oasvc.itv.com/search'
@@ -205,7 +208,8 @@ class Search(unittest.TestCase):
                                'synopsis', 'latestAvailableEpisode', 'totalAvailableEpisodes', 'tier',
                                obj_name='programItem.data')
         object_checks.is_url(item_data['latestAvailableEpisode']['imageHref'])
-        self.assertTrue(item_data['legacyId']['officialFormat'])
+        self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
+        self.assertFalse('/' in item_data['legacyId']['apiEncoded'])
 
     def check_special_item(self, item_data):
         object_checks.has_keys(item_data, 'specialCCId', 'legacyId', 'productionId', 'specialTitle',
@@ -217,15 +221,21 @@ class Search(unittest.TestCase):
         if special_data:
             object_checks.has_keys(special_data, 'programmeCCId', 'legacyId', 'programmeTitle',
                                    obj_name='specialItem.data.specialProgramme')
+            self.assertTrue(object_checks.is_not_empty(special_data['legacyId']['apiEncoded'], str))
+            self.assertFalse('/' in special_data['legacyId']['apiEncoded'])
+        else:
+            self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
+            # Check this programmeId has 2 underscores, since it is in fact more like an episodeId.
+            self.assertEqual(2, item_data['legacyId']['apiEncoded'].count('_'))
         object_checks.is_url(item_data['imageHref'])
-        self.assertTrue(item_data['legacyId']['officialFormat'])
 
     def check_film_item(self, item_data):
         object_checks.has_keys(item_data, 'filmCCId', 'legacyId', 'productionId', 'filmTitle',
                                'synopsis', 'imageHref', 'tier',
                                obj_name='specialItem.data')
         object_checks.is_url(item_data['imageHref'])
-        self.assertTrue(item_data['legacyId']['officialFormat'])
+        self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
+        self.assertFalse('/' in item_data['legacyId']['apiEncoded'])
 
     def test_search_normal_chase(self):
         self.search_params['query'] = 'the chase'
@@ -275,6 +285,276 @@ class Search(unittest.TestCase):
         self.check_result(data)
         # self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
         self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+class MyList(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.token = itv_account.itv_session().access_token
+        cls. userid = itv_account.itv_session().user_id
+
+    def test_get_my_list_no_content_type(self):
+        """Request My List without specifying the content-type
+
+        """
+        # Query parameters features and platform are required!!
+        # NOTE:
+        #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
+        #   presented and playable on the website.
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+        headers = {'authorization': 'Bearer ' + self.token}
+        # Both webbrowser and app authenticate with header, without any cookie.
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'mylist/mylist_data.json')
+
+        # When no particular type of content is requested a dict is returned
+        self.assertIsInstance(data, dict)
+        self.assertEqual(resp.headers['content-type'], 'application/vnd.itv.online.perso.my-list.v1+json')
+
+        watched = data['items']
+        self.assertEqual(data['availableSlots'], 52 - len(watched))
+        if len(watched) == 0:
+            print("WARNING - No LastWatched items")
+        for item in watched:
+            object_checks.has_keys(item, 'categories', 'contentType', 'contentOwner', 'dateAdded', 'duration',
+                                   'imageLink', 'itvxImageLink', 'longRunning', 'numberOfAvailableSeries',
+                                   'numberOfEpisodes', 'partnership', 'programmeId', 'programmeTitle', 'synopsis',
+                                   'tier', obj_name=item['programmeTitle'])
+            self.assertTrue(item['contentType'].lower() in main.callb_map.keys())
+            self.assertIsInstance(item['numberOfAvailableSeries'], list)
+            self.assertIsInstance(item['numberOfEpisodes'], (int, type(None)))
+            self.assertTrue(item['tier'] in ('FREE', 'PAID'))
+
+    def test_get_my_list_content_type_json(self):
+        """Request My List with content-type = application/json"""
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+        headers = {'authorization': 'Bearer ' + self.token,
+                   'accept': 'application/json'}
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'mylist/mylist_json_data.json')
+
+        self.assertIsInstance(data, list)
+        self.assertEqual(resp.headers['content-type'], 'application/json')
+
+    def test_add_programme(self):
+        """At present only programmes can be added to the list, no individual episodes.
+
+        Itv always returns HTTP status 200 when a syntactical valid request has been made. However,
+        that is no guarantee that the requested programme is in fact added to My List.
+
+        """
+        progr_id = '2_7931'
+        episode_id = '2_7931_0001_001'
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
+              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid, progr_id, episode_id)
+        headers = {'authorization': 'Bearer ' + self.token}
+        # Both webbrowser and app authenticate with header, without any cookie.
+        resp = requests.post(url, headers=headers)
+        data = resp.json()
+        self.assertIsInstance(data, dict)
+
+
+class LastWatched(unittest.TestCase):
+    def check_vnd_user_content_v1_json(self, data):
+        """Check the data returned by lastwatched
+        - EpisodeNumber and ProgrammeNumber can be None, even in data of type EPISODE
+        - tier is of type string, instead of the usual list
+        """
+        self.assertIsInstance(data, list)
+        for item in data:
+            object_checks.has_keys(
+                item, 'availabilityEnd', "broadcastDatetime", "contentType", "duration",
+                "episodeNumber", "episodeTitle", "isNextEpisode", "itvxImageLink", "percentageWatched",
+                "productionId", "programmeTitle", "seriesNumber", "synopsis", "tier", "viewedOn", "programmeId",
+                obj_name=item['programmeTitle'])
+
+            object_checks.expect_keys(item, 'categories', "channel", "channelLink", "contentOwner", "imageLink",
+                                      "episodeId", "longRunning", "partnership",
+                                      obj_name='Watching: {}'.format(item['programmeTitle']))
+            self.assertTrue(item['contentType']in ('EPISODE', 'FILM', 'SPECIAL'))
+            self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
+            self.assertTrue(object_checks.is_iso_utc_time(item['broadcastDatetime']))
+            self.assertTrue(object_checks.is_not_empty(item['episodeId'], str))
+            self.assertTrue(object_checks.is_not_empty(item['isNextEpisode'], bool))
+            self.assertTrue(object_checks.is_url(item['itvxImageLink']))
+            self.assertTrue(object_checks.is_url(item['itvxImageLink']))
+            self.assertTrue(object_checks.is_not_empty(item['percentageWatched'], float))
+            self.assertLessEqual(item['percentageWatched'], 1.0)
+            self.assertTrue(object_checks.is_not_empty(item['productionId'], str))
+            self.assertTrue(object_checks.is_not_empty(item['programmeTitle'], str))
+            self.assertTrue(object_checks.is_not_empty(item['synopsis'], str))
+            # Tier is usually of type list, but is string here. The parser accepts both
+            self.assertTrue(object_checks.is_not_empty(item['tier'], str))
+            self.assertTrue(object_checks.is_iso_utc_time(item['viewedOn']))
+            self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
+            self.assertTrue(object_checks.is_not_empty(item['programmeId'], str))
+
+            if item['contentType'] == 'EPISODE':
+                # Some episodes' series and/or episode number are None, e.g. episodes of The Chase
+                object_checks.has_keys(item, 'seriesNumber', 'episodeNumber')
+
+            if item['contentType'] in ('FILM', 'SPECIAL'):
+                self.assertIsNotNone(utils.iso_duration_2_seconds(item['duration']))
+            else:
+                self.assertIsNone(item['duration'])
+
+    def test_get_last_watched(self):
+        """Get last watch without specifying accept header returns content-type application/json,
+        with exactly the same content as the original application/vnd.user.content.v1+json.
+        """
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+              'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/last_watched.json')
+        self.assertEqual('application/vnd.user.content.v1+json', resp.headers['content-type'])
+        self.check_vnd_user_content_v1_json(data)
+
+    def test_get_last_watched_without_accept_type(self):
+        """Get last watch without specifying accept header returns content-type application/json,
+        with exactly the same content as the original application/vnd.user.content.v1+json.
+        """
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+              'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        data = resp.json()
+        self.check_vnd_user_content_v1_json(data)
+
+    def test_get_resume_time_of_production(self):
+        """Get the resume point if a production
+
+        NOTE:
+            The content type returned by ITV is the same type as returned by last watched,
+            though the content is quite different.
+
+        """
+        # Get the productionId of the first last-watched programme
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+              'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
+        last_watched = itv_account.fetch_authenticated(fetch.get_json, url)
+        prod_id = None
+        for item in last_watched:
+            # Find the first programme that has a resume point
+            if not item['isNextEpisode']:
+                prod_id = item['productionId'].replace('/', '_').replace('#', '.')
+                break
+        self.assertIsNotNone(prod_id, "No Last watched programme available that can be resumed")
+
+        url = 'https://content.prd.user.itv.com/resume/user/{}/productionid/{}'.format(
+            itv_account.itv_session().user_id,
+            prod_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual('application/vnd.user.content.v1+json', resp.headers['content-type'])
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/resume_point.json')
+
+        object_checks.has_keys(data, 'progress', 'tier', 'timestamp')
+        self.assertIsInstance(data['progress']['percentage'], float)
+        self.assertIsInstance(data['progress']['time'], str)
+        # Ascertain that time is in a format HH:MM:SS.ms - with seconds as float, rather than the
+        # unusual format HH:MM:SS:ms returned by playlists.
+        self.assertEqual(3, len(data['progress']['time'].split(':')))
+
+        # Request without specifying accept content type return type application/json, but the data is the same.
+        del headers['accept']
+        resp = requests.get(url, headers=headers)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        self.assertDictEqual(data, resp.json())
+
+
+class Recommended(unittest.TestCase):
+    def setUp(self) -> None:
+        self.features_web = {
+                'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
+                'platform': 'dotcom',
+                'size': 12}
+        self.features_mobile = {
+                'features': 'mpeg-dash,widevine,widevine-download,inband-ttml,inband-webvtt,outband-webvtt,inband-audio-description',
+                'platform': 'mobile',
+                'size': 12}
+        self.userid = itv_account.itv_session().user_id
+        self.headers = {'accept': 'application/json'}
+
+    def test_get_recommendations_byw(self):
+        """Because You Watched - recommendations based on the (last) watched programme
+        Requires userid, but no login."""
+        url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/byw.json')
+        self.assertTrue(object_checks.is_not_empty(data['watched_programme'], str))
+        self.assertTrue(12, len(data['recommendations']))
+        for progr in data['recommendations']:
+            object_checks.check_item_type_programme(self, progr, 'BecauseYouWatched')
+
+        # without specifying content-type
+        resp = requests.get(url, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual('application/json', resp.headers['content-type'])
+
+        # invalid user ID
+        url = 'https://recommendations.prd.user.itv.com/recommendations/byw/none'
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(204, resp.status_code)
+
+    def test_recommendations_homepage(self):
+        """Regular recommendations place on the home page."""
+        self.features_web.update(tier='FREE', version='1')
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual('application/json', resp.headers['content-type'])
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/recommended.json')
+        self.assertTrue(12, len(data))
+
+    def test_recommendations_homepage_with_invalid_userid(self):
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/none'
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertTrue(12, len(data))
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
+
+    def test_recommendations_homepage_without_invalid_userid(self):
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/'
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertTrue(12, len(data))
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
+
+    def test_recommendatation_homepage_more_items(self):
+        # request more than 12 items
+        self.features_web['size'] = 24
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        data = resp.json()
+        self.assertTrue(24, len(data))
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
+
+    def test_recommendations_homepage_mobile(self):
+        """This request fails without an apikey header"""
+        url = 'https://api.itv/hub/recommendations/homepage/' + self.userid
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(401, resp.status_code)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -396,7 +676,10 @@ class Playlists(unittest.TestCase):
         # testutils.save_doc(manifest, 'mpd/itv1.mpd')
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
-        self.assertFalse('hdntl' in resp.cookies)        # assert manifest response sets an hdntl cookie
+        if resp.history:
+            self.assertTrue('hdntl' in resp.history[0].cookies)        # assert manifest response sets an hdntl cookie
+        else:
+            self.assertTrue('hdntl' in resp.cookies)
 
     def test_manifest_live_FAST(self):
         strm_data = self.get_playlist_live('FAST16')

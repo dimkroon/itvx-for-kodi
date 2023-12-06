@@ -13,6 +13,7 @@
   "newsVideos": null,
   "subnav": null,
   "programme": {
+    "ccid": "k0ztt58",
     "programmeId": "10_3142",
     "encodedProgrammeId": {
       "letterA": "10a3142",
@@ -34,6 +35,7 @@
     "tier": [
       "FREE"
     ],
+    "heroCtaLabel": "Watch Film",
     "imagePresets": {
       "0": {
         "1x": "https://ovp.itv.com/images/film/k0ztt58/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
@@ -58,11 +60,14 @@
       "seriesNumber": "others",
       "seriesLabel": "Other Episodes",
       "legacyId": 0,
-      "fullSeries": true,
+      "fullSeries": false,
       "seriesType": "FILM",
       "numberOfAvailableEpisodes": 1,
       "titles": [
         {
+          "accessibilityTags": [
+            "s"
+          ],
           "audioDescribed": false,
           "availabilityFeatures": [
             "FAIRPLAY",
@@ -72,9 +77,11 @@
           ],
           "availabilityFrom": "2022-10-01T05:35:00Z",
           "availabilityUntil": "2024-09-30T22:59:59.999Z",
+          "broadcastDateTime": null,
           "categories": [
             "FILM"
           ],
+          "ccid": "k0ztt58",
           "channel": "ITV2",
           "heroCtaLabel": "Watch Film",
           "contentInfo": "1h 46m",
@@ -102,8 +109,8 @@
           "productionType": "FILM",
           "productionYear": 2015,
           "programmeId": "10/3142",
+          "series": null,
           "subtitled": true,
-          "tagName": null,
           "tier": [
             "FREE"
           ],
@@ -113,5 +120,6 @@
       ],
       "longRunning": false
     }
-  ]
+  ],
+  "initialSelectedSeries": "others"
 }

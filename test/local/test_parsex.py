@@ -4,16 +4,16 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
-import pytz
-
 from test.support import fixtures
 fixtures.global_setup()
 
+import pytz
 import unittest
 
+from datetime import datetime, timezone, timedelta
+
 from support.testutils import open_doc, open_json
-from support.object_checks import has_keys, is_url, is_li_compatible_dict
+from support.object_checks import has_keys, is_li_compatible_dict
 from resources.lib import parsex
 from resources.lib import errors
 from resources.lib import main
@@ -195,29 +195,25 @@ class Generic(unittest.TestCase):
         self.assertIsNone(item)
 
     def test_parse_episode_title(self):
-        data = open_json('html/series_miss-marple_data.json')
-        item = parsex.parse_episode_title(data['seriesList'][0]['titles'][0])
-        is_li_compatible_dict(self, item)
-
-        # Episodes where field episodeTitle = None
-        data = open_json('html/series_bad-girls_data.json')
-        title_obj = data['seriesList'][6]['titles'][0]
+        title_obj = open_json('json/episodes.json')[0]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
-        # Episode where field seriesNumber is not a number, but 'other episodes'.
-        data = open_json('html/series_midsummer-murders.json')
-        series = data['seriesList'][-1]
-        self.assertEqual('Other Episodes', series['seriesLabel'])
-        title_obj = series['titles'][0]
+        # Episodes where field episodeTitle = None
+        title_obj = open_json('json/episodes.json')[1]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
         # Paid episode
-        title_obj['premium'] = True
+        title_obj = open_json('json/episodes.json')[2]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
         self.assertTrue('premium' in item['info']['plot'].lower())
+
+        # Episode where field seriesNumber is not a number, but 'other episodes'.
+        title_obj = open_json('json/episodes.json')[3]['episode']
+        item = parsex.parse_episode_title(title_obj)
+        is_li_compatible_dict(self, item)
 
     def test_parse_search_result(self):
         # These files contain programmes, episodes, films and specials both and without a specialProgramm field.
@@ -232,3 +228,63 @@ class Generic(unittest.TestCase):
         search_result = data['results'][0]
         search_result['entityType'] = 'dfgs'
         self.assertIsNone(parsex.parse_search_result(search_result))
+
+    def test_parse_mylist(self):
+        data = open_json('mylist/mylist_data.json')['items']
+        for mylist_item in data:
+            item = parsex.parse_my_list_item(mylist_item)
+            has_keys(item, 'type', 'show')
+            is_li_compatible_dict(self, item['show'])
+
+    def test_parse_last_watched(self):
+        data = open_json('usercontent/last_watched_all.json')
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+        for item in data:
+            show = parsex.parse_last_watched_item(item, utc_now)
+            has_keys(show, 'type', 'show')
+            self.assertEqual('vodstream', show['type'])
+            is_li_compatible_dict(self, show['show'])
+
+    def test_parse_last_watched_availability(self):
+        data = open_json('usercontent/last_watched_all.json')[0]
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+
+        some_years = (datetime.utcnow() + timedelta(days=370)).replace(microsecond=0)
+        data['availabilityEnd'] = some_years.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('over a year' in item['show']['info']['plot'])
+
+        some_months = (datetime.utcnow() + timedelta(days=62)).replace(microsecond=0)
+        data['availabilityEnd'] = some_months.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('2 months' in item['show']['info']['plot'])
+
+        one_months = (datetime.utcnow() + timedelta(days=32)).replace(microsecond=0)
+        data['availabilityEnd'] = one_months.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 month' in item['show']['info']['plot'])
+
+        some_days = (datetime.utcnow() + timedelta(days=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_days.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('4 days available' in item['show']['info']['plot'])
+
+        one_day = (datetime.utcnow() + timedelta(days=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_day.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 day available' in item['show']['info']['plot'])
+
+        some_hours = (datetime.utcnow() + timedelta(hours=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_hours.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('4 hours available' in item['show']['info']['plot'])
+
+        one_hours = (datetime.utcnow() + timedelta(hours=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_hours.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 hour available' in item['show']['info']['plot'])
+
+        zero_hours = (datetime.utcnow() + timedelta(minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = zero_hours.isoformat() + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('0 hours available' in item['show']['info']['plot'])

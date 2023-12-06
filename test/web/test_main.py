@@ -4,17 +4,17 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
 from test.support import fixtures
 fixtures.global_setup()
 
+import uuid
 import unittest
 from unittest.mock import MagicMock, patch
 from typing import MutableMapping
 
 from xbmcgui import ListItem as XbmcListItem
 
-from resources.lib import main, itvx, itv
+from resources.lib import main, itvx, itv, itv_account, errors, cache
 from support import object_checks
 
 setUpModule = fixtures.setup_web_test
@@ -24,6 +24,10 @@ class TestMenu(unittest.TestCase):
     def test_main_menu(self):
         items = list(main.root(MagicMock()))
         self.assertGreaterEqual(len(items), 6)
+
+    def test_menu_my_itvx(self):
+        items = list(main.sub_menu_my_itvx.route.unittest_caller())
+        self.assertGreater(len(items), 0)
 
     @patch('resources.lib.kodi_utils.get_system_setting', return_value='America/Regina')
     def test_menu_live(self, _):
@@ -43,8 +47,51 @@ class TestMenu(unittest.TestCase):
         self.assertAlmostEqual(len(items), 20, delta=4)
 
 
+class TestMyItvx(unittest.TestCase):
+    def setUp(self):
+        cache.purge()
+
+    def test_mylist(self):
+        items = main.generic_list(MagicMock(), filter_char=None)
+        self.assertGreater(len(items), 1)
+
+    def test_mylist_wrong_user_id(self):
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=str(uuid.uuid4())):
+            self.assertRaises(errors.AccessRestrictedError, main.generic_list.test, filter_char=None)
+
+    def test_my_list_not_signed_in(self):
+        with patch.object(itv_account._itv_session_obj, 'account_data', new={}):
+            self.assertRaises(SystemExit, main.generic_list.test, filter_char=None)
+
+    @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
+    def test_continue_watching(self, _):
+        items = main.generic_list.test('watching', filter_char=None)
+        self.assertGreater(len(items), 1)
+
+    def test_continue_watching_with_wrong_userid(self):
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=str(uuid.uuid4())):
+            self.assertRaises(errors.AccessRestrictedError, main.generic_list.test, 'watching', filter_char=None)
+
+    def test_continue_watching_not_signed_in(self):
+        with patch.object(itv_account._itv_session_obj, 'account_data', new={}):
+            self.assertRaises(SystemExit, main.generic_list.test, 'watching', filter_char=None)
+
+    def test_byw(self):
+        items = main.generic_list.test('byw')
+        self.assertEqual(12, len(items))
+
+    def test_byw_wrong_userid(self):
+        with patch.object(itv_account._itv_session_obj, '_user_id', new=str(uuid.uuid4())):
+            items = main.generic_list.test('byw')
+            self.assertIs(items, False)
+
+    def test_recommended(self):
+        items = main.generic_list.test('recommended')
+        self.assertGreater(len(items), 12)
+
+
 class TstCategories(unittest.TestCase):
-    def test_categorey_drama_and_soaps(self):
+    def test_category_drama_and_soaps(self):
         items = main.list_category(MagicMock(), path='/watch/categories/drama-soaps')
         self.assertGreater(len(items), 10)
 
@@ -131,6 +178,7 @@ class TestPlayCatchup(unittest.TestCase):
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 
 
+@unittest.skip("not to interfere with tests of bugfix branch")
 class TestSearch(unittest.TestCase):
     def test_search_chase(self):
         items = main.do_search(MagicMock(), 'chase')

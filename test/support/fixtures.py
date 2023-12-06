@@ -31,6 +31,9 @@ def global_setup():
                          new=lambda self, item: profile_dir if item == 'profile' else '')
         patch_g.start()
 
+        # prevent requesting MyList items at the import of main.
+        patch("resources.lib.cache.my_list_programmes", new=list()).start()
+
         # Enable logging to file during tests with a new file each test run.
         try:
             os.remove(os.path.join(profile_dir, 'addon.log'))
@@ -80,16 +83,25 @@ def set_credentials(session=None) -> None:
     except ImportError:
         raise RuntimeError("Missing ITV account credentials.")
 
+    if session is not None:
+        s = session
+    else:
+        # Ensure web tests do not use a session object that could have been messed up by local tests.
+        itv_account._itv_session_obj = None
+        s = itv_account.itv_session()
+
     global credentials_set
-    s = session if session is not None else itv_account.itv_session()
-    if s.refresh() is False:
-        with patch("resources.lib.kodi_utils.ask_credentials", new=lambda x, y: (x,y)):
-            credentials_set = s.login(account_login.UNAME, account_login.PASSW)
+    credentials_set = s.refresh()
+    if credentials_set is False:
+        credentials_set = s.login(account_login.UNAME, account_login.PASSW)
 
 
 def setup_web_test(*args):
     # Sign in once per test run.
     if not credentials_set:
+        # Ensure web tests start with a new HttpSession object to prevent ill effects from local tests.
+        from resources.lib import fetch
+        fetch.HttpSession.instance = None
         set_credentials()
 
 

@@ -1,12 +1,9 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 #  Copyright (c) 2022-2023 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
-
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -60,6 +57,7 @@ class Generic(TestCase):
         self.assertEqual(630, seconds)
         self.assertIsInstance(seconds, int)
 
+    # noinspection PyTypeChecker
     def test_iso_duration_2_seconds(self):
         self.assertEqual(50 * 3600, utils.iso_duration_2_seconds('PT50H'))
         self.assertEqual(5400, utils.iso_duration_2_seconds('PT1H30M'))
