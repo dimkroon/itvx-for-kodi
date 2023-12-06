@@ -178,16 +178,17 @@ class TestPlayCatchup(unittest.TestCase):
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 
 
-@unittest.skip("not to interfere with tests of bugfix branch")
+@patch("codequick.script.Settings.get_boolean", return_value='false')
 class TestSearch(unittest.TestCase):
-    def test_search_danger(self):
-        items = main.do_search(MagicMock(), 'danger')
+    def test_search_danger(self, p_setting):
+        items = main.do_search.test('danger')
         self.assertGreater(len(items), 4)
+        p_setting.assert_called_once()
 
     def test_search_mear(self, _):
         items = main.do_search.test('mear')
         self.assertGreater(len(items), 4)
 
-    def test_search_dream(self):
-        items = main.do_search(MagicMock(), 'dream')
+    def test_search_dream(self, _):
+        items = main.do_search.test('dream')
         self.assertGreater(len(items), 4)
