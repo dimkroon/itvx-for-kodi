@@ -481,8 +481,11 @@ class Recommended(unittest.TestCase):
                 'platform': 'dotcom',
                 'size': 12}
         self.features_mobile = {
-                'features': 'mpeg-dash,widevine,widevine-download,inband-ttml,inband-webvtt,outband-webvtt,inband-audio-description',
-                'platform': 'mobile',
+                'broadcaster': 'ITV',
+                # 'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive,',
+                'features': 'mpeg-dash,playready,widevine,fairplay,progressive,outband-webvtt,hls,aes,outband-webvtt,inband-audio-description',
+                # 'features': 'mpeg-dash,widevine,widevine-download,inband-ttml,inband-webvtt,outband-webvtt,inband-audio-description',
+                'platform': 'dotcom',
                 'size': 12}
         self.userid = itv_account.itv_session().user_id
         self.headers = {'accept': 'application/json'}
@@ -520,7 +523,30 @@ class Recommended(unittest.TestCase):
         self.assertEqual('application/json', resp.headers['content-type'])
         data = resp.json()
         # testutils.save_json(data, 'usercontent/recommended.json')
-        self.assertTrue(12, len(data))
+        self.assertEqual(12, len(data))
+
+    def test_recommendations_homepage_different_featureset(self):
+        """The featureset MUST be exactly the web featureset.
+        Any feature less, or any feature added, results in an empty list.
+
+        """
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
+        f_set = self.features_web['features'].split(',')
+
+        # A feature less.
+        self.features_web['features'] = ','.join((f_set[:-1]))
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertEqual(0, len(data))
+
+        # A features more
+        f_set.append('inband-webvtt')
+        self.features_web['features'] = ','.join(f_set)
+        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertEqual(0, len(data))
 
     def test_recommendations_homepage_with_invalid_userid(self):
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/none'
@@ -551,9 +577,16 @@ class Recommended(unittest.TestCase):
             object_checks.check_item_type_programme(self, progr, 'Recommended')
 
     def test_recommendations_homepage_mobile(self):
-        """This request fails without an apikey header"""
+        # Wwb endpoint, but with mobile feature set - returns empty list.
+        url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/'
+        resp = requests.get(url, headers=self.headers, params=self.features_mobile, allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        self.assertEqual(0, len(data))
+
+        # Mobile API enpoint - This request fails without an apikey header
         url = 'https://api.itv/hub/recommendations/homepage/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.features_mobile, allow_redirects=False)
         self.assertEqual(401, resp.status_code)
 
 # ----------------------------------------------------------------------------------------------------------------------
