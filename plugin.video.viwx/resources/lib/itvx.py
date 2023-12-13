@@ -547,8 +547,8 @@ def get_last_watched():
     if cached_data is not None:
         return cached_data
 
-    url = 'https://content.prd.user.itv.com/lastwatched/user/{}/{}?features={}'.format(
-            user_id, PLATFORM_TAG, FEATURE_SET)
+    url = ('https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,hls,'
+           'aes,playready,widevine,fairplay,progressive').format(user_id)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
     data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
@@ -587,7 +587,9 @@ def recommended(user_id, hide_paid=False):
 
     recommended = cache.get_item(recommended_url)
     if not recommended:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24}
+        req_params = {'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
+                      'platform': 'dotcom',
+                      'size': 24}
         recommended = fetch.get_json(recommended_url, params=req_params)
         if not recommended:
             return None
@@ -605,7 +607,9 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
     byw_url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + user_id
     byw = cache.get_item(byw_url)
     if not byw:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12}
+        req_params = {'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
+                      'platform': 'dotcom',
+                      'size': 12}
         byw = fetch.get_json(byw_url, params=req_params)
         if not byw:
             return
