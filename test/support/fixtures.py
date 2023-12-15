@@ -10,6 +10,7 @@ from typing import Dict, List, Tuple
 
 from unittest.mock import patch
 
+import xbmcvfs
 
 patch_g = None
 
@@ -30,6 +31,8 @@ def global_setup():
         patch_g = patch('xbmcaddon.Addon.getAddonInfo',
                          new=lambda self, item: profile_dir if item == 'profile' else '')
         patch_g.start()
+
+        xbmcvfs.translatePath = lambda path: path
 
         # prevent requesting MyList items at the import of main.
         patch("resources.lib.cache.my_list_programmes", new=list()).start()
