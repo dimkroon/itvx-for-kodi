@@ -376,14 +376,15 @@ class MainPage(unittest.TestCase):
         for item in page_props['heroContent']:
             content_type = item['contentType']
             self.assertTrue(content_type in
-                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'brand',
+                            ('simulcastspot', 'fastchannelspot', 'series', 'film', 'special', 'episode', 'brand',
                              'collection', 'page', 'upsellspot'))
             if content_type == 'upsellspot':
                 continue
+            obj_name = 'Hero-items.' +  item['title']
             if content_type == 'simulcastspot':
-                check_item_type_simulcastspot(self, item, parent_name='hero-item')
+                check_item_type_simulcastspot(self, item, parent_name='hero-items')
                 # Flag if key normally only present in collections become available in hero items as well
-                misses_keys(item, 'contentinfo', 'progress', obj_name='hero-item.'+ item['title'])
+                misses_keys(item, 'contentinfo', 'progress', obj_name=obj_name)
                 # Start and end times in Simulcastspots in hero are normally not in iso format.
                 # Flag if this changes.
                 self.assertFalse(is_iso_utc_time(item['startDateTime']))
@@ -402,29 +403,32 @@ class MainPage(unittest.TestCase):
                 check_item_type_page(self, item, 'mainpage.hero')
             else:
                 has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel', 'ariaLabel',
-                         'contentInfo', obj_name=item['title'])
+                         'contentInfo', obj_name=obj_name)
                 self.assertIsInstance(item['contentInfo'], list)
 
                 if item['contentType']in ('simulcastspot', 'fastchannelspot'):
-                    has_keys(item, 'channel', obj_name=item['title'])
+                    has_keys(item, 'channel', obj_name=obj_name)
                 else:
-                    has_keys(item, 'genres', 'encodedProgrammeId', 'programmeId', obj_name=item['title'])
+                    has_keys(item, 'genres', 'encodedProgrammeId', 'programmeId', obj_name=obj_name)
                     self.assertTrue(is_encoded_programme_id(item['encodedProgrammeId']))
                     check_genres(self, item['genres'])
 
                 if item['contentType'] == 'special':
                     # Field 'dateTime' not always present in special title
-                    has_keys(item, 'encodedEpisodeId', 'duration', obj_name=item['title'])
-                    is_encoded_episode_id()
+                    has_keys(item, 'encodedEpisodeId', 'duration', obj_name=obj_name)
                     self.assertTrue(is_encoded_episode_id(item['encodedEpisodeId']))
 
+                if item['contentType'] == 'episode':
+                    self.assertTrue(is_encoded_episode_id(item['encodedEpisodeId']))
+                    misses_keys(item, 'duration', obj_name=obj_name)
+
                 if item['contentType'] == 'series':
-                    has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=item['title'])
+                    has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=obj_name)
                     self.assertTrue(is_encoded_episode_id(item['encodedEpisodeId']))
 
                 if item['contentType'] == 'film':
                     # Fields not always present:  'dateTime'
-                    has_keys(item, 'productionYear', 'duration', obj_name=item['title'])
+                    has_keys(item, 'productionYear', 'duration', obj_name=obj_name)
 
                 if item['contentType'] == 'brand':
                     # Just to check over time if this is always true
