@@ -88,6 +88,14 @@ class Generic(unittest.TestCase):
         self.assertEqual(1, len(obj['ctx_mnu']))
         self.assertTrue('list_productions' in obj['ctx_mnu'][0][1])
 
+        # An episode item's context menu 'view all episodes'.
+        item = deepcopy(data['heroContent'][8])
+        self.assertEqual('episode', item['contentType'])
+        obj = parsex.parse_hero_content(item)
+        self.assertIsInstance(obj['ctx_mnu'], list)
+        self.assertEqual(1, len(obj['ctx_mnu']))
+        self.assertTrue('list_productions' in obj['ctx_mnu'][0][1])
+
         # An item of unknown type
         item = deepcopy(data['heroContent'][0])
         item['contentType'] = 'some new type'

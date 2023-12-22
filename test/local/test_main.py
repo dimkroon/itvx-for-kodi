@@ -62,7 +62,7 @@ class MainMenu(TestCase):
                 items_with_ctx_menus += 1
         # Check 'My ItvX' is present
         self.assertTrue(items[0].label == 'My itvX')
-        self.assertEqual(5, items_with_ctx_menus)
+        self.assertEqual(6, items_with_ctx_menus)
 
 
 class LiveChannels(TestCase):
