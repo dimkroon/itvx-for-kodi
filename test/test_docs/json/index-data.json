@@ -176,6 +176,33 @@
       "contentInfo": ["Drama", "Series 1"],
       "ctaLabel": "Watch Now",
       "ariaLabel": "Watch an episode of The Beast Must Die"
+    },
+    {
+      "imagePresets": {},
+      "contentType": "episode",
+      "title": "Mr Bean",
+      "tagName": null,
+      "imageTemplate": "https://ovp.itv.com/images/episode/9dfw1r5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "ariaLabel": "Watch Now",
+      "brandImageTemplate": "https://ovp.itv.com/images/programme/wxtzzkh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isPaid": false,
+      "programmeId": "1/7287",
+      "encodedProgrammeId": {
+        "letterA": "1a7287",
+        "underscore": "1_7287"
+      },
+      "encodedEpisodeId": {
+        "letterA": "1a7287a0007",
+        "underscore": "1_7287_0007"
+      },
+      "categories": [
+        "COMEDY"
+      ],
+      "description": "Uh oh, Mr Bean is wreaking havoc again - this time at Christmas!",
+      "series": 1,
+      "episode": 7,
+      "ctaLabel": "Series 1, Episode 7",
+      "contentInfo": []
     }
   ],
   "editorialSliders": {
