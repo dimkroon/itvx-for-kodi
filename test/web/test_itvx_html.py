@@ -185,7 +185,8 @@ def check_title(self, title, parent_name):
         self.assertGreater(title['productionYear'], 1900)
         self.assertTrue('episode' not in title)
         self.assertIsNone(title['series'])
-        self.assertEqual(utils.strptime(title['dateTime'], '%Y-%m-%dT%H:%M:%S.%fZ'), datetime(1970, 1, 1))
+        # As of 22-12-2023 som efilms have an actual dateTime
+        # self.assertEqual(utils.strptime(title['dateTime'], '%Y-%m-%dT%H:%M:%S.%fZ'), datetime(1970, 1, 1))
 
 
 def check_episode(self, episode, parent_name):
@@ -588,6 +589,9 @@ class WatchPages(unittest.TestCase):
             check_series(self, series, programme_data['title'])
             for title in series['titles']:
                 self.assertTrue(title['premium'])
+        # Check episode - the data of the actual episode the page represents.
+        check_title(self, data['episode'], programme_data['title'])
+
 
     def test_film_details_page(self):
         page = fetch.get_document('https://www.itv.com/watch/danny-collins/10a3142')
@@ -598,6 +602,8 @@ class WatchPages(unittest.TestCase):
         self.assertEqual(1, len(data['seriesList']))
         self.assertEqual(1, len(data['seriesList'][0]['titles']))
         check_series(self, data['seriesList'][0], data['programme']['title'])
+        # Film pages do NOT have a field 'episode'
+        self.assertTrue('episode' not in data.keys())
 
     def test_special_details_page(self):
         page = fetch.get_document('https://www.itv.com/watch/how-to-catch-a-cat-killer/10a1951')
@@ -607,12 +613,15 @@ class WatchPages(unittest.TestCase):
         self.assertEqual(1, len(data['seriesList']))
         self.assertEqual(1, len(data['seriesList'][0]['titles']))
         check_series(self, data['seriesList'][0], data['programme']['title'])
+        # Check episode - whether it's present and conform the usual episode data the page represents.
+        check_title(self, data['episode'], data['title'])
 
     def test_news_item_tonight(self):
         page = fetch.get_document('https://www.itv.com/watch/tonight-can-britain-get-talking/1a2803/1a2803a9382')
         # testutils.save_doc(page, 'html/news-tonight.html')
         data = parsex.scrape_json(page)
         check_programme(self, data['programme'])
+        check_title(self, data['episode'], data['programme']['title'])
 
     def test_short_news_item(self):
         page = fetch.get_document('https://www.itv.com/watch/news/met-police-officers-investigated-for-gross-misconduct-over-stephen-port-case/fxmdtwy')
@@ -620,6 +629,9 @@ class WatchPages(unittest.TestCase):
         data = parsex.scrape_json(page)
         self.assertFalse('programme' in data)
         self.assertTrue('episode' in data)
+        # Episodes in short news is not completely conform title specs
+        self.assertRaises(AssertionError, check_title, self, data['episode'], 'short-news')
+        # Check is does have a field 'playlistUrl', so in can be used in main.play_title()
         self.assertTrue(is_url(data['episode']['playlistUrl']))
 
 

@@ -79,14 +79,35 @@ class TestItvX(unittest.TestCase):
         episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
+        # Ensure we have the playlist of the right episode.
+        self.assertTrue(url.rsplit('.',1)[0].endswith('002'))
 
         # itvx episode page - Nightwatch Series1 episode 2
         episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
+        # Ensure we have the playlist of the right episode.
+        self.assertTrue(url.rsplit('.',1)[0].endswith('002'))
+
+        # Mr Beam , Merry christmas
+        episode_url = 'https://www.itv.com/watch/mr-bean/1a7287/1a7287a0007'
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))
+        # Ensure we have the playlist of the right episode.
+        self.assertTrue(url.rsplit('.',1)[0].endswith('007'))
 
         # Premium episode Downton-abbey S1E1
         episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))
+
+        # Film Die Hard with a Vengeance
+        episode_url = 'https://www.itv.com/watch/die-hard-with-a-vengeance/7a0233'
+        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        self.assertTrue(is_url(url))
+
+        # Special: Documentary
+        episode_url = 'https://www.itv.com/watch/the-real-nolly/10a3387/10a3387a0001'
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
 
