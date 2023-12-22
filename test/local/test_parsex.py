@@ -61,7 +61,7 @@ class Generic(unittest.TestCase):
         self.assertEqual('thetitle', parsex.sort_title('TheTitle'))
 
     def test_parse_hero(self):
-        data = open_json('html/index-data.json')
+        data = open_json('json/index-data.json')
         for item_data in data['heroContent']:
             obj = parsex.parse_hero_content(item_data)
             has_keys(obj, 'type', 'show')

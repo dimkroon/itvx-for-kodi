@@ -443,11 +443,11 @@ def get_playlist_url_from_episode_page(page_url):
     data = get_page_data(page_url)
 
     try:
-        return data['seriesList'][0]['titles'][0]['playlistUrl']
-    except KeyError:
-        # news item
+        # news, specials and normal episodes (The latter only occurs when not selected from a series folder, e.g. as hero item)
         return data['episode']['playlistUrl']
-
+    except KeyError:
+        # Some pages, like films, do not have a field 'episode', but do have a series list with one item.
+        return data['seriesList'][0]['titles'][0]['playlistUrl']
 
 
 def search(search_term, hide_paid=False):

@@ -110,13 +110,15 @@ def parse_hero_content(hero_data):
             item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
                               'series_idx': hero_data.get('series')}
 
-        elif item_type in ('special', 'film'):
+        elif item_type in ('special', 'film', 'episode'):
             item['info'].update(plot=''.join(('[B]Watch ',
                                               'FILM' if item_type == 'film' else 'NOW',
                                               '[/B]\n',
                                               hero_data.get('description'))),
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
-            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+            item['params'] = {'url': build_url(title,
+                                               hero_data['encodedProgrammeId']['letterA'],
+                                               hero_data.get('encodedEpisodeId', {}).get('letterA')),
                               'name': title}
 
         else:
