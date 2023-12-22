@@ -413,10 +413,11 @@ def get_playlist_url_from_episode_page(page_url, prefer_bsl=False):
     data = get_page_data(page_url)
 
     try:
-        episode = data['seriesList'][0]['titles'][0]
+        # news, specials and normal episodes (The latter only occurs when not selected from a series folder, e.g. as hero item)
+        return data['episode']['playlistUrl']
     except KeyError:
-        # news item
-        episode = data['episode']
+        # Some pages, like films, do not have a field 'episode', but do have a series list with one item.
+        return data['seriesList'][0]['titles'][0]['playlistUrl']
 
     if prefer_bsl:
         return episode.get('bslPlaylistUrl') or episode['playlistUrl']
