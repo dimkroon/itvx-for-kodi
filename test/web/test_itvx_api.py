@@ -192,36 +192,39 @@ class Search(unittest.TestCase):
         self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
         self.assertFalse('/' in item_data['legacyId']['apiEncoded'])
 
-    def _search_until_success(self, search_term, params=None, idx=0):
+    def _search_until_success(self, search_term, params=None):
         if params:
             self.search_params.update(params)
-        self.search_params['query'] = 'the chase'
+        self.search_params['query'] = search_term
         for idx in range(10):
             resp = requests.get(self.search_url, params=self.search_params, headers=self.headers)
             if resp.status_code == 200:
                 self.logger.debug("Search for '%s' completed after %s retries.", search_term, idx)
                 break
         if resp.status_code != 200:
-            raise AssertionError(f"Search for '%s' failed with HTTP status %S after %s attempts.",
-                                 search_term, resp.status_code, idx)
+            raise AssertionError(
+                f"Search for '{search_term}' failed with HTTP status {resp.status_code} after {idx} attempts.")
         data = resp.json()
         self.check_result(data)
-        self.assertGreater(len(data['results']), 3)
         return data
 
-    def test_search_normal_chase(self, idx=0):
-        self._search_until_success('the chase')
+    def test_search_normal_chase(self):
+        data = self._search_until_success('the chase')
+        self.assertGreater(len(data['results']), 3)
 
     def test_search_normal_monday(self):
-        self._search_until_success('monday')
+        data = self._search_until_success('monday')
+        self.assertGreater(len(data['results']), 3)
 
     def test_search_normal_dangerous(self):
-        self._search_until_success('dangerous')
+        data = self._search_until_success('dangerous')
+        self.assertGreater(len(data['results']), 3)
 
     def test_search_without_result(self):
         """Typical itvX behaviour; response can be either HTTP status 204 - No Content,
         or status 200 - OK with empty results list."""
-        self._search_until_success('xprs')
+        data = self._search_until_success('xprs')
+        self.assertEqual(len(data['results']), 0)
 
     def test_search_foster_with_paid(self):
         """Results contains a Doctor Foster programme, which can only be watch with a premium account."""
