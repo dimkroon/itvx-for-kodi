@@ -124,7 +124,7 @@ def get_live_channels(local_tz=None):
         local_tz = pytz.timezone('Europe/London')
 
     schedule = get_now_next_schedule(local_tz)
-    main_schedule = get_live_schedule(local_tz=local_tz)
+    main_schedule = get_live_schedule(6, local_tz=local_tz)
 
     # Replace the schedule of the main channels with the longer one obtained from get_live_schedule().
     for channel in schedule:
