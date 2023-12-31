@@ -628,6 +628,23 @@ def update_mylist(_, progr_id, operation, refresh=True):
     @param bool refresh: whether to perform a Container.Refresh
 
     """
+    if operation == 'remove':
+        import time
+        time.sleep(3)
+        item_id = xbmc.getInfoLabel('Container().CurrentItem')
+        item_idx = xbmc.getInfoLabel('Container().Position')
+
+        logger.info('Current item ID: %s', item_id)
+        logger.info('Current item idx: %s', item_idx)
+        logger.info('Number of items: %s', xbmc.getInfoLabel('Container(id).NumItems'))
+        logger.info('Total number of items: %s', xbmc.getInfoLabel('Container(id).NumAllItems'))
+        logger.info('Container.content" %s', xbmc.getInfoLabel('Container().Content'))
+        logger.info('Label of current control: %s', xbmc.getInfoLabel(f'Control.GetLabel({item_id})'))
+        logger.info("Some other text")
+        logger.info('Container label of item 0: %s', xbmc.getInfoLabel('Container().ListItem(0).Label'))
+        xbmc.executebuiltin('control.setfocus(5, absolute)')
+        xbmc.executebuiltin('control.setvisible(5)')
+        return
     try:
         itvx.my_list(itv_account.itv_session().user_id, progr_id, operation)
     except (ValueError, IndexError, FetchError):
