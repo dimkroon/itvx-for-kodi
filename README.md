@@ -21,7 +21,19 @@ with a generic web browser also apply to this add-on:
 * Watch all video on-demand offered by ITVX. Premium content is of course only 
   available to users with a paid ITVX premium account.
 * Search
-* Play from the start for programmes on the main live channels.
+* Play from the start for programmes on the main live channels.  
+  Available from the context menu on channels in the 'Live' menu.
+* My ItvX with:
+  * Support for ITVX's My List.  
+    Add to or remove programmes from My List by using the context menu on 
+    programmes in any type of listing.  
+  * Continue Watching with synced status across different devices.  
+    Resume watching on one device what you started on another, regardless of 
+    whether it's viwX, the ITVX app or the ITVX website.
+  * Because You Watched.  
+    ITVX's recommendations based on a recently watched programme.
+  * Recommended for You.  
+    General recommendations from ITVX.
 * Option to hide premium content from listings.
 * Option to show subtitles on VOD content, with the option to enable/disable 
   colourisation of subtitles.
