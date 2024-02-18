@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -182,7 +182,8 @@ class Search(unittest.TestCase):
             'broadcaster': 'itv',
             'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
             'onlyFree': 'false',
-            'platform': 'ctv',
+            'platform': 'dotcom',
+            'size': '24'
         }.copy()
 
     def check_result(self, resp_obj):
