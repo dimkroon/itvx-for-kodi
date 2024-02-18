@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -514,7 +514,7 @@ def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_ca
     data = itv_account.fetch_authenticated(fetcher, url, data=None, login=offer_login)
     # Empty lists will return HTTP status 204, which results in data being None.
     if data:
-        my_list_items = [parsex.parse_my_list_item(item) for item in data]
+        my_list_items = list(filter(None, (parsex.parse_my_list_item(item) for item in data)))
     else:
         my_list_items = []
     cache.set_item('mylist_' + user_id, my_list_items, 1800)
