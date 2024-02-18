@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -32,6 +32,10 @@ from support.object_checks import (
 from support import testutils
 
 setUpModule = fixtures.setup_web_test
+
+# A list of all pages that have been checked. Prevents loops and checking the same page
+# over again when it appears in multiple collections.
+checked_urls = []
 
 
 def check_editorial_slider(testcase, slider_data, parent_name):
@@ -207,6 +211,7 @@ def check_item_type_page(testcase, item, parent_name):
     Page items are very similar to items of type collection. The only difference
     is the use of field 'pageId' instead of 'collectionId'.
     Furthermore, the urls of page appear to require a querystring to return without error.
+
     """
     has_keys(item, 'contentType', 'title', 'titleSlug', 'pageId', 'imageTemplate',
              obj_name='{}.{}'.format(parent_name, item.get('title', 'unknown')))
@@ -225,7 +230,6 @@ def check_item_type_page(testcase, item, parent_name):
     # The only instance of a page item found so far, referred to the collection 'funny-favourites'
     # and returned HTTP error 404 unless query string ?ind was added to the url.
 
-    # Check that the plain url does not succeed
     url = 'https://www.itv.com/watch/collections/' + item['titleSlug'] + '/' + item['pageId']
     headers = {
         # Without these headers the requests will time out.
@@ -402,7 +406,11 @@ class CollectionPages(unittest.TestCase):
         """Check a collection page.
 
         """
+        if url in checked_urls:
+            return
+
         page_data = parsex.scrape_json(fetch.get_document(url))
+        checked_urls.append(url)
 
         if parent_name:
             parent_name = parent_name + '.' + page_data['headingTitle'] + '.'
@@ -453,10 +461,7 @@ class CollectionPages(unittest.TestCase):
                 if heading_link:
                     # Yes, strip trailing white space. It has actually happened...
                     page_ref = 'https://www.itv.com/watch' + heading_link['href'].rstrip()
-                    if page_ref != url:
-                        # Some sliders have a 'view all' reference to their own page.
-                        # Which is not so bad on a website and in Kodi, but disastrous in this test.
-                        CollectionPages.check_page(testcase, page_ref, parent_name)
+                    CollectionPages.check_page(testcase, page_ref, parent_name)
                 else:
                     for show in collection_data['shows']:
                         check_shows(testcase, show, obj_name)
