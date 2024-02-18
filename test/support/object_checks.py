@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -306,7 +306,7 @@ def check_short_form_item(item):
         item,
         'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime',
         obj_name=item['episodeTitle'])
-    misses_keys(item, 'isPaid', 'tier')
+    misses_keys(item, 'isPaid', 'tier', 'imagePresets')
 
     if 'encodedProgrammeId' in item.keys():
         # 'Normal' programmes
@@ -325,8 +325,6 @@ def check_short_form_item(item):
         # episodeId on real clips does not require letterA encoding
         assert '/' not in item['episodeId']
 
-    # imagePresets is always an empty dict.
-    assert isinstance(item['imagePresets'], dict) and not item['imagePresets']
     assert is_not_empty(item['episodeTitle'], str)
     assert is_not_empty(item['episodeId'], str)
     assert is_not_empty(item['titleSlug'], str)
