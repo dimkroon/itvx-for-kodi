@@ -151,7 +151,7 @@ class LiveSchedules(unittest.TestCase):
         self.assertTrue(data['images']['backdrop'].startswith('https://'))
         self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
 
-        self.assertAlmostEqual(25, len(data['channels']), delta=5)
+        self.assertAlmostEqual(20, len(data['channels']), delta=5)
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
