@@ -126,8 +126,8 @@ class Search(unittest.TestCase):
             'broadcaster': 'itv',
             'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
             'onlyFree': 'false',
-            'platform': 'dotcom',
-            'size': '24'
+            'platform': 'ctv',
+            'size': 24
         }.copy()
         self.headers = {
             'user-agent':       'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0',
