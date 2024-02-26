@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -459,7 +459,7 @@ def search(search_term, hide_paid=False):
     from urllib.parse import quote
 
     base_url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,'
-                'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree={}&platform=ctv&query='
+                'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree={}&platform=ctv&size=24&query='
                 .format(str(hide_paid).lower()))
     headers = {
         'user-agent': fetch.USER_AGENT,
