@@ -1,11 +1,13 @@
 {
   "category": {
+    "id": "CHILDREN",
+    "name": "Children",
     "slug": "children",
-    "title": "Children",
-    "pathSegment": "children"
+    "sponsorCategory": "CHILDREN"
   },
   "programmes": [
     {
+      "ccid": "1gnwynf",
       "title": "50/50 Heroes",
       "titleSlug": "5050-heroes",
       "encodedProgrammeId": {
@@ -14,61 +16,304 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "10a1511a0040",
-        "underscore": "10_1511_0040"
+        "letterA": "10a1511a0052",
+        "underscore": "10_1511_0052"
       },
-      "description": "Standout animation about half-siblings Mo & Sam who have super half-powers",
+      "description": "Standout animation - half-siblings Mo & Sam have super half-powers",
       "imageTemplate": "https://ovp.itv.com/images/programme/1gnwynf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-04-05T15:45:00Z",
+      "episodeId": "10/1511/0052",
+      "programmeId": "10/1511",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Athleticus",
-      "titleSlug": "athleticus",
+      "ccid": "rjs71hy",
+      "title": "A Horse Called Wish",
+      "titleSlug": "a-horse-called-wish",
       "encodedProgrammeId": {
-        "letterA": "10a0554",
-        "underscore": "10_0554"
+        "letterA": "10a4832",
+        "underscore": "10_4832"
       },
-      "channel": "itvbe",
+      "channel": "itv2",
       "encodedEpisodeId": {
-        "letterA": "10a0554a0082",
-        "underscore": "10_0554_0082"
+        "letterA": "",
+        "underscore": ""
       },
-      "description": "Wow! These animals can do table tennis, football & bobsleigh",
-      "imageTemplate": "https://ovp.itv.com/images/programme/hbmhtpk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 3",
+      "description": "Get stuck into this inspirational tale of belonging. Best hoof forward!",
+      "imageTemplate": "https://ovp.itv.com/images/special/rjs71hy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 22m",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4832",
+      "contentType": "special"
     },
     {
-      "title": "Bananaman",
-      "titleSlug": "bananaman",
+      "ccid": "6ss59tw",
+      "title": "A Minuscule Adventure",
+      "titleSlug": "a-minuscule-adventure",
       "encodedProgrammeId": {
-        "letterA": "IND0051",
-        "underscore": "IND0051"
+        "letterA": "10a4830",
+        "underscore": "10_4830"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Fly away home...a magical tale about the big rescue of a little ladybird",
+      "imageTemplate": "https://ovp.itv.com/images/special/6ss59tw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 50m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4830",
+      "contentType": "special"
+    },
+    {
+      "ccid": "ywq54hc",
+      "title": "Agent 203",
+      "titleSlug": "agent-203",
+      "encodedProgrammeId": {
+        "letterA": "10a4822",
+        "underscore": "10_4822"
       },
       "channel": "itv",
       "encodedEpisodeId": {
-        "letterA": "IND0051a0040",
-        "underscore": "IND0051_0040"
+        "letterA": "10a4822a0026",
+        "underscore": "10_4822_0026"
       },
-      "description": "The thrilling adventures of a young lad who turns into a superhero when he eats a banana.",
-      "imageTemplate": "https://ovp.itv.com/images/programme/hmqn7kj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "description": "Join one plucky 13-year-old & her alien bestie on a mega mission",
+      "imageTemplate": "https://ovp.itv.com/images/programme/ywq54hc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4822/0026",
+      "programmeId": "10/4822",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "zxplxw1",
+      "title": "Ainbo: Spirit of the Amazon",
+      "titleSlug": "ainbo-spirit-of-the-amazon",
+      "encodedProgrammeId": {
+        "letterA": "10a4824",
+        "underscore": "10_4824"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "A young hero embarks on a jungle quest - jump into this epic journey!",
+      "imageTemplate": "https://ovp.itv.com/images/special/zxplxw1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 40m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4824",
+      "contentType": "special"
+    },
+    {
+      "ccid": "d5hmr66",
+      "title": "All Round Champion",
+      "titleSlug": "all-round-champion",
+      "encodedProgrammeId": {
+        "letterA": "10a4513",
+        "underscore": "10_4513"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4513a0033",
+        "underscore": "10_4513_0033"
+      },
+      "description": "Series 3 of the ultimate sports test! Can the athletes beat their limit?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/d5hmr66/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
-        "PAID"
-      ]
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4513/0033",
+      "programmeId": "10/4513",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "9cv6dy2",
+      "title": "American Ninja Warrior Junior",
+      "titleSlug": "american-ninja-warrior-junior",
+      "encodedProgrammeId": {
+        "letterA": "10a4078",
+        "underscore": "10_4078"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4078a0037",
+        "underscore": "10_4078_0037"
+      },
+      "description": "It's Series 2 of TV's toughest show - which daring kids can conquer it?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/9cv6dy2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 2",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4078/0037",
+      "programmeId": "10/4078",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "82zz2g0",
+      "title": "Baby Born",
+      "titleSlug": "baby-born",
+      "encodedProgrammeId": {
+        "letterA": "10a5079",
+        "underscore": "10_5079"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a5079a0018",
+        "underscore": "10_5079_0018"
+      },
+      "description": "Why do big kids have all the fun? It\u2019s not fair! New eps added",
+      "imageTemplate": "https://ovp.itv.com/images/programme/82zz2g0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/5079/0018",
+      "programmeId": "10/5079",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "l7xd5yl",
+      "title": "Bajillionaires",
+      "titleSlug": "bajillionaires",
+      "encodedProgrammeId": {
+        "letterA": "10a4641",
+        "underscore": "10_4641"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4641a0020",
+        "underscore": "10_4641_0020"
+      },
+      "description": "Running your own business can be hard\u2026 especially when you\u2019re 12!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/l7xd5yl/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4641/0020",
+      "programmeId": "10/4641",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "qbbjj8z",
+      "title": "Barbie",
+      "titleSlug": "barbie",
+      "encodedProgrammeId": {
+        "letterA": "10a4954",
+        "underscore": "10_4954"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4915a0001",
+        "underscore": "10_4915_0001"
+      },
+      "description": "She's all that! Join Barbie on gorgeous adventures with her friends",
+      "imageTemplate": "https://ovp.itv.com/images/programme/qbbjj8z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 20m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4915/0001",
+      "programmeId": "10/4954",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "b89wgp4",
       "title": "Be Cool, Scooby-Doo!",
       "titleSlug": "be-cool-scooby-doo",
       "encodedProgrammeId": {
@@ -77,40 +322,122 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a4501a0045",
-        "underscore": "2_4501_0045"
+        "letterA": "2a4501a0035",
+        "underscore": "2_4501_0035"
       },
       "description": "They're back & they're battling the swamp monsters on their summer trip",
       "imageTemplate": "https://ovp.itv.com/images/programme/b89wgp4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 2",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-02-26T07:45:00Z",
+      "episodeId": "2/4501/0035",
+      "programmeId": "2/4501",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "8kkjhqf",
+      "title": "BFF Cry Babies",
+      "titleSlug": "bff-cry-babies",
+      "encodedProgrammeId": {
+        "letterA": "10a5084",
+        "underscore": "10_5084"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a5084a0020",
+        "underscore": "10_5084_0020"
+      },
+      "description": "If the going gets tough, remember: best friends forever!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/8kkjhqf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/5084/0020",
+      "programmeId": "10/5084",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Blake's 7",
-      "titleSlug": "blakes-7",
+      "ccid": "0699kmm",
+      "title": "Blippi & Meekah Deliver Gifts with Santa the Musical",
+      "titleSlug": "blippi-and-meekah-deliver-gifts-with-santa-the-musical",
       "encodedProgrammeId": {
-        "letterA": "10a0566",
-        "underscore": "10_0566"
+        "letterA": "10a5029a0110B",
+        "underscore": "10_5029_0110B"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "A picture book, presents galore... and the true spirit of the holiday",
+      "imageTemplate": "https://ovp.itv.com/images/special/0699kmm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/5029/0110B",
+      "contentType": "special"
+    },
+    {
+      "ccid": "8smp3qf",
+      "title": "Blippi Visits",
+      "titleSlug": "blippi-visits",
+      "encodedProgrammeId": {
+        "letterA": "10a5218",
+        "underscore": "10_5218"
       },
       "channel": "itv",
       "encodedEpisodeId": {
-        "letterA": "10a0566a0052",
-        "underscore": "10_0566_0052"
+        "letterA": "10a5029a0050",
+        "underscore": "10_5029_0050"
       },
-      "description": "Sweeping 70s sci-fi epic that broke the mould with its daring tales. ",
-      "imageTemplate": "https://ovp.itv.com/images/programme/yy6k9yw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 4",
-      "partnership": "BRITBOX",
-      "contentOwner": "BBC",
+      "description": "Baking, animals, trucks & more! Come & explore Blippi's wonderful world",
+      "imageTemplate": "https://ovp.itv.com/images/programme/8smp3qf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
       "tier": [
-        "PAID"
-      ]
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/5029/0050",
+      "programmeId": "10/5218",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "5y3hs7d",
       "title": "Bob the Builder",
       "titleSlug": "bob-the-builder",
       "encodedProgrammeId": {
@@ -119,40 +446,31 @@
       },
       "channel": "itvbe",
       "encodedEpisodeId": {
-        "letterA": "10a2065a0104",
-        "underscore": "10_2065_0104"
+        "letterA": "10a2065a0130",
+        "underscore": "10_2065_0130"
       },
-      "description": "There are new houses to build & power failures to fix - can he fix them?",
+      "description": "Houses to build & power failures to sort - can Bob fix them in Series 3?",
       "imageTemplate": "https://ovp.itv.com/images/programme/5y3hs7d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
+      "contentInfo": "Series 1 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-03-03T10:50:00Z",
+      "episodeId": "10/2065/0130",
+      "programmeId": "10/2065",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Bobo",
-      "titleSlug": "bobo",
-      "encodedProgrammeId": {
-        "letterA": "10a1023",
-        "underscore": "10_1023"
-      },
-      "channel": "itvbe",
-      "encodedEpisodeId": {
-        "letterA": "10a1023a0052",
-        "underscore": "10_1023_0052"
-      },
-      "description": "He's the unstoppable explorer dormouse - join him on his big adventures",
-      "imageTemplate": "https://ovp.itv.com/images/programme/77bxm8t/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
+      "ccid": "09182lr",
       "title": "Booba",
       "titleSlug": "booba",
       "encodedProgrammeId": {
@@ -164,37 +482,28 @@
         "letterA": "10a3369a0052",
         "underscore": "10_3369_0052"
       },
-      "description": "Joyful, funny and curious - everyday's an adventure with Booba",
+      "description": "Joyful, funny, curious - everyday's an adventure with Booba",
       "imageTemplate": "https://ovp.itv.com/images/programme/09182lr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 2 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/3369/0052",
+      "programmeId": "10/3369",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Boon & Pimento",
-      "titleSlug": "boon-and-pimento",
-      "encodedProgrammeId": {
-        "letterA": "10a1687",
-        "underscore": "10_1687"
-      },
-      "channel": "citv",
-      "encodedEpisodeId": {
-        "letterA": "10a1687a0030",
-        "underscore": "10_1687_0030"
-      },
-      "description": "If you could have anything delivered to your door, what would you get?",
-      "imageTemplate": "https://ovp.itv.com/images/programme/pvf77lj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
+      "ccid": "h8skpl4",
       "title": "Buck & Buddy",
       "titleSlug": "buck-and-buddy",
       "encodedProgrammeId": {
@@ -213,51 +522,137 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-05-12T08:25:00Z",
+      "episodeId": "7/0141/0060",
+      "programmeId": "7/0141",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Catweazle",
-      "titleSlug": "catweazle",
+      "ccid": "07ztq13",
+      "title": "Bugs Bunny Builders",
+      "titleSlug": "bugs-bunny-builders",
       "encodedProgrammeId": {
-        "letterA": "L0185",
-        "underscore": "L0185"
+        "letterA": "10a5269",
+        "underscore": "10_5269"
       },
-      "channel": "itv",
+      "channel": "itvbe",
       "encodedEpisodeId": {
-        "letterA": "L0185a0026",
-        "underscore": "L0185_0026"
+        "letterA": "10a5269a0020",
+        "underscore": "10_5269_0020"
       },
-      "description": "How an earth with an 11th-century wizard cope when he lands in the modern world?",
-      "imageTemplate": "https://ovp.itv.com/images/programme/3xjs0j5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "PAID"
-      ]
-    },
-    {
-      "title": "Children's Ward",
-      "titleSlug": "childrens-ward",
-      "encodedProgrammeId": {
-        "letterA": "1a1519",
-        "underscore": "1_1519"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "1a1519a0013",
-        "underscore": "1_1519_0013"
-      },
-      "description": "BAFTA-winning 80s youth drama set on a busy children\u2019s ward. Starring Tim Vincent. ",
-      "imageTemplate": "https://ovp.itv.com/images/programme/zkwztyx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "description": "The wackiest of vehicles & the looniest builds ever - get involved!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/07ztq13/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
-        "PAID"
-      ]
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-02-03T11:30:00Z",
+      "episodeId": "10/5269/0020",
+      "programmeId": "10/5269",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "x0z26gy",
+      "title": "Builder Brothers Dream Factory",
+      "titleSlug": "builder-brothers-dream-factory",
+      "encodedProgrammeId": {
+        "letterA": "10a4663",
+        "underscore": "10_4663"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4663a0040",
+        "underscore": "10_4663_0040"
+      },
+      "description": "There\u2019s no problem too small for these two twins - new eps added!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/x0z26gy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4663/0040",
+      "programmeId": "10/4663",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "mvq239c",
+      "title": "Buttons: A Christmas Tale",
+      "titleSlug": "buttons-a-christmas-tale",
+      "encodedProgrammeId": {
+        "letterA": "10a4851",
+        "underscore": "10_4851"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Dick Van Dyke & Angela Lansbury star in this endearing Christmas drama",
+      "imageTemplate": "https://ovp.itv.com/images/special/mvq239c/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "2h",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4851",
+      "contentType": "special"
+    },
+    {
+      "ccid": "dn12gfs",
+      "title": "Camp Getaway",
+      "titleSlug": "camp-getaway",
+      "encodedProgrammeId": {
+        "letterA": "10a4834",
+        "underscore": "10_4834"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Four girls, one jungle safari camp - will they survive its frights?",
+      "imageTemplate": "https://ovp.itv.com/images/special/dn12gfs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 22m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4834",
+      "contentType": "special"
+    },
+    {
+      "ccid": "kpxvx36",
       "title": "Chloe's Closet",
       "titleSlug": "chloes-closet",
       "encodedProgrammeId": {
@@ -276,9 +671,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-02-28T09:00:00Z",
+      "episodeId": "1/9657/0104",
+      "programmeId": "1/9657",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "s89hrgr",
       "title": "Claude",
       "titleSlug": "claude",
       "encodedProgrammeId": {
@@ -297,9 +704,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-12-31T09:45:00Z",
+      "episodeId": "2/6167/0050",
+      "programmeId": "2/6167",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "6mdysw1",
       "title": "Claude Shorts",
       "titleSlug": "claude-shorts",
       "encodedProgrammeId": {
@@ -318,9 +737,120 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-05-15T09:05:00Z",
+      "episodeId": "2/7944/0011",
+      "programmeId": "2/7944",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "1kdys2n",
+      "title": "Coop Troop",
+      "titleSlug": "coop-troop",
+      "encodedProgrammeId": {
+        "letterA": "10a4741",
+        "underscore": "10_4741"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4741a0026",
+        "underscore": "10_4741_0026"
+      },
+      "description": "Jump aboard with five unlikely heroes in this ITVX exclusive",
+      "imageTemplate": "https://ovp.itv.com/images/programme/1kdys2n/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4741/0026",
+      "programmeId": "10/4741",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "0jkd9g1",
+      "title": "Craig of the Creek",
+      "titleSlug": "craig-of-the-creek",
+      "encodedProgrammeId": {
+        "letterA": "2a7332",
+        "underscore": "2_7332"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "2a7332a0086",
+        "underscore": "2_7332_0086"
+      },
+      "description": "Follow the escapades of Craig & his friends in the wilderness",
+      "imageTemplate": "https://ovp.itv.com/images/programme/0jkd9g1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 3",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-01-04T06:00:00Z",
+      "episodeId": "2/7332/0086",
+      "programmeId": "2/7332",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "xjcnpw2",
+      "title": "Cry Babies Magic Tears",
+      "titleSlug": "cry-babies-magic-tears",
+      "encodedProgrammeId": {
+        "letterA": "10a5074",
+        "underscore": "10_5074"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a5074a0115",
+        "underscore": "10_5074_0115"
+      },
+      "description": "Enter a world where little tears have magical powers",
+      "imageTemplate": "https://ovp.itv.com/images/programme/xjcnpw2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 6",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/5074/0115",
+      "programmeId": "10/5074",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "3qxkfvx",
       "title": "Dare Master",
       "titleSlug": "dare-master",
       "encodedProgrammeId": {
@@ -329,19 +859,31 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a6715a0020",
-        "underscore": "2_6715_0020"
+        "letterA": "2a6715a0010",
+        "underscore": "2_6715_0010"
       },
-      "description": "From extreme window cleaning to bungee jumping, whatever next?!  ",
+      "description": "Extreme window cleaning... bungee jumping... whatever next?!  ",
       "imageTemplate": "https://ovp.itv.com/images/programme/3qxkfvx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
+      "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-07-14T05:00:00Z",
+      "episodeId": "2/6715/0010",
+      "programmeId": "2/6715",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "xkt8hcl",
       "title": "Dare Master @Home",
       "titleSlug": "dare-master-home",
       "encodedProgrammeId": {
@@ -353,26 +895,104 @@
         "letterA": "10a0539a0020",
         "underscore": "10_0539_0020"
       },
-      "description": "Beware of the cream pie! Watch daring Danny tackle tricky challenges",
+      "description": "Beware, cream pie! Watch daring Danny tackle tricky challenges",
       "imageTemplate": "https://ovp.itv.com/images/programme/xkt8hcl/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-05-14T05:00:00Z",
+      "episodeId": "10/0539/0020",
+      "programmeId": "10/0539",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "1mvc8r3",
+      "title": "DC Superhero Girls",
+      "titleSlug": "dc-superhero-girls",
+      "encodedProgrammeId": {
+        "letterA": "10a0598",
+        "underscore": "10_0598"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "10a0598a0074",
+        "underscore": "10_0598_0074"
+      },
+      "description": "It's amazing Wonder Woman & Supergirl in their fight against evil",
+      "imageTemplate": "https://ovp.itv.com/images/programme/1mvc8r3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 2",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-01-04T06:15:00Z",
+      "episodeId": "10/0598/0074",
+      "programmeId": "10/0598",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "hvz4bwg",
+      "title": "Deep in the Bowl",
+      "titleSlug": "deep-in-the-bowl",
+      "encodedProgrammeId": {
+        "letterA": "10a4760",
+        "underscore": "10_4760"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4760a0026",
+        "underscore": "10_4760_0026"
+      },
+      "description": "Thought you couldn't have a big adventure in a small bowl? Think again!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/hvz4bwg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4760/0026",
+      "programmeId": "10/4760",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "qb23m2l",
       "title": "Dodo",
       "titleSlug": "dodo",
       "encodedProgrammeId": {
         "letterA": "10a2588",
         "underscore": "10_2588"
       },
-      "channel": "citv",
+      "channel": "itv2",
       "encodedEpisodeId": {
-        "letterA": "10a2588a0008",
-        "underscore": "10_2588_0008"
+        "letterA": "10a2588a0011",
+        "underscore": "10_2588_0011"
       },
       "description": "Joe's just your average 11-year-old - he wants fit in & find new friends",
       "imageTemplate": "https://ovp.itv.com/images/programme/qb23m2l/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -381,9 +1001,54 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-01-20T07:20:00Z",
+      "episodeId": "10/2588/0011",
+      "programmeId": "10/2588",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "w41dm5q",
+      "title": "Don't Unleash the Beast",
+      "titleSlug": "dont-unleash-the-beast",
+      "encodedProgrammeId": {
+        "letterA": "10a0600",
+        "underscore": "10_0600"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a0600a0026",
+        "underscore": "10_0600_0026"
+      },
+      "description": "Brave adventurers, hidden treasure awaits - but will they be dinner?!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/w41dm5q/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 2",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-01-30T20:30:00Z",
+      "episodeId": "10/0600/0026",
+      "programmeId": "10/0600",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "h0jprj0",
       "title": "Dorg Van Dango",
       "titleSlug": "dorg-van-dango",
       "encodedProgrammeId": {
@@ -402,9 +1067,46 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2022-05-30T15:45:00Z",
+      "episodeId": "10/2064/0052",
+      "programmeId": "10/2064",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "dzqgs81",
+      "title": "Dreambuilders",
+      "titleSlug": "dreambuilders",
+      "encodedProgrammeId": {
+        "letterA": "10a4829",
+        "underscore": "10_4829"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Naughty Minna - she's trying to control her stepsister's dreams!",
+      "imageTemplate": "https://ovp.itv.com/images/special/dzqgs81/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 40m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4829",
+      "contentType": "special"
+    },
+    {
+      "ccid": "m372tmz",
       "title": "Drop Dead Weird",
       "titleSlug": "drop-dead-weird",
       "encodedProgrammeId": {
@@ -423,93 +1125,170 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-03-31T11:30:00Z",
+      "episodeId": "2/5336/0052",
+      "programmeId": "2/5336",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Enid Blyton's The Famous Five",
-      "titleSlug": "enid-blytons-the-famous-five",
+      "ccid": "c11wytb",
+      "title": "Felix and the Hidden Treasure",
+      "titleSlug": "felix-and-the-hidden-treasure",
       "encodedProgrammeId": {
-        "letterA": "10a1667",
-        "underscore": "10_1667"
+        "letterA": "10a4825",
+        "underscore": "10_4825"
       },
-      "channel": "itv",
+      "channel": "itv2",
       "encodedEpisodeId": {
-        "letterA": "10a1667a0026",
-        "underscore": "10_1667_0026"
+        "letterA": "",
+        "underscore": ""
       },
-      "description": "Four plucky youngsters & their trusty dog Timmy embark on a series of adventures.",
-      "imageTemplate": "https://ovp.itv.com/images/programme/34fg7vf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "PAID"
-      ]
-    },
-    {
-      "title": "Fantomcat",
-      "titleSlug": "fantomcat",
-      "encodedProgrammeId": {
-        "letterA": "1a3952",
-        "underscore": "1_3952"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "1a3952a0026",
-        "underscore": "1_3952_0026"
-      },
-      "description": "The fearless feline hero Duke de Fantom must fight the evil spider Marmagora.",
-      "imageTemplate": "https://ovp.itv.com/images/programme/bw8m8zx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "PAID"
-      ]
-    },
-    {
-      "title": "Gerry Anderson's Greatest Episodes",
-      "titleSlug": "gerry-andersons-greatest-episodes",
-      "encodedProgrammeId": {
-        "letterA": "10a1379",
-        "underscore": "10_1379"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a1379a0010",
-        "underscore": "10_1379_0010"
-      },
-      "description": "Gerry Anderson, the man behind many TV classics introduces his favourite episodes.",
-      "imageTemplate": "https://ovp.itv.com/images/programme/65964d0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "PAID"
-      ]
-    },
-    {
-      "title": "HOW",
-      "titleSlug": "how",
-      "encodedProgrammeId": {
-        "letterA": "2a7845",
-        "underscore": "2_7845"
-      },
-      "channel": "citv",
-      "encodedEpisodeId": {
-        "letterA": "2a7845a0020",
-        "underscore": "2_7845_0020"
-      },
-      "description": "Can dust combust? Vick, Sam, Frankie & Fred ask the ultimate questions ",
-      "imageTemplate": "https://ovp.itv.com/images/programme/b1jm03d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
+      "description": "Is he out there? Meet Felix - a 12-year-old determined to find his dad",
+      "imageTemplate": "https://ovp.itv.com/images/special/c11wytb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 45m",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4825",
+      "contentType": "special"
     },
     {
+      "ccid": "c6b0wft",
+      "title": "FernGully: The Last Rainforest",
+      "titleSlug": "ferngully-the-last-rainforest",
+      "encodedProgrammeId": {
+        "letterA": "10a4797",
+        "underscore": "10_4797"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Robin Williams & Christian Slater voice this magical rainforest adventure",
+      "imageTemplate": "https://ovp.itv.com/images/special/c6b0wft/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4797",
+      "contentType": "special"
+    },
+    {
+      "ccid": "7ms5r5p",
+      "title": "FriendZSpace",
+      "titleSlug": "friendzspace",
+      "encodedProgrammeId": {
+        "letterA": "10a4081",
+        "underscore": "10_4081"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4081a0052",
+        "underscore": "10_4081_0052"
+      },
+      "description": "Hop on board to find kids from different planets - easy, right?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/7ms5r5p/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4081/0052",
+      "programmeId": "10/4081",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "q2twr99",
+      "title": "Game On",
+      "titleSlug": "game-on",
+      "encodedProgrammeId": {
+        "letterA": "10a4082",
+        "underscore": "10_4082"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4082a0040",
+        "underscore": "10_4082_0040"
+      },
+      "description": "Being a teen is sooo cringey - new episodes added!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/q2twr99/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4082/0040",
+      "programmeId": "10/4082",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "ktsv9wq",
+      "title": "Generation Genome",
+      "titleSlug": "generation-genome",
+      "encodedProgrammeId": {
+        "letterA": "10a4757",
+        "underscore": "10_4757"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4757a0006",
+        "underscore": "10_4757_0006"
+      },
+      "description": "Dinosaurs, diseases & genetically modified food - stream to learn it all",
+      "imageTemplate": "https://ovp.itv.com/images/programme/ktsv9wq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4757/0006",
+      "programmeId": "10/4757",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "bdln6jj",
       "title": "Happy the Hoglet",
       "titleSlug": "happy-the-hoglet",
       "encodedProgrammeId": {
@@ -528,9 +1307,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-01-02T10:10:00Z",
+      "episodeId": "10/1308/0026",
+      "programmeId": "10/1308",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "ds78337",
       "title": "Hotel Transylvania",
       "titleSlug": "hotel-transylvania",
       "encodedProgrammeId": {
@@ -549,9 +1340,54 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-01-25T06:45:00Z",
+      "episodeId": "2/5853/0104",
+      "programmeId": "2/5853",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "b1jm03d",
+      "title": "HOW",
+      "titleSlug": "how",
+      "encodedProgrammeId": {
+        "letterA": "2a7845",
+        "underscore": "2_7845"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a7845a0020",
+        "underscore": "2_7845_0020"
+      },
+      "description": "Can dust combust? Vick, Sam & Frankie ask the ultimate questions ",
+      "imageTemplate": "https://ovp.itv.com/images/programme/b1jm03d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 2",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-05-06T12:00:00Z",
+      "episodeId": "2/7845/0020",
+      "programmeId": "2/7845",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "bwfsdp3",
       "title": "Inspector Gadget",
       "titleSlug": "inspector-gadget",
       "encodedProgrammeId": {
@@ -570,72 +1406,385 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-02-15T18:45:00Z",
+      "episodeId": "10/2218/0052",
+      "programmeId": "10/2218",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Jurassic World: Camp Cretaceous",
-      "titleSlug": "jurassic-world-camp-cretaceous",
+      "ccid": "d9rvzbc",
+      "title": "Inspector Sunshine",
+      "titleSlug": "inspector-sunshine",
       "encodedProgrammeId": {
-        "letterA": "10a2163",
-        "underscore": "10_2163"
+        "letterA": "10a4833",
+        "underscore": "10_4833"
       },
-      "channel": "citv",
+      "channel": "itv2",
       "encodedEpisodeId": {
-        "letterA": "10a2163a0018",
-        "underscore": "10_2163_0018"
+        "letterA": "",
+        "underscore": ""
       },
-      "description": "Six teens get up close and personal with dinosaurs",
-      "imageTemplate": "https://ovp.itv.com/images/programme/wy8t37s/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2 - 3",
+      "description": "Ditch the fear & crack the case! One teen & a very unlikely holiday",
+      "imageTemplate": "https://ovp.itv.com/images/special/d9rvzbc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 30m",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4833",
+      "contentType": "special"
     },
     {
-      "title": "LEGO Monkie Kid",
-      "titleSlug": "lego-monkie-kid",
+      "ccid": "sp8rry2",
+      "title": "Interstellar Ella",
+      "titleSlug": "interstellar-ella",
       "encodedProgrammeId": {
-        "letterA": "10a2228",
-        "underscore": "10_2228"
+        "letterA": "10a4810",
+        "underscore": "10_4810"
+      },
+      "channel": "itvbe",
+      "encodedEpisodeId": {
+        "letterA": "10a4810a0013",
+        "underscore": "10_4810_0013"
+      },
+      "description": "It's time for a trip to the Milky Way... in the year 3021!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/sp8rry2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4810/0013",
+      "programmeId": "10/4810",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "ftp7gxz",
+      "title": "Jurassic World: Double Trouble",
+      "titleSlug": "jurassic-world-double-trouble",
+      "encodedProgrammeId": {
+        "letterA": "10a0620",
+        "underscore": "10_0620"
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "10a2228a0022",
-        "underscore": "10_2228_0022"
+        "letterA": "10a0620a0002",
+        "underscore": "10_0620_0002"
       },
-      "description": "It's an epic story just waiting to unfold...",
-      "imageTemplate": "https://ovp.itv.com/images/programme/fwbjx30/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "description": "Jurassic World's open for biz, but things get out of hand...",
+      "imageTemplate": "https://ovp.itv.com/images/programme/ftp7gxz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-05-05T19:00:00Z",
+      "episodeId": "10/0620/0002",
+      "programmeId": "10/0620",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "3tvwvrz",
+      "title": "Jurassic World: Indominus Escape",
+      "titleSlug": "jurassic-world-indominus-escape",
+      "encodedProgrammeId": {
+        "letterA": "7a0108",
+        "underscore": "7_0108"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Meet an amazing new dino-hybrid... on the loose!",
+      "imageTemplate": "https://ovp.itv.com/images/special/3tvwvrz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-09-01T18:30:00Z",
+      "programmeId": "7/0108",
+      "contentType": "special"
+    },
+    {
+      "ccid": "2qbvwmw",
+      "title": "Jurassic World: The Legend of Isla Nublar",
+      "titleSlug": "jurassic-world-the-legend-of-isla-nublar",
+      "encodedProgrammeId": {
+        "letterA": "2a7224",
+        "underscore": "2_7224"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a7224a0013",
+        "underscore": "2_7224_0013"
+      },
+      "description": "Super prequel to Jurassic World - who can save the park from ruin?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/2qbvwmw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-05-03T19:00:00Z",
+      "episodeId": "2/7224/0013",
+      "programmeId": "2/7224",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "tz56cty",
+      "title": "Jurassic World: The Secret Exhibit",
+      "titleSlug": "jurassic-world-the-secret-exhibit",
+      "encodedProgrammeId": {
+        "letterA": "2a6168",
+        "underscore": "2_6168"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a6168a0002",
+        "underscore": "2_6168_0002"
+      },
+      "description": "Deliver the dinosaurs & get paid - nothing could ever go wrong, could it?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/tz56cty/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-05-09T13:30:00Z",
+      "episodeId": "2/6168/0002",
+      "programmeId": "2/6168",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "r48pr5b",
+      "title": "Legends of Oz: Dorothy's Return",
+      "titleSlug": "legends-of-oz-dorothys-return",
+      "encodedProgrammeId": {
+        "letterA": "10a4826",
+        "underscore": "10_4826"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Don't miss part two of one of the world's most popular stories!",
+      "imageTemplate": "https://ovp.itv.com/images/special/r48pr5b/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 45m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4826",
+      "contentType": "special"
+    },
+    {
+      "ccid": "ghp9q1d",
+      "title": "LEGO Black Panther: Trouble in Wakanda",
+      "titleSlug": "lego-black-panther-trouble-in-wakanda",
+      "encodedProgrammeId": {
+        "letterA": "2a6203",
+        "underscore": "2_6203"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Not another evil scheme! Black Panther teams up to put a stop to it",
+      "imageTemplate": "https://ovp.itv.com/images/special/ghp9q1d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-07-28T06:30:00Z",
+      "programmeId": "2/6203",
+      "contentType": "special"
+    },
+    {
+      "ccid": "dgjnmpc",
+      "title": "LEGO Chima",
+      "titleSlug": "lego-chima",
+      "encodedProgrammeId": {
+        "letterA": "10a4091",
+        "underscore": "10_4091"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a4091a0041",
+        "underscore": "10_4091_0041"
+      },
+      "description": "Welcome to a magical world ruled by animals! But who are the enemies?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/dgjnmpc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-08-28T19:30:00Z",
+      "episodeId": "10/4091/0041",
+      "programmeId": "10/4091",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "LEGO Ninjago",
-      "titleSlug": "lego-ninjago",
+      "ccid": "2r2cbmb",
+      "title": "Lego Dreamzzz",
+      "titleSlug": "lego-dreamzzz",
       "encodedProgrammeId": {
-        "letterA": "2a7227",
-        "underscore": "2_7227"
+        "letterA": "10a4090",
+        "underscore": "10_4090"
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a7227a0120",
-        "underscore": "2_7227_0120"
+        "letterA": "10a4090a0020",
+        "underscore": "10_4090_0020"
       },
-      "description": "Peace is about to be disturbed in the land of Ninjago...",
-      "imageTemplate": "https://ovp.itv.com/images/programme/m8kh7v6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 3 - 4",
+      "description": "The Dream World is under attack - friends to the rescue!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/2r2cbmb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-08-18T18:30:00Z",
+      "episodeId": "10/4090/0020",
+      "programmeId": "10/4090",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "prd96dx",
+      "title": "Lego Friends: The Next Chapter",
+      "titleSlug": "lego-friends-the-next-chapter",
+      "encodedProgrammeId": {
+        "letterA": "10a4984",
+        "underscore": "10_4984"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4984a0013",
+        "underscore": "10_4984_0013"
+      },
+      "description": "Eight new pals - how will they survive the first day of high school?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/prd96dx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4984/0013",
+      "programmeId": "10/4984",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "xt6syh2",
+      "title": "LEGO Hiddenside",
+      "titleSlug": "lego-hiddenside",
+      "encodedProgrammeId": {
+        "letterA": "7a0111",
+        "underscore": "7_0111"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "7a0111a0019",
+        "underscore": "7_0111_0019"
+      },
+      "description": "Two young friends share spooky adventures - stream them now",
+      "imageTemplate": "https://ovp.itv.com/images/programme/xt6syh2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-05-11T08:55:00Z",
+      "episodeId": "7/0111/0019",
+      "programmeId": "7/0111",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "mfh5w1j",
       "title": "Lego Marvel Avengers: Loki in Training",
       "titleSlug": "lego-marvel-avengers-loki-in-training",
       "encodedProgrammeId": {
@@ -644,8 +1793,8 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "10a2463a0003",
-        "underscore": "10_2463_0003"
+        "letterA": "10a2463a0001",
+        "underscore": "10_2463_0001"
       },
       "description": "Loki's the Avenger hero in training but will Iron Man's plan turn out OK?",
       "imageTemplate": "https://ovp.itv.com/images/programme/mfh5w1j/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -654,9 +1803,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-04-17T13:30:00Z",
+      "episodeId": "10/2463/0001",
+      "programmeId": "10/2463",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "vr9bzbj",
       "title": "Lego Marvel Avengers: Time Twisted",
       "titleSlug": "lego-marvel-avengers-time-twisted",
       "encodedProgrammeId": {
@@ -668,16 +1829,185 @@
         "letterA": "10a2464a0001",
         "underscore": "10_2464_0001"
       },
-      "description": "It's another Thanos v Avengers rematch, but who will win?",
+      "description": "Ant-Man & co take on a time-travelling Thanos...",
       "imageTemplate": "https://ovp.itv.com/images/programme/vr9bzbj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "30m",
+      "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-02-13T20:30:00Z",
+      "episodeId": "10/2464/0001",
+      "programmeId": "10/2464",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "fwbjx30",
+      "title": "LEGO Monkie Kid",
+      "titleSlug": "lego-monkie-kid",
+      "encodedProgrammeId": {
+        "letterA": "10a2228",
+        "underscore": "10_2228"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a2228a0011",
+        "underscore": "10_2228_0011"
+      },
+      "description": "It's an epic story just waiting to unfold...",
+      "imageTemplate": "https://ovp.itv.com/images/programme/fwbjx30/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 3",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-03-14T11:00:00Z",
+      "episodeId": "10/2228/0011",
+      "programmeId": "10/2228",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "m8kh7v6",
+      "title": "LEGO Ninjago",
+      "titleSlug": "lego-ninjago",
+      "encodedProgrammeId": {
+        "letterA": "2a7227",
+        "underscore": "2_7227"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a7227a0120",
+        "underscore": "2_7227_0120"
+      },
+      "description": "Threats incoming! Peace is disturbed in the land of Ninjago...",
+      "imageTemplate": "https://ovp.itv.com/images/programme/m8kh7v6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1, 3, 4",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-02-13T15:15:00Z",
+      "episodeId": "2/7227/0120",
+      "programmeId": "2/7227",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "vc9ktbw",
+      "title": "LEGO Ninjago: Decoded",
+      "titleSlug": "lego-ninjago-decoded",
+      "encodedProgrammeId": {
+        "letterA": "2a4218",
+        "underscore": "2_4218"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a4217a0084",
+        "underscore": "2_4217_0084"
+      },
+      "description": "Hackers, a mystery puzzle & a virus - the team have a lot to tackle!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/vc9ktbw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-06-30T18:45:00Z",
+      "episodeId": "2/4217/0084",
+      "programmeId": "2/4218",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "4v5chgs",
+      "title": "LEGO Ninjago: March of the Oni",
+      "titleSlug": "lego-ninjago-march-of-the-oni",
+      "encodedProgrammeId": {
+        "letterA": "2a7225",
+        "underscore": "2_7225"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "There's darkness ahead... can the ninja defeat it to protect Ninjago?",
+      "imageTemplate": "https://ovp.itv.com/images/special/4v5chgs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-08-13T11:00:00Z",
+      "programmeId": "2/7225",
+      "contentType": "special"
+    },
+    {
+      "ccid": "09569nw",
+      "title": "LEGO Ninjago: Masters of the Spinjitzu",
+      "titleSlug": "lego-ninjago-masters-of-the-spinjitzu",
+      "encodedProgrammeId": {
+        "letterA": "2a4217",
+        "underscore": "2_4217"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a4218a0002",
+        "underscore": "2_4218_0002"
+      },
+      "description": "Go, go, go, brave ninja - fight those evil forces!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/09569nw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 10",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-08-04T10:00:00Z",
+      "episodeId": "2/4218/0002",
+      "programmeId": "2/4217",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "m0ngft0",
       "title": "Lily's Driftwood Bay",
       "titleSlug": "lilys-driftwood-bay",
       "encodedProgrammeId": {
@@ -689,16 +2019,28 @@
         "letterA": "2a6125a0094",
         "underscore": "2_6125_0094"
       },
-      "description": "There's all sorts of treasure that you can find on the beach!",
+      "description": "There's all sorts of treasure to find on the beach!",
       "imageTemplate": "https://ovp.itv.com/images/programme/m0ngft0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-04-09T08:00:00Z",
+      "episodeId": "2/6125/0094",
+      "programmeId": "2/6125",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "3k92cry",
       "title": "Lloyd of the Flies",
       "titleSlug": "lloyd-of-the-flies",
       "encodedProgrammeId": {
@@ -707,8 +2049,8 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a5834a0026",
-        "underscore": "2_5834_0026"
+        "letterA": "2a5834a0052",
+        "underscore": "2_5834_0052"
       },
       "description": "He's only one centimetre high but Lloyd is a fly with a lot to prove",
       "imageTemplate": "https://ovp.itv.com/images/programme/3k92cry/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -717,9 +2059,79 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-02-10T17:15:00Z",
+      "episodeId": "2/5834/0052",
+      "programmeId": "2/5834",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "lth52x9",
+      "title": "Looney Tunes Cartoons",
+      "titleSlug": "looney-tunes-cartoons",
+      "encodedProgrammeId": {
+        "letterA": "10a4012",
+        "underscore": "10_4012"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "10a4012a0061",
+        "underscore": "10_4012_0061"
+      },
+      "description": "Join all your old favourites - Bugs Bunny, Daffy Duck & Porky Pig!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/lth52x9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1, 3, 4",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-01-12T07:05:00Z",
+      "episodeId": "10/4012/0061",
+      "programmeId": "10/4012",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "gwfl9f4",
+      "title": "Madly Madagascar",
+      "titleSlug": "madly-madagascar",
+      "encodedProgrammeId": {
+        "letterA": "10a3714",
+        "underscore": "10_3714"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Could there be love under the sun on Valentine's Day?!",
+      "imageTemplate": "https://ovp.itv.com/images/special/gwfl9f4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "35m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-01-21T14:55:00Z",
+      "programmeId": "10/3714",
+      "contentType": "special"
+    },
+    {
+      "ccid": "j0r2fzn",
       "title": "Makeaway Takeaway",
       "titleSlug": "makeaway-takeaway",
       "encodedProgrammeId": {
@@ -731,37 +2143,194 @@
         "letterA": "10a0696a0026",
         "underscore": "10_0696_0026"
       },
-      "description": "Recycle your pencil sharpeners! Get stuck into incredible creative ideas",
+      "description": "Recycle your pencil sharpeners & get stuck into the funniest art show",
       "imageTemplate": "https://ovp.itv.com/images/programme/j0r2fzn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-03-31T12:00:00Z",
+      "episodeId": "10/0696/0026",
+      "programmeId": "10/0696",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Marvel Avengers: Climate Conundrum",
-      "titleSlug": "marvel-avengers-climate-conundrum",
+      "ccid": "z9yjp12",
+      "title": "Marvel Spider-man: Vexed By Venom",
+      "titleSlug": "marvel-spider-man-vexed-by-venom",
       "encodedProgrammeId": {
-        "letterA": "10a0995",
-        "underscore": "10_0995"
+        "letterA": "7a0107",
+        "underscore": "7_0107"
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "10a0995a0004",
-        "underscore": "10_0995_0004"
+        "letterA": "",
+        "underscore": ""
       },
-      "description": "It's one mighty weather machine & a top team of superheroes to the rescue",
-      "imageTemplate": "https://ovp.itv.com/images/programme/vhg7nfd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "description": "Friendly Spider-Man does NOT like people messing up his neighbourhood",
+      "imageTemplate": "https://ovp.itv.com/images/special/z9yjp12/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "25m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-07-24T06:30:00Z",
+      "programmeId": "7/0107",
+      "contentType": "special"
+    },
+    {
+      "ccid": "5f5ym4z",
+      "title": "Marvel Superheroes: Avengers Reassembled",
+      "titleSlug": "marvel-superheroes-avengers-reassembled",
+      "encodedProgrammeId": {
+        "letterA": "7a0106",
+        "underscore": "7_0106"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Avengers reassemble! Can they stop Iron Man's scheming?",
+      "imageTemplate": "https://ovp.itv.com/images/special/5f5ym4z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "25m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-07-26T06:30:00Z",
+      "programmeId": "7/0106",
+      "contentType": "special"
+    },
+    {
+      "ccid": "b8v89hv",
+      "title": "Marvel Superheroes: Maximum Overload",
+      "titleSlug": "marvel-superheroes-maximum-overload",
+      "encodedProgrammeId": {
+        "letterA": "7a0104",
+        "underscore": "7_0104"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Prepare to be punked by the hand of Loki! Can anyone take him down?",
+      "imageTemplate": "https://ovp.itv.com/images/special/b8v89hv/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "25m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-07-25T06:30:00Z",
+      "programmeId": "7/0104",
+      "contentType": "special"
+    },
+    {
+      "ccid": "rb3zky3",
+      "title": "Maya the Bee",
+      "titleSlug": "maya-the-bee",
+      "encodedProgrammeId": {
+        "letterA": "10a4827",
+        "underscore": "10_4827"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Together they can win the Games - Maya & the misfit bugs to the rescue!",
+      "imageTemplate": "https://ovp.itv.com/images/special/rb3zky3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 50m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4827",
+      "contentType": "special"
+    },
+    {
+      "ccid": "f7qmbvj",
+      "title": "Meekah",
+      "titleSlug": "meekah",
+      "encodedProgrammeId": {
+        "letterA": "10a5119",
+        "underscore": "10_5119"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a5029a0109",
+        "underscore": "10_5029_0109"
+      },
+      "description": "Introducing Blippi's all-singing & all-cartwheeling best pal!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/f7qmbvj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/5029/0109",
+      "programmeId": "10/5119",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "rlbdbzc",
+      "title": "Metazells",
+      "titleSlug": "metazells",
+      "encodedProgrammeId": {
+        "letterA": "10a5085",
+        "underscore": "10_5085"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a5085a0012",
+        "underscore": "10_5085_0012"
+      },
+      "description": "It\u2019s time to unlock skills & head into a cool virtual world!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/rlbdbzc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/5085/0012",
+      "programmeId": "10/5085",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "7g04x15",
       "title": "Mighty Mike",
       "titleSlug": "mighty-mike",
       "encodedProgrammeId": {
@@ -780,9 +2349,87 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-01-25T12:20:00Z",
+      "episodeId": "2/7834/0078",
+      "programmeId": "2/7834",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "t1ybcjg",
+      "title": "Mini Movies",
+      "titleSlug": "mini-movies",
+      "encodedProgrammeId": {
+        "letterA": "10a1619",
+        "underscore": "10_1619"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a1619a0010",
+        "underscore": "10_1619_0010"
+      },
+      "description": "Flying fairies & cool dinosaur chases - kids become real film stars",
+      "imageTemplate": "https://ovp.itv.com/images/programme/t1ybcjg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-04-01T19:25:00Z",
+      "episodeId": "10/1619/0010",
+      "programmeId": "10/1619",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "1fzqz2c",
+      "title": "Minibods",
+      "titleSlug": "minibods",
+      "encodedProgrammeId": {
+        "letterA": "10a3221",
+        "underscore": "10_3221"
+      },
+      "channel": "itvbe",
+      "encodedEpisodeId": {
+        "letterA": "10a3221a0039",
+        "underscore": "10_3221_0039"
+      },
+      "description": "Welcome to the fantastical Land of Odd... meet six tiny, furry friends",
+      "imageTemplate": "https://ovp.itv.com/images/programme/1fzqz2c/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-11-28T09:15:00Z",
+      "episodeId": "10/3221/0039",
+      "programmeId": "10/3221",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "wcw2kzj",
       "title": "Momolu & Friends",
       "titleSlug": "momolu-and-friends",
       "encodedProgrammeId": {
@@ -791,19 +2438,56 @@
       },
       "channel": "itvbe",
       "encodedEpisodeId": {
-        "letterA": "10a1257a0074",
-        "underscore": "10_1257_0074"
+        "letterA": "10a1257a0078",
+        "underscore": "10_1257_0078"
       },
-      "description": "Momolu & his friends Banni, Huhu & Hiko are always learning things!",
+      "description": "A sketching rabbit! A mystery-solving badger! Join Momolu & pals",
       "imageTemplate": "https://ovp.itv.com/images/programme/wcw2kzj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-04-21T10:30:00Z",
+      "episodeId": "10/1257/0078",
+      "programmeId": "10/1257",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "80s444p",
+      "title": "Moonbound",
+      "titleSlug": "moonbound",
+      "encodedProgrammeId": {
+        "letterA": "10a4828",
+        "underscore": "10_4828"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "An evil Moon Man & a big rescue - can Pete bring peace to the Milky Way?",
+      "imageTemplate": "https://ovp.itv.com/images/special/80s444p/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 40m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4828",
+      "contentType": "special"
+    },
+    {
+      "ccid": "hynvkrk",
       "title": "Mr Bean: Animated Series",
       "titleSlug": "mr-bean-animated-series",
       "encodedProgrammeId": {
@@ -812,8 +2496,8 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a2936a0120",
-        "underscore": "2_2936_0120"
+        "letterA": "2a2936a0130",
+        "underscore": "2_2936_0130"
       },
       "description": "The animated antics of hapless bumbler (and chronic mumbler) Mr Bean",
       "imageTemplate": "https://ovp.itv.com/images/programme/hynvkrk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -822,9 +2506,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-02-03T11:15:00Z",
+      "episodeId": "2/2936/0130",
+      "programmeId": "2/2936",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "pkf5zhx",
       "title": "Mr Magoo",
       "titleSlug": "mr-magoo",
       "encodedProgrammeId": {
@@ -833,19 +2529,31 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a5701a0099",
-        "underscore": "2_5701_0099"
+        "letterA": "2a5701a0150",
+        "underscore": "2_5701_0150"
       },
-      "description": "Look out! Everyone's favourite accident-prone millionaire is here",
+      "description": "Everyone's favourite accident-prone millionaire is back - new eps added",
       "imageTemplate": "https://ovp.itv.com/images/programme/pkf5zhx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "2/5701/0150",
+      "programmeId": "2/5701",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "ptw7x7r",
       "title": "Mumfie",
       "titleSlug": "mumfie",
       "encodedProgrammeId": {
@@ -864,9 +2572,153 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-03-20T11:15:00Z",
+      "episodeId": "10/2366/0078",
+      "programmeId": "10/2366",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "q9crr6b",
+      "title": "Mystery Lane",
+      "titleSlug": "mystery-lane",
+      "encodedProgrammeId": {
+        "letterA": "10a0751",
+        "underscore": "10_0751"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a0751a0026",
+        "underscore": "10_0751_0026"
+      },
+      "description": "Pets on patrol... a guinea pig & her bro solve unusual cases in London",
+      "imageTemplate": "https://ovp.itv.com/images/programme/q9crr6b/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-08-22T10:00:00Z",
+      "episodeId": "10/0751/0026",
+      "programmeId": "10/0751",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "vfm1g4w",
+      "title": "Nexo Knights",
+      "titleSlug": "nexo-knights",
+      "encodedProgrammeId": {
+        "letterA": "10a4092",
+        "underscore": "10_4092"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a4092a0040",
+        "underscore": "10_4092_0040"
+      },
+      "description": "Join these young knights in a brave battle to protect their kingdom",
+      "imageTemplate": "https://ovp.itv.com/images/programme/vfm1g4w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 4",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-07-10T19:00:00Z",
+      "episodeId": "10/4092/0040",
+      "programmeId": "10/4092",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "cq4dxmy",
+      "title": "Ninjago: Dragon's Rising",
+      "titleSlug": "ninjago-dragons-rising",
+      "encodedProgrammeId": {
+        "letterA": "10a4725",
+        "underscore": "10_4725"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4725a0020",
+        "underscore": "10_4725_0020"
+      },
+      "description": "Spinjitzu Master needed for training of new heroes... ASAP",
+      "imageTemplate": "https://ovp.itv.com/images/programme/cq4dxmy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4725/0020",
+      "programmeId": "10/4725",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "z1td2sz",
+      "title": "Ninjago: Wu's Teas",
+      "titleSlug": "ninjago-wus-teas",
+      "encodedProgrammeId": {
+        "letterA": "2a5548",
+        "underscore": "2_5548"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "2a5548a0001",
+        "underscore": "2_5548_0001"
+      },
+      "description": "Tea vs coffee... should Sensei Wu be worried about his new rival?",
+      "imageTemplate": "https://ovp.itv.com/images/programme/z1td2sz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-04-17T13:00:00Z",
+      "episodeId": "2/5548/0001",
+      "programmeId": "2/5548",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "454mvxt",
       "title": "Oddbods",
       "titleSlug": "oddbods",
       "encodedProgrammeId": {
@@ -875,8 +2727,8 @@
       },
       "channel": "itvbe",
       "encodedEpisodeId": {
-        "letterA": "2a4247a0187",
-        "underscore": "2_4247_0187"
+        "letterA": "2a4247a0184",
+        "underscore": "2_4247_0184"
       },
       "description": "Follow the quirky adventures of the adorable Fuse, Newt, Pogo & Bubbles",
       "imageTemplate": "https://ovp.itv.com/images/programme/454mvxt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -885,9 +2737,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-04-10T08:20:00Z",
+      "episodeId": "2/4247/0184",
+      "programmeId": "2/4247",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "t5jtvy9",
       "title": "Ollie",
       "titleSlug": "ollie",
       "encodedProgrammeId": {
@@ -906,9 +2770,54 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-03-25T11:25:00Z",
+      "episodeId": "10/0710/0052",
+      "programmeId": "10/0710",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "27h559p",
+      "title": "Overlord & The Underwoods",
+      "titleSlug": "overlord-and-the-underwoods",
+      "encodedProgrammeId": {
+        "letterA": "10a1894",
+        "underscore": "10_1894"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a1894a0020",
+        "underscore": "10_1894_0020"
+      },
+      "description": "Jump into the comic misadventures of a family & an evil overlord!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/27h559p/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-03-24T20:00:00Z",
+      "episodeId": "10/1894/0020",
+      "programmeId": "10/1894",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "cr3yqbk",
       "title": "Percy's Tiger Tales",
       "titleSlug": "percys-tiger-tales",
       "encodedProgrammeId": {
@@ -917,8 +2826,8 @@
       },
       "channel": "itvbe",
       "encodedEpisodeId": {
-        "letterA": "10a0992a0053",
-        "underscore": "10_0992_0053"
+        "letterA": "10a0992a0056",
+        "underscore": "10_0992_0056"
       },
       "description": "What will Percy and his pals get up to in their imaginary worlds?",
       "imageTemplate": "https://ovp.itv.com/images/programme/cr3yqbk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -927,9 +2836,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-05-01T08:30:00Z",
+      "episodeId": "10/0992/0056",
+      "programmeId": "10/0992",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "09n47bt",
       "title": "Pingu in the City",
       "titleSlug": "pingu-in-the-city",
       "encodedProgrammeId": {
@@ -948,10 +2869,22 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-01-28T10:40:00Z",
+      "episodeId": "2/6160/0052",
+      "programmeId": "2/6160",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Pip Ahoy",
+      "ccid": "fkbpmt8",
+      "title": "Pip Ahoy!",
       "titleSlug": "pip-ahoy",
       "encodedProgrammeId": {
         "letterA": "2a6035",
@@ -962,16 +2895,119 @@
         "letterA": "2a6035a0078",
         "underscore": "2_6035_0078"
       },
-      "description": "From secret forest trails to island adventures, Pip is always on the go!",
+      "description": "Secret forest trails & island adventures - Pip's always on the go!",
       "imageTemplate": "https://ovp.itv.com/images/programme/fkbpmt8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-01-26T11:45:00Z",
+      "episodeId": "2/6035/0078",
+      "programmeId": "2/6035",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "twcyxzw",
+      "title": "Pip Ahoy! Christmas Special",
+      "titleSlug": "pip-ahoy-christmas-special",
+      "encodedProgrammeId": {
+        "letterA": "2a6144",
+        "underscore": "2_6144"
+      },
+      "channel": "itvbe",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Salty Cove is almost ready for Christmas - enter Pip with his surprise!",
+      "imageTemplate": "https://ovp.itv.com/images/special/twcyxzw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "25m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-12-25T11:35:00Z",
+      "programmeId": "2/6144",
+      "contentType": "special"
+    },
+    {
+      "ccid": "d5ncvxk",
+      "title": "Pocoyo",
+      "titleSlug": "pocoyo",
+      "encodedProgrammeId": {
+        "letterA": "1a5260",
+        "underscore": "1_5260"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "1a5260a0043",
+        "underscore": "1_5260_0043"
+      },
+      "description": "The legendary Stephen Fry narrates these mischievous adventures",
+      "imageTemplate": "https://ovp.itv.com/images/programme/d5ncvxk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "1/5260/0043",
+      "programmeId": "1/5260",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "9mq7wqy",
+      "title": "Polly Pocket",
+      "titleSlug": "polly-pocket",
+      "encodedProgrammeId": {
+        "letterA": "10a4643",
+        "underscore": "10_4643"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4643a0079",
+        "underscore": "10_4643_0079"
+      },
+      "description": "There\u2019s no dream too big for Polly Pocket in Series 5!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/9mq7wqy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 3 - 5",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4643/0079",
+      "programmeId": "10/4643",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "hm4jhk1",
       "title": "Poppy Cat",
       "titleSlug": "poppy-cat",
       "encodedProgrammeId": {
@@ -980,19 +3016,89 @@
       },
       "channel": "itvbe",
       "encodedEpisodeId": {
-        "letterA": "2a1631a0026",
-        "underscore": "2_1631_0026"
+        "letterA": "2a1631a0052",
+        "underscore": "2_1631_0052"
       },
-      "description": "From space to submarines - Lara can imagine all sorts of places to visit",
+      "description": "The extraordinary adventures of a bandana-wearing kitten",
       "imageTemplate": "https://ovp.itv.com/images/programme/hm4jhk1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-12-31T11:45:00Z",
+      "episodeId": "2/1631/0052",
+      "programmeId": "2/1631",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "9hsht0d",
+      "title": "Postman Pat (Classic)",
+      "titleSlug": "postman-pat-classic",
+      "encodedProgrammeId": {
+        "letterA": "10a5179",
+        "underscore": "10_5179"
+      },
+      "channel": "itvbe",
+      "encodedEpisodeId": {
+        "letterA": "10a3282a0054",
+        "underscore": "10_3282_0054"
+      },
+      "description": "Follow everyone's favourite postie & his cat on his daily rounds  ",
+      "imageTemplate": "https://ovp.itv.com/images/programme/9hsht0d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 7 - 8",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-10-01T10:20:00Z",
+      "episodeId": "10/3282/0054",
+      "programmeId": "10/5179",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "48d965y",
+      "title": "Postman Pat: The Movie",
+      "titleSlug": "postman-pat-the-movie",
+      "encodedProgrammeId": {
+        "letterA": "10a4552",
+        "underscore": "10_4552"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Greendale's Got Talent! Is Pat about to hit the big time?",
+      "imageTemplate": "https://ovp.itv.com/images/special/48d965y/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4552",
+      "contentType": "special"
+    },
+    {
+      "ccid": "zkkdsgk",
       "title": "Project Z",
       "titleSlug": "project-z",
       "encodedProgrammeId": {
@@ -1004,58 +3110,28 @@
         "letterA": "2a6100a0016",
         "underscore": "2_6100_0016"
       },
-      "description": "The Zeds are here! Five new survivors must escape school each week!",
+      "description": "Zombie-ish Zeds have taken over the world & the fightback starts now",
       "imageTemplate": "https://ovp.itv.com/images/programme/zkkdsgk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2020-09-16T16:31:00Z",
+      "episodeId": "2/6100/0016",
+      "programmeId": "2/6100",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Quatermass",
-      "titleSlug": "quatermass",
-      "encodedProgrammeId": {
-        "letterA": "30828",
-        "underscore": "30828"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "765701",
-        "underscore": "765701"
-      },
-      "description": "A sci-fi classic - an ageing scientist searches desperately for his missing granddaughter.",
-      "imageTemplate": "https://ovp.itv.com/images/programme/gj0vqv3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "PAID"
-      ]
-    },
-    {
-      "title": "Scooby Doo Mystery Incorporated",
-      "titleSlug": "scooby-doo-mystery-incorporated",
-      "encodedProgrammeId": {
-        "letterA": "2a4672",
-        "underscore": "2_4672"
-      },
-      "channel": "citv",
-      "encodedEpisodeId": {
-        "letterA": "2a4672a0008",
-        "underscore": "2_4672_0008"
-      },
-      "description": "From monsters to bizarre man crabs - the gang must solve every mystery!",
-      "imageTemplate": "https://ovp.itv.com/images/programme/x6d82sw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ]
-    },
-    {
+      "ccid": "h01vnvs",
       "title": "Scooby-Doo and Guess Who?",
       "titleSlug": "scooby-doo-and-guess-who",
       "encodedProgrammeId": {
@@ -1064,19 +3140,155 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "10a0597a0033",
-        "underscore": "10_0597_0033"
+        "letterA": "10a0597a0040",
+        "underscore": "10_0597_0040"
       },
-      "description": "The adventuring team are back in this super throwback to the classic show",
+      "description": "Enjoy Spook-tacular tales & big guest stars in every episode!",
       "imageTemplate": "https://ovp.itv.com/images/programme/h01vnvs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-02-26T08:35:00Z",
+      "episodeId": "10/0597/0040",
+      "programmeId": "10/0597",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "mt5h15p",
+      "title": "Scooby-Doo! Mask of the Blue Falcon",
+      "titleSlug": "scooby-doo-mask-of-the-blue-falcon",
+      "encodedProgrammeId": {
+        "letterA": "10a0928",
+        "underscore": "10_0928"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Terror at a comic book convention... and who wants revenge?",
+      "imageTemplate": "https://ovp.itv.com/images/special/mt5h15p/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-12-31T07:30:00Z",
+      "programmeId": "10/0928",
+      "contentType": "special"
+    },
+    {
+      "ccid": "x6d82sw",
+      "title": "Scooby-Doo! Mystery Incorporated",
+      "titleSlug": "scooby-doo-mystery-incorporated",
+      "encodedProgrammeId": {
+        "letterA": "2a4672",
+        "underscore": "2_4672"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "2a4672a0017",
+        "underscore": "2_4672_0017"
+      },
+      "description": "From monsters to bizarre man crabs - the gang must solve every mystery!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/x6d82sw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-02-26T07:20:00Z",
+      "episodeId": "2/4672/0017",
+      "programmeId": "2/4672",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "1gg39t4",
+      "title": "Signed Stories",
+      "titleSlug": "signed-stories",
+      "encodedProgrammeId": {
+        "letterA": "10a1596",
+        "underscore": "10_1596"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a1596a0137",
+        "underscore": "10_1596_0137"
+      },
+      "description": "Magical flowers & scary beasts - join a very merry group of storytellers",
+      "imageTemplate": "https://ovp.itv.com/images/programme/1gg39t4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/1596/0137",
+      "programmeId": "10/1596",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "cqrxb86",
+      "title": "Smarty Pants",
+      "titleSlug": "smarty-pants",
+      "encodedProgrammeId": {
+        "letterA": "10a1271",
+        "underscore": "10_1271"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "10a1271a0052",
+        "underscore": "10_1271_0052"
+      },
+      "description": "Three kids, cool quests... (but they're vv prone to blunders!)",
+      "imageTemplate": "https://ovp.itv.com/images/programme/cqrxb86/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-08-31T09:45:00Z",
+      "episodeId": "10/1271/0052",
+      "programmeId": "10/1271",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "tk0thh7",
       "title": "Sooty",
       "titleSlug": "sooty",
       "encodedProgrammeId": {
@@ -1088,37 +3300,86 @@
         "letterA": "1a9579a0058",
         "underscore": "1_9579_0058"
       },
-      "description": "Follow the mischievous adventures of little puppets Sooty, Sweep & Soo!",
+      "description": "Follow the mischievous adventures of puppets Sooty, Sweep & Soo!",
       "imageTemplate": "https://ovp.itv.com/images/programme/tk0thh7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-01-02T10:25:00Z",
+      "episodeId": "1/9579/0058",
+      "programmeId": "1/9579",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Spy School",
-      "titleSlug": "spy-school",
+      "ccid": "nvsqlqz",
+      "title": "Strike (2018)",
+      "titleSlug": "strike-2018",
       "encodedProgrammeId": {
-        "letterA": "2a5462",
-        "underscore": "2_5462"
+        "letterA": "10a4798",
+        "underscore": "10_4798"
       },
-      "channel": "citv",
+      "channel": "itv2",
       "encodedEpisodeId": {
-        "letterA": "2a5462a0027",
-        "underscore": "2_5462_0027"
+        "letterA": "",
+        "underscore": ""
       },
-      "description": "Two rookie spies go undercover - can they unearth important clues?",
-      "imageTemplate": "https://ovp.itv.com/images/programme/kqqwf9j/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
+      "description": "Aaaand... action! Join one young mole in his quest for football stardom",
+      "imageTemplate": "https://ovp.itv.com/images/special/nvsqlqz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "2h",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4798",
+      "contentType": "special"
     },
     {
+      "ccid": "kmyv1r6",
+      "title": "Tara Duncan",
+      "titleSlug": "tara-duncan",
+      "encodedProgrammeId": {
+        "letterA": "10a4077",
+        "underscore": "10_4077"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4077a0052",
+        "underscore": "10_4077_0052"
+      },
+      "description": "Magic is everywhere in this fantasy parallel universe - new eps added!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/kmyv1r6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4077/0052",
+      "programmeId": "10/4077",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "vrdwb5p",
       "title": "Tata & Kuma",
       "titleSlug": "tata-and-kuma",
       "encodedProgrammeId": {
@@ -1137,9 +3398,21 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-02-27T09:55:00Z",
+      "episodeId": "10/1512/0052",
+      "programmeId": "10/1512",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "g3bm1gw",
       "title": "Ted's Top Ten",
       "titleSlug": "teds-top-ten",
       "encodedProgrammeId": {
@@ -1151,37 +3424,94 @@
         "letterA": "10a1260a0010",
         "underscore": "10_1260_0010"
       },
-      "description": "Hilarious & heart-warming action comedy about an 11-year-old's adventures",
+      "description": "Meet the 11-year-old with big ideas (& lots of bumps along the way)!",
       "imageTemplate": "https://ovp.itv.com/images/programme/g3bm1gw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-03-10T18:30:00Z",
+      "episodeId": "10/1260/0010",
+      "programmeId": "10/1260",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "v8bqk3j",
       "title": "Teen Titans Go!",
       "titleSlug": "teen-titans-go",
       "encodedProgrammeId": {
         "letterA": "2a3033",
         "underscore": "2_3033"
       },
-      "channel": "citv",
+      "channel": "itv2",
       "encodedEpisodeId": {
-        "letterA": "2a3033a0224",
-        "underscore": "2_3033_0224"
+        "letterA": "2a3033a0311",
+        "underscore": "2_3033_0311"
       },
-      "description": "Sharp sci-fi cartoon about a team of crime-busting superheroes",
+      "description": "Don't panic, people of earth... your crime-busting superheroes are here!",
       "imageTemplate": "https://ovp.itv.com/images/programme/v8bqk3j/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 6",
+      "contentInfo": "Series 6 - 7",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-02-20T06:40:00Z",
+      "episodeId": "2/3033/0311",
+      "programmeId": "2/3033",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "g77gzbs",
+      "title": "Teletubbies Let's Go!",
+      "titleSlug": "teletubbies-lets-go",
+      "encodedProgrammeId": {
+        "letterA": "10a4085",
+        "underscore": "10_4085"
+      },
+      "channel": "itvbe",
+      "encodedEpisodeId": {
+        "letterA": "10a4085a0052",
+        "underscore": "10_4085_0052"
+      },
+      "description": "Time to play with all the sun babies Tinky Winky, Dipsy, Laa-Laa & Po",
+      "imageTemplate": "https://ovp.itv.com/images/programme/g77gzbs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-02-03T11:20:00Z",
+      "episodeId": "10/4085/0052",
+      "programmeId": "10/4085",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "9vtpf9y",
       "title": "The Day Henry Met?",
       "titleSlug": "the-day-henry-met",
       "encodedProgrammeId": {
@@ -1193,37 +3523,94 @@
         "letterA": "10a1304a0052",
         "underscore": "10_1304_0052"
       },
-      "description": "I wonder what Henry's going to meet today?",
+      "description": "Everyday Henry meets something new - what will it be today?",
       "imageTemplate": "https://ovp.itv.com/images/programme/9vtpf9y/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 3 - 4",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-08-29T10:30:00Z",
+      "episodeId": "10/1304/0052",
+      "programmeId": "10/1304",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "qh8yd28",
       "title": "The Epic Tales of Captain Underpants",
       "titleSlug": "the-epic-tales-of-captain-underpants",
       "encodedProgrammeId": {
         "letterA": "2a7815",
         "underscore": "2_7815"
       },
-      "channel": "citv",
+      "channel": "itv2",
       "encodedEpisodeId": {
         "letterA": "2a7815a0046",
         "underscore": "2_7815_0046"
       },
       "description": "Is he a grumpy headmaster or is he a crime-busting superhero?!",
       "imageTemplate": "https://ovp.itv.com/images/programme/qh8yd28/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
+      "contentInfo": "50m",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-12-02T06:00:00Z",
+      "episodeId": "2/7815/0046",
+      "programmeId": "2/7815",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "h33s6sd",
+      "title": "The Gamers 2037",
+      "titleSlug": "the-gamers-2037",
+      "encodedProgrammeId": {
+        "letterA": "10a4079",
+        "underscore": "10_4079"
+      },
+      "channel": "itv",
+      "encodedEpisodeId": {
+        "letterA": "10a4079a0026",
+        "underscore": "10_4079_0026"
+      },
+      "description": "Join three former besties-turned enemies on this crazy mission",
+      "imageTemplate": "https://ovp.itv.com/images/programme/h33s6sd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1 - 2",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4079/0026",
+      "programmeId": "10/4079",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "981bkp4",
       "title": "The Grimes",
       "titleSlug": "the-grimes",
       "encodedProgrammeId": {
@@ -1242,9 +3629,46 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2020-12-20T11:20:00Z",
+      "episodeId": "7/0216/0015",
+      "programmeId": "7/0216",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "7442npp",
+      "title": "The Guardians of the Galaxy: The Thanos Threat",
+      "titleSlug": "the-guardians-of-the-galaxy-the-thanos-threat",
+      "encodedProgrammeId": {
+        "letterA": "2a6204",
+        "underscore": "2_6204"
+      },
+      "channel": "citv",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "It's time for another exciting adventure against arch-nemesis Thanos",
+      "imageTemplate": "https://ovp.itv.com/images/special/7442npp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2023-07-27T06:30:00Z",
+      "programmeId": "2/6204",
+      "contentType": "special"
+    },
+    {
+      "ccid": "5bs71jk",
       "title": "The Hive",
       "titleSlug": "the-hive",
       "encodedProgrammeId": {
@@ -1256,16 +3680,53 @@
         "letterA": "1a9014a0150",
         "underscore": "1_9014_0150"
       },
-      "description": "Friendly animation for preschoolers about the curious lives of tiny bees",
+      "description": "They're tiny, stripy & buzz around a lot - sweet pre-schooler animation",
       "imageTemplate": "https://ovp.itv.com/images/programme/5bs71jk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "contentInfo": "Series 1 - 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-01-01T09:35:00Z",
+      "episodeId": "1/9014/0150",
+      "programmeId": "1/9014",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "jv7fyk7",
+      "title": "The House on Seahorse Bay",
+      "titleSlug": "the-house-on-seahorse-bay",
+      "encodedProgrammeId": {
+        "letterA": "10a4835",
+        "underscore": "10_4835"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "An old beach house & tons of secrets - what else will Lucy find out?",
+      "imageTemplate": "https://ovp.itv.com/images/special/jv7fyk7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 21m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/4835",
+      "contentType": "special"
+    },
+    {
+      "ccid": "1n9jzmv",
       "title": "The Rubbish World of Dave Spud",
       "titleSlug": "the-rubbish-world-of-dave-spud",
       "encodedProgrammeId": {
@@ -1274,19 +3735,139 @@
       },
       "channel": "citv",
       "encodedEpisodeId": {
-        "letterA": "2a6321a0078",
-        "underscore": "2_6321_0078"
+        "letterA": "2a6321a0090",
+        "underscore": "2_6321_0090"
       },
-      "description": "Jump into the madcap misadventures of disaster Dave & his family",
+      "description": "Jump into the madcap misadventures of disaster Dave - new eps added!",
       "imageTemplate": "https://ovp.itv.com/images/programme/1n9jzmv/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
+      "contentInfo": "Series 1 - 3",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "2/6321/0090",
+      "programmeId": "2/6321",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "t7tzr1j",
+      "title": "The Snow Queen",
+      "titleSlug": "the-snow-queen",
+      "encodedProgrammeId": {
+        "letterA": "10a5114a0001B",
+        "underscore": "10_5114_0001B"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Jump into this fun-filled & frosty family adventure",
+      "imageTemplate": "https://ovp.itv.com/images/special/t7tzr1j/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 20m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/5114/0001B",
+      "contentType": "special"
+    },
+    {
+      "ccid": "q3gzz24",
+      "title": "The Snow Queen 2: Magic Of The Ice Mirror",
+      "titleSlug": "the-snow-queen-2-magic-of-the-ice-mirror",
+      "encodedProgrammeId": {
+        "letterA": "10a5115a0001B",
+        "underscore": "10_5115_0001B"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "Can a new hero save the world from eternal winter? Sean Bean narrates",
+      "imageTemplate": "https://ovp.itv.com/images/special/q3gzz24/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 20m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/5115/0001B",
+      "contentType": "special"
+    },
+    {
+      "ccid": "hscpwnr",
+      "title": "The Snow Queen: Mirrorlands",
+      "titleSlug": "the-snow-queen-mirrorlands",
+      "encodedProgrammeId": {
+        "letterA": "10a5116a0001B",
+        "underscore": "10_5116_0001B"
+      },
+      "channel": "itv2",
+      "encodedEpisodeId": {
+        "letterA": "",
+        "underscore": ""
+      },
+      "description": "The end of magic? Nooo! Gerda & the Snow Queen take on a powerful king",
+      "imageTemplate": "https://ovp.itv.com/images/special/hscpwnr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "1h 30m",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": null,
+      "programmeId": "10/5116/0001B",
+      "contentType": "special"
+    },
+    {
+      "ccid": "cyvm385",
+      "title": "The Sound Collector",
+      "titleSlug": "the-sound-collector",
+      "encodedProgrammeId": {
+        "letterA": "10a1670",
+        "underscore": "10_1670"
+      },
+      "channel": "itvbe",
+      "encodedEpisodeId": {
+        "letterA": "10a1670a0060",
+        "underscore": "10_1670_0060"
+      },
+      "description": "Crack, gurgle, hissss - hear the sounds of the sea with Keira Knightley",
+      "imageTemplate": "https://ovp.itv.com/images/programme/cyvm385/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 1",
+      "partnership": null,
+      "contentOwner": null,
+      "tier": [
+        "FREE"
+      ],
+      "broadcastDateTime": "2024-02-27T10:20:00Z",
+      "episodeId": "10/1670/0060",
+      "programmeId": "10/1670",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
+    },
+    {
+      "ccid": "6jv3n3v",
       "title": "Thunderbirds Are Go",
       "titleSlug": "thunderbirds-are-go",
       "encodedProgrammeId": {
@@ -1305,30 +3886,54 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-07-17T10:30:00Z",
+      "episodeId": "2/2131/0078",
+      "programmeId": "2/2131",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "What's New Scooby Doo",
+      "ccid": "sdzmfkv",
+      "title": "What's New Scooby Doo?",
       "titleSlug": "whats-new-scooby-doo",
       "encodedProgrammeId": {
         "letterA": "2a4671",
         "underscore": "2_4671"
       },
-      "channel": "citv",
+      "channel": "itv2",
       "encodedEpisodeId": {
         "letterA": "2a4671a0026",
         "underscore": "2_4671_0026"
       },
       "description": "All your favourite characters are back - with plenty of new mysteries!",
       "imageTemplate": "https://ovp.itv.com/images/programme/sdzmfkv/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
+      "contentInfo": "Series 2",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2024-02-26T08:10:00Z",
+      "episodeId": "2/4671/0026",
+      "programmeId": "2/4671",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
+      "ccid": "2g674c3",
       "title": "Wildwoods",
       "titleSlug": "wildwoods",
       "encodedProgrammeId": {
@@ -1347,87 +3952,63 @@
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": "2023-03-23T10:05:00Z",
+      "episodeId": "2/7165/0026",
+      "programmeId": "2/7165",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     },
     {
-      "title": "Ziggy and the Zoo Tram",
-      "titleSlug": "ziggy-and-the-zoo-tram",
+      "ccid": "5q8x94x",
+      "title": "Winx Club",
+      "titleSlug": "winx-club",
       "encodedProgrammeId": {
-        "letterA": "2a7543",
-        "underscore": "2_7543"
+        "letterA": "10a4721",
+        "underscore": "10_4721"
       },
-      "channel": "itvbe",
+      "channel": "itv",
       "encodedEpisodeId": {
-        "letterA": "2a7543a0052",
-        "underscore": "2_7543_0052"
+        "letterA": "10a4721a0052",
+        "underscore": "10_4721_0052"
       },
-      "description": "The incredible tales of Ziggy the croc & a magical time-travelling tram",
-      "imageTemplate": "https://ovp.itv.com/images/programme/fmbzqk2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
+      "description": "Skip along with six super-heroine fairies in the brand new series!",
+      "imageTemplate": "https://ovp.itv.com/images/programme/5q8x94x/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "contentInfo": "Series 7 - 8",
       "partnership": null,
       "contentOwner": null,
       "tier": [
         "FREE"
-      ]
+      ],
+      "broadcastDateTime": null,
+      "episodeId": "10/4721/0052",
+      "programmeId": "10/4721",
+      "genres": [
+        {
+          "id": "CHILDREN",
+          "name": "Children",
+          "hubCategory": true
+        }
+      ],
+      "contentType": "series"
     }
   ],
   "metadata": {
-    "TITLE": "Watch Kids Shows, Children's Programmes and Cartoons Online - ITVX ",
-    "DESC": "The best of ITV Children's TV all in one place from the latest to classic kids shows. ITVX - The UK's freshest streaming service."
+    "TITLE": "Stream the best Kids shows - from classic cartoons to the latest programmes - ITVX",
+    "DESC": "From Scooby Doo to LEGO, and everything in between - stream hundreds of awesome Kids shows for free on ITVX, the UK's freshest streaming service"
   },
-  "subnav": {
-    "items": [
-      {
-        "id": "factual",
-        "name": "Factual",
-        "label": "Factual",
-        "url": "/watch/categories/factual"
-      },
-      {
-        "id": "drama-soaps",
-        "name": "Drama & Soaps",
-        "label": "Drama & Soaps",
-        "url": "/watch/categories/drama-soaps"
-      },
-      {
-        "id": "children",
-        "name": "Children",
-        "label": "Children",
-        "url": "/watch/categories/children"
-      },
-      {
-        "id": "films",
-        "name": "Films",
-        "label": "Films",
-        "url": "/watch/categories/films"
-      },
-      {
-        "id": "sport",
-        "name": "Sport",
-        "label": "Sport",
-        "url": "/watch/categories/sport"
-      },
-      {
-        "id": "comedy",
-        "name": "Comedy",
-        "label": "Comedy",
-        "url": "/watch/categories/comedy"
-      },
-      {
-        "id": "news",
-        "name": "News",
-        "label": "News",
-        "url": "/watch/categories/news"
-      },
-      {
-        "id": "entertainment",
-        "name": "Entertainment",
-        "label": "Entertainment",
-        "url": "/watch/categories/entertainment"
-      }
-    ],
-    "activeItem": "children",
-    "type": "category"
+  "subnav": null,
+  "navAdServerParams": {
+    "area": "category",
+    "category": [
+      "CHILDREN"
+    ]
   },
-  "sponsorship": {}
+  "isEnhancedCategories": true
 }

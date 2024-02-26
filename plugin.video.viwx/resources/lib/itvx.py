@@ -383,7 +383,7 @@ def category_content(url: str, hide_paid=False):
         return cached_data['items_list']
 
     cat_data = get_page_data(url + '/all', cache_time=0)
-    category = cat_data['category']['pathSegment']
+    category = cat_data['category']['id']
     progr_list = cat_data.get('programmes')
 
     parse_progr = parsex.parse_category_item
