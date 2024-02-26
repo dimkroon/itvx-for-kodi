@@ -91,8 +91,12 @@ def check_shows(testcase, show, parent_name):
     if show['contentType'] == 'page':
         return check_item_type_page(testcase, show, parent_name)
     # Not always present: 'contentInfo'
-    has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate', 'encodedEpisodeId',
+    has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
+    if show['contentType'] in ('series', 'episode'):
+        has_keys(show, 'encodedEpisodeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
+    else:
+        misses_keys(show, 'encodedEpisodeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     testcase.assertTrue(is_url(show['imageTemplate']))
 
 
