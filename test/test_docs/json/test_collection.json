@@ -115,10 +115,6 @@
             "isPaid": false,
             "episodeId": "10/4771/0008",
             "programmeId": "10/4771",
-            "encodedEpisodeId": {
-              "letterA": "10a4771a0008",
-              "underscore": "10_4771_0008"
-            },
             "encodedProgrammeId": {
               "letterA": "10a4771",
               "underscore": "10_4771"
@@ -141,10 +137,6 @@
             "isPaid": false,
             "episodeId": "2/7654/0001",
             "programmeId": "2/7654",
-            "encodedEpisodeId": {
-              "letterA": "2a7654a0001",
-              "underscore": "2_7654_0001"
-            },
             "encodedProgrammeId": {
               "letterA": "2a7654",
               "underscore": "2_7654"
@@ -168,10 +160,6 @@
             "isPaid": false,
             "episodeId": "CFD0696/0001",
             "programmeId": "CFD0696",
-            "encodedEpisodeId": {
-              "letterA": "CFD0696a0001",
-              "underscore": "CFD0696_0001"
-            },
             "encodedProgrammeId": {
               "letterA": "CFD0696",
               "underscore": "CFD0696"
