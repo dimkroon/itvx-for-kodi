@@ -327,7 +327,7 @@ def parse_trending_collection_item(trending_item, hide_paid=False):
         return None
 
 
-def parse_category_item(prog, category):
+def parse_category_item(prog, category_id):
     # At least all items without an encodedEpisodeId are playable.
     # Unfortunately there are items that do have an episodeId, but are in fact single
     # episodes, and thus playable, but there is no reliable way of detecting these,
@@ -359,7 +359,9 @@ def parse_category_item(prog, category):
                  'sorttitle': sort_title(title)},
     }
 
-    if category == 'films':
+    # Currently the films category has id 'FILM' while in other data the plural 'FILMS' is used.
+    # Ensure a future change to 'FILMS' will not break the add-on again.
+    if category_id and 'FILM' in category_id:
         programme_item['art']['poster'] = prog['imageTemplate'].format(**IMG_PROPS_POSTER)
 
     if is_playable:

@@ -664,6 +664,14 @@ class Categories(unittest.TestCase):
             data = parsex.scrape_json(page)
             # if cat == 'films':
             #     testutils.save_json(data, 'html/category_{}.json'.format(cat))
+            cat_data = data['category']
+            self.assertTrue(is_not_empty(cat_data['slug'], str))
+            self.assertTrue(cat_data['id'] in
+                            # Yes, at this moment it's 'FILM' not 'FILMS', the parser accepts both.
+                            # Also, 'DRAMA_AND_SOAPS' is different. Category id's elsewhere use drama-soaps,
+                            # which is like cat_data['slug'], but this ID is not used in the addon at all.
+                            ('FILM', 'FACTUAL', 'CHILDREN', 'DRAMA_AND_SOAPS', 'SPORT', 'COMEDY', 'ENTERTAINMENT'))
+            self.assertTrue(is_not_empty(cat_data['name'], str))
             programmes = data['programmes']
             t_2 = time.time()
             self.assertIsInstance(programmes, list)
