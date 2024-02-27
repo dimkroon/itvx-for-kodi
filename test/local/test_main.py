@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -245,26 +245,26 @@ class Categories(TestCase):
     def test_category_film(self, _):
         items = main.list_category.test('category/films')
         self.assertIsInstance(items, list)
-        self.assertEqual(601, len(items))
+        self.assertEqual(322, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_get_category_children_paginated(self, _):
-        """Category with 65 programmes."""
-        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 35) * 2):  # no a-z, page length = 30
+        """Category with 128 programmes."""
+        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 60) * 2):  # no a-z, page length = 30
             programmes = list(filter(None, main.list_category.test('sdfg')))
-            self.assertEqual(36, len(programmes))
-            programmes = list(filter(None, main.list_category.test('sdfg', page_nr=1)))
-            self.assertEqual(30, len(programmes))
-        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 60)):  # no a-z, page length = 55
+            self.assertEqual(61, len(programmes))
+            programmes = list(filter(None, main.list_category.test('sdfg', page_nr=2)))
+            self.assertEqual(8, len(programmes))
+        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 125)):  # no a-z, page length = 55
             # content must be more than 5 longer than page length before actual pagination is performed.
             programmes = list(filter(None, main.list_category.test('sdfg')))
-            self.assertEqual(65, len(programmes))
+            self.assertEqual(128, len(programmes))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_category_children_az_list(self, _):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0)):  # a-z on 20 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg')))
-            self.assertEqual(21, len(programmes))
+            self.assertEqual(20, len(programmes))
             self.assertEqual('A', programmes[0].label)
             self.assertEqual('A', programmes[0].params['filter_char'])
 
@@ -272,15 +272,15 @@ class Categories(TestCase):
     def test_category_drama_list_by_character(self, _):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0) * 2):  # a-z on 20 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
-            self.assertEqual(31, len(programmes))
+            self.assertEqual(19, len(programmes))
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='0-9')))
             self.assertEqual(2, len(programmes))
         # Test content of 'A' divided in sub-pages
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 6)*3):  # a-z on 20 items, page length=6
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
             self.assertEqual(7, len(programmes))
-            programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A', page_nr=4)))
-            # Categories 'A' has 31 items
+            programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A', page_nr=2)))
+            # Categories 'A' has 19 items
             self.assertEqual(7, len(programmes))  # The remaining item of the last page is added to this one.
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))

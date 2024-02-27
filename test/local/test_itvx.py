@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -487,6 +487,13 @@ class GetMyList(TestCase):
         result_1 = itvx.my_list('156-45xsghf75-4sf569')
         self.assertListEqual(result_1, [])
         p_fetch.assert_called_once()
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.parsex.parse_my_list_item', return_value=None)
+    def test_get_mylist_with_parse_errors(self, _, __):
+        """Simulate parse errors and the parser returning None"""
+        result = itvx.my_list('156-45xsghf75-4sf569')
+        self.assertListEqual(result, [])
 
     @patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit)
     def test_get_mylist_not_signed_in(self, _):

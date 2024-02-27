@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -151,7 +151,7 @@ class LiveSchedules(unittest.TestCase):
         self.assertTrue(data['images']['backdrop'].startswith('https://'))
         self.assertTrue(data['images']['backdrop'].endswith('.jpeg'))
 
-        self.assertAlmostEqual(25, len(data['channels']), delta=5)
+        self.assertAlmostEqual(20, len(data['channels']), delta=5)
         for chan in data['channels']:
             object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
             for program in (chan['slots']['now'], chan['slots']['next']):
@@ -182,7 +182,8 @@ class Search(unittest.TestCase):
             'broadcaster': 'itv',
             'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
             'onlyFree': 'false',
-            'platform': 'ctv',
+            'platform': 'dotcom',
+            'size': '24'
         }.copy()
 
     def check_result(self, resp_obj):
