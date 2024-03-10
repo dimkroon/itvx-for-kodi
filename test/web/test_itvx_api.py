@@ -774,3 +774,15 @@ class Playlists(unittest.TestCase):
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
                 object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+
+
+class ChannelLogos(unittest.TestCase):
+    def test_channel_log_urls(self):
+        """Test if logo images used in IPTV Manager integration are available."""
+        headers = {'User-Agent': fetch.USER_AGENT,
+                   'Origin': 'https://www.itv.com',
+                   }
+        for channel in ('ITV', 'ITV2', 'ITVBe', 'ITV3', 'ITV4'):
+            url = 'https://hubimages.itv.com/channel/itv?w=512&h=512&q=80&blur=false&bg=false'.format(channel.lower())
+            response = requests.get(url, headers=headers, timeout=5)
+            self.assertEqual(response.status_code, 200)
