@@ -12,7 +12,7 @@ fixtures.global_setup()
 import time
 import unittest
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from resources.lib import fetch, parsex, utils, errors, main, itv_account
 from support.object_checks import (
@@ -32,6 +32,8 @@ from support.object_checks import (
 from support import testutils
 
 setUpModule = fixtures.setup_web_test
+
+NONE_T = type(None)
 
 # A list of all pages that have been checked. Prevents loops and checking the same page
 # over again when it appears in multiple collections.
@@ -618,12 +620,107 @@ class WatchPages(unittest.TestCase):
 
 
 class TvGuide(unittest.TestCase):
-    def test_guide_of_today(self):
-        today = ''  # datetime.utcnow().strftime(('%Y-%m-%d'))
+    headers = {
+        # Without these headers the requests will time out.
+        'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
+        'Origin': 'https: /www.itv.com',
+    }
+    def check_guide(self, data):
+        obj_name = 'HTMLguide'
+        has_keys(data, 'ITV', 'ITV2', 'ITVBe', 'ITV3', 'ITV4', obj_name=obj_name)
+        for chan_name, chan_guide in data.items():
+            for item in chan_guide:
+                o_name = '.'.join((obj_name, chan_name, item.get('title', 'Unknown')))
+                has_keys(item, 'title', 'start', 'end', 'legacyId', 'duration', obj_name=o_name)
+                self.assertTrue(is_not_empty(item['title'], str))
+                self.assertTrue(is_not_empty(item['duration'], int))
+                self.assertTrue(is_iso_utc_time(item['start']))
+                self.assertTrue(is_iso_utc_time(item['end']))
+                # LegacyId can occasionally be None, in particular on items like 'Shop On TV'.
+                self.assertTrue(is_not_empty(item['legacyId'], str) or isinstance(item['legacyId'], NONE_T))
+                if item.get('contentType') is None:
+                    # Some items, probably all live items do not have more info,
+                    # but check that is indeed the case.
+                    self.assertEqual(5, len(item))
+                    continue
+                has_keys(item, 'genre', 'episodeNumber', 'seriesNumber', 'description', 'guidance',
+                         'episodeAvailableNow', 'episodeLink', 'programmeLink', obj_name=o_name)
+                expect_keys(item, 'ccid', 'contentTypeITV', obj_name=o_name)
+                self.assertTrue(item['contentType'] in ('EPISODE', 'FILM'))
+                self.assertTrue(
+                    item['genre'] in
+                    ['Factual', 'Drama & Soaps', 'Children', 'Films', 'Sport', 'Comedy', 'News', 'Entertainment'])
+                self.assertIsInstance(item['episodeNumber'], (int, NONE_T))
+                self.assertIsInstance(item['seriesNumber'], (int, NONE_T))
+                self.assertTrue(is_not_empty(item['description'], str) or item['description'] is None)
+                self.assertIsInstance(item['guidance'], (str, NONE_T))
+                self.assertIsInstance(item['episodeAvailableNow'], bool)
+                # Even if episodeAvialableNow is True fields like episodeLink can still be None
+                if item['episodeLink'] is not None:
+                    self.assertFalse(is_url(item['episodeLink']))
+                    self.assertTrue(is_not_empty(item['episodeLink'], str))
+                if item['programmeLink'] is not None:
+                    self.assertFalse(is_url(item['programmeLink']))
+                    self.assertTrue(is_not_empty(item['programmeLink'], str))
+                self.assertEqual(16, len(item))     # Just to flag when more data comes available.
+
+    def test_html_guide_without_headers(self):
+        """Requests without the minimum required headers time out"""
+        self.assertRaises(requests.Timeout, requests.get, 'https://www.itv.com/watch/tv-guide/', timeout=3)
+
+    def test_html_guide_of_today(self):
+        today = datetime.utcnow().strftime('%Y-%m-%d')
         url = 'https://www.itv.com/watch/tv-guide/' + today
-        page = fetch.get_document(url)
-        # testutils.save_doc(page, 'html/tv_guide.html')
-        self.assertRaises(errors.ParseError,  parsex.scrape_json, page)
+        query = {'position': 'end'}
+        page = requests.get(url, headers=self.headers, timeout=3).text
+        # testutils.save_doc(page, 'html/schedule_end.html')
+        schedule_data = parsex.scrape_json(page)
+        # testutils.save_json(schedule_data, 'json/schedule_data.json')
+        self.check_guide(schedule_data['tvGuideData'])
+
+    def test_html_guide_week_ago(self):
+        week_ago = datetime.utcnow() - timedelta(days=7)
+        url = 'https://www.itv.com/watch/tv-guide/' + week_ago.strftime('%Y-%m-%d')
+        page = requests.get(url, headers=self.headers, timeout=3).text
+        data = parsex.scrape_json(page)
+        # testutils.save_json(schedule_data, 'json/schedule_week_ago.json')
+        self.check_guide(data['tvGuideData'])
+        # Check that the schedules are indeed from a week ago
+        first_prgrm = data['tvGuideData']['ITV'][0]
+        start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
+        self.assertEqual(week_ago.date(), start_t.date())
+
+    def test_html_guide_week_ahead(self):
+        week_ahead = datetime.utcnow() + timedelta(days=7)
+        url = 'https://www.itv.com/watch/tv-guide/' + week_ahead.strftime('%Y-%m-%d')
+        page = requests.get(url, headers=self.headers, timeout=3).text
+        data = parsex.scrape_json(page)
+        # testutils.save_json(schedule_data, 'json/schedule_week_ahead.json')
+        self.check_guide(data['tvGuideData'])
+        # Check that the schedules are indeed from a week ahead
+        first_prgrm = data['tvGuideData']['ITV'][0]
+        start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
+        self.assertEqual(week_ahead.date(), start_t.date())
+
+    def test_html_guide_8days_ago(self):
+        """If more than 7 days ahead is requested, the schedules of today are returned."""
+        today = datetime.utcnow()
+        far_ahead = (today - timedelta(days=8)).strftime('%Y-%m-%d')
+        url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
+        data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
+        first_prgrm = data['tvGuideData']['ITV'][0]
+        start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
+        self.assertEqual(today.date(), start_t.date())
+
+    def test_html_guide_8days_ahead(self):
+        """If more than 7 days ahead is requested, the schedules of today are returned."""
+        today = datetime.utcnow()
+        far_ahead = (today + timedelta(days=8)).strftime(('%Y-%m-%d'))
+        url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
+        data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
+        first_prgrm = data['tvGuideData']['ITV'][0]
+        start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
+        self.assertEqual(today.date(), start_t.date())
 
 
 class Categories(unittest.TestCase):
