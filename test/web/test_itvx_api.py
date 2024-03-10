@@ -28,6 +28,9 @@ from test.support import testutils
 
 setUpModule = fixtures.setup_web_test
 
+dftl_headers = {'User-Agent': fetch.USER_AGENT,
+                'Origin': 'https://www.itv.com'}
+
 
 class LiveSchedules(unittest.TestCase):
     """Request the live schedule
@@ -774,3 +777,56 @@ class Playlists(unittest.TestCase):
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
                 object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+
+
+class ChannelLogos(unittest.TestCase):
+    """These urls are obtained from the now/next schedule and are hardcoded for use
+    in iptvmanager integration.
+    """
+    logo_urls = [
+        'https://images.ctfassets.net/bd5zurrrnk1g/54OefyIkbiHPMJUYApbuUX/7dfe2176762fd8ec10f77cd61a318b07/itv1.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/aV9MOsYOMEXHx3iw0p4tk/57b35173231c4290ff199ef8573367ad/itv2.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/6Mul5JVrb06pRu8bNDgIAe/b5309fa32322cc3db398d25e523e2b2e/itvBe.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/39fJAu9LbUJptatyAs8HkL/80ac6eb141104854b209da946ae7a02f/itv3.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/6Dv76O9mtWd6m7DzIavtsf/b3d491289679b8030eae7b4a7db58f2d/itv4.png'
+    ]
+
+    def test_channel_log_urls(self):
+        """Test if logo images used in IPTV Manager integration are available.
+
+        """
+        for url in self.logo_urls:
+            response = requests.get(url, headers=dftl_headers, timeout=5)
+            self.assertEqual(response.status_code, 200)
+
+    def test_check_scaled_logos(self):
+        """Check if resized images can be obtained as per API specs at:
+        https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&-cropping
+
+        """
+        import struct
+        import imghdr
+
+        # Modified version of https://stackoverflow.com/questions/8032642/how-can-i-obtain-the-image-size-using-a-standard-python-class-without-using-an
+        def get_image_size(imgdata):
+            '''Determine the image type of fhandle and return its size.
+            from draco'''
+            head = imgdata[:24]
+            if len(head) != 24:
+                return
+            if imghdr.what(None, h=imgdata) == 'png':
+                check = struct.unpack('>i', head[4:8])[0]
+                if check != 0x0d0a1a0a:
+                    return
+                width, height = struct.unpack('>ii', head[16:24])
+            else:
+                return
+            return width, height
+
+        for url in self.logo_urls:
+            url += '?w=512'
+            response = requests.get(url, headers=dftl_headers, timeout=5)
+            self.assertEqual(response.status_code, 200)
+            width, height = get_image_size(response.content)
+            self.assertEqual(512, width)
+            self.assertAlmostEqual(512, height, delta=2)
