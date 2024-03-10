@@ -1,0 +1,67 @@
+{
+  "tvGuideData": {
+    "ITV": [
+      {
+        "duration": 5400,
+        "end": "2024-03-10T07:30:00Z",
+        "legacyId": "10/2272/0093#001",
+        "start": "2024-03-10T06:00:00Z",
+        "title": "English Football League Highlights",
+        "ccid": "qwq0xt7",
+        "contentTypeITV": "avod",
+        "genre": "Sport",
+        "episodeNumber": 41,
+        "contentType": "EPISODE",
+        "seriesNumber": null,
+        "description": "All the highlights, action and talking points from the latest English Football League matches.",
+        "guidance": null,
+        "episodeAvailableNow": true,
+        "episodeLink": "/english-football-league-highlights/10a2272/10a2272a0093",
+        "programmeLink": "/english-football-league-highlights/10a2272"
+      },
+      {
+        "duration": 6900,
+        "end": "2024-03-10T09:25:00Z",
+        "legacyId": "2/5159/0270#001",
+        "start": "2024-03-10T07:30:00Z",
+        "title": "James Martin's Saturday Morning",
+        "ccid": "jmqbqkw",
+        "contentTypeITV": "avod",
+        "genre": "Factual",
+        "episodeNumber": 10,
+        "contentType": "EPISODE",
+        "seriesNumber": 7,
+        "description": "The first-class chef hosts his relaxed weekend cookery show from the comfort of his own home. Watch him cook up mouthwatering recipes while chatting to celebrity guests.",
+        "guidance": null,
+        "episodeAvailableNow": true,
+        "episodeLink": "/james-martins-saturday-morning/2a5159/2a5159a0270",
+        "programmeLink": "/james-martins-saturday-morning/2a5159"
+      },
+      {
+        "duration": 300,
+        "end": "2024-03-10T09:30:00Z",
+        "legacyId": "NET10SU24-NN09",
+        "start": "2024-03-10T09:25:00Z",
+        "title": "ITV News Weekend Morning"
+      },
+      {
+        "duration": 900,
+        "end": "2024-03-10T06:40:00Z",
+        "legacyId": "2/3033/0244#001",
+        "start": "2024-03-10T06:25:00Z",
+        "title": "Teen Titans Go!",
+        "ccid": "kxs4kff",
+        "contentTypeITV": "avod",
+        "genre": "Children",
+        "episodeNumber": 36,
+        "contentType": "EPISODE",
+        "seriesNumber": 6,
+        "description": "Animated series based on DC Comics' superhero team. Robin, Cyborg, Starfire, Raven and Beast Boy love saving the world. But when they stop fighting crime, things don't go to plan.",
+        "guidance": "With dull moments and scenes that some people may find very boring.",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/teen-titans-go/2a3033"
+      }
+    ]
+  }
+}
