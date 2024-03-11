@@ -76,8 +76,11 @@ class IPTVManager:
     @via_socket
     def send_epg(self):
         """Return JSON-EPG formatted python data structure to IPTV Manager"""
-        from resources.lib.itvx import html_guide
-        return dict(version=1, epg=TVGuide().get_epg_data())
+        from resources.lib.itvx import get_full_schedule
+
+        schedules = get_full_schedule()
+        epg = {CHANNELS[k]['id']: v for k, v in schedules.items()}
+        return dict(version=1, epg=epg)
 
 
 @Script.register
@@ -94,7 +97,7 @@ def channels(_, port):
 def epg(_, port):
     try:
         xbmc.log("[viwX] iptvmanager requested epg data on port {}".format(port), xbmc.LOGERROR)
-        # IPTVManager(int(port)).send_epg()
+        IPTVManager(int(port)).send_epg()
     except Exception as err:
         # Catch all errors to prevent codequick showing an error message
         xbmc.log("[viwX] Error in iptvmanager.epg: {!r}.".format(err), xbmc.LOGERROR)
