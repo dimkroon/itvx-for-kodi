@@ -532,12 +532,12 @@ def initialise_my_list():
         my_list(itv_account.itv_session().user_id, offer_login=False, use_cache=False)
         logger.info("Updated MyList programme ID's.")
     except Exception as err:
-        # Since this runs before codequick.run() all exceptions must be caught to prevent them
-        # crashing the addon before the main menu is shown.
-        # Most likely the user is not (yet) logged in, but at the start of the addon connection
-        # errors could also occur, depending on the network setup.
         logger.info("Failed to update MyList programme ID's: %r.", err)
-        pass
+        if cache.my_list_programmes is None:
+            # Mark my_list_programmes as 'failed to initialise'
+            # This causes listings not to include an 'Add' or 'Remove' context menu item,
+            # while preventing subsequent re-initialisation attempts.
+            cache.my_list_programmes = False
 
 
 def get_last_watched():
