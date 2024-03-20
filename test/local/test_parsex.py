@@ -215,6 +215,11 @@ class Generic(unittest.TestCase):
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
+        # An Episode lacking field 'guidance'.
+        title_obj = open_json('json/episodes.json')[4]['episode']
+        item = parsex.parse_episode_title(title_obj)
+        is_li_compatible_dict(self, item)
+
     def test_parse_search_result(self):
         # These files contain programmes, episodes, films and specials both and without a specialProgramm field.
         for file in ('search/search_results_mear.json', 'search/search_monday.json'):
