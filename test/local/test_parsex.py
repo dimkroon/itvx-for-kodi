@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -212,6 +212,11 @@ class Generic(unittest.TestCase):
 
         # Episode where field seriesNumber is not a number, but 'other episodes'.
         title_obj = open_json('json/episodes.json')[3]['episode']
+        item = parsex.parse_episode_title(title_obj)
+        is_li_compatible_dict(self, item)
+
+        # An Episode lacking field 'guidance'.
+        title_obj = open_json('json/episodes.json')[4]['episode']
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
