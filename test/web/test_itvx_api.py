@@ -467,6 +467,54 @@ class LastWatched(unittest.TestCase):
         self.assertDictEqual(data, resp.json())
 
 
+class WatchProgress(unittest.TestCase):
+    """Progress is the watch status of episodes of a particular programme. Only available for
+    episodes that have been watched recently, probably the last month. Returns a json object with
+    the percentage watched for each episode.
+
+    Getting the progress of everything appears not to be possible.
+    Progress can only be obtained for a programme, not for an individual episode,.
+
+    """
+    def test_get_progress_of_everything(self):
+
+        url = 'https://content.prd.user.itv.com/progress/user/{}/'.format(itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual(404, resp.status_code)
+
+    def test_get_progress_of_a_programme(self):
+        """
+        1_7314: Vera
+        1_7842: The Chase
+        """
+        url = 'https://content.prd.user.itv.com/progress/user/{}/programmeId/10_1937'.format(
+            itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        # testutils.save_json(data, 'usercontent/last_watched.json')
+        self.assertEqual('application/vnd.user.content.v1+json', resp.headers['content-type'])
+        self.check_vnd_user_content_v1_json(data)
+
+    def test_progress_by_resume(self):
+        """Try to request resume data of the entire programme, rather than the usual production.
+        This would be interesting because Resume returns the playing time as well as progress.
+
+        NOT possible to get all resume point af all episodes of a programme in one go.
+
+        """
+        url = 'https://content.prd.user.itv.com/resume/user/{}/programmeId/1_7842'.format(
+            itv_account.itv_session().user_id)
+        headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
+                   'accept': 'application/vnd.user.content.v1+json'}
+        resp = requests.get(url, headers=headers)
+        self.assertEqual(404, resp.status_code)
+
+
 class Recommended(unittest.TestCase):
     def setUp(self) -> None:
         self.userid = itv_account.itv_session().user_id
