@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -288,3 +288,29 @@ class Generic(unittest.TestCase):
         data['availabilityEnd'] = zero_hours.isoformat() + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('0 hours available' in item['show']['info']['plot'])
+
+    def test_parse_schedule(self):
+        data = open_json('json/schedule_data.json')['tvGuideData']
+
+        # episodeNr present, but seriesNr is None
+        item = parsex.parse_schedule_item(data['ITV'][0])
+        self.assertEqual('S00E41', item['episode'])
+        # Both episodeNr and seriesNr present
+        item = parsex.parse_schedule_item(data['ITV'][1])
+        self.assertEqual('S07E10', item['episode'])
+        # Both episodeNr and seriesNr absent
+        item = parsex.parse_schedule_item(data['ITV'][2])
+        self.assertTrue('episode' not in item.keys())
+
+        # Formatting direct episode url
+        item = parsex.parse_schedule_item(data['ITV'][1])
+        self.assertTrue(item['stream'].startswith("plugin://plugin.video.viwx/resources/lib"))
+        self.assertTrue(item['stream'].endswith(data['ITV'][1]['episodeLink'][-4:]))
+
+        # Check all test items
+        for chan_data in data.values():
+            for item in chan_data:
+                self.assertIsNotNone(parsex.parse_schedule_item(item))
+
+        # Invalid data
+        self.assertIsNone(parsex.parse_schedule_item({}))
