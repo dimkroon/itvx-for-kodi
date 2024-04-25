@@ -410,7 +410,7 @@ def parse_episode_title(title_data, brand_fanart=None):
     # Note: episodeTitle may be None
     title = title_data['episodeTitle'] or title_data['heroCtaLabel']
     img_url = title_data['image']
-    plot = '\n\n'.join((title_data['longDescription'], title_data['guidance'] or ''))
+    plot = '\n\n'.join(t for t in (title_data['longDescription'], title_data.get('guidance')) if t)
     if title_data['premium']:
         plot = premium_plot(plot)
 
