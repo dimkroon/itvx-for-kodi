@@ -16,7 +16,7 @@ import xbmcplugin
 from xbmcgui import ListItem
 
 from codequick import Route, Resolver, Listitem, Script, run as cc_run
-from codequick.support import logger_id, dispatcher
+from codequick.support import logger_id, build_path, dispatcher
 
 from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
@@ -274,6 +274,7 @@ def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
 
 @Route.register(content_type='videos')
 def sub_menu_live(_):
+    from datetime import datetime, timedelta, timezone
     tv_schedule = itvx.get_live_channels(kodi_utils.local_timezone())
 
     for item in tv_schedule:
@@ -319,6 +320,15 @@ def sub_menu_live(_):
         # add 'play from the start' context menu item for channels that support this feature
         if program_start_time:
             li.context.append(parsex.ctx_mnu_watch_from_start(chan_name, program_start_time))
+
+        # add 'play 3.5 hrs back' context menu
+        start_t = datetime.now(timezone.utc) - timedelta(hours=3, minutes=30)
+        cb_kwargs = callback_kwargs.copy()
+        cb_kwargs['start_time'] = start_t.strftime('%Y-%m-%dT%H:%M:%SZ')
+        cmd = ''.join(('PlayMedia(',
+                       build_path(play_stream_live, **cb_kwargs),
+                       ', noresume)'))
+        li.context.append(("Play 3.5 hrs back", cmd))
         yield li
 
 
