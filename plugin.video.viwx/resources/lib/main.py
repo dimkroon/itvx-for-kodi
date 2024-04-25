@@ -262,6 +262,8 @@ def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
 
 @Route.register(content_type='videos')
 def sub_menu_live(_):
+    from datetime import datetime, timedelta
+
     try:
         local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
     except ValueError:
@@ -317,6 +319,15 @@ def sub_menu_live(_):
             cmd = 'PlayMedia({}, noresume)'.format(
                 build_path(play_stream_live, play_from_start=True, **callback_kwargs))
             li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
+
+        # add 'play 3.5 hrs back' context menu
+        start_t = datetime.utcnow() - timedelta(hours=3, minutes=30)
+        cb_kwargs = callback_kwargs.copy()
+        cb_kwargs['start_time'] = start_t.strftime('%Y-%m-%dT%H:%M:%SZ')
+        cmd = ''.join(('PlayMedia(',
+                       build_path(play_stream_live, play_from_start=True, **cb_kwargs),
+                       ', noresume)'))
+        li.context.append(("Play 3.5 hrs back", cmd))
         yield li
 
 
