@@ -759,7 +759,7 @@ class Categories(unittest.TestCase):
             page = fetch.get_document(url)
             t_1 = time.time()
             data = parsex.scrape_json(page)
-            # if cat == 'films':
+            # if cat in ('children', 'drama-soaps', 'factual', 'films', 'sport'):
             #     testutils.save_json(data, 'html/category_{}.json'.format(cat))
             cat_data = data['category']
             self.assertTrue(is_not_empty(cat_data['slug'], str))
@@ -776,7 +776,7 @@ class Categories(unittest.TestCase):
                 check_category_item(progr)
             if cat == 'films':
                 # All films must be playable items.
-                playables = [p for p in programmes if p['encodedEpisodeId']['letterA'] == '']
+                playables = [p for p in programmes if p.get('encodedEpisodeId') is None]
                 self.assertEqual(len(playables), len(programmes))
 
     def test_category_news(self):

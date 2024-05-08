@@ -340,7 +340,7 @@ def parse_category_item(prog, category_id):
 
     # TODO: Both regular and news category items now have a field contentType
 
-    is_playable = prog['encodedEpisodeId']['letterA'] == ''
+    is_playable = prog.get('encodedEpisodeId') is None
     playtime = utils.duration_2_seconds(prog['contentInfo'])
     title = prog['title']
 

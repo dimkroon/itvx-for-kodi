@@ -348,18 +348,21 @@ def check_category_item(item):
     # TODO: Check if this is the same as a normal episode
     has_keys(
         item,
-        'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'channel', 'description', 'imageTemplate',
+        'title', 'titleSlug', 'encodedProgrammeId', 'channel', 'description', 'imageTemplate',
         'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId', 'contentType',
         obj_name=f'categoryItem-{title}'
     )
 
     assert is_not_empty(item['title'], str)
-    assert item['contentType'] in ('series', 'special', 'film', 'episode'), "Unexpected contentType '{item['contentType']}'."
+    assert item['contentType'] == 'brand', f"Unexpected contentType '{item['contentType']}'."     # in ('series', 'special', 'film', 'episode', 'brand')
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
-    assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
-    assert item['encodedProgrammeId'] != item['encodedEpisodeId']
-    if item['encodedEpisodeId'] == '':
+    if 'encodedEpisodeId' in item:
+        assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
+        assert item['encodedEpisodeId']['letterA'] != '', "Legacy use of empty encodedEpisodeId"
+        assert item['encodedProgrammeId'] != item['encodedEpisodeId']
+    else:
+        # Check that items lacking an encodedEpisodeId are playable. Brands can be both.
         assert 'series' not in item['contentInfo'].lower()
     assert isinstance(item['description'], str) and item['description'], "Invalid description in '{}'.".format(title)
     assert is_url(item['imageTemplate']), "Invalid imageTemple in '{}'.".format(title)
