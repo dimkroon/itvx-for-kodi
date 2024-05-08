@@ -269,7 +269,7 @@ class Categories(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/categories_data.json'))
     def test_get_categories(self, _):
         cat_list = list(itvx.categories())
-        self.assertEqual(8, len(cat_list))
+        self.assertEqual(9, len(cat_list))
 
     @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/category_children.json'),
                                                             open_json('html/category_drama-soaps.json'),

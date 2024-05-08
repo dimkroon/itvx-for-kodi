@@ -724,7 +724,7 @@ class TvGuide(unittest.TestCase):
 
 
 class Categories(unittest.TestCase):
-    all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport', 'comedy', 'news', 'entertainment']
+    all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport', 'comedy', 'news', 'entertainment', 'signed-bsl']
 
     def test_get_available_categories(self):
         """The page categories returns in fact already a full categorie page - the first page in the list
@@ -744,7 +744,7 @@ class Categories(unittest.TestCase):
             # url is the full path without domain
             self.assertTrue(item['url'].startswith('/watch/'))
 
-        self.assertEqual(8, len(categories))        # the mobile app has an additional category AD (Audio Described)
+        self.assertEqual(9, len(categories))        # the mobile app has an additional category AD (Audio Described)
         self.assertListEqual([cat['id'] for cat in categories], self.all_categories)
         # print('Categorie page fetched in {:0.3f}, parsed in {:0.3f}, total: {:0.3f}'.format(
         #     t_1 - t_s, t_2 - t_1, t_2 - t_s))
@@ -767,7 +767,7 @@ class Categories(unittest.TestCase):
                             # Yes, at this moment it's 'FILM' not 'FILMS', the parser accepts both.
                             # Also, 'DRAMA_AND_SOAPS' is different. Category id's elsewhere use drama-soaps,
                             # which is like cat_data['slug'], but this ID is not used in the addon at all.
-                            ('FILM', 'FACTUAL', 'CHILDREN', 'DRAMA_AND_SOAPS', 'SPORT', 'COMEDY', 'ENTERTAINMENT'))
+                            ('FILM', 'FACTUAL', 'CHILDREN', 'DRAMA_AND_SOAPS', 'SPORT', 'COMEDY', 'ENTERTAINMENT', 'SIGNED_BSL'))
             self.assertTrue(is_not_empty(cat_data['name'], str))
             programmes = data['programmes']
             t_2 = time.time()
