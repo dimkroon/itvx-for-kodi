@@ -354,7 +354,7 @@ def check_category_item(item):
     )
 
     assert is_not_empty(item['title'], str)
-    assert item['contentType'] in ('series', 'special', 'film', 'episode'), "Unexpected contentType '{item['contentType']}'."
+    assert item['contentType'] == 'brand', f"Unexpected contentType '{item['contentType']}'."     # in ('series', 'special', 'film', 'episode', 'brand')
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
     if 'encodedEpisodeId' in item:
