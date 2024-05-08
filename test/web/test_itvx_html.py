@@ -759,7 +759,7 @@ class Categories(unittest.TestCase):
             page = fetch.get_document(url)
             t_1 = time.time()
             data = parsex.scrape_json(page)
-            # if cat == 'films':
+            # if cat in ('children', 'drama-soaps', 'factual', 'films', 'sport'):
             #     testutils.save_json(data, 'html/category_{}.json'.format(cat))
             cat_data = data['category']
             self.assertTrue(is_not_empty(cat_data['slug'], str))
