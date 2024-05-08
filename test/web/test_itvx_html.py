@@ -776,7 +776,7 @@ class Categories(unittest.TestCase):
                 check_category_item(progr)
             if cat == 'films':
                 # All films must be playable items.
-                playables = [p for p in programmes if p['encodedEpisodeId']['letterA'] == '']
+                playables = [p for p in programmes if p.get('encodedEpisodeId') is None]
                 self.assertEqual(len(playables), len(programmes))
 
     def test_category_news(self):
