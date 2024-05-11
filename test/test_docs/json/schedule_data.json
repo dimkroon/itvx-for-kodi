@@ -2,47 +2,57 @@
   "tvGuideData": {
     "ITV": [
       {
-        "duration": 5400,
-        "end": "2024-03-10T07:30:00Z",
-        "legacyId": "10/2272/0093#001",
-        "start": "2024-03-10T06:00:00Z",
-        "title": "English Football League Highlights",
-        "ccid": "qwq0xt7",
+        "duration": 3600,
+        "end": "2024-05-11T09:30:00Z",
+        "legacyId": "2/4875/0446#001",
+        "start": "2024-05-11T08:30:00Z",
+        "title": "ITV Racing: The Opening Show",
+        "ccid": "p997wpx",
         "contentTypeITV": "avod",
-        "genre": "Sport",
         "episodeNumber": 41,
         "contentType": "EPISODE",
         "seriesNumber": null,
-        "description": "All the highlights, action and talking points from the latest English Football League matches.",
+        "description": "Magazine show accompanying coverage of the horse racing. Presented on-site from the main course each Saturday, with additional weekday programmes during the big festivals.",
         "guidance": null,
         "episodeAvailableNow": true,
-        "episodeLink": "/english-football-league-highlights/10a2272/10a2272a0093",
-        "programmeLink": "/english-football-league-highlights/10a2272"
+        "episodeLink": "/itv-racing-the-opening-show/2a4875/2a4875a0446",
+        "programmeLink": "/itv-racing-the-opening-show/2a4875",
+        "genres": [
+          {
+            "name": "Sport",
+            "id": "SPORT"
+          }
+        ]
       },
       {
-        "duration": 6900,
-        "end": "2024-03-10T09:25:00Z",
-        "legacyId": "2/5159/0270#001",
-        "start": "2024-03-10T07:30:00Z",
-        "title": "James Martin's Saturday Morning",
-        "ccid": "jmqbqkw",
+        "duration": 3600,
+        "end": "2024-05-11T08:30:00Z",
+        "legacyId": "2/7893/0019#003",
+        "start": "2024-05-11T07:30:00Z",
+        "title": "Giant Lobster Hunters",
+        "ccid": "jk4v3g1",
         "contentTypeITV": "avod",
-        "genre": "Factual",
         "episodeNumber": 10,
         "contentType": "EPISODE",
         "seriesNumber": 7,
-        "description": "The first-class chef hosts his relaxed weekend cookery show from the comfort of his own home. Watch him cook up mouthwatering recipes while chatting to celebrity guests.",
-        "guidance": null,
+        "description": "Follow the real-life dramas of six lobster boat captains over the last ten weeks of the winter rock lobster hunting season. Who will hit their target, and who'll make a fortune?",
+        "guidance": "",
         "episodeAvailableNow": true,
-        "episodeLink": "/james-martins-saturday-morning/2a5159/2a5159a0270",
-        "programmeLink": "/james-martins-saturday-morning/2a5159"
+        "episodeLink": "/giant-lobster-hunters/2a7893/2a7893a0019",
+        "programmeLink": "/giant-lobster-hunters/2a7893",
+        "genres": [
+          {
+            "name": "Documentaries & Lifestyle",
+            "id": "FACTUAL"
+          }
+        ]
       },
       {
         "duration": 300,
-        "end": "2024-03-10T09:30:00Z",
-        "legacyId": "NET10SU24-NN09",
-        "start": "2024-03-10T09:25:00Z",
-        "title": "ITV News Weekend Morning"
+        "end": "2024-05-11T16:50:00Z",
+        "legacyId": "1/8987/5241#001",
+        "start": "2024-05-11T16:45:00Z",
+        "title": "Fyi Daily"
       },
       {
         "duration": 900,
@@ -52,7 +62,6 @@
         "title": "Teen Titans Go!",
         "ccid": "kxs4kff",
         "contentTypeITV": "avod",
-        "genre": "Children",
         "episodeNumber": 36,
         "contentType": "EPISODE",
         "seriesNumber": 6,
@@ -60,7 +69,13 @@
         "guidance": "With dull moments and scenes that some people may find very boring.",
         "episodeAvailableNow": false,
         "episodeLink": null,
-        "programmeLink": "/teen-titans-go/2a3033"
+        "programmeLink": "/teen-titans-go/2a3033",
+        "genres": [
+          {
+            "name": "Children",
+            "id": "CHILDREN"
+          }
+        ]
       }
     ]
   }
