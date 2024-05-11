@@ -42,7 +42,7 @@ def global_setup():
 
         # Enable logging to file during tests with a new file each test run.
         try:
-            os.remove(os.path.join(profile_dir, 'addon.log'))
+            os.remove(os.path.join(profile_dir, info_map['name'] + '.log'))
         except FileNotFoundError:
             pass
         patch('xbmcaddon.Addon.getSettingString',
