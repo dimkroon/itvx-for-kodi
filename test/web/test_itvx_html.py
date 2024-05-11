@@ -774,6 +774,9 @@ class Categories(unittest.TestCase):
             self.assertIsInstance(programmes, list)
             for progr in programmes:
                 check_category_item(progr)
+                # All normal category items are of type brand, but the checker above still allows other
+                # types used in category news.
+                assert progr['contentType'] == 'brand'
             if cat == 'films':
                 # All films must be playable items.
                 playables = [p for p in programmes if p.get('encodedEpisodeId') is None]
