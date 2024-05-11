@@ -519,7 +519,7 @@ class WatchPages(unittest.TestCase):
         self.assertTrue(is_iso_utc_time(progr_data['end']))
 
         if chan_type == 'fast':
-            misses_keys(progr_data, 'broadcastStartTimestamp', obj_name=obj_name)
+            self.assertIsNone(progr_data['broadcastStartTimestamp'])
             self.assertIsNone(progr_data['broadcastAt'])
             self.assertIsNone(progr_data['broadcastEndTimestamp'])
 
