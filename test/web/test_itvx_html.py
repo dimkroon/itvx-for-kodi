@@ -27,7 +27,8 @@ from support.object_checks import (
     is_encoded_episode_id,
     check_short_form_slider,
     check_short_form_item,
-    check_category_item
+    check_category_item,
+    check_genres
 )
 from support import testutils
 
@@ -643,15 +644,16 @@ class TvGuide(unittest.TestCase):
                     # but check that is indeed the case.
                     self.assertEqual(5, len(item))
                     continue
-                has_keys(item, 'genre', 'episodeNumber', 'seriesNumber', 'description', 'guidance',
+                has_keys(item, 'genres', 'episodeNumber', 'seriesNumber', 'description', 'guidance',
                          'episodeAvailableNow', 'episodeLink', 'programmeLink', obj_name=o_name)
                 expect_keys(item, 'ccid', 'contentTypeITV', obj_name=o_name)
-                self.assertTrue(item['contentType'] in ('EPISODE', 'FILM'))
-                self.assertTrue(
-                    item['genre'] in
-                    ['Factual', 'Drama & Soaps', 'Children', 'Films', 'Sport', 'Comedy', 'News', 'Entertainment'])
+                self.assertTrue(item['contentType'] in ('EPISODE', 'FILM', 'SPECIAL'))
+                check_genres(self, item['genres'])
                 self.assertIsInstance(item['episodeNumber'], (int, NONE_T))
                 self.assertIsInstance(item['seriesNumber'], (int, NONE_T))
+                # Episode number without a series number does still happen...
+                # if item['episodeNumber']:
+                #     self.assertTrue(is_not_empty(item['seriesNumber'], int))
                 self.assertTrue(is_not_empty(item['description'], str) or item['description'] is None)
                 self.assertIsInstance(item['guidance'], (str, NONE_T))
                 self.assertIsInstance(item['episodeAvailableNow'], bool)
@@ -675,7 +677,7 @@ class TvGuide(unittest.TestCase):
         page = requests.get(url, headers=self.headers, timeout=3).text
         # testutils.save_doc(page, 'html/schedule_end.html')
         schedule_data = parsex.scrape_json(page)
-        # testutils.save_json(schedule_data, 'json/schedule_data.json')
+        # testutils.save_json(schedule_data, 'schedule/html_schedule.json')
         self.check_guide(schedule_data['tvGuideData'])
 
     def test_html_guide_week_ago(self):

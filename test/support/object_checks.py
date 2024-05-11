@@ -409,3 +409,18 @@ def check_item_type_programme(testcase, progr_data, parent):
 
     testcase.assertIsInstance(progr_data['numberOfAvailableSeries'], list)
     testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))
+
+
+def check_genres(testcase, genre_item):
+    """Check that `genre_item` is a list of dicts.
+
+    :param unittest.TestCase testcase: Instanceof unittest.TestCase to run the tests in.
+    :param list genre_item: The value of a field named 'genres' in data returned by ITVX.
+
+    """
+    for genre in genre_item:
+        testcase.assertTrue({'id', 'name'} == set(genre.keys()))
+        testcase.assertTrue(
+            genre['id'] in
+            ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'])
+
