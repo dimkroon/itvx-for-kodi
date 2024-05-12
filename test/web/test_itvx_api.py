@@ -658,16 +658,16 @@ class Playlists(unittest.TestCase):
             'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
             'Origin': 'https://www.itv.com'}
-        existing_cookies = fetch.HttpSession().cookies
+        default_cookies = fetch.set_default_cookies()
 
         with self.assertRaises(requests.exceptions.ReadTimeout):
             requests.post(url, headers=headers, json=self.create_post_data('live'), timeout=2)
 
         jar = RequestsCookieJar()
-        for cookie in existing_cookies:
-            if cookie.name.startswith("Cassie"):
+        for cookie in default_cookies:
+            if cookie.name.startswith("Syrenis"):
                 jar.set_cookie(cookie)
-        self.assertTrue(len(jar.items()), "No Cassie consent cookies")
+        self.assertTrue(len(jar.items()), "No Syrenis consent cookies")
         requests.post(url, headers=headers, cookies=jar, json=self.create_post_data('live'), timeout=2)
 
     def test_manifest_live_simulcast(self):
