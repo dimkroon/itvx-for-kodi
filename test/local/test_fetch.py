@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -99,24 +99,37 @@ class TestHttpSession(TestCase):
 
 
 class SetDefaultCookies(TestCase):
-    @patch('requests.Session.get', return_value=HttpResponse(content=b'{"CassieConsent": "{\\"my_cookie\\": \\"my_value\\"}"}'))
+    syrenis_cookies = [
+        'SyrenisGuid_213aea86-31e5-43f3-8d6b-e01ba0d420c7',
+        'SyrenisCookieFormConsent_213aea86-31e5-43f3-8d6b-e01ba0d420c7',
+        'SyrenisCookiePrivacyLink_213aea86-31e5-43f3-8d6b-e01ba0d420c7',
+        'SyrenisCookieConsentDate_213aea86-31e5-43f3-8d6b-e01ba0d420c7'
+    ]
+    @patch('requests.Session.post', return_value=HttpResponse(content=b'Post Sucessful'))
     def test_get_default_cookies(self, _):
+
         jar = RequestsCookieJar()
         resp = fetch.set_default_cookies(jar)
         self.assertIs(resp, jar)
-        self.assertTrue('my_cookie' in jar)
+        for cookie_name in self.syrenis_cookies:
+            self.assertTrue(cookie_name in jar)
         # without initial cookiejar, returns requests.Session's cookiejar
         resp = fetch.set_default_cookies()
         self.assertIsInstance(resp, RequestsCookieJar)
-        self.assertTrue('my_cookie' in resp)
+        for cookie_name in self.syrenis_cookies:
+            self.assertTrue(cookie_name in jar)
 
     def test_get_default_cookies_invalid_cookiejar(self):
         self.assertRaises(ValueError, fetch.set_default_cookies, {})
 
-    @patch('requests.Session.get', side_effect=errors.HttpError)
-    def test_unexpected_response(self, _):
-        resp = fetch.set_default_cookies()
-        self.assertIs(resp, None)
+    def test_unexpected_response(self):
+        with patch('requests.Session.post', side_effect=errors.HttpError):
+            resp = fetch.set_default_cookies()
+            self.assertIs(resp, None)
+        with patch('requests.Session.post', return_value=HttpResponse(content=b'Post Failed')):
+            jar = fetch.set_default_cookies()
+            for cookie_name in self.syrenis_cookies:
+                self.assertTrue(cookie_name in jar)
 
 
 class WebRequest(TestCase):
