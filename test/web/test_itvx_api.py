@@ -89,7 +89,13 @@ class LiveSchedules(unittest.TestCase):
 
         self.assertAlmostEqual(20, len(data['channels']), delta=5)
         for chan in data['channels']:
-            object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
+            item_name = "now-next.{}".format(chan.get('name', "unknown channel"))
+            object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images',
+                                   'slug', 'isKidsChannel', obj_name=item_name)
+            self.assertTrue(chan['channelType'] in ('simulcast', 'fast'))
+            if chan['channelType'] == 'fast':
+                object_checks.has_keys(chan, 'channelDescription', 'channelTitle', obj_name=item_name)
+
             for program in (chan['slots']['now'], chan['slots']['next']):
                 progr_keys = ('titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
                               'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
@@ -98,11 +104,11 @@ class LiveSchedules(unittest.TestCase):
                 object_checks.has_keys(program, *progr_keys)
                 if program['displayTitle'] is None:
                     # If displayTitle is None all other fields are None or False as well.
-                    # Noticed 25-6-2023, only on the FAST channel named 'Unwind', which in fact
-                    # does not really broadcast programmes.
+                    # Noticed first 25-6-2023, on the FAST channels that were no longer available
+                    # Since May 2024 a channel name 'ITV Sport' has empty data.
                     for k in progr_keys:
                         self.assertFalse(program[k])
-                    self.assertTrue(chan['name'].lower() in ('unwind', 'citv'))
+                    self.assertTrue(chan['name'].lower() in ('itv sport'))
                 else:
                     self.assertTrue(object_checks.is_iso_utc_time(program['start']))
                     self.assertTrue(object_checks.is_iso_utc_time(program['end']))

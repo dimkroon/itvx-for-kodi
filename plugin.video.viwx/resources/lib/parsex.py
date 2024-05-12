@@ -248,6 +248,10 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
     ShortFormSliders are found on the main page, some collection pages.
     Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
 
+    # TODO: Shortform items snow have a field contentType, which has value 'shortform' when the item
+            has a shortform format, or something else like 'episode' when the item is a normal
+            episode. Wait for the occasion to be able to check a sports shortform slider before
+            differentiating based on content type.
     """
     try:
         if 'encodedProgrammeId' in item_data.keys():

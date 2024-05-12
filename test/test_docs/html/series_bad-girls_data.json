@@ -22,6 +22,12 @@
     "title": "Bad Girls",
     "longDescription": "Smash-hit 00s prison drama. For the female prisoners and their guards at HMP Larkhall, life lurches from one crisis to another. Watch the battle to survive in this secret world.",
     "description": "Smash-hit 00s prison drama - watch the battle to survive at HMP Larkhall",
+    "genres": [
+      {
+        "id": "DRAMA_AND_SOAPS",
+        "name": "Drama"
+      }
+    ],
     "image": "https://ovp.itv.com/images/programme/t1j1kf3/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
     "categories": [
       "DRAMA_AND_SOAPS"
@@ -34,6 +40,7 @@
     ],
     "numberOfAvailableSeries": 8,
     "heroCtaLabel": "Series 1, Episode 1",
+    "visuallySigned": false,
     "imagePresets": {
       "0": {
         "1x": "https://ovp.itv.com/images/programme/t1j1kf3/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
@@ -77,6 +84,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "h9khx4h",
           "channel": "ITV",
@@ -125,11 +138,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "2c5qpld",
           "channel": "ITV",
@@ -178,11 +197,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "yb0l8s5",
           "channel": "ITV",
@@ -238,6 +263,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "3tf6sc0",
           "channel": "ITV",
           "heroCtaLabel": "Series 1, Episode 4",
@@ -282,15 +313,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9y8lbtk",
           "channel": "ITV",
@@ -339,11 +376,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "38pd5t6",
           "channel": "ITV",
@@ -389,15 +432,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "jl70v1j",
           "channel": "ITV",
@@ -453,6 +502,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "dhb2dxz",
           "channel": "ITV",
           "heroCtaLabel": "Series 1, Episode 8",
@@ -500,11 +555,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "6mvhy8z",
           "channel": "ITV",
@@ -553,11 +614,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "1678ny3",
           "channel": "ITV",
@@ -617,11 +684,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9jvzc0f",
           "channel": "ITV",
@@ -677,6 +750,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "8g8s87f",
           "channel": "ITV",
           "heroCtaLabel": "Series 2, Episode 2",
@@ -729,6 +808,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "234dr25",
           "channel": "ITV",
@@ -784,6 +869,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "d5c5f7x",
           "channel": "ITV",
           "heroCtaLabel": "Series 2, Episode 4",
@@ -837,6 +928,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "1bmrhz5",
           "channel": "ITV",
           "heroCtaLabel": "Series 2, Episode 5",
@@ -881,14 +978,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "4z4bfkm",
           "channel": "ITV",
@@ -934,15 +1037,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "s299rct",
           "channel": "ITV",
@@ -992,11 +1101,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "dl6zht6",
           "channel": "ITV",
@@ -1042,14 +1157,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9j866zf",
           "channel": "ITV",
@@ -1095,15 +1216,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "1hfzzhz",
           "channel": "ITV",
@@ -1159,6 +1286,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "l3jx9gj",
           "channel": "ITV",
           "heroCtaLabel": "Series 2, Episode 11",
@@ -1207,11 +1340,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "fbjcl0r",
           "channel": "ITV",
@@ -1257,14 +1396,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "xsn54v5",
           "channel": "ITV",
@@ -1324,11 +1469,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "090xjd5",
           "channel": "ITV",
@@ -1374,14 +1525,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "cwl5k1p",
           "channel": "ITV",
@@ -1427,15 +1584,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "63lkxr7",
           "channel": "ITV",
@@ -1491,6 +1654,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "2nvfm6l",
           "channel": "ITV",
           "heroCtaLabel": "Series 3, Episode 4",
@@ -1543,6 +1712,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "lkty5x0",
           "channel": "ITV",
@@ -1598,6 +1773,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "prh3cst",
           "channel": "ITV",
           "heroCtaLabel": "Series 3, Episode 6",
@@ -1645,11 +1826,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "hyyrw4g",
           "channel": "ITV",
@@ -1698,11 +1885,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "606mzx6",
           "channel": "ITV",
@@ -1758,6 +1951,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "tsfm995",
           "channel": "ITV",
           "heroCtaLabel": "Series 3, Episode 9",
@@ -1805,11 +2004,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "dft83qb",
           "channel": "ITV",
@@ -1855,15 +2060,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9dbp3bz",
           "channel": "ITV",
@@ -1917,6 +2128,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "gw44jy3",
           "channel": "ITV",
@@ -1972,6 +2189,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "cw93zd3",
           "channel": "ITV",
           "heroCtaLabel": "Series 3, Episode 13",
@@ -2016,15 +2239,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "srtqrxd",
           "channel": "ITV",
@@ -2080,6 +2309,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "2hj32px",
           "channel": "ITV",
           "heroCtaLabel": "Series 3, Episode 15",
@@ -2133,6 +2368,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "z8hgbsz",
           "channel": "ITV",
@@ -2199,6 +2440,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "wy8k607",
           "channel": "ITV",
           "heroCtaLabel": "Series 4, Episode 1",
@@ -2247,11 +2494,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "nk1zrkz",
           "channel": "ITV",
@@ -2301,11 +2554,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "b2b839p",
           "channel": "ITV",
@@ -2351,15 +2610,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "zs06mr1",
           "channel": "ITV",
@@ -2415,6 +2680,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "q7qw3b2",
           "channel": "ITV",
           "heroCtaLabel": "Series 4, Episode 5",
@@ -2459,14 +2730,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "02lk860",
           "channel": "ITV",
@@ -2521,6 +2798,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "j8yp92m",
           "channel": "ITV",
           "heroCtaLabel": "Series 4, Episode 7",
@@ -2565,15 +2848,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "246bbkj",
           "channel": "ITV",
@@ -2629,6 +2918,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "149p1dg",
           "channel": "ITV",
           "heroCtaLabel": "Series 4, Episode 9",
@@ -2673,14 +2968,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "659dzr4",
           "channel": "ITV",
@@ -2729,11 +3030,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "wdhnwhv",
           "channel": "ITV",
@@ -2789,6 +3096,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "xmyctst",
           "channel": "ITV",
           "heroCtaLabel": "Series 4, Episode 12",
@@ -2837,11 +3150,17 @@
             "OUTBAND_WEBVTT",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "2202rhw",
           "channel": "ITV",
@@ -2896,6 +3215,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "hygz8wg",
           "channel": "ITV",
           "heroCtaLabel": "Series 4, Episode 14",
@@ -2944,11 +3269,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "69257vt",
           "channel": "ITV",
@@ -3003,6 +3334,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "1k109z6",
           "channel": "ITV",
@@ -3062,11 +3399,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "h6sw56p",
           "channel": "ITV",
@@ -3115,11 +3458,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "m2t0nck",
           "channel": "ITV",
@@ -3175,6 +3524,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "v7ddjff",
           "channel": "ITV",
           "heroCtaLabel": "Series 5, Episode 3",
@@ -3228,6 +3583,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "j0jr0fx",
           "channel": "ITV",
@@ -3283,6 +3644,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "mhj1yfb",
           "channel": "ITV",
           "heroCtaLabel": "Series 5, Episode 5",
@@ -3331,11 +3698,17 @@
             "OUTBAND_WEBVTT",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "1syr474",
           "channel": "ITV",
@@ -3385,11 +3758,17 @@
             "OUTBAND_WEBVTT",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "4hhdwk7",
           "channel": "ITV",
@@ -3439,11 +3818,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "pyknbds",
           "channel": "ITV",
@@ -3499,6 +3884,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "nnw7zhp",
           "channel": "ITV",
           "heroCtaLabel": "Series 5, Episode 9",
@@ -3551,6 +3942,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "vs1l7bv",
           "channel": "ITV",
@@ -3606,6 +4003,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "1s03tps",
           "channel": "ITV",
           "heroCtaLabel": "Series 5, Episode 11",
@@ -3650,15 +4053,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9plvrjk",
           "channel": "ITV",
@@ -3708,11 +4117,17 @@
             "OUTBAND_WEBVTT",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "zqj0dj6",
           "channel": "ITV",
@@ -3758,15 +4173,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "0r0qndz",
           "channel": "ITV",
@@ -3821,6 +4242,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "3zg7qn0",
           "channel": "ITV",
           "heroCtaLabel": "Series 5, Episode 15",
@@ -3865,15 +4292,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "yvpdql3",
           "channel": "ITV",
@@ -3930,15 +4363,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "mtt5ggc",
           "channel": "ITV",
@@ -3994,6 +4433,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "dslmx6d",
           "channel": "ITV",
           "heroCtaLabel": "Series 6, Episode 2",
@@ -4038,15 +4483,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "ngwhyqb",
           "channel": "ITV",
@@ -4095,11 +4546,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "8b5wq8d",
           "channel": "ITV",
@@ -4154,6 +4611,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "yfb4z93",
           "channel": "ITV",
           "heroCtaLabel": "Series 6, Episode 5",
@@ -4198,14 +4661,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "wrt9gsc",
           "channel": "ITV",
@@ -4260,6 +4729,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "7gs5p0w",
           "channel": "ITV",
           "heroCtaLabel": "Series 6, Episode 7",
@@ -4304,15 +4779,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "gdlrhcy",
           "channel": "ITV",
@@ -4368,6 +4849,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "gmq35wv",
           "channel": "ITV",
           "heroCtaLabel": "Series 6, Episode 9",
@@ -4420,6 +4907,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "r35wj1n",
           "channel": "ITV",
@@ -4474,6 +4967,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "wwnm0vg",
           "channel": "ITV",
           "heroCtaLabel": "Series 6, Episode 11",
@@ -4526,6 +5025,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "px4l6yq",
           "channel": "ITV",
@@ -4586,11 +5091,17 @@
             "OUTBAND_WEBVTT",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "7y5tkft",
           "channel": "ITV",
@@ -4639,11 +5150,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "js32bj3",
           "channel": "ITV",
@@ -4699,6 +5216,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "hh5f850",
           "channel": "ITV",
           "heroCtaLabel": "Series 7, Episode 3",
@@ -4747,11 +5270,17 @@
             "OUTBAND_WEBVTT",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "yv1gsvv",
           "channel": "ITV",
@@ -4806,6 +5335,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "242lz2s",
           "channel": "ITV",
           "heroCtaLabel": "Series 7, Episode 5",
@@ -4850,15 +5385,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "541nt36",
           "channel": "ITV",
@@ -4914,6 +5455,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "lyfcd7m",
           "channel": "ITV",
           "heroCtaLabel": "Series 7, Episode 7",
@@ -4966,6 +5513,12 @@
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "mf4m6ys",
           "channel": "ITV",
@@ -5020,6 +5573,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "0nb6bh6",
           "channel": "ITV",
           "heroCtaLabel": "Series 7, Episode 9",
@@ -5064,15 +5623,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "14ph450",
           "channel": "ITV",
@@ -5122,11 +5687,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "rl5rz87",
           "channel": "ITV",
@@ -5182,6 +5753,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "6v1d12c",
           "channel": "ITV",
           "heroCtaLabel": "Series 7, Episode 12",
@@ -5226,15 +5803,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "dlvsb3x",
           "channel": "ITV",
@@ -5301,6 +5884,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "cbsk6nm",
           "channel": "ITV",
           "heroCtaLabel": "Series 8, Episode 1",
@@ -5355,6 +5944,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "pcvsm34",
           "channel": "ITV",
           "heroCtaLabel": "Series 8, Episode 2",
@@ -5403,11 +5998,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "3sjgn93",
           "channel": "ITV",
@@ -5456,11 +6057,17 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "0pzcps6",
           "channel": "ITV",
@@ -5510,11 +6117,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "00kctb3",
           "channel": "ITV",
@@ -5569,6 +6182,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "rsv635g",
           "channel": "ITV",
           "heroCtaLabel": "Series 8, Episode 6",
@@ -5622,6 +6241,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "1g2qkm2",
           "channel": "ITV",
           "heroCtaLabel": "Series 8, Episode 7",
@@ -5670,11 +6295,17 @@
             "OUTBAND_WEBVTT",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "zn5rj78",
           "channel": "ITV",
@@ -5730,6 +6361,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "g78cg6t",
           "channel": "ITV",
           "heroCtaLabel": "Series 8, Episode 9",
@@ -5774,15 +6411,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-12-22T07:00:00Z",
           "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "zx7mb1f",
           "channel": "ITV",
@@ -5831,11 +6474,17 @@
             "MPEG_DASH",
             "WIDEVINE"
           ],
-          "availabilityFrom": "2025-05-31T22:59:00Z",
-          "availabilityUntil": "2025-05-31T22:59:59.999Z",
+          "availabilityFrom": "2022-12-22T07:00:00Z",
+          "availabilityUntil": "2025-05-31T22:59:00Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "4bmxc9m",
           "channel": "ITV",

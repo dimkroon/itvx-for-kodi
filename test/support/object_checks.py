@@ -296,7 +296,7 @@ def check_short_form_slider(testcase, slider, name=''):
 def check_short_form_item(item):
     """Check the content of a shortForm item from a collection or from category 'News'
 
-    In both new and collections shortForm items are mostly short mp4 files, but a few are
+    In both news and collections shortForm items are mostly short mp4 files, but a few are
     normal programmes, like a full news programme, or a full sports match.
 
     Items from collection or from Hero of category have an extra field `posterImage`, but it's not used in the addon.
@@ -304,19 +304,11 @@ def check_short_form_item(item):
     """
     has_keys(
         item,
-        'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime',
+        'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime', 'contentType',
         obj_name=item['episodeTitle'])
     misses_keys(item, 'isPaid', 'tier', 'imagePresets')
 
-    if 'encodedProgrammeId' in item.keys():
-        # 'Normal' programmes
-        has_keys(item, 'programmeTitle', 'encodedEpisodeId')
-        misses_keys(item, 'duration', 'synopsis')
-        expect_keys(item, 'programmeTitle')  # not used by the parser.
-        assert is_not_empty(item['encodedEpisodeId'], dict)
-        # episodeId on regular programmes DO require letterA encoding
-        assert '/' in item['episodeId']
-    else:
+    if item['contentType'] == 'shortform':
         # items like news and sport clips
         has_keys(item, 'duration', 'synopsis')
         misses_keys(item, 'programmeTitle', 'encodedProgrammeId', 'encodedEpisodeId')
@@ -324,6 +316,14 @@ def check_short_form_item(item):
         assert isinstance(item.get('duration'), int)
         # episodeId on real clips does not require letterA encoding
         assert '/' not in item['episodeId']
+    else:
+        # 'Normal' programmes
+        has_keys(item, 'programmeTitle', 'encodedEpisodeId')
+        misses_keys(item, 'duration', 'synopsis')
+        expect_keys(item, 'programmeTitle')  # not used by the parser.
+        assert is_not_empty(item['encodedEpisodeId'], dict)
+        # episodeId on regular programmes DO require letterA encoding
+        assert '/' in item['episodeId']
 
     assert is_not_empty(item['episodeTitle'], str)
     assert is_not_empty(item['episodeId'], str)

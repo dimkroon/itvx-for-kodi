@@ -74,7 +74,7 @@ class GetPageData(TestCase):
 class NowNextSchedule(TestCase):
     def test_get_now_next_schedule(self):
         now_next = itvx.get_now_next_schedule()
-        self.assertAlmostEqual(25, len(now_next), delta=3)
+        self.assertAlmostEqual(17, len(now_next), delta=3)
         for channel in now_next:
             has_keys(channel, 'name', 'channelType', 'streamUrl', 'images', 'slot')
             for programme in channel['slot']:
@@ -98,11 +98,11 @@ class NowNextSchedule(TestCase):
         with patch('xbmc.getRegion', return_value='%H:%M'):
             schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('21:20', start_time)
+            self.assertEqual('23:00', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
             schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('09:20 pm', start_time.lower())
+            self.assertEqual('11:00 pm', start_time.lower())
 
 
 class FullSchedule(TestCase):
@@ -153,7 +153,7 @@ class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_news(self, _):
         items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
-        self.assertEqual(8, len(items))
+        self.assertEqual(2, len(items))
         for item in items:
             check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)))
@@ -262,7 +262,7 @@ class Collections(TestCase):
     def test_collection_with_invalid_items(self, _, __):
         """Items that fail to parse return None and must be filtered out in the final result."""
         items = list(itvx.collection_content(url='some/url'))
-        self.assertListEqual([None] * 113, items)
+        self.assertListEqual([None] * 15, items)
 
 
 class Categories(TestCase):
@@ -373,7 +373,7 @@ class Episodes(TestCase):
         self.assertIsNone(programme_id)
 
     def test_missing_episodes_data(self):
-        data = open_json('html/series_miss-marple.json')
+        data = open_json('html/series_miss-marple_data.json')
         del data['seriesList']
         with patch('resources.lib.itvx.get_page_data', return_value=data):
             series_listing, programme_id = itvx.episodes('asd')
@@ -381,7 +381,7 @@ class Episodes(TestCase):
             self.assertIsNone(programme_id)
 
     def test_merge_multiple_series_with_same_series_number(self):
-        data = open_json('html/series_miss-marple.json')
+        data = open_json('html/series_miss-marple_data.json')
         # Check we operate on the expected object.
         series_list = data['seriesList']
         self.assertEqual(series_list[1]['seriesNumber'], '2')

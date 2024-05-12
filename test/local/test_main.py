@@ -301,7 +301,7 @@ class Categories(TestCase):
         """These are in fact the tv shows in the category news."""
         items = main.list_news_sub_category.test('my/url', 'longformData', None)
         self.assertIsInstance(items, list)
-        self.assertEqual(13, len(items))
+        self.assertEqual(25, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_rails(self, _):
