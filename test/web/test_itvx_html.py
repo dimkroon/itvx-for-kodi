@@ -335,7 +335,7 @@ class MainPage(unittest.TestCase):
                 check_item_type_page(self, item, 'mainpage.hero')
             else:
                 has_keys(item, 'contentType', 'title', 'imageTemplate', 'description', 'ctaLabel', 'ariaLabel',
-                         'contentInfo', 'tagName', obj_name=item['title'])
+                         'contentInfo', obj_name=item['title'])
                 self.assertIsInstance(item['contentInfo'], list)
 
                 if item['contentType']in ('simulcastspot', 'fastchannelspot'):
