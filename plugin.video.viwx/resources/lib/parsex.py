@@ -655,7 +655,7 @@ def parse_schedule_item(data):
             'stop': data['end'],
             'title': data['title'],
             'description': '\n\n'.join(t for t in (data.get('description'), data.get('guidance')) if t),
-            'genre': data.get('genre'),
+            'genre': data.get('genres', [{}])[0].get('name'),
         }
 
         episode_nr = data.get('episodeNumber')
