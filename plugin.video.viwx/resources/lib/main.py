@@ -497,7 +497,7 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
             'Sec-Fetch-Dest=empty&'
             'Sec-Fetch-Mode=cors&'
             'Sec-Fetch-Site=same-site&'
-            'Cookie=', 'hdntl=', hdntl_cookie))
+            'cookie=', 'hdntl=', hdntl_cookie))
 
     play_item.setProperties({
         'inputstream': is_helper.inputstream_addon,
@@ -507,7 +507,8 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
         'inputstream.adaptive.license_key': ''.join(
                 (key_service_url, '|Content-Type=application/octet-stream|R{SSM}|')),
         'inputstream.adaptive.stream_headers': stream_headers,
-        'inputstream.adaptive.manifest_headers': stream_headers
+        'inputstream.adaptive.manifest_headers': stream_headers,
+        'inputstream.adaptive.internal_cookies': 'true'
     })
 
     if resume_time:
