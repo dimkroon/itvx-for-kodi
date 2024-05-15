@@ -296,7 +296,7 @@ def check_short_form_slider(testcase, slider, name=''):
 def check_short_form_item(item):
     """Check the content of a shortForm item from a collection or from category 'News'
 
-    In both new and collections shortForm items are mostly short mp4 files, but a few are
+    In both news and collections shortForm items are mostly short mp4 files, but a few are
     normal programmes, like a full news programme, or a full sports match.
 
     Items from collection or from Hero of category have an extra field `posterImage`, but it's not used in the addon.
@@ -304,19 +304,11 @@ def check_short_form_item(item):
     """
     has_keys(
         item,
-        'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime',
+        'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime', 'contentType',
         obj_name=item['episodeTitle'])
     misses_keys(item, 'isPaid', 'tier', 'imagePresets')
 
-    if 'encodedProgrammeId' in item.keys():
-        # 'Normal' programmes
-        has_keys(item, 'programmeTitle', 'encodedEpisodeId')
-        misses_keys(item, 'duration', 'synopsis')
-        expect_keys(item, 'programmeTitle')  # not used by the parser.
-        assert is_not_empty(item['encodedEpisodeId'], dict)
-        # episodeId on regular programmes DO require letterA encoding
-        assert '/' in item['episodeId']
-    else:
+    if item['contentType'] == 'shortform':
         # items like news and sport clips
         has_keys(item, 'duration', 'synopsis')
         misses_keys(item, 'programmeTitle', 'encodedProgrammeId', 'encodedEpisodeId')
@@ -324,6 +316,14 @@ def check_short_form_item(item):
         assert isinstance(item.get('duration'), int)
         # episodeId on real clips does not require letterA encoding
         assert '/' not in item['episodeId']
+    else:
+        # 'Normal' programmes
+        has_keys(item, 'programmeTitle', 'encodedEpisodeId')
+        misses_keys(item, 'duration', 'synopsis')
+        expect_keys(item, 'programmeTitle')  # not used by the parser.
+        assert is_not_empty(item['encodedEpisodeId'], dict)
+        # episodeId on regular programmes DO require letterA encoding
+        assert '/' in item['episodeId']
 
     assert is_not_empty(item['episodeTitle'], str)
     assert is_not_empty(item['episodeId'], str)
@@ -348,18 +348,25 @@ def check_category_item(item):
     # TODO: Check if this is the same as a normal episode
     has_keys(
         item,
-        'title', 'titleSlug', 'encodedProgrammeId', 'encodedEpisodeId', 'channel', 'description', 'imageTemplate',
+        'title', 'titleSlug', 'encodedProgrammeId', 'channel', 'description', 'imageTemplate',
         'contentInfo', 'partnership', 'contentOwner', 'tier', 'broadcastDateTime', 'programmeId', 'contentType',
         obj_name=f'categoryItem-{title}'
     )
 
     assert is_not_empty(item['title'], str)
-    assert item['contentType'] in ('series', 'special', 'film', 'episode'), "Unexpected contentType '{item['contentType']}'."
+    # Only the contentType from items in category news vary, normal category items are all of type 'brand'.
+    assert item['contentType'] in ('series', 'special', 'film', 'episode', 'brand')
     assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
-    assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
-    assert item['encodedProgrammeId'] != item['encodedEpisodeId']
-    if item['encodedEpisodeId'] == '':
+    if 'encodedEpisodeId' in item:
+        assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
+        assert item['encodedEpisodeId']['letterA'] != '', "Legacy use of empty encodedEpisodeId"
+            # As of may 2024 payable items in categories -> new -> Latest Programmes do have
+            # the same programme and episode ID, which is a bug, and they won't play on the web either.
+            # So commented out for now to pass web tests.
+            #assert item['encodedProgrammeId'] != item['encodedEpisodeId']
+    else:
+        # Check that items lacking an encodedEpisodeId are playable. Brands can be both.
         assert 'series' not in item['contentInfo'].lower()
     assert isinstance(item['description'], str) and item['description'], "Invalid description in '{}'.".format(title)
     assert is_url(item['imageTemplate']), "Invalid imageTemple in '{}'.".format(title)
@@ -402,3 +409,18 @@ def check_item_type_programme(testcase, progr_data, parent):
 
     testcase.assertIsInstance(progr_data['numberOfAvailableSeries'], list)
     testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))
+
+
+def check_genres(testcase, genre_item):
+    """Check that `genre_item` is a list of dicts.
+
+    :param unittest.TestCase testcase: Instanceof unittest.TestCase to run the tests in.
+    :param list genre_item: The value of a field named 'genres' in data returned by ITVX.
+
+    """
+    for genre in genre_item:
+        testcase.assertTrue({'id', 'name'} == set(genre.keys()))
+        testcase.assertTrue(
+            genre['id'] in
+            ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'])
+

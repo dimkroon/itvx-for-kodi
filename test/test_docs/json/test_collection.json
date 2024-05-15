@@ -43,7 +43,10 @@
               "live"
             ],
             "description": "Classic matches, 24/7",
-            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-rugbyworldcup/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-rugbyworldcup/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "startDateTime": null,
+            "endDateTime": null,
+            "progress": null
           },
           {
             "imagePresets": {},

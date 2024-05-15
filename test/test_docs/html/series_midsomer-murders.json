@@ -21,7 +21,13 @@
     },
     "title": "Midsomer Murders",
     "longDescription": "World-renowned murder mystery series set in the idyllic Midsomer county. Inspector Barnaby and his young sergeant probe an alarming number of suspicious deaths in the community.",
-    "description": "Visit Britain's most murderous county... stream every episode",
+    "description": "Visit Britain's most murderous county... new episode added!",
+    "genres": [
+      {
+        "id": "DRAMA_AND_SOAPS",
+        "name": "Drama"
+      }
+    ],
     "image": "https://ovp.itv.com/images/programme/dmy4ks5/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
     "categories": [
       "DRAMA_AND_SOAPS"
@@ -32,8 +38,9 @@
     "tier": [
       "FREE"
     ],
-    "numberOfAvailableSeries": 22,
+    "numberOfAvailableSeries": 23,
     "heroCtaLabel": "Series 1, Episode 1",
+    "visuallySigned": false,
     "imagePresets": {
       "0": {
         "1x": "https://ovp.itv.com/images/programme/dmy4ks5/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
@@ -73,18 +80,24 @@
           ],
           "availabilityFrom": "2022-05-01T05:39:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-01-07T21:00:00Z",
+          "broadcastDateTime": "2024-02-17T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "w4c6n6j",
           "channel": "ITV3",
           "heroCtaLabel": "Series 1, Episode 1",
           "contentInfo": "S1, E1. Written in Blood",
           "contentOwner": null,
-          "dateTime": "2023-01-07T21:00:00.000Z",
+          "dateTime": "2024-02-17T21:00:00.000Z",
           "description": "A writers' circle witnesses a sequence of gruesome events far stranger than any fiction.",
-          "duration": "1h 50m",
+          "duration": "2h 5m",
           "encodedEpisodeId": {
             "letterA": "Ya1096a0002",
             "underscore": "Y_1096_0002"
@@ -100,7 +113,7 @@
           "longDescription": "In the tranquil village of Midsomer Worthy, the local writers' circle is eagerly anticipating a visit from a best-selling novelist. But the aspiring authors are about to witness a sequence of gruesome events far stranger than any fiction.",
           "longRunning": false,
           "nextProductionId": "Y/1096/0003",
-          "notFormattedDuration": "PT1H50M",
+          "notFormattedDuration": "PT2H5M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6482_06.001",
           "premium": false,
@@ -126,16 +139,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-01-10T20:00:00Z",
+          "broadcastDateTime": "2024-01-13T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "bkr4056",
           "channel": "ITV3",
           "heroCtaLabel": "Series 1, Episode 2",
           "contentInfo": "S1, E2. Death of a Hollow Man",
           "contentOwner": null,
-          "dateTime": "2023-01-10T20:00:00.000Z",
+          "dateTime": "2024-01-13T21:00:00.000Z",
           "description": "In a quiet rural village, an elderly resident is found drowned after a violent attack.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -184,6 +203,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "n8gjz0k",
           "channel": "ITV3",
           "heroCtaLabel": "Series 1, Episode 3",
@@ -228,22 +253,28 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-01-17T20:00:00Z",
+          "broadcastDateTime": "2011-04-02T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "2h7sz1z",
           "channel": "ITV3",
           "heroCtaLabel": "Series 1, Episode 4",
           "contentInfo": "S1, E4. Death in Disguise",
           "contentOwner": null,
-          "dateTime": "2023-01-17T20:00:00.000Z",
+          "dateTime": "2011-04-02T20:00:00.000Z",
           "description": "The founder of a commune is murdered, leaving an eccentric cast of suspects.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -293,22 +324,28 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-01-24T20:00:00Z",
+          "broadcastDateTime": "2012-06-08T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "hkhwfcw",
           "channel": "ITV3",
           "heroCtaLabel": "Series 2, Episode 1",
           "contentInfo": "S2, E1. Death's Shadow",
           "contentOwner": null,
-          "dateTime": "2023-01-24T20:00:00.000Z",
+          "dateTime": "2012-06-08T19:00:00.000Z",
           "description": "Richard Briers guest stars - a property developer is brutally murdered.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -355,6 +392,12 @@
           "broadcastDateTime": "2023-11-02T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "d4hnz1p",
           "channel": "ITV3",
@@ -406,16 +449,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-02-11T21:00:00Z",
+          "broadcastDateTime": "2015-08-11T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9mtksm1",
           "channel": "ITV3",
           "heroCtaLabel": "Series 2, Episode 3",
           "contentInfo": "S2, E3. Dead Man's Eleven",
           "contentOwner": null,
-          "dateTime": "2023-02-11T21:00:00.000Z",
+          "dateTime": "2015-08-11T19:00:00.000Z",
           "description": "The wife of a wealthy landowner is bludgeoned to death with a cricket bat.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -454,14 +503,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-11-03T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "r2dxvpr",
           "channel": "ITV3",
@@ -523,16 +578,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-02-18T21:00:00Z",
+          "broadcastDateTime": "2012-06-17T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "mzwwzzk",
           "channel": "ITV3",
           "heroCtaLabel": "Series 3, Episode 1",
           "contentInfo": "S3, E1. Death of a Stranger",
           "contentOwner": null,
-          "dateTime": "2023-02-18T21:00:00.000Z",
+          "dateTime": "2012-06-17T19:00:00.000Z",
           "description": "Barnaby investigates when the father of a man jailed for murder is also killed.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -571,24 +632,30 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "MPEG_DASH",
             "OUTBAND_WEBVTT",
-            "PLAYREADY"
+            "HLS",
+            "FAIRPLAY"
           ],
-          "availabilityFrom": "2022-05-01T05:49:00Z",
-          "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-04-09T14:20:00Z",
+          "availabilityFrom": "2024-03-25T15:00:00Z",
+          "availabilityUntil": "2025-12-31T23:59:00Z",
+          "broadcastDateTime": "2023-11-08T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "7km3683",
           "channel": "ITV3",
           "heroCtaLabel": "Series 3, Episode 2",
           "contentInfo": "S3, E2. Blue Herrings",
           "contentOwner": null,
-          "dateTime": "2022-04-09T14:20:00.000Z",
+          "dateTime": "2023-11-08T15:45:00.000Z",
           "description": "Barnaby and Troy investigate the murder of an ex-schoolmistress in a nursing home.",
-          "duration": "2h",
+          "duration": "2h 5m",
           "encodedEpisodeId": {
             "letterA": "152261",
             "underscore": "152261"
@@ -604,11 +671,11 @@
           "longDescription": "DCI Barnaby and DS Troy are called in to investigate the murder of an ex-schoolmistress in a nursing home.",
           "longRunning": false,
           "nextProductionId": "152262",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT2H5M",
           "partnership": null,
-          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6869_08.003",
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6074_05_B",
           "premium": false,
-          "productionId": "PC/6869/08#003",
+          "productionId": "PC/6074/05/B",
           "productionType": "EPISODE",
           "programmeId": "Y/1096",
           "series": 3,
@@ -633,6 +700,12 @@
           "broadcastDateTime": "2006-08-27T15:55:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k61hxw9",
           "channel": "ITV3",
@@ -678,15 +751,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:59:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-11-06T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "2fmpxw3",
           "channel": "ITV3",
@@ -753,6 +832,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "8txsq9f",
           "channel": "ITV3",
           "heroCtaLabel": "Series 4, Episode 1",
@@ -807,6 +892,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "7f3gqn8",
           "channel": "ITV3",
           "heroCtaLabel": "Series 4, Episode 2",
@@ -857,16 +948,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-03-11T21:00:00Z",
+          "broadcastDateTime": "2024-03-16T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "06sf14x",
           "channel": "ITV3",
           "heroCtaLabel": "Series 4, Episode 3",
           "contentInfo": "S4, E3. The Electric Vendetta",
           "contentOwner": null,
-          "dateTime": "2023-03-11T21:00:00.000Z",
+          "dateTime": "2024-03-16T21:00:00.000Z",
           "description": "A man is found in the middle of a crop circle, naked, with two puncture wounds.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -914,6 +1011,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "r32m17q",
           "channel": "ITV3",
           "heroCtaLabel": "Series 4, Episode 4",
@@ -958,21 +1061,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-03-18T21:00:00Z",
+          "broadcastDateTime": "2008-05-25T14:35:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "nmb2h7t",
           "channel": "ITV3",
           "heroCtaLabel": "Series 4, Episode 5",
           "contentInfo": "S4, E5. Dark Autumn",
           "contentOwner": null,
-          "dateTime": "2023-03-18T21:00:00.000Z",
+          "dateTime": "2008-05-25T14:35:00.000Z",
           "description": "When a village postman is murdered, Barnaby uncovers a hotbed of adultery.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -1017,16 +1126,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-03-25T21:00:00Z",
+          "broadcastDateTime": "2024-01-23T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "7ncwfxq",
           "channel": "ITV3",
           "heroCtaLabel": "Series 4, Episode 6",
           "contentInfo": "S4, E6. Tainted Fruit",
           "contentOwner": null,
-          "dateTime": "2023-03-25T21:00:00.000Z",
+          "dateTime": "2024-01-23T20:00:00.000Z",
           "description": "The body of a local beauty is discovered by the pool at her house.",
           "duration": "1h 55m",
           "encodedEpisodeId": {
@@ -1086,6 +1201,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "2d90mf0",
           "channel": "ITV",
           "heroCtaLabel": "Series 5, Episode 1",
@@ -1138,6 +1259,12 @@
           "broadcastDateTime": "2023-11-16T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "mrzzfzk",
           "channel": "ITV3",
@@ -1192,6 +1319,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "13bxr1p",
           "channel": "ITV3",
           "heroCtaLabel": "Series 5, Episode 3",
@@ -1236,14 +1369,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-11-20T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "0m020k0",
           "channel": "ITV3",
@@ -1309,6 +1448,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "t5hy0nh",
           "channel": "ITV3",
           "heroCtaLabel": "Series 6, Episode 1",
@@ -1363,6 +1508,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "6ngx7kw",
           "channel": "ITV3",
           "heroCtaLabel": "Series 6, Episode 2",
@@ -1407,14 +1558,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-11-21T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "2rw5w26",
           "channel": "ITV3",
@@ -1470,6 +1627,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "3298j6y",
           "channel": "ITV3",
           "heroCtaLabel": "Series 6, Episode 4",
@@ -1514,15 +1677,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2007-08-11T17:25:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "8gjhy1q",
           "channel": "ITV3",
@@ -1589,6 +1758,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "mxk674d",
           "channel": "ITV3",
           "heroCtaLabel": "Series 7, Episode 1",
@@ -1633,15 +1808,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-11-27T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "38c79yx",
           "channel": "ITV3",
@@ -1697,6 +1878,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "c9h34r8",
           "channel": "ITV3",
           "heroCtaLabel": "Series 7, Episode 3",
@@ -1751,6 +1938,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "wq9r3hx",
           "channel": "ITV3",
           "heroCtaLabel": "Series 7, Episode 4",
@@ -1795,14 +1988,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2011-03-19T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "7cz5bt9",
           "channel": "ITV3",
@@ -1848,15 +2047,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:59:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-04-22T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k935n3b",
           "channel": "ITV3",
@@ -1908,18 +2113,24 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-20T20:00:00Z",
+          "broadcastDateTime": "2023-12-23T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "4fhpd4f",
           "channel": "ITV3",
           "heroCtaLabel": "Series 7, Episode 7",
           "contentInfo": "S7, E7. Ghosts of Christmas Past",
           "contentOwner": null,
-          "dateTime": "2022-12-20T20:00:00.000Z",
+          "dateTime": "2023-12-23T21:00:00.000Z",
           "description": "A riddle in a Christmas cracker predicts that two people will die within two days.",
-          "duration": "2h",
+          "duration": "2h 10m",
           "encodedEpisodeId": {
             "letterA": "469466",
             "underscore": "469466"
@@ -1935,7 +2146,7 @@
           "longDescription": "It is Christmas, but when the troubled Villiers family get together nine years after the death of eldest son and magician Ferdy, two deaths are predicted...",
           "longRunning": false,
           "nextProductionId": "396004",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT2H10M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6357_03.001",
           "premium": false,
@@ -1975,6 +2186,12 @@
           "broadcastDateTime": "2008-09-07T17:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "r7vkk9v",
           "channel": "ITV3",
@@ -2020,14 +2237,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2008-09-07T19:05:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "rqj6d7b",
           "channel": "ITV3",
@@ -2073,15 +2296,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2010-06-25T14:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "85gy3dd",
           "channel": "ITV",
@@ -2133,16 +2362,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-03-21T20:00:00Z",
+          "broadcastDateTime": "2024-01-30T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "2k9w8x7",
           "channel": "ITV3",
           "heroCtaLabel": "Series 8, Episode 4",
           "contentInfo": "S8, E4. Bantling Boy",
           "contentOwner": null,
-          "dateTime": "2023-03-21T20:00:00.000Z",
+          "dateTime": "2024-01-30T20:00:00.000Z",
           "description": "Barnaby investigates the case of a four-member racehorse syndicate.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -2189,6 +2424,12 @@
           "broadcastDateTime": "2023-12-06T15:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "bf8zpc3",
           "channel": "ITV3",
@@ -2243,6 +2484,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "3yk759j",
           "channel": "ITV",
           "heroCtaLabel": "Series 8, Episode 6",
@@ -2287,14 +2534,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2010-10-31T14:55:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "wh2524b",
           "channel": "ITV",
@@ -2348,6 +2601,12 @@
           "broadcastDateTime": "2023-12-11T15:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "nwg3yrs",
           "channel": "ITV3",
@@ -2413,6 +2672,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "8g6jc5j",
           "channel": "ITV",
           "heroCtaLabel": "Series 9, Episode 1",
@@ -2467,6 +2732,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "tm7xg3s",
           "channel": "ITV3",
           "heroCtaLabel": "Series 9, Episode 2",
@@ -2511,14 +2782,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2010-12-27T12:55:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "6v5h7np",
           "channel": "ITV",
@@ -2569,16 +2846,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-12-14T15:45:00Z",
+          "broadcastDateTime": "2023-04-10T05:35:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k0h4c15",
           "channel": "ITV3",
           "heroCtaLabel": "Series 9, Episode 4",
           "contentInfo": "S9, E4. Down Among the Dead Men",
           "contentOwner": null,
-          "dateTime": "2023-12-14T15:45:00.000Z",
+          "dateTime": "2023-04-10T05:35:00.000Z",
           "description": "When a council clerk is shot dead, Barnaby and Jones discover that he was a blackmailer.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -2623,18 +2906,24 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-03T15:55:00Z",
+          "broadcastDateTime": "2023-12-18T15:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "17m2vj9",
           "channel": "ITV3",
           "heroCtaLabel": "Series 9, Episode 5",
           "contentInfo": "S9, E5. Death in Chorus",
           "contentOwner": null,
-          "dateTime": "2022-11-03T15:55:00.000Z",
+          "dateTime": "2023-12-18T15:45:00.000Z",
           "description": "A baritone is killed just days before a choir competition.",
-          "duration": "2h",
+          "duration": "1h 55m",
           "encodedEpisodeId": {
             "letterA": "919158",
             "underscore": "919158"
@@ -2650,7 +2939,7 @@
           "longDescription": "After Midsomer Worthy's baritone Connor Simpson is killed just days before a choir competition, the race is on for Barnaby and Jones to catch the killer.",
           "longRunning": false,
           "nextProductionId": "670929",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT1H55M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_7094_06_C",
           "premium": false,
@@ -2674,20 +2963,26 @@
             "MPEG_DASH",
             "PLAYREADY"
           ],
-          "availabilityFrom": "2022-05-01T05:49:00Z",
+          "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2010-07-01T14:00:00Z",
+          "broadcastDateTime": "2023-12-20T00:05:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "m3zqyr8",
-          "channel": "ITV",
+          "channel": "ITV3",
           "heroCtaLabel": "Series 9, Episode 6",
           "contentInfo": "S9, E6. Country Matters",
           "contentOwner": null,
-          "dateTime": "2010-07-01T14:00:00.000Z",
+          "dateTime": "2023-12-20T00:05:00.000Z",
           "description": "Controversial plans to build a supermarket in Elverton-cum-Latterly lead to murder.",
-          "duration": "2h",
+          "duration": "1h 55m",
           "encodedEpisodeId": {
             "letterA": "670929",
             "underscore": "670929"
@@ -2703,7 +2998,7 @@
           "longDescription": "Controversial plans to build a supermarket in Elverton-cum-Latterly lead to murder when a man is stabbed. Can Barnaby and Jones uncover the killer?",
           "longRunning": false,
           "nextProductionId": "670931",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT1H55M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6505_05_C",
           "premium": false,
@@ -2730,16 +3025,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-07T15:55:00Z",
+          "broadcastDateTime": "2023-12-20T15:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "rwjm0rx",
           "channel": "ITV3",
           "heroCtaLabel": "Series 9, Episode 7",
           "contentInfo": "S9, E7. Last Year's Model",
           "contentOwner": null,
-          "dateTime": "2022-11-07T15:55:00.000Z",
+          "dateTime": "2023-12-20T15:50:00.000Z",
           "description": "Barnaby questions the guilt of a woman who is on trial for the murder of her best friend.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -2778,21 +3079,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-08T15:55:00Z",
+          "broadcastDateTime": "2023-04-11T14:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "z93k67y",
           "channel": "ITV3",
           "heroCtaLabel": "Series 9, Episode 8",
           "contentInfo": "S9, E8. Four Funerals and a Wedding",
           "contentOwner": null,
-          "dateTime": "2022-11-08T15:55:00.000Z",
+          "dateTime": "2023-04-11T14:50:00.000Z",
           "description": "An ageing feminist and a misogynist vicar are murdered. Extended episode.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -2848,16 +3155,22 @@
           ],
           "availabilityFrom": "2021-04-13T21:05:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-08T20:00:00Z",
+          "broadcastDateTime": "2023-04-11T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "wgfrtcs",
           "channel": "ITV3",
           "heroCtaLabel": "Series 10, Episode 1",
           "contentInfo": "S10, E1. Dance with the Dead",
           "contentOwner": null,
-          "dateTime": "2022-11-08T20:00:00.000Z",
+          "dateTime": "2023-04-11T19:00:00.000Z",
           "description": "A young man is found dead in a car filled with exhaust fumes and it looks like suicide.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -2902,16 +3215,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-10T15:55:00Z",
+          "broadcastDateTime": "2023-04-12T14:30:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "s7zk2hz",
           "channel": "ITV3",
           "heroCtaLabel": "Series 10, Episode 2",
           "contentInfo": "S10, E2. The Animal Within",
           "contentOwner": null,
-          "dateTime": "2022-11-10T15:55:00.000Z",
+          "dateTime": "2023-04-12T14:30:00.000Z",
           "description": "A woman arrives in Midsomer to meet her long-lost uncle, only he has disappeared.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -2950,15 +3269,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2013-09-21T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "p2z9t1w",
           "channel": "ITV3",
@@ -3004,24 +3329,30 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-14T15:55:00Z",
+          "broadcastDateTime": "2023-04-17T14:45:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "1x6k4ds",
           "channel": "ITV3",
           "heroCtaLabel": "Series 10, Episode 4",
           "contentInfo": "S10, E4. The Axeman Cometh",
           "contentOwner": null,
-          "dateTime": "2022-11-14T15:55:00.000Z",
+          "dateTime": "2023-04-17T14:45:00.000Z",
           "description": "Badger's Drift plays host to the Midsomer Rock Festival - with murderous consequences.",
-          "duration": "1h 55m",
+          "duration": "2h",
           "encodedEpisodeId": {
             "letterA": "660003",
             "underscore": "660003"
@@ -3037,7 +3368,7 @@
           "longDescription": "Badger's Drift plays host to the Midsomer Rock Festival, and the long-awaited return of the Hired Gun rock band, but there are murderous consequences.",
           "longRunning": false,
           "nextProductionId": "660004",
-          "notFormattedDuration": "PT1H55M",
+          "notFormattedDuration": "PT2H",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6578_07.002",
           "premium": false,
@@ -3063,16 +3394,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-15T15:55:00Z",
+          "broadcastDateTime": "2023-04-18T14:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k3k92f3",
           "channel": "ITV3",
           "heroCtaLabel": "Series 10, Episode 5",
           "contentInfo": "S10, E5. Death and Dust",
           "contentOwner": null,
-          "dateTime": "2022-11-15T15:55:00.000Z",
+          "dateTime": "2023-04-18T14:50:00.000Z",
           "description": "Barnaby investigates the death of a doctor in a hit-and-run case.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -3111,21 +3448,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-09T20:00:00Z",
+          "broadcastDateTime": "2023-04-18T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "jdqhhfk",
           "channel": "ITV3",
           "heroCtaLabel": "Series 10, Episode 6",
           "contentInfo": "S10, E6. Picture of Innocence",
           "contentOwner": null,
-          "dateTime": "2022-11-09T20:00:00.000Z",
+          "dateTime": "2023-04-18T19:00:00.000Z",
           "description": "When a local photographer is murdered, DCI Barnaby becomes the prime suspect in the case.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -3172,6 +3515,12 @@
           "broadcastDateTime": "2023-04-25T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "pqw557j",
           "channel": "ITV3",
@@ -3225,6 +3574,12 @@
           "broadcastDateTime": "2010-07-07T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "y09kb0g",
           "channel": "ITV",
@@ -3281,15 +3636,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2010-08-21T14:20:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9nyth8s",
           "channel": "ITV",
@@ -3335,14 +3696,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2010-08-14T15:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "6x7r6zz",
           "channel": "ITV",
@@ -3393,18 +3760,24 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2013-11-18T21:00:00Z",
+          "broadcastDateTime": "2024-04-13T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "zpr9qtj",
           "channel": "ITV3",
           "heroCtaLabel": "Series 11, Episode 3",
           "contentInfo": "S11, E3. Left for Dead",
           "contentOwner": null,
-          "dateTime": "2013-11-18T21:00:00.000Z",
+          "dateTime": "2024-04-13T20:00:00.000Z",
           "description": "Jones revisits childhood memories as he investigates two murders in his hometown.",
-          "duration": "2h",
+          "duration": "2h 5m",
           "encodedEpisodeId": {
             "letterA": "780379",
             "underscore": "780379"
@@ -3420,7 +3793,7 @@
           "longDescription": "Jones back to his hometown to investigate the murders of a reclusive couple and someone at the wedding of an old friend, causing childhood memories to come flooding back.",
           "longRunning": false,
           "nextProductionId": "780380",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT2H5M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/PC_6213_07.002",
           "premium": false,
@@ -3449,6 +3822,12 @@
           "broadcastDateTime": "2010-08-28T14:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "h3stnp1",
           "channel": "ITV",
@@ -3503,10 +3882,16 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "kcm5j7b",
           "channel": "ITV",
           "heroCtaLabel": "Series 11, Episode 5",
-          "contentInfo": "S11, E5. Magician's Nephew",
+          "contentInfo": "S11, E5. The Magician's Nephew",
           "contentOwner": null,
           "dateTime": "2010-09-04T14:45:00.000Z",
           "description": "Barnaby and Jones investigate the secretive world of Midsomer's Magic Circle.",
@@ -3517,7 +3902,7 @@
           },
           "episode": 5,
           "episodeId": "780381",
-          "episodeTitle": "Magician's Nephew",
+          "episodeTitle": "The Magician's Nephew",
           "fullSeriesRange": [],
           "guidance": null,
           "image": "https://ovp.itv.com/images/episode/kcm5j7b/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -3553,16 +3938,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-24T22:55:00Z",
+          "broadcastDateTime": "2023-05-01T15:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "yf9hcc5",
           "channel": "ITV3",
           "heroCtaLabel": "Series 11, Episode 6",
           "contentInfo": "S11, E6. Days of Misrule",
           "contentOwner": null,
-          "dateTime": "2022-12-24T22:55:00.000Z",
+          "dateTime": "2023-05-01T15:00:00.000Z",
           "description": "Barnaby investigates an explosion at a haulage yard.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -3610,6 +4001,12 @@
           "broadcastDateTime": "2010-05-05T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "388zzgn",
           "channel": "ITV",
@@ -3675,6 +4072,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "q9jq0r3",
           "channel": "ITV3",
           "heroCtaLabel": "Series 12, Episode 1",
@@ -3728,6 +4131,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "n630666",
           "channel": "ITV",
           "heroCtaLabel": "Series 12, Episode 2",
@@ -3772,15 +4181,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2009-08-05T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "8zzctr7",
           "channel": "ITV",
@@ -3826,22 +4241,28 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-31T22:50:00Z",
+          "broadcastDateTime": "2009-09-23T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "hvsdz6b",
-          "channel": "ITV3",
+          "channel": "ITV",
           "heroCtaLabel": "Series 12, Episode 4",
           "contentInfo": "S12, E4. The Glitch",
           "contentOwner": null,
-          "dateTime": "2022-12-31T22:50:00.000Z",
+          "dateTime": "2009-09-23T19:00:00.000Z",
           "description": "A scientist threatens to reveal details of a glitch in an air traffic control system.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -3890,6 +4311,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "3q8xjn8",
           "channel": "ITV3",
           "heroCtaLabel": "Series 12, Episode 5",
@@ -3934,14 +4361,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-05-06T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "sk6xdqg",
           "channel": "ITV3",
@@ -3993,16 +4426,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-01T20:00:00Z",
+          "broadcastDateTime": "2010-04-14T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "qrdts0v",
-          "channel": "ITV3",
+          "channel": "ITV",
           "heroCtaLabel": "Series 12, Episode 7",
           "contentInfo": "S12, E7. The Great and the Good",
           "contentOwner": null,
-          "dateTime": "2022-11-01T20:00:00.000Z",
+          "dateTime": "2010-04-14T19:00:00.000Z",
           "description": "When a councillor is found dead, Barnaby and Jones uncover jealous rivals.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -4052,15 +4491,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2010-02-10T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "kf4gvdh",
           "channel": "ITV",
@@ -4111,16 +4556,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-10T14:55:00Z",
+          "broadcastDateTime": "2023-05-12T14:50:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "qmc4xzg",
           "channel": "ITV3",
           "heroCtaLabel": "Series 13, Episode 2",
-          "contentInfo": "S13, E2. The Made To Measure Murders",
+          "contentInfo": "S13, E2. The Made-to-Measure Murders",
           "contentOwner": null,
-          "dateTime": "2022-12-10T14:55:00.000Z",
+          "dateTime": "2023-05-12T14:50:00.000Z",
           "description": "Barnaby and Jones investigate the stabbing of a woman in a feudal village.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -4129,7 +4580,7 @@
           },
           "episode": 2,
           "episodeId": "1/7317/0001",
-          "episodeTitle": "The Made To Measure Murders",
+          "episodeTitle": "The Made-to-Measure Murders",
           "fullSeriesRange": [],
           "guidance": null,
           "image": "https://ovp.itv.com/images/episode/qmc4xzg/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
@@ -4168,6 +4619,12 @@
           "broadcastDateTime": "2023-05-13T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "chmp3x3",
           "channel": "ITV3",
@@ -4223,6 +4680,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "nt7sk8k",
           "channel": "ITV3",
           "heroCtaLabel": "Series 13, Episode 4",
@@ -4267,15 +4730,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-05-20T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "w3cztj2",
           "channel": "ITV3",
@@ -4326,16 +4795,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-11T11:55:00Z",
+          "broadcastDateTime": "2023-05-23T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "9q1gn18",
           "channel": "ITV3",
           "heroCtaLabel": "Series 13, Episode 6",
           "contentInfo": "S13, E6. The Noble Art",
           "contentOwner": null,
-          "dateTime": "2022-12-11T11:55:00.000Z",
+          "dateTime": "2023-05-23T19:00:00.000Z",
           "description": "Betrayal and blackmail fester as plans to re-enact a prizefight from 1860 turn nasty.",
           "duration": "1h 55m",
           "encodedEpisodeId": {
@@ -4383,6 +4858,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "brz65kx",
           "channel": "ITV",
           "heroCtaLabel": "Series 13, Episode 7",
@@ -4427,15 +4908,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:54:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-06-03T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "rdjfz4c",
           "channel": "ITV3",
@@ -4492,14 +4979,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2011-03-23T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "tp5d3x1",
           "channel": "ITV",
@@ -4555,6 +5048,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "xgp1fxd",
           "channel": "ITV3",
           "heroCtaLabel": "Series 14, Episode 2",
@@ -4599,14 +5098,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": null,
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "b1jggrx",
           "channel": "ITV",
@@ -4661,6 +5166,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "9xqt3b7",
           "channel": "ITV3",
           "heroCtaLabel": "Series 14, Episode 4",
@@ -4705,14 +5216,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2011-09-21T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "tpvx60t",
           "channel": "ITV",
@@ -4768,6 +5285,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "h4r5016",
           "channel": "ITV3",
           "heroCtaLabel": "Series 14, Episode 6",
@@ -4812,14 +5335,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-06-27T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "y1wktxp",
           "channel": "ITV3",
@@ -4865,23 +5394,29 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-18T15:55:00Z",
+          "broadcastDateTime": "2023-07-01T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "4srd7nb",
           "channel": "ITV3",
           "heroCtaLabel": "Series 14, Episode 8",
           "contentInfo": "S14, E8. A Rare Bird",
           "contentOwner": null,
-          "dateTime": "2022-12-18T15:55:00.000Z",
+          "dateTime": "2023-07-01T20:00:00.000Z",
           "description": "A keen birdwatcher is killed. Was his obsession with ornithology to blame?",
-          "duration": "2h",
+          "duration": "1h 55m",
           "encodedEpisodeId": {
             "letterA": "1a7317a0016",
             "underscore": "1_7317_0016"
@@ -4897,7 +5432,7 @@
           "longDescription": "When a keen birdwatcher is killed, Barnaby and Jones go to investigate. Was the man's obsession with ornithology to blame, or something more sinister? ",
           "longRunning": false,
           "nextProductionId": "1/7317/0017",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT1H55M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_7317_0016.001",
           "premium": false,
@@ -4937,6 +5472,12 @@
           "broadcastDateTime": "2023-07-04T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "71ms53h",
           "channel": "ITV3",
@@ -4982,14 +5523,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-07-08T20:05:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "5bv9fz2",
           "channel": "ITV3",
@@ -4998,7 +5545,7 @@
           "contentOwner": null,
           "dateTime": "2023-07-08T20:05:00.000Z",
           "description": "When a barrister is killed, suspicion falls on convicted murderer Grady Felton.",
-          "duration": "1h 55m",
+          "duration": "2h",
           "encodedEpisodeId": {
             "letterA": "1a7317a0018",
             "underscore": "1_7317_0018"
@@ -5014,7 +5561,7 @@
           "longDescription": "When a barrister is killed, suspicion falls on convicted murderer Grady Felton. He has a solid alibi, but Barnaby suspects that he is working with an accomplice.",
           "longRunning": false,
           "nextProductionId": "1/7317/0020",
-          "notFormattedDuration": "PT1H55M",
+          "notFormattedDuration": "PT2H",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_7317_0018.001",
           "premium": false,
@@ -5044,6 +5591,12 @@
           "broadcastDateTime": "2023-07-11T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "zmrhhzw",
           "channel": "ITV3",
@@ -5089,23 +5642,29 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-07-15T20:05:00Z",
+          "broadcastDateTime": "2024-03-30T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k22tsrg",
           "channel": "ITV3",
           "heroCtaLabel": "Series 15, Episode 4",
           "contentInfo": "S15, E4. Death and the Divas",
           "contentOwner": null,
-          "dateTime": "2023-07-15T20:05:00.000Z",
+          "dateTime": "2024-03-30T21:00:00.000Z",
           "description": "The murder of a journalist has echoes of a 1960s horror film starring a local actress.",
-          "duration": "2h",
+          "duration": "1h 55m",
           "encodedEpisodeId": {
             "letterA": "1a7317a0019",
             "underscore": "1_7317_0019"
@@ -5121,7 +5680,7 @@
           "longDescription": "When the famous sister of a local actress returns after 40 years, a series of killings escalate, each of them reminiscent of a movie plot.",
           "longRunning": false,
           "nextProductionId": "1/7317/0021",
-          "notFormattedDuration": "PT2H",
+          "notFormattedDuration": "PT1H55M",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_7317_0019.006",
           "premium": false,
@@ -5142,21 +5701,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-07-18T19:00:00Z",
+          "broadcastDateTime": "2024-04-02T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "94wrq4p",
           "channel": "ITV3",
           "heroCtaLabel": "Series 15, Episode 5",
           "contentInfo": "S15, E5. The Sicilian Defence",
           "contentOwner": null,
-          "dateTime": "2023-07-18T19:00:00.000Z",
+          "dateTime": "2024-04-02T19:00:00.000Z",
           "description": "Could the attack which left a woman for dead be linked to moves on a chess board?",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5200,18 +5765,24 @@
           ],
           "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-07-22T20:05:00Z",
+          "broadcastDateTime": "2024-04-03T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "mtrjmxd",
           "channel": "ITV3",
           "heroCtaLabel": "Series 15, Episode 6",
           "contentInfo": "S15, E6. Schooled in Murder",
           "contentOwner": null,
-          "dateTime": "2023-07-22T20:05:00.000Z",
+          "dateTime": "2024-04-03T19:00:00.000Z",
           "description": "Martine McCutcheon guest stars - a woman is crushed by a giant round of cheese.",
-          "duration": "1h 55m",
+          "duration": "2h",
           "encodedEpisodeId": {
             "letterA": "1a7317a0022",
             "underscore": "1_7317_0022"
@@ -5227,7 +5798,7 @@
           "longDescription": "Martine McCutcheon guest stars. When a woman is crushed to death by a giant round of cheese at the home of the world-famous Midsomer Blue, Barnaby and Jones are soon on the case.",
           "longRunning": false,
           "nextProductionId": "1/7317/0023",
-          "notFormattedDuration": "PT1H55M",
+          "notFormattedDuration": "PT2H",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_7317_0022.001",
           "premium": false,
@@ -5265,16 +5836,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2013-12-24T20:00:00Z",
+          "broadcastDateTime": "2023-12-25T20:30:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "0bdf329",
-          "channel": "ITV",
+          "channel": "ITV3",
           "heroCtaLabel": "Series 16, Episode 1",
           "contentInfo": "S16, E1. The Christmas Haunting",
           "contentOwner": null,
-          "dateTime": "2013-12-24T20:00:00.000Z",
+          "dateTime": "2023-12-25T20:30:00.000Z",
           "description": "New DS Charlie Nelson is thrown straight into a murder case when a man is stabbed.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5313,22 +5890,28 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-11T20:00:00Z",
+          "broadcastDateTime": "2024-04-09T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "wgfx3bk",
           "channel": "ITV3",
           "heroCtaLabel": "Series 16, Episode 2",
           "contentInfo": "S16, E2. Let Us Prey",
           "contentOwner": null,
-          "dateTime": "2022-11-11T20:00:00.000Z",
+          "dateTime": "2024-04-09T19:00:00.000Z",
           "description": "Barnaby investigates murders inspired by macabre images on a medieval fresco.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5367,21 +5950,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-31T21:00:00Z",
+          "broadcastDateTime": "2023-07-29T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "prkt36f",
           "channel": "ITV3",
           "heroCtaLabel": "Series 16, Episode 3",
           "contentInfo": "S16, E3. Wild Harvest",
           "contentOwner": null,
-          "dateTime": "2022-12-31T21:00:00.000Z",
+          "dateTime": "2023-07-29T20:00:00.000Z",
           "description": "A farmer is covered in truffle oil and mauled to death by a wild boar.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5420,14 +6009,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-08-05T18:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "h7dc12c",
           "channel": "ITV3",
@@ -5473,21 +6068,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-05T20:00:00Z",
+          "broadcastDateTime": "2024-04-16T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k6kzcmp",
           "channel": "ITV3",
           "heroCtaLabel": "Series 16, Episode 5",
           "contentInfo": "S16, E5. The Killings of Copenhagen",
           "contentOwner": null,
-          "dateTime": "2023-08-05T20:00:00.000Z",
+          "dateTime": "2024-04-16T19:00:00.000Z",
           "description": "Barnaby and Nelson head to Copenhagen when a Midsomer resident is found dead there.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5543,16 +6144,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-08T19:00:00Z",
+          "broadcastDateTime": "2024-04-17T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "190c26x",
           "channel": "ITV3",
           "heroCtaLabel": "Series 17, Episode 1",
           "contentInfo": "S17, E1. The Dagger Club",
           "contentOwner": null,
-          "dateTime": "2023-08-08T19:00:00.000Z",
+          "dateTime": "2024-04-17T19:00:00.000Z",
           "description": "At a crime festival, a manuscript is stolen and a woman is fatally electrocuted.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5596,16 +6203,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-12T20:00:00Z",
+          "broadcastDateTime": "2024-04-23T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "sjkr121",
           "channel": "ITV3",
           "heroCtaLabel": "Series 17, Episode 2",
           "contentInfo": "S17, E2. Murder by Magic",
           "contentOwner": null,
-          "dateTime": "2023-08-12T20:00:00.000Z",
+          "dateTime": "2024-04-23T19:00:00.000Z",
           "description": "Barnaby uncovers conflict between the village church and some ancient pagan traditions.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5649,16 +6262,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-15T19:00:00Z",
+          "broadcastDateTime": "2024-04-24T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "82xj2h9",
           "channel": "ITV3",
           "heroCtaLabel": "Series 17, Episode 3",
           "contentInfo": "S17, E3. The Ballad of Midsomer",
           "contentOwner": null,
-          "dateTime": "2023-08-15T19:00:00.000Z",
+          "dateTime": "2024-04-24T19:00:00.000Z",
           "description": "Barnaby investigates whether a folk ballad could have been the inspiration for a murder.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5702,16 +6321,22 @@
           ],
           "availabilityFrom": "2022-05-01T05:44:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-19T20:00:00Z",
+          "broadcastDateTime": "2024-04-30T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "0hjqfj2",
           "channel": "ITV3",
           "heroCtaLabel": "Series 17, Episode 4",
           "contentInfo": "S17, E4. A Vintage Murder",
           "contentOwner": null,
-          "dateTime": "2023-08-19T20:00:00.000Z",
+          "dateTime": "2024-04-30T19:00:00.000Z",
           "description": "Barnaby tries to find out who is targeting the Midsomer Vinae Winery.",
           "duration": "1h 55m",
           "encodedEpisodeId": {
@@ -5761,21 +6386,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-22T19:00:00Z",
+          "broadcastDateTime": "2024-05-01T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k8551g4",
           "channel": "ITV3",
           "heroCtaLabel": "Series 18, Episode 1",
           "contentInfo": "S18, E1. Habeas Corpus",
           "contentOwner": null,
-          "dateTime": "2023-08-22T19:00:00.000Z",
+          "dateTime": "2024-05-01T19:00:00.000Z",
           "description": "When a body goes missing, DCI Barnaby and DS Nelson seek to identify the culprit.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5814,21 +6445,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:31:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-26T20:00:00Z",
+          "broadcastDateTime": "2024-05-07T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "bvz605s",
           "channel": "ITV3",
           "heroCtaLabel": "Series 18, Episode 2",
           "contentInfo": "S18, E2. The Incident at Cooper Hill",
           "contentOwner": null,
-          "dateTime": "2023-08-26T20:00:00.000Z",
+          "dateTime": "2024-05-07T19:00:00.000Z",
           "description": "When a forest ranger dies, UFO spotters are convinced aliens are responsible.",
           "duration": "1h 55m",
           "encodedEpisodeId": {
@@ -5873,16 +6510,22 @@
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-08-29T19:00:00Z",
+          "broadcastDateTime": "2024-05-08T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "rmkghk4",
           "channel": "ITV3",
           "heroCtaLabel": "Series 18, Episode 3",
           "contentInfo": "S18, E3. Breaking the Chain",
           "contentOwner": null,
-          "dateTime": "2023-08-29T19:00:00.000Z",
+          "dateTime": "2024-05-08T19:00:00.000Z",
           "description": "Barnaby and Nelson are drawn into a ruthless world of blackmail, bribery and bloodshed.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -5926,16 +6569,22 @@
           ],
           "availabilityFrom": "2022-11-11T18:31:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-09-02T20:00:00Z",
+          "broadcastDateTime": "2024-05-14T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "nc8rhm7",
           "channel": "ITV3",
           "heroCtaLabel": "Series 18, Episode 4",
           "contentInfo": "S18, E4. A Dying Art",
           "contentOwner": null,
-          "dateTime": "2023-09-02T20:00:00.000Z",
+          "dateTime": "2024-05-14T19:00:00.000Z",
           "description": "When art comes to the picturesque Midsomer village of Angel's Rise, a murder soon follows.",
           "duration": "1h 55m",
           "encodedEpisodeId": {
@@ -5979,16 +6628,22 @@
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2016-02-10T20:00:00Z",
+          "broadcastDateTime": "2024-05-15T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "kqvkrd9",
           "channel": "ITV",
           "heroCtaLabel": "Series 18, Episode 5",
           "contentInfo": "S18, E5. Saints and Sinners",
           "contentOwner": null,
-          "dateTime": "2016-02-10T20:00:00.000Z",
+          "dateTime": "2024-05-15T19:00:00.000Z",
           "description": "Julia Sawalha guest stars - finding bones at an archaeological dig causes a stir.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -6032,16 +6687,22 @@
           ],
           "availabilityFrom": "2022-11-11T18:41:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-09-09T20:00:00Z",
+          "broadcastDateTime": "2024-05-21T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "pzpgbf8",
           "channel": "ITV3",
           "heroCtaLabel": "Series 18, Episode 6",
           "contentInfo": "S18, E6. Harvest of Souls",
           "contentOwner": null,
-          "dateTime": "2023-09-09T20:00:00.000Z",
+          "dateTime": "2024-05-21T19:00:00.000Z",
           "description": "The owner of an equestrian centre is trampled to death by his horse.",
           "duration": "2h 5m",
           "encodedEpisodeId": {
@@ -6052,7 +6713,7 @@
           "episodeId": "1/7317/0037",
           "episodeTitle": "Harvest of Souls",
           "fullSeriesRange": [],
-          "guidance": "Scenes of violence and child abduction.",
+          "guidance": "With scenes of violence.",
           "image": "https://ovp.itv.com/images/episode/pzpgbf8/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
           "isFullSeries": true,
           "linearContent": false,
@@ -6100,6 +6761,12 @@
           "broadcastDateTime": "2023-09-12T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "67k08xk",
           "channel": "ITV3",
@@ -6155,6 +6822,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "c80ghqk",
           "channel": "ITV3",
           "heroCtaLabel": "Series 19, Episode 2",
@@ -6205,16 +6878,22 @@
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2023-09-23T20:00:00Z",
+          "broadcastDateTime": "2023-09-19T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "trs2hx4",
           "channel": "ITV3",
           "heroCtaLabel": "Series 19, Episode 3",
           "contentInfo": "S19, E3. Last Man Out",
           "contentOwner": null,
-          "dateTime": "2023-09-23T20:00:00.000Z",
+          "dateTime": "2023-09-19T19:00:00.000Z",
           "description": "Remembering John Bird - star of this Midsomer mystery",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -6263,6 +6942,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "dkpgcjc",
           "channel": "ITV3",
           "heroCtaLabel": "Series 19, Episode 4",
@@ -6307,15 +6992,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-10-10T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k66d09t",
           "channel": "ITV3",
@@ -6367,16 +7058,22 @@
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2018-05-20T19:00:00Z",
+          "broadcastDateTime": "2024-01-16T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "2sm7gyg",
-          "channel": "ITV",
+          "channel": "ITV3",
           "heroCtaLabel": "Series 19, Episode 6",
           "contentInfo": "S19, E6. The Curse of the Ninth",
           "contentOwner": null,
-          "dateTime": "2018-05-20T19:00:00.000Z",
+          "dateTime": "2024-01-16T20:00:00.000Z",
           "description": "When a musician is murdered, the investigation leads to a world haunted by a curse.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -6426,21 +7123,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:26:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-11-12T21:00:00Z",
+          "broadcastDateTime": "2019-03-10T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "3kyz9xj",
-          "channel": "ITV3",
+          "channel": "ITV",
           "heroCtaLabel": "Series 20, Episode 1",
           "contentInfo": "S20, E1. The Ghost Of Causton Abbey",
           "contentOwner": null,
-          "dateTime": "2022-11-12T21:00:00.000Z",
+          "dateTime": "2019-03-10T20:00:00.000Z",
           "description": "The opening of a brewery is disrupted when a man is found boiled to death.",
           "duration": "1h 50m",
           "encodedEpisodeId": {
@@ -6487,6 +7190,12 @@
           "broadcastDateTime": "2023-10-14T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "3vrvt9m",
           "channel": "ITV3",
@@ -6542,6 +7251,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "kcz5mw7",
           "channel": "ITV3",
           "heroCtaLabel": "Series 20, Episode 3",
@@ -6586,15 +7301,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:41:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-10-21T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "j3tn7kz",
           "channel": "ITV3",
@@ -6640,22 +7361,28 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-03T21:00:00Z",
+          "broadcastDateTime": "2020-01-06T20:30:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "8xvsbqs",
-          "channel": "ITV3",
+          "channel": "ITV",
           "heroCtaLabel": "Series 20, Episode 5",
           "contentInfo": "S20, E5. Till Death Do Us Part",
           "contentOwner": null,
-          "dateTime": "2022-12-03T21:00:00.000Z",
+          "dateTime": "2020-01-06T20:30:00.000Z",
           "description": "Barnaby must unveil the killer at a wedding when the bride is murdered.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -6694,14 +7421,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-10-31T20:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "w84hy1h",
           "channel": "ITV3",
@@ -6758,14 +7491,20 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-11-11T18:36:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
           "broadcastDateTime": "2023-11-04T22:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "ygg5wms",
           "channel": "ITV3",
@@ -6820,6 +7559,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "q6jn810",
           "channel": "ITV3",
           "heroCtaLabel": "Series 21, Episode 2",
@@ -6873,6 +7618,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "yghvyh4",
           "channel": "ITV3",
           "heroCtaLabel": "Series 21, Episode 3",
@@ -6917,22 +7668,28 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2021-03-28T21:00:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-30T20:00:00Z",
+          "broadcastDateTime": "2021-03-28T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "vjnv620",
-          "channel": "ITV3",
+          "channel": "ITV",
           "heroCtaLabel": "Series 21, Episode 4",
           "contentInfo": "S21, E4. With Baited Breath",
           "contentOwner": null,
-          "dateTime": "2022-12-30T20:00:00.000Z",
+          "dateTime": "2021-03-28T19:00:00.000Z",
           "description": "In the village of Solomon Gorge, plans to catch a giant fish are threatened.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -6991,6 +7748,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "489sskz",
           "channel": "ITV3",
           "heroCtaLabel": "Series 22, Episode 1",
@@ -7045,8 +7808,14 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "mdpzg1c",
-          "channel": "ITV",
+          "channel": "ITV3",
           "heroCtaLabel": "Series 22, Episode 2",
           "contentInfo": "S22, E2. The Stitcher Society",
           "contentOwner": null,
@@ -7094,16 +7863,22 @@
           ],
           "availabilityFrom": "2021-10-03T21:00:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-12-27T02:10:00Z",
+          "broadcastDateTime": "2021-10-03T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "0zpk25y",
           "channel": "ITV3",
           "heroCtaLabel": "Series 22, Episode 3",
           "contentInfo": "S22, E3. Happy Families",
           "contentOwner": null,
-          "dateTime": "2022-12-27T02:10:00.000Z",
+          "dateTime": "2021-10-03T19:00:00.000Z",
           "description": "A killer strikes for real during a murder mystery weekend.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -7142,21 +7917,27 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
-            "HLS"
+            "HLS",
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-29T21:00:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
-          "broadcastDateTime": "2022-05-29T19:00:00Z",
+          "broadcastDateTime": "2023-12-16T21:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "w71kh4c",
-          "channel": "ITV",
+          "channel": "ITV3",
           "heroCtaLabel": "Series 22, Episode 4",
           "contentInfo": "S22, E4. The Scarecrow Murders",
           "contentOwner": null,
-          "dateTime": "2022-05-29T19:00:00.000Z",
+          "dateTime": "2023-12-16T21:00:00.000Z",
           "description": "The annual Midsomer Scarecrow Festival takes a grisly turn for the worse.",
           "duration": "2h",
           "encodedEpisodeId": {
@@ -7195,15 +7976,21 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2023-05-28T20:57:24Z",
           "availabilityUntil": "2025-12-31T23:59:00Z",
           "broadcastDateTime": "2023-05-28T19:00:00Z",
           "categories": [
             "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
           ],
           "ccid": "k6r3kf0",
           "channel": "ITV",
@@ -7258,6 +8045,12 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "054cf5c",
           "channel": "ITV",
           "heroCtaLabel": "Series 22, Episode 6",
@@ -7280,6 +8073,7 @@
           "linearContent": false,
           "longDescription": "Detective series based on the novels by Caroline Graham. Inspector Barnaby investigates murder mysteries in Middle England.",
           "longRunning": false,
+          "nextProductionId": "1/7317/0060",
           "notFormattedDuration": "PT2H",
           "partnership": null,
           "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_7317_0059.005",
@@ -7299,10 +8093,79 @@
       "longRunning": false
     },
     {
+      "seriesNumber": "23",
+      "seriesLabel": "Series 23",
+      "legacyId": "1/7317-11",
+      "fullSeries": false,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 1,
+      "titles": [
+        {
+          "accessibilityTags": [
+            "s"
+          ],
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2024-04-14T20:56:04Z",
+          "availabilityUntil": "2027-10-26T22:58:00Z",
+          "broadcastDateTime": "2024-04-14T19:00:00Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "ccid": "gpzj3q0",
+          "channel": "ITV",
+          "heroCtaLabel": "Series 23, Episode 1",
+          "contentInfo": "S23, E1. The Blacktrees Prophecy",
+          "contentOwner": null,
+          "dateTime": "2024-04-14T19:00:00.000Z",
+          "description": "Barnaby unravels a dark plot when a survivalist is found murdered in a bombproof shelter.",
+          "duration": "2h",
+          "encodedEpisodeId": {
+            "letterA": "1a7317a0060",
+            "underscore": "1_7317_0060"
+          },
+          "episode": 1,
+          "episodeId": "1/7317/0060",
+          "episodeTitle": "The Blacktrees Prophecy",
+          "fullSeriesRange": [],
+          "guidance": "with scenes of threat and violence from the start",
+          "image": "https://ovp.itv.com/images/episode/gpzj3q0/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": false,
+          "linearContent": true,
+          "longDescription": "When a survivalist is found murdered in his bombproof shelter, Barnaby unravels a dark conspiracy that reveals just how far people will go to escape the end of the world.",
+          "longRunning": false,
+          "notFormattedDuration": "PT2H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_7317_0060.001",
+          "premium": false,
+          "productionId": "1/7317/0060#001",
+          "productionType": "EPISODE",
+          "programmeId": "Y/1096",
+          "series": 23,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true
+        }
+      ],
+      "longRunning": false
+    },
+    {
       "seriesNumber": "others",
       "seriesLabel": "Other Episodes",
       "legacyId": 0,
-      "fullSeries": true,
+      "fullSeries": false,
       "seriesType": "EPISODE",
       "numberOfAvailableEpisodes": 1,
       "titles": [
@@ -7312,9 +8175,9 @@
           ],
           "audioDescribed": false,
           "availabilityFeatures": [
-            "FAIRPLAY",
+            "OUTBAND_WEBVTT",
             "HLS",
-            "OUTBAND_WEBVTT"
+            "FAIRPLAY"
           ],
           "availabilityFrom": "2022-05-01T05:49:00Z",
           "availabilityUntil": "2025-12-31T23:59:59.999Z",
@@ -7322,10 +8185,16 @@
           "categories": [
             "DRAMA_AND_SOAPS"
           ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
           "ccid": "7qk5z1s",
           "channel": "ITV3",
           "heroCtaLabel": "Episode 1",
-          "contentInfo": "E1. The Killing at Badger's Drift",
+          "contentInfo": "E1. The Killings at Badger's Drift",
           "contentOwner": null,
           "dateTime": "2022-03-28T23:05:00.000Z",
           "description": "An elderly resident of Badger's Drift is found dead in her cottage - is it an accident?",
@@ -7336,7 +8205,7 @@
           },
           "episode": 1,
           "episodeId": "Y/1096/0001",
-          "episodeTitle": "The Killing at Badger's Drift",
+          "episodeTitle": "The Killings at Badger's Drift",
           "fullSeriesRange": [],
           "guidance": "Contains violence and some sexual scenes.",
           "image": "https://ovp.itv.com/images/episode/7qk5z1s/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",

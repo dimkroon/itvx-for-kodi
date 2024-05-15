@@ -245,7 +245,7 @@ class Categories(TestCase):
     def test_category_film(self, _):
         items = main.list_category.test('category/films')
         self.assertIsInstance(items, list)
-        self.assertEqual(322, len(items))
+        self.assertEqual(292, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_get_category_children_paginated(self, _):
@@ -274,7 +274,7 @@ class Categories(TestCase):
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
             self.assertEqual(19, len(programmes))
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='0-9')))
-            self.assertEqual(2, len(programmes))
+            self.assertEqual(1, len(programmes))
         # Test content of 'A' divided in sub-pages
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 6)*3):  # a-z on 20 items, page length=6
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
@@ -301,7 +301,7 @@ class Categories(TestCase):
         """These are in fact the tv shows in the category news."""
         items = main.list_news_sub_category.test('my/url', 'longformData', None)
         self.assertIsInstance(items, list)
-        self.assertEqual(13, len(items))
+        self.assertEqual(25, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_rails(self, _):

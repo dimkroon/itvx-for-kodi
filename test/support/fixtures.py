@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -28,8 +28,11 @@ def global_setup():
         # Ensure that kodi's special://profile refers to a predefined folder. Just in case
         # some code want to write, whether intentional or not.
         profile_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'addon_profile_dir'))
+        info_map = {'profile': profile_dir,
+                    'id': 'plugin.video.viwx',
+                    'name': 'viwX'}
         patch_g = patch('xbmcaddon.Addon.getAddonInfo',
-                         new=lambda self, item: profile_dir if item == 'profile' else '')
+                         new=lambda self, item: info_map.get(item, ''))
         patch_g.start()
 
         xbmcvfs.translatePath = lambda path: path
@@ -39,7 +42,7 @@ def global_setup():
 
         # Enable logging to file during tests with a new file each test run.
         try:
-            os.remove(os.path.join(profile_dir, 'addon.log'))
+            os.remove(os.path.join(profile_dir, info_map['name'] + '.log'))
         except FileNotFoundError:
             pass
         patch('xbmcaddon.Addon.getSettingString',

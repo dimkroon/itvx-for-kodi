@@ -7,1835 +7,2108 @@
   },
   "programmes": [
     {
+      "broadcastDateTime": null,
       "ccid": "nx5jn4f",
-      "title": "A Football Life",
-      "titleSlug": "a-football-life",
-      "encodedProgrammeId": {
-        "letterA": "10a4942",
-        "underscore": "10_4942"
-      },
       "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Ready, get set, go! Go behind the scenes of NFL's superheroes",
       "encodedEpisodeId": {
         "letterA": "10a4942a0005",
         "underscore": "10_4942_0005"
       },
-      "description": "Ready, get set, go! Go behind the scenes of NFL's superheroes",
-      "imageTemplate": "https://ovp.itv.com/images/programme/nx5jn4f/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
+      "encodedProgrammeId": {
+        "letterA": "10a4942",
+        "underscore": "10_4942"
+      },
       "episodeId": "10/4942/0005",
-      "programmeId": "10/4942",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/nx5jn4f/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4942",
+      "tier": [
+        "FREE"
+      ],
+      "title": "A Football Life",
+      "titleSlug": "a-football-life"
     },
     {
+      "broadcastDateTime": "2024-04-17T23:35:00Z",
       "ccid": "6vxyf1l",
-      "title": "All Elite Wrestling: Battle of the Belts",
-      "titleSlug": "all-elite-wrestling-battle-of-the-belts",
+      "channel": "itv4",
+      "contentInfo": "1h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "They're bringing honour back to the ring of honour - don't miss it",
+      "encodedEpisodeId": {
+        "letterA": "10a3692a0007",
+        "underscore": "10_3692_0007"
+      },
       "encodedProgrammeId": {
         "letterA": "10a3692",
         "underscore": "10_3692"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a3692a0006",
-        "underscore": "10_3692_0006"
-      },
-      "description": "They're bringing honour back to the ring of honour - don't miss it",
-      "imageTemplate": "https://ovp.itv.com/images/programme/6vxyf1l/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "1h",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-01-18T00:55:00Z",
-      "episodeId": "10/3692/0006",
-      "programmeId": "10/3692",
+      "episodeId": "10/3692/0007",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/6vxyf1l/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/3692",
+      "tier": [
+        "FREE"
+      ],
+      "title": "All Elite Wrestling: Battle of the Belts",
+      "titleSlug": "all-elite-wrestling-battle-of-the-belts"
     },
     {
+      "broadcastDateTime": "2024-04-30T21:00:00Z",
       "ccid": "jzlh6m9",
-      "title": "All Elite Wrestling: Collision",
-      "titleSlug": "all-elite-wrestling-collision",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Witness hard-hitting action from AEW's newest show featuring top stars",
+      "encodedEpisodeId": {
+        "letterA": "10a4794a0045",
+        "underscore": "10_4794_0045"
+      },
       "encodedProgrammeId": {
         "letterA": "10a4794",
         "underscore": "10_4794"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a4794a0036",
-        "underscore": "10_4794_0036"
-      },
-      "description": "Witness hard-hitting action from AEW's newest show featuring top stars",
-      "imageTemplate": "https://ovp.itv.com/images/programme/jzlh6m9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-14T22:10:00Z",
-      "episodeId": "10/4794/0036",
-      "programmeId": "10/4794",
+      "episodeId": "10/4794/0045",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/jzlh6m9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4794",
+      "tier": [
+        "FREE"
+      ],
+      "title": "All Elite Wrestling: Collision",
+      "titleSlug": "all-elite-wrestling-collision"
     },
     {
+      "broadcastDateTime": "2024-05-03T21:05:00Z",
       "ccid": "myclhdq",
-      "title": "All Elite Wrestling: Dynamite",
-      "titleSlug": "all-elite-wrestling-dynamite",
+      "channel": "itv4",
+      "contentInfo": "Series 3",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "It's time for some intense rivalry featuring the biggest stars",
+      "encodedEpisodeId": {
+        "letterA": "2a7855a0239",
+        "underscore": "2_7855_0239"
+      },
       "encodedProgrammeId": {
         "letterA": "2a7855",
         "underscore": "2_7855"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "2a7855a0229",
-        "underscore": "2_7855_0229"
-      },
-      "description": "It's time for some intense rivalry featuring the biggest stars",
-      "imageTemplate": "https://ovp.itv.com/images/programme/myclhdq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 3",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-23T22:25:00Z",
-      "episodeId": "2/7855/0229",
-      "programmeId": "2/7855",
+      "episodeId": "2/7855/0239",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/myclhdq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/7855",
+      "tier": [
+        "FREE"
+      ],
+      "title": "All Elite Wrestling: Dynamite",
+      "titleSlug": "all-elite-wrestling-dynamite"
     },
     {
+      "broadcastDateTime": "2024-05-03T23:20:00Z",
       "ccid": "frhy1d9",
-      "title": "All Elite Wrestling: Rampage",
-      "titleSlug": "all-elite-wrestling-rampage",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Get stuck into some adrenaline-pumping action from AEW's biggest stars",
+      "encodedEpisodeId": {
+        "letterA": "10a2183a0124",
+        "underscore": "10_2183_0124"
+      },
       "encodedProgrammeId": {
         "letterA": "10a2183",
         "underscore": "10_2183"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a2183a0113",
-        "underscore": "10_2183_0113"
-      },
-      "description": "Get stuck into some adrenaline-pumping action from AEW's biggest stars",
-      "imageTemplate": "https://ovp.itv.com/images/programme/frhy1d9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-20T22:15:00Z",
-      "episodeId": "10/2183/0113",
-      "programmeId": "10/2183",
+      "episodeId": "10/2183/0124",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/frhy1d9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2183",
+      "tier": [
+        "FREE"
+      ],
+      "title": "All Elite Wrestling: Rampage",
+      "titleSlug": "all-elite-wrestling-rampage"
     },
     {
+      "broadcastDateTime": "2024-05-05T06:05:00Z",
       "ccid": "6gbj1hz",
-      "title": "Auto Mundial",
-      "titleSlug": "auto-mundial",
+      "channel": "itv4",
+      "contentInfo": "30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch all the latest news and reviews from the world of cars",
+      "encodedEpisodeId": {
+        "letterA": "7a0070a0226",
+        "underscore": "7_0070_0226"
+      },
       "encodedProgrammeId": {
         "letterA": "7a0070",
         "underscore": "7_0070"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "7a0070a0216",
-        "underscore": "7_0070_0216"
-      },
-      "description": "Catch all the latest news and reviews from the world of cars",
-      "imageTemplate": "https://ovp.itv.com/images/programme/6gbj1hz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "30m",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-25T06:30:00Z",
-      "episodeId": "7/0070/0216",
-      "programmeId": "7/0070",
+      "episodeId": "7/0070/0226",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/6gbj1hz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "7/0070",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Auto Mundial",
+      "titleSlug": "auto-mundial"
     },
     {
-      "ccid": "wzxb9mt",
-      "title": "British Touring Car Championship Review",
-      "titleSlug": "british-touring-car-championship-review",
-      "encodedProgrammeId": {
-        "letterA": "2a3568",
-        "underscore": "2_3568"
-      },
+      "broadcastDateTime": "2024-04-24T19:00:00Z",
+      "ccid": "s8gpg7x",
       "channel": "itv4",
+      "contentInfo": "1h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Highlights from each of the events in the British Rally Championship.",
+      "encodedEpisodeId": {
+        "letterA": "10a5455a0002",
+        "underscore": "10_5455_0002"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a5455",
+        "underscore": "10_5455"
+      },
+      "episodeId": "10/5455/0002",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/s8gpg7x/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/5455",
+      "tier": [
+        "FREE"
+      ],
+      "title": "British Rally Championship Highlights",
+      "titleSlug": "british-rally-championship-highlights"
+    },
+    {
+      "broadcastDateTime": "2024-04-28T09:40:00Z",
+      "ccid": "4yfwtgn",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "It's Britain's most exciting motor racing championship - don't miss it",
+      "encodedEpisodeId": {
+        "letterA": "1a5204a0201",
+        "underscore": "1_5204_0201"
+      },
+      "encodedProgrammeId": {
+        "letterA": "1a5204",
+        "underscore": "1_5204"
+      },
+      "episodeId": "1/5204/0201",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/4yfwtgn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "1/5204",
+      "tier": [
+        "FREE"
+      ],
+      "title": "British Touring Car Championship",
+      "titleSlug": "british-touring-car-championship"
+    },
+    {
+      "broadcastDateTime": "2024-05-03T17:30:00Z",
+      "ccid": "wngkwcn",
+      "channel": "itv4",
+      "contentInfo": "Series 5",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Enticing highlights from the touring championships - Steve Rider presents",
+      "encodedEpisodeId": {
+        "letterA": "1a7783a0151",
+        "underscore": "1_7783_0151"
+      },
+      "encodedProgrammeId": {
+        "letterA": "1a7783",
+        "underscore": "1_7783"
+      },
+      "episodeId": "1/7783/0151",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/wngkwcn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "1/7783",
+      "tier": [
+        "FREE"
+      ],
+      "title": "British Touring Car Championship Highlights",
+      "titleSlug": "british-touring-car-championship-highlights"
+    },
+    {
+      "broadcastDateTime": "2023-12-25T10:30:00Z",
+      "ccid": "wzxb9mt",
+      "channel": "itv4",
+      "contentInfo": "2h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Take a look back at the BTCC season & enjoy exclusive interviews with the drivers",
       "encodedEpisodeId": {
         "letterA": "2a3568a0009",
         "underscore": "2_3568_0009"
       },
-      "description": "Take a look back at the BTCC season & enjoy exclusive interviews with the drivers",
-      "imageTemplate": "https://ovp.itv.com/images/programme/wzxb9mt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "2h",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-12-25T10:30:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a3568",
+        "underscore": "2_3568"
+      },
       "episodeId": "2/3568/0009",
-      "programmeId": "2/3568",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/wzxb9mt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3568",
+      "tier": [
+        "FREE"
+      ],
+      "title": "British Touring Car Championship Review",
+      "titleSlug": "british-touring-car-championship-review"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "j6dh3mn",
-      "title": "By The Balls",
-      "titleSlug": "by-the-balls",
+      "channel": "itv2",
+      "contentInfo": "1h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Turbulent times, a nation's pride - gripping story of the NZ rugby team",
+      "programmeId": "10/4925",
       "encodedProgrammeId": {
         "letterA": "10a4925",
         "underscore": "10_4925"
       },
-      "channel": "itv2",
-      "encodedEpisodeId": {
-        "letterA": "",
-        "underscore": ""
-      },
-      "description": "Turbulent times, a nation's pride - gripping story of the NZ rugby team",
       "imageTemplate": "https://ovp.itv.com/images/special/j6dh3mn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "1h",
       "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": null,
-      "programmeId": "10/4925",
-      "contentType": "special"
+      "title": "By The Balls",
+      "titleSlug": "by-the-balls"
     },
     {
+      "broadcastDateTime": "2023-09-10T10:00:00Z",
       "ccid": "cgcc74g",
-      "title": "Cycling: Tour of Britain",
-      "titleSlug": "cycling-tour-of-britain",
-      "encodedProgrammeId": {
-        "letterA": "1a7209",
-        "underscore": "1_7209"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 17",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The popular pro cycling race is back - who will hold the 2023 jersey?",
       "encodedEpisodeId": {
         "letterA": "1a7209a0064",
         "underscore": "1_7209_0064"
       },
-      "description": "The popular pro cycling race is back - who will hold the 2023 jersey?",
-      "imageTemplate": "https://ovp.itv.com/images/programme/cgcc74g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 17",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-09-10T10:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "1a7209",
+        "underscore": "1_7209"
+      },
       "episodeId": "1/7209/0064",
-      "programmeId": "1/7209",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/cgcc74g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "1/7209",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Cycling: Tour of Britain",
+      "titleSlug": "cycling-tour-of-britain"
     },
     {
+      "broadcastDateTime": "2023-09-10T19:00:00Z",
       "ccid": "jjbnynp",
-      "title": "Cycling: Tour of Britain Highlights",
-      "titleSlug": "cycling-tour-of-britain-highlights",
-      "encodedProgrammeId": {
-        "letterA": "2a3041",
-        "underscore": "2_3041"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 10",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Latest highlights from the pro cycling tournament",
       "encodedEpisodeId": {
         "letterA": "2a3041a0082",
         "underscore": "2_3041_0082"
       },
-      "description": "Latest highlights from the pro cycling tournament",
-      "imageTemplate": "https://ovp.itv.com/images/programme/jjbnynp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 10",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-09-10T19:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a3041",
+        "underscore": "2_3041"
+      },
       "episodeId": "2/3041/0082",
-      "programmeId": "2/3041",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/jjbnynp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3041",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Cycling: Tour of Britain Highlights",
+      "titleSlug": "cycling-tour-of-britain-highlights"
     },
     {
+      "broadcastDateTime": "2023-10-29T18:00:00Z",
       "ccid": "h6rncc6",
-      "title": "Darts: European Championship",
-      "titleSlug": "darts-european-championship",
-      "encodedProgrammeId": {
-        "letterA": "2a1245",
-        "underscore": "2_1245"
-      },
-      "channel": "itv4",
+      "channel": "itv3",
+      "contentInfo": "Series 12",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Whoever wins will celebrate the biggest night of their career",
       "encodedEpisodeId": {
         "letterA": "2a1245a0070",
         "underscore": "2_1245_0070"
       },
-      "description": "Whoever wins will celebrate the biggest night of their career",
-      "imageTemplate": "https://ovp.itv.com/images/programme/h6rncc6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 12",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-10-29T18:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a1245",
+        "underscore": "2_1245"
+      },
       "episodeId": "2/1245/0070",
-      "programmeId": "2/1245",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/h6rncc6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/1245",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Darts: European Championship",
+      "titleSlug": "darts-european-championship"
     },
     {
+      "broadcastDateTime": "2023-11-25T19:00:00Z",
       "ccid": "mvbb3kf",
-      "title": "Darts: Players' Championship",
-      "titleSlug": "darts-players-championship",
-      "encodedProgrammeId": {
-        "letterA": "1a7565",
-        "underscore": "1_7565"
-      },
       "channel": "itv3",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Enjoy all the action from the Players' Championships in Minehead",
       "encodedEpisodeId": {
         "letterA": "1a7565a0094",
         "underscore": "1_7565_0094"
       },
-      "description": "Enjoy all the action from the Players' Championships in Minehead",
-      "imageTemplate": "https://ovp.itv.com/images/programme/mvbb3kf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-11-25T19:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "1a7565",
+        "underscore": "1_7565"
+      },
       "episodeId": "1/7565/0094",
-      "programmeId": "1/7565",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/mvbb3kf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "1/7565",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Darts: Players' Championship",
+      "titleSlug": "darts-players-championship"
     },
     {
+      "broadcastDateTime": "2024-02-04T19:00:00Z",
       "ccid": "rkkxzbw",
-      "title": "Darts: The Masters",
-      "titleSlug": "darts-the-masters",
-      "encodedProgrammeId": {
-        "letterA": "2a2733",
-        "underscore": "2_2733"
-      },
-      "channel": "itv4",
+      "channel": "itv3",
+      "contentInfo": "Series 12",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Witness all the action from the Dart's Masters",
       "encodedEpisodeId": {
         "letterA": "2a2733a0051",
         "underscore": "2_2733_0051"
       },
-      "description": "Witness all the action from the Dart's Masters",
-      "imageTemplate": "https://ovp.itv.com/images/programme/rkkxzbw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 12",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-04T19:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a2733",
+        "underscore": "2_2733"
+      },
       "episodeId": "2/2733/0051",
-      "programmeId": "2/2733",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/rkkxzbw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/2733",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Darts: The Masters",
+      "titleSlug": "darts-the-masters"
     },
     {
-      "ccid": "3gvr3z4",
-      "title": "E1 World Championship Highlights",
-      "titleSlug": "e1-world-championship-highlights",
-      "encodedProgrammeId": {
-        "letterA": "10a5422",
-        "underscore": "10_5422"
+      "broadcastDateTime": "2024-03-03T19:00:00Z",
+      "ccid": "5xhr6h2",
+      "channel": "itv3",
+      "contentInfo": "Series 10",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Fast & furious darts action from Minehead",
+      "encodedEpisodeId": {
+        "letterA": "2a2957a0066",
+        "underscore": "2_2957_0066"
       },
+      "encodedProgrammeId": {
+        "letterA": "2a2957",
+        "underscore": "2_2957"
+      },
+      "episodeId": "2/2957/0066",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/5xhr6h2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/2957",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Darts: UK Open",
+      "titleSlug": "darts-uk-open"
+    },
+    {
+      "broadcastDateTime": "2024-02-11T10:30:00Z",
+      "ccid": "3gvr3z4",
       "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The world's first electric powerboat racing series.",
       "encodedEpisodeId": {
         "letterA": "10a5422a0001",
         "underscore": "10_5422_0001"
       },
-      "description": "The world's first electric powerboat racing series.",
-      "imageTemplate": "https://ovp.itv.com/images/programme/3gvr3z4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-11T10:30:00Z",
-      "episodeId": "10/5422/0001",
-      "programmeId": "10/5422",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "0rpj5vs",
-      "title": "EFL Carabao Cup Highlights",
-      "titleSlug": "efl-carabao-cup-highlights",
       "encodedProgrammeId": {
-        "letterA": "10a2273",
-        "underscore": "10_2273"
+        "letterA": "10a5422",
+        "underscore": "10_5422"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a2273a0016",
-        "underscore": "10_2273_0016"
-      },
-      "description": "Enjoy all the action & every goal from football's EFL Carabao Cup",
-      "imageTemplate": "https://ovp.itv.com/images/programme/0rpj5vs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "1h",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-25T22:50:00Z",
-      "episodeId": "10/2273/0016",
-      "programmeId": "10/2273",
+      "episodeId": "10/5422/0001",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/3gvr3z4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/5422",
+      "tier": [
+        "FREE"
+      ],
+      "title": "E1 World Championship Highlights",
+      "titleSlug": "e1-world-championship-highlights"
     },
     {
+      "broadcastDateTime": "2024-04-07T22:15:00Z",
+      "ccid": "n4052p5",
+      "channel": "itv",
+      "contentInfo": "1h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Stream highlights from EFL's Bristol Street Motors Trophy Final",
+      "encodedEpisodeId": {
+        "letterA": "10a2276a0002",
+        "underscore": "10_2276_0002"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a2276",
+        "underscore": "10_2276"
+      },
+      "episodeId": "10/2276/0002",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/n4052p5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2276",
+      "tier": [
+        "FREE"
+      ],
+      "title": "EFL Bristol Street Motors Trophy Final Highlights",
+      "titleSlug": "efl-bristol-street-motors-trophy-final-highlights"
+    },
+    {
+      "broadcastDateTime": "2020-11-10T23:45:00Z",
       "ccid": "q7qlkcc",
-      "title": "England's Grand",
-      "titleSlug": "englands-grand",
+      "channel": "itv",
+      "contentInfo": "1h 30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Gareth Southgate, Harry Kane & more celebrate England 1,000th match",
+      "programmeId": "2/7654",
       "encodedProgrammeId": {
         "letterA": "2a7654",
         "underscore": "2_7654"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "",
-        "underscore": ""
-      },
-      "description": "Gareth Southgate, Harry Kane & more celebrate England 1,000th match",
       "imageTemplate": "https://ovp.itv.com/images/special/q7qlkcc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "1h 30m",
       "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2020-11-10T23:45:00Z",
-      "programmeId": "2/7654",
-      "contentType": "special"
+      "title": "England's Grand",
+      "titleSlug": "englands-grand"
     },
     {
+      "broadcastDateTime": "2024-05-04T20:00:00Z",
       "ccid": "50pw6r9",
-      "title": "English Football League Highlights",
-      "titleSlug": "english-football-league-highlights",
+      "channel": "itv4",
+      "contentInfo": "1h 30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Unmissable EFL highs, lows, action and talking points ",
+      "encodedEpisodeId": {
+        "letterA": "10a2272a0104",
+        "underscore": "10_2272_0104"
+      },
       "encodedProgrammeId": {
         "letterA": "10a2272",
         "underscore": "10_2272"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a2272a0090",
-        "underscore": "10_2272_0090"
-      },
-      "description": "Unmissable EFL highs, lows, action and talking points ",
-      "imageTemplate": "https://ovp.itv.com/images/programme/50pw6r9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "1h 30m",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-24T21:00:00Z",
-      "episodeId": "10/2272/0090",
-      "programmeId": "10/2272",
+      "episodeId": "10/2272/0104",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/50pw6r9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2272",
+      "tier": [
+        "FREE"
+      ],
+      "title": "English Football League Highlights",
+      "titleSlug": "english-football-league-highlights"
     },
     {
+      "broadcastDateTime": "2024-02-18T12:00:00Z",
       "ccid": "y9nshdw",
-      "title": "Extreme E",
-      "titleSlug": "extreme-e",
-      "encodedProgrammeId": {
-        "letterA": "10a1323",
-        "underscore": "10_1323"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Extreme E is back with a third season of more electric racing action",
       "encodedEpisodeId": {
         "letterA": "10a1323a0025",
         "underscore": "10_1323_0025"
       },
-      "description": "Extreme E is back with a third season of more electric racing action",
-      "imageTemplate": "https://ovp.itv.com/images/programme/y9nshdw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 4",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-18T12:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a1323",
+        "underscore": "10_1323"
+      },
       "episodeId": "10/1323/0025",
-      "programmeId": "10/1323",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/y9nshdw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1323",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Extreme E",
+      "titleSlug": "extreme-e"
     },
     {
+      "broadcastDateTime": "2024-02-23T00:10:00Z",
       "ccid": "8yww40m",
-      "title": "Extreme E Highlights",
-      "titleSlug": "extreme-e-highlights",
-      "encodedProgrammeId": {
-        "letterA": "10a1324",
-        "underscore": "10_1324"
-      },
       "channel": "itv",
+      "contentInfo": "Series 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Check out the latest thrills & highlights from the electric racing series",
       "encodedEpisodeId": {
         "letterA": "10a1324a0022",
         "underscore": "10_1324_0022"
       },
-      "description": "Check out the latest thrills & highlights from the electric racing series",
-      "imageTemplate": "https://ovp.itv.com/images/programme/8yww40m/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 4",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-23T00:10:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a1324",
+        "underscore": "10_1324"
+      },
       "episodeId": "10/1324/0022",
-      "programmeId": "10/1324",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/8yww40m/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1324",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Extreme E Highlights",
+      "titleSlug": "extreme-e-highlights"
     },
     {
+      "broadcastDateTime": "2024-02-17T06:10:00Z",
       "ccid": "h3f9wb7",
-      "title": "Extreme E: Adventure Awaits",
-      "titleSlug": "extreme-e-adventure-awaits",
-      "encodedProgrammeId": {
-        "letterA": "10a1326",
-        "underscore": "10_1326"
-      },
       "channel": "itv4",
+      "contentInfo": "30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Get up to speed on the exciting world of all-electric off-road racing",
       "encodedEpisodeId": {
         "letterA": "10a1326a0007",
         "underscore": "10_1326_0007"
       },
-      "description": "Get up to speed on the exciting world of all-electric off-road racing",
-      "imageTemplate": "https://ovp.itv.com/images/programme/h3f9wb7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "30m",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-17T06:10:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a1326",
+        "underscore": "10_1326"
+      },
       "episodeId": "10/1326/0007",
-      "programmeId": "10/1326",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/h3f9wb7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1326",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Extreme E: Adventure Awaits",
+      "titleSlug": "extreme-e-adventure-awaits"
     },
     {
+      "broadcastDateTime": "2024-04-14T05:30:00Z",
       "ccid": "53x8zx7",
-      "title": "Extreme E: Electric Odyssey",
-      "titleSlug": "extreme-e-electric-odyssey",
+      "channel": "itv4",
+      "contentInfo": "Series 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Plunge into the thrilling world of all-electric off-road racing",
+      "encodedEpisodeId": {
+        "letterA": "10a1325a0063",
+        "underscore": "10_1325_0063"
+      },
       "encodedProgrammeId": {
         "letterA": "10a1325",
         "underscore": "10_1325"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a1325a0060",
-        "underscore": "10_1325_0060"
-      },
-      "description": "Plunge into the thrilling world of all-electric off-road racing",
-      "imageTemplate": "https://ovp.itv.com/images/programme/53x8zx7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 3",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-04T06:30:00Z",
-      "episodeId": "10/1325/0060",
-      "programmeId": "10/1325",
+      "episodeId": "10/1325/0063",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/53x8zx7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1325",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Extreme E: Electric Odyssey",
+      "titleSlug": "extreme-e-electric-odyssey"
     },
     {
+      "broadcastDateTime": "2024-04-21T13:30:00Z",
       "ccid": "6h9qhqh",
-      "title": "FA Cup",
-      "titleSlug": "fa-cup",
+      "channel": "itv",
+      "contentInfo": "2h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Immerse yourself in all the best action from the pitch in the FA Cup",
+      "encodedEpisodeId": {
+        "letterA": "10a1856a0103",
+        "underscore": "10_1856_0103"
+      },
       "encodedProgrammeId": {
         "letterA": "10a1856",
         "underscore": "10_1856"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a1856a0071",
-        "underscore": "10_1856_0071"
-      },
-      "description": "Immerse yourself in all the best action from the pitch in the FA Cup",
+      "episodeId": "10/1856/0103",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
       "imageTemplate": "https://ovp.itv.com/images/programme/6h9qhqh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "2h",
       "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-07T19:30:00Z",
-      "episodeId": "10/1856/0071",
       "programmeId": "10/1856",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "6dg4mn8",
-      "title": "FIFA Women's World Cup 2023",
-      "titleSlug": "fifa-womens-world-cup-2023",
-      "encodedProgrammeId": {
-        "letterA": "10a4671",
-        "underscore": "10_4671"
-      },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a4671a0033",
-        "underscore": "10_4671_0033"
-      },
-      "description": "Catch the latest action from FIFA Women\u2019s World Cup 2023",
-      "imageTemplate": "https://ovp.itv.com/images/programme/6dg4mn8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2023-08-16T21:45:00Z",
-      "episodeId": "10/4671/0033",
-      "programmeId": "10/4671",
+      "title": "FA Cup",
+      "titleSlug": "fa-cup"
+    },
+    {
+      "broadcastDateTime": null,
+      "ccid": "t3nj0cd",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "All the best bits, news & commentary from FA Cup\u2019s fifth round ",
+      "encodedEpisodeId": {
+        "letterA": "10a5525a0014",
+        "underscore": "10_5525_0014"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a5525",
+        "underscore": "10_5525"
+      },
+      "episodeId": "10/5525/0014",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/t3nj0cd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/5525",
+      "tier": [
+        "FREE"
+      ],
+      "title": "FA Cup Highlights",
+      "titleSlug": "fa-cup-highlights"
     },
     {
+      "broadcastDateTime": "2023-06-20T17:30:00Z",
       "ccid": "glqfczc",
-      "title": "Frankie Dettori: A Royal Ascot Love Affair",
-      "titleSlug": "frankie-dettori-a-royal-ascot-love-affair",
+      "channel": "itv4",
+      "contentInfo": "30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Epic battles & a racing revival - the charismatic jockey looks back",
+      "programmeId": "10/4805",
       "encodedProgrammeId": {
         "letterA": "10a4805",
         "underscore": "10_4805"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "",
-        "underscore": ""
-      },
-      "description": "Epic battles & a racing revival - the charismatic jockey looks back",
       "imageTemplate": "https://ovp.itv.com/images/special/glqfczc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "30m",
       "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2023-06-20T17:30:00Z",
-      "programmeId": "10/4805",
-      "contentType": "special"
+      "title": "Frankie Dettori: A Royal Ascot Love Affair",
+      "titleSlug": "frankie-dettori-a-royal-ascot-love-affair"
     },
     {
+      "broadcastDateTime": "2024-04-28T19:00:00Z",
       "ccid": "wgg70tq",
-      "title": "Gallagher Premiership Rugby Highlights",
-      "titleSlug": "gallagher-premiership-rugby-highlights",
+      "channel": "itv4",
+      "contentInfo": "Series 3",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch all the most exciting highlights from Gallagher Premiership Rugby",
+      "encodedEpisodeId": {
+        "letterA": "10a2324a0059",
+        "underscore": "10_2324_0059"
+      },
       "encodedProgrammeId": {
         "letterA": "10a2324",
         "underscore": "10_2324"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a2324a0055",
-        "underscore": "10_2324_0055"
-      },
-      "description": "Catch all the most exciting highlights from Gallagher Premiership Rugby",
+      "episodeId": "10/2324/0059",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
       "imageTemplate": "https://ovp.itv.com/images/programme/wgg70tq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 3",
       "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-01-28T20:00:00Z",
-      "episodeId": "10/2324/0055",
       "programmeId": "10/2324",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "xfbvdrh",
-      "title": "Grand Slam Years",
-      "titleSlug": "grand-slam-years",
-      "encodedProgrammeId": {
-        "letterA": "10a0086",
-        "underscore": "10_0086"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a0086a0003",
-        "underscore": "10_0086_0003"
-      },
-      "description": "Three Six Nations Grand Slam years - stream the highlights here",
-      "imageTemplate": "https://ovp.itv.com/images/programme/xfbvdrh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2024-02-18T03:00:00Z",
-      "episodeId": "10/0086/0003",
-      "programmeId": "10/0086",
+      "title": "Gallagher Premiership Rugby Highlights",
+      "titleSlug": "gallagher-premiership-rugby-highlights"
+    },
+    {
+      "broadcastDateTime": "2024-04-22T21:45:00Z",
+      "ccid": "1ycqbd1",
+      "channel": "itv",
+      "contentInfo": "1h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Enjoy some high-speed thrills from Goodwood's Members' meeting",
+      "encodedEpisodeId": {
+        "letterA": "2a5628a0007",
+        "underscore": "2_5628_0007"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a5628",
+        "underscore": "2_5628"
+      },
+      "episodeId": "2/5628/0007",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/1ycqbd1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/5628",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Goodwood Highlights",
+      "titleSlug": "goodwood-highlights"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "2bwx0gg",
-      "title": "Hard Knocks",
-      "titleSlug": "hard-knocks",
+      "channel": "itv",
+      "contentInfo": "Series 1 - 5",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Eat, train, play - but who\u2019ll get a place in the next NFL season?",
+      "encodedEpisodeId": {
+        "letterA": "10a4935a0025",
+        "underscore": "10_4935_0025"
+      },
       "encodedProgrammeId": {
         "letterA": "10a4935",
         "underscore": "10_4935"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a4935a0024",
-        "underscore": "10_4935_0024"
-      },
-      "description": "Eat, train, play - but who\u2019ll get a place in the next NFL season?",
-      "imageTemplate": "https://ovp.itv.com/images/programme/2bwx0gg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2, 4, 5",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
-      "episodeId": "10/4935/0024",
-      "programmeId": "10/4935",
+      "episodeId": "10/4935/0025",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/2bwx0gg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4935",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Hard Knocks",
+      "titleSlug": "hard-knocks"
     },
     {
+      "broadcastDateTime": "2024-04-09T18:00:00Z",
       "ccid": "8qwy3p1",
-      "title": "International Football",
-      "titleSlug": "international-football",
+      "channel": "itv",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The Pride has arrived! Don't miss England women's international matches",
+      "encodedEpisodeId": {
+        "letterA": "10a1895a0033",
+        "underscore": "10_1895_0033"
+      },
       "encodedProgrammeId": {
         "letterA": "10a1895",
         "underscore": "10_1895"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a1895a0030",
-        "underscore": "10_1895_0030"
-      },
-      "description": "The Pride has arrived! Don't miss England women's international matches",
-      "imageTemplate": "https://ovp.itv.com/images/programme/8qwy3p1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-23T19:30:00Z",
-      "episodeId": "10/1895/0030",
-      "programmeId": "10/1895",
+      "episodeId": "10/1895/0033",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/8qwy3p1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1895",
+      "tier": [
+        "FREE"
+      ],
+      "title": "International Football",
+      "titleSlug": "international-football"
     },
     {
+      "broadcastDateTime": "2024-05-05T13:30:00Z",
+      "ccid": "t29g2h4",
+      "channel": "itv",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "All the rugby match coverage from the Heineken Champions Cup",
+      "encodedEpisodeId": {
+        "letterA": "10a3605a0015",
+        "underscore": "10_3605_0015"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a3605",
+        "underscore": "10_3605"
+      },
+      "episodeId": "10/3605/0015",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/t29g2h4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/3605",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Investec Champions Cup Rugby",
+      "titleSlug": "investec-champions-cup-rugby"
+    },
+    {
+      "broadcastDateTime": "2024-05-04T19:00:00Z",
+      "ccid": "3st86wn",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Highlights from eight classic football games from the World Cup",
+      "encodedEpisodeId": {
+        "letterA": "7a0304a0003",
+        "underscore": "7_0304_0003"
+      },
+      "encodedProgrammeId": {
+        "letterA": "7a0304",
+        "underscore": "7_0304"
+      },
+      "episodeId": "7/0304/0003",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/3st86wn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "7/0304",
+      "tier": [
+        "FREE"
+      ],
+      "title": "ITV Football Classics",
+      "titleSlug": "itv-football-classics"
+    },
+    {
+      "broadcastDateTime": "2024-05-08T12:10:00Z",
       "ccid": "wf6rp38",
-      "title": "ITV Racing",
-      "titleSlug": "itv-racing",
+      "channel": "itv4",
+      "contentInfo": "2h 30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Witness all the action from major horse racing events around the UK",
+      "encodedEpisodeId": {
+        "letterA": "2a4397a0757",
+        "underscore": "2_4397_0757"
+      },
       "encodedProgrammeId": {
         "letterA": "2a4397",
         "underscore": "2_4397"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "2a4397a0732",
-        "underscore": "2_4397_0732"
-      },
-      "description": "Witness all the action from major horse racing events around the UK",
-      "imageTemplate": "https://ovp.itv.com/images/programme/wf6rp38/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "2h 30m",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-24T13:00:00Z",
-      "episodeId": "2/4397/0732",
-      "programmeId": "2/4397",
+      "episodeId": "2/4397/0757",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/wf6rp38/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/4397",
+      "tier": [
+        "FREE"
+      ],
+      "title": "ITV Racing",
+      "titleSlug": "itv-racing"
     },
     {
+      "broadcastDateTime": "2024-04-21T14:30:00Z",
+      "ccid": "lywyhtw",
+      "channel": "itv4",
+      "contentInfo": "Series 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Stream coverage of horse racing from the the Sky Bet Sunday Series",
+      "encodedEpisodeId": {
+        "letterA": "10a1451a0017",
+        "underscore": "10_1451_0017"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a1451",
+        "underscore": "10_1451"
+      },
+      "episodeId": "10/1451/0017",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/lywyhtw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1451",
+      "tier": [
+        "FREE"
+      ],
+      "title": "ITV Racing: Sky Bet Sunday Series",
+      "titleSlug": "itv-racing-sky-bet-sunday-series"
+    },
+    {
+      "broadcastDateTime": "2024-05-04T08:30:00Z",
       "ccid": "03wrv6r",
-      "title": "ITV Racing: The Opening Show",
-      "titleSlug": "itv-racing-the-opening-show",
+      "channel": "itv4",
+      "contentInfo": "1h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The stars are out in force - don't miss top coverage of the horse racing",
+      "encodedEpisodeId": {
+        "letterA": "2a4875a0445",
+        "underscore": "2_4875_0445"
+      },
       "encodedProgrammeId": {
         "letterA": "2a4875",
         "underscore": "2_4875"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "2a4875a0429",
-        "underscore": "2_4875_0429"
-      },
-      "description": "The stars are out in force - don't miss top coverage of the horse racing",
-      "imageTemplate": "https://ovp.itv.com/images/programme/03wrv6r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "1h",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-24T09:30:00Z",
-      "episodeId": "2/4875/0429",
-      "programmeId": "2/4875",
+      "episodeId": "2/4875/0445",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/03wrv6r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/4875",
+      "tier": [
+        "FREE"
+      ],
+      "title": "ITV Racing: The Opening Show",
+      "titleSlug": "itv-racing-the-opening-show"
     },
     {
+      "broadcastDateTime": "2023-08-14T17:55:00Z",
       "ccid": "smchnhc",
-      "title": "Karen Carney's Leaders of the Pack",
-      "titleSlug": "karen-carneys-leaders-of-the-pack",
-      "encodedProgrammeId": {
-        "letterA": "10a4802",
-        "underscore": "10_4802"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The amazing achievements of female footballers - Karen Carney presents",
       "encodedEpisodeId": {
         "letterA": "10a4802a0006",
         "underscore": "10_4802_0006"
       },
-      "description": "The amazing achievements of female footballers - Karen Carney presents",
-      "imageTemplate": "https://ovp.itv.com/images/programme/smchnhc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-08-14T17:55:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a4802",
+        "underscore": "10_4802"
+      },
       "episodeId": "10/4802/0006",
-      "programmeId": "10/4802",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/smchnhc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4802",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Karen Carney's Leaders of the Pack",
+      "titleSlug": "karen-carneys-leaders-of-the-pack"
     },
     {
+      "broadcastDateTime": "2024-05-04T16:00:00Z",
       "ccid": "3930c7z",
-      "title": "LaLiga (2023/24)",
-      "titleSlug": "laliga-202324",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Don't miss match coverage & analysis from Spain's top football division",
+      "encodedEpisodeId": {
+        "letterA": "10a2804a0020",
+        "underscore": "10_2804_0020"
+      },
       "encodedProgrammeId": {
         "letterA": "10a2804",
         "underscore": "10_2804"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a2804a0017",
-        "underscore": "10_2804_0017"
-      },
-      "description": "Don't miss match coverage & analysis from Spain's top football division",
-      "imageTemplate": "https://ovp.itv.com/images/programme/3930c7z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-10T17:00:00Z",
-      "episodeId": "10/2804/0017",
-      "programmeId": "10/2804",
+      "episodeId": "10/2804/0020",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/3930c7z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2804",
+      "tier": [
+        "FREE"
+      ],
+      "title": "LaLiga (2023/24)",
+      "titleSlug": "laliga-202324"
     },
     {
-      "ccid": "c01znd1",
-      "title": "Match Time Revisited",
-      "titleSlug": "match-time-revisited",
-      "encodedProgrammeId": {
-        "letterA": "10a2251",
-        "underscore": "10_2251"
+      "broadcastDateTime": "2024-04-28T13:30:00Z",
+      "ccid": "d9kgrwb",
+      "channel": "itv",
+      "contentInfo": "Series 3",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Watch a host of world-class talent at the live Gallagher Premiership",
+      "encodedEpisodeId": {
+        "letterA": "10a2252a0017",
+        "underscore": "10_2252_0017"
       },
+      "encodedProgrammeId": {
+        "letterA": "10a2252",
+        "underscore": "10_2252"
+      },
+      "episodeId": "10/2252/0017",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/d9kgrwb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2252",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Live Gallagher Premiership Rugby",
+      "titleSlug": "live-gallagher-premiership-rugby"
+    },
+    {
+      "broadcastDateTime": "2022-05-07T10:35:00Z",
+      "ccid": "c01znd1",
       "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Join Elton Welsby as he highlights top football matches from years past",
       "encodedEpisodeId": {
         "letterA": "10a2251a0016",
         "underscore": "10_2251_0016"
       },
-      "description": "Join Elton Welsby as he highlights top football matches from years past",
-      "imageTemplate": "https://ovp.itv.com/images/programme/c01znd1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2022-05-07T10:35:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a2251",
+        "underscore": "10_2251"
+      },
       "episodeId": "10/2251/0016",
-      "programmeId": "10/2251",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/c01znd1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2251",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Match Time Revisited",
+      "titleSlug": "match-time-revisited"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "7fmmc35",
-      "title": "Monster Jam",
-      "titleSlug": "monster-jam",
+      "channel": "itv",
+      "contentInfo": "50m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "An all-racing, two-wheel, freestyle face-off - time to tear up the dirt",
+      "encodedEpisodeId": {
+        "letterA": "10a4944a0026",
+        "underscore": "10_4944_0026"
+      },
       "encodedProgrammeId": {
         "letterA": "10a4944",
         "underscore": "10_4944"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a4944a0012",
-        "underscore": "10_4944_0012"
-      },
-      "description": "An all-racing, two-wheel, freestyle face-off - time to tear up the dirt",
-      "imageTemplate": "https://ovp.itv.com/images/programme/7fmmc35/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "50m",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
-      "episodeId": "10/4944/0012",
-      "programmeId": "10/4944",
+      "episodeId": "10/4944/0026",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/7fmmc35/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4944",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Monster Jam",
+      "titleSlug": "monster-jam"
     },
     {
+      "broadcastDateTime": "2024-04-29T19:00:00Z",
+      "ccid": "pdk6zrw",
+      "channel": "itv4",
+      "contentInfo": "Series 9",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Enjoy all the best two-wheel action with highlights from MotoGP",
+      "encodedEpisodeId": {
+        "letterA": "2a3100a0152",
+        "underscore": "2_3100_0152"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a3100",
+        "underscore": "2_3100"
+      },
+      "episodeId": "2/3100/0152",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/pdk6zrw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3100",
+      "tier": [
+        "FREE"
+      ],
+      "title": "MotoGP Highlights",
+      "titleSlug": "motogp-highlights"
+    },
+    {
+      "broadcastDateTime": "2024-05-05T05:35:00Z",
       "ccid": "rzsmgnf",
-      "title": "Motorsport Mundial",
-      "titleSlug": "motorsport-mundial",
+      "channel": "itv4",
+      "contentInfo": "30m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "From Superbikes to Formula 1, this has it all - get the latest news",
+      "encodedEpisodeId": {
+        "letterA": "10a2005a0132",
+        "underscore": "10_2005_0132"
+      },
       "encodedProgrammeId": {
         "letterA": "10a2005",
         "underscore": "10_2005"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a2005a0122",
-        "underscore": "10_2005_0122"
-      },
-      "description": "From Superbikes to Formula 1, this has it all - get the latest news",
-      "imageTemplate": "https://ovp.itv.com/images/programme/rzsmgnf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "30m",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-25T06:00:00Z",
-      "episodeId": "10/2005/0122",
-      "programmeId": "10/2005",
+      "episodeId": "10/2005/0132",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/rzsmgnf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2005",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Motorsport Mundial",
+      "titleSlug": "motorsport-mundial"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "kyvnr56",
-      "title": "NFL Undiscovered",
-      "titleSlug": "nfl-undiscovered",
-      "encodedProgrammeId": {
-        "letterA": "10a4943",
-        "underscore": "10_4943"
-      },
       "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Drills, tests & learning the ropes - follow four athletes chasing a dream",
       "encodedEpisodeId": {
         "letterA": "10a4943a0005",
         "underscore": "10_4943_0005"
       },
-      "description": "Drills, tests & learning the ropes - follow four athletes chasing a dream",
-      "imageTemplate": "https://ovp.itv.com/images/programme/kyvnr56/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
+      "encodedProgrammeId": {
+        "letterA": "10a4943",
+        "underscore": "10_4943"
+      },
       "episodeId": "10/4943/0005",
-      "programmeId": "10/4943",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/kyvnr56/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4943",
+      "tier": [
+        "FREE"
+      ],
+      "title": "NFL Undiscovered",
+      "titleSlug": "nfl-undiscovered"
     },
     {
+      "broadcastDateTime": "2023-05-25T20:00:00Z",
       "ccid": "nfqx3l5",
-      "title": "No Room For Error",
-      "titleSlug": "no-room-for-error",
-      "encodedProgrammeId": {
-        "letterA": "10a4522",
-        "underscore": "10_4522"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Meet the riders risking everything in this high-stakes danger race",
       "encodedEpisodeId": {
         "letterA": "10a4522a0004",
         "underscore": "10_4522_0004"
       },
-      "description": "Meet the riders risking everything in this high-stakes danger race",
-      "imageTemplate": "https://ovp.itv.com/images/programme/nfqx3l5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-05-25T20:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a4522",
+        "underscore": "10_4522"
+      },
       "episodeId": "10/4522/0004",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/nfqx3l5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
       "programmeId": "10/4522",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "7jztl0s",
-      "title": "Padel: Hexagon Cup",
-      "titleSlug": "padel-hexagon-cup",
-      "encodedProgrammeId": {
-        "letterA": "10a5364",
-        "underscore": "10_5364"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a5364a0006",
-        "underscore": "10_5364_0006"
-      },
-      "description": "Action from the new Padel tournament backed by Rafa Nadal & Andy Murray",
-      "imageTemplate": "https://ovp.itv.com/images/programme/7jztl0s/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2024-02-10T11:30:00Z",
-      "episodeId": "10/5364/0006",
-      "programmeId": "10/5364",
+      "title": "No Room For Error",
+      "titleSlug": "no-room-for-error"
+    },
+    {
+      "broadcastDateTime": "2024-05-04T07:55:00Z",
+      "ccid": "tvwjjfn",
+      "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Euro 2024 is almost here - looking ahead to the tournament",
+      "encodedEpisodeId": {
+        "letterA": "10a5689a0002",
+        "underscore": "10_5689_0002"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a5689",
+        "underscore": "10_5689"
+      },
+      "episodeId": "10/5689/0002",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "5yxlfr5",
-      "title": "Professional Fighters League Europe Highlights",
-      "titleSlug": "professional-fighters-league-europe-highlights",
-      "encodedProgrammeId": {
-        "letterA": "10a4501",
-        "underscore": "10_4501"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a4501a0004",
-        "underscore": "10_4501_0004"
-      },
-      "description": "Unmissable highlights from MMA fighting action around the world",
-      "imageTemplate": "https://ovp.itv.com/images/programme/5yxlfr5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
+      "imageTemplate": "https://ovp.itv.com/images/programme/tvwjjfn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
-      "contentOwner": null,
+      "programmeId": "10/5689",
       "tier": [
         "FREE"
       ],
+      "title": "Road to UEFA EURO 2024",
+      "titleSlug": "road-to-uefa-euro-2024"
+    },
+    {
       "broadcastDateTime": null,
-      "episodeId": "10/4501/0004",
-      "programmeId": "10/4501",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
       "ccid": "yzqyd1g",
-      "title": "SailGP 2023/24",
-      "titleSlug": "sailgp-202324",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "High-octane action - ten international teams compete in identical boats",
+      "encodedEpisodeId": {
+        "letterA": "10a4771a0020",
+        "underscore": "10_4771_0020"
+      },
       "encodedProgrammeId": {
         "letterA": "10a4771",
         "underscore": "10_4771"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a4771a0016",
-        "underscore": "10_4771_0016"
-      },
-      "description": "High-octane action - ten international teams compete in identical boats",
-      "imageTemplate": "https://ovp.itv.com/images/programme/yzqyd1g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-26T00:55:00Z",
-      "episodeId": "10/4771/0016",
-      "programmeId": "10/4771",
+      "episodeId": "10/4771/0020",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/yzqyd1g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4771",
+      "tier": [
+        "FREE"
+      ],
+      "title": "SailGP 2023/24",
+      "titleSlug": "sailgp-202324"
     },
     {
+      "broadcastDateTime": "2024-03-30T11:35:00Z",
       "ccid": "bgsz7j1",
-      "title": "SailGP Highlights",
-      "titleSlug": "sailgp-highlights",
+      "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Highlights from this high-octane international sailing competition",
+      "encodedEpisodeId": {
+        "letterA": "10a4772a0009",
+        "underscore": "10_4772_0009"
+      },
       "encodedProgrammeId": {
         "letterA": "10a4772",
         "underscore": "10_4772"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "10a4772a0007",
-        "underscore": "10_4772_0007"
-      },
-      "description": "Highlights from this high-octane international sailing competition",
-      "imageTemplate": "https://ovp.itv.com/images/programme/bgsz7j1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-01-20T11:45:00Z",
-      "episodeId": "10/4772/0007",
-      "programmeId": "10/4772",
+      "episodeId": "10/4772/0009",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/bgsz7j1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4772",
+      "tier": [
+        "FREE"
+      ],
+      "title": "SailGP Highlights",
+      "titleSlug": "sailgp-highlights"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "xpcqdh5",
-      "title": "SailGP: Racing on the Edge",
-      "titleSlug": "sailgp-racing-on-the-edge",
+      "channel": "itv",
+      "contentInfo": "Series 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Delve behind-the-scenes of SailGP in this mesmerising doc",
+      "encodedEpisodeId": {
+        "letterA": "10a4769a0007",
+        "underscore": "10_4769_0007"
+      },
       "encodedProgrammeId": {
         "letterA": "10a4769",
         "underscore": "10_4769"
       },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a4769a0005",
-        "underscore": "10_4769_0005"
-      },
-      "description": "Behind-the-scenes documentary following the SailGP season",
+      "episodeId": "10/4769/0007",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
       "imageTemplate": "https://ovp.itv.com/images/programme/xpcqdh5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 4",
       "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
-      "episodeId": "10/4769/0005",
       "programmeId": "10/4769",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "6khrj88",
-      "title": "Six Nations Championship",
-      "titleSlug": "six-nations-championship",
-      "encodedProgrammeId": {
-        "letterA": "2a4295",
-        "underscore": "2_4295"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "2a4295a0072",
-        "underscore": "2_4295_0072"
-      },
-      "description": "All the action & unmissable matches - Rugby\u2019s greatest championship",
-      "imageTemplate": "https://ovp.itv.com/images/programme/6khrj88/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "3h",
-      "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2024-02-25T14:15:00Z",
-      "episodeId": "2/4295/0072",
-      "programmeId": "2/4295",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
+      "title": "SailGP: Racing on the Edge",
+      "titleSlug": "sailgp-racing-on-the-edge"
     },
     {
-      "ccid": "cpf0f2r",
-      "title": "Six Nations Highlights",
-      "titleSlug": "six-nations-highlights",
-      "encodedProgrammeId": {
-        "letterA": "10a4034",
-        "underscore": "10_4034"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a4034a0024",
-        "underscore": "10_4034_0024"
-      },
-      "description": "Highlights & unmissable matches from Rugby\u2019s greatest championship",
-      "imageTemplate": "https://ovp.itv.com/images/programme/cpf0f2r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
       "broadcastDateTime": null,
-      "episodeId": "10/4034/0024",
-      "programmeId": "10/4034",
+      "ccid": "zfhvfzf",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Full matches from the top Italian men's football division Serie A",
+      "encodedEpisodeId": {
+        "letterA": "10a5672a0005",
+        "underscore": "10_5672_0005"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a5672",
+        "underscore": "10_5672"
+      },
+      "episodeId": "10/5672/0005",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/zfhvfzf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/5672",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Serie A",
+      "titleSlug": "serie-a"
     },
     {
+      "broadcastDateTime": "2023-10-01T17:55:00Z",
       "ccid": "t22lpmp",
-      "title": "Snooker: British Open Championship",
-      "titleSlug": "snooker-british-open-championship",
-      "encodedProgrammeId": {
-        "letterA": "10a1758",
-        "underscore": "10_1758"
-      },
-      "channel": "itv3",
+      "channel": "itv4",
+      "contentInfo": "Series 3",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "All the pots, all the shots - stream top snooker action",
       "encodedEpisodeId": {
         "letterA": "10a1758a0055",
         "underscore": "10_1758_0055"
       },
-      "description": "All the pots, all the shots - stream top snooker action",
-      "imageTemplate": "https://ovp.itv.com/images/programme/t22lpmp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 3",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-10-01T17:55:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a1758",
+        "underscore": "10_1758"
+      },
       "episodeId": "10/1758/0055",
-      "programmeId": "10/1758",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/t22lpmp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1758",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: British Open Championship",
+      "titleSlug": "snooker-british-open-championship"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "jmpfk7d",
-      "title": "Snooker: Champion of Champions",
-      "titleSlug": "snooker-champion-of-champions",
-      "encodedProgrammeId": {
-        "letterA": "2a2734",
-        "underscore": "2_2734"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 11",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Top action from the Champion of Champions snooker tournament",
       "encodedEpisodeId": {
         "letterA": "2a2734a0132",
         "underscore": "2_2734_0132"
       },
-      "description": "Top action from the Champion of Champions snooker tournament",
-      "imageTemplate": "https://ovp.itv.com/images/programme/jmpfk7d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 11",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
+      "encodedProgrammeId": {
+        "letterA": "2a2734",
+        "underscore": "2_2734"
+      },
       "episodeId": "2/2734/0132",
-      "programmeId": "2/2734",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/jmpfk7d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/2734",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: Champion of Champions",
+      "titleSlug": "snooker-champion-of-champions"
     },
     {
+      "broadcastDateTime": "2024-02-25T18:45:00Z",
       "ccid": "cfw85kx",
-      "title": "Snooker: Players' Championship",
-      "titleSlug": "snooker-players-championship",
-      "encodedProgrammeId": {
-        "letterA": "2a4414",
-        "underscore": "2_4414"
-      },
-      "channel": "itv3",
+      "channel": "itv4",
+      "contentInfo": "Series 9",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Follow all the action from this top championship",
       "encodedEpisodeId": {
         "letterA": "2a4414a0112",
         "underscore": "2_4414_0112"
       },
-      "description": "Follow all the action from this top championship",
-      "imageTemplate": "https://ovp.itv.com/images/programme/cfw85kx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 9",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-25T18:45:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a4414",
+        "underscore": "2_4414"
+      },
       "episodeId": "2/4414/0112",
-      "programmeId": "2/4414",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/cfw85kx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/4414",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: Players' Championship",
+      "titleSlug": "snooker-players-championship"
     },
     {
-      "ccid": "h7jkq7g",
-      "title": "Snooker: World Grand Prix",
-      "titleSlug": "snooker-world-grand-prix",
-      "encodedProgrammeId": {
-        "letterA": "2a3651",
-        "underscore": "2_3651"
+      "broadcastDateTime": "2024-04-07T17:45:00Z",
+      "ccid": "4dkdskt",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch the latest coverage of the Snooker Tour Championship",
+      "encodedEpisodeId": {
+        "letterA": "2a6248a0081",
+        "underscore": "2_6248_0081"
       },
+      "encodedProgrammeId": {
+        "letterA": "2a6248",
+        "underscore": "2_6248"
+      },
+      "episodeId": "2/6248/0081",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/4dkdskt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/6248",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: Tour Championship",
+      "titleSlug": "snooker-tour-championship"
+    },
+    {
+      "broadcastDateTime": "2024-01-21T18:45:00Z",
+      "ccid": "h7jkq7g",
       "channel": "itv3",
+      "contentInfo": "4h",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch all the coverage from this year's Snooker Grand Prix",
       "encodedEpisodeId": {
         "letterA": "2a3651a0121",
         "underscore": "2_3651_0121"
       },
-      "description": "Catch all the coverage from this year's Snooker Grand Prix",
-      "imageTemplate": "https://ovp.itv.com/images/programme/h7jkq7g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "4h",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-01-21T18:45:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a3651",
+        "underscore": "2_3651"
+      },
       "episodeId": "2/3651/0121",
-      "programmeId": "2/3651",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/h7jkq7g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3651",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: World Grand Prix",
+      "titleSlug": "snooker-world-grand-prix"
     },
     {
-      "ccid": "xjz6f62",
-      "title": "The Best of Saint & Greavsie",
-      "titleSlug": "the-best-of-saint-and-greavsie",
-      "encodedProgrammeId": {
-        "letterA": "10a4475",
-        "underscore": "10_4475"
-      },
+      "broadcastDateTime": "2024-03-31T17:45:00Z",
+      "ccid": "kyqpcy3",
       "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The Snooker World Mixed Doubles Championship",
+      "encodedEpisodeId": {
+        "letterA": "10a2903a0010",
+        "underscore": "10_2903_0010"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a2903",
+        "underscore": "10_2903"
+      },
+      "episodeId": "10/2903/0010",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/kyqpcy3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2903",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: World Mixed Doubles Championship",
+      "titleSlug": "snooker-world-mixed-doubles-championship"
+    },
+    {
+      "broadcastDateTime": null,
+      "ccid": "j7kjk37",
+      "channel": "itv",
+      "contentInfo": "15m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Star-studded event celebrating unsung heroes across the country",
+      "encodedEpisodeId": {
+        "letterA": "10a0159a0005",
+        "underscore": "10_0159_0005"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a0159",
+        "underscore": "10_0159"
+      },
+      "episodeId": "10/0159/0005",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/images/programme/j7kjk37/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/0159",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Sport Gives Back Awards: Sport & Me",
+      "titleSlug": "sport-gives-back-awards-sport-and-me"
+    },
+    {
+      "broadcastDateTime": "2023-09-16T10:30:00Z",
+      "ccid": "xjz6f62",
+      "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Head down memory lane with ITV's iconic football duo",
       "encodedEpisodeId": {
         "letterA": "10a4475a0006",
         "underscore": "10_4475_0006"
       },
-      "description": "Head down memory lane with ITV's iconic football duo",
-      "imageTemplate": "https://ovp.itv.com/images/programme/xjz6f62/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-03T11:30:00Z",
+      "encodedProgrammeId": {
+        "letterA": "10a4475",
+        "underscore": "10_4475"
+      },
       "episodeId": "10/4475/0006",
-      "programmeId": "10/4475",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/xjz6f62/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/4475",
+      "tier": [
+        "FREE"
+      ],
+      "title": "The Best of Saint & Greavsie",
+      "titleSlug": "the-best-of-saint-and-greavsie"
     },
     {
+      "broadcastDateTime": "2024-04-27T09:30:00Z",
       "ccid": "4hggznx",
-      "title": "The Big Match Revisited",
-      "titleSlug": "the-big-match-revisited",
+      "channel": "itv4",
+      "contentInfo": "Series 6",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Plunge into the past with highlights from this iconic football show",
+      "encodedEpisodeId": {
+        "letterA": "1a6464a0121",
+        "underscore": "1_6464_0121"
+      },
       "encodedProgrammeId": {
         "letterA": "1a6464",
         "underscore": "1_6464"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "1a6464a0112",
-        "underscore": "1_6464_0112"
-      },
-      "description": "Plunge into the past with highlights from this iconic football show",
+      "episodeId": "1/6464/0121",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
       "imageTemplate": "https://ovp.itv.com/images/programme/4hggznx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 6",
       "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-24T10:30:00Z",
-      "episodeId": "1/6464/0112",
       "programmeId": "1/6464",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
-    },
-    {
-      "ccid": "c49tmjj",
-      "title": "The NFL Show",
-      "titleSlug": "the-nfl-show",
-      "encodedProgrammeId": {
-        "letterA": "10a2448",
-        "underscore": "10_2448"
-      },
-      "channel": "itv",
-      "encodedEpisodeId": {
-        "letterA": "10a2448a0043",
-        "underscore": "10_2448_0043"
-      },
-      "description": "The new season is here! Craig Doyle joins stars to discuss the show",
-      "imageTemplate": "https://ovp.itv.com/images/programme/c49tmjj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
       "tier": [
         "FREE"
       ],
-      "broadcastDateTime": "2024-02-10T23:25:00Z",
-      "episodeId": "10/2448/0043",
-      "programmeId": "10/2448",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
-        }
-      ],
-      "contentType": "series"
+      "title": "The Big Match Revisited",
+      "titleSlug": "the-big-match-revisited"
     },
     {
+      "broadcastDateTime": null,
       "ccid": "thrq279",
-      "title": "World Chase Tag",
-      "titleSlug": "world-chase-tag",
-      "encodedProgrammeId": {
-        "letterA": "10a5178",
-        "underscore": "10_5178"
-      },
       "channel": "itv",
+      "contentInfo": "Series 1 - 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Parkour, Ninja Warrior & a fight to win - the extreme mash-up game",
       "encodedEpisodeId": {
         "letterA": "10a5178a0001",
         "underscore": "10_5178_0001"
       },
-      "description": "Parkour, Ninja Warrior & a fight to win - the extreme mash-up game",
-      "imageTemplate": "https://ovp.itv.com/images/programme/thrq279/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 1 - 4",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": null,
+      "encodedProgrammeId": {
+        "letterA": "10a5178",
+        "underscore": "10_5178"
+      },
       "episodeId": "10/5178/0001",
-      "programmeId": "10/5178",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/thrq279/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/5178",
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Chase Tag",
+      "titleSlug": "world-chase-tag"
     },
     {
+      "broadcastDateTime": "2024-04-23T20:00:00Z",
       "ccid": "qzkn82w",
-      "title": "World Rally Championship Highlights",
-      "titleSlug": "world-rally-championship-highlights",
+      "channel": "itv4",
+      "contentInfo": "Series 8",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Watch drivers push themselves to their limits in this World Championship",
+      "encodedEpisodeId": {
+        "letterA": "2a2398a0103",
+        "underscore": "2_2398_0103"
+      },
       "encodedProgrammeId": {
         "letterA": "2a2398",
         "underscore": "2_2398"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "2a2398a0101",
-        "underscore": "2_2398_0101"
-      },
-      "description": "Watch drivers push themselves to their limits in this World Championship",
-      "imageTemplate": "https://ovp.itv.com/images/programme/qzkn82w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 8",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-21T23:15:00Z",
-      "episodeId": "2/2398/0101",
-      "programmeId": "2/2398",
+      "episodeId": "2/2398/0103",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/qzkn82w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/2398",
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Rally Championship Highlights",
+      "titleSlug": "world-rally-championship-highlights"
     },
     {
+      "broadcastDateTime": "2024-01-27T18:00:00Z",
       "ccid": "2f1v738",
-      "title": "World Series of Darts",
-      "titleSlug": "world-series-of-darts",
-      "encodedProgrammeId": {
-        "letterA": "2a3877",
-        "underscore": "2_3877"
-      },
-      "channel": "itv4",
+      "channel": "itv3",
+      "contentInfo": "Series 8 - 9",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch coverage from World Series of Darts tournaments around the world",
       "encodedEpisodeId": {
         "letterA": "2a3877a0106",
         "underscore": "2_3877_0106"
       },
-      "description": "Catch coverage from World Series of Darts tournaments around the world",
-      "imageTemplate": "https://ovp.itv.com/images/programme/2f1v738/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 8 - 9",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-01-27T18:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a3877",
+        "underscore": "2_3877"
+      },
       "episodeId": "2/3877/0106",
-      "programmeId": "2/3877",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/2f1v738/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3877",
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Series of Darts",
+      "titleSlug": "world-series-of-darts"
     },
     {
+      "broadcastDateTime": "2023-09-17T17:00:00Z",
       "ccid": "zq3jqcj",
-      "title": "World Series of Darts Finals",
-      "titleSlug": "world-series-of-darts-finals",
-      "encodedProgrammeId": {
-        "letterA": "2a3722",
-        "underscore": "2_3722"
-      },
       "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Dive into coverage of the finals from Amsterdam",
       "encodedEpisodeId": {
         "letterA": "2a3722a0036",
         "underscore": "2_3722_0036"
       },
-      "description": "Dive into coverage of the finals from Amsterdam",
-      "imageTemplate": "https://ovp.itv.com/images/programme/zq3jqcj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 2",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2023-09-17T17:00:00Z",
+      "encodedProgrammeId": {
+        "letterA": "2a3722",
+        "underscore": "2_3722"
+      },
       "episodeId": "2/3722/0036",
-      "programmeId": "2/3722",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/zq3jqcj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3722",
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Series of Darts Finals",
+      "titleSlug": "world-series-of-darts-finals"
     },
     {
+      "broadcastDateTime": "2024-04-23T19:00:00Z",
       "ccid": "n5b8m7w",
-      "title": "World Superbike Highlights",
-      "titleSlug": "world-superbike-highlights",
+      "channel": "itv4",
+      "contentInfo": "Series 9",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Witness all the thrills & spills in these unmissable superbike highlights",
+      "encodedEpisodeId": {
+        "letterA": "2a4431a0113",
+        "underscore": "2_4431_0113"
+      },
       "encodedProgrammeId": {
         "letterA": "2a4431",
         "underscore": "2_4431"
       },
-      "channel": "itv4",
-      "encodedEpisodeId": {
-        "letterA": "2a4431a0110",
-        "underscore": "2_4431_0110"
-      },
-      "description": "Witness all the thrills & spills in these unmissable superbike highlights",
-      "imageTemplate": "https://ovp.itv.com/images/programme/n5b8m7w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": "Series 9",
-      "partnership": null,
-      "contentOwner": null,
-      "tier": [
-        "FREE"
-      ],
-      "broadcastDateTime": "2024-02-18T11:00:00Z",
-      "episodeId": "2/4431/0110",
-      "programmeId": "2/4431",
+      "episodeId": "2/4431/0113",
       "genres": [
         {
           "id": "SPORT",
-          "name": "Sport",
-          "hubCategory": true
+          "name": "Sport"
         }
       ],
-      "contentType": "series"
+      "imageTemplate": "https://ovp.itv.com/images/programme/n5b8m7w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/4431",
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Superbike Highlights",
+      "titleSlug": "world-superbike-highlights"
     }
   ],
   "metadata": {
     "TITLE": "Watch the latest sport matches and up-to-the-minute commentary - ITVX",
     "DESC": "Don't miss top Sport replays and highlights of all the latest matches, races & tours - all for free on ITVX, the UK's freshest streaming service"
   },
-  "subnav": null,
+  "subnav": {
+    "items": [
+      {
+        "id": "factual",
+        "label": "Documentaries & Lifestyle",
+        "url": "/watch/categories/factual"
+      },
+      {
+        "id": "drama-soaps",
+        "label": "Drama",
+        "url": "/watch/categories/drama-soaps"
+      },
+      {
+        "id": "children",
+        "label": "Kids",
+        "url": "/watch/categories/children"
+      },
+      {
+        "id": "films",
+        "label": "Film",
+        "url": "/watch/categories/films"
+      },
+      {
+        "id": "sport",
+        "label": "Sport",
+        "url": "/watch/categories/sport"
+      },
+      {
+        "id": "comedy",
+        "label": "Comedy",
+        "url": "/watch/categories/comedy"
+      },
+      {
+        "id": "news",
+        "label": "News",
+        "url": "/watch/categories/news"
+      },
+      {
+        "id": "entertainment",
+        "label": "Entertainment & Reality",
+        "url": "/watch/categories/entertainment"
+      },
+      {
+        "id": "signed-bsl",
+        "label": "Signed - BSL",
+        "url": "/watch/categories/signed-bsl"
+      }
+    ],
+    "activeItem": "sport",
+    "type": "category"
+  },
   "navAdServerParams": {
     "area": "category",
     "category": [

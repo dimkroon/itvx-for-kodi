@@ -4,7 +4,6 @@
       "imagePresets": {},
       "contentType": "special",
       "title": "Harry - The Interview",
-      "tagName": null,
       "imageTemplate": "https://ovp.itv.com/images/special/vygg10g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "programmeId": "10/3975",
       "encodedProgrammeId": {
@@ -32,7 +31,6 @@
       "imagePresets": {},
       "contentType": "series",
       "title": "Tell Me Everything",
-      "tagName": null,
       "imageTemplate": "https://ovp.itv.com/images/series/0ln19dm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "brandImageTemplate": "https://ovp.itv.com/images/programme/rgcr13g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "programmeId": "10/1188",
@@ -60,7 +58,6 @@
       "imagePresets": {},
       "contentType": "series",
       "title": "The Reunion",
-      "tagName": null,
       "imageTemplate": "https://ovp.itv.com/images/series/nxvtv9h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "brandImageTemplate": "https://ovp.itv.com/images/programme/y36nhcw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "programmeId": "10/2578",
@@ -84,31 +81,25 @@
         "Series 1"
       ]
     },
-    {
-      "imagePresets": {},
-      "contentType": "simulcastspot",
-      "title": "Six Nations Championship: England v Scotland",
-      "tagName": null,
-      "imageTemplate": "https://ovp.itv.com/images/episode/8r9dkzh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/6khrj88/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "2/4295/0056",
-      "encodedEpisodeId": {
-        "letterA": "2a4295a0056",
-        "underscore": "2_4295_0056"
-      },
-      "description": "Catch all the on-pitch action from England v Scotland at Twickenham",
-      "channel": "ITV",
-      "ctaLabel": "Watch Now",
-      "genre": "Sport",
-      "contentInfo": [
-        "Sport"
-      ]
-    },
+ {
+   "contentType": "simulcastspot",
+   "title": "Britain's Got Talent",
+   "description": "Always entertaining, always surprising, plus Ant & Dec! An epic night in",
+   "channel": "ITV",
+   "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/britainsgottalents17/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+   "genre": "Entertainment",
+   "ctaLabel": "Watch Live",
+   "ariaLabel": "Watch live, Britain's Got Talent",
+   "contentInfo": ["Entertainment"],
+   "strapline": {"text": "Stream it now", "variant": "live-and-fast"},
+   "startDateTime": "19:30",
+   "endDateTime": "21:00",
+   "tagName": "live"
+ },
     {
       "imagePresets": {},
       "contentType": "fastchannelspot",
       "title": "Crime Drama Channel",
-      "tagName": null,
       "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-crimedrama/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "description": "From Cracker to Karen Pirie, stream the exclusive Crime Drama channel",
       "channel": "fast7",
@@ -119,7 +110,6 @@
       "imagePresets": {},
       "contentType": "film",
       "title": "Coyote Ugly",
-      "tagName": null,
       "imageTemplate": "https://ovp.itv.com/images/film/nch31g7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "isPaid": false,
       "ccid": "nch31g7",
@@ -149,14 +139,16 @@
       ]
     },
     {
-      "imagePresets": {},
       "contentType": "collection",
-      "title": "Harry Potter Collection",
-      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/harrypottercollection/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "ariaLabel": "Watch Now",
+      "title": "All Star Movies",
+      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/allstarmovies/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "strapline": {
+        "text": "Massive movies, stellar stars", "variant": "default"
+      },
+      "ariaLabel": "View Collection",
       "ctaLabel": "View Collection",
-      "collectionId": "2ZBEiOkKZHOU1LNiJSK1cJ",
-      "titleSlug": "harry-potter-collection"
+      "collectionId": "5m5pvqBmAvwoVtx5o7bLKL",
+      "titleSlug": "all-star-movies"
     },
     {
       "imagePresets": {},
@@ -167,6 +159,23 @@
       "ctaLabel": "View Collection",
       "pageId": "3jTaOWIREqG2p2daqSHAkn",
       "titleSlug": "funny-favourites"
+    },
+    {
+      "contentType": "brand",
+      "partnership": null,
+      "contentOwner": null,
+      "title": "The Beast Must Die",
+      "categories": ["DRAMA_AND_SOAPS"],
+      "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}],
+      "description": "A gripping revenge thriller - stream the full boxset now",
+      "imageTemplate": "https://ovp.itv.com/images/programme/y8dpbwd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "ccid": "y8dpbwd",
+      "programmeId": "10/1313",
+      "encodedProgrammeId": {"letterA": "10a1313", "underscore": "10_1313"},
+      "isPaid": false,
+      "contentInfo": ["Drama", "Series 1"],
+      "ctaLabel": "Watch Now",
+      "ariaLabel": "Watch an episode of The Beast Must Die"
     }
   ],
   "editorialSliders": {
@@ -5093,99 +5102,36 @@
       },
       "items": [
         {
-          "imagePresets": {},
-          "episodeTitle": "The latest ITV News headlines - as thousands of NHS consultants go on strike ",
-          "episodeId": "6js5d0f",
-          "titleSlug": "the-latest-itv-news-headlines-as-thousands-of-nhs-consultants-go-on-strike",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6Hbjrkr1wDEO4dHjdO4wpK/1a1e8ed0d6a61fa165da0a36599b934e/LU_DTRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Watch a short summary of today's top stories from the ITV News team.",
-          "dateTime": "2023-07-20T15:52:00Z",
-          "duration": 117,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/1oitOHUXMIYCdttQBYtqRo/4803e3ff8e4ec42db5a82e88b2760eaa/lu_poster.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "contentType": "shortform",
+          "episodeTitle": "How farms are being targeted by criminal gangs stealing machinery to order for Russia",
+          "episodeId": "z3khg27",
+          "titleSlug": "how-farms-are-being-targeted-by-criminal-gangs-stealing-machinery-to-order-for-russia",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3V5n5Y0U1Ifw3c4WQPEoE3/84a5ea87391405c35b1624c2e5d3646a/ITVX_RURAL_CRIME_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "ITV News has been shown figures which reveal the surge in demand for heavy machinery since the invasion of Ukraine and subsequent sanctions.",
+          "dateTime": "2024-05-10T18:10:00Z",
+          "duration": 301,
+          "posterImage": "https://images.ctfassets.net/go68aep20o4s/4rqz4D7C6k6b9qvxl3hX8W/ee8717d498d9d6f9f74b5c0a62b6ab30/ITVX_RURAL_CRIME_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "news",
           "href": "/watch/news/undefined"
         },
         {
-          "imagePresets": {},
-          "episodeTitle": "Thousands of senior doctors in England begin a 48-hour walkout ",
-          "episodeId": "5npt32k",
-          "titleSlug": "thousands-of-senior-doctors-in-england-begin-a-48-hour-walkout",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4WR4JHWnIn2T7SndwQ3bVt/b413fdbe46eb6f1bdd23ecb0e0db24f7/CONSULTANTS_NEW_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Consultant doctors and hospital-based dentists have begun a two-day strike in England. NHS bosses have warned planned care will come to a \"virtual standstill\".",
-          "dateTime": "2023-07-20T12:54:00Z",
-          "duration": 326,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/1kz8ctBvi4PPFBN7JdZ2sI/2f2ccf90e6d2786e756c97b5f2284338/CONSULTANTS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "href": "/watch/news/undefined"
-        },
-        {
-          "imagePresets": {},
-          "episodeTitle": "Some supermarkets not displaying prices as clearly as they should, watchdog says",
-          "episodeId": "k2qdqwj",
-          "titleSlug": "some-supermarkets-not-displaying-prices-as-clearly-as-they-should-watchdog-says",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4qX9bX2b2Vr1GN1SgjDsZP/5091d85d16be422932fa31e5f05bc777/CAROLINE_THUMBS.00_00_02_15.Still008.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "The Competition and Markets Authority has said this could be preventing shoppers from comparing prices effectively.",
-          "dateTime": "2023-07-20T12:55:00Z",
-          "duration": 130,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/dPmcuhKlnAg5wEcStz2xO/37a9b4161487a00cc9a0fcaaaeb0b6c6/NOSTRAP_GROCERY.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "href": "/watch/news/undefined"
-        },
-        {
-          "imagePresets": {},
-          "episodeTitle": "Temperatures in America's Death Valley continue to soar after one tourist dies",
-          "episodeId": "v9mbwpr",
-          "titleSlug": "temperatures-in-americas-death-valley-continue-to-soar-after-one-tourist-dies",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/wOfCBfpMQyJeHhSeofl0L/f99e2e58406647ef5d10138ece06df22/death_valley.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Temperatures in Death Valley, in California have soared higher than 50C in recent days as the world struggles with record-breaking heat.",
-          "dateTime": "2023-07-20T12:56:00Z",
-          "duration": 81,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/2TvcPeNBG9snXVQWA43wdU/71fc78a5d2305fb9f30ba84190468e73/dan_pic.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "href": "/watch/news/undefined"
-        },
-        {
-          "imagePresets": {},
-          "episodeTitle": "Women's World Cup kicks off in New Zealand and Australia",
-          "episodeId": "7tnp1pb",
-          "titleSlug": "womens-world-cup-kicks-off-in-new-zealand-and-australia",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/588YHdTe0ql4PkNY5XU2ya/b31132e18c96e1d26096eefa21fe5a71/ITVX_THUMB_WC_LTN_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "The opening ceremony took place in Auckland ahead of the first games. England's Lionesses will kick off their campaign on Saturday against Haiti.",
-          "dateTime": "2023-07-20T09:30:00Z",
-          "duration": 61,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/1tJxbIJcd3LU4t9yWH5mLX/72d32f7ebebdb36c9069dbc4ab7b3f90/2.73056762.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "href": "/watch/news/undefined"
-        },
-        {
-          "imagePresets": {},
-          "episodeTitle": "The journey of women's football: From outright ban to record Women's World Cup",
-          "episodeId": "lg1k27m",
-          "titleSlug": "the-journey-of-womens-football-from-outright-ban-to-record-womens-world-cup",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/35YLqJ6E4TZrEG7Nh7CY2B/6c9bf51414b5682f941188e43e216188/football_3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "After their memorable win at the Euros last year, England's Lionesses have become household names - but the journey to get there hasn't been an easy one.",
-          "dateTime": "2023-07-20T11:50:00Z",
-          "duration": 177,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/zs7JSO4mLMgrWIyKrdrhD/d62caad880b7fef78bab3f6646966c13/FOOTBALL_NEW.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "href": "/watch/news/undefined"
-        },
-        {
-          "imagePresets": {},
-          "episodeTitle": "How difficult is it to travel on holiday sustainably? ",
-          "episodeId": "hjjmvm8",
-          "titleSlug": "how-difficult-is-it-to-travel-on-holiday-sustainably",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1EHzrqvA2WDv76Pe716MQT/b7c70fe0ff9a4d85e7543958818cff6e/TRAINVPLANE_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Greenpeace are calling on the government to ban short-haul flights as southern Europe feels the scorching impact of climate change. ",
-          "dateTime": "2023-07-20T15:37:00Z",
-          "duration": 111,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/6iiATUhJoNGmxgIWT76In5/12c19107ce47d7c0415e166c7891cec8/TRAIN_NO_S.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "href": "/watch/news/undefined"
-        },
-        {
-          "imagePresets": {},
-          "episodeTitle": "20,000 RMT members walk out in latest rail strike at start of school holidays",
-          "episodeId": "79v86rg",
-          "titleSlug": "20000-rmt-members-walk-out-in-latest-rail-strike-at-start-of-school-holidays",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7gFqx4wggeCj1vWbA486aQ/01238fd6cf2161fbaa001b57e9d057b6/ITVX_THUMB_LTN_RAIL_STRIKES_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Rail workers in the RMT union are walking out for 24-hours over pay and conditions, ahead of further strike action on the 22nd and 29th of July.",
-          "dateTime": "2023-07-20T12:56:00Z",
-          "duration": 167,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/G06dBSViYGuxrR6QgJG8a/b10c164772d059dcca30f1dd8aece01d/2.72455090.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "contentType": "episode",
+          "episodeTitle": "Trump on Trial: All the analysis after Stormy Daniel's graphic testimony",
+          "episodeId": "10/5756/0004",
+          "titleSlug": "trump-on-trial-all-the-analysis-after-stormy-daniels-graphic-testimony",
+          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6CREqnZztU3Izglkxq5DrA/5bde585968a0fb36cfeeb2a7f347629c/x_promo_slate.png?w={width}&h={height}&q={quality}&fm={image_format}",
+          "dateTime": "2024-05-10T19:37:00Z",
+          "programmeId": "10/5756",
+          "programmeTitle": "Trump on Trial",
+          "encodedEpisodeId": {
+            "letterA": "10a5756a0004",
+            "underscore": "10_5756_0004"
+          },
+          "encodedProgrammeId": {
+            "letterA": "10a5756",
+            "underscore": "10_5756"
+          },
+          "genre": "news",
           "href": "/watch/news/undefined"
         }
       ],
@@ -5202,7 +5148,6 @@
       },
       "items": [
         {
-          "imagePresets": {},
           "episodeTitle": "Famous New Zealand actor Taika Waititi looks back on All Blacks glory years",
           "episodeId": "byccw46",
           "titleSlug": "famous-new-zealand-actor-taika-waititi-looks-back-on-all-blacks-glory-years",
@@ -5215,7 +5160,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Barrett: We controlled the ball well against Italy",
           "episodeId": "ln1zbfb",
           "titleSlug": "barrett-we-controlled-the-ball-well-against-italy",
@@ -5228,7 +5172,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Ioane and Capuozzo combine for Italy",
           "episodeId": "rm8v6yf",
           "titleSlug": "ioane-and-capuozzo-combine-for-italy",
@@ -5241,7 +5184,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Analysis - New Zealand run riot in the first half against Italy",
           "episodeId": "spwbmv2",
           "titleSlug": "analysis-new-zealand-run-riot-in-the-first-half-against-italy",
@@ -5254,7 +5196,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "New Zealand start fast against Italy with Will Jordan try",
           "episodeId": "1kw9gt1",
           "titleSlug": "new-zealand-start-fast-against-italy-with-will-jordan-try",
@@ -5267,7 +5208,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Highlights - Japan v Samoa",
           "episodeId": "xc0l3ts",
           "titleSlug": "highlights-japan-v-samoa",
@@ -5280,7 +5220,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "All Black's Jordie Barrett wary of Italy threat",
           "episodeId": "kzwd6zm",
           "titleSlug": "all-blacks-jordie-barrett-wary-of-italy-threat",
@@ -5293,7 +5232,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Grand Slammers - England's 2003 Rugby World Cup-winning stars train a group of prison inmates",
           "encodedEpisodeId": {
             "letterA": "10a4742a0001",
@@ -5313,7 +5251,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Scotland ring the changes for Romania clash",
           "episodeId": "q09nvgf",
           "titleSlug": "scotland-ring-the-changes-for-romania-clash",
@@ -5326,7 +5263,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "We wind back to a memorable Rugby World Cup in Japan in 2019",
           "episodeId": "08lbl5h",
           "titleSlug": "we-wind-back-to-a-memorable-rugby-world-cup-in-japan-in-2019",
@@ -5339,7 +5275,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Michael Leitch puts Japan in control against Samoa",
           "episodeId": "xm3r9t7",
           "titleSlug": "michael-leitch-puts-japan-in-control-against-samoa",
@@ -5352,7 +5287,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "ITV Panel: Poor discipline Samoa's downfall",
           "episodeId": "trblw00",
           "titleSlug": "itv-panel-poor-discipline-samoas-downfall",
@@ -5365,7 +5299,6 @@
           "href": "/watch/sport/undefined"
         },
         {
-          "imagePresets": {},
           "episodeTitle": "Highlights - Uruguay v Namibia",
           "episodeId": "j109002",
           "titleSlug": "highlights-uruguay-v-namibia",

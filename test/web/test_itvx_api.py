@@ -28,6 +28,9 @@ from test.support import testutils
 
 setUpModule = fixtures.setup_web_test
 
+dftl_headers = {'User-Agent': fetch.USER_AGENT,
+                'Origin': 'https://www.itv.com'}
+
 
 class LiveSchedules(unittest.TestCase):
     """Request the live schedule
@@ -74,73 +77,6 @@ class LiveSchedules(unittest.TestCase):
         end = now + timedelta(hours=4)
         self.check_schedule(now, end)
 
-    # @unittest.skip("Schedules far in the past time out")
-    def test_main_channels_schedules_4_days_in_the_past(self):
-        """Live schedules are available to some time in the past.
-
-        Requesting schedules takes some time, but going further in the past quickly increases
-        the time the request takes to return.
-        If we do the same request several times, a response that initially took 10 sec , returns
-        in 150 ms after a few attempts.
-
-        .. Note ::
-            Regularly requests encounter a 504 - Gateway Timeout error, even requests that on other occasions
-            complete without error, but going further in the past increases the change of a time-out.
-        """
-        now = datetime.utcnow()
-        start = now - timedelta(days=4)
-        # self.check_schedule(start, now)
-        try:
-            self.check_schedule(start, now + timedelta(hours=4))
-        except (requests.HTTPError, requests.ReadTimeout) as err:
-            if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
-                # try again
-                print("schedule for 4 days in the past failed, trying again...")
-                self.check_schedule(start, now + timedelta(hours=4))
-            else:
-                raise
-
-    @unittest.skip("Schedules far in the future time out")
-    def test_main_channels_schedules_7_days_in_the_future(self):
-        """Live schedules are available up to roughly 1 week in the future. Requests for
-        more will usually succeed normally, but do not contain more data.
-
-        See the test above (week_in_the_past) for peculiarities
-
-        """
-        now = datetime.utcnow()
-        end = now + timedelta(days=8)
-        expected_end = now + timedelta(days=7)
-        try:
-            schedule = self.check_schedule(now, end)
-        except (requests.HTTPError, requests.ReadTimeout) as err:
-            if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
-                # try again
-                print("schedule for days on the future failed, trying again...")
-                schedule = self.check_schedule(now, end)
-            else:
-                raise
-        last_programme = schedule[0]['_embedded']['slot'][-1]
-        start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
-        self.assertAlmostEqual(start_dt.timestamp(), expected_end.timestamp(), delta=86400)  # give or take a day
-
-    @unittest.skip("Schedules far in the past time out")
-    def test_one_day_week_ago(self):
-        now = datetime.utcnow()
-        end = now - timedelta(days=6)
-        try:
-            schedule = self.check_schedule(start_dt=now - timedelta(days=7), end_dt=end)
-        except (requests.HTTPError, requests.ReadTimeout) as err:
-            if isinstance(err, requests.ReadTimeout) or err.response.status_code == 504:
-                # try again
-                print("schedule for on week ago failed, trying again...")
-                schedule = self.check_schedule(start_dt=now - timedelta(days=7), end_dt=end)
-            else:
-                raise
-        last_programme = schedule[0]['_embedded']['slot'][-1]
-        start_dt = datetime.strptime(last_programme['startTime'], '%Y-%m-%dT%H:%MZ')
-        self.assertAlmostEqual(start_dt.timestamp(), end.timestamp(), delta=86400)  # give or take a day
-
     def test_now_next(self):
         resp = requests.get('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,'
                             'outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
@@ -153,7 +89,13 @@ class LiveSchedules(unittest.TestCase):
 
         self.assertAlmostEqual(20, len(data['channels']), delta=5)
         for chan in data['channels']:
-            object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images')
+            item_name = "now-next.{}".format(chan.get('name', "unknown channel"))
+            object_checks.has_keys(chan, 'id', 'editorialId', 'channelType', 'name', 'streamUrl', 'slots', 'images',
+                                   'slug', 'isKidsChannel', obj_name=item_name)
+            self.assertTrue(chan['channelType'] in ('simulcast', 'fast'))
+            if chan['channelType'] == 'fast':
+                object_checks.has_keys(chan, 'channelDescription', 'channelTitle', obj_name=item_name)
+
             for program in (chan['slots']['now'], chan['slots']['next']):
                 progr_keys = ('titleId', 'prodId', 'contentEntityType', 'start', 'end', 'title',
                               'brandTitle', 'displayTitle', 'detailedDisplayTitle', 'broadcastAt', 'guidance',
@@ -162,11 +104,11 @@ class LiveSchedules(unittest.TestCase):
                 object_checks.has_keys(program, *progr_keys)
                 if program['displayTitle'] is None:
                     # If displayTitle is None all other fields are None or False as well.
-                    # Noticed 25-6-2023, only on the FAST channel named 'Unwind', which in fact
-                    # does not really broadcast programmes.
+                    # Noticed first 25-6-2023, on the FAST channels that were no longer available
+                    # Since May 2024 a channel name 'ITV Sport' has empty data.
                     for k in progr_keys:
                         self.assertFalse(program[k])
-                    self.assertTrue(chan['name'].lower() in ('unwind', 'citv'))
+                    self.assertTrue(chan['name'].lower() in ('itv sport'))
                 else:
                     self.assertTrue(object_checks.is_iso_utc_time(program['start']))
                     self.assertTrue(object_checks.is_iso_utc_time(program['end']))
@@ -655,16 +597,16 @@ class Playlists(unittest.TestCase):
             'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
             'Origin': 'https://www.itv.com'}
-        existing_cookies = fetch.HttpSession().cookies
+        default_cookies = fetch.set_default_cookies()
 
         with self.assertRaises(requests.exceptions.ReadTimeout):
             requests.post(url, headers=headers, json=self.create_post_data('live'), timeout=2)
 
         jar = RequestsCookieJar()
-        for cookie in existing_cookies:
-            if cookie.name.startswith("Cassie"):
+        for cookie in default_cookies:
+            if cookie.name.startswith("Syrenis"):
                 jar.set_cookie(cookie)
-        self.assertTrue(len(jar.items()), "No Cassie consent cookies")
+        self.assertTrue(len(jar.items()), "No Syrenis consent cookies")
         requests.post(url, headers=headers, cookies=jar, json=self.create_post_data('live'), timeout=2)
 
     def test_manifest_live_simulcast(self):
@@ -774,3 +716,56 @@ class Playlists(unittest.TestCase):
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
                 object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+
+
+class ChannelLogos(unittest.TestCase):
+    """These urls are obtained from the now/next schedule and are hardcoded for use
+    in iptvmanager integration.
+    """
+    logo_urls = [
+        'https://images.ctfassets.net/bd5zurrrnk1g/54OefyIkbiHPMJUYApbuUX/7dfe2176762fd8ec10f77cd61a318b07/itv1.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/aV9MOsYOMEXHx3iw0p4tk/57b35173231c4290ff199ef8573367ad/itv2.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/6Mul5JVrb06pRu8bNDgIAe/b5309fa32322cc3db398d25e523e2b2e/itvBe.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/39fJAu9LbUJptatyAs8HkL/80ac6eb141104854b209da946ae7a02f/itv3.png',
+        'https://images.ctfassets.net/bd5zurrrnk1g/6Dv76O9mtWd6m7DzIavtsf/b3d491289679b8030eae7b4a7db58f2d/itv4.png'
+    ]
+
+    def test_channel_log_urls(self):
+        """Test if logo images used in IPTV Manager integration are available.
+
+        """
+        for url in self.logo_urls:
+            response = requests.get(url, headers=dftl_headers, timeout=5)
+            self.assertEqual(response.status_code, 200)
+
+    def test_check_scaled_logos(self):
+        """Check if resized images can be obtained as per API specs at:
+        https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&-cropping
+
+        """
+        import struct
+        import imghdr
+
+        # Modified version of https://stackoverflow.com/questions/8032642/how-can-i-obtain-the-image-size-using-a-standard-python-class-without-using-an
+        def get_image_size(imgdata):
+            '''Determine the image type of fhandle and return its size.
+            from draco'''
+            head = imgdata[:24]
+            if len(head) != 24:
+                return
+            if imghdr.what(None, h=imgdata) == 'png':
+                check = struct.unpack('>i', head[4:8])[0]
+                if check != 0x0d0a1a0a:
+                    return
+                width, height = struct.unpack('>ii', head[16:24])
+            else:
+                return
+            return width, height
+
+        for url in self.logo_urls:
+            url += '?w=512'
+            response = requests.get(url, headers=dftl_headers, timeout=5)
+            self.assertEqual(response.status_code, 200)
+            width, height = get_image_size(response.content)
+            self.assertEqual(512, width)
+            self.assertAlmostEqual(512, height, delta=2)
