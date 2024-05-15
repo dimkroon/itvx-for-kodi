@@ -372,9 +372,14 @@ def parse_category_item(prog, category_id):
         programme_item['info']['duration'] = playtime
         programme_item['params'] = {'url': build_url(title, prog['encodedProgrammeId']['letterA'])}
     else:
+        # A Workaround for an issue at ITVX where news programmes' programmeId already contain an
+        # episodeId and programme and episode IDs are the same. On the website these programmes
+        # end up at page saying "Oops something went wrong".
+        prog_id = prog['encodedProgrammeId']['letterA']
+        episode_id = prog['encodedEpisodeId']['letterA']
         programme_item['params'] = {'url': build_url(title,
-                                                     prog['encodedProgrammeId']['letterA'],
-                                                     prog['encodedEpisodeId']['letterA'])}
+                                                     prog_id,
+                                                     episode_id if prog_id != episode_id else None)}
     return {'type': 'title' if is_playable else 'series',
             'programme_id': prog['encodedProgrammeId']['underscore'],
             'show': programme_item}
