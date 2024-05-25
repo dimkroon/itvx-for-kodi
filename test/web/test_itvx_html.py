@@ -113,7 +113,7 @@ def check_programme(self, progr_data):
     """Formerly known as 'Brand'"""
     obj_name = progr_data['title']
     has_keys(progr_data, 'title', 'image', 'longDescription', 'description',
-             'encodedProgrammeId', 'titleSlug', 'tier',
+             'encodedProgrammeId', 'titleSlug', 'tier', 'visuallySigned',
              obj_name=obj_name)
     expect_keys(progr_data, 'categories', 'programmeId')
     # Only programme details pages (like episodes, specials, films) still have this field.
@@ -151,7 +151,8 @@ def check_title(self, title, parent_name):
     has_keys(title, 'accessibilityTags', 'audioDescribed', 'availabilityFrom', 'availabilityUntil', 'broadcastDateTime',
              'categories', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
-             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', obj_name=obj_name)
+             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
+             obj_name=obj_name)
 
     expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'heroCtaLabel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
@@ -181,6 +182,8 @@ def check_title(self, title, parent_name):
         self.assertListEqual(['PAID'], title['tier'])
     else:
         self.assertListEqual(['FREE'], title['tier'])
+    if title['visuallySigned']:
+        self.assertTrue(is_url(title['bslPlaylistUrl']))
 
     if title['productionType'] == 'EPISODE':
         expect_keys(title, 'isFullSeries', 'nextProductionId', )
@@ -615,11 +618,12 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                'https://www.itv.com/watch/stonehouse/10a1973',          # programme with BSL
                 ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_miss-marple.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/series_midsomer-murders.json')
+            # testutils.save_json(data, 'html/series_stonehouse-bsl.json')
             programme_data = data['programme']
             check_programme(self, programme_data)
             for series in data['seriesList']:
