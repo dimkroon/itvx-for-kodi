@@ -411,7 +411,7 @@ def check_item_type_programme(testcase, progr_data, parent):
     testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))
 
 
-def check_genres(testcase, genre_item):
+def check_genres(testcase, genre_item, item_name='unknown'):
     """Check that `genre_item` is a list of dicts.
 
     :param unittest.TestCase testcase: Instanceof unittest.TestCase to run the tests in.
@@ -419,8 +419,9 @@ def check_genres(testcase, genre_item):
 
     """
     for genre in genre_item:
-        testcase.assertTrue({'id', 'name'} == set(genre.keys()))
+        testcase.assertTrue({'id', 'name'} == set(genre.keys()), f'Unexpected fields in genre of item {item_name}')
         testcase.assertTrue(
             genre['id'] in
-            ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'])
+            ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'],
+            f"Unexpected genre '{genre['id']}' in item f{item_name}")
 
