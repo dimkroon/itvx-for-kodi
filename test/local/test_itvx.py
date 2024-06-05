@@ -477,6 +477,14 @@ class GetPLaylistUrl(TestCase):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_stonehouse-bsl.json'))
+    def test_get_playlist_from_signed_programme(self, _):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+        bsl_result = itvx.get_playlist_url_from_episode_page('page', prefer_bsl=True)
+        self.assertTrue(is_url(result))
+        self.assertNotEqual(result, bsl_result)
+
 
 class GetMyList(TestCase):
     def setUp(self):

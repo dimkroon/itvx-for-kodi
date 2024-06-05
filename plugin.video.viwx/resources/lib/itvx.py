@@ -262,7 +262,7 @@ def collection_content(url=None, slider=None, hide_paid=False):
             return
 
 
-def episodes(url, use_cache=False):
+def episodes(url, use_cache=False, prefer_bsl=False):
     """Get a listing of series and their episodes
 
     Return a tuple of a series map and a programmeId.
@@ -321,7 +321,7 @@ def episodes(url, use_cache=False):
                 'episodes': []
             })
         series_obj['episodes'].extend(
-            [parsex.parse_episode_title(episode, programme_fanart) for episode in series['titles']])
+            [parsex.parse_episode_title(episode, programme_fanart, prefer_bsl) for episode in series['titles']])
 
     programme_data = {'programme_id': programme_id, 'series_map': series_map}
     cache.set_item(url, programme_data, expire_time=1800)
@@ -453,7 +453,7 @@ def category_news_content(url, sub_cat, rail=None, hide_paid=False):
                 for news_item in items_list]
 
 
-def get_playlist_url_from_episode_page(page_url):
+def get_playlist_url_from_episode_page(page_url, prefer_bsl=False):
     """Obtain the url to the episode's playlist from the episode's HTML page.
 
     """
@@ -461,10 +461,15 @@ def get_playlist_url_from_episode_page(page_url):
     data = get_page_data(page_url)
 
     try:
-        return data['seriesList'][0]['titles'][0]['playlistUrl']
+        episode = data['seriesList'][0]['titles'][0]
     except KeyError:
         # news item
-        return data['episode']['playlistUrl']
+        episode = data['episode']
+
+    if prefer_bsl:
+        return episode.get('bslPlaylistUrl') or episode['playlistUrl']
+    else:
+        return episode['playlistUrl']
 
 
 
