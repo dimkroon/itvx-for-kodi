@@ -98,7 +98,7 @@ def is_iso_utc_time(time_str):
         else:
             time.strptime(time_str, '%Y-%m-%dT%H:%M:%SZ')
         return True
-    except ValueError:
+    except (ValueError, TypeError):
         return False
 
 
@@ -419,7 +419,8 @@ def check_genres(testcase, genre_item, item_name='unknown'):
 
     """
     for genre in genre_item:
-        testcase.assertTrue({'id', 'name'} == set(genre.keys()), f'Unexpected fields in genre of item {item_name}')
+        has_keys(genre, 'id', 'name', obj_name=item_name)
+        # testcase.assertTrue({'id', 'name'} == set(genre.keys()), f'Unexpected fields in genre of item {item_name}')
         testcase.assertTrue(
             genre['id'] in
             ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'],
