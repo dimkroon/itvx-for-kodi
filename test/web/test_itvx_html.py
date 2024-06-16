@@ -373,6 +373,9 @@ class MainPage(unittest.TestCase):
                 # Flag if this changes.
                 self.assertFalse(is_iso_utc_time(item['startDateTime']))
                 self.assertFalse(is_iso_utc_time(item['endDateTime']))
+                # Basic check that start and end times are in HH:MM format in British local time
+                self.assertTrue(t.isdecimal for t in item['startDateTime'].split(':'))
+                self.assertTrue(t.isdecimal for t in item['endDateTime'].split(':'))
             #  TODO: Merge check with similar items from shortFormatSliders and collections
             # elif content_type == 'fastchannelspot':
             #     check_collection_item_type_fastchannelspot(self, item, parent_name='hero-item')
