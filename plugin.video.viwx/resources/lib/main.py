@@ -185,6 +185,7 @@ def root(_):
     for item in itvx.main_page_items():
         callback = callb_map.get(item['type'], play_title)
         li = Listitem.from_dict(callback, **item['show'])
+        li.context.extend(item.get('ctx_mnu', []))
         _my_list_context_mnu(li, item.get('programme_id'))
         yield li
     yield Listitem.from_dict(list_collections, 'Collections')
@@ -538,7 +539,7 @@ def create_mp4_file_item(name, file_url):
 
 
 @Resolver.register
-def play_stream_live(addon, channel, url, title=None, start_time=None, play_from_start=False):
+def play_stream_live(addon, channel, url=None, title=None, start_time=None, play_from_start=False):
     if url is None:
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         logger.info("Created live url from channel name: '%s'", url)

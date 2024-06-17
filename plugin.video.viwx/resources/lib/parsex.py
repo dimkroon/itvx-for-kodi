@@ -12,9 +12,12 @@ import pytz
 from datetime import datetime
 
 from codequick.support import logger_id
+from codequick import Script
 
 from . import utils
 from .errors import ParseError
+
+TXT_PLAY_FROM_START = 30620
 
 
 logger = logging.getLogger(logger_id + '.parse')
@@ -90,6 +93,8 @@ def parse_hero_content(hero_data):
             info['title'] = ''.join(('[COLOR orange]', info['title'], '[/COLOR]'))
             return item
 
+        context_mnu = []
+
         item = {
             'label': title,
             'art': {'thumb': hero_data['imageTemplate'].format(**IMG_PROPS_THUMB),
@@ -104,6 +109,32 @@ def parse_hero_content(hero_data):
         if item_type in ('simulcastspot', 'fastchannelspot'):
             item['params'] = {'channel': hero_data['channel'], 'url': None}
             item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
+            if item_type == 'simulcastspot':
+                # Create a 'Watch from the start' context menu item
+                try:
+                    import pytz
+                    from datetime import timedelta
+                    start_t = utils.strptime(hero_data['startDateTime'], '%H:%M')
+                    btz = pytz.timezone('Europe/London')
+                    british_start = btz.localize(datetime.now()).replace(hour=start_t.hour, minute=start_t.minute)
+                    utc_start = british_start.astimezone(pytz.utc)
+                    # Don't create 'Watch from the start' when the programme is yet to begin.
+                    # This breaks the edge case where a programme that started before midnight is
+                    # watched after midnight.
+                    if utc_start < datetime.now(pytz.utc):
+                        params = item['params']
+                        params['start_time'] = utc_start.strftime('%Y-%m-%dT%H:%M:%S')
+                        cmd = ''.join((
+                            'PlayMedia(plugin://', utils.addon_info.id,
+                            '/resources/lib/main/play_stream_live/?channel=', params['channel'],
+                            '&start_time=', params['start_time'],
+                            '&play_from_start=True, noresume)'))
+                        context_mnu.append((Script.localize(TXT_PLAY_FROM_START), cmd))
+                except:
+                    # Don't let errors on Watch from the Start ruin the whole item.
+                    logger.warning("Failed to parse start time of simulcast hero item '%s':\n",
+                                   hero_data.get('title', 'unknown title'), exc_info=True)
+                    pass
 
         elif item_type in ('series', 'brand'):
             item['info'].update(plot=''.join((hero_data.get('ariaLabel', ''), '\n\n', hero_data.get('description'))))
@@ -124,7 +155,8 @@ def parse_hero_content(hero_data):
             return None
         return {'type': item_type,
                 'programme_id': hero_data.get('encodedProgrammeId', {}).get('underscore'),
-                'show': item}
+                'show': item,
+                'ctx_mnu': context_mnu}
     except:
         logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title', 'unknown title'), exc_info=True)
 
