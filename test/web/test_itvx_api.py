@@ -422,7 +422,8 @@ class Recommended(unittest.TestCase):
         self.features_web = {
                 'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
                 'platform': 'dotcom',
-                'size': 12}
+                'size': 12,
+                'version': 2}
         self.features_mobile = {
                 'features': 'mpeg-dash,widevine,widevine-download,inband-ttml,inband-webvtt,outband-webvtt,inband-audio-description',
                 'platform': 'mobile',

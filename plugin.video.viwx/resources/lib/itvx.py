@@ -623,7 +623,7 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
     byw_url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + user_id
     byw = cache.get_item(byw_url)
     if not byw:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12}
+        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12, 'version': 2}
         byw = fetch.get_json(byw_url, params=req_params)
         if not byw:
             return

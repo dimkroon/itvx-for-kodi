@@ -197,9 +197,13 @@ def sub_menu_my_itvx(_):
     # Ensure to add at least one parameter to persuade dynamic listing that we actually call the list.
     yield Listitem.from_dict(generic_list, 'My List', params={'list_type':'mylist', 'filter_char': None})
     yield Listitem.from_dict(generic_list, 'Continue Watching', params={'list_type':'watching', 'filter_char': None})
-    last_programme = itvx.because_you_watched(itv_account.itv_session().user_id, name_only=True)
-    if last_programme:
-        yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type':'byw'})
+    try:
+        last_programme = itvx.because_you_watched(itv_account.itv_session().user_id, name_only=True)
+        if last_programme:
+            yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type':'byw'})
+    except Exception as e:
+        # Log the error, but don't let the whole submenu fail because of this.
+        logger.error("Error getting the qlast watched programme: %s\n", e, exc_info=True)
     yield Listitem.from_dict(generic_list, 'Recommended for You', params={'list_type':'recommended'})
 
 
