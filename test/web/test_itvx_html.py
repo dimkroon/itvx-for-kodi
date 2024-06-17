@@ -441,7 +441,7 @@ class MainPage(unittest.TestCase):
         for slider in page_props['shortFormSliderContent']:
             check_short_form_slider(self, slider, name='mainpage.shortform')
             header  = slider['header']
-            # ShortFromSlider on the main page should have a reference to the collection page.
+            # ShortFromSlider on the main page should have a reference to a collection or category page.
             self.assertFalse(is_url(header['linkHref']))                # is a relative link
             self.assertTrue(header['linkHref'].startswith('/watch'))    # starts with '/watch', unlike editorialSliders
 
@@ -488,6 +488,7 @@ class CollectionPages(unittest.TestCase):
         misses_keys(page_data, 'shortFormSlider', obj_name=parent_name[:-1])
         collection = page_data['collection']
         editorial_sliders = page_data['editorialSliders']
+        shortform_slider = page_data.get('shortFormSlider')
 
         if collection is not None:
             # As of May 2024 pageImageUrl is sometimes present on pages with non-empty collection
@@ -528,6 +529,12 @@ class CollectionPages(unittest.TestCase):
                 else:
                     for show in collection_data['shows']:
                         check_shows(testcase, show, obj_name)
+
+        if shortform_slider:
+            # It looks like shortform sliders are no longer present on collection pages
+            # Flag if one is found.
+            raise AssertionError("shortFormSlider on collection page %s", parent_name)
+            check_short_form_slider(testcase, shortform_slider)
 
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""

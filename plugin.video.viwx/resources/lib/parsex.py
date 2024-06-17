@@ -160,6 +160,35 @@ def parse_short_form_slider(slider_data, url=None):
         return None
 
 
+def parse_view_all(slider_data):
+    """Return listitem data with a behaviour similar to the 'View All' button of a
+    slider on the web page.
+
+    """
+    header = slider_data['header']
+    link = header.get('linkHref')
+    if not link:
+        return
+    url = 'https://www.itv.com' + link
+
+    if link.startswith('/watch/categories'):
+        item_type = 'category'
+        params = {'path': url}
+    elif link.startswith('/watch/collections'):
+        item_type = 'collection'
+        params = {'url': url}
+    else:
+        logger.warning("Unknown linkHref on %s: '%s", slider_data.get('key'), link)
+        return
+
+    return {'type': item_type,
+            'show': {'label': header.get('linkText') or 'View All',
+                     'params': params,
+                     'info': {'sorttitle': sort_title('zzzz')}
+                     }
+            }
+
+
 def parse_editorial_slider(url, slider_data):
     """Parse editorialSliders from the main page or from a collection."""
     # noinspection PyBroadException

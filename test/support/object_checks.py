@@ -289,6 +289,7 @@ def check_short_form_slider(testcase, slider, name=''):
     if not header['title']:
         # News's title is empty, but has a field iconTitle instead
         testcase.assertTrue(is_not_empty(header['iconTitle'], str))
+    has_keys(header, 'linkHref', 'linkText', obj_name=slider['key'] + '.header')
     for item in slider['items']:
         check_short_form_item(item)
 
