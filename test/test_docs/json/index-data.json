@@ -5319,6 +5319,216 @@
       "trackingProps": {
         "contentType": "news clip"
       }
+    },
+    {
+      "header": {
+        "title": "",
+        "logo": {
+          "name": "itvSportMono",
+          "iconSrc": "<svg width=\"152\" height=\"33\" viewBox=\"0 0 152 33\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M32.9813 19.1982L28.7203 12.4841C28.4646 12.0055 28.2697 11.7153 28.2697 11.147C28.273 10.3116 28.7071 9.70757 30.1789 8.78541C30.497 8.57642 31.6433 8.1208 32.5721 8.1208C33.8246 8.1208 34.759 9.41717 34.759 12.1294C34.759 16.5424 32.9813 19.1982 32.9813 19.1982ZM32.9813 19.1982L33.7655 10.5824L34.1198 9.0831C34.1198 9.0831 35.6848 11.3649 39.6719 18.7053C42.204 14.1013 43.8189 8.59963 43.8189 8.59963C43.9322 8.22356 44.2325 8.13252 44.6671 8.24707L47.4004 9.09183C47.7322 9.21025 47.9123 9.34136 47.7254 9.9584C45.452 16.5745 41.892 22.032 41.892 22.032C41.2066 23.0477 40.5084 23.91 38.1953 23.91C36.3291 23.91 35.6792 23.2744 35.0292 22.3043L32.9813 19.1982ZM16.149 21.5028C16.149 21.5028 13.2682 19.3013 13.2682 15.1848V3.39473C13.2682 2.44668 13.8799 1.62513 16.4305 1.62513C19.2178 1.62513 19.5237 2.71009 19.5237 3.52408V8.41561H24.4623C24.8186 8.41561 24.9561 8.6239 24.9561 8.95393V11.8726C24.9561 12.1486 24.8436 12.3665 24.5196 12.3665H21.2522C20.4049 12.3665 19.5237 12.0372 19.5237 12.0372V14.0127C19.5237 16.4757 18.8873 18.9917 16.149 21.5028ZM16.149 21.5028L18.7006 14.9181L19.5237 14.095V15.2473C19.5237 18.019 20.8683 20.1514 24.3476 20.1514C27.5201 20.1514 29.7532 18.3542 29.7532 15.5653C29.7532 14.1477 29.067 13.0229 29.067 13.0229L32.6659 14.8198L32.9813 19.1982C32.9813 19.1982 30.5848 23.8984 23.8292 23.8984C18.5541 23.8984 16.149 21.5028 16.149 21.5028ZM0.0163436 8.92197C0.0163436 8.62806 0.181153 8.41561 0.510201 8.41561H5.88274C6.16656 8.41561 6.35418 8.64055 6.35418 8.917V17.1534C6.35418 18.5577 7.15378 20.1909 9.62155 20.1909C12.0249 20.1909 13.2682 18.6955 13.2682 15.6422V15.0004L15.8198 19.8566L16.149 21.5028C16.149 21.5028 13.6456 23.923 9.10813 23.923C6.85603 23.923 0.0163436 23.5536 0.0163436 16.0704V8.92197ZM0 3.13971C0 1.41303 1.22332 0 3.18908 0C5.25866 0 6.36829 1.4824 6.36829 3.22364C6.36829 5.13847 4.9662 6.29918 3.20389 6.29918C1.28581 6.29918 0 4.99082 0 3.13971Z\" fill=\"white\"/><path d=\"M58.5611 23.9991C56.1608 23.9991 54.5983 23.7172 52.5987 23.184C52.0634 23.0328 51.8691 22.8922 51.8691 22.316C51.8691 21.7525 52.0888 20.5649 52.2726 20.1682C52.4829 19.726 52.5366 19.6587 52.8839 19.6587C53.449 19.6587 55.225 20.4738 58.3288 20.4738C60.4745 20.4738 61.1894 20.0242 61.6112 19.5919C61.9285 19.2398 62.119 18.707 62.119 18.0978C62.119 17.606 62.012 16.9956 61.5994 16.6021C60.1583 15.2469 55.5531 14.9971 53.7215 13.1053C52.4687 11.8845 52.187 10.2244 52.187 9.1317C52.187 7.30414 52.8637 6.02002 53.7724 5.09695C55.2195 3.62982 57.6076 3.18652 59.9305 3.18652C62.9235 3.18652 65.2979 3.93135 65.2979 3.93135L64.9148 7.39961C64.9148 7.39961 62.3205 6.71492 60.1587 6.71492C57.2673 6.71492 56.5657 7.84826 56.5723 8.95237C56.5723 9.46882 56.7522 9.91633 57.0899 10.2362C58.3515 11.549 62.9298 11.6132 64.9148 13.6147C66.1156 14.8121 66.4676 16.3053 66.4676 17.8044C66.4676 19.5532 65.9815 21.0633 64.8578 22.2059C63.4994 23.5437 61.2355 23.9991 58.5611 23.9991Z\" fill=\"white\"/><path d=\"M68.9023 3.46729V22.9562C68.9023 23.7093 69.5902 23.8703 71.0569 23.8703C72.5346 23.8703 73.1788 23.6646 73.1788 22.9562V17.1455H77.2921C79.9172 17.1455 81.8647 16.45 82.9865 15.302C84.3065 13.8782 84.7738 12.1619 84.7738 10.2237C84.7738 7.96722 84.2507 6.61277 83.1487 5.41475C81.6316 3.81205 79.2176 3.46729 76.835 3.46729H68.9023ZM73.1788 6.96028H77.0309C77.9621 6.96028 78.8949 7.21279 79.4864 7.79476C80.0875 8.41382 80.327 9.20667 80.327 10.3543C80.327 11.3898 80.0428 12.293 79.4966 12.8394C78.9288 13.4261 78.0403 13.6851 76.5739 13.6851H73.1788V6.96028Z\" fill=\"white\"/><path d=\"M96.1132 3.17163C93.2039 3.17163 90.8393 4.09965 89.4282 5.59041C88.0046 7.09019 86.8125 9.17547 86.8125 13.62C86.8125 16.7922 87.3829 19.4473 89.422 21.6149C90.8583 23.1402 92.9717 24 96.1499 24C98.8632 24 101.062 23.3831 102.835 21.5486C104.686 19.5865 105.389 16.9211 105.389 13.62C105.389 10.3978 104.709 7.56566 102.823 5.64753C101.624 4.39032 99.5985 3.17163 96.1132 3.17163ZM96.1336 6.76256C97.487 6.76256 98.4918 7.14137 99.4399 8.04591C100.615 9.158 101.012 11.3363 101.012 13.5914C101.012 15.6627 100.695 17.8313 99.4481 19.1584C98.8383 19.7467 97.7958 20.4448 96.1254 20.4448C94.5684 20.4448 93.5532 19.9324 92.8232 19.2563C91.3714 17.8417 91.1859 15.3525 91.1859 13.567C91.1859 11.1694 91.563 9.27288 92.811 7.9643C93.6335 7.22997 94.8511 6.76256 96.1336 6.76256Z\" fill=\"white\"/><path d=\"M107.646 3.46729V22.793C107.646 23.5904 107.958 23.8703 109.801 23.8703C111.688 23.8703 111.923 23.6127 111.923 22.793V16.3293H114.763L118.494 22.5706C118.689 22.9016 118.891 23.2344 119.029 23.3673C119.46 23.806 120.418 23.8774 121.454 23.8774C123.196 23.8774 123.593 23.5813 123.593 23.3163C123.593 23.1287 123.553 22.9783 123.274 22.5727L118.99 15.9366C118.99 15.9366 120.666 15.4443 121.584 14.4288C123.068 12.9262 123.349 11.0769 123.349 9.74835C123.349 7.78139 122.813 6.27506 121.826 5.28825C120.265 3.78212 118.31 3.46729 115.547 3.46729H107.646ZM111.923 6.96028H115.873C116.871 6.96322 117.697 7.13545 118.244 7.65806C118.761 8.19102 118.947 8.782 118.947 9.73713C118.947 10.7424 118.745 11.5518 118.266 12.0314C117.812 12.5021 116.92 12.8363 115.906 12.8363H111.923V6.96028Z\" fill=\"white\"/><path d=\"M133.468 23.8693C131.644 23.8693 131.309 23.5899 131.309 22.7925V6.95979H125.303V3.4668H141.592V6.95979H135.586V22.7925C135.586 23.6245 135.228 23.8693 133.468 23.8693Z\" fill=\"white\"/></svg>"
+        },
+        "iconTitle": "ITV Sport",
+        "linkHref": "/watch/categories/sport",
+        "linkText": "View All"
+      },
+      "items": [
+        {
+            "contentType": "episode",
+            "episodeTitle": "Group C: Serbia v England - Highlights of Serbia v England",
+            "episodeId": "10/5755/0007",
+            "titleSlug": "group-c-serbia-v-england-highlights-of-serbia-v-england",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/10d5zYzENMF5BFoQKrxM11/12db78f966f85aff5719c39aab4ac2b4/HIGHLIGHTS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "dateTime": "2024-06-16T22:01:25.927Z",
+            "programmeId": "10/5755",
+            "programmeTitle": "UEFA Euro 2024 Highlights",
+            "encodedEpisodeId": {
+                "letterA": "10a5755a0007",
+                "underscore": "10_5755_0007"
+            },
+            "encodedProgrammeId": {
+                "letterA": "10a5755",
+                "underscore": "10_5755"
+            },
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Post match interviews",
+            "episodeId": "r0syv0w",
+            "titleSlug": "post-match-interviews",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5iT0yhnfMhC3YYilNz17At/b1ce7fcb6434327429775a742d6d8bf8/ENG_IVS_GFX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "England's Jude Bellingham and Trent Alexander-Arnold give their thoughts after their Group C opener against Serbia",
+            "dateTime": "2024-06-16T21:38:50.159Z",
+            "duration": 320,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5Q6JkrvIgtVjvKE0zhdViI/db17dc7bf245a19a5d2076e90a70f7b6/ENG_IVS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Classy Bellingham the difference for England",
+            "episodeId": "645lkrr",
+            "titleSlug": "classy-bellingham-the-difference-for-england",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/3cDMt45GIyzmkzUzop8xhm/86df2a889eb9015103c59072be8496b8/bellignham_goal_gfx.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Jude Bellingham announced himself on the European Championships scoring the only goal in England's 1-0 win over Serbia in their opening Group C match",
+            "dateTime": "2024-06-16T20:52:26.914Z",
+            "duration": 83,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6cCHVd2nl4if2Uus2VRV8/31ffb28ea98de024a2f2ee04534829d6/bellingham_goal_clean.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Southgate praises resilience",
+            "episodeId": "9yfn4b6",
+            "titleSlug": "southgate-praises-resilience",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4pK1QjSev3CY9rVdRtV3hL/4febabb0efd94a021ed71066daccd548/SOUTHGATE_GFX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "England manager Gareth Southgate believes the experience of the tough encounter with Serbia will build the spirit within the squad for the remaining group games",
+            "dateTime": "2024-06-16T21:54:08.442Z",
+            "duration": 236,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/40zliaMRKV7gSQtYaI90Po/6b11b9b95d19467545fe01b7e8b7ddb6/southgate_iv_clean.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Kane denied goal by super save",
+            "episodeId": "z2q5v9l",
+            "titleSlug": "kane-denied-goal-by-super-save",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/64Vg8Z50YC6r8fuhYx4Hia/64365b6f21bb5f65f6057589e63a8d51/keeper_2_gfx.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Harry Kane is denied a goal by a super save by Serbia goalkeeper Predrag Rajkovi\u0107 late in the game",
+            "dateTime": "2024-06-16T20:58:02.242Z",
+            "duration": 41,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/7rShQVdkCxvj9mK8Qwn6T/21adc96737beae16ae25922d4bb602c3/Rajkovic_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "\"A golden moment for him\"",
+            "episodeId": "7wp56jp",
+            "titleSlug": "a-golden-moment-for-him",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4m3doF0pGVP14Z2ZDh2rbK/ce4480776b76266b1320eed5b3e5a214/ERIKSEN_ANALYSIS_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Gary Neville reacts to Christian Eriksen scoring for Denmark on his return to European Championship football, 1,100 days after suffering a cardiac arrest",
+            "dateTime": "2024-06-16T16:23:50.835Z",
+            "duration": 145,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6VxB4YKIcNn7CLa5X9wjSD/a633acd511c254da1ce787a3e2a960df/ERIK_ANALYSIS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Euros Rewind",
+            "episodeId": "znfqv86",
+            "titleSlug": "euros-rewind",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/cwGJCtAonTJcYzqh2Rp7w/640e02b44765b45e534c72294f07792e/EURO_REWIND_THUMB.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "We delve into the European Championship archives going back to 1992 when Denmark unexpectedly reigned supreme",
+            "dateTime": "2024-06-16T15:34:23.911Z",
+            "duration": 162,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/10j2CX8SonfPwNaJrQBXYt/af7794b3ebd736ee5df3fa23e8f9a2fa/EURO_REWIND_THUMB.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Super Sub Weghorst makes desired impact",
+            "episodeId": "6w4yrhl",
+            "titleSlug": "super-sub-weghorst-makes-desired-impact",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/1PJdMv9qGkfo1U1w6jAPp5/eabca157be0fb7b6a1e696648993abb7/weg_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Substitute Wout Weghorst scored after just two minutes of coming on to score the decisive goal in The Netherlands' clash with Poland in group D",
+            "dateTime": "2024-06-16T14:48:03.2Z",
+            "duration": 134,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/2XgwJeQajcB2I3Z1hQqgTk/07f942f37e2d772c966170e7ecf65503/weghorst_clean.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "The fastest goal in European Championship history!",
+            "episodeId": "jq8c2ky",
+            "titleSlug": "the-fastest-goal-in-european-championship-history",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/14NKlkl0Pfi61rafF5UvwL/5d7b626f2cb587b846504c1f9e8eb2a4/Euro_2024_Rail_for_ITVX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Albania's Nedim Bajrami made history scoring fastest goal in European Championship history in just 23 seconds, against Italy in their Group B opener",
+            "dateTime": "2024-06-15T20:57:26.878Z",
+            "duration": 36,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5OZLKbNnGFmN4FhS60NECI/20c204a9cc3f26915c725a70cdc119b9/albania_goal_clean.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "episode",
+            "episodeTitle": "Group B: Spain v Croatia - Highlights of Spain v Croatia",
+            "episodeId": "10/5755/0003",
+            "titleSlug": "group-b-spain-v-croatia-highlights-of-spain-v-croatia",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4IdAykeRNVZKuK8nlyx5Cr/e5ca58b8b9d68116805c5a6e87284ae5/UEFA-Euro-2024-Fixture-Group-B-Spain-V-Croatia_08_Episodic_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "dateTime": "2024-06-15T18:58:39.419Z",
+            "programmeId": "10/5755",
+            "programmeTitle": "UEFA Euro 2024 Highlights",
+            "encodedEpisodeId": {
+                "letterA": "10a5755a0003",
+                "underscore": "10_5755_0003"
+            },
+            "encodedProgrammeId": {
+                "letterA": "10a5755",
+                "underscore": "10_5755"
+            },
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "McGregor: \"We didn't get it right\"",
+            "episodeId": "26gbgnr",
+            "titleSlug": "mcgregor-we-didnt-get-it-right",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/1MxxnLlKIwvEGULxFN5cwf/3abfb798a0fbb064f1716e4dbcb4dbe8/mcgregor_gfx.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Scotland's Callum McGregor bemoaned his sides performance against Germany, but believes they have what it takes to improve in the competition",
+            "dateTime": "2024-06-15T15:43:39.808Z",
+            "duration": 373,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/1GeKMY6e9t6QtSNwT8QuyI/bd11b75560c343b352b7934180a009fe/mcgregor_3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Roy Keane fumes at Scotland's performance against Germany",
+            "episodeId": "sg1d317",
+            "titleSlug": "roy-keane-fumes-at-scotlands-performance-against-germany",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/n3jraTQuDcc9iTOFIllYw/a15674550944b8dcdcb5acfc1cba4c51/tackle.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Roy Keane held nothing back after Scotland were battered by Germany",
+            "dateTime": "2024-06-14T21:26:41.697Z",
+            "duration": 73,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6Pr9balWJbSEDkX6Wh3rz4/02a6ff2e7d3a3ec19988eecba2a57808/cleanaaa.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        },
+        {
+            "contentType": "shortform",
+            "episodeTitle": "Ian Wright remembers Kevin Campbell",
+            "episodeId": "141k60g",
+            "titleSlug": "ian-wright-remembers-kevin-campbell",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/6bMh4H5MtRai5ZmcWSicZ8/b3f7be5c38fa8dff92202a5e3185d6af/CAMPBELL_GFX.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Ian Wright paid tribute to friend and former Arsenal teammate Kevin Campbell, who passed away, aged 54, on Saturday",
+            "dateTime": "2024-06-15T15:33:23.47Z",
+            "duration": 59,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/1tUdWOylSzqJ2xCbLNh695/17ef5135b437a799198efdc5981abe68/CAMPBELL_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
+        }
+      ],
+      "key": "sportShortForm",
+      "genre": "sport",
+      "isRail": true,
+      "dataTestId": "sport-rail",
+      "tileType": "news",
+      "trackingProps": {
+          "contentType": "sport",
+          "moduleName": "itv-sport",
+          "genre": "sport",
+          "itemFeed": "sportShortForm",
+          "buttonName": "view all"
+      },
+      "className": "sport-short-form"
     }
   ],
   "trendingSliderContent": {
