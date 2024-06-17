@@ -248,23 +248,21 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
     ShortFormSliders are found on the main page, some collection pages.
     Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
 
-    # TODO: Shortform items snow have a field contentType, which has value 'shortform' when the item
-            has a shortform format, or something else like 'episode' when the item is a normal
-            episode. Wait for the occasion to be able to check a sports shortform slider before
-            differentiating based on content type.
     """
     try:
-        if 'encodedProgrammeId' in item_data.keys():
-            # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
+        if item_data['contentType'] == 'shortform':
+            # This item is a 'short item', aka 'news clip'.
+            href = item_data.get('href', '/watch/news/undefined')
+            url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
+
+        else:
+            # The news item is a 'normal' catchup title. Is usually just the latest ITV news,
+            # or a full sports programme.
             # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
             url = '/'.join(('https://www.itv.com/watch',
                             item_data['titleSlug'],
                             item_data['encodedProgrammeId']['letterA'],
                             item_data.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
-        else:
-            # This item is a 'short item', aka 'news clip'.
-            href = item_data.get('href', '/watch/news/undefined')
-            url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
 
         # dateTime field occasionally has milliseconds. Strip these when present.
         item_time = pytz.UTC.localize(utils.strptime(item_data['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
