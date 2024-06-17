@@ -145,7 +145,7 @@ def parse_short_form_slider(slider_data, url=None):
             params = {'url': url, 'slider': 'shortFormSlider'}
         elif link:
             # A shortFormSlider from the main page
-            params = {'url': 'https://www.itv.com' + link}
+            params = {'url': 'https://www.itv.com', 'slider': slider_data.get('key')}
         else:
             return
 

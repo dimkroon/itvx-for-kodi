@@ -196,7 +196,7 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_get_collection_news(self, _):
-        shows = list(filter(None, main.list_collection_content.test(slider='shortFormSliderContent')))
+        shows = list(filter(None, main.list_collection_content.test(slider='newsShortForm')))
         self.assertGreater(len(shows), 10)
         for item in shows:
             self.assertIsInstance(item, Listitem)

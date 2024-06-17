@@ -152,11 +152,11 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_news(self, _):
-        items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
-        self.assertEqual(2, len(items))
+        items = list(filter(None, itvx.collection_content(slider='newsShortForm')))
+        self.assertEqual(3, len(items))
         for item in items:
             check_item(self, item)
-        items2 = list(filter(None, itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)))
+        items2 = list(filter(None, itvx.collection_content(slider='newsShortForm', hide_paid=True)))
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
