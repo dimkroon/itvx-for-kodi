@@ -236,7 +236,7 @@ class MyList(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.token = itv_account.itv_session().access_token
-        cls. userid = itv_account.itv_session().user_id
+        cls.userid = itv_account.itv_session().user_id
 
     def test_get_my_list_no_content_type(self):
         """Request My List without specifying the content-type
@@ -244,8 +244,7 @@ class MyList(unittest.TestCase):
         """
         # Query parameters features and platform are required!!
         # NOTE:
-        #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
-        #   presented and playable on the website.
+        #   Platform dotcom may return fewer items than mobile and ctv. The website now uses platform ctv.
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
               'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
         headers = {'authorization': 'Bearer ' + self.token}
@@ -351,7 +350,7 @@ class LastWatched(unittest.TestCase):
         """Get last watch without specifying accept header returns content-type application/json,
         with exactly the same content as the original application/vnd.user.content.v1+json.
         """
-        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
                    'accept': 'application/vnd.user.content.v1+json'}
@@ -365,7 +364,7 @@ class LastWatched(unittest.TestCase):
         """Get last watch without specifying accept header returns content-type application/json,
         with exactly the same content as the original application/vnd.user.content.v1+json.
         """
-        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token}
         resp = requests.get(url, headers=headers)
@@ -382,7 +381,7 @@ class LastWatched(unittest.TestCase):
 
         """
         # Get the productionId of the first last-watched programme
-        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         last_watched = itv_account.fetch_authenticated(fetch.get_json, url)
         prod_id = None
@@ -419,55 +418,73 @@ class LastWatched(unittest.TestCase):
 
 class Recommended(unittest.TestCase):
     def setUp(self) -> None:
-        self.features_web = {
-                'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
-                'platform': 'dotcom',
-                'size': 12}
-        self.features_mobile = {
-                'features': 'mpeg-dash,widevine,widevine-download,inband-ttml,inband-webvtt,outband-webvtt,inband-audio-description',
-                'platform': 'mobile',
-                'size': 12}
         self.userid = itv_account.itv_session().user_id
         self.headers = {'accept': 'application/json'}
+
+    def get_features(self, **kwargs):
+        base_features = {
+            'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
+            'platform': 'dotcom',
+            'size': 12,
+            'broadcaster': 'ITV'}
+        features = base_features.copy()
+        if kwargs.get('platform') == 'web':
+            del kwargs['platform']
+        features.update({k: v for k, v in kwargs.items()})
+        return features
 
     def test_get_recommendations_byw(self):
         """Because You Watched - recommendations based on the (last) watched programme
         Requires userid, but no login."""
         url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(version=2), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
         self.assertEqual('application/json', resp.headers['content-type'])
         data = resp.json()
         # testutils.save_json(data, 'usercontent/byw.json')
         self.assertTrue(object_checks.is_not_empty(data['watched_programme'], str))
-        self.assertTrue(12, len(data['recommendations']))
-        for progr in data['recommendations']:
+        recommendations_1 = data['recommendations']
+        self.assertTrue(12, len(recommendations_1))
+        for progr in recommendations_1:
             object_checks.check_item_type_programme(self, progr, 'BecauseYouWatched')
 
+        # tier=PAID
+        resp = requests.get(url, headers=self.headers,
+                            params=self.get_features(version=2, tier='PAID'), allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual(recommendations_1, data['recommendations'])
+
         # without specifying content-type
-        resp = requests.get(url, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, params=self.get_features(version=2), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
         self.assertEqual('application/json', resp.headers['content-type'])
 
         # invalid user ID
         url = 'https://recommendations.prd.user.itv.com/recommendations/byw/none'
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(version=2), allow_redirects=False)
         self.assertEqual(204, resp.status_code)
 
     def test_recommendations_homepage(self):
         """Regular recommendations place on the home page."""
-        self.features_web.update(tier='FREE', version='1')
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(version=3), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
         self.assertEqual('application/json', resp.headers['content-type'])
         data = resp.json()
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
         # testutils.save_json(data, 'usercontent/recommended.json')
         self.assertTrue(12, len(data))
 
+        # tier=PAID
+        resp = requests.get(url, headers=self.headers,
+                            params=self.get_features(version=2, tier='PAID'), allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual(data, resp.json())
+
     def test_recommendations_homepage_with_invalid_userid(self):
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/none'
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(version=3), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
         data = resp.json()
         self.assertTrue(12, len(data))
@@ -476,7 +493,7 @@ class Recommended(unittest.TestCase):
 
     def test_recommendations_homepage_without_invalid_userid(self):
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/'
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(version=3), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
         data = resp.json()
         self.assertTrue(12, len(data))
@@ -485,9 +502,8 @@ class Recommended(unittest.TestCase):
 
     def test_recommendatation_homepage_more_items(self):
         # request more than 12 items
-        self.features_web['size'] = 24
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(version=3, size=24), allow_redirects=False)
         data = resp.json()
         self.assertTrue(24, len(data))
         for progr in data:
@@ -496,7 +512,7 @@ class Recommended(unittest.TestCase):
     def test_recommendations_homepage_mobile(self):
         """This request fails without an apikey header"""
         url = 'https://api.itv/hub/recommendations/homepage/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.features_web, allow_redirects=False)
+        resp = requests.get(url, headers=self.headers, params=self.get_features(platform='mobile', version=3), allow_redirects=False)
         self.assertEqual(401, resp.status_code)
 
 # ----------------------------------------------------------------------------------------------------------------------

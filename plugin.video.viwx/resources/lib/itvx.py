@@ -512,17 +512,18 @@ def search(search_term, hide_paid=False):
 def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
     """Get itvX's 'My List', or add or remove an item from 'My List' and return the updated list.
 
+    A regular browser uses platform ctv in these requests.
     """
     if operation in ('add', 'remove'):
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features={}&platform={}'.format(
-            user_id, programme_id, FEATURE_SET, PLATFORM_TAG)
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features={}&platform=ctv&size=52'.format(
+            user_id, programme_id, FEATURE_SET)
     else:
         cached_list = cache.get_item('mylist_' + user_id)
         if use_cache and cached_list is not None:
             return cached_list
         else:
-            url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform={}'.format(
-                user_id, FEATURE_SET, PLATFORM_TAG)
+            url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform=ctv&size=52'.format(
+                user_id, FEATURE_SET)
 
     fetcher = {
         'get': fetch.get_json,
@@ -565,8 +566,8 @@ def get_last_watched():
     if cached_data is not None:
         return cached_data
 
-    url = 'https://content.prd.user.itv.com/lastwatched/user/{}/{}?features={}'.format(
-            user_id, PLATFORM_TAG, FEATURE_SET)
+    url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features={}'.format(
+            user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
     data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
@@ -605,7 +606,7 @@ def recommended(user_id, hide_paid=False):
 
     recommended = cache.get_item(recommended_url)
     if not recommended:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24}
+        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24, 'version': 3}
         recommended = fetch.get_json(recommended_url, params=req_params)
         if not recommended:
             return None
@@ -623,7 +624,7 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
     byw_url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + user_id
     byw = cache.get_item(byw_url)
     if not byw:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12}
+        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12, 'version': 2}
         byw = fetch.get_json(byw_url, params=req_params)
         if not byw:
             return
