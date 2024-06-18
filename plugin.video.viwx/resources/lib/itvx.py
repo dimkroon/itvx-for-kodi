@@ -512,17 +512,18 @@ def search(search_term, hide_paid=False):
 def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
     """Get itvX's 'My List', or add or remove an item from 'My List' and return the updated list.
 
+    A regular browser uses platform ctv in these requests.
     """
     if operation in ('add', 'remove'):
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features={}&platform={}'.format(
-            user_id, programme_id, FEATURE_SET, PLATFORM_TAG)
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features={}&platform=ctv&size=52'.format(
+            user_id, programme_id, FEATURE_SET)
     else:
         cached_list = cache.get_item('mylist_' + user_id)
         if use_cache and cached_list is not None:
             return cached_list
         else:
-            url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform={}'.format(
-                user_id, FEATURE_SET, PLATFORM_TAG)
+            url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features={}&platform=ctv&size=52'.format(
+                user_id, FEATURE_SET)
 
     fetcher = {
         'get': fetch.get_json,

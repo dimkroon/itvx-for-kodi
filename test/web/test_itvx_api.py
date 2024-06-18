@@ -236,7 +236,7 @@ class MyList(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.token = itv_account.itv_session().access_token
-        cls. userid = itv_account.itv_session().user_id
+        cls.userid = itv_account.itv_session().user_id
 
     def test_get_my_list_no_content_type(self):
         """Request My List without specifying the content-type
@@ -244,8 +244,7 @@ class MyList(unittest.TestCase):
         """
         # Query parameters features and platform are required!!
         # NOTE:
-        #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
-        #   presented and playable on the website.
+        #   Platform dotcom may return fewer items than mobile and ctv. The website now uses platform ctv.
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
               'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
         headers = {'authorization': 'Bearer ' + self.token}
@@ -426,7 +425,8 @@ class Recommended(unittest.TestCase):
         base_features = {
             'features': 'mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive',
             'platform': 'dotcom',
-            'size': 12}
+            'size': 12,
+            'broadcaster': 'ITV'}
         features = base_features.copy()
         if kwargs.get('platform') == 'web':
             del kwargs['platform']
@@ -443,9 +443,16 @@ class Recommended(unittest.TestCase):
         data = resp.json()
         # testutils.save_json(data, 'usercontent/byw.json')
         self.assertTrue(object_checks.is_not_empty(data['watched_programme'], str))
-        self.assertTrue(12, len(data['recommendations']))
-        for progr in data['recommendations']:
+        recommendations_1 = data['recommendations']
+        self.assertTrue(12, len(recommendations_1))
+        for progr in recommendations_1:
             object_checks.check_item_type_programme(self, progr, 'BecauseYouWatched')
+
+        # tier=PAID
+        resp = requests.get(url, headers=self.headers,
+                            params=self.get_features(version=2, tier='PAID'), allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual(recommendations_1, data['recommendations'])
 
         # without specifying content-type
         resp = requests.get(url, params=self.get_features(version=2), allow_redirects=False)
@@ -459,14 +466,21 @@ class Recommended(unittest.TestCase):
 
     def test_recommendations_homepage(self):
         """Regular recommendations place on the home page."""
-        self.features_web.update(tier='FREE', version='1')
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
         resp = requests.get(url, headers=self.headers, params=self.get_features(version=3), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
         self.assertEqual('application/json', resp.headers['content-type'])
         data = resp.json()
+        for progr in data:
+            object_checks.check_item_type_programme(self, progr, 'Recommended')
         # testutils.save_json(data, 'usercontent/recommended.json')
         self.assertTrue(12, len(data))
+
+        # tier=PAID
+        resp = requests.get(url, headers=self.headers,
+                            params=self.get_features(version=2, tier='PAID'), allow_redirects=False)
+        self.assertEqual(200, resp.status_code)
+        self.assertEqual(data, resp.json())
 
     def test_recommendations_homepage_with_invalid_userid(self):
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/none'
