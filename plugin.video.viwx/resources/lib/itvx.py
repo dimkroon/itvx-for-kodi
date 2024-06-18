@@ -605,7 +605,7 @@ def recommended(user_id, hide_paid=False):
 
     recommended = cache.get_item(recommended_url)
     if not recommended:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24}
+        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24, 'version': 3}
         recommended = fetch.get_json(recommended_url, params=req_params)
         if not recommended:
             return None
