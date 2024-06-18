@@ -350,7 +350,7 @@ class LastWatched(unittest.TestCase):
         """Get last watch without specifying accept header returns content-type application/json,
         with exactly the same content as the original application/vnd.user.content.v1+json.
         """
-        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
                    'accept': 'application/vnd.user.content.v1+json'}
@@ -364,7 +364,7 @@ class LastWatched(unittest.TestCase):
         """Get last watch without specifying accept header returns content-type application/json,
         with exactly the same content as the original application/vnd.user.content.v1+json.
         """
-        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token}
         resp = requests.get(url, headers=headers)
@@ -381,7 +381,7 @@ class LastWatched(unittest.TestCase):
 
         """
         # Get the productionId of the first last-watched programme
-        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/dotcom?features=mpeg-dash,outband-webvtt,' \
+        url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features=mpeg-dash,outband-webvtt,' \
               'hls,aes,playready,widevine,fairplay,progressive'.format(itv_account.itv_session().user_id)
         last_watched = itv_account.fetch_authenticated(fetch.get_json, url)
         prod_id = None

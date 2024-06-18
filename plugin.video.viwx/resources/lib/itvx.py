@@ -566,8 +566,8 @@ def get_last_watched():
     if cached_data is not None:
         return cached_data
 
-    url = 'https://content.prd.user.itv.com/lastwatched/user/{}/{}?features={}'.format(
-            user_id, PLATFORM_TAG, FEATURE_SET)
+    url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features={}'.format(
+            user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
     data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
