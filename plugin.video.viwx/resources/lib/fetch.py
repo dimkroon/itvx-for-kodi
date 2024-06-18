@@ -74,6 +74,7 @@ class HttpSession(requests.sessions.Session):
         super(HttpSession, self).__init__()
         self.headers.update({
             'User-Agent': USER_AGENT,
+            'Accept-Language':  'en-GB,en;q=0.5',
             'Origin': 'https://www.itv.com',
             'Referer': 'https://www.itv.com/',
             'Sec-Fetch-Dest': 'empty',
