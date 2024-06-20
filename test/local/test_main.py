@@ -9,6 +9,7 @@ fixtures.global_setup()
 
 import json
 
+from datetime import datetime, timezone
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -16,7 +17,7 @@ from codequick import Listitem
 import xbmcgui
 from xbmcgui import ListItem as XbmcListItem
 
-from test.support.testutils import open_json, open_doc, HttpResponse
+from test.support.testutils import open_json, open_doc, HttpResponse, mockeddt
 from test.support import object_checks
 
 from resources.lib import main
@@ -46,15 +47,21 @@ class Paginator(TestCase):
         result = list(pg)
         self.assertListEqual([], result)
 
-@patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+@patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
 class MainMenu(TestCase):
+    @patch('resources.lib.itvx.parsex.datetime', new=mockeddt)
     def test_main_menu(self, _):
+        mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=21)
         items = list(main.root.test())
         self.assertGreater(len(items), 10)
+        items_with_ctx_menus = 0
         for item in items:
             self.assertIsInstance(item, Listitem)
-        # Check 'My I=itvX' is present
+            if len(item.context) > 0:
+                items_with_ctx_menus += 1
+        # Check 'My ItvX' is present
         self.assertTrue(items[0].label == 'My itvX')
+        self.assertEqual(6, items_with_ctx_menus)
 
 
 class LiveChannels(TestCase):
@@ -196,7 +203,7 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
     def test_get_collection_news(self, _):
-        shows = list(filter(None, main.list_collection_content.test(slider='shortFormSliderContent')))
+        shows = list(filter(None, main.list_collection_content.test(slider='newsShortForm')))
         self.assertGreater(len(shows), 10)
         for item in shows:
             self.assertIsInstance(item, Listitem)
@@ -555,8 +562,14 @@ class PlayTitle(TestCase):
     @patch('resources.lib.main.play_stream_catchup', return_value='play_success')
     def test_play_episode(self, _, p_get_playlist):
         result = main.play_title.test('page.url')
-        p_get_playlist.assert_called_once_with('page.url')
+        p_get_playlist.assert_called_once_with('page.url', False)
         self.assertEqual('play_success', result)
+        # Prefer Signed Programmes
+        with patch('xbmcaddon.Addon.getSetting', new=lambda self, x: 'true' if x == 'prefer_bsl' else ''):
+            p_get_playlist.reset_mock()
+            result = main.play_title.test('page.url')
+            p_get_playlist.assert_called_once_with('page.url', True)
+            self.assertEqual('play_success', result)
 
     @patch('resources.lib.itvx.get_playlist_url_from_episode_page', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):

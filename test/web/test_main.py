@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -135,6 +135,10 @@ class TestGetProductions(unittest.TestCase):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/bad-girls/7a0129', series_idx='6')
         self.assertEqual(12, len(items))
 
+    def test_get_production_with_bsl(self):
+        # Stonehouse, a series with versions that include British Sign Language
+        items = main.list_productions.test('https://www.itv.com/watch/stonehouse/10a1973')
+        self.assertEqual(3, len(items))
 
 class TestPlayCatchup(unittest.TestCase):
     def test_play_itv_1(self):

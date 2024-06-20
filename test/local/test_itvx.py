@@ -123,7 +123,7 @@ class MainPageItem(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(9, items_count)
+            self.assertEqual(7, items_count)
             for item in items:
                 check_item(self, item)
         # Hero item of unknown type is disregarded.
@@ -152,11 +152,11 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_news(self, _):
-        items = list(filter(None, itvx.collection_content(slider='shortFormSliderContent')))
-        self.assertEqual(2, len(items))
+        items = list(filter(None, itvx.collection_content(slider='newsShortForm')))
+        self.assertEqual(3, len(items))
         for item in items:
             check_item(self, item)
-        items2 = list(filter(None, itvx.collection_content(slider='shortFormSliderContent', hide_paid=True)))
+        items2 = list(filter(None, itvx.collection_content(slider='newsShortForm', hide_paid=True)))
         self.assertListEqual(items, items2)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
@@ -476,6 +476,14 @@ class GetPLaylistUrl(TestCase):
     def test_get_playlist_from_news_shortform_item(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_stonehouse-bsl.json'))
+    def test_get_playlist_from_signed_programme(self, _):
+        result = itvx.get_playlist_url_from_episode_page('page')
+        self.assertTrue(is_url(result))
+        bsl_result = itvx.get_playlist_url_from_episode_page('page', prefer_bsl=True)
+        self.assertTrue(is_url(result))
+        self.assertNotEqual(result, bsl_result)
 
 
 class GetMyList(TestCase):

@@ -354,6 +354,7 @@
     },
     "items": [
       {
+        "contentType": "shortform",
         "imagePresets": {},
         "episodeTitle": "Ireland fast out of the traps against Scotland",
         "episodeId": "8qcqkf3",
@@ -367,6 +368,7 @@
         "href": "/watch/sport/undefined"
       },
       {
+        "contentType": "episode",
         "imagePresets": {},
         "episodeTitle": "Full Match: Ireland v Scotland",
         "encodedEpisodeId": {

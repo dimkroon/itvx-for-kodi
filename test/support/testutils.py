@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -9,6 +9,7 @@ import json
 import os.path
 import re
 
+from datetime import datetime
 from requests.models import Response
 
 
@@ -91,3 +92,15 @@ class HttpResponse(Response):
             if status_code is None:
                 self.status_code = 200
                 self.reason = 'OK'
+
+
+class mockeddt(datetime):
+    mocked_now = datetime.now()
+
+    @classmethod
+    def now(cls, tz=None):
+        if tz:
+            return cls.mocked_now.astimezone(tz)
+        else:
+            return cls.mocked_now.replace(tzinfo=None)
+

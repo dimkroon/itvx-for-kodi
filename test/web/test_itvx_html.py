@@ -94,6 +94,8 @@ def check_shows(testcase, show, parent_name):
         return check_item_type_simulcastspot(testcase, show, parent_name)
     if show['contentType'] == 'page':
         return check_item_type_page(testcase, show, parent_name)
+    if show['contentType'] == 'brand':
+        return check_item_type_brand(testcase, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
@@ -111,11 +113,11 @@ def check_programme(self, progr_data):
     """Formerly known as 'Brand'"""
     obj_name = progr_data['title']
     has_keys(progr_data, 'title', 'image', 'longDescription', 'description',
-             'encodedProgrammeId', 'titleSlug', 'tier',
+             'encodedProgrammeId', 'titleSlug', 'tier', 'visuallySigned',
              obj_name=obj_name)
     expect_keys(progr_data, 'categories', 'programmeId')
     # Only programme details pages (like episodes, specials, films) still have this field.
-    # Its precencs is specifically checked is their tests.
+    # Its presence is specifically checked in their tests.
     expect_misses_keys(progr_data, 'imagePresets')
     self.assertTrue(is_encoded_programme_id(progr_data['encodedProgrammeId']))
     self.assertTrue(is_not_empty(progr_data['title'], str))
@@ -146,17 +148,21 @@ def check_series(self, series, parent_name):
 
 def check_title(self, title, parent_name):
     obj_name = '{}-title-{}'.format(parent_name, title['episodeTitle'])
-    has_keys(title, 'availabilityFrom', 'availabilityUntil', 'contentInfo', 'dateTime', 'description',
-             'duration', 'encodedEpisodeId', 'episodeTitle', 'guidance', 'image', 'longDescription',
-             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', obj_name=obj_name)
+    has_keys(title, 'accessibilityTags', 'audioDescribed', 'availabilityFrom', 'availabilityUntil', 'broadcastDateTime',
+             'categories', 'contentInfo', 'dateTime', 'description',
+             'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
+             'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
+             obj_name=obj_name)
 
-    expect_keys(title, 'audioDescribed', 'availabilityFeatures', 'categories', 'heroCtaLabel', 'episodeId',
+    expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'heroCtaLabel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
                 'productionId', 'programmeId', 'subtitled', 'visuallySigned', 'regionalisation', obj_name=obj_name)
 
+    self.assertIsInstance(title['accessibilityTags'], list)
     self.assertIsInstance(title['audioDescribed'], bool)
     self.assertTrue(is_iso_utc_time(title['availabilityFrom']))
     self.assertTrue(is_iso_utc_time(title['availabilityUntil']))
+    self.assertTrue(is_iso_utc_time(title['broadcastDateTime']) or title['broadcastDateTime'] is None)
     self.assertIsInstance(title['categories'], list)
     self.assertTrue(is_not_empty(title['contentInfo'], str))
     self.assertTrue(is_iso_utc_time(title['dateTime']))
@@ -165,6 +171,7 @@ def check_title(self, title, parent_name):
     self.assertFalse(title['duration'].startswith('P'))  # duration is not in iso format
     self.assertTrue(is_encoded_episode_id(title['encodedEpisodeId']))
     self.assertTrue(is_not_empty(title['episodeTitle'], str) or title['episodeTitle'] is None)
+    check_genres(self, title['genres'])
     self.assertTrue(is_not_empty(title['longDescription'], str))
     self.assertTrue(is_url(title['image']))
     self.assertTrue(is_url(title['playlistUrl']))
@@ -175,6 +182,8 @@ def check_title(self, title, parent_name):
         self.assertListEqual(['PAID'], title['tier'])
     else:
         self.assertListEqual(['FREE'], title['tier'])
+    if title['visuallySigned']:
+        self.assertTrue(is_url(title['bslPlaylistUrl']))
 
     if title['productionType'] == 'EPISODE':
         expect_keys(title, 'isFullSeries', 'nextProductionId', )
@@ -309,13 +318,38 @@ def check_item_type_simulcastspot(self, item, parent_name):
     self.assertTrue(is_not_empty(item['title'], str))
     self.assertTrue(is_not_empty(item['channel'], str))
     self.assertTrue(is_url(item['imageTemplate']))
-    # Generic check on start and end time. Items from hero use different format than those from collection.
+    # Generic check on start and end time. Items from hero use a different format than those from collection.
     # Hero and collection will each perform additional checks on the format.
     self.assertTrue(is_not_empty(item['startDateTime'], str))
     self.assertTrue(is_not_empty(item['endDateTime'], str))
     # We see a move to ID based genres at ITVX, but this has still the old single value genre
     # Just to detect a change
     self.assertTrue(is_not_empty(item['genre'], str))
+
+
+def check_item_type_brand(testcase, item, parent_name):
+    name = '{}.{}'.format(parent_name, item.get('title', 'unknown'))
+    has_keys(item, 'title', 'contentType', 'titleSlug', 'description', 'genres', 'dateTime', 'imageTemplate',
+             'numberOfAvailableSeries', 'series', 'programmeId', 'encodedProgrammeId', 'contentInfo', 'isPaid',
+             obj_name=name)
+    expect_keys(item, 'partnership', 'contentOwner','categories', 'channel', 'ccid', obj_name=name)
+    testcase.assertTrue(is_not_empty(item['title'], str))
+    testcase.assertTrue(is_not_empty(item['titleSlug'], str))
+    testcase.assertTrue(is_not_empty(item['description'], str))
+    testcase.assertTrue(is_not_empty(item['categories'], list))
+    check_genres(testcase, item['genres'], name)
+    testcase.assertTrue(item['dateTime'] is None or is_iso_utc_time(item['dateTime']))
+    testcase.assertTrue(is_url(item['imageTemplate']))
+    testcase.assertTrue(is_not_empty(item['numberOfAvailableSeries'], int))
+    testcase.assertTrue(is_encoded_programme_id(item['encodedProgrammeId']))
+    testcase.assertIsInstance(item['isPaid'], bool)
+    testcase.assertIsInstance(item['series'], list)
+    for series in item['series']:
+        # This data is not used by the parse. Series and episode data is obtained from the programme's page.
+        expect_keys(series, 'numberOfEpisodes', 'numberOfAvailableEpisodes', 'fullSeries', 'legacyId', 'seriesNumber',
+                 'longRunning', obj_name='{}.series-{}'.format(name, series['seriesNumber']))
+        # Just flag when other keys are added.
+        testcase.assertLessEqual(len(list(series.keys())), 6)
 
 
 class MainPage(unittest.TestCase):
@@ -342,6 +376,9 @@ class MainPage(unittest.TestCase):
                 # Flag if this changes.
                 self.assertFalse(is_iso_utc_time(item['startDateTime']))
                 self.assertFalse(is_iso_utc_time(item['endDateTime']))
+                # Basic check that start and end times are in HH:MM format in British local time
+                self.assertTrue(t.isdecimal for t in item['startDateTime'].split(':'))
+                self.assertTrue(t.isdecimal for t in item['endDateTime'].split(':'))
             #  TODO: Merge check with similar items from shortFormatSliders and collections
             # elif content_type == 'fastchannelspot':
             #     check_collection_item_type_fastchannelspot(self, item, parent_name='hero-item')
@@ -410,7 +447,7 @@ class MainPage(unittest.TestCase):
         for slider in page_props['shortFormSliderContent']:
             check_short_form_slider(self, slider, name='mainpage.shortform')
             header  = slider['header']
-            # ShortFromSlider on the main page should have a reference to the collection page.
+            # ShortFromSlider on the main page should have a reference to a collection or category page.
             self.assertFalse(is_url(header['linkHref']))                # is a relative link
             self.assertTrue(header['linkHref'].startswith('/watch'))    # starts with '/watch', unlike editorialSliders
 
@@ -457,6 +494,7 @@ class CollectionPages(unittest.TestCase):
         misses_keys(page_data, 'shortFormSlider', obj_name=parent_name[:-1])
         collection = page_data['collection']
         editorial_sliders = page_data['editorialSliders']
+        shortform_slider = page_data.get('shortFormSlider')
 
         if collection is not None:
             # As of May 2024 pageImageUrl is sometimes present on pages with non-empty collection
@@ -497,6 +535,12 @@ class CollectionPages(unittest.TestCase):
                 else:
                     for show in collection_data['shows']:
                         check_shows(testcase, show, obj_name)
+
+        if shortform_slider:
+            # It looks like shortform sliders are no longer present on collection pages
+            # Flag if one is found.
+            raise AssertionError("shortFormSlider on collection page %s", parent_name)
+            check_short_form_slider(testcase, shortform_slider)
 
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""
@@ -584,11 +628,12 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                'https://www.itv.com/watch/stonehouse/10a1973',          # programme with BSL
                 ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_miss-marple.html')
             data = parsex.scrape_json(page)
-            # testutils.save_json(data, 'html/series_midsomer-murders.json')
+            # testutils.save_json(data, 'html/series_stonehouse-bsl.json')
             programme_data = data['programme']
             check_programme(self, programme_data)
             for series in data['seriesList']:
@@ -623,7 +668,7 @@ class WatchPages(unittest.TestCase):
         data = parsex.scrape_json(page)
         # testutils.save_json(data, 'html/special_how-to-catch-a-cat-killer_data.json')
         check_programme(self, data['programme'])
-        # Just to flag when imagePresets in no longer present, like most other data structures.
+        # Just to flag when imagePresets is no longer present, like most other data structures.
         self.assertTrue('imagePresets' in data['programme'])
         self.assertEqual(1, len(data['seriesList']))
         self.assertEqual(1, len(data['seriesList'][0]['titles']))

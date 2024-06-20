@@ -9,10 +9,12 @@ fixtures.global_setup()
 
 import pytz
 import unittest
+from unittest.mock import patch
 
 from datetime import datetime, timezone, timedelta
+from copy import deepcopy
 
-from support.testutils import open_doc, open_json
+from support.testutils import open_doc, open_json, mockeddt
 from support.object_checks import has_keys, is_li_compatible_dict
 from resources.lib import parsex
 from resources.lib import errors
@@ -61,19 +63,47 @@ class Generic(unittest.TestCase):
         self.assertEqual('thetitle', parsex.sort_title('TheTitle'))
 
     def test_parse_hero(self):
-        data = open_json('html/index-data.json')
+        data = open_json('json/index-data.json')
         for item_data in data['heroContent']:
             obj = parsex.parse_hero_content(item_data)
             has_keys(obj, 'type', 'show')
             self.assertTrue(obj['type'] in main.callb_map.keys())
             is_li_compatible_dict(self, obj['show'])
-        # An item of unknown type
-        item = data['heroContent'][0]
+
+        #An item of unknown type
+        item = deepcopy(data['heroContent'][0])
         item['contentType'] = 'some new type'
         self.assertIsNone(parsex.parse_hero_content(item))
+
         # Invalid item
         item = {'contentType': 'special', 'title': False}
         self.assertIsNone(parsex.parse_hero_content(item))
+
+        # Watch From the start context menu on simulcastSpot item
+        item = deepcopy(data['heroContent'][3])
+        self.assertEqual('simulcastspot', item['contentType'])
+        item['startDateTime'] = '20:15'
+        with patch('resources.lib.parsex.datetime', new=mockeddt):
+            # Programme has already started
+            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=21)
+            obj = parsex.parse_hero_content(item)
+            self.assertIsInstance(obj['ctx_mnu'], list)
+            self.assertIsInstance(obj['ctx_mnu'][0], tuple)
+            cmd = obj['ctx_mnu'][0][1]
+            self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
+            self.assertTrue('start_time=' in cmd)
+            self.assertTrue('play_from_start=True' in cmd)
+
+            # Programme has yet to start - should return a valid item without context menu.
+            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=18)
+            obj = parsex.parse_hero_content(item)
+            self.assertListEqual(obj['ctx_mnu'], [])
+
+            # Invalid start time in ITVX data - should return a valid item without context menu.
+            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=22)
+            item['startDateTime'] = '2024-3-16T20:15:00:'
+            obj = parsex.parse_hero_content(item)
+            self.assertListEqual(obj['ctx_mnu'], [])
 
     def test_parse_main_page_short_form_slider(self):
         data = open_json('html/index-data.json')
@@ -81,7 +111,7 @@ class Generic(unittest.TestCase):
             obj = parsex.parse_short_form_slider(slider)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
-            self.assertFalse('slider' in obj['show']['params'])
+            self.assertTrue('slider' in obj['show']['params'])
         # Return None on parse errors
         self.assertIsNone(parsex.parse_short_form_slider([]))
         # Return None when a 'view all items' link to collection page is absent from the header
@@ -319,3 +349,49 @@ class Generic(unittest.TestCase):
 
         # Invalid data
         self.assertIsNone(parsex.parse_schedule_item({}))
+
+    def test_parse_viewall(self):
+        slider_data = {
+            'header': {
+                'linkHref': '/watch/collections/some_collection.html',
+                'linkText': "My Test Link"
+            }
+        }
+        item = parsex.parse_view_all(deepcopy(slider_data))
+        self.assertEqual('collection', item['type'])
+        self.assertTrue('url' in item['show']['params'])
+        self.assertEqual('My Test Link', item['show']['label'])
+
+        data = deepcopy(slider_data)
+        data['header']['linkHref'] = '/watch/categories/some_category.html'
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('category', item['type'])
+        self.assertTrue('path' in item['show']['params'])
+        self.assertEqual('My Test Link', item['show']['label'])
+
+        # Invalid and non-existing links
+        data = deepcopy(slider_data)
+        data['header']['linkHref'] = '/watch/some_programme.html'
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+        data['header']['linkHref'] = ''
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+        data['header']['linkHref'] = None
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+        del data['header']['linkHref']
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+
+        # Missing and empty linkText
+        data = deepcopy(slider_data)
+        data['header']['linkText'] = ''
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('View All', item['show']['label'])
+        data['header']['linkText'] = None
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('View All', item['show']['label'])
+        del data['header']['linkText']
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('View All', item['show']['label'])

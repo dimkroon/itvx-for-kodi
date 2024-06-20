@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -75,20 +75,31 @@ class TestItvX(unittest.TestCase):
             self.assertEqual(len(list(items)), 0)
 
     def test_get_playlist_url_from_episode_page(self):
+        # TODO: Test programmes that are actually used by this function
+        #       All these programmes below are episodes and their playlists are
+        #       obtained by the episode parser.
         # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002
-        episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
-        url = itvx.get_playlist_url_from_episode_page(episode_url)
-        self.assertTrue(is_url(url))
+        # episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
+        # url = itvx.get_playlist_url_from_episode_page(episode_url)
+        # self.assertTrue(is_url(url))
+        #
+        # # itvx episode page - Nightwatch Series1 episode 2
+        # episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
+        # url = itvx.get_playlist_url_from_episode_page(episode_url)
+        # self.assertTrue(is_url(url))
+        #
+        # # Premium episode Downton-abbey S1E1
+        # episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
+        # url = itvx.get_playlist_url_from_episode_page(episode_url)
+        # self.assertTrue(is_url(url))
 
-        # itvx episode page - Nightwatch Series1 episode 2
-        episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
+        # A news special with signed stream
+        episode_url = 'https://www.itv.com/watch/ramadan-a-journey-across-britain/10a5684a0001B'
         url = itvx.get_playlist_url_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
-
-        # Premium episode Downton-abbey S1E1
-        episode_url = "https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001"
-        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        bsl_url = itvx.get_playlist_url_from_episode_page(episode_url, True)
         self.assertTrue(is_url(url))
+        self.assertNotEqual(url, bsl_url)
 
     def test_get_mylist(self):
         uid = itv_account.itv_session().user_id
