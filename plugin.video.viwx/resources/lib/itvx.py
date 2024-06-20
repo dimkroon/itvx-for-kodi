@@ -83,22 +83,20 @@ def get_now_next_schedule(local_tz=None):
 
         programs_list = []
         for prog in (slots['now'], slots['next']):
-            if prog.get('detailedDisplayTitle'):
-                details = ': '.join((prog['displayTitle'], prog['detailedDisplayTitle']))
-            else:
-                details = prog['displayTitle']
-
-            if details is None:
+            displ_title = prog['displayTitle']
+            if displ_title is None:
                 # Some schedules have all fields set to None or False, i.e. no programme info available.
                 # In practice, if displayTitle is None, everything else is as well.
+                logger.info("No Now/Next info available for channel '%s': %s", channel.get('id'), prog)
                 continue
 
+            details = ': '.join(s for s in(displ_title, prog.get('detailedDisplayTitle')) if s)
             start_t = prog['start'][:19]
             utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6]), tzinfo=utc_tz)
 
             programs_list.append({
                 'programme_details': details,
-                'programmeTitle': prog['displayTitle'],
+                'programmeTitle': displ_title,
                 'orig_start': None,          # fast channels do not support play from start
                 'startTime': utc_start.astimezone(local_tz).strftime(time_format)
             })
@@ -111,7 +109,7 @@ def get_live_channels(local_tz=None):
     programmes in the channel data.
 
     For the stream-only FAST channels, only the current and next programme are
-    available. For the regular channels a schedule from now up to 4 hours in the
+    available. For the regular channels a schedule from now up to 6 hours in the
     future will be returned.
     Programme start times will be presented in the user's local time zone.
 
@@ -632,7 +630,7 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
     byw_url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + user_id
     byw = cache.get_item(byw_url)
     if not byw:
-        req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 12, 'version': 2}
+        req_params = {'features': FEATURE_SET, 'platform': 'ctv', 'size': 12, 'version': 2}
         byw = fetch.get_json(byw_url, params=req_params)
         if not byw:
             return
