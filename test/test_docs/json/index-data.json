@@ -81,21 +81,21 @@
         "Series 1"
       ]
     },
- {
-   "contentType": "simulcastspot",
-   "title": "Britain's Got Talent",
-   "description": "Always entertaining, always surprising, plus Ant & Dec! An epic night in",
-   "channel": "ITV",
-   "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/britainsgottalents17/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-   "genre": "Entertainment",
-   "ctaLabel": "Watch Live",
-   "ariaLabel": "Watch live, Britain's Got Talent",
-   "contentInfo": ["Entertainment"],
-   "strapline": {"text": "Stream it now", "variant": "live-and-fast"},
-   "startDateTime": "19:30",
-   "endDateTime": "21:00",
-   "tagName": "live"
- },
+    {
+       "contentType": "simulcastspot",
+       "title": "Britain's Got Talent",
+       "description": "Always entertaining, always surprising, plus Ant & Dec! An epic night in",
+       "channel": "ITV",
+       "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/britainsgottalents17/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+       "genre": "Entertainment",
+       "ctaLabel": "Watch Live",
+       "ariaLabel": "Watch live, Britain's Got Talent",
+       "contentInfo": ["Entertainment"],
+       "strapline": {"text": "Stream it now", "variant": "live-and-fast"},
+       "startDateTime": "19:30",
+       "endDateTime": "21:00",
+       "tagName": "live"
+    },
     {
       "imagePresets": {},
       "contentType": "fastchannelspot",
