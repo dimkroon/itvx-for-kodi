@@ -414,7 +414,7 @@ def list_productions(plugin, url, series_idx=None):
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    result = itvx.episodes(url, use_cache=True)
+    result = itvx.episodes(url, use_cache=True, prefer_bsl=plugin.setting.get_boolean('prefer_bsl'))
     if not result:
         return
 
@@ -611,7 +611,7 @@ def play_title(plugin, url, name=''):
 
     """
     try:
-        url = itvx.get_playlist_url_from_episode_page(url)
+        url = itvx.get_playlist_url_from_episode_page(url, plugin.setting.get_boolean('prefer_bsl'))
     except AccessRestrictedError:
         kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
         return False

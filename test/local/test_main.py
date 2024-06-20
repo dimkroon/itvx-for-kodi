@@ -562,8 +562,14 @@ class PlayTitle(TestCase):
     @patch('resources.lib.main.play_stream_catchup', return_value='play_success')
     def test_play_episode(self, _, p_get_playlist):
         result = main.play_title.test('page.url')
-        p_get_playlist.assert_called_once_with('page.url')
+        p_get_playlist.assert_called_once_with('page.url', False)
         self.assertEqual('play_success', result)
+        # Prefer Signed Programmes
+        with patch('xbmcaddon.Addon.getSetting', new=lambda self, x: 'true' if x == 'prefer_bsl' else ''):
+            p_get_playlist.reset_mock()
+            result = main.play_title.test('page.url')
+            p_get_playlist.assert_called_once_with('page.url', True)
+            self.assertEqual('play_success', result)
 
     @patch('resources.lib.itvx.get_playlist_url_from_episode_page', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):

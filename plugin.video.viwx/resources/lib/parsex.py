@@ -446,7 +446,7 @@ def parse_item_type_collection(item_data):
     return {'type': 'collection', 'show': item}
 
 
-def parse_episode_title(title_data, brand_fanart=None):
+def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     """Parse a title from episodes listing"""
     # Note: episodeTitle may be None
     title = title_data['episodeTitle'] or title_data['heroCtaLabel']
@@ -465,6 +465,11 @@ def parse_episode_title(title_data, brand_fanart=None):
     if not isinstance(series_nr, int):
         series_nr = None
 
+    if prefer_bsl:
+        playlist_url = title_data.get('bslPlaylistUrl') or title_data['playlistUrl']
+    else:
+        playlist_url = title_data['playlistUrl']
+
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -478,7 +483,7 @@ def parse_episode_title(title_data, brand_fanart=None):
                  'episode': episode_nr,
                  'season': series_nr,
                  'year': title_data.get('productionYear')},
-        'params': {'url': title_data['playlistUrl'], 'name': title}
+        'params': {'url': playlist_url, 'name': title}
     }
 
     return title_obj
