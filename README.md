@@ -22,7 +22,14 @@ with a generic web browser also apply to this add-on:
   available to users with a paid ITVX premium account.
 * Search
 * Play from the start for programmes on the main live channels.  
-  Available from the context menu on channels in the 'Live' menu.
+  Available from the context menu on channels in the 'Live' menu, and on 
+  hero items (those shown in orange) in the main menu when that item 
+  represents a live broadcast.
+* Support for IPTV Manager and IPTV Merge to integrate the ITV main live 
+  channels into Kodi's TV section, if you use IPTV Simple as your PVR add-on. 
+  Check [the wiki page of IPTV Manager](https://github.com/add-ons/service.iptv.manager/wiki)
+  for more info. IPTV Manager integration is enabled by default, but can be 
+  switched off in viwX's settings.
 * My ItvX with:
   * Support for ITVX's My List.  
     Add to or remove programmes from My List by using the context menu on 
@@ -36,8 +43,17 @@ with a generic web browser also apply to this add-on:
     General recommendations from ITVX.
 * Option to hide premium content from listings.
 * Option to show subtitles on VOD content, with the option to enable/disable 
-  colourisation of subtitles.
-* Support for embedded subtitles on live streams.
+  colourisation of subtitles. Enable VOD subtitles in viwX's settings.
+* Option to play VOD programmes with British Sign Language when available 
+  and enabled in viwX's settings.
+* Support for embedded subtitles on live streams. Use Kodi's standard 
+  subtitle dialog to enable/disable live subtitles.
+* Support for the experimental add-on 
+  [TranslateSubs](https://github.com/dimkroon/translate_subs), which can 
+  automatically translate subtitles for the hearing impaired to your 
+  preferred subtitle language, and can also filter out sound descriptions 
+  from these subtitles, making them usable to people in the full range of 
+  hearing ability.
 
 
 ## Installation
@@ -64,8 +80,8 @@ account.
 For those who prefer to install add-ons manually, or want immediate access to 
 new versions, this method of installing from zip remains available:
 
-* Ensure that installing from unknown sources is enabled in Kodi. Click here for
-  [instructions](https://dimkroon.net/en/guides/enable-unknown-sources.html).
+* Ensure that installing from unknown sources is enabled in Kodi. Click 
+  [here for instructions](https://dimkroon.net/en/guides/enable-unknown-sources.html).
 * Download the latest release. 
   You can add https://dimkroon.net/kodi-addons as file source to Kodi's file 
   manager ([instructions](https://dimkroon.net/en/guides/howto-add-file-source.html)), 
