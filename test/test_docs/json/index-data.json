@@ -5142,173 +5142,48 @@
     },
     {
       "header": {
-        "title": "Rugby World Cup 2023",
-        "linkHref": "/watch/collections/rugby-world-cup/1KzCNc9sdix5qQdR7cGiG3?ind",
+        "title": "",
+        "logo": {
+          "name": "itvSportMono",
+          "iconSrc": "<svg width=\"152\" height=\"33\" viewBox=\"0 0 152 33\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M32.9813 19.1982L28.7203 12.4841C28.4646 12.0055 28.2697 11.7153 28.2697 11.147C28.273 10.3116 28.7071 9.70757 30.1789 8.78541C30.497 8.57642 31.6433 8.1208 32.5721 8.1208C33.8246 8.1208 34.759 9.41717 34.759 12.1294C34.759 16.5424 32.9813 19.1982 32.9813 19.1982ZM32.9813 19.1982L33.7655 10.5824L34.1198 9.0831C34.1198 9.0831 35.6848 11.3649 39.6719 18.7053C42.204 14.1013 43.8189 8.59963 43.8189 8.59963C43.9322 8.22356 44.2325 8.13252 44.6671 8.24707L47.4004 9.09183C47.7322 9.21025 47.9123 9.34136 47.7254 9.9584C45.452 16.5745 41.892 22.032 41.892 22.032C41.2066 23.0477 40.5084 23.91 38.1953 23.91C36.3291 23.91 35.6792 23.2744 35.0292 22.3043L32.9813 19.1982ZM16.149 21.5028C16.149 21.5028 13.2682 19.3013 13.2682 15.1848V3.39473C13.2682 2.44668 13.8799 1.62513 16.4305 1.62513C19.2178 1.62513 19.5237 2.71009 19.5237 3.52408V8.41561H24.4623C24.8186 8.41561 24.9561 8.6239 24.9561 8.95393V11.8726C24.9561 12.1486 24.8436 12.3665 24.5196 12.3665H21.2522C20.4049 12.3665 19.5237 12.0372 19.5237 12.0372V14.0127C19.5237 16.4757 18.8873 18.9917 16.149 21.5028ZM16.149 21.5028L18.7006 14.9181L19.5237 14.095V15.2473C19.5237 18.019 20.8683 20.1514 24.3476 20.1514C27.5201 20.1514 29.7532 18.3542 29.7532 15.5653C29.7532 14.1477 29.067 13.0229 29.067 13.0229L32.6659 14.8198L32.9813 19.1982C32.9813 19.1982 30.5848 23.8984 23.8292 23.8984C18.5541 23.8984 16.149 21.5028 16.149 21.5028ZM0.0163436 8.92197C0.0163436 8.62806 0.181153 8.41561 0.510201 8.41561H5.88274C6.16656 8.41561 6.35418 8.64055 6.35418 8.917V17.1534C6.35418 18.5577 7.15378 20.1909 9.62155 20.1909C12.0249 20.1909 13.2682 18.6955 13.2682 15.6422V15.0004L15.8198 19.8566L16.149 21.5028C16.149 21.5028 13.6456 23.923 9.10813 23.923C6.85603 23.923 0.0163436 23.5536 0.0163436 16.0704V8.92197ZM0 3.13971C0 1.41303 1.22332 0 3.18908 0C5.25866 0 6.36829 1.4824 6.36829 3.22364C6.36829 5.13847 4.9662 6.29918 3.20389 6.29918C1.28581 6.29918 0 4.99082 0 3.13971Z\" fill=\"white\"/><path d=\"M58.5611 23.9991C56.1608 23.9991 54.5983 23.7172 52.5987 23.184C52.0634 23.0328 51.8691 22.8922 51.8691 22.316C51.8691 21.7525 52.0888 20.5649 52.2726 20.1682C52.4829 19.726 52.5366 19.6587 52.8839 19.6587C53.449 19.6587 55.225 20.4738 58.3288 20.4738C60.4745 20.4738 61.1894 20.0242 61.6112 19.5919C61.9285 19.2398 62.119 18.707 62.119 18.0978C62.119 17.606 62.012 16.9956 61.5994 16.6021C60.1583 15.2469 55.5531 14.9971 53.7215 13.1053C52.4687 11.8845 52.187 10.2244 52.187 9.1317C52.187 7.30414 52.8637 6.02002 53.7724 5.09695C55.2195 3.62982 57.6076 3.18652 59.9305 3.18652C62.9235 3.18652 65.2979 3.93135 65.2979 3.93135L64.9148 7.39961C64.9148 7.39961 62.3205 6.71492 60.1587 6.71492C57.2673 6.71492 56.5657 7.84826 56.5723 8.95237C56.5723 9.46882 56.7522 9.91633 57.0899 10.2362C58.3515 11.549 62.9298 11.6132 64.9148 13.6147C66.1156 14.8121 66.4676 16.3053 66.4676 17.8044C66.4676 19.5532 65.9815 21.0633 64.8578 22.2059C63.4994 23.5437 61.2355 23.9991 58.5611 23.9991Z\" fill=\"white\"/><path d=\"M68.9023 3.46729V22.9562C68.9023 23.7093 69.5902 23.8703 71.0569 23.8703C72.5346 23.8703 73.1788 23.6646 73.1788 22.9562V17.1455H77.2921C79.9172 17.1455 81.8647 16.45 82.9865 15.302C84.3065 13.8782 84.7738 12.1619 84.7738 10.2237C84.7738 7.96722 84.2507 6.61277 83.1487 5.41475C81.6316 3.81205 79.2176 3.46729 76.835 3.46729H68.9023ZM73.1788 6.96028H77.0309C77.9621 6.96028 78.8949 7.21279 79.4864 7.79476C80.0875 8.41382 80.327 9.20667 80.327 10.3543C80.327 11.3898 80.0428 12.293 79.4966 12.8394C78.9288 13.4261 78.0403 13.6851 76.5739 13.6851H73.1788V6.96028Z\" fill=\"white\"/><path d=\"M96.1132 3.17163C93.2039 3.17163 90.8393 4.09965 89.4282 5.59041C88.0046 7.09019 86.8125 9.17547 86.8125 13.62C86.8125 16.7922 87.3829 19.4473 89.422 21.6149C90.8583 23.1402 92.9717 24 96.1499 24C98.8632 24 101.062 23.3831 102.835 21.5486C104.686 19.5865 105.389 16.9211 105.389 13.62C105.389 10.3978 104.709 7.56566 102.823 5.64753C101.624 4.39032 99.5985 3.17163 96.1132 3.17163ZM96.1336 6.76256C97.487 6.76256 98.4918 7.14137 99.4399 8.04591C100.615 9.158 101.012 11.3363 101.012 13.5914C101.012 15.6627 100.695 17.8313 99.4481 19.1584C98.8383 19.7467 97.7958 20.4448 96.1254 20.4448C94.5684 20.4448 93.5532 19.9324 92.8232 19.2563C91.3714 17.8417 91.1859 15.3525 91.1859 13.567C91.1859 11.1694 91.563 9.27288 92.811 7.9643C93.6335 7.22997 94.8511 6.76256 96.1336 6.76256Z\" fill=\"white\"/><path d=\"M107.646 3.46729V22.793C107.646 23.5904 107.958 23.8703 109.801 23.8703C111.688 23.8703 111.923 23.6127 111.923 22.793V16.3293H114.763L118.494 22.5706C118.689 22.9016 118.891 23.2344 119.029 23.3673C119.46 23.806 120.418 23.8774 121.454 23.8774C123.196 23.8774 123.593 23.5813 123.593 23.3163C123.593 23.1287 123.553 22.9783 123.274 22.5727L118.99 15.9366C118.99 15.9366 120.666 15.4443 121.584 14.4288C123.068 12.9262 123.349 11.0769 123.349 9.74835C123.349 7.78139 122.813 6.27506 121.826 5.28825C120.265 3.78212 118.31 3.46729 115.547 3.46729H107.646ZM111.923 6.96028H115.873C116.871 6.96322 117.697 7.13545 118.244 7.65806C118.761 8.19102 118.947 8.782 118.947 9.73713C118.947 10.7424 118.745 11.5518 118.266 12.0314C117.812 12.5021 116.92 12.8363 115.906 12.8363H111.923V6.96028Z\" fill=\"white\"/><path d=\"M133.468 23.8693C131.644 23.8693 131.309 23.5899 131.309 22.7925V6.95979H125.303V3.4668H141.592V6.95979H135.586V22.7925C135.586 23.6245 135.228 23.8693 133.468 23.8693Z\" fill=\"white\"/></svg>"
+        },
+        "iconTitle": "ITV Sport",
+        "linkHref": "/watch/categories/sport",
         "linkText": "View All"
       },
       "items": [
         {
-          "episodeTitle": "Famous New Zealand actor Taika Waititi looks back on All Blacks glory years",
-          "episodeId": "byccw46",
-          "titleSlug": "famous-new-zealand-actor-taika-waititi-looks-back-on-all-blacks-glory-years",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/6nmvFfBwATOGLXrGyOeCs1/52a51672aa94bdfd9764e8d10fd9a462/ALL_BLACKS_FT.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "It's a trip down memory lane for New Zealand actor and film director Taika Waititi, with a special mention for ITV panelist Sean Fitzpatrick!",
-          "dateTime": "2023-09-29T21:23:56.701Z",
-          "duration": 204,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/1h4uaImSBQUVPm1Kl03kqp/e648ba3e9431f09348e10691e4b0b0dd/ALL_BLACKS_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
+            "contentType": "episode",
+            "episodeTitle": "Group C: Serbia v England - Highlights of Serbia v England",
+            "episodeId": "10/5755/0007",
+            "titleSlug": "group-c-serbia-v-england-highlights-of-serbia-v-england",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/10d5zYzENMF5BFoQKrxM11/12db78f966f85aff5719c39aab4ac2b4/HIGHLIGHTS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "dateTime": "2024-06-16T22:01:25.927Z",
+            "programmeId": "10/5755",
+            "programmeTitle": "UEFA Euro 2024 Highlights",
+            "encodedEpisodeId": {
+                "letterA": "10a5755a0007",
+                "underscore": "10_5755_0007"
+            },
+            "encodedProgrammeId": {
+                "letterA": "10a5755",
+                "underscore": "10_5755"
+            },
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
         },
         {
-          "episodeTitle": "Barrett: We controlled the ball well against Italy",
-          "episodeId": "ln1zbfb",
-          "titleSlug": "barrett-we-controlled-the-ball-well-against-italy",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/3FhNBpUobpeH313tTMHv4u/0a592be25db23cc8024efd800fd22c68/BARRETT.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "New Zealand star Jordie Barrett believes his side were much improved in their clash with Italy, and says good preparation key for final game against Uruguay",
-          "dateTime": "2023-09-29T21:10:53.763Z",
-          "duration": 78,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6yg1FdLmt0IL3a2Wv6Cu4d/7f43eb25f125e5067e09e25f1757ddba/BARRETT_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Ioane and Capuozzo combine for Italy",
-          "episodeId": "rm8v6yf",
-          "titleSlug": "ioane-and-capuozzo-combine-for-italy",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7i1uuykfyevCIdsoaeOJQ9/cb82cdd2352f58687408cc8b5999df01/capuozzo_try.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Ange Capuozzo gives Italy a glimmer of hope with a superb try, as Italy look to get back in the game against a dominant All Blacks side",
-          "dateTime": "2023-09-29T20:20:05.555Z",
-          "duration": 90,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6a83CrKALcqYghGRrPjWmT/2ff336794c5260d3546eb27bcc6ff524/capuozzo_clean.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Analysis - New Zealand run riot in the first half against Italy",
-          "episodeId": "spwbmv2",
-          "titleSlug": "analysis-new-zealand-run-riot-in-the-first-half-against-italy",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7IOPQAWVVgYAh07OEJmxSE/1d55b1c684b8e0781431742df2401f2c/NZ_-_HT_CHAT.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "ITV's panel look at how New Zealand dismantled Italy, running in seven tries in a commanding first half display",
-          "dateTime": "2023-09-29T20:01:47.898Z",
-          "duration": 260,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/4yaRmEP5v2hIPpHHGePFBB/007675e38b55ff4252a99cbc5b3c89d6/NZ_HT_CHAT_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "New Zealand start fast against Italy with Will Jordan try",
-          "episodeId": "1kw9gt1",
-          "titleSlug": "new-zealand-start-fast-against-italy-with-will-jordan-try",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7xlAhyKOBKWHtBeah7O84M/b790aa0fb0af25ad6e42eec4ed000180/JORDAN_TRY.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "New Zealand get off to the perfect start thanks to Will Jordan's 24th Test try against Italy",
-          "dateTime": "2023-09-29T19:14:54.556Z",
-          "duration": 85,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6EX6U9XJ1eQNZNHd4sbouF/2fef94dcba31ef6525d01b9198cd3655/JORDAN_TRY_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Highlights - Japan v Samoa",
-          "episodeId": "xc0l3ts",
-          "titleSlug": "highlights-japan-v-samoa",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4dFleYbHNl4mlcC057fei8/650d0b25e3f686b83d383f99611548ae/RWC-2023-Highlights-Pool-JPN-V-SAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Check out the highlights from Japan v Samoa in Pool D",
-          "dateTime": "2023-09-28T21:43:43.097Z",
-          "duration": 649,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/3qymEtJJuYtgMuSAA0Weym/49c6bab49283eb0bd5ab7c4e9818e35f/RWC-2023-Highlights-Pool-JPN-V-SAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "All Black's Jordie Barrett wary of Italy threat",
-          "episodeId": "kzwd6zm",
-          "titleSlug": "all-blacks-jordie-barrett-wary-of-italy-threat",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/68HJANmCahetXtvE2UaqnE/dce8f0123f59c6c9be68d174ac6ad56f/nz_preview_.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "New Zealand Jordie Barrett believes Italy will pose a huge threat to New Zealand when the sides meet on Friday",
-          "dateTime": "2023-09-28T21:26:22.702Z",
-          "duration": 257,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5TVxPom5uAVfd7R0wUsme1/1835be3aa623e9a43a0b5ed9954b0032/nz_preview_-_clean.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Grand Slammers - England's 2003 Rugby World Cup-winning stars train a group of prison inmates",
-          "encodedEpisodeId": {
-            "letterA": "10a4742a0001",
-            "underscore": "10_4742_0001"
-          },
-          "encodedProgrammeId": {
-            "letterA": "2a4138",
-            "underscore": "2_4138"
-          },
-          "titleSlug": "grand-slammers-englands-2003-rugby-world-cup-winning-stars-train-a-group-of-prison-inmates",
-          "programmeTitle": "Rugby World Cup",
-          "episodeId": "10/4742/0001",
-          "programmeId": "2/4138",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/21ZftgjZCKGNUhVupVwekz/b85eedc92d30bf209111910959231930/GrandSlammers_S01_k4pc5j1_04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "dateTime": "2023-09-28T20:40:15.763Z",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Scotland ring the changes for Romania clash",
-          "episodeId": "q09nvgf",
-          "titleSlug": "scotland-ring-the-changes-for-romania-clash",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/4FoSXusZKPV8KjL3WXUEa9/1a89e2ab346482c738e75471d29bc0f6/SCOTLAND_FT.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Scotland Head Coach Gregor Townsend makes 13 changes including switching out talisman Finn Russell for world cup debutant Ben Healy",
-          "dateTime": "2023-09-28T18:42:30.652Z",
-          "duration": 86,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/A6ZojOcql9wggVcyS2fT0/c8a08443a3f8807bf36dc919bf35e3f5/SCOTLAND_FT_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "We wind back to a memorable Rugby World Cup in Japan in 2019",
-          "episodeId": "08lbl5h",
-          "titleSlug": "we-wind-back-to-a-memorable-rugby-world-cup-in-japan-in-2019",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5xx9tkgDxQvukrRcmRZfcu/809490f069c80cfc86399a2ad471e62e/rugby_rewind.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "A look back on a thrilling Rugby World Cup in Japan 2019, where South Africa came out as World Cup winners!",
-          "dateTime": "2023-09-28T18:32:56.653Z",
-          "duration": 142,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/6L4yKgTBbPB2q2NzQdqIaT/2b91a8394e8466512a4cf87c8410795e/rugby_rewind_-_clean.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Michael Leitch puts Japan in control against Samoa",
-          "episodeId": "xm3r9t7",
-          "titleSlug": "michael-leitch-puts-japan-in-control-against-samoa",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5yNbPOiPWMm27HcdOADLNo/68c50866cdf3a9fd5f6aae58f13a9788/japan_try_2_-_gfx.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Japan asserted their authority in the first half as Michael Leitch finished off a smart move for The Brave Blossoms",
-          "dateTime": "2023-09-28T19:43:48.193Z",
-          "duration": 107,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/3xh3OWorkPF3YE0x5sTWyF/411553a555bc61544d9a853d51ac7e04/japan_try_2.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "ITV Panel: Poor discipline Samoa's downfall",
-          "episodeId": "trblw00",
-          "titleSlug": "itv-panel-poor-discipline-samoas-downfall",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5zirplBqy99pz1PHfcGFZZ/a98ebc7b48b0c57741ff5507c194b6b8/ANALYSIS_-_JAPAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "ITV's panelists discuss the Japan v Samoa Pool D match, with Samoa's hopes hampered by a red card during the match",
-          "dateTime": "2023-09-28T21:11:49.332Z",
-          "duration": 492,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/1VEDcLZUMoI8zDNX8J5N2T/39166f975b01667369ae7c4de791728a/ANALYSIS_-_JAPAN_-_CLEAN.png?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
-        },
-        {
-          "episodeTitle": "Highlights - Uruguay v Namibia",
-          "episodeId": "j109002",
-          "titleSlug": "highlights-uruguay-v-namibia",
-          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5imO6FbkoZmQLBl0Yomrqd/3a978c9c61771a42afaeb12f76eb2104/RWC-2023-Highlights-Pool-URU-V-NAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "Check out the highlights from Uruguay v Namibia in Pool A ",
-          "dateTime": "2023-09-27T18:44:57.754Z",
-          "duration": 519,
-          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/4V6R0agpOQxDOecH2RNflv/441764cb58a35032f6cac6d5fec5b4e5/RWC-2023-Highlights-Pool-URU-V-NAM-04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "sport",
-          "href": "/watch/sport/undefined"
+            "contentType": "shortform",
+            "episodeTitle": "Post match interviews",
+            "episodeId": "r0syv0w",
+            "titleSlug": "post-match-interviews",
+            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5iT0yhnfMhC3YYilNz17At/b1ce7fcb6434327429775a742d6d8bf8/ENG_IVS_GFX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "England's Jude Bellingham and Trent Alexander-Arnold give their thoughts after their Group C opener against Serbia",
+            "dateTime": "2024-06-16T21:38:50.159Z",
+            "duration": 320,
+            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5Q6JkrvIgtVjvKE0zhdViI/db17dc7bf245a19a5d2076e90a70f7b6/ENG_IVS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "genre": "sport",
+            "href": "/watch/sport/undefined"
         }
       ],
       "key": "sportShortForm",
@@ -5317,8 +5192,13 @@
       "dataTestId": "sport-rail",
       "tileType": "news",
       "trackingProps": {
-        "contentType": "news clip"
-      }
+          "contentType": "sport",
+          "moduleName": "itv-sport",
+          "genre": "sport",
+          "itemFeed": "sportShortForm",
+          "buttonName": "view all"
+      },
+      "className": "sport-short-form"
     }
   ],
   "trendingSliderContent": {

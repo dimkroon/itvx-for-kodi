@@ -652,6 +652,7 @@ Used to map items in collections, categories and search result to the right hand
 
 callb_map = {
     'collection': list_collection_content,
+    'category': list_category,
     'series': list_productions,
     'brand': list_productions,
     'programme': list_productions,

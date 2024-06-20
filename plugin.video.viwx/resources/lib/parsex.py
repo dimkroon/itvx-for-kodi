@@ -177,7 +177,7 @@ def parse_short_form_slider(slider_data, url=None):
             params = {'url': url, 'slider': 'shortFormSlider'}
         elif link:
             # A shortFormSlider from the main page
-            params = {'url': 'https://www.itv.com' + link}
+            params = {'url': 'https://www.itv.com', 'slider': slider_data.get('key')}
         else:
             return
 
@@ -190,6 +190,35 @@ def parse_short_form_slider(slider_data, url=None):
     except:
         logger.error("Unexpected error parsing shorFormSlider.", exc_info=True)
         return None
+
+
+def parse_view_all(slider_data):
+    """Return listitem data with a behaviour similar to the 'View All' button of a
+    slider on the web page.
+
+    """
+    header = slider_data['header']
+    link = header.get('linkHref')
+    if not link:
+        return
+    url = 'https://www.itv.com' + link
+
+    if link.startswith('/watch/categories'):
+        item_type = 'category'
+        params = {'path': url}
+    elif link.startswith('/watch/collections'):
+        item_type = 'collection'
+        params = {'url': url}
+    else:
+        logger.warning("Unknown linkHref on %s: '%s", slider_data.get('key'), link)
+        return
+
+    return {'type': item_type,
+            'show': {'label': header.get('linkText') or 'View All',
+                     'params': params,
+                     'info': {'sorttitle': sort_title('zzzz')}
+                     }
+            }
 
 
 def parse_editorial_slider(url, slider_data):
@@ -280,23 +309,21 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
     ShortFormSliders are found on the main page, some collection pages.
     Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
 
-    # TODO: Shortform items snow have a field contentType, which has value 'shortform' when the item
-            has a shortform format, or something else like 'episode' when the item is a normal
-            episode. Wait for the occasion to be able to check a sports shortform slider before
-            differentiating based on content type.
     """
     try:
-        if 'encodedProgrammeId' in item_data.keys():
-            # The news item is a 'normal' catchup title. Is usually just the latest ITV news.
+        if item_data['contentType'] == 'shortform':
+            # This item is a 'short item', aka 'news clip'.
+            href = item_data.get('href', '/watch/news/undefined')
+            url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
+
+        else:
+            # The news item is a 'normal' catchup title. Is usually just the latest ITV news,
+            # or a full sports programme.
             # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
             url = '/'.join(('https://www.itv.com/watch',
                             item_data['titleSlug'],
                             item_data['encodedProgrammeId']['letterA'],
                             item_data.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
-        else:
-            # This item is a 'short item', aka 'news clip'.
-            href = item_data.get('href', '/watch/news/undefined')
-            url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
 
         # dateTime field occasionally has milliseconds. Strip these when present.
         item_time = pytz.UTC.localize(utils.strptime(item_data['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))

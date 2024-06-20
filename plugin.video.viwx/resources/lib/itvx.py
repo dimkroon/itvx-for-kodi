@@ -178,7 +178,7 @@ def main_page_items():
 
     if 'shortFormSliderContent' in main_data.keys():
         yield {'type': 'collection',
-               'show': {'label': 'News', 'params': {'slider': 'shortFormSliderContent'}}}
+               'show': {'label': 'News', 'params': {'slider': 'newsShortForm'}}}
     else:
         logger.warning("Main page has no 'News' slider.")
 
@@ -202,13 +202,16 @@ def collection_content(url=None, slider=None, hide_paid=False):
                 yield parsex.parse_shortform_item(item, uk_tz, time_fmt)
             return
 
-        elif slider == 'shortFormSliderContent':
-            # Return items form the main page's News short form. The only other known shorFromSlider
-            # on the main page is 'Sport' and is handled as a full collection.
-            for slider in page_data['shortFormSliderContent']:
-                if slider['key'] == 'newsShortForm':
-                    for news_item in slider['items']:
-                        yield parsex.parse_shortform_item(news_item, uk_tz, time_fmt, hide_paid)
+        elif slider in ('newsShortForm', 'sportShortForm'):
+            # Return items from the main page's News or Sports short form.
+            for slider_data in page_data['shortFormSliderContent']:
+                if slider_data['key'] == slider:
+                    for short_item in slider_data['items']:
+                        yield parsex.parse_shortform_item(short_item, uk_tz, time_fmt, hide_paid)
+                    # A 'View All' item,
+                    view_all_item = parsex.parse_view_all(slider_data)
+                    if view_all_item:
+                        yield view_all_item
             return
 
         elif slider == 'trendingSliderContent':
