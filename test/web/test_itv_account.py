@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -7,13 +7,14 @@
 from test.support import fixtures
 fixtures.global_setup()
 
+import os
 import json
 import time
 import binascii
 import unittest
 from unittest.mock import patch
 
-from resources.lib import itv_account, errors
+from resources.lib import itv_account, errors, fetch, utils
 from test.support import testutils
 from test.support import object_checks
 from test.local.test_account import ACCESS_TKN_FIELDS, REFRESH_TKN_FIELDS, PROFILE_TKN_FIELDS
@@ -47,6 +48,24 @@ class TestLogin(unittest.TestCase):
         itv_sess = itv_account.ItvSession()
         self.assertRaises(errors.AuthenticationError, itv_sess.login, 'user.name', account_login.PASSW)
         self.assertRaises(errors.AuthenticationError, itv_sess.login, account_login.UNAME, 'password')
+
+    def test_sign_in_using_no_cookies(self):
+        """Try to sign in using a new set of default cookies.
+        If consent cookies are not set correctly the request will time out.
+
+        """
+        cookie_file = os.path.join(utils.addon_info.profile, 'tmp_cookies')
+        try:
+            os.remove(cookie_file)
+        except FileNotFoundError:
+            pass
+
+        cj = fetch.PersistentCookieJar(cookie_file)
+
+        with patch.object(fetch.HttpSession(), 'cookies', cj):
+            s = itv_account.ItvSession()
+            # Login requires consent cookies, or will time out.
+            s.login(account_login.UNAME, account_login.PASSW)
 
 
 class TestTokens(unittest.TestCase):
