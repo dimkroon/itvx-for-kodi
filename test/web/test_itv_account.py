@@ -49,9 +49,9 @@ class TestLogin(unittest.TestCase):
         self.assertRaises(errors.AuthenticationError, itv_sess.login, 'user.name', account_login.PASSW)
         self.assertRaises(errors.AuthenticationError, itv_sess.login, account_login.UNAME, 'password')
 
+    @unittest.skip("login() already doesn't use cookies at all.")
     def test_sign_in_using_no_cookies(self):
-        """Try to sign in using a new set of default cookies.
-        If consent cookies are not set correctly the request will time out.
+        """Try to sign in without any cookies.
 
         """
         cookie_file = os.path.join(utils.addon_info.profile, 'tmp_cookies')
@@ -64,8 +64,29 @@ class TestLogin(unittest.TestCase):
 
         with patch.object(fetch.HttpSession(), 'cookies', cj):
             s = itv_account.ItvSession()
+            # Login does not require cookies at all.
+            result = s.login(account_login.UNAME, account_login.PASSW)
+            self.assertTrue(result)
+
+    @unittest.skip("login() doesn't use cookies.")
+    def test_sign_in_with_fresh_consent_cookies(self):
+        """Try to sign a new set of consent cookies.
+
+        """
+        cookie_file = os.path.join(utils.addon_info.profile, 'tmp_cookies')
+        try:
+            os.remove(cookie_file)
+        except FileNotFoundError:
+            pass
+
+        cj = fetch.PersistentCookieJar(cookie_file)
+        fetch.set_default_cookies(cj)
+
+        with patch.object(fetch.HttpSession(), 'cookies', cj):
+            s = itv_account.ItvSession()
             # Login requires consent cookies, or will time out.
-            s.login(account_login.UNAME, account_login.PASSW)
+            result = s.login(account_login.UNAME, account_login.PASSW)
+            self.assertTrue(result)
 
 
 class TestTokens(unittest.TestCase):

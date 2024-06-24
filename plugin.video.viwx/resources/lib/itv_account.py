@@ -93,6 +93,8 @@ class ItvSession:
         Returns True on success, raises exception on failure.
         Raises AuthenticationError if login fails, or other exceptions as they occur, like e.g. FetchError.
         """
+        import requests
+        from resources.lib.telemetry_data import telemetry_factory
         self.account_data = {}
 
         req_data = {
@@ -106,27 +108,49 @@ class ItvSession:
         logger.info("Trying to sign in to ITV account")
         try:
             # Post credentials
-            session_data = fetch.post_json(
+            resp = requests.post(
                 'https://auth.prd.user.itv.com/v2/auth',
-                req_data,
-                headers={'Accept': 'application/vnd.user.auth.v2+json'}
+                json=req_data,
+                headers={
+                    'user-agent':           fetch.USER_AGENT,
+                    'accept':               'application/vnd.user.auth.v2+json',
+                    'accept-language':      'en-GB,en;q=0.5',
+                    'accept-encoding':      'gzip, deflate',
+                    'content-type':         'application/json',
+                    'akamai-bm-telemetry':  telemetry_factory.get_data(),
+                    'origin':               'https://www.itv.com',
+                    'referer':              'https://www.itv.com/',
+                    'sec-fetch-dest':       'empty',
+                    'sec-fetch-mode':       'cors',
+                    'sec-fetch-site':       'same-site',
+                    'priority':             'u=1',
+                    'te':                   'trailers'
+                },
+                timeout=fetch.WEB_TIMEOUT
             )
-
+            resp.raise_for_status()
+            session_data = resp.json()
             self.account_data = {
                 'vers': SESS_DATA_VERS,
                 'refreshed': time.time(),
                 'itv_session': session_data,
                 'cookies': {'Itv.Session': build_cookie(session_data)}
             }
-        except FetchError as e:
-            # Testing showed that itv hub can return various HTTP status codes on a failed sign in attempt.
-            # Sometimes returning a json string containing the reason of failure, sometimes and HTML page.
+        except requests.HTTPError as e:
             logger.error("Error signing in to ITV account: %r" % e)
-            if isinstance(e, AuthenticationError) or (isinstance(e, HttpError) and e.code in (400, 401, 403)):
-                logger.info("Sign in failed: %r", e)
-                raise AuthenticationError(str(e)) from None
+            status_code = e.response.status_code
+            if status_code in (400, 403):
+                msg = {
+                    400: 'Invalid username or password',
+                    403: 'Forbidden\nIf this error persists wait a few hours before trying again.'
+                }.get(status_code, 'Sign in failed.')
+                logger.info("Sign in failed: %r: %r", e, e.response.content)
+                raise AuthenticationError(msg) from None
             else:
                 raise
+        except:
+            logger.error("Error signing in to ITV account:\n", exc_info=True)
+            raise
         else:
             logger.info("Sign in successful.")
             self._user_id, self._user_nickname, self._expire_time = parse_token(session_data.get('access_token'))
