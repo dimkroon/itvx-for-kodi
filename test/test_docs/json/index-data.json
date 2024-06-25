@@ -82,19 +82,24 @@
       ]
     },
     {
-       "contentType": "simulcastspot",
-       "title": "Britain's Got Talent",
-       "description": "Always entertaining, always surprising, plus Ant & Dec! An epic night in",
-       "channel": "ITV",
-       "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/britainsgottalents17/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-       "genre": "Entertainment",
-       "ctaLabel": "Watch Live",
-       "ariaLabel": "Watch live, Britain's Got Talent",
-       "contentInfo": ["Entertainment"],
-       "strapline": {"text": "Stream it now", "variant": "live-and-fast"},
-       "startDateTime": "19:30",
-       "endDateTime": "21:00",
-       "tagName": "live"
+      "contentType": "simulcastspot",
+      "title": "Britain's Got Talent",
+      "description": "Always entertaining, always surprising, plus Ant & Dec! An epic night in",
+      "channel": "ITV",
+      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/britainsgottalents17/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "genre": "Entertainment",
+      "ctaLabel": "Watch Live",
+      "ariaLabel": "Watch live, Britain's Got Talent",
+      "contentInfo": [
+        "Entertainment"
+      ],
+      "strapline": {
+        "text": "Stream it now",
+        "variant": "live-and-fast"
+      },
+      "startDateTime": "19:30",
+      "endDateTime": "21:00",
+      "tagName": "live"
     },
     {
       "imagePresets": {},
@@ -143,7 +148,8 @@
       "title": "All Star Movies",
       "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/allstarmovies/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "strapline": {
-        "text": "Massive movies, stellar stars", "variant": "default"
+        "text": "Massive movies, stellar stars",
+        "variant": "default"
       },
       "ariaLabel": "View Collection",
       "ctaLabel": "View Collection",
@@ -165,15 +171,28 @@
       "partnership": null,
       "contentOwner": null,
       "title": "The Beast Must Die",
-      "categories": ["DRAMA_AND_SOAPS"],
-      "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}],
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "genres": [
+        {
+          "id": "DRAMA_AND_SOAPS",
+          "name": "Drama"
+        }
+      ],
       "description": "A gripping revenge thriller - stream the full boxset now",
       "imageTemplate": "https://ovp.itv.com/images/programme/y8dpbwd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "ccid": "y8dpbwd",
       "programmeId": "10/1313",
-      "encodedProgrammeId": {"letterA": "10a1313", "underscore": "10_1313"},
+      "encodedProgrammeId": {
+        "letterA": "10a1313",
+        "underscore": "10_1313"
+      },
       "isPaid": false,
-      "contentInfo": ["Drama", "Series 1"],
+      "contentInfo": [
+        "Drama",
+        "Series 1"
+      ],
       "ctaLabel": "Watch Now",
       "ariaLabel": "Watch an episode of The Beast Must Die"
     }
@@ -5153,37 +5172,48 @@
       },
       "items": [
         {
-            "contentType": "episode",
-            "episodeTitle": "Group C: Serbia v England - Highlights of Serbia v England",
-            "episodeId": "10/5755/0007",
-            "titleSlug": "group-c-serbia-v-england-highlights-of-serbia-v-england",
-            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/10d5zYzENMF5BFoQKrxM11/12db78f966f85aff5719c39aab4ac2b4/HIGHLIGHTS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "dateTime": "2024-06-16T22:01:25.927Z",
-            "programmeId": "10/5755",
-            "programmeTitle": "UEFA Euro 2024 Highlights",
-            "encodedEpisodeId": {
-                "letterA": "10a5755a0007",
-                "underscore": "10_5755_0007"
-            },
-            "encodedProgrammeId": {
-                "letterA": "10a5755",
-                "underscore": "10_5755"
-            },
-            "genre": "sport",
-            "href": "/watch/sport/undefined"
+          "contentType": "episode",
+          "episodeTitle": "Group C: Serbia v England - Highlights of Serbia v England",
+          "episodeId": "10/5755/0007",
+          "titleSlug": "group-c-serbia-v-england-highlights-of-serbia-v-england",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/10d5zYzENMF5BFoQKrxM11/12db78f966f85aff5719c39aab4ac2b4/HIGHLIGHTS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "dateTime": "2024-06-16T22:01:25.927Z",
+          "programmeId": "10/5755",
+          "programmeTitle": "UEFA Euro 2024 Highlights",
+          "encodedEpisodeId": {
+            "letterA": "10a5755a0007",
+            "underscore": "10_5755_0007"
+          },
+          "encodedProgrammeId": {
+            "letterA": "10a5755",
+            "underscore": "10_5755"
+          },
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
         },
         {
-            "contentType": "shortform",
-            "episodeTitle": "Post match interviews",
-            "episodeId": "r0syv0w",
-            "titleSlug": "post-match-interviews",
-            "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5iT0yhnfMhC3YYilNz17At/b1ce7fcb6434327429775a742d6d8bf8/ENG_IVS_GFX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "England's Jude Bellingham and Trent Alexander-Arnold give their thoughts after their Group C opener against Serbia",
-            "dateTime": "2024-06-16T21:38:50.159Z",
-            "duration": 320,
-            "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5Q6JkrvIgtVjvKE0zhdViI/db17dc7bf245a19a5d2076e90a70f7b6/ENG_IVS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "genre": "sport",
-            "href": "/watch/sport/undefined"
+          "contentType": "shortform",
+          "episodeTitle": "Post match interviews",
+          "episodeId": "r0syv0w",
+          "titleSlug": "post-match-interviews",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/5iT0yhnfMhC3YYilNz17At/b1ce7fcb6434327429775a742d6d8bf8/ENG_IVS_GFX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "England's Jude Bellingham and Trent Alexander-Arnold give their thoughts after their Group C opener against Serbia",
+          "dateTime": "2024-06-16T21:38:50.159Z",
+          "duration": 320,
+          "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/5Q6JkrvIgtVjvKE0zhdViI/db17dc7bf245a19a5d2076e90a70f7b6/ENG_IVS_CLEAN.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
+        },
+        {
+          "contentType": "fastchannelspot",
+          "episodeTitle": "LIVE: ITVX's exclusive Euro 2024 channel",
+          "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/qyCAeCMZxvh7ShYrHZ5yU/1392a6f6452f49cabf940b2a6ab63a40/04_DesktopCTV_RailTileLandscape_WithLogo_1920x1080_ArtLoader.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "channel": "fast1",
+          "tagNames": [
+            "live"
+          ],
+          "genre": "sport",
+          "href": "/watch/sport/undefined"
         }
       ],
       "key": "sportShortForm",
@@ -5192,11 +5222,11 @@
       "dataTestId": "sport-rail",
       "tileType": "news",
       "trackingProps": {
-          "contentType": "sport",
-          "moduleName": "itv-sport",
-          "genre": "sport",
-          "itemFeed": "sportShortForm",
-          "buttonName": "view all"
+        "contentType": "sport",
+        "moduleName": "itv-sport",
+        "genre": "sport",
+        "itemFeed": "sportShortForm",
+        "buttonName": "view all"
       },
       "className": "sport-short-form"
     }
