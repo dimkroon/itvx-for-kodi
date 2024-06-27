@@ -303,11 +303,21 @@ def check_short_form_item(item):
     Items from collection or from Hero of category have an extra field `posterImage`, but it's not used in the addon.
 
     """
-    has_keys(
-        item,
-        'episodeTitle', 'episodeId', 'titleSlug', 'imageUrl', 'dateTime', 'contentType',
-        obj_name=item['episodeTitle'])
+    objname = "shortform item '{}'".format(item.get('episodeTitle', 'unknown title'))
+    has_keys(item, 'episodeTitle', 'imageUrl', 'contentType', obj_name=objname)
     misses_keys(item, 'isPaid', 'tier', 'imagePresets')
+
+    assert(item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
+
+    if item['contentType'] == 'fastchannelspot':
+        assert(item['channel'].startswith('fast'))
+        misses_keys(item, 'description, synopsis', obj_name=objname)
+    else:
+        has_keys(item, 'episodeId', 'titleSlug', 'dateTime', obj_name=objname)
+        assert is_not_empty(item['episodeId'], str)
+        assert is_not_empty(item['titleSlug'], str)
+        assert is_iso_utc_time(item['dateTime'])
+        assert isinstance(item.get('duration'), (int, type(None)))
 
     if item['contentType'] == 'shortform':
         # items like news and sport clips
@@ -317,7 +327,7 @@ def check_short_form_item(item):
         assert isinstance(item.get('duration'), int)
         # episodeId on real clips does not require letterA encoding
         assert '/' not in item['episodeId']
-    else:
+    elif item['contentType'] == 'episode':
         # 'Normal' programmes
         has_keys(item, 'programmeTitle', 'encodedEpisodeId')
         misses_keys(item, 'duration', 'synopsis')
@@ -327,12 +337,8 @@ def check_short_form_item(item):
         assert '/' in item['episodeId']
 
     assert is_not_empty(item['episodeTitle'], str)
-    assert is_not_empty(item['episodeId'], str)
-    assert is_not_empty(item['titleSlug'], str)
     assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp')), \
            "item '{}' has not a valid imageUrl".format(item['episodeTitle'])
-    assert is_iso_utc_time(item['dateTime'])
-    assert isinstance(item.get('duration'), (int, type(None)))
     # True shortform items have a field 'href', but items produced by heroAndLatest and curatedRails
     # on the news category page don't.
     if 'href' in item:

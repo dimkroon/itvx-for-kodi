@@ -311,12 +311,14 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
 
     """
     try:
-        if item_data['contentType'] == 'shortform':
+        content_type = item_data['contentType']
+
+        if content_type == 'shortform':
             # This item is a 'short item', aka 'news clip'.
             href = item_data.get('href', '/watch/news/undefined')
             url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
 
-        else:
+        elif content_type == 'episode':
             # The news item is a 'normal' catchup title. Is usually just the latest ITV news,
             # or a full sports programme.
             # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
@@ -324,6 +326,9 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
                             item_data['titleSlug'],
                             item_data['encodedProgrammeId']['letterA'],
                             item_data.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
+        else:
+            logger.info("Disregarding shortform item of type '%s'", content_type)
+            return None
 
         # dateTime field occasionally has milliseconds. Strip these when present.
         item_time = pytz.UTC.localize(utils.strptime(item_data['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))

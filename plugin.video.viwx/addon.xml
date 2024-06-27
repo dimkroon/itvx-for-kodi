@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viwx" name="viwX" version="1.4.0" provider-name="Dimitri Kroon">
+<addon id="plugin.video.viwx" name="viwX" version="1.4.1" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.5"/>
@@ -30,6 +30,10 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
+[B]v1.4.1[/B]
+[B]Fixes:[/B]
+* Yet again sign-in errors. Now affecting both new users and existing users who had signed out.
+
 [B]v1.4.0[/B]
 [B]Fixes:[/B]
 * Collection ITV sport failed with KeyError('collection')
