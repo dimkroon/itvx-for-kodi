@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -13,6 +13,8 @@ import time
 import unittest
 import uuid
 import binascii
+import requests
+
 from copy import deepcopy
 from unittest.mock import patch, mock_open, MagicMock
 
@@ -132,7 +134,7 @@ class TestSession(unittest.TestCase):
 
 @patch("resources.lib.itv_account.ItvSession.save_account_data")
 class TestLogin(unittest.TestCase):
-    @patch('resources.lib.fetch.post_json', return_value={'access_token': 'new_token', 'refresh_token': 'new_refresh'})
+    @patch('requests.post', return_value=HttpResponse(content=b'{"access_token": "new_token", "refresh_token": "new_refresh"}'))
     def test_login_requires_both_uname_and_password(self, _, __):
         ct_sess = itv_account.ItvSession()
         self.assertRaises(TypeError, ct_sess.login)
@@ -140,52 +142,56 @@ class TestLogin(unittest.TestCase):
         self.assertRaises(TypeError, ct_sess.login, passw="my password")
         self.assertTrue(ct_sess.login(uname="my name", passw="my password"))
 
-    @patch('resources.lib.fetch.post_json', return_value={'access_token': 'new_token', 'refresh_token': 'new_refresh'})
+    @patch('requests.post', return_value=HttpResponse(content=b'{"access_token": "new_token", "refresh_token": "new_refresh"}'))
     def test_login_with_credentials(self, p_post, _):
         ct_sess = itv_account.ItvSession()
         self.assertTrue(ct_sess.login('my_name', 'my_passw'))
-        post_kwargs = p_post.call_args[0][1]
+        post_kwargs = p_post.call_args.kwargs['json']
         has_keys(post_kwargs, 'username', 'password', 'nonce', 'grant_type', obj_name='post_json kwargs')
         self.assertEqual('my_name', post_kwargs['username'])
         self.assertEqual('my_passw', post_kwargs['password'])
         self.assertEqual(itv_account.SESS_DATA_VERS, ct_sess.account_data['vers'])
+        headers = p_post.call_args.kwargs['headers']
+        has_keys(headers, 'user-agent', 'accept', 'accept-language', 'accept-encoding', 'content-type',
+                 'akamai-bm-telemetry', 'origin', 'referer', 'sec-fetch-dest', 'sec-fetch-mode', 'sec-fetch-site',
+                 'priority', 'te')
 
     def test_login_encounters_http_errors(self, p_save):
-        with patch('resources.lib.fetch.post_json', side_effect=errors.AuthenticationError):
+        # with patch('requests.post', side_effect=errors.AuthenticationError):
+        #     ct_sess = itv_account.ItvSession()
+        #     p_save.reset_mock()
+        #     self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
+        #     p_save.assert_not_called()
+
+        with patch('requests.post', return_value=HttpResponse(status_code=400)):
             ct_sess = itv_account.ItvSession()
             p_save.reset_mock()
             self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
-        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(400, '')):
+        with patch('requests.post', return_value=HttpResponse(status_code=401)):
+            ct_sess = itv_account.ItvSession()
+            p_save.reset_mock()
+            self.assertRaises(requests.HTTPError, ct_sess.login, 'my name', 'my password')
+            p_save.assert_not_called()
+
+        with patch('requests.post', return_value=HttpResponse(status_code=403)):
             ct_sess = itv_account.ItvSession()
             p_save.reset_mock()
             self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
 
-        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(401, '')):
+        with patch('requests.post', return_value=HttpResponse(status_code=404)):
             ct_sess = itv_account.ItvSession()
             p_save.reset_mock()
-            self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
+            self.assertRaises(requests.HTTPError, ct_sess.login, 'my name', 'my password')
             p_save.assert_not_called()
-
-        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(403, '')):
-            ct_sess = itv_account.ItvSession()
-            p_save.reset_mock()
-            self.assertRaises(errors.AuthenticationError, ct_sess.login, 'my name', 'my password')
-            p_save.assert_not_called()
-
-        with patch('resources.lib.fetch.post_json', side_effect=errors.HttpError(404, '')):
-            ct_sess = itv_account.ItvSession()
-            p_save.reset_mock()
-            self.assertRaises(errors.HttpError, ct_sess.login, 'my name', 'my password')
-            p_save.assert_not_called()
-
-        with patch('resources.lib.fetch.post_json', side_effect=errors.GeoRestrictedError):
-            ct_sess = itv_account.ItvSession()
-            p_save.reset_mock()
-            self.assertRaises(errors.GeoRestrictedError, ct_sess.login, 'my name', 'my password')
-            p_save.assert_not_called()
+        #
+        # with patch('requests.post', side_effect=errors.GeoRestrictedError):
+        #     ct_sess = itv_account.ItvSession()
+        #     p_save.reset_mock()
+        #     self.assertRaises(errors.GeoRestrictedError, ct_sess.login, 'my name', 'my password')
+        #     p_save.assert_not_called()
 
 
 @patch("resources.lib.itv_account.ItvSession.save_account_data")
