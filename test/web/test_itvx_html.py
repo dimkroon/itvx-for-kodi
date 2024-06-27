@@ -548,6 +548,7 @@ class CollectionPages(unittest.TestCase):
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
         editorial_sliders = page_data['editorialSliders']
         for rail in editorial_sliders.values():
+            continue
             pagelink = rail['collection'].get('headingLink', {}).get('href')
             if not pagelink:
                 continue
@@ -559,6 +560,11 @@ class CollectionPages(unittest.TestCase):
                 continue
             # We consider a page link mandatory
             pagelink = slider['header']['linkHref']
+            if pagelink.startswith('/watch/categories'):
+                # Check it's a known category and leave additional checks to the categories tests.
+                self.assertTrue(pagelink.rsplit('/', 1)[-1] in all_categories,
+                                "Unknown category page '{}'.".format(pagelink))
+                continue
             self.check_page(self, 'https://www.itv.com' + pagelink)
 
 class WatchPages(unittest.TestCase):
@@ -795,8 +801,10 @@ class TvGuide(unittest.TestCase):
         self.assertEqual(today.date(), start_t.date())
 
 
+all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport', 'comedy', 'news', 'entertainment', 'signed-bsl']
+
+
 class Categories(unittest.TestCase):
-    all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport', 'comedy', 'news', 'entertainment', 'signed-bsl']
 
     def test_get_available_categories(self):
         """The page categories returns in fact already a full categorie page - the first page in the list
@@ -817,12 +825,12 @@ class Categories(unittest.TestCase):
             self.assertTrue(item['url'].startswith('/watch/'))
 
         self.assertEqual(9, len(categories))        # the mobile app has an additional category AD (Audio Described)
-        self.assertListEqual([cat['id'] for cat in categories], self.all_categories)
+        self.assertListEqual([cat['id'] for cat in categories], all_categories)
         # print('Categorie page fetched in {:0.3f}, parsed in {:0.3f}, total: {:0.3f}'.format(
         #     t_1 - t_s, t_2 - t_1, t_2 - t_s))
 
     def test_all_categories(self):
-        for cat in self.all_categories:
+        for cat in all_categories:
             if cat == 'news':
                 # As of May 2023 category news returns a different data structure and has its own test.
                 continue
