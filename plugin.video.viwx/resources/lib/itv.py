@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -18,6 +18,7 @@ from codequick.support import logger_id
 from . import utils
 from . import fetch
 from . import kodi_utils
+from .parsex import timecode2seconds
 
 
 logger = logging.getLogger(logger_id + '.itv')
@@ -161,7 +162,34 @@ def get_catchup_urls(episode_url):
         subtitles = stream_data['Subtitles'][0]['Href']
     except (TypeError, KeyError, IndexError):
         subtitles = None
-    return dash_url, key_service, subtitles, playlist['VideoType'], playlist['ProductionId']
+    return dash_url, key_service, subtitles, playlist['VideoType'], playlist['ProductionId'], get_intro(stream_data)
+
+
+def get_intro(video_data):
+    """From `video_data` get the time the intro of the video ends
+
+    The data is the part of the playlist data concerning video. Depending on the type
+    of video, timecode data may or may not be present.
+
+    """
+    try:
+        timecodes = video_data.get('Timecodes')
+        if not timecodes:
+            return 0
+
+        opening_time = 0
+        recap_time = 0
+        opening_titles = timecodes.get('OpeningTitles')
+        if opening_titles:
+            opening_time = timecode2seconds(opening_titles.get('EndTime'))
+        recap = timecodes.get('Recap')
+        if recap:
+            recap_time = timecode2seconds(recap.get('EndTime'))
+
+        return max(opening_time, recap_time)
+    except:
+        logger.warning("Failed get timecodes from playlist", exc_info=True)
+        return 0
 
 
 def get_vtt_subtitles(subtitles_url):
