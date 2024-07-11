@@ -108,6 +108,56 @@ class GetLiveUrls(TestCase):
         self.assertIsNone(subs)
 
 
+class GetCatchupUrls(TestCase):
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    def test_get_catchup_urls_episode(self, _):
+        mpd, key, subs, video_type, production_id, intro = itv.get_catchup_urls('my-episode')
+        self.assertTrue(is_url(mpd))
+        self.assertTrue(is_url(key))
+        self.assertTrue(is_url(subs))
+        self.assertEqual('CATCHUP', video_type)
+        self.assertEqual('1/7665/0049#001', production_id)
+        self.assertEqual(37.12, intro)
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
+    def test_get_catchup_urls_shortform(self, _):
+        mpd, key, subs, video_type, production_id, intro = itv.get_catchup_urls('my-episode')
+        self.assertTrue(is_url(mpd))
+        self.assertIsNone(key)
+        self.assertIsNone(subs)
+        self.assertEqual('SHORT', video_type)
+        self.assertEqual('294f5r9', production_id)
+        self.assertEqual(0, intro)
+
+
+class GetIntro(TestCase):
+    def test_no_timecodes(self):
+        self.assertEqual(0, itv.get_intro({}))
+
+    def test_only_opening_titles(self):
+        intro = itv.get_intro({'Timecodes': {'OpeningTitles': {'EndTime': '00:01:23:450'}, 'Recap': None}})
+        self.assertEqual(83.45, intro)
+
+    def test_only_recap(self):
+        intro = itv.get_intro({'Timecodes': {'OpeningTitles': None, 'Recap': {'EndTime': '00:01:23:450'}}})
+        self.assertEqual(83.45, intro)
+
+    def test_opening_titles_larger(self):
+        intro = itv.get_intro({'Timecodes': {'OpeningTitles': {'EndTime': '00:02:04:500'},
+                                             'Recap': {'EndTime': '00:01:23:450'}}})
+        self.assertEqual(124.5, intro)
+
+    def test_recap_larger(self):
+        intro = itv.get_intro({'Timecodes': {'OpeningTitles': {'EndTime': '00:01:23:450'},
+                                             'Recap': {'EndTime': '00:02:04:500'}}})
+        self.assertEqual(124.5, intro)
+
+    def test_invalid_timecode_data(self):
+        self.assertEqual(0, itv.get_intro({'Timecodes': {'EndCredits': {'EndTime': '00:01:23:450'}}}))
+        self.assertEqual(0, itv.get_intro({'Timecodes': {'OpeningTitles': 240, 'Recap': 350}}))
+        self.assertEqual(0, itv.get_intro({'Timecodes': {}}))
+
+
 class GetVttSubtitles(TestCase):
     @patch('xbmcaddon.Addon.getSetting', return_value='true')
     @patch('resources.lib.fetch.get_document', new=open_doc('vtt/subtitles_doc_martin.vtt'))
