@@ -536,3 +536,13 @@ class Generic(unittest.TestCase):
         del data['header']['linkText']
         item = parsex.parse_view_all(deepcopy(data))
         self.assertEqual('View All', item['show']['label'])
+
+    def test_timecode2seconds(self):
+        self.assertEqual(3945.123, parsex.timecode2seconds("01:05:45:123"))
+        self.assertEqual(345.012, parsex.timecode2seconds("00:05:45:012"))
+        self.assertEqual(5.012, parsex.timecode2seconds("00:00:05:012"))
+        self.assertEqual(.001, parsex.timecode2seconds("00:00:00:001"))
+        self.assertEqual(0, parsex.timecode2seconds("00:00:00:000"))
+        # invalid values
+        self.assertEqual(0, parsex.timecode2seconds("45:123"))
+        self.assertEqual(0, parsex.timecode2seconds("01:05:45:413:123"))
