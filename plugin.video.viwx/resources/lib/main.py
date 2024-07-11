@@ -560,12 +560,12 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None):
 
 
 @Resolver.register
-def play_stream_catchup(plugin, url, name, set_resume_point=False):
+def play_stream_catchup(plugin, url, name, set_resume_point=False, skip_intro=False):
 
     logger.info('play catchup stream - %s  url=%s', name, url)
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
-        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url, fhd_enabled)
+        manifest_url, key_service_url, subtitle_url, stream_type, production_id, intro = itv.get_catchup_urls(url, fhd_enabled)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
@@ -587,14 +587,24 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
                 'subtitles.translate.file': subtitles[0],
                 'subtitles.translate.orig_lang': 'en',
                 'subtitles.translate.type': 'srt'})
+
+        resume_time = None
         if set_resume_point:
             resume_time = itvx.get_resume_point(production_id)
-            if resume_time:
-                list_item.setProperties({
-                    'ResumeTime': str(resume_time),
-                    'TotalTime': '7200'
-                })
-                logger.info("Resume from %s", resume_time)
+            logger.info("Resume from '%s'.", resume_time)
+        elif (skip_intro or utils.addon_info.addon.getSettingBool('skip_intro')) and sys.argv[3] == 'resume:false':
+            if intro:
+                resume_time = intro
+                logger.info("Skipping intro of '%s' seconds.", resume_time)
+            else:
+                logger.info("Cannot skip intro: no intro data available.")
+
+        if resume_time:
+            list_item.setProperties({
+                'ResumeTime': str(resume_time),
+                'TotalTime': '7200'
+            })
+            logger.info("Resume point set to '%s'", resume_time)
         return list_item
 
 
