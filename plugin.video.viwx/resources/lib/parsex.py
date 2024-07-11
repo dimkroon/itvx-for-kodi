@@ -626,7 +626,7 @@ def parse_last_watched_item(item, utc_now):
             'label': episode_name or progr_name,
             'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
                     'fanart': img_link.format(**IMG_PROPS_FANART)},
-            'info': {'title': title ,
+            'info': {'title': title,
                      'plot': info,
                      'sorttitle': sort_title(title),
                      'date': utils.reformat_date(item['viewedOn'], "%Y-%m-%dT%H:%M:%SZ", "%d.%m.%Y"),
@@ -634,7 +634,7 @@ def parse_last_watched_item(item, utc_now):
                      'season': series_nr,
                      'episode': episode_nr},
             'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
-                               item['productionId'].replace('/', '_').replace('#', '.' )),
+                               item['productionId'].replace('/', '_').replace('#', '.')),
                        'name': progr_name,
                        'set_resume_point': True},
             'properties': {
@@ -694,3 +694,19 @@ def parse_schedule_item(data):
         return item
     except:
         logger.error("Failed to parse html schedule item", exc_info=True)
+
+
+def timecode2seconds(timecode: str) -> float:
+    """Convert a specially formatted timecode found in playlist data
+    to the corresponding number of seconds
+
+    Timecodes are formatted in a way like: hh:mm:ss:fff
+    """
+    try:
+        if len(timecode) != 12:
+            return 0.0
+        hrs, mins, secs, fract = timecode.split(':')
+        return float(hrs) * 3600 + float(mins) * 60 + float(secs) + float(fract) / 1000
+    except (ValueError, IndexError) as err:
+        logger.debug("Failed to parse timecode '%s': %r", timecode, err)
+        return 0.0
