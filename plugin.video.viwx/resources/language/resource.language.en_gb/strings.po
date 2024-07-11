@@ -65,6 +65,11 @@ msgctxt "#30113"
 msgid "Log level"
 msgstr ""
 
+msgctxt "#30114"
+msgid "Skip intro whenever available"
+msgstr ""
+
+
 msgctxt "#30120"
 msgid "Live channels"
 msgstr ""
@@ -141,6 +146,12 @@ msgstr ""
 msgctxt "#30306"
 msgid "When a category or collection has more items than specified here, items will be alphabetically subdivided."
 msgstr ""
+
+msgctxt "#30314"
+msgid "Skip opening titles and recap whenever possible.\n"
+"If disabled you can always use the context menu to skip the intro of the selected episode."
+msgstr ""
+
 
 msgctxt "#30311"
 msgid "Target of viwX logging.\n"
