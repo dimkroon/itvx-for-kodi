@@ -572,6 +572,18 @@ class PlayStreamCatchup(TestCase):
         self.assertEqual('32', result._props['ResumeTime'])
         self.assertTrue('TotalTime' in result._props)
 
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.main.create_dash_stream_item', new=lambda *args: xbmcgui.ListItem())
+    def test_play_episode_skipping_intro(self, _):
+        with patch('resources.lib.utils.kodi_resumes', return_value=False):
+            result = main.play_stream_catchup.test('some/url', 'my episode', skip_intro=True)
+            self.assertEqual('37.12', result._props['ResumeTime'])
+            self.assertTrue('TotalTime' in result._props)
+        with patch('resources.lib.utils.kodi_resumes', return_value=True):
+            result = main.play_stream_catchup.test('some/url', 'my episode', skip_intro=True)
+            self.assertTrue('ResumeTime' not in result._props)
+            self.assertTrue('TotalTime' not in result._props)
+
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
         result = main.play_stream_catchup.test('url', '')
