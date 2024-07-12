@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -10,6 +10,7 @@ fixtures.global_setup()
 import string
 from datetime import datetime
 from unittest import TestCase
+from unittest.mock import patch
 
 from resources.lib import utils
 
@@ -26,6 +27,14 @@ class Generic(TestCase):
         info.initialise()
         for attr_name in ('addon', 'name', 'id', 'localise', 'profile'):
             self.assertTrue(hasattr(info, attr_name))
+
+    def test_kodi_resumes(self):
+        with patch('sys.argv', new=['', '', '', 'resume:true']):
+            self.assertTrue(utils.kodi_resumes())
+        with patch('sys.argv', new=['', '', '', 'resume:false']):
+            self.assertFalse(utils.kodi_resumes())
+        with patch('sys.argv', new=['', '', '']):
+            self.assertFalse(utils.kodi_resumes())
 
     def test_get_os(self):
         cur_os = utils.get_os()
