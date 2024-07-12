@@ -592,7 +592,7 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False, skip_intro=Fa
         if set_resume_point:
             resume_time = itvx.get_resume_point(production_id)
             logger.info("Resume from '%s'.", resume_time)
-        elif (skip_intro or utils.addon_info.addon.getSettingBool('skip_intro')) and sys.argv[3] == 'resume:false':
+        elif (skip_intro or utils.addon_info.addon.getSettingBool('skip_intro')) and utils.kodi_resumes() is False:
             if intro:
                 resume_time = intro
                 logger.info("Skipping intro of '%s' seconds.", resume_time)
