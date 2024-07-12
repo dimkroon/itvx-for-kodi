@@ -8,6 +8,7 @@
 from __future__ import annotations
 import logging
 import time
+import sys
 import string
 from datetime import datetime
 
@@ -37,6 +38,14 @@ class AddonInfo:
 
 logger = logging.getLogger(logger_id + '.utils')
 addon_info = AddonInfo()
+
+
+def kodi_resumes() -> bool:
+    """Return True when Kodi intents to resume a video,"""
+    try:
+        return sys.argv[3] == 'resume:true'
+    except IndexError:
+        return False
 
 
 def get_os() -> tuple[str, str]:
