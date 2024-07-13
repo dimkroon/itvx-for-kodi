@@ -10,6 +10,7 @@ import json
 import logging
 import pytz
 from datetime import datetime
+from urllib.parse import urlencode
 
 from codequick.support import logger_id
 from codequick import Script
@@ -18,7 +19,7 @@ from . import utils
 from .errors import ParseError
 
 TXT_PLAY_FROM_START = 30620
-
+TXT_VIEW_ALL_EPISODES = 30803
 
 logger = logging.getLogger(logger_id + '.parse')
 
@@ -618,6 +619,7 @@ def parse_my_list_item(item, hide_paid=False):
 
 def parse_last_watched_item(item, utc_now):
     progr_name = item.get('programmeTitle', '')
+    progr_id = item.get('programmeId', '').replace('/', '_')
     episode_name = item.get('episodeTitle')
     series_nr = item.get('seriesNumber')
     episode_nr = item.get('episodeNumber')
@@ -652,9 +654,10 @@ def parse_last_watched_item(item, utc_now):
     else:
         title = '{} - [I]{}% watched[/I]'.format(progr_name, int(item['percentageWatched'] * 100))
 
+
     item_dict = {
         'type': 'vodstream',
-        'programme_id': item['programmeId'].replace('/', '_'),
+        'programme_id': progr_id,
         'show': {
             'label': episode_name or progr_name,
             'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
@@ -681,6 +684,15 @@ def parse_last_watched_item(item, utc_now):
     }
     if item['contentType'] == 'FILM':
         item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
+    elif item['contentType'] == 'EPISODE' and progr_id:
+        ctx_mnu = (utils.addon_info.localise(TXT_VIEW_ALL_EPISODES),
+                   ''.join(('Container.Update(plugin://',
+                            utils.addon_info.id,
+                            '/resources/lib/main/wrapper.list_productions?',
+                            urlencode({'url': '/watch/undefined/' + progr_id}),
+                            ')'))
+                   )
+        item_dict['ctx_mnu'] = [ctx_mnu]
     return item_dict
 
 
