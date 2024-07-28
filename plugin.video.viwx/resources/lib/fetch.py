@@ -10,7 +10,9 @@ import logging
 import requests
 import pickle
 import time
+import ssl
 from requests.cookies import RequestsCookieJar
+from requests.adapters import HTTPAdapter
 import json
 
 from codequick import Script
@@ -58,6 +60,42 @@ class PersistentCookieJar(RequestsCookieJar):
             pass
 
 
+class CustomHttpAdapter(HTTPAdapter):
+    """A custom HTTP Adaptor to work around the issue that www.itv.com returns
+    403 FORBIDDEN on OSMC 2024.05-1 (and probably others versions based on Bullseye).
+
+    It looks like the use of ssl.OP_NO_TICKET with openssl 1.1.1 causes troubles
+    with ITVX's servers. Since urllib3 v2+ sets this option by default we create
+    our own SSLContext for use in HTTPS connection.
+    Apart from the OP_NO_TICKET option, ssl's default context appears to be very
+    much like that created by urllib3, so I guess it's safe for general use.
+
+    """
+    def init_poolmanager(self, *args, **kwargs):
+        import urllib3
+        logger.info('Urllib3 version %s', urllib3.__version__)
+        # Options set by urllib3 v2.1
+        options = 0
+        options |= ssl.OP_NO_SSLv2
+        options |= ssl.OP_NO_SSLv3
+        options |= ssl.OP_NO_COMPRESSION
+        # This option causes www.itv.com to return status 403.
+        # options |= ssl.OP_NO_TICKET
+
+        ctx = ssl.create_default_context()
+        logger.info(f"SSL option 'OP_NO_SSLv2': {ctx.options & ssl.OP_NO_SSLv2 == ssl.OP_NO_SSLv2}")
+        logger.info(f"SSL option 'OP_NO_SSLv3': {ctx.options & ssl.OP_NO_SSLv3 == ssl.OP_NO_SSLv3}")
+        logger.info(f"SSL option 'OP_NO_COMPRESSION': {ctx.options & ssl.OP_NO_COMPRESSION == ssl.OP_NO_COMPRESSION}")
+        logger.info(f"SSL option 'OP_NO_TICKET': {ctx.options & ssl.OP_NO_TICKET == ssl.OP_NO_TICKET}")
+        logger.info("SSL OP_NOTICKET = 0x%x", ssl.OP_NO_TICKET)
+        logger.info("options = 0x%x", ctx.options)
+        logger.info(f"Other SSL options: 0x{ctx.options & ~(options | ssl.OP_NO_TICKET):x}")
+        logger.info(f"SSL verify_mode: {ctx.verify_mode}")
+        logger.info(f"SSL check_hostname: {ctx.check_hostname}")
+
+        super().init_poolmanager(*args, **kwargs, ssl_context=ctx)
+
+
 class HttpSession(requests.sessions.Session):
     instance = None
 
@@ -84,6 +122,7 @@ class HttpSession(requests.sessions.Session):
             'Pragma': 'no-cache',
         })
         self.cookies = _create_cookiejar()
+        self.mount('https://', CustomHttpAdapter())
 
     # noinspection PyShadowingNames
     def request(
