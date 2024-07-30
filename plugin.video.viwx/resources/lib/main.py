@@ -591,7 +591,7 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
                 'subtitles.translate.orig_lang': 'en',
                 'subtitles.translate.type': 'srt'})
         if set_resume_point:
-            resume_time =  itvx.get_resume_point(production_id)
+            resume_time = itvx.get_resume_point(production_id)
             if resume_time:
                 list_item.setProperties({
                     'ResumeTime': str(resume_time),

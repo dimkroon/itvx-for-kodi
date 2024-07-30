@@ -19,8 +19,6 @@ from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, 
 
 from resources.lib import itvx, errors, main, cache, parsex, itv_account
 
-from future.moves import itertools
-
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -357,20 +355,6 @@ class Episodes(TestCase):
         series_listing2, programme_id2 = itvx.episodes('asd', use_cache=True)
         self.assertDictEqual(series_listing1, series_listing2)
         self.assertEqual(programme_id1, programme_id2)
-
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/paid_legacy_series.json'))
-    def test_episodes_legacy_format(self, p_fetch):
-        series_listing, programme_id = itvx.episodes('asd', use_cache=False)
-        self.assertIsInstance(series_listing, dict)
-        self.assertEqual(1, len(series_listing))
-        self.assertEqual(6, len(series_listing[1]['episodes']))
-        # From cache:
-        p_fetch.reset_mock()
-        series_listing, programme_id = itvx.episodes('asd', use_cache=True)
-        p_fetch.assert_not_called()
-        self.assertEqual(1, len(series_listing))
-        self.assertEqual(6, len(series_listing[1]['episodes']))
-        self.assertIsNone(programme_id)
 
     def test_missing_episodes_data(self):
         data = open_json('html/series_miss-marple_data.json')

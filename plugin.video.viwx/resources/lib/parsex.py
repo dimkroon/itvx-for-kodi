@@ -521,40 +521,6 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     return title_obj
 
 
-def parse_legacy_episode_title(title_data, brand_fanart=None):
-    """Parse a title from episodes listing in old format"""
-    # Note: episodeTitle may be None
-    title = title_data['episodeTitle'] or title_data['numberedEpisodeTitle']
-    img_url = title_data['imageUrl']
-    plot = '\n\n'.join((title_data['synopsis'], title_data['guidance'] or ''))
-    if 'PAID' in title_data.get('tier', []):
-        plot = premium_plot(plot)
-
-    title_obj = {
-        'label': title,
-        'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
-                'fanart': brand_fanart,
-                # 'poster': img_url.format(**IMG_PROPS_POSTER)
-                },
-        'info': {'title': title_data['numberedEpisodeTitle'],
-                 'plot': plot,
-                 'duration': utils.duration_2_seconds(title_data['duration']),
-                 'date': title_data['broadcastDateTime']},
-        'params': {'url': title_data['playlistUrl'], 'name': title}
-    }
-    if title_data['titleType'] == 'EPISODE':
-        try:
-            episode_nr = int(title_data['episodeNumber'])
-        except ValueError:
-            episode_nr = None
-        try:
-            series_nr = int(title_data['seriesNumber'])
-        except ValueError:
-            series_nr = None
-        title_obj['info'].update(episode=episode_nr, season=series_nr)
-    return title_obj
-
-
 def parse_search_result(search_data):
     entity_type = search_data['entityType']
     result_data = search_data['data']

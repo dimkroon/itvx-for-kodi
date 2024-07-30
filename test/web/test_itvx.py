@@ -78,11 +78,6 @@ class TestItvX(unittest.TestCase):
         # TODO: Test programmes that are actually used by this function
         #       All these programmes below are episodes and their playlists are
         #       obtained by the episode parser.
-        # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002
-        # episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
-        # url = itvx.get_playlist_url_from_episode_page(episode_url)
-        # self.assertTrue(is_url(url))
-        #
         # # itvx episode page - Nightwatch Series1 episode 2
         # episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
         # url = itvx.get_playlist_url_from_episode_page(episode_url)
