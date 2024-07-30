@@ -324,6 +324,26 @@ class Generic(unittest.TestCase):
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('0 hours available' in item['show']['info']['plot'])
 
+    def test_last_watched_context_menu(self):
+        data = open_json('usercontent/last_watched_all.json')
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+
+        episode_item = data[0]
+        self.assertEqual('FILM', episode_item['contentType'])
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertFalse('ctx_mnu' in show.keys())
+
+        episode_item['contentType'] = 'SPECIAL'
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertFalse('ctx_mnu' in show.keys())
+        
+        episode_item['contentType'] = 'EPISODE'
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertIsInstance(show['ctx_mnu'], list)
+        for item in show['ctx_mnu']:
+            self.assertIsInstance(item, tuple)
+
+
     def test_parse_schedule(self):
         data = open_json('json/schedule_data.json')['tvGuideData']
 

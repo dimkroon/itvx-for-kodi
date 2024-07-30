@@ -158,6 +158,7 @@ class Paginator:
         for show in shows_list:
             try:
                 li = Listitem.from_dict(callb_map[show['type']], **show['show'])
+                li.context.extend(show.get('ctx_mnu', []))
                 # Create 'My List' add/remove context menu entries here, so as to be able to update these
                 # entries after adding/removing an item, even when the underlying data is cached.
                 _my_list_context_mnu(li, show.get('programme_id'))
