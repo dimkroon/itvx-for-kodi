@@ -139,7 +139,7 @@ def get_intro(video_data):
         recap = timecodes.get('Recap')
         if recap:
             recap_time = timecode2seconds(recap.get('EndTime'))
-
+        logger.debug("Intro opening time = %s, intro recap = %s", opening_time, recap_time)
         return max(opening_time, recap_time)
     except:
         logger.warning("Failed get timecodes from playlist", exc_info=True)
