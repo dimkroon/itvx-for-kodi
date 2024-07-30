@@ -272,10 +272,11 @@ def parse_collection_item(show_data, hide_paid=False):
         else:
             plot = show_data['description']
 
+        img = show_data.get('imageTemplate') or show_data.get('imageUrl', '')
         programme_item = {
             'label': title,
-            'art': {'thumb': show_data['imageTemplate'].format(**IMG_PROPS_THUMB),
-                    'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+            'art': {'thumb': img.format(**IMG_PROPS_THUMB),
+                    'fanart': img.format(**IMG_PROPS_FANART)},
             'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
                      'plot': plot,
                      'sorttitle': sort_title(title)},

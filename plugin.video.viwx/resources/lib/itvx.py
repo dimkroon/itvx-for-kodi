@@ -216,7 +216,7 @@ def collection_content(url=None, slider=None, hide_paid=False):
             # Only found on main page
             items_list = page_data['trendingSliderContent']['items']
             for trending_item in items_list:
-                yield parsex.parse_trending_collection_item(trending_item, hide_paid)
+                yield parsex.parse_collection_item(trending_item, hide_paid)
             return
 
         else:
