@@ -273,10 +273,11 @@ def parse_collection_item(show_data, hide_paid=False):
         else:
             plot = show_data['description']
 
+        img = show_data.get('imageTemplate') or show_data.get('imageUrl', '')
         programme_item = {
             'label': title,
-            'art': {'thumb': show_data['imageTemplate'].format(**IMG_PROPS_THUMB),
-                    'fanart': show_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+            'art': {'thumb': img.format(**IMG_PROPS_THUMB),
+                    'fanart': img.format(**IMG_PROPS_FANART)},
             'info': {'title': title if is_playable else '[B]{}[/B] {}'.format(title, content_info),
                      'plot': plot,
                      'sorttitle': sort_title(title)},
@@ -356,43 +357,6 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
         }
     except Exception as err:
         logger.error("Unexpected error parsing a shortForm item: %r\n%s", err, json.dumps(item_data, indent=4))
-        return None
-
-
-def parse_trending_collection_item(trending_item, hide_paid=False):
-    """Parse an item in the collection 'Trending'
-    The only real difference with the regular parse_collection_item() is
-    adding field `contentInfo` to plot and the fact that all items are being
-    treated as playable.
-
-    """
-    try:
-        # No idea if premium content can be trending, but just to be sure.
-        plot = '\n'.join((trending_item['description'], trending_item['contentInfo']))
-        if trending_item.get('isPaid'):
-            if hide_paid:
-                return None
-            plot = premium_plot(plot)
-
-        # NOTE:
-        # Especially titles of type 'special' may lack a field encodedEpisodeID. For those titles it
-        # should not be necessary, but for episodes they are a requirement otherwise the page
-        # will always return the first episode.
-
-        return {
-            'type': 'title',
-            'programme_id': trending_item['encodedProgrammeId']['underscore'],
-            'show': {
-                'label': trending_item['title'],
-                'art': {'thumb': trending_item['imageUrl'].format(**IMG_PROPS_THUMB)},
-                'info': {'plot': plot, 'sorttitle': sort_title(trending_item['title'])},
-                'params': {'url': build_url(trending_item['titleSlug'],
-                                            trending_item['encodedProgrammeId']['letterA'],
-                                            trending_item.get('encodedEpisodeId', {}).get('letterA'))}
-            }
-        }
-    except Exception:
-        logger.warning("Failed to parse trending_collection_item:\n%s", json.dumps(trending_item, indent=4))
         return None
 
 

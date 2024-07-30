@@ -217,11 +217,11 @@ class Generic(unittest.TestCase):
 
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
-        item = parsex.parse_trending_collection_item(data[1])
+        item = parsex.parse_collection_item(data[1])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         # An invalid item
-        item = parsex.parse_trending_collection_item({})
+        item = parsex.parse_collection_item({})
         self.assertIsNone(item)
 
     def test_parse_episode_title(self):
