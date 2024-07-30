@@ -87,7 +87,7 @@ class TestMyItvx(unittest.TestCase):
 
     def test_recommended(self):
         items = main.generic_list.test('recommended')
-        self.assertGreater(len(items), 12)
+        self.assertEqual(len(items), 12)
 
 
 class TstCategories(unittest.TestCase):

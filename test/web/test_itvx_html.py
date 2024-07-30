@@ -165,7 +165,7 @@ def check_title(self, title, parent_name):
     self.assertTrue(is_iso_utc_time(title['availabilityUntil']))
     self.assertTrue(is_iso_utc_time(title['broadcastDateTime']) or title['broadcastDateTime'] is None)
     self.assertIsInstance(title['categories'], list)
-    self.assertTrue(is_not_empty(title['contentInfo'], str))
+    self.assertIsInstance(title['contentInfo'], str)        # can be empty in films, specials, or episodes in sections like 'latest episodes'.
     self.assertTrue(is_iso_utc_time(title['dateTime']))
     self.assertTrue(is_not_empty(title['description'], str))
     self.assertTrue(is_not_empty(title['duration'], str))

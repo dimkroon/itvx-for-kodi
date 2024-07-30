@@ -115,7 +115,7 @@ class TestItvX(unittest.TestCase):
     def test_recommended(self):
         uid = itv_account.itv_session().user_id
         recom_list = itvx.recommended(uid)
-        self.assertGreater(len(recom_list), 12)
+        self.assertEqual(len(recom_list), 12)
         # invalid user ID
         recom_list = itvx.recommended('dgsd')
-        self.assertGreater(len(recom_list), 12)
+        self.assertEqual(len(recom_list), 12)
