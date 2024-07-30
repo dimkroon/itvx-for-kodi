@@ -42,6 +42,8 @@ TXT_SEARCH = 30807
 TXT_NO_ITEMS_FOUND = 30608
 TXT_PLAY_FROM_START = 30620
 TXT_PREMIUM_CONTENT = 30622
+TXT_ADD_TO_MYLIST = 30801
+TXT_REMOVE_FROM_MYLIST = 30802
 
 
 def empty_folder():
@@ -224,10 +226,10 @@ def _my_list_context_mnu(list_item, programme_id, refresh=True, retry=True):
 
     try:
         if programme_id in cache.my_list_programmes:
-            list_item.context.script(update_mylist, "Remove from My List",
+            list_item.context.script(update_mylist, utils.addon_info.localise(TXT_REMOVE_FROM_MYLIST),
                                      progr_id=programme_id, operation='remove', refresh=refresh)
         else:
-            list_item.context.script(update_mylist, "Add to My List",
+            list_item.context.script(update_mylist, utils.addon_info.localise(TXT_ADD_TO_MYLIST),
                                      progr_id=programme_id, operation='add', refresh=refresh)
     except TypeError:
         if retry and cache.my_list_programmes is None:
