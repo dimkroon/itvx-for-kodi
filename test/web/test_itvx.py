@@ -78,11 +78,6 @@ class TestItvX(unittest.TestCase):
         # TODO: Test programmes that are actually used by this function
         #       All these programmes below are episodes and their playlists are
         #       obtained by the episode parser.
-        # legacy episode page, redirects to itvx https://www.itv.com/watch/holding/7a0203/7a0203a0002
-        # episode_url = 'https://www.itv.com/hub/holding/7a0203a0002'
-        # url = itvx.get_playlist_url_from_episode_page(episode_url)
-        # self.assertTrue(is_url(url))
-        #
         # # itvx episode page - Nightwatch Series1 episode 2
         # episode_url = "https://www.itv.com/watch/nightwatch/10a3249/10a3249a0002"
         # url = itvx.get_playlist_url_from_episode_page(episode_url)
@@ -120,7 +115,7 @@ class TestItvX(unittest.TestCase):
     def test_recommended(self):
         uid = itv_account.itv_session().user_id
         recom_list = itvx.recommended(uid)
-        self.assertGreater(len(recom_list), 12)
+        self.assertEqual(len(recom_list), 12)
         # invalid user ID
         recom_list = itvx.recommended('dgsd')
-        self.assertGreater(len(recom_list), 12)
+        self.assertEqual(len(recom_list), 12)

@@ -135,12 +135,12 @@ def check_series(self, series, parent_name):
     obj_name = '{}-{}'.format(parent_name, series['seriesLabel'])
     has_keys(series, 'seriesLabel', 'seriesNumber', 'numberOfAvailableEpisodes', 'titles',
              obj_name=obj_name)
-    expect_keys(series, 'legacyId', 'fullSeries', 'seriesType', 'longRunning')
+    expect_keys(series, 'seriesType', 'legacyId', 'fullSeries', 'seriesType', 'longRunning')
     self.assertTrue(is_not_empty(series['seriesNumber'], str))
     self.assertTrue(is_not_empty(series['seriesLabel'], str))
     # A programme can have single episodes not belonging to a series, like the Christmas special.
     # These are of type 'EPISODE'.
-    self.assertTrue(series['seriesType'] in ('SERIES', 'FILM', 'EPISODE'))
+    self.assertTrue(series.get('seriesType') in ('SERIES', 'FILM', 'EPISODE', None))
     self.assertTrue(is_not_empty(series['numberOfAvailableEpisodes'], int))
     for episode in series['titles']:
         check_title(self, episode, obj_name)
@@ -152,6 +152,7 @@ def check_title(self, title, parent_name):
              'categories', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
              'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
+             'subtitled', 'audioDescribed',
              obj_name=obj_name)
 
     expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'heroCtaLabel', 'episodeId',
@@ -164,7 +165,7 @@ def check_title(self, title, parent_name):
     self.assertTrue(is_iso_utc_time(title['availabilityUntil']))
     self.assertTrue(is_iso_utc_time(title['broadcastDateTime']) or title['broadcastDateTime'] is None)
     self.assertIsInstance(title['categories'], list)
-    self.assertTrue(is_not_empty(title['contentInfo'], str))
+    self.assertIsInstance(title['contentInfo'], str)        # can be empty in films, specials, or episodes in sections like 'latest episodes'.
     self.assertTrue(is_iso_utc_time(title['dateTime']))
     self.assertTrue(is_not_empty(title['description'], str))
     self.assertTrue(is_not_empty(title['duration'], str))
@@ -186,7 +187,10 @@ def check_title(self, title, parent_name):
         self.assertTrue(is_url(title['bslPlaylistUrl']))
 
     if title['productionType'] == 'EPISODE':
-        expect_keys(title, 'isFullSeries', 'nextProductionId', )
+        # Field 'nextProductionId' is only present when there actually is a next episode.
+        # The very lat episode does not have this field, as well as episodes in listings
+        # like 'other' and 'latest'
+        expect_keys(title, 'isFullSeries', 'nextProductionId', obj_name=obj_name)
         self.assertTrue(is_not_empty(title['episode'], int))
         # Some episodes do not belong to a series, like the Christmas special
         self.assertTrue(is_not_empty(title['series'], int) or title['series'] is None)

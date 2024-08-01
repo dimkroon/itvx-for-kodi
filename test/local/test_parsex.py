@@ -217,11 +217,11 @@ class Generic(unittest.TestCase):
 
     def test_parse_trending_collection_item(self):
         data = open_json('html/index-data.json')['trendingSliderContent']['items']
-        item = parsex.parse_trending_collection_item(data[1])
+        item = parsex.parse_collection_item(data[1])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         # An invalid item
-        item = parsex.parse_trending_collection_item({})
+        item = parsex.parse_collection_item({})
         self.assertIsNone(item)
 
     def test_parse_episode_title(self):
@@ -323,6 +323,26 @@ class Generic(unittest.TestCase):
         data['availabilityEnd'] = zero_hours.isoformat() + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('0 hours available' in item['show']['info']['plot'])
+
+    def test_last_watched_context_menu(self):
+        data = open_json('usercontent/last_watched_all.json')
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+
+        episode_item = data[0]
+        self.assertEqual('FILM', episode_item['contentType'])
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertFalse('ctx_mnu' in show.keys())
+
+        episode_item['contentType'] = 'SPECIAL'
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertFalse('ctx_mnu' in show.keys())
+        
+        episode_item['contentType'] = 'EPISODE'
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertIsInstance(show['ctx_mnu'], list)
+        for item in show['ctx_mnu']:
+            self.assertIsInstance(item, tuple)
+
 
     def test_parse_schedule(self):
         data = open_json('json/schedule_data.json')['tvGuideData']
