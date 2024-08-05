@@ -8,6 +8,7 @@
 from test.support import fixtures
 fixtures.global_setup()
 
+import time
 import logging
 import unittest
 import copy
@@ -202,6 +203,8 @@ class Search(unittest.TestCase):
             if resp.status_code == 200:
                 self.logger.debug("Search for '%s' completed after %s retries.", search_term, idx)
                 break
+            else:
+                time.sleep(1)
         if resp.status_code != 200:
             raise AssertionError(
                 f"Search for '{search_term}' failed with HTTP status {resp.status_code} after {idx} attempts.")
