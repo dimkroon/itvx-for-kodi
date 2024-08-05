@@ -435,12 +435,15 @@ def search(search_term, hide_paid=False):
     headers = {
         'user-agent': fetch.USER_AGENT,
         'accept': 'application/json',
+        'accept-language': 'en-GB,en;q=0.5',
+        'accept-encoding':  'gzip, deflate, br, zstd',
         'origin': 'https://www.itv.com',
         'referer': 'https://www.itv.com/',
-        'accept-language': 'en-GB,en;q=0.5',
-        'sec-fetch-site': 'same-site',
+        'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
-        'sec-fetch-dest': 'empty'
+        'sec-fetch-site': 'same-site',
+        'priority': 'u=0',
+        'te': 'trailers'
     }
 
     # Mimic the search term being typed in a web browser.
