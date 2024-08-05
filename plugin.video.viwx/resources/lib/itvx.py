@@ -431,9 +431,9 @@ def search(search_term, hide_paid=False):
 
     """
     from urllib.parse import quote
-    url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
-          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree={}&platform=ctv&query={}'.format(
-        str(hide_paid).lower(), quote(search_term))
+    url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&channelType=simulcast&'
+           'featureSet=clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&'
+           'platform=dotcom&query={}&size=24').format(quote(search_term.lower()))
     headers = {
         'User-Agent': fetch.USER_AGENT,
         'accept': 'application/json',
