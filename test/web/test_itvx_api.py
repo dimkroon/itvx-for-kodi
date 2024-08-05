@@ -125,8 +125,8 @@ class Search(unittest.TestCase):
         self.search_url = 'https://textsearch.prd.oasvc.itv.com/search'
         self.search_params = {
             'broadcaster': 'itv',
+            'channelType': 'simulcast',
             'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
-            'onlyFree': 'false',
             'platform': 'ctv',
             'size': 24
         }.copy()
