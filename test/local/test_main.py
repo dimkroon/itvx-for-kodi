@@ -47,6 +47,7 @@ class Paginator(TestCase):
         result = list(pg)
         self.assertListEqual([], result)
 
+
 @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
 class MainMenu(TestCase):
     @patch('resources.lib.itvx.parsex.datetime', new=mockeddt)
@@ -398,9 +399,18 @@ class Search(TestCase):
            return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
     def test_search_monday(self, _):
         results = main.do_search.test('monday')
-        self.assertEqual(7, len(results))
+        self.assertEqual(3, len(results))
         self.assertIs(results[0].path, main.list_productions.route)
-        self.assertIs(results[6].path, main.play_title.route)           # special without field specialProgramme
+        self.assertIs(results[2].path, main.play_title.route)           # special without field specialProgramme
+
+    @patch('requests.sessions.Session.send',
+           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+    def test_search_hide_paid(self, _):
+        results = main.do_search.test('monday')
+        self.assertEqual(3, len(results))
+        with patch('xbmcaddon.Addon.getSetting', return_value='true'):
+            results = main.do_search.test('monday')
+            self.assertEqual(2, len(results))
 
     def test_search_result_with_unknown_entitytype(self):
         search_data = open_json('search/search_results_mear.json')
@@ -436,6 +446,7 @@ class CreateDashStreamItem(TestCase):
     def test_create_dash_stream_item_intputstream_adaptive_not_present(self, _, __):
         result = main.create_dash_stream_item('my stream', 'manifest.url', 'key.service.url')
         self.assertIs(result, False)
+
 
 class PlayStreamLive(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))

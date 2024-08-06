@@ -378,6 +378,7 @@ class Episodes(TestCase):
             series_listing, programme_id = itvx.episodes('asd')
         self.assertEqual(len(series_listing['2']['episodes']), num_episodes_series_2 + num_episodes_series_3)
 
+
 class Search(TestCase):
     @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
     def test_simple_search(self, _):
@@ -390,14 +391,12 @@ class Search(TestCase):
         result = itvx.search('xprs')
         self.assertIsNone(result)
 
-    @patch('requests.get')
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
     def test_search_hide_paid(self, p_get):
-        itvx.search('xprs')
-        url = p_get.call_args.args[0]
-        self.assertTrue('onlyFree=false' in url)
-        itvx.search('xprs', hide_paid=True)
-        url = p_get.call_args.args[0]
-        self.assertTrue('onlyFree=true' in url)
+        results = list(itvx.search('xprs'))
+        self.assertIsInstance(results[0], dict)
+        results = list(itvx.search('xprs', hide_paid=True))
+        self.assertIsNone(results[0])
 
 
 class LastWatched(TestCase):

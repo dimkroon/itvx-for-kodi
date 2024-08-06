@@ -461,7 +461,7 @@ def search(search_term, hide_paid=False):
     results = data.get('results')
     if not results:
         logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
-    return (parsex.parse_search_result(result) for result in results)
+    return (parsex.parse_search_result(result, hide_paid) for result in results)
 
 
 def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
