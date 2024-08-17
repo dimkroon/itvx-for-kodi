@@ -486,14 +486,17 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     return title_obj
 
 
-def parse_search_result(search_data):
+def parse_search_result(search_data, hide_paid=False):
     entity_type = search_data['entityType']
     result_data = search_data['data']
     api_episode_id = ''
-    if 'FREE' in result_data['tier']:
-        plot = result_data['synopsis']
-    else:
+
+    if 'PAID' in result_data['tier']:
+        if hide_paid:
+            return
         plot = premium_plot(result_data['synopsis'])
+    else:
+        plot = result_data['synopsis']
 
     if entity_type == 'programme':
         prog_name = result_data['programmeTitle']

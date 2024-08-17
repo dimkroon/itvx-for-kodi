@@ -251,7 +251,7 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, item)
 
     def test_parse_search_result(self):
-        # These files contain programmes, episodes, films and specials both and without a specialProgramm field.
+        # These files contain programmes, episodes, films and specials both and without a specialProgramme field.
         for file in ('search/search_results_mear.json', 'search/search_monday.json'):
             data = open_json(file)
             for result_item in data['results']:
@@ -263,6 +263,10 @@ class Generic(unittest.TestCase):
         search_result = data['results'][0]
         search_result['entityType'] = 'dfgs'
         self.assertIsNone(parsex.parse_search_result(search_result))
+
+    def test_parse_search_result_paid(self):
+        search_result = open_json('search/search_monday.json')['results'][0]        # a paid episode
+        self.assertIsNone(parsex.parse_search_result(search_result, hide_paid=True))
 
     def test_parse_mylist(self):
         data = open_json('mylist/mylist_data.json')['items']

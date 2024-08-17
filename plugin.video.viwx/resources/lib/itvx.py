@@ -431,9 +431,9 @@ def search(search_term, hide_paid=False):
 
     """
     from urllib.parse import quote
-    url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
-          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree={}&platform=ctv&query={}'.format(
-        str(hide_paid).lower(), quote(search_term))
+    url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&channelType=simulcast&'
+           'featureSet=clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&'
+           'platform=dotcom&query={}&size=24').format(quote(search_term.lower()))
     headers = {
         'User-Agent': fetch.USER_AGENT,
         'accept': 'application/json',
@@ -461,7 +461,7 @@ def search(search_term, hide_paid=False):
     results = data.get('results')
     if not results:
         logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
-    return (parsex.parse_search_result(result) for result in results)
+    return (parsex.parse_search_result(result, hide_paid) for result in results)
 
 
 def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
