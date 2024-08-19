@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2023 Dimitri Kroon.
+#  Copyright (c) 2023-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -41,6 +41,7 @@ class PlayTimeMonitor(Player):
         self._production_id = production_id
         self._event_seq_nr = 0
         self._playtime = 0
+        self._totaltime = 0
         self._user_id = itv_session().user_id
         self.monitor = Monitor()
         self._status = PlayState.UNDEFINED
@@ -62,8 +63,9 @@ class PlayTimeMonitor(Player):
         try:
             self._cur_file = self.getPlayingFile()
             self._playtime = self.getTime()
+            self._totaltime = self.getTotalTime()
             self._status = PlayState.PLAYING
-            logger.debug("PlayTimeMonitor: total play time = %s", self.playtime/60)
+            logger.debug("PlayTimeMonitor: total play time = %s", self._totaltime/60)
             self._post_event_startup_complete()
         except:
             logger.error("PlayTimeMonitor.onAVStarted:\n", exc_info=True)
