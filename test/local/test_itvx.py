@@ -9,7 +9,7 @@ from test.support import fixtures
 fixtures.global_setup()
 
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock
 from datetime import timezone
 import types
 import time
@@ -384,6 +384,40 @@ class Episodes(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=data):
             series_listing, programme_id = itvx.episodes('asd')
         self.assertEqual(len(series_listing['2']['episodes']), num_episodes_series_2 + num_episodes_series_3)
+
+
+class EpisodesProgress(TestCase):
+    def setUp(self):
+        cache.purge()
+
+    @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/progress_the_chase.json'))
+    def test_get_progress(self, p_fetch):
+        data = itvx.episodes_progress('jghdfn')
+        self.assertIsInstance(data, dict)
+        self.assertEqual(27, len(data))
+        p_fetch.assert_called_once()
+        # Check next request is from cache
+        itvx.episodes_progress('jghdfn')
+        p_fetch.assert_called_once()
+
+    @patch('resources.lib.fetch.get_json', return_value=None)
+    def test_empty_progress(self, _):
+        data = itvx.episodes_progress('jghdfn')
+        self.assertIsInstance(data, dict)
+        self.assertEqual(0, len(data))
+
+    @patch('resources.lib.fetch.get_json', side_effect=errors.FetchError(404, 'Not Found'))
+    def test_no_progress_available(self, _):
+        data = itvx.episodes_progress('jghdfn')
+        self.assertIsInstance(data, dict)
+        self.assertEqual(0, len(data))
+
+    def test_progress_not_signed_in(self, ):
+        with patch('resources.lib.itv_account.ItvSession.user_id', new_callable=PropertyMock) as mocked_userid:
+            mocked_userid.return_value = ''
+            data = itvx.episodes_progress('jghdfn')
+            self.assertIsInstance(data, dict)
+            self.assertEqual(0, len(data))
 
 
 class Search(TestCase):
