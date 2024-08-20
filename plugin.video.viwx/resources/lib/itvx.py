@@ -318,8 +318,11 @@ def episodes(url, use_cache=False):
                 },
                 'episodes': []
             })
-        series_obj['episodes'].extend(
-            [parsex.parse_episode_title(episode, programme_fanart) for episode in series['titles']])
+        episodes_list = series_obj['episodes']
+        for episode in series['titles']:
+            episode_item = parsex.parse_episode_title(episode, programme_fanart, watched_status)
+            episode_item['info']['tvshowtitle'] = programme_title
+            episodes_list.append(episode_item)
 
     programme_data = {'programme_id': programme_id, 'series_map': series_map}
     cache.set_item(url, programme_data, expire_time=1800)
