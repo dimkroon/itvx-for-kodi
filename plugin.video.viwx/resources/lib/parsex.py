@@ -554,12 +554,13 @@ def _get_hero_cta_label(hero_cta: dict) -> str:
         return ''
 
 
-def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
+def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False, watched_status=None):
     """Parse a title from episodes listing"""
 
     # Note: episodeTitle may be None, so prefer title from heroCtaLabel, but even that
     # may not always have the required fields.
-
+    if watched_status is None:
+        watched_status = {}
     title = _get_hero_cta_label(title_data['heroCtaLabel']) or title_data.get('episodeTitle') or ''
     img_url = title_data['image']
     plot = '\n\n'.join(t for t in (title_data['longDescription'], title_data.get('guidance')) if t)
@@ -596,6 +597,8 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
                  'year': title_data.get('productionYear')},
         'params': {'url': playlist_url, 'name': title}
     }
+    if watched_status.get(title_data.get('episodeId'), 0) > 0.95:
+        title_obj['info']['playcount'] = 1
 
     return title_obj
 

@@ -284,6 +284,8 @@ def episodes(url, use_cache=False, prefer_bsl=False):
     programme_thumb = programme['image'].format(**parsex.IMG_PROPS_THUMB)
     programme_fanart = programme['image'].format(**parsex.IMG_PROPS_FANART)
     description = programme.get('longDescription') or programme.get('description') or programme_title
+    watched_status = episodes_progress(programme_id)
+
     if 'FREE' in programme['tier']:
         brand_description = description
     else:
