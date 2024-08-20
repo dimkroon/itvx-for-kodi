@@ -323,6 +323,30 @@ def episodes(url, use_cache=False, prefer_bsl=False):
     return series_map, programme_id
 
 
+def episodes_progress(programme_id):
+    """Get a mapping of episodes and their current progress"""
+    user_id = itv_account.itv_session().user_id
+    if not user_id:
+        return {}
+
+    url = 'https://content.prd.user.itv.com/progress/user/{}/programmeId/{}'.format(
+        itv_account.itv_session().user_id, programme_id)
+    cached_data = cache.get_item(url)
+    if cached_data is not None:
+        return cached_data
+
+    try:
+        progress_data = itv_account.fetch_authenticated(fetch.get_json, url)
+    except errors.FetchError:
+        # ITVX returns HTTP status 404 when no watched status is available.
+        progress_data = None
+    if progress_data is None:
+        progress_data = []
+    progr_map = {item['episodeId']: item['percentageWatched'] for item in progress_data}
+    cache.set_item(url, progr_map, 300)
+    return progr_map
+
+
 def categories():
     """Return all available category names."""
     data = get_page_data('https://www.itv.com/watch/categories', cache_time=86400)
