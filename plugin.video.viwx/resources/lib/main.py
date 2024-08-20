@@ -429,6 +429,7 @@ def list_productions(plugin, url, series_idx=None):
 
     if opened_series:
         # list episodes of a series
+        plugin.content_type = 'episode'
         episodes = opened_series['episodes']
         for episode in episodes:
             li = Listitem.from_dict(play_stream_catchup, **episode)
@@ -441,6 +442,7 @@ def list_productions(plugin, url, series_idx=None):
             yield li
     else:
         # List folders of all series
+        plugin.content_type = 'season'
         for series in series_map.values():
             li = Listitem.from_dict(list_productions, **series['series'])
             _my_list_context_mnu(li, programme_id)
