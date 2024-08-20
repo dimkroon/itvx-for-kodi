@@ -489,16 +489,21 @@ class WatchProgress(unittest.TestCase):
         1_7314: Vera
         1_7842: The Chase
         """
-        url = 'https://content.prd.user.itv.com/progress/user/{}/programmeId/10_1937'.format(
+        url = 'https://content.prd.user.itv.com/progress/user/{}/programmeId/1_7842'.format(
             itv_account.itv_session().user_id)
         headers = {'authorization': 'Bearer ' + itv_account.itv_session().access_token,
                    'accept': 'application/vnd.user.content.v1+json'}
         resp = requests.get(url, headers=headers)
         self.assertEqual(200, resp.status_code)
         data = resp.json()
-        # testutils.save_json(data, 'usercontent/last_watched.json')
+        # testutils.save_json(data, 'usercontent/progress_the_chase.json')
         self.assertEqual('application/vnd.user.content.v1+json', resp.headers['content-type'])
-        self.check_vnd_user_content_v1_json(data)
+        self.assertIsInstance(data, list)
+        for episode in data:
+            object_checks.is_not_empty(episode['episodeId'], str)
+            self.assertGreaterEqual(episode['percentageWatched'], 0.0)
+            self.assertLess(episode['percentageWatched'], 1.1)      # can occasionally be a tiny bit over 100%
+            self.assertEqual(2, len(episode))                       # Just to flag when more items become available
 
     def test_progress_by_resume(self):
         """Try to request resume data of the entire programme, rather than the usual production.
