@@ -165,6 +165,7 @@ def _create_cookiejar():
 
     except (FileNotFoundError, pickle.UnpicklingError):
         cj = set_default_cookies(PersistentCookieJar(cookie_file))
+        cj.cassie_converted = True
         logger.info("Created new cookiejar")
     return cj
 
