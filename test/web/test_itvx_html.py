@@ -702,6 +702,13 @@ class WatchPages(unittest.TestCase):
 
 
 class TvGuide(unittest.TestCase):
+    """TV guide from the html page of the website
+
+    .. Note::
+        The TV guide page is not GEO-blocked, but when accessed from outside the
+        UK the schedule data is empty.
+
+    """
     headers = {
         # Without these headers the requests will time out.
         'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
@@ -713,30 +720,34 @@ class TvGuide(unittest.TestCase):
         for chan_name, chan_guide in data.items():
             for item in chan_guide:
                 o_name = '.'.join((obj_name, chan_name, item.get('title', 'Unknown')))
-                has_keys(item, 'title', 'start', 'end', 'legacyId', 'duration', obj_name=o_name)
+                has_keys(item, 'title', 'start', 'end', 'titleCCId', 'contentTypeITV', 'genres', 'seriesNumber',
+                         'contentType', 'episodeAvailableNow', 'episodeLink', 'programmeLink', 'legacyId',
+                         'duration', obj_name=o_name)
                 self.assertTrue(is_not_empty(item['title'], str))
                 self.assertTrue(is_not_empty(item['duration'], int))
                 self.assertTrue(is_iso_utc_time(item['start']))
                 self.assertTrue(is_iso_utc_time(item['end']))
-                # LegacyId can occasionally be None, in particular on items like 'Shop On TV'.
-                self.assertTrue(is_not_empty(item['legacyId'], str) or isinstance(item['legacyId'], NONE_T))
+                # Items like some news and weather do not have a titleCCId, but other live and recorded programmes do.
+                self.assertTrue(is_not_empty(item['titleCCId'], str) or isinstance(item['titleCCId'], NONE_T))
                 if item.get('contentType') is None:
                     # Some items, probably all live items do not have more info,
                     # but check that is indeed the case.
-                    self.assertEqual(5, len(item))
+                    for key in ('contentTypeITV', 'seriesNumber', 'contentType', 'episodeAvailableNow',
+                                'episodeLink', 'programmeLink', 'legacyId'):
+                        self.assertIsNone(item[key])
+                    self.assertEqual(13, len(item))
+                    self.assertListEqual([], item['genres'])
                     continue
-                has_keys(item, 'genres', 'episodeNumber', 'seriesNumber', 'description', 'guidance',
-                         'episodeAvailableNow', 'episodeLink', 'programmeLink', obj_name=o_name)
-                expect_keys(item, 'ccid', 'contentTypeITV', obj_name=o_name)
+                misses_keys(item, 'episodeNumber', 'description', 'guidance', obj_name=o_name)
                 self.assertTrue(item['contentType'] in ('EPISODE', 'FILM', 'SPECIAL'))
                 check_genres(self, item['genres'])
-                self.assertIsInstance(item['episodeNumber'], (int, NONE_T))
+                self.assertTrue(is_not_empty(item['legacyId'], str))
                 self.assertIsInstance(item['seriesNumber'], (int, NONE_T))
                 # Episode number without a series number does still happen...
                 # if item['episodeNumber']:
                 #     self.assertTrue(is_not_empty(item['seriesNumber'], int))
-                self.assertTrue(is_not_empty(item['description'], str) or item['description'] is None)
-                self.assertIsInstance(item['guidance'], (str, NONE_T))
+                # self.assertTrue(is_not_empty(item['description'], str) or item['description'] is None)
+                # self.assertIsInstance(item['guidance'], (str, NONE_T))
                 self.assertIsInstance(item['episodeAvailableNow'], bool)
                 # Even if episodeAvialableNow is True fields like episodeLink can still be None
                 if item['episodeLink'] is not None:
@@ -745,7 +756,7 @@ class TvGuide(unittest.TestCase):
                 if item['programmeLink'] is not None:
                     self.assertFalse(is_url(item['programmeLink']))
                     self.assertTrue(is_not_empty(item['programmeLink'], str))
-                self.assertEqual(16, len(item))     # Just to flag when more data comes available.
+                self.assertEqual(13, len(item))     # Just to flag when more data becomes available.
 
     def test_html_guide_without_headers(self):
         """Requests without the minimum required headers time out"""
