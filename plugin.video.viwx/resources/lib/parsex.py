@@ -671,14 +671,14 @@ def parse_schedule_item(data):
     from urllib.parse import quote
 
     plugin_id = utils.addon_info.id
-
+    genres = data.get('genres')
     try:
         item = {
             'start': data['start'],
             'stop': data['end'],
             'title': data['title'],
             'description': '\n\n'.join(t for t in (data.get('description'), data.get('guidance')) if t),
-            'genre': data.get('genres', [{}])[0].get('name'),
+            'genre': genres[0].get('name') if genres else None,
         }
 
         episode_nr = data.get('episodeNumber')

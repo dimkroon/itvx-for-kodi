@@ -119,3 +119,11 @@ class TestItvX(unittest.TestCase):
         # invalid user ID
         recom_list = itvx.recommended('dgsd')
         self.assertEqual(len(recom_list), 12)
+
+    def test_get_tv_guide(self):
+        guide = itvx.get_full_schedule()
+        self.assertIsInstance(guide, dict)
+        self.assertEqual(5, len(guide))
+        for chan in guide.values():
+            self.assertIsInstance(chan, list)
+            self.assertGreater(len(chan), 300)
