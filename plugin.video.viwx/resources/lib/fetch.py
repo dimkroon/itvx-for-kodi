@@ -305,7 +305,7 @@ def post_json(url, data, headers=None, **kwargs):
     try:
         return json.loads(resp.content.decode('utf8'))
     except json.JSONDecodeError:
-        raise FetchError(Script.localize(30920))
+        raise ParseError(Script.localize(30920))
 
 
 def get_json(url, headers=None, **kwargs):
@@ -319,7 +319,7 @@ def get_json(url, headers=None, **kwargs):
     try:
         return json.loads(resp.content.decode('utf8'))
     except json.JSONDecodeError:
-        raise FetchError(Script.localize(30920))
+        raise ParseError(Script.localize(30920))
 
 
 def put_json(url, data, headers=None, **kwargs):
@@ -340,7 +340,7 @@ def delete_json(url, data, headers=None, **kwargs):
     try:
         return json.loads(resp.content.decode('utf8'))
     except json.JSONDecodeError:
-        raise FetchError(Script.localize(30920))
+        raise ParseError(Script.localize(30920))
 
 
 def get_document(url, headers=None, **kwargs):
