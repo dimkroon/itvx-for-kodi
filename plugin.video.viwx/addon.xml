@@ -13,6 +13,45 @@
   <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>video</provides>
   </extension>
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <menu>
+        <label>Watch from ...</label>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=0.5">
+            <label>0.5 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=1">
+            <label>1 Hr back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=1.5">
+            <label>1.5 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=2">
+            <label>2 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=2.5">
+            <label>2.5 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=3">
+            <label>3 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=3.5">
+            <label>3.5 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+        <item library="ctxmenu.py" args="function=ctxmnu_live_play_from&amp;startpoint=4">
+            <label>4 Hrs back</label>
+            <visible>ListItem.Property(viwx.live_channel)</visible>
+        </item>
+      </menu>
+    </menu>
+  </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary lang="en_GB">Live TV and video on-demand from ITVX (UK only, ITVX account required)</summary>

@@ -301,11 +301,12 @@ def sub_menu_live(_):
             label=label,
             art={
                 'fanart': item['backdrop'],
-                'thumb': item['images']['logo']},
+                'thumb': item['images']['logo']
+            },
             info={
                 'title': label,
                 'plot': '\n'.join(programs),
-                },
+            },
             params=callback_kwargs,
             properties={
                 # This causes Kodi not to offer the standard resume dialog
@@ -314,8 +315,12 @@ def sub_menu_live(_):
             }
         )
 
+        li.property['viwx.live_channel'] = chan_name
+        li.property['viwx.live_url'] = callback_kwargs['url']
+
         # add 'play from the start' context menu item for channels that support this feature
         if program_start_time:
+            li.property['viwx.live_channel'] = chan_name
             li.context.append(parsex.ctx_mnu_watch_from_start(chan_name, program_start_time))
 
         # add 'play 3.5 hrs back' context menu
@@ -541,7 +546,7 @@ def create_mp4_file_item(name, file_url):
 
 @Resolver.register
 def play_stream_live(addon, channel, url=None, title=None, start_time=None, play_from_start=False):
-    if url is None:
+    if not url:
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         logger.info("Created live url from channel name: '%s'", url)
 
