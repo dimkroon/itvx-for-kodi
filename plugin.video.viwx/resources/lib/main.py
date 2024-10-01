@@ -306,11 +306,12 @@ def sub_menu_live(_):
             label=label,
             art={
                 'fanart': item['backdrop'],
-                'thumb': item['images']['logo']},
+                'thumb': item['images']['logo']
+            },
             info={
                 'title': label,
                 'plot': '\n'.join(programs),
-                },
+            },
             params=callback_kwargs,
             properties={
                 # This causes Kodi not to offer the standard resume dialog
@@ -318,6 +319,9 @@ def sub_menu_live(_):
                 'totaltime': 3600
             }
         )
+
+        li.property['viwx.live_channel'] = chan_name
+        li.property['viwx.live_url'] = callback_kwargs['url']
 
         # add 'play from the start' context menu item for channels that support this feature
         if program_start_time:
