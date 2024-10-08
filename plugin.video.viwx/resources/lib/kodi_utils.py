@@ -144,3 +144,13 @@ def local_timezone() -> ZoneInfo:
             from tzlocal import get_localzone
             _local_timezone = get_localzone()
     return _local_timezone
+
+
+def set_playcount(params):
+    from codequick.support import build_path
+    from resources.lib.main import play_stream_catchup
+    full_url = build_path(play_stream_catchup, _title_=params['name'], **params)
+    json_str = '{{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {{"file":"{}", "media": "video", "playcount": 1}}, "id": 1}}'.format(
+        full_url)
+    response = xbmc.executeJSONRPC(json_str)
+    logger.debug("set_playcount JSONRPC response: %s", response)
