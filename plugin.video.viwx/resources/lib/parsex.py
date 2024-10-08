@@ -584,7 +584,7 @@ def parse_episode_title(title_data, brand_fanart=None, watched_status=None):
                  'year': title_data.get('productionYear')},
         'params': {'ccid': title_data['ccid']}
     }
-
+    from resources.lib.kodi_utils import set_playcount
     # An episode can appear multiple times in a programme list, e.g. in 'recent episodes'.
     # Ensure to sync only once.
     if watched_status.pop(title_data.get('episodeId'), 0) > 0.95:
