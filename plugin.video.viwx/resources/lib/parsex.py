@@ -597,8 +597,10 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False, watched
                  'year': title_data.get('productionYear')},
         'params': {'url': playlist_url, 'name': title}
     }
+    from resources.lib.kodi_utils import set_playcount
     if watched_status.get(title_data.get('episodeId'), 0) > 0.95:
         title_obj['info']['playcount'] = 1
+        set_playcount(title_obj['params'])
 
     return title_obj
 
