@@ -150,3 +150,13 @@ def get_system_setting(setting_id):
         msg  = data.get('message') or "Failed to get setting"
         logger.error("get_system_setting failed for setting_id '%s': '%s'", setting_id, msg)
         raise ValueError('system setting error: {}'.format(msg))
+
+
+def set_playcount(params):
+    from codequick.support import build_path
+    from resources.lib.main import play_stream_catchup
+    full_url = build_path(play_stream_catchup, _title_=params['name'], **params)
+    json_str = '{{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {{"file":"{}", "media": "video", "playcount": 1}}, "id": 1}}'.format(
+        full_url)
+    response = xbmc.executeJSONRPC(json_str)
+    logger.debug("set_playcount JSONRPC response: %s", response)
