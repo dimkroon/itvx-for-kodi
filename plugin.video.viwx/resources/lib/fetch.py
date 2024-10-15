@@ -38,27 +38,30 @@ class PersistentCookieJar(RequestsCookieJar):
         self._has_changed = False
 
     def save(self):
-        if not self._has_changed:
-            return
-        self.clear_expired_cookies()
-        self._has_changed = False
-        with open(self.filename, 'wb') as f:
-            pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
-        logger.info("Saved cookies to file %s", self.filename)
+        with self._cookies_lock:
+            if not self._has_changed:
+                return
+            self.clear_expired_cookies()
+            self._has_changed = False
+            with open(self.filename, 'wb') as f:
+                pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
+            logger.info("Saved cookies to file %s", self.filename)
 
     def set_cookie(self, cookie, *args, **kwargs):
-        super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)
-        logger.debug("Cookiejar sets cookie %s for %s%s to %s", cookie.name, cookie.domain, cookie.path, cookie.value)
-        self._has_changed |= cookie.name != 'hdntl'
+        with self._cookies_lock:
+            super(PersistentCookieJar, self).set_cookie(cookie, *args, **kwargs)
+            logger.debug("Cookiejar sets cookie %s for %s%s to %s", cookie.name, cookie.domain, cookie.path, cookie.value)
+            self._has_changed |= cookie.name != 'hdntl'
 
     def clear(self, domain=None, path=None, name=None) -> None:
-        try:
-            super(PersistentCookieJar, self).clear(domain, path, name)
-            logger.debug("Cookies cleared for domain: %s, path: %s, name %s", domain, path, name)
-            self._has_changed = True
-        except KeyError:
-            logger.debug("No cookies to clear for domain: %s, path: %s, name: %s ", domain, path, name)
-            pass
+        with self._cookies_lock:
+            try:
+                super(PersistentCookieJar, self).clear(domain, path, name)
+                logger.debug("Cookies cleared for domain: %s, path: %s, name %s", domain, path, name)
+                self._has_changed = True
+            except KeyError:
+                logger.debug("No cookies to clear for domain: %s, path: %s, name: %s ", domain, path, name)
+                pass
 
 
 class CustomHttpAdapter(HTTPAdapter):
