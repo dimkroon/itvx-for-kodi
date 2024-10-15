@@ -261,6 +261,7 @@ def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
     elif list_type == 'watching':
         addon.add_sort_methods(xbmcplugin.SORT_METHOD_DATE)
         shows_list = itvx.get_last_watched()
+        addon.register_delayed(itvx.sync_watched_state, [item['programme_id'] for item in shows_list])
     elif list_type == 'byw':
         shows_list = itvx.because_you_watched(itv_account.itv_session().user_id,
                                               hide_paid=addon.setting.get_boolean('hide_paid'))
