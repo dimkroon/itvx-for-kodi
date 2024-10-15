@@ -272,8 +272,12 @@ def episodes(url, use_cache=False, prefer_bsl=False):
     series and each episode.
 
     """
+    # URL's can either contain the programme name or the placeholder 'undefined'.
+    # Create a custom key from the programme ID to ensure it's the same for both variants.
+    cache_key = 'episodes/' + url.rsplit('/')[-1]
+
     if use_cache:
-        cached_data = cache.get_item(url)
+        cached_data = cache.get_item(cache_key)
         if cached_data is not None:
             return cached_data['series_map'], cached_data['programme_id']
 
@@ -324,12 +328,12 @@ def episodes(url, use_cache=False, prefer_bsl=False):
             episodes_list.append(episode_item)
 
     programme_data = {'programme_id': programme_id, 'series_map': series_map}
-    cache.set_item(url, programme_data, expire_time=1800)
+    cache.set_item(cache_key, programme_data, expire_time=1800)
     return series_map, programme_id
 
 
 def episodes_progress(programme_id):
-    """Get a mapping of episodes and their current progress"""
+    """Get a mapping of episode ID's and their current progress"""
     user_id = itv_account.itv_session().user_id
     if not user_id:
         return {}
@@ -565,6 +569,20 @@ def get_last_watched():
         watched_list = []
     cache.set_item(cache_key, watched_list, 600)
     return watched_list
+
+
+def sync_watched_state(programme_ids: list):
+    """Obtain the watched episodes of the specified programmes from itv
+    and sync watched status to Kodi's database.
+
+    """
+    from concurrent import futures
+
+    with futures.ThreadPoolExecutor(max_workers=16) as executor:
+        # Due to the default cache time of episodes() syncing is effectively limited to once every 0.5 hrs.
+        future_objects = [executor.submit(episodes, '/watch/undefined/' + pgm_id.replace('_', 'a'),  use_cache=True)
+                          for pgm_id in programme_ids]
+        futures.wait(future_objects)
 
 
 def get_resume_point(production_id: str):
