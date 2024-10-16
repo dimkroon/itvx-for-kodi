@@ -365,9 +365,8 @@ def parse_collection_item(show_data, hide_paid=False):
             programme_item['params'] = {'ccid': show_data['titleCCId']}
 
         else:
-            programme_item['params'] = {'url': build_url(show_data['titleSlug'],
-                                        show_data['encodedProgrammeId']['letterA'],
-                                        show_data.get('encodedEpisodeId', {}).get('letterA'))}
+            programme_item['params'] = {
+                'url': build_url(show_data['titleSlug'], show_data['encodedProgrammeId']['letterA'])}
 
         if 'FILMS' in show_data.get('categories', ''):
             programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
@@ -483,14 +482,7 @@ def parse_category_item(prog, category_id):
         programme_item['info']['duration'] = playtime
         programme_item['params'] = {'ccid': prog['titleCCId']}
     else:
-        # A Workaround for an issue at ITVX where news programmes' programmeId already contain an
-        # episodeId and programme and episode IDs are the same. On the website these programmes
-        # end up at page saying "Oops something went wrong".
-        prog_id = prog['encodedProgrammeId']['letterA']
-        episode_id = prog['encodedEpisodeId']['letterA']
-        programme_item['params'] = {'url': build_url(title,
-                                                     prog_id,
-                                                     episode_id if prog_id != episode_id else None)}
+        programme_item['params'] = {'url': build_url(title, prog['encodedProgrammeId']['letterA'])}
     return {'type': 'title' if is_playable else 'series',
             'programme_id': prog['encodedProgrammeId']['underscore'],
             'show': programme_item}
@@ -769,7 +761,7 @@ def parse_last_watched_item(item, utc_now):
     if item['contentType'] == 'FILM':
         item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
     elif item['contentType'] == 'EPISODE' and progr_id:
-        item_dict['ctx_mnu'] = [ctx_mnu_all_episodes(progr_id)]
+        item_dict['ctx_mnu'] = [ctx_mnu_all_episodes(progr_id.replace('_', 'a'))]
     return item_dict
 
 
