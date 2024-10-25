@@ -10,7 +10,8 @@ fixtures.global_setup()
 
 import unittest
 import copy
-from datetime import datetime, timedelta
+
+from datetime import datetime, timedelta, timezone
 
 import requests
 from requests.cookies import RequestsCookieJar
@@ -601,6 +602,8 @@ class Playlists(unittest.TestCase):
         for chan_id in range(1, 21):
             channel = 'FAST{}'.format(chan_id)
             strm_data = self.get_playlist_live(channel)
+            # if chan_id == 20:
+            #     testutils.save_json(strm_data, 'playlists/pl_fast_non_dar.json')
             object_checks.check_live_stream_info(strm_data['Playlist'])
 
     def test_playlist_live_cookie_requirement(self):
@@ -654,16 +657,18 @@ class Playlists(unittest.TestCase):
         self.assertTrue(manifest.startswith('<?xml version='))
 
     def test_manifest_live_FAST_playagain(self):
-        """As of approximately 05-2023 play-again appears not to be available for fast channels"""
+        """As of appr. mid 2024 play-again works again on FAST channels, although non
+        DAR channels never play more than appr. 5 minutes from the live edge.
+        """
         strm_data = self.get_playlist_live('FAST16')
-        start_time = datetime.strftime(datetime.now() - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S' )
+        start_time = datetime.strftime(datetime.now(timezone.utc) - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S' )
         mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl'].format(START_TIME=start_time)
         resp = requests.get(mpd_url, headers=self.manifest_headers, cookies=fetch.HttpSession().cookies)
-        self.assertEqual(404, resp.status_code)
-        # manifest = resp.text
-        # # testutils.save_doc(manifest, 'mpd/fast16.mpd')
-        # self.assertGreater(len(manifest), 1000)
-        # self.assertTrue(manifest.startswith('<?xml version='))
+        self.assertEqual(200, resp.status_code)
+        manifest = resp.text
+        # testutils.save_doc(manifest, 'mpd/fast16.mpd')
+        self.assertGreater(len(manifest), 1000)
+        self.assertTrue(manifest.startswith('<?xml version='))
 
     def get_playlist_catchup(self, url=None):
         """Request stream of a catchup episode (i.e. production)
