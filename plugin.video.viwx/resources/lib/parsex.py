@@ -731,7 +731,8 @@ def parse_last_watched_item(item, utc_now):
         availability
     ))
 
-    if item.get('isNextEpisode'):
+    is_next_episode = item.get('isNextEpisode')
+    if is_next_episode:
         title = progr_name + ' - [I]next episode[/I]'
     else:
         title = '{} - [I]{}% watched[/I]'.format(progr_name, int(item['percentageWatched'] * 100))
@@ -751,7 +752,7 @@ def parse_last_watched_item(item, utc_now):
                      'season': series_nr,
                      'episode': episode_nr},
             'params': {'ccid': item['titleCCId'],
-                       'set_resume_point': True},
+                       'set_resume_point': not is_next_episode},
             'properties': {
                 # This causes Kodi not to offer the standard resume dialog, so we can obtain
                 # resume time at the time of resolving the video url and play from there, or show
