@@ -390,81 +390,6 @@ class Generic(unittest.TestCase):
         item = parsex.parse_my_list_item(data[1], hide_paid=True)
         self.assertIsNone(item)
 
-    def test_parse_last_watched(self):
-        data = open_json('usercontent/last_watched_all.json')
-        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
-        for item in data:
-            show = parsex.parse_last_watched_item(item, utc_now)
-            has_keys(show, 'type', 'show')
-            self.assertEqual('vodstream', show['type'])
-            is_li_compatible_dict(self, show['show'])
-
-    def test_parse_last_watched_availability(self):
-        tz_utc = timezone.utc
-        data = open_json('usercontent/last_watched_all.json')[0]
-        utc_now = datetime.now(tz=tz_utc).replace(tzinfo=None)
-
-        some_years = (datetime.now(tz=tz_utc) + timedelta(days=370)).replace(microsecond=0)
-        data['availabilityEnd'] = some_years.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('over a year' in item['show']['info']['plot'])
-
-        some_months = (datetime.now(tz=tz_utc) + timedelta(days=62)).replace(microsecond=0)
-        data['availabilityEnd'] = some_months.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('2 months' in item['show']['info']['plot'])
-
-        one_months = (datetime.now(tz=tz_utc) + timedelta(days=32)).replace(microsecond=0)
-        data['availabilityEnd'] = one_months.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('1 month' in item['show']['info']['plot'])
-
-        some_days = (datetime.now(tz=tz_utc) + timedelta(days=4, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = some_days.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('4 days available' in item['show']['info']['plot'])
-
-        one_day = (datetime.now(tz=tz_utc) + timedelta(days=1, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = one_day.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('1 day available' in item['show']['info']['plot'])
-
-        some_hours = (datetime.now(tz=tz_utc) + timedelta(hours=4, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = some_hours.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('4 hours available' in item['show']['info']['plot'])
-
-        one_hours = (datetime.now(tz=tz_utc) + timedelta(hours=1, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = one_hours.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('1 hour available' in item['show']['info']['plot'])
-
-        zero_hours = (datetime.now(tz=tz_utc) + timedelta(minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = zero_hours.isoformat()[:19] + 'Z'
-        item = parsex.parse_last_watched_item(data, utc_now)
-        self.assertTrue('0 hours available' in item['show']['info']['plot'])
-
-    def test_last_watched_context_menu(self):
-        data = open_json('usercontent/last_watched_all.json')
-        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
-
-        episode_item = data[3]
-        self.assertEqual('FILM', episode_item['contentType'])
-        show = parsex.parse_last_watched_item(episode_item, utc_now)
-        self.assertFalse('ctx_mnu' in show.keys())
-
-        episode_item = data[2]
-        self.assertEqual('SPECIAL', episode_item['contentType'])
-        show = parsex.parse_last_watched_item(episode_item, utc_now)
-        self.assertFalse('ctx_mnu' in show.keys())
-
-        episode_item = data[0]
-        self.assertEqual('EPISODE', episode_item['contentType'])
-        show = parsex.parse_last_watched_item(episode_item, utc_now)
-        self.assertIsInstance(show['ctx_mnu'], list)
-        for item in show['ctx_mnu']:
-            self.assertIsInstance(item, tuple)
-
     def test_parse_schedule(self):
         data = open_json('json/schedule_data.json')['tvGuideData']
 
@@ -546,3 +471,91 @@ class Generic(unittest.TestCase):
         # invalid values
         self.assertEqual(0, parsex.timecode2seconds("45:123"))
         self.assertEqual(0, parsex.timecode2seconds("01:05:45:413:123"))
+
+
+class ParseLastWatched(unittest.TestCase):
+    def test_parse_last_watched(self):
+        data = open_json('usercontent/last_watched_all.json')
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+        for item in data:
+            show = parsex.parse_last_watched_item(item, utc_now)
+            has_keys(show, 'type', 'show')
+            self.assertEqual('vodstream', show['type'])
+            is_li_compatible_dict(self, show['show'])
+
+    def test_parse_last_watched_resume_point(self):
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+        item = open_json('usercontent/last_watched_all.json')[0]
+        self.assertTrue('isNextEpisode' in item)
+        item['isNextEpisode'] = False
+        show = parsex.parse_last_watched_item(item, utc_now)
+        self.assertIs(show['show']['params']['set_resume_point'], True)
+        item['isNextEpisode'] = True
+        show = parsex.parse_last_watched_item(item, utc_now)
+        self.assertIs(show['show']['params']['set_resume_point'], False)
+
+    def test_parse_last_watched_availability(self):
+        tz_utc = timezone.utc
+        data = open_json('usercontent/last_watched_all.json')[0]
+        utc_now = datetime.now(tz=tz_utc).replace(tzinfo=None)
+
+        some_years = (datetime.now(tz=tz_utc) + timedelta(days=370)).replace(microsecond=0)
+        data['availabilityEnd'] = some_years.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('over a year' in item['show']['info']['plot'])
+
+        some_months = (datetime.now(tz=tz_utc) + timedelta(days=62)).replace(microsecond=0)
+        data['availabilityEnd'] = some_months.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('2 months' in item['show']['info']['plot'])
+
+        one_months = (datetime.now(tz=tz_utc) + timedelta(days=32)).replace(microsecond=0)
+        data['availabilityEnd'] = one_months.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 month' in item['show']['info']['plot'])
+
+        some_days = (datetime.now(tz=tz_utc) + timedelta(days=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_days.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('4 days available' in item['show']['info']['plot'])
+
+        one_day = (datetime.now(tz=tz_utc) + timedelta(days=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_day.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 day available' in item['show']['info']['plot'])
+
+        some_hours = (datetime.now(tz=tz_utc) + timedelta(hours=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_hours.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('4 hours available' in item['show']['info']['plot'])
+
+        one_hours = (datetime.now(tz=tz_utc) + timedelta(hours=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_hours.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('1 hour available' in item['show']['info']['plot'])
+
+        zero_hours = (datetime.now(tz=tz_utc) + timedelta(minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = zero_hours.isoformat()[:19] + 'Z'
+        item = parsex.parse_last_watched_item(data, utc_now)
+        self.assertTrue('0 hours available' in item['show']['info']['plot'])
+
+    def test_last_watched_context_menu(self):
+        data = open_json('usercontent/last_watched_all.json')
+        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+
+        episode_item = data[3]
+        self.assertEqual('FILM', episode_item['contentType'])
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertFalse('ctx_mnu' in show.keys())
+
+        episode_item = data[2]
+        self.assertEqual('SPECIAL', episode_item['contentType'])
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertFalse('ctx_mnu' in show.keys())
+
+        episode_item = data[0]
+        self.assertEqual('EPISODE', episode_item['contentType'])
+        show = parsex.parse_last_watched_item(episode_item, utc_now)
+        self.assertIsInstance(show['ctx_mnu'], list)
+        for item in show['ctx_mnu']:
+            self.assertIsInstance(item, tuple)
