@@ -2,2604 +2,3061 @@
   "tvGuideData": {
     "ITV": [
       {
-        "duration": 1800,
-        "end": "2024-05-11T05:30:00Z",
-        "legacyId": "2/1173/0033#004",
-        "start": "2024-05-11T05:00:00Z",
-        "title": "Love Your Garden"
-      },
-      {
-        "duration": 6900,
-        "end": "2024-05-11T07:25:00Z",
-        "legacyId": "10/0437/0137#001",
-        "start": "2024-05-11T05:30:00Z",
-        "title": "Love Your Weekend with Alan Titchmarsh",
-        "ccid": "9x3d5l2",
-        "contentTypeITV": "avod",
-        "episodeNumber": 18,
+        "title": "Good Morning Britain",
+        "start": "2024-09-06T05:00:00Z",
+        "end": "2024-09-06T08:00:00Z",
+        "titleCCId": "1dz33l4",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "seriesNumber": 11,
         "contentType": "EPISODE",
-        "seriesNumber": 6,
-        "description": "The nation\u2019s favourite gardener Alan Titchmarsh hosts a show celebrating all that is great about the British countryside, including arts, crafts, manufacturing and produce.",
-        "guidance": null,
         "episodeAvailableNow": true,
-        "episodeLink": "/love-your-weekend-with-alan-titchmarsh/10a0437/10a0437a0137",
-        "programmeLink": "/love-your-weekend-with-alan-titchmarsh/10a0437",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
+        "episodeLink": "/good-morning-britain/2a3211/2a3211a3906",
+        "programmeLink": "/good-morning-britain/2a3211",
+        "legacyId": "2/3211/3906",
+        "duration": 10800
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T08:25:00Z",
-        "legacyId": "10/2809/0027#001",
-        "start": "2024-05-11T07:25:00Z",
-        "title": "Katie Piper's Breakfast Show",
-        "ccid": "3kcfcd5",
-        "contentTypeITV": "avod",
-        "episodeNumber": 9,
+        "title": "Lorraine",
+        "start": "2024-09-06T08:00:00Z",
+        "end": "2024-09-06T09:00:00Z",
+        "titleCCId": "mbjkfcx",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 16,
         "contentType": "EPISODE",
-        "seriesNumber": 3,
-        "description": "Katie Piper presents a show that's jam-packed with celebrity guests and fascinating conversations.",
-        "guidance": null,
         "episodeAvailableNow": true,
-        "episodeLink": "/katie-pipers-breakfast-show/10a2809/10a2809a0027",
-        "programmeLink": "/katie-pipers-breakfast-show/10a2809",
+        "episodeLink": "/lorraine/1a9360/1a9360a3696",
+        "programmeLink": "/lorraine/1a9360",
+        "legacyId": "1/9360/3696",
+        "duration": 3600
+      },
+      {
+        "title": "This Morning",
+        "start": "2024-09-06T09:00:00Z",
+        "end": "2024-09-06T10:03:00Z",
+        "titleCCId": "y4ygjkl",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
           }
-        ]
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T08:30:00Z",
-        "legacyId": "NET19SA24-NN09",
-        "start": "2024-05-11T08:25:00Z",
-        "title": "ITV News"
-      },
-      {
-        "duration": 7800,
-        "end": "2024-05-11T10:40:00Z",
-        "legacyId": "2/5159/0279#001",
-        "start": "2024-05-11T08:30:00Z",
-        "title": "James Martin's Saturday Morning",
-        "ccid": "0vhxqs4",
-        "contentTypeITV": "avod",
-        "episodeNumber": 19,
+        ],
+        "seriesNumber": 36,
         "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "The first-class chef hosts his relaxed weekend cookery show from the comfort of his own home. Watch him cook up mouthwatering recipes while chatting to celebrity guests.",
-        "guidance": null,
         "episodeAvailableNow": true,
-        "episodeLink": "/james-martins-saturday-morning/2a5159/2a5159a0279",
-        "programmeLink": "/james-martins-saturday-morning/2a5159",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
+        "episodeLink": "/this-morning/1a1960/1a1960a9801",
+        "programmeLink": "/this-morning/1a1960",
+        "legacyId": "1/1960/9801",
+        "duration": 3780
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T11:40:00Z",
-        "legacyId": "10/4933/0008#001",
-        "start": "2024-05-11T10:40:00Z",
-        "title": "Prue Leith's Cotswold Kitchen",
-        "ccid": "5tz2kjz",
-        "contentTypeITV": "avod",
-        "episodeNumber": 10,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Join Prue and her cast of foodie friends, including Sandi Toksvig, Alison Hammond and chef Tommy Banks, as they celebrate food heroes, and the best recipes, tips and tricks.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/prue-leiths-cotswold-kitchen/10a4933/10a4933a0008",
-        "programmeLink": "/prue-leiths-cotswold-kitchen/10a4933",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T12:10:00Z",
-        "legacyId": "2/5543/0003#002",
-        "start": "2024-05-11T11:40:00Z",
-        "title": "James Martin's Great British Adventure",
-        "ccid": "k4d30yk",
-        "contentTypeITV": "avod",
-        "episodeNumber": 3,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Renowned chef James Martin seeks foodie nirvana in Britain. After the success of his previous trips, he travels the British Isles getting pals to help him cook much-loved dishes.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/james-martins-great-british-adventure/2a5543/2a5543a0003",
-        "programmeLink": "/james-martins-great-british-adventure/2a5543",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 1020,
-        "end": "2024-05-11T12:27:00Z",
-        "legacyId": "NET19SA24-NN13",
-        "start": "2024-05-11T12:10:00Z",
-        "title": "ITV Lunchtime News"
-      },
-      {
-        "duration": 60,
-        "end": "2024-05-11T12:28:00Z",
-        "legacyId": "NET19SA24-NW13",
-        "start": "2024-05-11T12:27:00Z",
-        "title": "F/B National Weather"
-      },
-      {
-        "duration": 120,
-        "end": "2024-05-11T12:30:00Z",
-        "legacyId": "LON19SA24-WX13",
-        "start": "2024-05-11T12:28:00Z",
-        "title": "ITV Regional Weather"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T13:30:00Z",
-        "legacyId": "2/3704/0045#003",
-        "start": "2024-05-11T12:30:00Z",
-        "title": "Ninja Warrior UK: Race For Glory"
-      },
-      {
-        "duration": 10500,
-        "end": "2024-05-11T16:25:00Z",
-        "legacyId": "10/2252/0018#001",
-        "start": "2024-05-11T13:30:00Z",
-        "title": "Live Gallagher Premiership Rugby"
-      },
-      {
-        "duration": 2100,
-        "end": "2024-05-11T17:00:00Z",
-        "legacyId": "2/1672/0109#001",
-        "start": "2024-05-11T16:25:00Z",
-        "title": "For the Love of Dogs",
-        "ccid": "347zwjy",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 12,
-        "description": "Alison Hammond carries on Paul O'Grady's incredible legacy in series 12 of the programme following the ups & downs of life at Battersea Dogs & Cats Home.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/for-the-love-of-dogs/2a1672/2a1672a0109",
-        "programmeLink": "/for-the-love-of-dogs/2a1672",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 780,
-        "end": "2024-05-11T17:13:00Z",
-        "legacyId": "2/4546/0865#001",
-        "start": "2024-05-11T17:00:00Z",
-        "title": "ITV News Weekend Teatime"
-      },
-      {
-        "duration": 120,
-        "end": "2024-05-11T17:15:00Z",
-        "legacyId": "NET19SA24-NW18",
-        "start": "2024-05-11T17:13:00Z",
-        "title": "F/B Weather"
-      },
-      {
-        "duration": 780,
-        "end": "2024-05-11T17:28:00Z",
-        "legacyId": "LON19SA24-RN18",
-        "start": "2024-05-11T17:15:00Z",
-        "title": "ITV News Regional"
-      },
-      {
-        "duration": 120,
-        "end": "2024-05-11T17:30:00Z",
-        "legacyId": "LON19SA24-WX18",
-        "start": "2024-05-11T17:28:00Z",
-        "title": "ITV Regional Weather"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T18:00:00Z",
-        "legacyId": "2/5241/0046#001",
-        "start": "2024-05-11T17:30:00Z",
-        "title": "In for a Penny",
-        "ccid": "2j0kff0",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 6,
-        "description": "Stephen Mulhern's on a trip around the country in a new series, as he hits the streets with his epic portable game show. Watch unsuspecting members of the public play along.",
-        "guidance": null,
-        "episodeAvailableNow": false,
-        "episodeLink": null,
-        "programmeLink": "/in-for-a-penny/2a5241",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T19:00:00Z",
-        "legacyId": "10/4087/0012#002",
-        "start": "2024-05-11T18:00:00Z",
-        "title": "In With A Shout",
-        "ccid": "g8kcwss",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Joel Dommett hosts ITV's new high-octane gameshow, where contestants must shout to win big. Two families face each other in a race to answer hidden questions and win \u00a320,000. ",
-        "guidance": null,
-        "episodeAvailableNow": false,
-        "episodeLink": null,
-        "programmeLink": "/in-with-a-shout/10a4087",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 9600,
-        "end": "2024-05-11T21:40:00Z",
-        "legacyId": "1/7711/0001#009",
-        "start": "2024-05-11T19:00:00Z",
-        "title": "Casino Royale",
-        "ccid": "r1tk2wr",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
+        "title": "ITV Regional Weather",
+        "start": "2024-09-06T10:03:00Z",
+        "end": "2024-09-06T10:10:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
         "seriesNumber": null,
-        "description": null,
-        "guidance": null,
-        "episodeAvailableNow": false,
+        "contentType": null,
+        "episodeAvailableNow": null,
         "episodeLink": null,
         "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
-      },
-      {
-        "duration": 1020,
-        "end": "2024-05-11T21:57:00Z",
-        "legacyId": "NET19SA24-NN22",
-        "start": "2024-05-11T21:40:00Z",
-        "title": "ITV News"
-      },
-      {
-        "duration": 60,
-        "end": "2024-05-11T21:58:00Z",
-        "legacyId": "NET19SA24-NW22",
-        "start": "2024-05-11T21:57:00Z",
-        "title": "F/B National Weather"
-      },
-      {
-        "duration": 120,
-        "end": "2024-05-11T22:00:00Z",
-        "legacyId": "LON19SA24-WX22",
-        "start": "2024-05-11T21:58:00Z",
-        "title": "ITV Regional Weather"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T23:00:00Z",
-        "legacyId": "1/7403/0026#005",
-        "start": "2024-05-11T22:00:00Z",
-        "title": "It'll Be Alright on the Night",
-        "ccid": "lh5pbj6",
-        "contentTypeITV": "avod",
-        "episodeNumber": 3,
-        "contentType": "EPISODE",
-        "seriesNumber": 36,
-        "description": "Hilarious out-takes from the worlds of TV, cinema and commercials. The blooper-snooper team uncover calamities and catastrophes from cutting room floors around the world.",
-        "guidance": "With some strong language.",
-        "episodeAvailableNow": true,
-        "episodeLink": "/itll-be-alright-on-the-night/L0006/1a7403a0026",
-        "programmeLink": "/itll-be-alright-on-the-night/L0006",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 2700,
-        "end": "2024-05-11T23:45:00Z",
-        "legacyId": "10/2275/0004#001",
-        "start": "2024-05-11T23:00:00Z",
-        "title": "EFL Play Off Highlights"
-      },
-      {
-        "duration": 8100,
-        "end": "2024-05-12T02:00:00Z",
         "legacyId": null,
-        "start": "2024-05-11T23:45:00Z",
-        "title": "Shop On TV"
+        "duration": 420
       },
       {
-        "duration": 2700,
-        "end": "2024-05-12T02:45:00Z",
-        "legacyId": "10/3226/0003#003",
-        "start": "2024-05-12T02:00:00Z",
-        "title": "Next Level Chef (USA)"
-      },
-      {
-        "duration": 4800,
-        "end": "2024-05-12T04:05:00Z",
-        "legacyId": "10/1889/0934#001",
-        "start": "2024-05-12T02:45:00Z",
-        "title": "Unwind With ITV1"
-      },
-      {
-        "duration": 3300,
-        "end": "2024-05-12T05:00:00Z",
-        "legacyId": "10/4933/0008#002",
-        "start": "2024-05-12T04:05:00Z",
-        "title": "Prue Leith's Cotswold Kitchen",
-        "ccid": "5tz2kjz",
-        "contentTypeITV": "avod",
-        "episodeNumber": 10,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Join Prue and her cast of foodie friends, including Sandi Toksvig, Alison Hammond and chef Tommy Banks, as they celebrate food heroes, and the best recipes, tips and tricks.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/prue-leiths-cotswold-kitchen/10a4933/10a4933a0008",
-        "programmeLink": "/prue-leiths-cotswold-kitchen/10a4933",
+        "title": "This Morning",
+        "start": "2024-09-06T10:10:00Z",
+        "end": "2024-09-06T11:30:00Z",
+        "titleCCId": "y4ygjkl",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
           }
-        ]
+        ],
+        "seriesNumber": 36,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/this-morning/1a1960/1a1960a9801",
+        "programmeLink": "/this-morning/1a1960",
+        "legacyId": "1/1960/9801",
+        "duration": 4800
+      },
+      {
+        "title": "Loose Women",
+        "start": "2024-09-06T11:30:00Z",
+        "end": "2024-09-06T12:30:00Z",
+        "titleCCId": "lqcdnrf",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 28,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/loose-women/1a3173/1a3173a4566",
+        "programmeLink": "/loose-women/1a3173",
+        "legacyId": "1/3173/4566",
+        "duration": 3600
+      },
+      {
+        "title": "ITV Lunchtime News",
+        "start": "2024-09-06T12:30:00Z",
+        "end": "2024-09-06T12:53:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1380
+      },
+      {
+        "title": "National Weather",
+        "start": "2024-09-06T12:53:00Z",
+        "end": "2024-09-06T12:55:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "ITV News Regional",
+        "start": "2024-09-06T12:55:00Z",
+        "end": "2024-09-06T12:58:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 180
+      },
+      {
+        "title": "ITV Regional Weather",
+        "start": "2024-09-06T12:58:00Z",
+        "end": "2024-09-06T13:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "Dickinson's Real Deal",
+        "start": "2024-09-06T13:00:00Z",
+        "end": "2024-09-06T14:00:00Z",
+        "titleCCId": "22wrrgz",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 18,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/dickinsons-real-deal/33248/1a8665a1069",
+        "programmeLink": "/dickinsons-real-deal/33248",
+        "legacyId": "1/8665/1069",
+        "duration": 3600
+      },
+      {
+        "title": "Lingo",
+        "start": "2024-09-06T14:00:00Z",
+        "end": "2024-09-06T14:58:00Z",
+        "titleCCId": "0gdz1wt",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/lingo/10a0540/10a0540a0112",
+        "programmeLink": "/lingo/10a0540",
+        "legacyId": "10/0540/0112",
+        "duration": 3480
+      },
+      {
+        "title": "ITV Regional Weather",
+        "start": "2024-09-06T14:58:00Z",
+        "end": "2024-09-06T15:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "Tipping Point",
+        "start": "2024-09-06T15:00:00Z",
+        "end": "2024-09-06T16:00:00Z",
+        "titleCCId": "tr5f83k",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 13,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/tipping-point/2a1875/2a1875a1524",
+        "programmeLink": "/tipping-point/2a1875",
+        "legacyId": "2/1875/1524",
+        "duration": 3600
+      },
+      {
+        "title": "The Chase",
+        "start": "2024-09-06T16:00:00Z",
+        "end": "2024-09-06T17:00:00Z",
+        "titleCCId": "7xtzzsc",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 16,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/the-chase/1a7842",
+        "legacyId": "1/7842/2162",
+        "duration": 3600
+      },
+      {
+        "title": "ITV News Regional",
+        "start": "2024-09-06T17:00:00Z",
+        "end": "2024-09-06T17:28:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1680
+      },
+      {
+        "title": "ITV Regional Weather",
+        "start": "2024-09-06T17:28:00Z",
+        "end": "2024-09-06T17:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "ITV Evening News",
+        "start": "2024-09-06T17:30:00Z",
+        "end": "2024-09-06T18:00:00Z",
+        "titleCCId": "h3cdhln",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "ITV Evening News",
+        "start": "2024-09-06T18:00:00Z",
+        "end": "2024-09-06T18:28:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1680
+      },
+      {
+        "title": "National Weather",
+        "start": "2024-09-06T18:28:00Z",
+        "end": "2024-09-06T18:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "Emmerdale",
+        "start": "2024-09-06T18:30:00Z",
+        "end": "2024-09-06T19:00:00Z",
+        "titleCCId": "kb4n517",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 53,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/emmerdale/Ya0524",
+        "legacyId": "1/8694/10085",
+        "duration": 1800
+      },
+      {
+        "title": "Coronation Street",
+        "start": "2024-09-06T19:00:00Z",
+        "end": "2024-09-06T19:30:00Z",
+        "titleCCId": "6043v0x",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 65,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/coronation-street/1a0694",
+        "legacyId": "1/0694/11357",
+        "duration": 1800
+      },
+      {
+        "title": "Coronation Street",
+        "start": "2024-09-06T19:30:00Z",
+        "end": "2024-09-06T20:00:00Z",
+        "titleCCId": "6043v0x",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 65,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/coronation-street/1a0694",
+        "legacyId": "1/0694/11357",
+        "duration": 1800
+      },
+      {
+        "title": "Beat the Chasers",
+        "start": "2024-09-06T20:00:00Z",
+        "end": "2024-09-06T21:00:00Z",
+        "titleCCId": "czjxmv1",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/beat-the-chasers/2a6826/2a6826a0022",
+        "programmeLink": "/beat-the-chasers/2a6826",
+        "legacyId": "2/6826/0022",
+        "duration": 3600
+      },
+      {
+        "title": "ITV News at Ten",
+        "start": "2024-09-06T21:00:00Z",
+        "end": "2024-09-06T21:28:00Z",
+        "titleCCId": "418j7vw",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1680
+      },
+      {
+        "title": "National Weather",
+        "start": "2024-09-06T21:28:00Z",
+        "end": "2024-09-06T21:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "ITV News Regional",
+        "start": "2024-09-06T21:30:00Z",
+        "end": "2024-09-06T21:43:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 780
+      },
+      {
+        "title": "ITV Regional Weather",
+        "start": "2024-09-06T21:43:00Z",
+        "end": "2024-09-06T21:45:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 120
+      },
+      {
+        "title": "Password",
+        "start": "2024-09-06T21:45:00Z",
+        "end": "2024-09-06T22:20:00Z",
+        "titleCCId": "8jgrcpg",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/password/10a4684/10a4684a0007",
+        "programmeLink": "/password/10a4684",
+        "legacyId": "10/4684/0007",
+        "duration": 2100
+      },
+      {
+        "title": "Olivia Attwood's Bad Boyfriends",
+        "start": "2024-09-06T22:20:00Z",
+        "end": "2024-09-06T23:10:00Z",
+        "titleCCId": "hp156ht",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/olivia-attwoods-bad-boyfriends/10a5350/10a5350a0006",
+        "programmeLink": "/olivia-attwoods-bad-boyfriends/10a5350",
+        "legacyId": "10/5350/0006",
+        "duration": 3000
+      },
+      {
+        "title": "Shop On TV",
+        "start": "2024-09-06T23:10:00Z",
+        "end": "2024-09-07T02:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 10200
+      },
+      {
+        "title": "Champions: Full Gallop",
+        "start": "2024-09-07T02:00:00Z",
+        "end": "2024-09-07T02:50:00Z",
+        "titleCCId": "zy98yj2",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/champions-full-gallop/10a5197/10a5197a0008",
+        "programmeLink": "/champions-full-gallop/10a5197",
+        "legacyId": "10/5197/0008",
+        "duration": 3000
+      },
+      {
+        "title": "Unwind With ITV1",
+        "start": "2024-09-07T02:50:00Z",
+        "end": "2024-09-07T04:05:00Z",
+        "titleCCId": "sv905zl",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 4500
+      },
+      {
+        "title": "Jimmy & Shivi's Farmhouse Breakfast",
+        "start": "2024-09-07T04:05:00Z",
+        "end": "2024-09-07T04:59:59Z",
+        "titleCCId": "9fcvf05",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/jimmy-and-shivis-farmhouse-breakfast/10a5695/10a5695a0010",
+        "programmeLink": "/jimmy-and-shivis-farmhouse-breakfast/10a5695",
+        "legacyId": "10/5695/0010",
+        "duration": 3299
       }
     ],
     "ITV2": [
       {
-        "duration": 900,
-        "end": "2024-05-11T05:15:00Z",
-        "legacyId": "2/7332/0105#001",
-        "start": "2024-05-11T05:00:00Z",
-        "title": "Craig of the Creek",
-        "ccid": "m74tjk3",
-        "contentTypeITV": "avod",
-        "episodeNumber": 28,
-        "contentType": "EPISODE",
-        "seriesNumber": 3,
-        "description": "Animated comedy following the adventures of Craig and his two friends Kelsey and JP as they explore the wilderness of the creek together.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/craig-of-the-creek/2a7332/2a7332a0105",
-        "programmeLink": "/craig-of-the-creek/2a7332",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T05:25:00Z",
-        "legacyId": "10/0598/0069#001",
-        "start": "2024-05-11T05:15:00Z",
-        "title": "DC Superhero Girls",
-        "ccid": "y4jqwpq",
-        "contentTypeITV": "avod",
-        "episodeNumber": 17,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "At Super Hero High School, Wonder Woman, Supergirl and their friends deal with the drama of teenage life while fighting evil in their free time.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/dc-superhero-girls/10a0598/10a0598a0069",
-        "programmeLink": "/dc-superhero-girls/10a0598",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 900,
-        "end": "2024-05-11T05:40:00Z",
-        "legacyId": "2/3033/0255#001",
-        "start": "2024-05-11T05:25:00Z",
-        "title": "Teen Titans Go!",
-        "ccid": "xrxymzg",
-        "contentTypeITV": "avod",
-        "episodeNumber": 47,
-        "contentType": "EPISODE",
-        "seriesNumber": 6,
-        "description": "Animated series based on DC Comics' superhero team. Robin, Cyborg, Starfire, Raven and Beast Boy love saving the world. But when they stop fighting crime, things don't go to plan.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/teen-titans-go/2a3033/2a3033a0255",
-        "programmeLink": "/teen-titans-go/2a3033",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T05:50:00Z",
-        "legacyId": "2/3033/0296#001",
-        "start": "2024-05-11T05:40:00Z",
-        "title": "Teen Titans Go!",
-        "ccid": "485qvb9",
-        "contentTypeITV": "avod",
-        "episodeNumber": 33,
-        "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "Animated series based on DC Comics' superhero team. Robin, Cyborg, Starfire, Raven and Beast Boy love saving the world. But when they stop fighting crime, things don't go to plan.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/teen-titans-go/2a3033/2a3033a0296",
-        "programmeLink": "/teen-titans-go/2a3033",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 900,
-        "end": "2024-05-11T06:05:00Z",
-        "legacyId": "10/4012/0059#001",
-        "start": "2024-05-11T05:50:00Z",
         "title": "Looney Tunes Cartoons",
-        "ccid": "ccvl0bh",
-        "contentTypeITV": "avod",
-        "episodeNumber": 8,
+        "start": "2024-09-06T05:00:00Z",
+        "end": "2024-09-06T05:10:00Z",
+        "titleCCId": "1q77ntt",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 1,
         "contentType": "EPISODE",
-        "seriesNumber": 4,
-        "description": "Collection of much-loved Looney Tunes favourite characters - Bugs Bunny, Daffy Duck, Porky Pig - as they get up to no good!",
-        "guidance": null,
         "episodeAvailableNow": true,
-        "episodeLink": "/looney-tunes-cartoons/10a4012/10a4012a0059",
+        "episodeLink": "/looney-tunes-cartoons/10a4012/10a4012a0006",
         "programmeLink": "/looney-tunes-cartoons/10a4012",
+        "legacyId": "10/4012/0006",
+        "duration": 600
+      },
+      {
+        "title": "Teen Titans Go!",
+        "start": "2024-09-06T05:10:00Z",
+        "end": "2024-09-06T05:25:00Z",
+        "titleCCId": "7bfz1kt",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Kids",
-            "id": "CHILDREN"
+            "id": "CHILDREN",
+            "name": "Kids"
           }
-        ]
-      },
-      {
-        "duration": 900,
-        "end": "2024-05-11T06:20:00Z",
-        "legacyId": "10/2588/0004#002",
-        "start": "2024-05-11T06:05:00Z",
-        "title": "Dodo",
-        "ccid": "lsrfz75",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Heart-warming animation following 11-year-old Joe as he navigates the dramas & pitfalls of Year 7 and tries to fit in, make new friends, & even lose his school trousers.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/dodo/10a2588/10a2588a0004",
-        "programmeLink": "/dodo/10a2588",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T06:30:00Z",
-        "legacyId": "10/2588/0005#001",
-        "start": "2024-05-11T06:20:00Z",
-        "title": "Dodo",
-        "ccid": "f8b49kq",
-        "contentTypeITV": "avod",
-        "episodeNumber": 5,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Heart-warming animation following 11-year-old Joe as he navigates the dramas & pitfalls of Year 7 and tries to fit in, make new friends, & even lose his school trousers.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/dodo/10a2588/10a2588a0005",
-        "programmeLink": "/dodo/10a2588",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 5400,
-        "end": "2024-05-11T08:00:00Z",
-        "legacyId": "10/0928/0001#001",
-        "start": "2024-05-11T06:30:00Z",
-        "title": "Scooby-Doo! Mask of the Blue Falcon",
-        "ccid": "mt5h15p",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "SPECIAL",
-        "seriesNumber": null,
-        "description": null,
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": null,
-        "programmeLink": null,
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 1500,
-        "end": "2024-05-11T08:25:00Z",
-        "legacyId": "10/1905/0058#001",
-        "start": "2024-05-11T08:00:00Z",
-        "title": "World's Funniest Videos: Top 10 Countdown",
-        "ccid": "28kw0cf",
-        "contentTypeITV": "avod",
-        "episodeNumber": 28,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Hilarious videos clips featuring unfortunate people in side-splitting situations.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/worlds-funniest-videos-top-10-countdown/10a1905/10a1905a0058",
-        "programmeLink": "/worlds-funniest-videos-top-10-countdown/10a1905",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T08:55:00Z",
-        "legacyId": "2/1670/0017#001",
-        "start": "2024-05-11T08:25:00Z",
-        "title": "Totally Bonkers Guinness World Records",
-        "ccid": "y43k24k",
-        "contentTypeITV": "avod",
-        "episodeNumber": 10,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Matt Edmondson introduces the most entertaining Guinness World Records and the brilliant characters who set them. ",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/totally-bonkers-guinness-world-records/2a1670/2a1670a0017",
-        "programmeLink": "/totally-bonkers-guinness-world-records/2a1670",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T09:55:00Z",
-        "legacyId": "10/0770/0022#002",
-        "start": "2024-05-11T08:55:00Z",
-        "title": "Secret Crush"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T10:55:00Z",
-        "legacyId": "2/4985/0063#002",
-        "start": "2024-05-11T09:55:00Z",
-        "title": "Dress To Impress"
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T12:00:00Z",
-        "legacyId": "2/4985/0072#002",
-        "start": "2024-05-11T10:55:00Z",
-        "title": "Dress To Impress"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T13:00:00Z",
-        "legacyId": "2/4985/0077#002",
-        "start": "2024-05-11T12:00:00Z",
-        "title": "Dress To Impress"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T14:00:00Z",
-        "legacyId": "2/5716/0049#001",
-        "start": "2024-05-11T13:00:00Z",
-        "title": "Celebrity Catchphrase",
-        "ccid": "wlz08qj",
-        "contentTypeITV": "avod",
-        "episodeNumber": 9,
-        "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "Stephen Mulhern brings the iconic 80s gameshow back in this contemporary remake. Can celebrity contestants identify a familiar catchphrase?",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/celebrity-catchphrase/2a2259/2a5716a0049",
-        "programmeLink": "/celebrity-catchphrase/2a2259",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 2100,
-        "end": "2024-05-11T14:35:00Z",
-        "legacyId": "2/5241/0038#001",
-        "start": "2024-05-11T14:00:00Z",
-        "title": "In for a Penny",
-        "ccid": "2rtd6x5",
-        "contentTypeITV": "avod",
-        "episodeNumber": 5,
-        "contentType": "EPISODE",
-        "seriesNumber": 5,
-        "description": "Stephen Mulhern's on a trip around the country in a new series, as he hits the streets with his epic portable game show. Watch unsuspecting members of the public play along.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/in-for-a-penny/2a5241/2a5241a0038",
-        "programmeLink": "/in-for-a-penny/2a5241",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T15:40:00Z",
-        "legacyId": "10/5059/0001#001",
-        "start": "2024-05-11T14:35:00Z",
-        "title": "Scoob!",
-        "ccid": "b8gp36v",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
-        "seriesNumber": null,
-        "description": null,
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": null,
-        "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T15:45:00Z",
-        "legacyId": "1/8987/5241#001",
-        "start": "2024-05-11T15:40:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 2400,
-        "end": "2024-05-11T16:25:00Z",
-        "legacyId": "10/5059/0001#001",
-        "start": "2024-05-11T15:45:00Z",
-        "title": "Scoob!",
-        "ccid": "b8gp36v",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
-        "seriesNumber": null,
-        "description": null,
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": null,
-        "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T17:25:00Z",
-        "legacyId": "10/0720/0001#001",
-        "start": "2024-05-11T16:25:00Z",
-        "title": "Penguins of Madagascar",
-        "ccid": "nlffkxx",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
-        "seriesNumber": null,
-        "description": null,
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": null,
-        "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T17:30:00Z",
-        "legacyId": "1/8987/5241#001",
-        "start": "2024-05-11T17:25:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 2400,
-        "end": "2024-05-11T18:10:00Z",
-        "legacyId": "10/0720/0001#001",
-        "start": "2024-05-11T17:30:00Z",
-        "title": "Penguins of Madagascar",
-        "ccid": "nlffkxx",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
-        "seriesNumber": null,
-        "description": null,
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": null,
-        "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T19:15:00Z",
-        "legacyId": "46146#008",
-        "start": "2024-05-11T18:10:00Z",
-        "title": "Johnny English"
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T19:20:00Z",
-        "legacyId": "1/8987/5241#001",
-        "start": "2024-05-11T19:15:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 2400,
-        "end": "2024-05-11T20:00:00Z",
-        "legacyId": "46146#008",
-        "start": "2024-05-11T19:20:00Z",
-        "title": "Johnny English"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T21:00:00Z",
-        "legacyId": "10/0716/0001#001",
-        "start": "2024-05-11T20:00:00Z",
-        "title": "The Invisible Man"
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T21:05:00Z",
-        "legacyId": "1/8987/5242#001",
-        "start": "2024-05-11T21:00:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 4800,
-        "end": "2024-05-11T22:25:00Z",
-        "legacyId": "10/0716/0001#001",
-        "start": "2024-05-11T21:05:00Z",
-        "title": "The Invisible Man"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T22:55:00Z",
-        "legacyId": "2/4259/0113#001",
-        "start": "2024-05-11T22:25:00Z",
-        "title": "Family Guy",
-        "ccid": "0r9m406",
-        "contentTypeITV": "avod",
-        "episodeNumber": 1,
-        "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "Join the utterly bonkers Griffin family on their wacky escapades in this irreverent sitcom. Watch them strive to cope with everyday life as they lurch from crazy to even crazier.",
-        "guidance": null,
-        "episodeAvailableNow": false,
-        "episodeLink": null,
-        "programmeLink": "/family-guy/2a4259",
-        "genres": [
-          {
-            "name": "Comedy",
-            "id": "COMEDY"
-          }
-        ]
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T23:25:00Z",
-        "legacyId": "2/4259/0105#001",
-        "start": "2024-05-11T22:55:00Z",
-        "title": "Family Guy",
-        "ccid": "07cgs1f",
-        "contentTypeITV": "avod",
-        "episodeNumber": 5,
-        "contentType": "EPISODE",
+        ],
         "seriesNumber": 6,
-        "description": "Join the utterly bonkers Griffin family on their wacky escapades in this irreverent sitcom. Watch them strive to cope with everyday life as they lurch from crazy to even crazier.",
-        "guidance": "Contains adult humour.",
+        "contentType": "EPISODE",
         "episodeAvailableNow": true,
-        "episodeLink": "/family-guy/2a4259/2a4259a0105",
-        "programmeLink": "/family-guy/2a4259",
-        "genres": [
-          {
-            "name": "Comedy",
-            "id": "COMEDY"
-          }
-        ]
+        "episodeLink": "/teen-titans-go/2a3033/2a3033a0231",
+        "programmeLink": "/teen-titans-go/2a3033",
+        "legacyId": "2/3033/0231",
+        "duration": 900
       },
       {
-        "duration": 1800,
-        "end": "2024-05-11T23:55:00Z",
-        "legacyId": "2/4263/0067#001",
-        "start": "2024-05-11T23:25:00Z",
-        "title": "American Dad!",
-        "ccid": "vhkjbhj",
-        "contentTypeITV": "avod",
-        "episodeNumber": 9,
+        "title": "Teen Titans Go!",
+        "start": "2024-09-06T05:25:00Z",
+        "end": "2024-09-06T05:35:00Z",
+        "titleCCId": "y1c0ns0",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 7,
         "contentType": "EPISODE",
-        "seriesNumber": 5,
-        "description": "From the creator of Family Guy comes CIA agent Stan Smith who thinks he can save America - and his family - from every threat. Except things tend to turn out in absurd ways...",
-        "guidance": null,
+        "episodeAvailableNow": true,
+        "episodeLink": "/teen-titans-go/2a3033/2a3033a0270",
+        "programmeLink": "/teen-titans-go/2a3033",
+        "legacyId": "2/3033/0270",
+        "duration": 600
+      },
+      {
+        "title": "Bugs Bunny Builders",
+        "start": "2024-09-06T05:35:00Z",
+        "end": "2024-09-06T05:50:00Z",
+        "titleCCId": "g061tdx",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/bugs-bunny-builders/10a5269/10a5269a0008",
+        "programmeLink": "/bugs-bunny-builders/10a5269",
+        "legacyId": "10/5269/0008",
+        "duration": 900
+      },
+      {
+        "title": "Mr Bean: Animated Series",
+        "start": "2024-09-06T05:50:00Z",
+        "end": "2024-09-06T06:00:00Z",
+        "titleCCId": "65pk57d",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/mr-bean-animated-series/2a2936/2a2936a0100",
+        "programmeLink": "/mr-bean-animated-series/2a2936",
+        "legacyId": "2/2936/0100",
+        "duration": 600
+      },
+      {
+        "title": "Mr Bean: Animated Series",
+        "start": "2024-09-06T06:00:00Z",
+        "end": "2024-09-06T06:15:00Z",
+        "titleCCId": "bt3jb1w",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/mr-bean-animated-series/2a2936/2a2936a0101",
+        "programmeLink": "/mr-bean-animated-series/2a2936",
+        "legacyId": "2/2936/0101",
+        "duration": 900
+      },
+      {
+        "title": "Mr Bean: Animated Series",
+        "start": "2024-09-06T06:15:00Z",
+        "end": "2024-09-06T06:25:00Z",
+        "titleCCId": "hgy51gv",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/mr-bean-animated-series/2a2936/2a2936a0102",
+        "programmeLink": "/mr-bean-animated-series/2a2936",
+        "legacyId": "2/2936/0102",
+        "duration": 600
+      },
+      {
+        "title": "Scooby-Doo! Mystery Incorporated",
+        "start": "2024-09-06T06:25:00Z",
+        "end": "2024-09-06T06:50:00Z",
+        "titleCCId": "3v6rxgj",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/scooby-doo-mystery-incorporated/2a4672/2a4672a0004",
+        "programmeLink": "/scooby-doo-mystery-incorporated/2a4672",
+        "legacyId": "2/4672/0004",
+        "duration": 1500
+      },
+      {
+        "title": "Be Cool, Scooby-Doo!",
+        "start": "2024-09-06T06:50:00Z",
+        "end": "2024-09-06T07:10:00Z",
+        "titleCCId": "m3kwph0",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/be-cool-scooby-doo/2a4501/2a4501a0023",
+        "programmeLink": "/be-cool-scooby-doo/2a4501",
+        "legacyId": "2/4501/0023",
+        "duration": 1200
+      },
+      {
+        "title": "What's New Scooby Doo?",
+        "start": "2024-09-06T07:10:00Z",
+        "end": "2024-09-06T07:35:00Z",
+        "titleCCId": "ynv27ch",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/whats-new-scooby-doo/2a4671/2a4671a0001",
+        "programmeLink": "/whats-new-scooby-doo/2a4671",
+        "legacyId": "2/4671/0001",
+        "duration": 1500
+      },
+      {
+        "title": "Scooby-Doo and Guess Who?",
+        "start": "2024-09-06T07:35:00Z",
+        "end": "2024-09-06T08:00:00Z",
+        "titleCCId": "0fzy1lm",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "CHILDREN",
+            "name": "Kids"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/scooby-doo-and-guess-who/10a0597/10a0597a0027",
+        "programmeLink": "/scooby-doo-and-guess-who/10a0597",
+        "legacyId": "10/0597/0027",
+        "duration": 1500
+      },
+      {
+        "title": "Totally Bonkers Guinness World Records",
+        "start": "2024-09-06T08:00:00Z",
+        "end": "2024-09-06T08:30:00Z",
+        "titleCCId": "w7zr6xh",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/totally-bonkers-guinness-world-records/2a1670/2a1670a0031",
+        "programmeLink": "/totally-bonkers-guinness-world-records/2a1670",
+        "legacyId": "2/1670/0031",
+        "duration": 1800
+      },
+      {
+        "title": "Totally Bonkers Guinness World Records",
+        "start": "2024-09-06T08:30:00Z",
+        "end": "2024-09-06T09:00:00Z",
+        "titleCCId": "c6zvk85",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/totally-bonkers-guinness-world-records/2a1670/2a1670a0032",
+        "programmeLink": "/totally-bonkers-guinness-world-records/2a1670",
+        "legacyId": "2/1670/0032",
+        "duration": 1800
+      },
+      {
+        "title": "Secret Crush",
+        "start": "2024-09-06T09:00:00Z",
+        "end": "2024-09-06T10:00:00Z",
+        "titleCCId": "qpm9c42",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/secret-crush/10a0770/10a0770a0004",
+        "programmeLink": "/secret-crush/10a0770",
+        "legacyId": "10/0770/0004",
+        "duration": 3600
+      },
+      {
+        "title": "Secret Crush",
+        "start": "2024-09-06T10:00:00Z",
+        "end": "2024-09-06T11:00:00Z",
+        "titleCCId": "j3q6sfx",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/secret-crush/10a0770/10a0770a0009",
+        "programmeLink": "/secret-crush/10a0770",
+        "legacyId": "10/0770/0009",
+        "duration": 3600
+      },
+      {
+        "title": "Dress To Impress",
+        "start": "2024-09-06T11:00:00Z",
+        "end": "2024-09-06T12:00:00Z",
+        "titleCCId": "6fw7yk1",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/dress-to-impress/2a4985/2a4985a0068",
+        "programmeLink": "/dress-to-impress/2a4985",
+        "legacyId": "2/4985/0068",
+        "duration": 3600
+      },
+      {
+        "title": "Wheel of Fortune",
+        "start": "2024-09-06T12:00:00Z",
+        "end": "2024-09-06T13:00:00Z",
+        "titleCCId": "kmb91nv",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/wheel-of-fortune/10a5010/10a5010a0003",
+        "programmeLink": "/wheel-of-fortune/10a5010",
+        "legacyId": "10/5010/0003",
+        "duration": 3600
+      },
+      {
+        "title": "Supermarket Sweep",
+        "start": "2024-09-06T13:00:00Z",
+        "end": "2024-09-06T14:00:00Z",
+        "titleCCId": "qfq4nq3",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/supermarket-sweep/2a7615/2a7615a0045",
+        "programmeLink": "/supermarket-sweep/2a7615",
+        "legacyId": "2/7615/0045",
+        "duration": 3600
+      },
+      {
+        "title": "Charmed",
+        "start": "2024-09-06T14:00:00Z",
+        "end": "2024-09-06T15:00:00Z",
+        "titleCCId": "7lyv8h3",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/charmed/10a3379/10a3379a0049",
+        "programmeLink": "/charmed/10a3379",
+        "legacyId": "10/3379/0049",
+        "duration": 3600
+      },
+      {
+        "title": "Dawson's Creek",
+        "start": "2024-09-06T15:00:00Z",
+        "end": "2024-09-06T16:00:00Z",
+        "titleCCId": "mktfddk",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 6,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/dawsons-creek/10a3916/10a3916a0108",
+        "programmeLink": "/dawsons-creek/10a3916",
+        "legacyId": "10/3916/0108",
+        "duration": 3600
+      },
+      {
+        "title": "Dress To Impress",
+        "start": "2024-09-06T16:00:00Z",
+        "end": "2024-09-06T17:00:00Z",
+        "titleCCId": "ylbvjly",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/dress-to-impress/2a4985/2a4985a0088",
+        "programmeLink": "/dress-to-impress/2a4985",
+        "legacyId": "2/4985/0088",
+        "duration": 3600
+      },
+      {
+        "title": "Celebrity Catchphrase",
+        "start": "2024-09-06T17:00:00Z",
+        "end": "2024-09-06T18:00:00Z",
+        "titleCCId": "stb45w9",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/celebrity-catchphrase/2a2259/2a5716a0022",
+        "programmeLink": "/celebrity-catchphrase/2a2259",
+        "legacyId": "2/5716/0022",
+        "duration": 3600
+      },
+      {
+        "title": "Family Fortunes",
+        "start": "2024-09-06T18:00:00Z",
+        "end": "2024-09-06T19:00:00Z",
+        "titleCCId": "l2kl7tw",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/family-fortunes/10a0634/10a0634a0025",
+        "programmeLink": "/family-fortunes/10a0634",
+        "legacyId": "10/0634/0025",
+        "duration": 3600
+      },
+      {
+        "title": "Bob's Burgers",
+        "start": "2024-09-06T19:00:00Z",
+        "end": "2024-09-06T19:30:00Z",
+        "titleCCId": "t52sbxw",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Bob's Burgers",
+        "start": "2024-09-06T19:30:00Z",
+        "end": "2024-09-06T20:00:00Z",
+        "titleCCId": "3c35kgd",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Olivia Attwood's Bad Boyfriends",
+        "start": "2024-09-06T20:00:00Z",
+        "end": "2024-09-06T21:00:00Z",
+        "titleCCId": "hp156ht",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/olivia-attwoods-bad-boyfriends/10a5350/10a5350a0006",
+        "programmeLink": "/olivia-attwoods-bad-boyfriends/10a5350",
+        "legacyId": "10/5350/0006",
+        "duration": 3600
+      },
+      {
+        "title": "Family Guy",
+        "start": "2024-09-06T21:00:00Z",
+        "end": "2024-09-06T21:30:00Z",
+        "titleCCId": "x3vt2kp",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "seriesNumber": 15,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/family-guy/2a4259",
+        "legacyId": "2/4259/0284",
+        "duration": 1800
+      },
+      {
+        "title": "Family Guy",
+        "start": "2024-09-06T21:30:00Z",
+        "end": "2024-09-06T22:00:00Z",
+        "titleCCId": "tzsf8qh",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "seriesNumber": 15,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/family-guy/2a4259",
+        "legacyId": "2/4259/0285",
+        "duration": 1800
+      },
+      {
+        "title": "Family Guy",
+        "start": "2024-09-06T22:00:00Z",
+        "end": "2024-09-06T22:30:00Z",
+        "titleCCId": "0qh04kt",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "seriesNumber": 15,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/family-guy/2a4259/2a4259a0281",
+        "programmeLink": "/family-guy/2a4259",
+        "legacyId": "2/4259/0281",
+        "duration": 1800
+      },
+      {
+        "title": "American Dad!",
+        "start": "2024-09-06T22:30:00Z",
+        "end": "2024-09-06T23:00:00Z",
+        "titleCCId": "cfvg9cb",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "seriesNumber": 12,
+        "contentType": "EPISODE",
         "episodeAvailableNow": false,
         "episodeLink": null,
         "programmeLink": "/american-dad/2a4263",
-        "genres": [
-          {
-            "name": "Comedy",
-            "id": "COMEDY"
-          }
-        ]
+        "legacyId": "2/4263/0193",
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T00:25:00Z",
-        "legacyId": "2/4263/0060#001",
-        "start": "2024-05-11T23:55:00Z",
         "title": "American Dad!",
-        "ccid": "0x7qky7",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
+        "start": "2024-09-06T23:00:00Z",
+        "end": "2024-09-06T23:30:00Z",
+        "titleCCId": "vmh25nd",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "seriesNumber": 11,
         "contentType": "EPISODE",
-        "seriesNumber": 5,
-        "description": "From the creator of Family Guy comes CIA agent Stan Smith who thinks he can save America - and his family - from every threat. Except things tend to turn out in absurd ways...",
-        "guidance": "This programme contains adult humour.",
         "episodeAvailableNow": true,
-        "episodeLink": "/american-dad/2a4263/2a4263a0060",
+        "episodeLink": "/american-dad/2a4263/2a4263a0188",
         "programmeLink": "/american-dad/2a4263",
-        "genres": [
-          {
-            "name": "Comedy",
-            "id": "COMEDY"
-          }
-        ]
+        "legacyId": "2/4263/0188",
+        "duration": 1800
       },
       {
-        "duration": 2400,
-        "end": "2024-05-12T01:05:00Z",
-        "legacyId": "2/5129/0030#001",
-        "start": "2024-05-12T00:25:00Z",
-        "title": "Iain Stirling's CelebAbility",
-        "ccid": "vd74ng8",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
+        "title": "Bob's Burgers",
+        "start": "2024-09-06T23:30:00Z",
+        "end": "2024-09-07T00:00:00Z",
+        "titleCCId": "g29fgz8",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Bob's Burgers",
+        "start": "2024-09-07T00:00:00Z",
+        "end": "2024-09-07T00:30:00Z",
+        "titleCCId": "plkzcb7",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Don't Hate the Playaz",
+        "start": "2024-09-07T00:30:00Z",
+        "end": "2024-09-07T01:15:00Z",
+        "titleCCId": "3q1zpx6",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 4,
         "contentType": "EPISODE",
-        "seriesNumber": 5,
-        "description": "Iain Stirling hosts this uproarious celeb vs public comedy game show where five friends take on five famous faces with unusual skills, in order to win cash prizes.",
-        "guidance": "With strong language and adult humour.",
         "episodeAvailableNow": true,
-        "episodeLink": "/iain-stirlings-celebability/2a5129/2a5129a0030",
-        "programmeLink": "/iain-stirlings-celebability/2a5129",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
+        "episodeLink": "/dont-hate-the-playaz/2a5935/2a5935a0028",
+        "programmeLink": "/dont-hate-the-playaz/2a5935",
+        "legacyId": "2/5935/0028",
+        "duration": 2700
       },
       {
-        "duration": 3300,
-        "end": "2024-05-12T02:00:00Z",
-        "legacyId": "10/2705/0015#001",
-        "start": "2024-05-12T01:05:00Z",
-        "title": "All American",
-        "ccid": "cc6kw7h",
-        "contentTypeITV": "avod",
-        "episodeNumber": 15,
+        "title": "Totally Bonkers Guinness World Records",
+        "start": "2024-09-07T01:15:00Z",
+        "end": "2024-09-07T01:45:00Z",
+        "titleCCId": "tyzgny2",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 2,
         "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "April Blair's compelling drama follows the story of rising American football star Spencer. After being recruited by a Beverly Hills school coach, he's conflicted. Should he accept?",
-        "guidance": "With some mild language and scenes of teenage misbehaviour.",
         "episodeAvailableNow": true,
-        "episodeLink": "/all-american/10a2705/10a2705a0015",
-        "programmeLink": "/all-american/10a2705",
-        "genres": [
-          {
-            "name": "Drama",
-            "id": "DRAMA_AND_SOAPS"
-          }
-        ]
+        "episodeLink": "/totally-bonkers-guinness-world-records/2a1670/2a1670a0024",
+        "programmeLink": "/totally-bonkers-guinness-world-records/2a1670",
+        "legacyId": "2/1670/0024",
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T02:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T02:00:00Z",
-        "title": "Teleshopping"
+        "title": "Unwind With ITV2",
+        "start": "2024-09-07T01:45:00Z",
+        "end": "2024-09-07T02:00:00Z",
+        "titleCCId": "nkp9s8l",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 900
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T03:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T02:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:00:00Z",
+        "end": "2024-09-07T02:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T03:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T03:00:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:30:00Z",
+        "end": "2024-09-07T03:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T04:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T03:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:00:00Z",
+        "end": "2024-09-07T03:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T04:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T04:00:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:30:00Z",
+        "end": "2024-09-07T04:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T05:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T04:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:00:00Z",
+        "end": "2024-09-07T04:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:30:00Z",
+        "end": "2024-09-07T04:59:59Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1799
       }
     ],
     "ITVBe": [
       {
-        "duration": 1800,
-        "end": "2024-05-11T05:30:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-11T05:00:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-06T05:00:00Z",
+        "end": "2024-09-06T05:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-11T06:00:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-11T05:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-06T05:30:00Z",
+        "end": "2024-09-06T06:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T07:00:00Z",
-        "legacyId": "1/8783/0193#002",
-        "start": "2024-05-11T06:00:00Z",
-        "title": "Dinner Date",
-        "ccid": "mjp408s",
-        "contentTypeITV": "avod",
-        "episodeNumber": 16,
-        "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "Three single cooks must make a meal for a blind date, but only one of them will impress enough to get a second date. Which chef will make someone hungry for more?",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/dinner-date/1a8783/1a8783a0193",
-        "programmeLink": "/dinner-date/1a8783",
+        "title": "Unwind With ITV1",
+        "start": "2024-09-06T06:00:00Z",
+        "end": "2024-09-06T06:20:00Z",
+        "titleCCId": "5qhl746",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
           }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T08:00:00Z",
-        "legacyId": "2/4352/0003#002",
-        "start": "2024-05-11T07:00:00Z",
-        "title": "Buying and Selling",
-        "ccid": "4wy4qkb",
-        "contentTypeITV": "avod",
-        "episodeNumber": 3,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Reality series where property experts Jon and Drew help homeowners take their next step up the ladder. From renovation to buying and selling, the pair have got all bases covered.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/buying-and-selling/2a4352/2a4352a0003",
-        "programmeLink": "/buying-and-selling/2a4352",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T08:10:00Z",
-        "legacyId": "1/9657/0067#001",
-        "start": "2024-05-11T08:00:00Z",
-        "title": "Chloe's Closet",
-        "ccid": "7sx4h0g",
-        "contentTypeITV": "avod",
-        "episodeNumber": 15,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Join four-year-old Chloe and her pals on their magical adventures inside her closet. You'll be amazed by the things they encounter!",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/chloes-closet/1a9657/1a9657a0067",
-        "programmeLink": "/chloes-closet/1a9657",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T08:20:00Z",
-        "legacyId": "2/6125/0064#001",
-        "start": "2024-05-11T08:10:00Z",
-        "title": "Lily's Driftwood Bay",
-        "ccid": "q2kqhsx",
-        "contentTypeITV": "avod",
-        "episodeNumber": 13,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Gentle animation about a little girl called Lily, who dreams up a world of fun and adventure with animal friends. She makes treasure out of everything that she finds on the beach.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/lilys-driftwood-bay/2a6125/2a6125a0064",
-        "programmeLink": "/lilys-driftwood-bay/2a6125",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T08:30:00Z",
-        "legacyId": "10/2366/0070#001",
-        "start": "2024-05-11T08:20:00Z",
-        "title": "Mumfie",
-        "ccid": "4c2wjh4",
-        "contentTypeITV": "avod",
-        "episodeNumber": 70,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "The fun happenings of an optimistic young elephant called Mumfie and his best friends Pinkey and Jelly Bean. Mumfie tries out all sorts of activities",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/mumfie/10a2366/10a2366a0070",
-        "programmeLink": "/mumfie/10a2366",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T08:40:00Z",
-        "legacyId": "1/9014/0072#001",
-        "start": "2024-05-11T08:30:00Z",
-        "title": "The Hive",
-        "ccid": "v06btd9",
-        "contentTypeITV": "avod",
-        "episodeNumber": 75,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "This friendly animation for pre-schoolers is based around Bee family, who live in Honeybee Hive. Pappa Bee, Mamma Bee, Buzzbee and Rubee are tiny, stripy and buzz around a lot!",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/the-hive/1a9014/1a9014a0072",
-        "programmeLink": "/the-hive/1a9014",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T08:50:00Z",
-        "legacyId": "2/6167/0038#001",
-        "start": "2024-05-11T08:40:00Z",
-        "title": "Claude",
-        "ccid": "tz3rmrn",
-        "contentTypeITV": "avod",
-        "episodeNumber": 38,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Based on the best-selling series of books by Alex T. Smith, Claude follows the adventures of a beret-wearing dog, Claude, and his friend, Sir Bobblysock, in the town of Pawhaven.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/claude/2a6167/2a6167a0038",
-        "programmeLink": "/claude/2a6167",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T09:00:00Z",
-        "legacyId": "2/1631/0039#003",
-        "start": "2024-05-11T08:50:00Z",
-        "title": "Poppy Cat",
-        "ccid": "7vzjmkj",
-        "contentTypeITV": "avod",
-        "episodeNumber": 39,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Meet Lara, who writes fantastical adventures for her cat Poppy. With a flick of her patchwork bandana, she and her pals are taken to wonderful places, from space to submarines.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/poppy-cat/2a1631/2a1631a0039",
-        "programmeLink": "/poppy-cat/2a1631",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T09:10:00Z",
-        "legacyId": "2/4247/0155#002",
-        "start": "2024-05-11T09:00:00Z",
-        "title": "Oddbods",
-        "ccid": "5789sxq",
-        "contentTypeITV": "avod",
-        "episodeNumber": 35,
-        "contentType": "EPISODE",
+        ],
         "seriesNumber": 3,
-        "description": "Adorable sketch-based series following the playful adventures of seven adorable creatures, Fuse, Newt, Pogo, Bubbles, Jeff, Zee and Slick. ",
-        "guidance": "",
+        "contentType": "EPISODE",
         "episodeAvailableNow": true,
-        "episodeLink": "/oddbods/2a4247/2a4247a0155",
-        "programmeLink": "/oddbods/2a4247",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
+        "episodeLink": "/unwind-with-itv1/10a1889/10a1889a0809",
+        "programmeLink": "/unwind-with-itv1/10a1889",
+        "legacyId": "10/1889/0809",
+        "duration": 1200
       },
       {
-        "duration": 600,
-        "end": "2024-05-11T09:20:00Z",
-        "legacyId": "10/1308/0019#002",
-        "start": "2024-05-11T09:10:00Z",
-        "title": "Happy the Hoglet",
-        "ccid": "czw0d2b",
-        "contentTypeITV": "avod",
-        "episodeNumber": 19,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "An animated series for preschoolers about the prickly, smelly, flea-bitten Happy. Life with his pals has its ups and downs, but it is always full of laughs and adventure.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/happy-the-hoglet/10a1308/10a1308a0019",
-        "programmeLink": "/happy-the-hoglet/10a1308",
+        "title": "Be Beautiful",
+        "start": "2024-09-06T06:20:00Z",
+        "end": "2024-09-06T06:35:00Z",
+        "titleCCId": "t792pdf",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Kids",
-            "id": "CHILDREN"
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
           }
-        ]
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T09:25:00Z",
-        "legacyId": "10/1670/0019#001",
-        "start": "2024-05-11T09:20:00Z",
-        "title": "The Sound Collector",
-        "ccid": "5jrmr0h",
-        "contentTypeITV": "avod",
-        "episodeNumber": 19,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "It's Deaf Awareness Week - join Keira Knightley as she narrates this adorable animated series about sound. Hear the world through the ears of a little Sound Collector.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/the-sound-collector/10a1670/10a1670a0019",
-        "programmeLink": "/the-sound-collector/10a1670",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 900,
-        "end": "2024-05-11T09:40:00Z",
-        "legacyId": "1/9579/0013#002",
-        "start": "2024-05-11T09:25:00Z",
-        "title": "Sooty",
-        "ccid": "92thpx4",
-        "contentTypeITV": "avod",
-        "episodeNumber": 13,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Fifth incarnation of the slapstick kids puppet show. Follow the mischievous adventures of Sooty, Sweep and Soo - there's a crazy hoover on the loose, sports day, and a magic show!",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/sooty/1a9579/1a9579a0013",
-        "programmeLink": "/sooty/1a9579",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T09:50:00Z",
-        "legacyId": "2/6160/0051#001",
-        "start": "2024-05-11T09:40:00Z",
-        "title": "Pingu in the City",
-        "ccid": "wz4wx95",
-        "contentTypeITV": "avod",
-        "episodeNumber": 25,
-        "contentType": "EPISODE",
+        ],
         "seriesNumber": 2,
-        "description": "Pingu and his family move from their small village to a city. The ever-curious penguin tries out many jobs, but his mischievous side often gets the better of him. Naughty naughty!",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/pingu-in-the-city/2a6160/2a6160a0051",
-        "programmeLink": "/pingu-in-the-city/2a6160",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T10:00:00Z",
-        "legacyId": "10/2065/0012#001",
-        "start": "2024-05-11T09:50:00Z",
-        "title": "Bob the Builder",
-        "ccid": "wmsd90j",
-        "contentTypeITV": "avod",
-        "episodeNumber": 12,
         "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Animated kids series about a happy builder and his team. There are garages and houses to build, pop-up shops to construct and power failures to fix - can they get to them all?",
-        "guidance": "",
         "episodeAvailableNow": true,
-        "episodeLink": "/bob-the-builder/10a2065/10a2065a0012",
-        "programmeLink": "/bob-the-builder/10a2065",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
+        "episodeLink": "/be-beautiful/2a3807/2a3807a0026",
+        "programmeLink": "/be-beautiful/2a3807",
+        "legacyId": "2/3807/0026",
+        "duration": 900
       },
       {
-        "duration": 900,
-        "end": "2024-05-11T10:15:00Z",
-        "legacyId": "10/2065/0013#001",
-        "start": "2024-05-11T10:00:00Z",
-        "title": "Bob the Builder",
-        "ccid": "rrj01js",
-        "contentTypeITV": "avod",
-        "episodeNumber": 13,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Animated kids series about a happy builder and his team. There are garages and houses to build, pop-up shops to construct and power failures to fix - can they get to them all?",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/bob-the-builder/10a2065/10a2065a0013",
-        "programmeLink": "/bob-the-builder/10a2065",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T10:25:00Z",
-        "legacyId": "10/4085/0051#001",
-        "start": "2024-05-11T10:15:00Z",
-        "title": "Teletubbies Let's Go!",
-        "ccid": "cyt9xd8",
-        "contentTypeITV": "avod",
-        "episodeNumber": 51,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Preschool series based on the iconic 90s TV show. Welcome to the well-known characters of Tinky Winky, Dipsy, Laa-Laa and Po, alongside lots of other sweet new sun babies.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/teletubbies-lets-go/10a4085/10a4085a0051",
-        "programmeLink": "/teletubbies-lets-go/10a4085",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T10:35:00Z",
-        "legacyId": "10/5269/0004#001",
-        "start": "2024-05-11T10:25:00Z",
-        "title": "Bugs Bunny Builders",
-        "ccid": "ptl3drv",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Bugs, Lola, Daffy, Porky and Tweety as use their wacky vehicles to take on the looniest builds ever. On the way, they learn valuable lessons and never give up!",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/bugs-bunny-builders/10a5269/10a5269a0004",
-        "programmeLink": "/bugs-bunny-builders/10a5269",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 900,
-        "end": "2024-05-11T10:50:00Z",
-        "legacyId": "2/6035/0077#001",
-        "start": "2024-05-11T10:35:00Z",
-        "title": "Pip Ahoy!",
-        "ccid": "w5dbjy7",
-        "contentTypeITV": "avod",
-        "episodeNumber": 25,
-        "contentType": "EPISODE",
-        "seriesNumber": 3,
-        "description": "Animated show following the adventures of a puppy named Pip and his best friend, a kitten named Alba. They visit island beaches, secret forest trails and many other excitements!",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/pip-ahoy/2a6035/2a6035a0077",
-        "programmeLink": "/pip-ahoy/2a6035",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T11:00:00Z",
-        "legacyId": "10/0710/0020#001",
-        "start": "2024-05-11T10:50:00Z",
-        "title": "Ollie",
-        "ccid": "1tn2v4k",
-        "contentTypeITV": "avod",
-        "episodeNumber": 20,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "In the middle of a cosy park in a busy city live Ollie the little blue owl and his friends, a small stork, a young frog and five little birds. We are all very welcome to meet them.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/ollie/10a0710/10a0710a0020",
-        "programmeLink": "/ollie/10a0710",
-        "genres": [
-          {
-            "name": "Kids",
-            "id": "CHILDREN"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T12:00:00Z",
-        "legacyId": "2/4352/0070#001",
-        "start": "2024-05-11T11:00:00Z",
-        "title": "Buying and Selling",
-        "ccid": "ykqcjmr",
-        "contentTypeITV": "avod",
-        "episodeNumber": 5,
-        "contentType": "EPISODE",
-        "seriesNumber": 4,
-        "description": "Reality series where property experts Jon and Drew help homeowners take their next step up the ladder. From renovation to buying and selling, the pair have got all bases covered.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/buying-and-selling/2a4352/2a4352a0070",
-        "programmeLink": "/buying-and-selling/2a4352",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T13:00:00Z",
-        "legacyId": "10/4512/0006#001",
-        "start": "2024-05-11T12:00:00Z",
-        "title": "Fletchers' Family Farm",
-        "ccid": "17sbykz",
-        "contentTypeITV": "avod",
-        "episodeNumber": 6,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Follow Emmerdale actor Kelvin Fletcher as he takes on real life farming. From a busy lambing season to pig breeding, he and his wife Liz may be novices but they are no fools.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/fletchers-family-farm/10a4512/10a4512a0006",
-        "programmeLink": "/fletchers-family-farm/10a4512",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T14:00:00Z",
-        "legacyId": "1/9310/0408#002",
-        "start": "2024-05-11T13:00:00Z",
-        "title": "The Only Way Is Essex S33"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T15:00:00Z",
-        "legacyId": "10/1549/0037#001",
-        "start": "2024-05-11T14:00:00Z",
         "title": "Billie & Greg: The Family Diaries",
-        "ccid": "0sgzry5",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
-        "contentType": "EPISODE",
-        "seriesNumber": 6,
-        "description": "The Sheps are back and are busier than ever as they juggle and struggle with family life. There\u2019s tears, tantrums and parenting challenges plus some terrifying health scares.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/billie-and-greg-the-family-diaries/10a1549/10a1549a0037",
-        "programmeLink": "/billie-and-greg-the-family-diaries/10a1549",
+        "start": "2024-09-06T06:35:00Z",
+        "end": "2024-09-06T07:35:00Z",
+        "titleCCId": "0zhpvmg",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
           }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T16:00:00Z",
-        "legacyId": "10/5259/0005#002",
-        "start": "2024-05-11T15:00:00Z",
-        "title": "Drama Queens"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T17:00:00Z",
-        "legacyId": "2/3398/0187#002",
-        "start": "2024-05-11T16:00:00Z",
-        "title": "The Real Housewives Of Cheshire S17"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T18:00:00Z",
-        "legacyId": "1/8783/0192#001",
-        "start": "2024-05-11T17:00:00Z",
-        "title": "Dinner Date",
-        "ccid": "j62gn4b",
-        "contentTypeITV": "avod",
-        "episodeNumber": 17,
-        "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "Three single cooks must make a meal for a blind date, but only one of them will impress enough to get a second date. Which chef will make someone hungry for more?",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/dinner-date/1a8783/1a8783a0192",
-        "programmeLink": "/dinner-date/1a8783",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T19:00:00Z",
-        "legacyId": "1/8783/0195#001",
-        "start": "2024-05-11T18:00:00Z",
-        "title": "Dinner Date",
-        "ccid": "jv65x84",
-        "contentTypeITV": "avod",
-        "episodeNumber": 18,
-        "contentType": "EPISODE",
-        "seriesNumber": 7,
-        "description": "Three single cooks must make a meal for a blind date, but only one of them will impress enough to get a second date. Which chef will make someone hungry for more?",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/dinner-date/1a8783/1a8783a0195",
-        "programmeLink": "/dinner-date/1a8783",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T20:00:00Z",
-        "legacyId": "1/8783/0342#001",
-        "start": "2024-05-11T19:00:00Z",
-        "title": "Dinner Date",
-        "ccid": "h5qv8yy",
-        "contentTypeITV": "avod",
-        "episodeNumber": 23,
-        "contentType": "EPISODE",
-        "seriesNumber": 12,
-        "description": "Three single cooks must make a meal for a blind date, but only one of them will impress enough to get a second date. Which chef will make someone hungry for more?",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/dinner-date/1a8783/1a8783a0342",
-        "programmeLink": "/dinner-date/1a8783",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T21:00:00Z",
-        "legacyId": "2/3690/0034#002",
-        "start": "2024-05-11T20:00:00Z",
-        "title": "Botched",
-        "ccid": "cjvg60m",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
+        ],
         "seriesNumber": 3,
-        "description": "US reality series exploring plastic surgery gone horribly wrong. Two of California's most respected cosmetic surgeons attempt to reverse the damage of these botched procedures.",
-        "guidance": "Contains scenes of surgery and nudity from the outset.",
+        "contentType": "EPISODE",
         "episodeAvailableNow": true,
-        "episodeLink": "/botched/2a3690/2a3690a0034",
-        "programmeLink": "/botched/2a3690",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
+        "episodeLink": "/billie-and-greg-the-family-diaries/10a1549/10a1549a0018",
+        "programmeLink": "/billie-and-greg-the-family-diaries/10a1549",
+        "legacyId": "10/1549/0018",
+        "duration": 3600
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T22:00:00Z",
-        "legacyId": "2/6105/0005#001",
-        "start": "2024-05-11T21:00:00Z",
-        "title": "Totally Unbelievable",
-        "ccid": "gdwht1y",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
+        "title": "Masters of Flip",
+        "start": "2024-09-06T07:35:00Z",
+        "end": "2024-09-06T08:35:00Z",
+        "titleCCId": "c7z91gg",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 1,
         "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Famous faces get together to discuss the top ten of different topics. They'll dissect everything from the top celebrity feuds to the top celebrity weddings.",
-        "guidance": null,
+        "episodeAvailableNow": true,
+        "episodeLink": "/masters-of-flip/2a7591/2a7591a0007",
+        "programmeLink": "/masters-of-flip/2a7591",
+        "legacyId": "2/7591/0007",
+        "duration": 3600
+      },
+      {
+        "title": "Buying and Selling",
+        "start": "2024-09-06T08:35:00Z",
+        "end": "2024-09-06T09:35:00Z",
+        "titleCCId": "tsz3jvd",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 5,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/buying-and-selling/2a4352/2a4352a0083",
+        "programmeLink": "/buying-and-selling/2a4352",
+        "legacyId": "2/4352/0083",
+        "duration": 3600
+      },
+      {
+        "title": "Billie & Greg: The Family Diaries",
+        "start": "2024-09-06T09:35:00Z",
+        "end": "2024-09-06T10:35:00Z",
+        "titleCCId": "m7gg3lm",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/billie-and-greg-the-family-diaries/10a1549/10a1549a0019",
+        "programmeLink": "/billie-and-greg-the-family-diaries/10a1549",
+        "legacyId": "10/1549/0019",
+        "duration": 3600
+      },
+      {
+        "title": "The Real Housewives of New York City",
+        "start": "2024-09-06T10:35:00Z",
+        "end": "2024-09-06T11:30:00Z",
+        "titleCCId": "zjlr6yq",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3300
+      },
+      {
+        "title": "The Real Housewives of Atlanta",
+        "start": "2024-09-06T11:30:00Z",
+        "end": "2024-09-06T12:20:00Z",
+        "titleCCId": "yj4scy0",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3000
+      },
+      {
+        "title": "The Only Way is Essex",
+        "start": "2024-09-06T12:20:00Z",
+        "end": "2024-09-06T13:05:00Z",
+        "titleCCId": "530y427",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 18,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/the-only-way-is-essex/1a9310/1a9310a0217",
+        "programmeLink": "/the-only-way-is-essex/1a9310",
+        "legacyId": "1/9310/0217",
+        "duration": 2700
+      },
+      {
+        "title": "Dinner Date",
+        "start": "2024-09-06T13:05:00Z",
+        "end": "2024-09-06T14:00:00Z",
+        "titleCCId": "fprpqm3",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 7,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/dinner-date/1a8783/1a8783a0188",
+        "programmeLink": "/dinner-date/1a8783",
+        "legacyId": "1/8783/0188",
+        "duration": 3300
+      },
+      {
+        "title": "Abbey Clancy: Celebrity Homes",
+        "start": "2024-09-06T14:00:00Z",
+        "end": "2024-09-06T15:05:00Z",
+        "titleCCId": "0r1dg9x",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/abbey-clancy-celebrity-homes/10a4775/10a4775a0002",
+        "programmeLink": "/abbey-clancy-celebrity-homes/10a4775",
+        "legacyId": "10/4775/0002",
+        "duration": 3900
+      },
+      {
+        "title": "The Real Housewives Of New York City",
+        "start": "2024-09-06T15:05:00Z",
+        "end": "2024-09-06T16:00:00Z",
+        "titleCCId": "sw2q215",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3300
+      },
+      {
+        "title": "The Real Housewives of Potomac",
+        "start": "2024-09-06T16:00:00Z",
+        "end": "2024-09-06T17:00:00Z",
+        "titleCCId": "8rckzh6",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 8,
+        "contentType": "EPISODE",
         "episodeAvailableNow": false,
         "episodeLink": null,
-        "programmeLink": "/totally-unbelievable/2a6105",
-        "genres": [
-          {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
-          }
-        ]
+        "programmeLink": "/the-real-housewives-of-potomac/2a4691",
+        "legacyId": "2/4691/0144",
+        "duration": 3600
       },
       {
-        "duration": 6000,
-        "end": "2024-05-11T23:40:00Z",
-        "legacyId": "10/2993/0002#003",
-        "start": "2024-05-11T22:00:00Z",
-        "title": "My Mum, Your Dad Australia",
-        "ccid": "jc65v3z",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
-        "contentType": "EPISODE",
+        "title": "Masters of Flip",
+        "start": "2024-09-06T17:00:00Z",
+        "end": "2024-09-06T18:00:00Z",
+        "titleCCId": "3mk0nc4",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
         "seriesNumber": 1,
-        "description": "A group of single parents move into a house together, hoping to find love (again). Little do they know that their grown-up kids are pulling strings behind the scenes...",
-        "guidance": "with strong language and adult conversation",
+        "contentType": "EPISODE",
         "episodeAvailableNow": true,
-        "episodeLink": "/my-mum-your-dad-australia/10a2993/10a2993a0002",
-        "programmeLink": "/my-mum-your-dad-australia/10a2993",
+        "episodeLink": "/masters-of-flip/2a7591/2a7591a0008",
+        "programmeLink": "/masters-of-flip/2a7591",
+        "legacyId": "2/7591/0008",
+        "duration": 3600
+      },
+      {
+        "title": "Abbey Clancy: Celebrity Homes",
+        "start": "2024-09-06T18:00:00Z",
+        "end": "2024-09-06T19:00:00Z",
+        "titleCCId": "4fbxdtc",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Entertainment & Reality",
-            "id": "ENTERTAINMENT"
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
           }
-        ]
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/abbey-clancy-celebrity-homes/10a4775/10a4775a0003",
+        "programmeLink": "/abbey-clancy-celebrity-homes/10a4775",
+        "legacyId": "10/4775/0003",
+        "duration": 3600
       },
       {
-        "duration": 1200,
-        "end": "2024-05-12T00:00:00Z",
-        "legacyId": "10/1889/0831#001",
-        "start": "2024-05-11T23:40:00Z",
-        "title": "Unwind With ITVBe"
+        "title": "Dinner Date",
+        "start": "2024-09-06T19:00:00Z",
+        "end": "2024-09-06T20:00:00Z",
+        "titleCCId": "1gdbmnt",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 7,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/dinner-date/1a8783",
+        "legacyId": "1/8783/0207",
+        "duration": 3600
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T00:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T00:00:00Z",
-        "title": "Teleshopping"
+        "title": "Botched",
+        "start": "2024-09-06T20:00:00Z",
+        "end": "2024-09-06T21:00:00Z",
+        "titleCCId": "h1bcrp0",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/botched/2a3690",
+        "legacyId": "2/3690/0091",
+        "duration": 3600
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T01:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T00:30:00Z",
-        "title": "Teleshopping"
+        "title": "Love Island USA",
+        "start": "2024-09-06T21:00:00Z",
+        "end": "2024-09-06T22:20:00Z",
+        "titleCCId": "n27bdf4",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 6,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/love-island-usa/2a6243/2a6243a0202",
+        "programmeLink": "/love-island-usa/2a6243",
+        "legacyId": "2/6243/0202",
+        "duration": 4800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T01:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T01:00:00Z",
-        "title": "Teleshopping"
+        "title": "My Mum, Your Dad",
+        "start": "2024-09-06T22:20:00Z",
+        "end": "2024-09-06T23:25:00Z",
+        "titleCCId": "nfpg63k",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "seriesNumber": 1,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/my-mum-your-dad/10a3950/10a3950a0005",
+        "programmeLink": "/my-mum-your-dad/10a3950",
+        "legacyId": "10/3950/0005",
+        "duration": 3900
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T02:00:00Z",
-        "legacyId": "JML/AROK26/1800",
-        "start": "2024-05-12T01:30:00Z",
-        "title": "Teleshopping"
+        "title": "Unwind With ITVBe",
+        "start": "2024-09-06T23:25:00Z",
+        "end": "2024-09-07T00:00:00Z",
+        "titleCCId": "8gwtc9b",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 2100
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T02:30:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T02:00:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T00:00:00Z",
+        "end": "2024-09-07T00:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T03:00:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T02:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T00:30:00Z",
+        "end": "2024-09-07T01:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T03:30:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T03:00:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T01:00:00Z",
+        "end": "2024-09-07T01:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T04:00:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T03:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T01:30:00Z",
+        "end": "2024-09-07T02:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T04:30:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T04:00:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:00:00Z",
+        "end": "2024-09-07T02:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T05:00:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T04:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:30:00Z",
+        "end": "2024-09-07T03:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:00:00Z",
+        "end": "2024-09-07T03:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:30:00Z",
+        "end": "2024-09-07T04:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:00:00Z",
+        "end": "2024-09-07T04:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:30:00Z",
+        "end": "2024-09-07T04:59:59Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1799
       }
     ],
     "ITV3": [
       {
-        "duration": 1800,
-        "end": "2024-05-11T05:30:00Z",
-        "legacyId": "10/0403/0046#001",
-        "start": "2024-05-11T05:00:00Z",
-        "title": "Bless This House",
-        "ccid": "dy6sggp",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 5,
-        "description": "Sid James is a salesman who longs for the quiet life. He'd love to simply ogle women, drink bitter and follow his beloved Chelsea FC - but his wife and kids just get in the way.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/bless-this-house/10a0403/10a0403a0046",
-        "programmeLink": "/bless-this-house/10a0403",
+        "title": "Classic Emmerdale",
+        "start": "2024-09-06T05:00:00Z",
+        "end": "2024-09-06T06:00:00Z",
+        "titleCCId": "rnfrhb5",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Comedy",
-            "id": "COMEDY"
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
           }
-        ]
-      },
-      {
-        "duration": 8100,
-        "end": "2024-05-11T07:45:00Z",
-        "legacyId": "9B/60747#004",
-        "start": "2024-05-11T05:30:00Z",
-        "title": "Agatha Christie's Poirot"
-      },
-      {
-        "duration": 7800,
-        "end": "2024-05-11T09:55:00Z",
-        "legacyId": "9B/61616#010",
-        "start": "2024-05-11T07:45:00Z",
-        "title": "Agatha Christie's Poirot"
-      },
-      {
-        "duration": 7500,
-        "end": "2024-05-11T12:00:00Z",
-        "legacyId": "Y/1774/0009#007",
-        "start": "2024-05-11T09:55:00Z",
-        "title": "A Touch of Frost"
-      },
-      {
-        "duration": 7200,
-        "end": "2024-05-11T14:00:00Z",
-        "legacyId": "1/5274/0010#005",
-        "start": "2024-05-11T12:00:00Z",
-        "title": "Agatha Christie's Poirot"
-      },
-      {
-        "duration": 7200,
-        "end": "2024-05-11T16:00:00Z",
-        "legacyId": "1/5274/0009#005",
-        "start": "2024-05-11T14:00:00Z",
-        "title": "Agatha Christie's Poirot"
-      },
-      {
-        "duration": 7200,
-        "end": "2024-05-11T18:00:00Z",
-        "legacyId": "1/7317/0033#003",
-        "start": "2024-05-11T16:00:00Z",
-        "title": "Midsomer Murders"
-      },
-      {
-        "duration": 7200,
-        "end": "2024-05-11T20:00:00Z",
-        "legacyId": "1/7317/0034#001",
-        "start": "2024-05-11T18:00:00Z",
-        "title": "Midsomer Murders",
-        "ccid": "rmkghk4",
-        "contentTypeITV": "avod",
-        "episodeNumber": 3,
+        ],
+        "seriesNumber": 34,
         "contentType": "EPISODE",
-        "seriesNumber": 18,
-        "description": "World-renowned murder mystery series set in the idyllic Midsomer county. Inspector Barnaby and his young sergeant probe an alarming number of suspicious deaths in the community.",
-        "guidance": null,
         "episodeAvailableNow": true,
-        "episodeLink": "/midsomer-murders/Ya1096/1a7317a0034",
-        "programmeLink": "/midsomer-murders/Ya1096",
-        "genres": [
-          {
-            "name": "Drama",
-            "id": "DRAMA_AND_SOAPS"
-          }
-        ]
+        "episodeLink": "/classic-emmerdale/2a8015/Ya0524a4240",
+        "programmeLink": "/classic-emmerdale/2a8015",
+        "legacyId": "Y/0524/4240",
+        "duration": 3600
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T21:00:00Z",
-        "legacyId": "2/2958/0005#001",
-        "start": "2024-05-11T20:00:00Z",
-        "title": "Grantchester",
-        "ccid": "9c7pjrg",
-        "contentTypeITV": "avod",
-        "episodeNumber": 5,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Enticing 50s crime drama starring James Norton & later Tom Brittney. When violence disrupts his quiet parish, a vicar feels compelled to help by teaming up with the local copper.",
-        "guidance": "Contains some bloody images.",
-        "episodeAvailableNow": true,
-        "episodeLink": "/grantchester/2a2958/2a2958a0005",
-        "programmeLink": "/grantchester/2a2958",
-        "genres": [
-          {
-            "name": "Drama",
-            "id": "DRAMA_AND_SOAPS"
-          }
-        ]
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T22:00:00Z",
-        "legacyId": "2/2958/0006#001",
-        "start": "2024-05-11T21:00:00Z",
-        "title": "Grantchester",
-        "ccid": "ncyj0mb",
-        "contentTypeITV": "avod",
-        "episodeNumber": 6,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Enticing 50s crime drama starring James Norton & later Tom Brittney. When violence disrupts his quiet parish, a vicar feels compelled to help by teaming up with the local copper.",
-        "guidance": "Contains some scenes of bloody images and violence.",
-        "episodeAvailableNow": true,
-        "episodeLink": "/grantchester/2a2958/2a2958a0006",
-        "programmeLink": "/grantchester/2a2958",
-        "genres": [
-          {
-            "name": "Drama",
-            "id": "DRAMA_AND_SOAPS"
-          }
-        ]
-      },
-      {
-        "duration": 6900,
-        "end": "2024-05-11T23:55:00Z",
-        "legacyId": "Y/1774/0036#005",
-        "start": "2024-05-11T22:00:00Z",
-        "title": "A Touch of Frost",
-        "ccid": "6zgvdqb",
-        "contentTypeITV": "avod",
-        "episodeNumber": 1,
-        "contentType": "EPISODE",
-        "seriesNumber": 12,
-        "description": "Hit crime drama starring David Jason. With his fumbling manner and hatred of paperwork, Frost is a thorn in his bosses's sides. Can his keen sense of justice prevail despite this?",
-        "guidance": "Contains violence, including knife violence, crime scene images and moderate language.",
-        "episodeAvailableNow": true,
-        "episodeLink": "/a-touch-of-frost/Ya1774/Ya1774a0036",
-        "programmeLink": "/a-touch-of-frost/Ya1774",
-        "genres": [
-          {
-            "name": "Drama",
-            "id": "DRAMA_AND_SOAPS"
-          }
-        ]
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-12T01:00:00Z",
-        "legacyId": "197004/T01/Z",
-        "start": "2024-05-11T23:55:00Z",
-        "title": "The Ruth Rendell Mysteries",
-        "ccid": "t5t7nhk",
-        "contentTypeITV": "avod",
-        "episodeNumber": 5,
-        "contentType": "EPISODE",
-        "seriesNumber": 4,
-        "description": "Ramp up the suspense in these classic crime tales, based on the books by the international best-selling author Ruth Rendell. ",
-        "guidance": null,
-        "episodeAvailableNow": false,
+        "title": "Classic Coronation Street",
+        "start": "2024-09-06T06:00:00Z",
+        "end": "2024-09-06T06:35:00Z",
+        "titleCCId": "2rrtnyz",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
         "episodeLink": null,
-        "programmeLink": "/the-ruth-rendell-mysteries/192003",
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 2100
+      },
+      {
+        "title": "Classic Coronation Street",
+        "start": "2024-09-06T06:35:00Z",
+        "end": "2024-09-06T07:05:00Z",
+        "titleCCId": "3b2ydcr",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Wild at Heart",
+        "start": "2024-09-06T07:05:00Z",
+        "end": "2024-09-06T08:10:00Z",
+        "titleCCId": "x83mhfj",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3900
+      },
+      {
+        "title": "Wild at Heart",
+        "start": "2024-09-06T08:10:00Z",
+        "end": "2024-09-06T09:15:00Z",
+        "titleCCId": "4n64fv7",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3900
+      },
+      {
+        "title": "The Royal",
+        "start": "2024-09-06T09:15:00Z",
+        "end": "2024-09-06T10:30:00Z",
+        "titleCCId": "12yfbby",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 4500
+      },
+      {
+        "title": "Heartbeat",
+        "start": "2024-09-06T10:30:00Z",
+        "end": "2024-09-06T11:35:00Z",
+        "titleCCId": "vcmxsyp",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3900
+      },
+      {
+        "title": "Heartbeat",
+        "start": "2024-09-06T11:35:00Z",
+        "end": "2024-09-06T12:40:00Z",
+        "titleCCId": "36rn4pc",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3900
+      },
+      {
+        "title": "Classic Emmerdale",
+        "start": "2024-09-06T12:40:00Z",
+        "end": "2024-09-06T13:10:00Z",
+        "titleCCId": "rnfrhb5",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Drama",
-            "id": "DRAMA_AND_SOAPS"
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
           }
-        ]
+        ],
+        "seriesNumber": 34,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/classic-emmerdale/2a8015/Ya0524a4240",
+        "programmeLink": "/classic-emmerdale/2a8015",
+        "legacyId": "Y/0524/4240",
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T01:30:00Z",
-        "legacyId": "10/1889/0881#001",
-        "start": "2024-05-12T01:00:00Z",
-        "title": "Unwind With ITV3"
+        "title": "Classic Emmerdale",
+        "start": "2024-09-06T13:10:00Z",
+        "end": "2024-09-06T13:40:00Z",
+        "titleCCId": "6qkpcz5",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 34,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/classic-emmerdale/2a8015/Ya0524a4243",
+        "programmeLink": "/classic-emmerdale/2a8015",
+        "legacyId": "Y/0524/4243",
+        "duration": 1800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T02:00:00Z",
-        "legacyId": "JML/INVK06/1800",
-        "start": "2024-05-12T01:30:00Z",
-        "title": "Teleshopping"
+        "title": "Classic Coronation Street",
+        "start": "2024-09-06T13:40:00Z",
+        "end": "2024-09-06T14:15:00Z",
+        "titleCCId": "6s5ccfy",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 46,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/classic-coronation-street/2a8013/1a0694a6044",
+        "programmeLink": "/classic-coronation-street/2a8013",
+        "legacyId": "1/0694/6044",
+        "duration": 2100
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T02:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T02:00:00Z",
-        "title": "Teleshopping"
+        "title": "Classic Coronation Street",
+        "start": "2024-09-06T14:15:00Z",
+        "end": "2024-09-06T14:50:00Z",
+        "titleCCId": "490tv99",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 46,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/classic-coronation-street/2a8013/1a0694a6045",
+        "programmeLink": "/classic-coronation-street/2a8013",
+        "legacyId": "1/0694/6045",
+        "duration": 2100
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T03:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T02:30:00Z",
-        "title": "Teleshopping"
+        "title": "Foyle's War",
+        "start": "2024-09-06T14:50:00Z",
+        "end": "2024-09-06T17:00:00Z",
+        "titleCCId": "s110sf7",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 7800
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T03:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T03:00:00Z",
-        "title": "Teleshopping"
+        "title": "Heartbeat",
+        "start": "2024-09-06T17:00:00Z",
+        "end": "2024-09-06T18:00:00Z",
+        "titleCCId": "jyf2398",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/heartbeat/Ya0757/Ya0757a0024",
+        "programmeLink": "/heartbeat/Ya0757",
+        "legacyId": "Y/0757/0024",
+        "duration": 3600
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T04:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T03:30:00Z",
-        "title": "Teleshopping"
+        "title": "Heartbeat",
+        "start": "2024-09-06T18:00:00Z",
+        "end": "2024-09-06T19:00:00Z",
+        "titleCCId": "z6bphvs",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 3,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/heartbeat/Ya0757/Ya0757a0025",
+        "programmeLink": "/heartbeat/Ya0757",
+        "legacyId": "Y/0757/0025",
+        "duration": 3600
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T04:30:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T04:00:00Z",
-        "title": "Teleshopping"
+        "title": "Doc Martin",
+        "start": "2024-09-06T19:00:00Z",
+        "end": "2024-09-06T20:00:00Z",
+        "titleCCId": "51m959j",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3600
       },
       {
-        "duration": 1800,
-        "end": "2024-05-12T05:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T04:30:00Z",
-        "title": "Teleshopping"
+        "title": "Doc Martin",
+        "start": "2024-09-06T20:00:00Z",
+        "end": "2024-09-06T21:00:00Z",
+        "titleCCId": "ymbbzkc",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3600
+      },
+      {
+        "title": "Wycliffe",
+        "start": "2024-09-06T21:00:00Z",
+        "end": "2024-09-06T22:05:00Z",
+        "titleCCId": "k48r6rk",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3900
+      },
+      {
+        "title": "Wycliffe",
+        "start": "2024-09-06T22:05:00Z",
+        "end": "2024-09-06T23:05:00Z",
+        "titleCCId": "h7cg2rh",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3600
+      },
+      {
+        "title": "Wild at Heart",
+        "start": "2024-09-06T23:05:00Z",
+        "end": "2024-09-07T00:00:00Z",
+        "titleCCId": "x83mhfj",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3300
+      },
+      {
+        "title": "Wild at Heart",
+        "start": "2024-09-07T00:00:00Z",
+        "end": "2024-09-07T01:00:00Z",
+        "titleCCId": "4n64fv7",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3600
+      },
+      {
+        "title": "Unwind With ITV3",
+        "start": "2024-09-07T01:00:00Z",
+        "end": "2024-09-07T01:30:00Z",
+        "titleCCId": "q10c79v",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T01:30:00Z",
+        "end": "2024-09-07T02:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:00:00Z",
+        "end": "2024-09-07T02:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:30:00Z",
+        "end": "2024-09-07T03:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:00:00Z",
+        "end": "2024-09-07T03:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:30:00Z",
+        "end": "2024-09-07T04:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:00:00Z",
+        "end": "2024-09-07T04:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:30:00Z",
+        "end": "2024-09-07T04:59:59Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1799
       }
     ],
     "ITV4": [
       {
-        "duration": 1800,
-        "end": "2024-05-11T05:30:00Z",
-        "legacyId": "ENT1315/0009#001",
-        "start": "2024-05-11T05:00:00Z",
-        "title": "The Protectors"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T06:30:00Z",
-        "legacyId": "2/5046/0006#002",
-        "start": "2024-05-11T05:30:00Z",
-        "title": "Fishing Allstars",
-        "ccid": "kyrmxpt",
-        "contentTypeITV": "avod",
-        "episodeNumber": 1,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Fishing fanatic (and pro-athlete) Dean Macey invites a guest angler to put their skills to the test. Watch them travel around the UK and beyond in search of the best fish.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/fishing-allstars/2a5046/2a5046a0006",
-        "programmeLink": "/fishing-allstars/2a5046",
+        "title": "Minder",
+        "start": "2024-09-06T05:00:00Z",
+        "end": "2024-09-06T06:00:00Z",
+        "titleCCId": "wcdkz4q",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
           }
-        ]
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/minder/29175/685176",
+        "programmeLink": "/minder/29175",
+        "legacyId": "685176",
+        "duration": 3600
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T07:30:00Z",
-        "legacyId": "2/5046/0007#002",
-        "start": "2024-05-11T06:30:00Z",
-        "title": "Fishing Allstars",
-        "ccid": "xfxc7vw",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
-        "contentType": "EPISODE",
-        "seriesNumber": 2,
-        "description": "Fishing fanatic (and pro-athlete) Dean Macey invites a guest angler to put their skills to the test. Watch them travel around the UK and beyond in search of the best fish.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/fishing-allstars/2a5046/2a5046a0007",
-        "programmeLink": "/fishing-allstars/2a5046",
+        "title": "The Professionals",
+        "start": "2024-09-06T06:00:00Z",
+        "end": "2024-09-06T07:05:00Z",
+        "titleCCId": "k1jh89k",
+        "contentTypeITV": "svod",
         "genres": [
           {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
           }
-        ]
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/the-professionals/L0845/L0845a0045",
+        "programmeLink": "/the-professionals/L0845",
+        "legacyId": "L0845/0045",
+        "duration": 3900
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T08:30:00Z",
-        "legacyId": "2/7893/0019#003",
-        "start": "2024-05-11T07:30:00Z",
-        "title": "Giant Lobster Hunters",
-        "ccid": "jk4v3g1",
-        "contentTypeITV": "avod",
-        "episodeNumber": 1,
+        "title": "Mr Bean",
+        "start": "2024-09-06T07:05:00Z",
+        "end": "2024-09-06T07:35:00Z",
+        "titleCCId": "p6nnxrw",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "seriesNumber": 1,
         "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/mr-bean/1a7287/1a7287a0001",
+        "programmeLink": "/mr-bean/1a7287",
+        "legacyId": "1/7287/0001",
+        "duration": 1800
+      },
+      {
+        "title": "Kojak",
+        "start": "2024-09-06T07:35:00Z",
+        "end": "2024-09-06T08:40:00Z",
+        "titleCCId": "8zmy7xm",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/kojak/27354/1a7953a0025",
+        "programmeLink": "/kojak/27354",
+        "legacyId": "1/7953/0025",
+        "duration": 3900
+      },
+      {
+        "title": "Kojak",
+        "start": "2024-09-06T08:40:00Z",
+        "end": "2024-09-06T09:45:00Z",
+        "titleCCId": "4p1dxsh",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/kojak/27354/1a7953a0026",
+        "programmeLink": "/kojak/27354",
+        "legacyId": "1/7953/0026",
+        "duration": 3900
+      },
+      {
+        "title": "Cycling: Tour of Britain",
+        "start": "2024-09-06T09:45:00Z",
+        "end": "2024-09-06T14:00:00Z",
+        "titleCCId": "x21wvb6",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "SPORT",
+            "name": "Sport"
+          }
+        ],
+        "seriesNumber": 14,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/cycling-tour-of-britain/1a7209/1a7209a0069",
+        "programmeLink": "/cycling-tour-of-britain/1a7209",
+        "legacyId": "1/7209/0069",
+        "duration": 15300
+      },
+      {
+        "title": "Sport Filler Shows",
+        "start": "2024-09-06T14:00:00Z",
+        "end": "2024-09-06T14:15:00Z",
+        "titleCCId": "8zl2yv7",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 900
+      },
+      {
+        "title": "Made in Britain",
+        "start": "2024-09-06T14:15:00Z",
+        "end": "2024-09-06T14:45:00Z",
+        "titleCCId": "qff4x61",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
+      },
+      {
+        "title": "Kojak",
+        "start": "2024-09-06T14:45:00Z",
+        "end": "2024-09-06T15:50:00Z",
+        "titleCCId": "p2d1yh1",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/kojak/27354/1a7953a0027",
+        "programmeLink": "/kojak/27354",
+        "legacyId": "1/7953/0027",
+        "duration": 3900
+      },
+      {
+        "title": "Kojak",
+        "start": "2024-09-06T15:50:00Z",
+        "end": "2024-09-06T16:55:00Z",
+        "titleCCId": "8c97zmd",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": false,
+        "episodeLink": null,
+        "programmeLink": "/kojak/27354",
+        "legacyId": "1/7953/0028",
+        "duration": 3900
+      },
+      {
+        "title": "The Motorbike Show",
+        "start": "2024-09-06T16:55:00Z",
+        "end": "2024-09-06T17:55:00Z",
+        "titleCCId": "jh8kkk6",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 6,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/the-motorbike-show/1a9745/1a9745a0023",
+        "programmeLink": "/the-motorbike-show/1a9745",
+        "legacyId": "1/9745/0023",
+        "duration": 3600
+      },
+      {
+        "title": "Junk & Disorderly",
+        "start": "2024-09-06T17:55:00Z",
+        "end": "2024-09-06T19:00:00Z",
+        "titleCCId": "8d3nksl",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "seriesNumber": 2,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/junk-and-disorderly/2a5865/2a5865a0015",
+        "programmeLink": "/junk-and-disorderly/2a5865",
+        "legacyId": "2/5865/0015",
+        "duration": 3900
+      },
+      {
+        "title": "Cycling: Tour of Britain Highlights",
+        "start": "2024-09-06T19:00:00Z",
+        "end": "2024-09-06T20:00:00Z",
+        "titleCCId": "vqf5lvy",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 3600
+      },
+      {
+        "title": "Unstoppable",
+        "start": "2024-09-06T20:00:00Z",
+        "end": "2024-09-06T21:00:00Z",
+        "titleCCId": "8kf1qsx",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FILM",
+            "name": "Film"
+          }
+        ],
+        "seriesNumber": null,
+        "contentType": "FILM",
+        "episodeAvailableNow": true,
+        "episodeLink": null,
+        "programmeLink": "/unstoppable/10a3389",
+        "legacyId": "10/3389/0001",
+        "duration": 3600
+      },
+      {
+        "title": "Fyi Daily",
+        "start": "2024-09-06T21:00:00Z",
+        "end": "2024-09-06T21:05:00Z",
+        "titleCCId": "z64lb90",
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 300
+      },
+      {
+        "title": "Unstoppable",
+        "start": "2024-09-06T21:05:00Z",
+        "end": "2024-09-06T22:05:00Z",
+        "titleCCId": "8kf1qsx",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "FILM",
+            "name": "Film"
+          }
+        ],
+        "seriesNumber": null,
+        "contentType": "FILM",
+        "episodeAvailableNow": true,
+        "episodeLink": null,
+        "programmeLink": "/unstoppable/10a3389",
+        "legacyId": "10/3389/0001",
+        "duration": 3600
+      },
+      {
+        "title": "All Elite Wrestling: Dynamite",
+        "start": "2024-09-06T22:05:00Z",
+        "end": "2024-09-07T00:00:00Z",
+        "titleCCId": "zwm583w",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "SPORT",
+            "name": "Sport"
+          }
+        ],
         "seriesNumber": 3,
-        "description": "Follow the real-life dramas of six lobster boat captains over the last ten weeks of the winter rock lobster hunting season. Who will hit their target, and who'll make a fortune?",
-        "guidance": "",
+        "contentType": "EPISODE",
         "episodeAvailableNow": true,
-        "episodeLink": "/giant-lobster-hunters/2a7893/2a7893a0019",
-        "programmeLink": "/giant-lobster-hunters/2a7893",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
+        "episodeLink": "/all-elite-wrestling-dynamite/2a7855/2a7855a0257",
+        "programmeLink": "/all-elite-wrestling-dynamite/2a7855",
+        "legacyId": "2/7855/0257",
+        "duration": 6900
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T09:30:00Z",
-        "legacyId": "2/4875/0446#001",
-        "start": "2024-05-11T08:30:00Z",
-        "title": "ITV Racing: The Opening Show",
-        "ccid": "p997wpx",
-        "contentTypeITV": "avod",
-        "episodeNumber": 25,
+        "title": "The Professionals",
+        "start": "2024-09-07T00:00:00Z",
+        "end": "2024-09-07T01:00:00Z",
+        "titleCCId": "zxqk31f",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 4,
         "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/the-professionals/L0845/L0845a0042",
+        "programmeLink": "/the-professionals/L0845",
+        "legacyId": "L0845/0042",
+        "duration": 3600
+      },
+      {
+        "title": "Minder",
+        "start": "2024-09-07T01:00:00Z",
+        "end": "2024-09-07T02:00:00Z",
+        "titleCCId": "b4sr33g",
+        "contentTypeITV": "svod",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "seriesNumber": 4,
+        "contentType": "EPISODE",
+        "episodeAvailableNow": true,
+        "episodeLink": "/minder/29175/685173",
+        "programmeLink": "/minder/29175",
+        "legacyId": "685173",
+        "duration": 3600
+      },
+      {
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:00:00Z",
+        "end": "2024-09-07T02:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
         "seriesNumber": null,
-        "description": "Magazine show accompanying coverage of the horse racing. Presented on-site from the main course each Saturday, with additional weekday programmes during the big festivals.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/itv-racing-the-opening-show/2a4875/2a4875a0446",
-        "programmeLink": "/itv-racing-the-opening-show/2a4875",
-        "genres": [
-          {
-            "name": "Sport",
-            "id": "SPORT"
-          }
-        ]
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T10:35:00Z",
-        "legacyId": "10/2251/0002#001",
-        "start": "2024-05-11T09:30:00Z",
-        "title": "Match Time Revisited",
-        "ccid": "kjbfpg1",
-        "contentTypeITV": "avod",
-        "episodeNumber": 2,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Football highlights from years gone by.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/match-time-revisited/10a2251/10a2251a0002",
-        "programmeLink": "/match-time-revisited/10a2251",
-        "genres": [
-          {
-            "name": "Sport",
-            "id": "SPORT"
-          }
-        ]
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T11:05:00Z",
-        "legacyId": "10/5689/0003#001",
-        "start": "2024-05-11T10:35:00Z",
-        "title": "Road to UEFA EURO 2024",
-        "ccid": "3dk2g5p",
-        "contentTypeITV": "avod",
-        "episodeNumber": 3,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Euro 2024 is almost here - look ahead to the tournament and hear from expert voices about what to expect.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/road-to-uefa-euro-2024/10a5689/10a5689a0003",
-        "programmeLink": "/road-to-uefa-euro-2024/10a5689",
-        "genres": [
-          {
-            "name": "Sport",
-            "id": "SPORT"
-          }
-        ]
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T11:35:00Z",
-        "legacyId": "10/5689/0004#001",
-        "start": "2024-05-11T11:05:00Z",
-        "title": "Road to UEFA EURO 2024",
-        "ccid": "6s1h9y8",
-        "contentTypeITV": "avod",
-        "episodeNumber": 4,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Euro 2024 is almost here - look ahead to the tournament and hear from expert voices about what to expect.",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/road-to-uefa-euro-2024/10a5689/10a5689a0004",
-        "programmeLink": "/road-to-uefa-euro-2024/10a5689",
-        "genres": [
-          {
-            "name": "Sport",
-            "id": "SPORT"
-          }
-        ]
-      },
-      {
-        "duration": 2100,
-        "end": "2024-05-11T12:10:00Z",
-        "legacyId": "2/5046/0001#001",
-        "start": "2024-05-11T11:35:00Z",
-        "title": "Fishing Allstars",
-        "ccid": "43shcwn",
-        "contentTypeITV": "avod",
-        "episodeNumber": 1,
-        "contentType": "EPISODE",
-        "seriesNumber": 1,
-        "description": "Fishing fanatic (and pro-athlete) Dean Macey invites a guest angler to put their skills to the test. Watch them travel around the UK and beyond in search of the best fish.",
-        "guidance": "",
-        "episodeAvailableNow": true,
-        "episodeLink": "/fishing-allstars/2a5046/2a5046a0001",
-        "programmeLink": "/fishing-allstars/2a5046",
-        "genres": [
-          {
-            "name": "Documentaries & Lifestyle",
-            "id": "FACTUAL"
-          }
-        ]
-      },
-      {
-        "duration": 10200,
-        "end": "2024-05-11T15:00:00Z",
-        "legacyId": "2/4397/0760#001",
-        "start": "2024-05-11T12:10:00Z",
-        "title": "ITV Racing",
-        "ccid": "mhqbq4y",
-        "contentTypeITV": "avod",
-        "episodeNumber": 40,
-        "contentType": "EPISODE",
-        "seriesNumber": null,
-        "description": "Witness all the action from major horse racing events all around the UK including Cheltenham, Aintree and Epsom. ",
-        "guidance": null,
-        "episodeAvailableNow": true,
-        "episodeLink": "/itv-racing/2a4397/2a4397a0760",
-        "programmeLink": "/itv-racing/2a4397",
-        "genres": [
-          {
-            "name": "Sport",
-            "id": "SPORT"
-          }
-        ]
-      },
-      {
-        "duration": 600,
-        "end": "2024-05-11T15:10:00Z",
-        "legacyId": "2/2136/0004#001",
-        "start": "2024-05-11T15:00:00Z",
-        "title": "World of Sport"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-11T15:40:00Z",
-        "legacyId": "2/5692/0014/15#001",
-        "start": "2024-05-11T15:10:00Z",
-        "title": "Made in Britain"
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T16:45:00Z",
-        "legacyId": "2/4669/0001#003",
-        "start": "2024-05-11T15:40:00Z",
-        "title": "Cahill U.S. Marshal"
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T16:50:00Z",
-        "legacyId": "1/8987/5241#001",
-        "start": "2024-05-11T16:45:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T17:50:00Z",
-        "legacyId": "2/4669/0001#003",
-        "start": "2024-05-11T16:50:00Z",
-        "title": "Cahill U.S. Marshal"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T18:50:00Z",
-        "legacyId": "IT2/01185/001#007",
-        "start": "2024-05-11T17:50:00Z",
-        "title": "Twister"
-      },
-      {
-        "duration": 300,
-        "end": "2024-05-11T18:55:00Z",
-        "legacyId": "1/8987/5241#001",
-        "start": "2024-05-11T18:50:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T20:00:00Z",
-        "legacyId": "IT2/01185/001#007",
-        "start": "2024-05-11T18:55:00Z",
-        "title": "Twister"
-      },
-      {
-        "duration": 3900,
-        "end": "2024-05-11T21:05:00Z",
-        "legacyId": "10/3374/0001#001",
-        "start": "2024-05-11T20:00:00Z",
-        "title": "Rise of the Planet of the Apes",
-        "ccid": "9gwmfwl",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
-        "seriesNumber": null,
-        "description": null,
-        "guidance": "With scenes some younger viewers may find frightening.",
-        "episodeAvailableNow": true,
+        "contentType": null,
+        "episodeAvailableNow": null,
         "episodeLink": null,
         "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 300,
-        "end": "2024-05-11T21:10:00Z",
-        "legacyId": "1/8987/5242#001",
-        "start": "2024-05-11T21:05:00Z",
-        "title": "Fyi Daily"
-      },
-      {
-        "duration": 3600,
-        "end": "2024-05-11T22:10:00Z",
-        "legacyId": "10/3374/0001#001",
-        "start": "2024-05-11T21:10:00Z",
-        "title": "Rise of the Planet of the Apes",
-        "ccid": "9gwmfwl",
-        "contentTypeITV": "avod",
-        "episodeNumber": null,
-        "contentType": "FILM",
+        "title": "Teleshopping",
+        "start": "2024-09-07T02:30:00Z",
+        "end": "2024-09-07T03:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
         "seriesNumber": null,
-        "description": null,
-        "guidance": "With scenes some younger viewers may find frightening.",
-        "episodeAvailableNow": true,
+        "contentType": null,
+        "episodeAvailableNow": null,
         "episodeLink": null,
         "programmeLink": null,
-        "genres": [
-          {
-            "name": "Film",
-            "id": "FILM"
-          }
-        ]
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 3600,
-        "end": "2024-05-11T23:10:00Z",
-        "legacyId": "1/7796/0001#002",
-        "start": "2024-05-11T22:10:00Z",
-        "title": "Death Wish 4: The Crackdown"
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:00:00Z",
+        "end": "2024-09-07T03:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 300,
-        "end": "2024-05-11T23:15:00Z",
-        "legacyId": "1/8987/5242#001",
-        "start": "2024-05-11T23:10:00Z",
-        "title": "Fyi Daily"
+        "title": "Teleshopping",
+        "start": "2024-09-07T03:30:00Z",
+        "end": "2024-09-07T04:00:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 3600,
-        "end": "2024-05-12T00:15:00Z",
-        "legacyId": "1/7796/0001#002",
-        "start": "2024-05-11T23:15:00Z",
-        "title": "Death Wish 4: The Crackdown"
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:00:00Z",
+        "end": "2024-09-07T04:30:00Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1800
       },
       {
-        "duration": 4200,
-        "end": "2024-05-12T01:25:00Z",
-        "legacyId": "839348#002",
-        "start": "2024-05-12T00:15:00Z",
-        "title": "Auf Wiedersehen Pet"
-      },
-      {
-        "duration": 2100,
-        "end": "2024-05-12T02:00:00Z",
-        "legacyId": "ENT1315/0011#002",
-        "start": "2024-05-12T01:25:00Z",
-        "title": "The Protectors"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-12T02:30:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T02:00:00Z",
-        "title": "Teleshopping"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-12T03:00:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T02:30:00Z",
-        "title": "Teleshopping"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-12T03:30:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T03:00:00Z",
-        "title": "Teleshopping"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-12T04:00:00Z",
-        "legacyId": "RVT/FCMX01/1800",
-        "start": "2024-05-12T03:30:00Z",
-        "title": "Teleshopping"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-12T04:30:00Z",
-        "legacyId": "JML/RRHC36/1800",
-        "start": "2024-05-12T04:00:00Z",
-        "title": "Teleshopping"
-      },
-      {
-        "duration": 1800,
-        "end": "2024-05-12T05:00:00Z",
-        "legacyId": "RVT/OPTX01/1800",
-        "start": "2024-05-12T04:30:00Z",
-        "title": "Teleshopping"
+        "title": "Teleshopping",
+        "start": "2024-09-07T04:30:00Z",
+        "end": "2024-09-07T04:59:59Z",
+        "titleCCId": null,
+        "contentTypeITV": null,
+        "genres": [],
+        "seriesNumber": null,
+        "contentType": null,
+        "episodeAvailableNow": null,
+        "episodeLink": null,
+        "programmeLink": null,
+        "legacyId": null,
+        "duration": 1799
       }
     ]
   },
   "subnav": {
     "items": [
       {
-        "name": "2024-05-04",
-        "id": "2024-05-04",
-        "label": "SAT 4",
-        "url": "/watch/tv-guide/2024-05-04"
+        "name": "2024-08-30",
+        "id": "2024-08-30",
+        "label": "FRI 30",
+        "url": "/watch/tv-guide/2024-08-30"
       },
       {
-        "name": "2024-05-05",
-        "id": "2024-05-05",
-        "label": "SUN 5",
-        "url": "/watch/tv-guide/2024-05-05"
+        "name": "2024-08-31",
+        "id": "2024-08-31",
+        "label": "SAT 31",
+        "url": "/watch/tv-guide/2024-08-31"
       },
       {
-        "name": "2024-05-06",
-        "id": "2024-05-06",
-        "label": "MON 6",
-        "url": "/watch/tv-guide/2024-05-06"
+        "name": "2024-09-01",
+        "id": "2024-09-01",
+        "label": "SUN 1",
+        "url": "/watch/tv-guide/2024-09-01"
       },
       {
-        "name": "2024-05-07",
-        "id": "2024-05-07",
-        "label": "TUE 7",
-        "url": "/watch/tv-guide/2024-05-07"
+        "name": "2024-09-02",
+        "id": "2024-09-02",
+        "label": "MON 2",
+        "url": "/watch/tv-guide/2024-09-02"
       },
       {
-        "name": "2024-05-08",
-        "id": "2024-05-08",
-        "label": "WED 8",
-        "url": "/watch/tv-guide/2024-05-08"
+        "name": "2024-09-03",
+        "id": "2024-09-03",
+        "label": "TUE 3",
+        "url": "/watch/tv-guide/2024-09-03"
       },
       {
-        "name": "2024-05-09",
-        "id": "2024-05-09",
-        "label": "THU 9",
-        "url": "/watch/tv-guide/2024-05-09"
+        "name": "2024-09-04",
+        "id": "2024-09-04",
+        "label": "WED 4",
+        "url": "/watch/tv-guide/2024-09-04"
       },
       {
-        "name": "2024-05-10",
-        "id": "2024-05-10",
+        "name": "2024-09-05",
+        "id": "2024-09-05",
         "label": "YESTERDAY",
-        "url": "/watch/tv-guide/2024-05-10"
+        "url": "/watch/tv-guide/2024-09-05"
       },
       {
-        "name": "2024-05-11",
-        "id": "2024-05-11",
+        "name": "2024-09-06",
+        "id": "2024-09-06",
         "label": "TODAY",
-        "url": "/watch/tv-guide/2024-05-11"
+        "url": "/watch/tv-guide/2024-09-06"
       },
       {
-        "name": "2024-05-12",
-        "id": "2024-05-12",
+        "name": "2024-09-07",
+        "id": "2024-09-07",
         "label": "TOMORROW",
-        "url": "/watch/tv-guide/2024-05-12"
+        "url": "/watch/tv-guide/2024-09-07"
       },
       {
-        "name": "2024-05-13",
-        "id": "2024-05-13",
-        "label": "MON 13",
-        "url": "/watch/tv-guide/2024-05-13"
+        "name": "2024-09-08",
+        "id": "2024-09-08",
+        "label": "SUN 8",
+        "url": "/watch/tv-guide/2024-09-08"
       },
       {
-        "name": "2024-05-14",
-        "id": "2024-05-14",
-        "label": "TUE 14",
-        "url": "/watch/tv-guide/2024-05-14"
+        "name": "2024-09-09",
+        "id": "2024-09-09",
+        "label": "MON 9",
+        "url": "/watch/tv-guide/2024-09-09"
       },
       {
-        "name": "2024-05-15",
-        "id": "2024-05-15",
-        "label": "WED 15",
-        "url": "/watch/tv-guide/2024-05-15"
+        "name": "2024-09-10",
+        "id": "2024-09-10",
+        "label": "TUE 10",
+        "url": "/watch/tv-guide/2024-09-10"
       },
       {
-        "name": "2024-05-16",
-        "id": "2024-05-16",
-        "label": "THU 16",
-        "url": "/watch/tv-guide/2024-05-16"
+        "name": "2024-09-11",
+        "id": "2024-09-11",
+        "label": "WED 11",
+        "url": "/watch/tv-guide/2024-09-11"
       },
       {
-        "name": "2024-05-17",
-        "id": "2024-05-17",
-        "label": "FRI 17",
-        "url": "/watch/tv-guide/2024-05-17"
+        "name": "2024-09-12",
+        "id": "2024-09-12",
+        "label": "THU 12",
+        "url": "/watch/tv-guide/2024-09-12"
       },
       {
-        "name": "2024-05-18",
-        "id": "2024-05-18",
-        "label": "SAT 18",
-        "url": "/watch/tv-guide/2024-05-18"
+        "name": "2024-09-13",
+        "id": "2024-09-13",
+        "label": "FRI 13",
+        "url": "/watch/tv-guide/2024-09-13"
       }
     ],
-    "activeItem": "2024-05-11",
+    "activeItem": "2024-09-06",
     "type": "items",
     "monitorHashChange": false,
     "customTracking": [
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-04"
+        "sub_navigation": "2024-08-30"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-05"
+        "sub_navigation": "2024-08-31"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-06"
+        "sub_navigation": "2024-09-01"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-07"
+        "sub_navigation": "2024-09-02"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-08"
+        "sub_navigation": "2024-09-03"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-09"
+        "sub_navigation": "2024-09-04"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-10"
+        "sub_navigation": "2024-09-05"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-11"
+        "sub_navigation": "2024-09-06"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-12"
+        "sub_navigation": "2024-09-07"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-13"
+        "sub_navigation": "2024-09-08"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-14"
+        "sub_navigation": "2024-09-09"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-15"
+        "sub_navigation": "2024-09-10"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-16"
+        "sub_navigation": "2024-09-11"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-17"
+        "sub_navigation": "2024-09-12"
       },
       {
         "event": "CLICK",
-        "screen_name": "hub.tv-guide.2024-05-11",
+        "screen_name": "hub.tv-guide.2024-09-06",
         "screen_type": "tv-guide",
-        "sub_navigation": "2024-05-18"
+        "sub_navigation": "2024-09-13"
       }
     ]
   },
@@ -2608,8 +3065,7 @@
       "title": "ITVX Live: Choose a channel to match your mood!",
       "linkHref": "/watch/collections/itvx-live-choose-a-channel-to-match-your-mood/58DOqcyNCNMqcAWNIFvXzJ",
       "linkText": "View All",
-      "linkAriaLabel": "View All programmes from the ITVX Live: Choose a channel to match your mood! collection",
-      "logo": null
+      "linkAriaLabel": "View All programmes from the ITVX Live: Choose a channel to match your mood! collection"
     },
     "items": [
       {
@@ -2618,20 +3074,6 @@
         "description": "The channel dedicated to big laughs!",
         "channel": "fast16",
         "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-comedy247/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
-        "startDateTime": null,
-        "endDateTime": null,
-        "progress": null,
-        "tagNames": [
-          "live"
-        ]
-      },
-      {
-        "contentType": "fastchannelspot",
-        "title": "Love Island Channel",
-        "description": "Escape to the villa, any time you like",
-        "channel": "fast20",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-loveisland/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -2656,38 +3098,10 @@
       },
       {
         "contentType": "fastchannelspot",
-        "title": "Midsomer Murders Channel",
-        "description": "Every murder, every episode, 24/7",
-        "channel": "fast12",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-midsomermurders/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
-        "startDateTime": null,
-        "endDateTime": null,
-        "progress": null,
-        "tagNames": [
-          "live"
-        ]
-      },
-      {
-        "contentType": "fastchannelspot",
         "title": "Saturday Night Every Night",
         "description": "The ultimate night in on ITVX",
-        "channel": "fast13",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-satnighteverynight/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
-        "startDateTime": null,
-        "endDateTime": null,
-        "progress": null,
-        "tagNames": [
-          "live"
-        ]
-      },
-      {
-        "contentType": "fastchannelspot",
-        "title": "LEGO Universe Channel",
-        "description": "Stream the 24/7 live channel!",
         "channel": "fast4",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-legouniverse/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-satnighteverynight/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -2712,10 +3126,10 @@
       },
       {
         "contentType": "fastchannelspot",
-        "title": "The Chase Channel",
-        "description": "Get your quiz fix",
-        "channel": "fast3",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-thechase/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "title": "Reality 24/7",
+        "description": "All your fave reality shows 24/7",
+        "channel": "fast5",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-reality247/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -2726,10 +3140,10 @@
       },
       {
         "contentType": "fastchannelspot",
-        "title": "Reality 24/7",
-        "description": "All your fave reality shows 24/7",
-        "channel": "fast5",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-reality247/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "title": "Love Island Channel",
+        "description": "Escape to the villa, any time you like",
+        "channel": "fast13",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-loveisland/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -2754,6 +3168,20 @@
       },
       {
         "contentType": "fastchannelspot",
+        "title": "Xmas Movies Channel",
+        "description": "Stream the channel 24/7",
+        "channel": "fast1",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-xmasmovies/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "",
+        "startDateTime": null,
+        "endDateTime": null,
+        "progress": null,
+        "tagNames": [
+          "live"
+        ]
+      },
+      {
+        "contentType": "fastchannelspot",
         "title": "ITV Signed",
         "description": "Stream the best of ITV in BSL",
         "channel": "fast7",
@@ -2768,10 +3196,24 @@
       },
       {
         "contentType": "fastchannelspot",
-        "title": "World Of Morse Channel",
-        "description": "Morse, Lewis & Endeavour - every ep",
-        "channel": "fast1",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-worldofmorse/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "title": "The Chase Channel",
+        "description": "Get your quiz fix",
+        "channel": "fast3",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-thechase/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "",
+        "startDateTime": null,
+        "endDateTime": null,
+        "progress": null,
+        "tagNames": [
+          "live"
+        ]
+      },
+      {
+        "contentType": "fastchannelspot",
+        "title": "Midsomer Murders Channel",
+        "description": "Every murder, every episode, 24/7",
+        "channel": "fast12",
+        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-midsomermurders/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
