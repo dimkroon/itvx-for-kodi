@@ -337,7 +337,7 @@ def check_short_form_item(item):
         assert '/' in item['episodeId']
 
     assert is_not_empty(item['episodeTitle'], str)
-    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp')), \
+    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp', '.gif')), \
            "item '{}' has not a valid imageUrl".format(item['episodeTitle'])
     # True shortform items have a field 'href', but items produced by heroAndLatest and curatedRails
     # on the news category page don't.

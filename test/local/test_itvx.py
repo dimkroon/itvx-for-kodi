@@ -463,7 +463,7 @@ class LastWatched(TestCase):
 
 
 class GetPLaylistUrl(TestCase):
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/film_danny-collins.html'))
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/film.html'))
     def test_get_playlist_from_film_page(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))

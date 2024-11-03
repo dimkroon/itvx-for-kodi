@@ -663,8 +663,8 @@ class WatchPages(unittest.TestCase):
                 self.assertTrue(title['premium'])
 
     def test_film_details_page(self):
-        page = fetch.get_document('https://www.itv.com/watch/danny-collins/10a3142')
-        # testutils.save_doc(page, 'html/film_danny-collins.html')
+        page = fetch.get_document('https://www.itv.com/watch/a-day-to-remember/CFD0170')
+        # testutils.save_doc(page, 'html/film.html')
         data = parsex.scrape_json(page)
         check_programme(self, data['programme'])
         # Just to flag when imagePresets in no longer present, like most other data structures.
