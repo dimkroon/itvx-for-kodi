@@ -68,6 +68,24 @@ class RequestStreamData(TestCase):
         self.assertEqual(1, cm.exception.code)
 
 
+class GetCatchupUrls(TestCase):
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    def test_catchup_urls(self, _):
+        mpd, key, subs, video_type, prod_id = itv.get_catchup_urls('itv1/url')
+        self.assertTrue(is_url(mpd))
+        self.assertTrue(is_url(key))
+        self.assertTrue(is_url(subs))
+        self.assertEqual(video_type, 'CATCHUP')
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
+    def test_shorform_urls(self, _):
+        mpd, key, subs, video_type, prod_id = itv.get_catchup_urls('itv1/url')
+        self.assertTrue(is_url(mpd))
+        self.assertIsNone(key)
+        self.assertIsNone(subs)
+        self.assertEqual(video_type, 'SHORT')
+
+
 class GetLiveUrls(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     def test_get_dar_urls(self, _):

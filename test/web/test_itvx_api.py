@@ -733,6 +733,7 @@ class Playlists(unittest.TestCase):
                 url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
+            # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
             if is_short:
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
