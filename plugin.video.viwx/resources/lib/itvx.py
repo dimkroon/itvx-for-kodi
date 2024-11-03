@@ -525,8 +525,16 @@ def get_last_watched():
             user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
-    data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
-    watched_list = [parsex.parse_last_watched_item(item, utc_now) for item in data]
+    try:
+        data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
+    except (errors.HttpError, errors.ParseError):
+        # A wide variety of responses have been observed when the watch list has no items.
+        # Just regard any HTTP, or JSON decoding error as an empty list.
+        data = None
+    if data:
+        watched_list = [parsex.parse_last_watched_item(item, utc_now) for item in data]
+    else:
+        watched_list = []
     cache.set_item(cache_key, watched_list, 600)
     return watched_list
 

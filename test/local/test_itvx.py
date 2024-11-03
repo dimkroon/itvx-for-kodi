@@ -400,6 +400,9 @@ class Search(TestCase):
 
 
 class LastWatched(TestCase):
+    def setUp(self):
+        cache.purge()
+        
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
     def test_get_last_watched(self, patched_fetch):
         results = itvx.get_last_watched()
@@ -412,6 +415,27 @@ class LastWatched(TestCase):
         results_cache = itvx.get_last_watched()
         self.assertListEqual(results, results_cache)
         patched_fetch.assert_called_once()     # fetch not called for the second time
+
+    def test_get_last_watched_no_content(self):
+        """All responses below have been observed in the wild"""
+        with patch('resources.lib.itv_account.fetch_authenticated', return_value=[]):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
+        cache.purge()
+        with patch('resources.lib.itv_account.fetch_authenticated', return_value=None):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
+        cache.purge()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.ParseError):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
 
     def test_get_resume_point(self):
         with patch('resources.lib.itv_account.fetch_authenticated',

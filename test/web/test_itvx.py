@@ -101,6 +101,10 @@ class TestItvX(unittest.TestCase):
         items = itvx.my_list(uid)
         self.assertGreater(len(items), 1)
 
+    def test_get_last_watched(self):
+        items = itvx.get_last_watched()
+        pass
+
     def test_because_you_watched(self):
         uid = itv_account.itv_session().user_id
         byw_list = itvx.because_you_watched(uid)

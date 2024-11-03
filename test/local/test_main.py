@@ -102,12 +102,32 @@ class MyItvx(TestCase):
                 list_items = main.sub_menu_my_itvx.test()
                 self.assertEqual(4, len(list_items))
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
-    @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
-    def test_list_last_watched(self, _, p_fetch):
-        shows = list(main.generic_list.test('watching', filter_char=None))
-        self.assertEqual(7, len(shows))
-        p_fetch.assert_called_once()
+    @patch('resources.lib.itv_account.fetch_authenticated',
+           new=lambda funct, url, login=True, **kwargs: funct(url, **kwargs))
+    @patch('xbmcaddon.Addon.getSettingInt', return_value=1000)
+    def test_list_last_watched(self, _):
+        with patch('resources.lib.fetch.web_request',
+                   return_value=HttpResponse(text=open_doc('usercontent/last_watched_all.json')())) as p_fetch:
+            shows = list(main.generic_list.test('watching', filter_char=None))
+            self.assertEqual(7, len(shows))
+            p_fetch.assert_called_once()
+        # All responses below have been observed in the wild when the watched list had no items.
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(200, content=b'[]')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(204, reason='No Content', content=b'')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(404, reason='Not Found', content=b'')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(200, content=b'no content')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_list_mylist(self, _):
