@@ -97,7 +97,9 @@ def get_now_next_schedule(local_tz=None):
             programs_list.append({
                 'programme_details': details,
                 'programmeTitle': displ_title,
-                'orig_start': None,          # fast channels do not support play from start
+                # Not all fast channels support play from start and at this stage there's
+                # no to determine which do.
+                'orig_start': None,
                 'startTime': utc_start.astimezone(local_tz).strftime(time_format)
             })
         channel['slot'] = programs_list

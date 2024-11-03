@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -70,13 +70,16 @@ class RequestStreamData(TestCase):
 
 class GetLiveUrls(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
-    def test_get_live_urls(self, _):
+    def test_get_dar_urls(self, _):
         mpd, key, subs = itv.get_live_urls('itv1/url')
         self.assertTrue(is_url(mpd))
         self.assertTrue('?t=' in mpd)
         self.assertTrue(is_url(key))
         self.assertIsNone(subs)
-        # FAST channels do not use startagain URL
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_fast_non_dar.json'))
+    def test_get_non_dar_urls(self, _):
+        # Only DAAR live stremas use the startagain url
         mpd, key, subs = itv.get_live_urls('itv.com/FAST15')
         self.assertTrue(is_url(mpd))
         self.assertFalse('?t=' in mpd)

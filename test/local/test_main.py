@@ -478,7 +478,7 @@ class PlayStreamLive(TestCase):
         self.assertIsInstance(result, XbmcListItem)
         self.assertEqual('ITV', result.getLabel())
         self.assertFalse('IsPlayable' in result._props)
-        self.assertTrue('inputstream.adaptive.play_timeshift_buffer' in result._props)
+        self.assertFalse('inputstream.adaptive.play_timeshift_buffer' in result._props)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/ITV'))
@@ -491,6 +491,12 @@ class PlayStreamLive(TestCase):
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/FAST16'))
+        # -- Watch from the start --
+        result = main.play_stream_live.test(channel='ITV', url=None,
+                                            start_time="2024-11-03T18:00:30", play_from_start=True)
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertTrue('inputstream.adaptive.play_timeshift_buffer' in result._props)
+
 
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):
