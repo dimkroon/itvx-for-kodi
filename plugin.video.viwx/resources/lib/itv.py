@@ -152,12 +152,13 @@ def get_catchup_urls(episode_url):
     """
     playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
     stream_data = playlist['Video']
-    url_base = stream_data['Base']
+    url_base = stream_data.get('Base', '')
     video_locations = stream_data['MediaFiles'][0]
     dash_url = url_base + video_locations['Href']
     key_service = video_locations.get('KeyServiceUrl')
     try:
-        # Usually stream_data['Subtitles'] is just None when subtitles are not available.
+        # Usually stream_data['Subtitles'] is just None when subtitles are not available,
+        # but on shortform items it's completely absent.
         subtitles = stream_data['Subtitles'][0]['Href']
     except (TypeError, KeyError, IndexError):
         subtitles = None
