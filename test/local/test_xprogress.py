@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2023 Dimitri Kroon.
+#  Copyright (c) 2023-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -110,6 +110,27 @@ class TestPLayTimeMonitor(TestCase):
 
         p_onstopped.reset_mock()
         mon.onPlayBackError()
+        p_onstopped.assert_called_once()
+
+    @patch('resources.lib.xprogress.PlayTimeMonitor.onPlayBackStopped')
+    def test_on_seek(self, p_onstopped):
+        mon = xprogress.PlayTimeMonitor('')
+        mon._status = xprogress.PlayState.PLAYING
+        mon._totaltime = 60.0
+        mon._playtime = 30.0
+        # seek within playtime
+        mon.onPlayBackSeek(50000, 10000)
+        self.assertEqual(mon.playtime, 30000)
+        p_onstopped.assert_not_called()
+        # seek almost up to playtime
+        mon.onPlayBackSeek(59000, 10000)
+        self.assertEqual(mon.playtime, 60000)
+        p_onstopped.assert_called_once()
+        # seek beyond playtime
+        mon._playtime = 30.0
+        p_onstopped.reset_mock()
+        mon.onPlayBackSeek(70000, 10000)
+        self.assertEqual(mon.playtime, 60000)
         p_onstopped.assert_called_once()
 
     def test_wait_unit_playing(self):
