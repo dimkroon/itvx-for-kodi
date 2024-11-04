@@ -486,14 +486,17 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     return title_obj
 
 
-def parse_search_result(search_data):
+def parse_search_result(search_data, hide_paid=False):
     entity_type = search_data['entityType']
     result_data = search_data['data']
     api_episode_id = ''
-    if 'FREE' in result_data['tier']:
-        plot = result_data['synopsis']
-    else:
+
+    if 'PAID' in result_data['tier']:
+        if hide_paid:
+            return
         plot = premium_plot(result_data['synopsis'])
+    else:
+        plot = result_data['synopsis']
 
     if entity_type == 'programme':
         prog_name = result_data['programmeTitle']
@@ -668,14 +671,14 @@ def parse_schedule_item(data):
     from urllib.parse import quote
 
     plugin_id = utils.addon_info.id
-
+    genres = data.get('genres')
     try:
         item = {
             'start': data['start'],
             'stop': data['end'],
             'title': data['title'],
             'description': '\n\n'.join(t for t in (data.get('description'), data.get('guidance')) if t),
-            'genre': data.get('genres', [{}])[0].get('name'),
+            'genre': genres[0].get('name') if genres else None,
         }
 
         episode_nr = data.get('episodeNumber')

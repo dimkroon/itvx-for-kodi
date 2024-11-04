@@ -1,3 +1,16 @@
+v 1.5.1
+Fixes:
+- News clips failed to play with KeyError 'Brand'.
+- Error messages when opening an empty 'Continue Watching' list.
+- Stream-only FAST channels stalled in advert breaks.
+- Programmes are now reported as having been fully played when the user has skipped to the end while playing.
+- Some programmes were missing en IPTV EPG.
+- Search now requests the same number of items as a generic web browser does.
+
+New Features:
+- Paid items are excluded from search results based on the setting 'Hide premium content'.
+- On most live channels it's now possible to seek back up to 1 hour from the moment the channel is started.
+
 v1.5.0
 Fixes:
 - ViwX failed to start with 'FetchError: Forbidden'. And issue only experienced by users of OSMC and possibly some other systems that still use OpenSSL v1.1.1.

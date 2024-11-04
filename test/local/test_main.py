@@ -47,6 +47,7 @@ class Paginator(TestCase):
         result = list(pg)
         self.assertListEqual([], result)
 
+
 @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
 class MainMenu(TestCase):
     @patch('resources.lib.itvx.parsex.datetime', new=mockeddt)
@@ -101,12 +102,32 @@ class MyItvx(TestCase):
                 list_items = main.sub_menu_my_itvx.test()
                 self.assertEqual(4, len(list_items))
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
-    @patch('xbmcaddon.Addon.getSettingInt', side_effect=(1000, 50))
-    def test_list_last_watched(self, _, p_fetch):
-        shows = list(main.generic_list.test('watching', filter_char=None))
-        self.assertEqual(7, len(shows))
-        p_fetch.assert_called_once()
+    @patch('resources.lib.itv_account.fetch_authenticated',
+           new=lambda funct, url, login=True, **kwargs: funct(url, **kwargs))
+    @patch('xbmcaddon.Addon.getSettingInt', return_value=1000)
+    def test_list_last_watched(self, _):
+        with patch('resources.lib.fetch.web_request',
+                   return_value=HttpResponse(text=open_doc('usercontent/last_watched_all.json')())) as p_fetch:
+            shows = list(main.generic_list.test('watching', filter_char=None))
+            self.assertEqual(7, len(shows))
+            p_fetch.assert_called_once()
+        # All responses below have been observed in the wild when the watched list had no items.
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(200, content=b'[]')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(204, reason='No Content', content=b'')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(404, reason='Not Found', content=b'')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
+        cache.purge()
+        with patch('resources.lib.fetch.web_request', return_value=HttpResponse(200, content=b'no content')):
+            result = main.generic_list.test('watching', filter_char=None)
+            self.assertIs(result, False)
 
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
     def test_list_mylist(self, _):
@@ -398,9 +419,18 @@ class Search(TestCase):
            return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
     def test_search_monday(self, _):
         results = main.do_search.test('monday')
-        self.assertEqual(7, len(results))
+        self.assertEqual(3, len(results))
         self.assertIs(results[0].path, main.list_productions.route)
-        self.assertIs(results[6].path, main.play_title.route)           # special without field specialProgramme
+        self.assertIs(results[2].path, main.play_title.route)           # special without field specialProgramme
+
+    @patch('requests.sessions.Session.send',
+           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+    def test_search_hide_paid(self, _):
+        results = main.do_search.test('monday')
+        self.assertEqual(3, len(results))
+        with patch('xbmcaddon.Addon.getSetting', return_value='true'):
+            results = main.do_search.test('monday')
+            self.assertEqual(2, len(results))
 
     def test_search_result_with_unknown_entitytype(self):
         search_data = open_json('search/search_results_mear.json')
@@ -437,6 +467,7 @@ class CreateDashStreamItem(TestCase):
         result = main.create_dash_stream_item('my stream', 'manifest.url', 'key.service.url')
         self.assertIs(result, False)
 
+
 class PlayStreamLive(TestCase):
     @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     @patch('requests.get', return_value=HttpResponse())
@@ -447,7 +478,7 @@ class PlayStreamLive(TestCase):
         self.assertIsInstance(result, XbmcListItem)
         self.assertEqual('ITV', result.getLabel())
         self.assertFalse('IsPlayable' in result._props)
-        self.assertTrue('inputstream.adaptive.play_timeshift_buffer' in result._props)
+        self.assertFalse('inputstream.adaptive.play_timeshift_buffer' in result._props)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/ITV'))
@@ -460,6 +491,12 @@ class PlayStreamLive(TestCase):
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
         self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/FAST16'))
+        # -- Watch from the start --
+        result = main.play_stream_live.test(channel='ITV', url=None,
+                                            start_time="2024-11-03T18:00:30", play_from_start=True)
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertTrue('inputstream.adaptive.play_timeshift_buffer' in result._props)
+
 
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):

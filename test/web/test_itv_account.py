@@ -141,8 +141,8 @@ class TestTokens(unittest.TestCase):
         self.assertEqual('https://auth.itv.com', user_data['iss'])  # issuer
         self.assertTrue(testutils.is_uuid(user_data['sub']))
         self.assertAlmostEqual(self.now, user_data['iat'], delta=5)
-        # refresh token expires after 100 years (3155673600 sec.), allow a difference of a leap day
-        self.assertAlmostEqual(user_data['exp'], self.now + 36524 * 86400, delta=86400)
+        # refresh token expires after 1 year (31536000 sec.), allow a difference of a leap day
+        self.assertAlmostEqual(user_data['exp'], self.now + 365 * 86400, delta=86400)
         self.assertEqual('content', user_data['scope'])
         self.assertAlmostEqual(self.now, user_data['auth_time'], delta=5)  # timestamp of moment of authentication
 

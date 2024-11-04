@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -8,7 +8,7 @@
 import os
 import logging
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import pytz
 import xbmc
 
@@ -135,10 +135,10 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
         if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
-        # Fast channels play only for about 5 minutes on the time shift stream
-        elif not channel.startswith('FAST'):
-            # Go 30 sec back to ensure we get the timeshift stream
-            start_time = datetime.utcnow() - timedelta(seconds=30)
+        elif video_locations.get('IsDar'):
+            # Go 1 hour back to ensure we get the timeshift stream with adverts embedded
+            # and can skip back a bit in the stream.
+            start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
 
     key_service = video_locations['KeyServiceUrl']
@@ -152,12 +152,13 @@ def get_catchup_urls(episode_url):
     """
     playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
     stream_data = playlist['Video']
-    url_base = stream_data['Base']
+    url_base = stream_data.get('Base', '')
     video_locations = stream_data['MediaFiles'][0]
     dash_url = url_base + video_locations['Href']
     key_service = video_locations.get('KeyServiceUrl')
     try:
-        # Usually stream_data['Subtitles'] is just None when subtitles are not available.
+        # Usually stream_data['Subtitles'] is just None when subtitles are not available,
+        # but on shortform items it's completely absent.
         subtitles = stream_data['Subtitles'][0]['Href']
     except (TypeError, KeyError, IndexError):
         subtitles = None

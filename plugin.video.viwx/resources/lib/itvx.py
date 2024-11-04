@@ -97,7 +97,9 @@ def get_now_next_schedule(local_tz=None):
             programs_list.append({
                 'programme_details': details,
                 'programmeTitle': displ_title,
-                'orig_start': None,          # fast channels do not support play from start
+                # Not all fast channels support play from start and at this stage there's
+                # no to determine which do.
+                'orig_start': None,
                 'startTime': utc_start.astimezone(local_tz).strftime(time_format)
             })
         channel['slot'] = programs_list
@@ -431,9 +433,9 @@ def search(search_term, hide_paid=False):
 
     """
     from urllib.parse import quote
-    url = 'https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,hls,aes,' \
-          'playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree={}&platform=ctv&query={}'.format(
-        str(hide_paid).lower(), quote(search_term))
+    url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&channelType=simulcast&'
+           'featureSet=clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&'
+           'platform=dotcom&query={}&size=24').format(quote(search_term.lower()))
     headers = {
         'User-Agent': fetch.USER_AGENT,
         'accept': 'application/json',
@@ -461,7 +463,7 @@ def search(search_term, hide_paid=False):
     results = data.get('results')
     if not results:
         logger.debug("Search for '%s' returned an empty list of results. (hide_paid=%s)", search_term, hide_paid)
-    return (parsex.parse_search_result(result) for result in results)
+    return (parsex.parse_search_result(result, hide_paid) for result in results)
 
 
 def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
@@ -525,8 +527,16 @@ def get_last_watched():
             user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
-    data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
-    watched_list = [parsex.parse_last_watched_item(item, utc_now) for item in data]
+    try:
+        data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
+    except (errors.HttpError, errors.ParseError):
+        # A wide variety of responses have been observed when the watch list has no items.
+        # Just regard any HTTP, or JSON decoding error as an empty list.
+        data = None
+    if data:
+        watched_list = [parsex.parse_last_watched_item(item, utc_now) for item in data]
+    else:
+        watched_list = []
     cache.set_item(cache_key, watched_list, 600)
     return watched_list
 

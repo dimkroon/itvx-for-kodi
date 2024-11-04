@@ -378,6 +378,7 @@ class Episodes(TestCase):
             series_listing, programme_id = itvx.episodes('asd')
         self.assertEqual(len(series_listing['2']['episodes']), num_episodes_series_2 + num_episodes_series_3)
 
+
 class Search(TestCase):
     @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
     def test_simple_search(self, _):
@@ -390,17 +391,18 @@ class Search(TestCase):
         result = itvx.search('xprs')
         self.assertIsNone(result)
 
-    @patch('requests.get')
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
     def test_search_hide_paid(self, p_get):
-        itvx.search('xprs')
-        url = p_get.call_args.args[0]
-        self.assertTrue('onlyFree=false' in url)
-        itvx.search('xprs', hide_paid=True)
-        url = p_get.call_args.args[0]
-        self.assertTrue('onlyFree=true' in url)
+        results = list(itvx.search('xprs'))
+        self.assertIsInstance(results[0], dict)
+        results = list(itvx.search('xprs', hide_paid=True))
+        self.assertIsNone(results[0])
 
 
 class LastWatched(TestCase):
+    def setUp(self):
+        cache.purge()
+        
     @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/last_watched_all.json'))
     def test_get_last_watched(self, patched_fetch):
         results = itvx.get_last_watched()
@@ -413,6 +415,27 @@ class LastWatched(TestCase):
         results_cache = itvx.get_last_watched()
         self.assertListEqual(results, results_cache)
         patched_fetch.assert_called_once()     # fetch not called for the second time
+
+    def test_get_last_watched_no_content(self):
+        """All responses below have been observed in the wild"""
+        with patch('resources.lib.itv_account.fetch_authenticated', return_value=[]):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
+        cache.purge()
+        with patch('resources.lib.itv_account.fetch_authenticated', return_value=None):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
+        cache.purge()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.ParseError):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError):
+            results = itvx.get_last_watched()
+            self.assertIsInstance(results, list)
+            self.assertEqual(len(results), 0)
 
     def test_get_resume_point(self):
         with patch('resources.lib.itv_account.fetch_authenticated',
@@ -440,7 +463,7 @@ class LastWatched(TestCase):
 
 
 class GetPLaylistUrl(TestCase):
-    @patch('resources.lib.fetch.get_document', new=open_doc('html/film_danny-collins.html'))
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/film.html'))
     def test_get_playlist_from_film_page(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))

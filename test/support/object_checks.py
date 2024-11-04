@@ -268,16 +268,16 @@ def check_news_collection_stream_info(playlist):
     assert playlist['VideoType'] == 'SHORT'
 
     video_inf = playlist['Video']
-    has_keys(video_inf, 'Duration', 'Base', 'MediaFiles', obj_name="Playlist['Video']")
+    has_keys(video_inf, 'Duration', 'MediaFiles', obj_name="Playlist['Video']")
     # If these are present it is a 'normal' catchup item
-    misses_keys(video_inf, 'Timecodes', 'Subtitles', 'Token', obj_name="Playlist['Video']")
+    misses_keys(video_inf, 'Timecodes', 'Subtitles', 'Token', 'Base', obj_name="Playlist['Video']")
 
     assert isinstance(video_inf['Duration'], str)
 
     strm_inf = video_inf['MediaFiles']
     assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
     assert len(strm_inf) == 1
-    assert is_url(video_inf['Base'] + strm_inf[0]['Href'], '.mp4')
+    assert is_url(strm_inf[0]['Href'], '.mp4')
 
 
 def check_short_form_slider(testcase, slider, name=''):
@@ -337,7 +337,7 @@ def check_short_form_item(item):
         assert '/' in item['episodeId']
 
     assert is_not_empty(item['episodeTitle'], str)
-    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp')), \
+    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp', '.gif')), \
            "item '{}' has not a valid imageUrl".format(item['episodeTitle'])
     # True shortform items have a field 'href', but items produced by heroAndLatest and curatedRails
     # on the news category page don't.

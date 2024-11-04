@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2023 Dimitri Kroon.
+#  Copyright (c) 2023-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -41,6 +41,7 @@ class PlayTimeMonitor(Player):
         self._production_id = production_id
         self._event_seq_nr = 0
         self._playtime = 0
+        self._totaltime = 0
         self._user_id = itv_session().user_id
         self.monitor = Monitor()
         self._status = PlayState.UNDEFINED
@@ -62,8 +63,9 @@ class PlayTimeMonitor(Player):
         try:
             self._cur_file = self.getPlayingFile()
             self._playtime = self.getTime()
+            self._totaltime = self.getTotalTime()
             self._status = PlayState.PLAYING
-            logger.debug("PlayTimeMonitor: total play time = %s", self.playtime/60)
+            logger.debug("PlayTimeMonitor: total play time = %s", self._totaltime/60)
             self._post_event_startup_complete()
         except:
             logger.error("PlayTimeMonitor.onAVStarted:\n", exc_info=True)
@@ -88,6 +90,13 @@ class PlayTimeMonitor(Player):
     def onPlayBackError(self) -> None:
         self.onPlayBackStopped()
 
+    # noinspection PyShadowingNames,PyPep8Naming
+    def onPlayBackSeek(self, time: int, seekOffset: int) -> None:
+        if time/1000 > self._totaltime - 2:
+            # skipped beyond end of stream
+            self._playtime = self._totaltime
+            self.onPlayBackStopped()
+
     def wait_until_playing(self, timeout) -> bool:
         """Wait and return `True` when the player has started playing.
         Return `False` when `timeout` expires, or when playing has been aborted before
@@ -101,7 +110,7 @@ class PlayTimeMonitor(Player):
             if self.monitor.waitForAbort(0.2):
                 logger.debug("wait_until_playing ended: abort requested")
                 return False
-        return not self._status is PlayState.STOPPED
+        return self._status is not PlayState.STOPPED
 
     def monitor_progress(self) -> None:
         """Wait while the player is playing and return when playing the file has stopped.
@@ -126,8 +135,8 @@ class PlayTimeMonitor(Player):
     def initialise(self):
         """Initialise play state reports.
 
-        Create an instance ID and post a 'open' event. Subsequent events are to use the
-        same instance ID. So if posting fails it's no use going on monitoring and post
+        Create an instance ID and post an 'open' event. Subsequent events are to use the
+        same instance ID. So, if posting fails it's no use going on monitoring and post
         other events.
 
         """
@@ -204,7 +213,6 @@ class PlayTimeMonitor(Player):
                 'seekButtonInteract': 0}
         self._handle_event(data, 'seek')
 
-
     def _post_event_stop(self):
         """Stop event. Only seen on mobile app. Currently not used."""
         self._event_seq_nr += 1
@@ -219,7 +227,7 @@ class PlayTimeMonitor(Player):
         }
         fetch.web_request('post', EVT_URL, data=data)
 
-    def _handle_event(self, data:dict, evt_type:str):
+    def _handle_event(self, data: dict, evt_type: str):
         self._event_seq_nr += 1
         post_data = {
             '_v': '1.2.2',

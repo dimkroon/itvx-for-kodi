@@ -165,6 +165,7 @@ def _create_cookiejar():
 
     except (FileNotFoundError, pickle.UnpicklingError):
         cj = set_default_cookies(PersistentCookieJar(cookie_file))
+        cj.cassie_converted = True
         logger.info("Created new cookiejar")
     return cj
 
@@ -268,7 +269,7 @@ def web_request(method, url, headers=None, data=None, **kwargs):
         if 400 <= e.response.status_code < 500:
             # noinspection PyBroadException
             try:
-                resp_data = resp.json()
+                resp_data = json.loads(resp.content.decode('utf8'))
             except:
                 # Intentional broad exception as requests can raise various types of errors
                 # depending on python, etc.
@@ -302,13 +303,13 @@ def post_json(url, data, headers=None, **kwargs):
         dflt_headers.update(headers)
     resp = web_request('POST', url, dflt_headers, data, **kwargs)
     try:
-        return resp.json()
+        return json.loads(resp.content.decode('utf8'))
     except json.JSONDecodeError:
-        raise FetchError(Script.localize(30920))
+        raise ParseError(Script.localize(30920))
 
 
 def get_json(url, headers=None, **kwargs):
-    """Make a GET reguest and expect JSON data back."""
+    """Make a GET request and expect JSON data back."""
     dflt_headers = {'Accept': 'application/json'}
     if headers:
         dflt_headers.update(headers)
@@ -316,9 +317,9 @@ def get_json(url, headers=None, **kwargs):
     if resp.status_code == 204:     # No Content
         return None
     try:
-        return resp.json()
+        return json.loads(resp.content.decode('utf8'))
     except json.JSONDecodeError:
-        raise FetchError(Script.localize(30920))
+        raise ParseError(Script.localize(30920))
 
 
 def put_json(url, data, headers=None, **kwargs):
@@ -337,9 +338,9 @@ def delete_json(url, data, headers=None, **kwargs):
     if resp.status_code == 204:     # No Content
         return None
     try:
-        return resp.json()
+        return json.loads(resp.content.decode('utf8'))
     except json.JSONDecodeError:
-        raise FetchError(Script.localize(30920))
+        raise ParseError(Script.localize(30920))
 
 
 def get_document(url, headers=None, **kwargs):
