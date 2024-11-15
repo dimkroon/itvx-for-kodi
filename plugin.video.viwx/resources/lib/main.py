@@ -603,12 +603,12 @@ def play_vod(plugin, playlist_url, set_resume_point=False, has_ad=False, skip_in
         if set_resume_point:
             resume_time = itvx.get_resume_point(production_id)
             logger.info("Resume from '%s'.", resume_time)
-        elif (skip_intro or utils.addon_info.addon.getSettingBool('skip_intro')) and utils.kodi_resumes() is False:
-            if intro:
+
+        elif intro and utils.kodi_resumes() is False:
+            skip = utils.addon_info.addon.getSettingInt('skip_intro')
+            if skip == 1 or (skip == 2 and kodi_utils.ask_skip_intro(intro) is True):
                 resume_time = intro
                 logger.info("Skipping intro of '%s' seconds.", resume_time)
-            else:
-                logger.info("Cannot skip intro: no intro data available.")
 
         if resume_time:
             list_item.setProperties({
