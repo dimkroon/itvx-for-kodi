@@ -34,6 +34,7 @@ TXT_TRY_AGAIN = 30618
 TXT_RESUME_FROM = 30619
 TXT_PLAY_FROM_START = 30620
 TXT_LOGIN_NOW = 30621
+TXT_ASK_SKIP_INTRO = 30623
 
 BTN_TXT_OK = 30790
 BTN_TXT_CANCEL = 30791
@@ -97,6 +98,13 @@ def ask_log_handler(default):
     except IndexError:
         # default value is not necessarily a valid index.
         return result, ''
+
+
+def ask_skip_intro(intro_len):
+    return xbmcgui.Dialog().yesno(
+        addon_info.name,
+        Script.localize(TXT_ASK_SKIP_INTRO).format(intro_len),
+        autoclose=10000)
 
 
 def msg_dlg(msg, title=None, **kwargs):

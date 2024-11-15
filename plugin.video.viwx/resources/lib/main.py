@@ -560,7 +560,7 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None):
 
 
 @Resolver.register
-def play_stream_catchup(plugin, url, name, set_resume_point=False, skip_intro=False):
+def play_stream_catchup(plugin, url, name, set_resume_point=False):
 
     logger.info('play catchup stream - %s  url=%s', name, url)
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
@@ -592,12 +592,12 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False, skip_intro=Fa
         if set_resume_point:
             resume_time = itvx.get_resume_point(production_id)
             logger.info("Resume from '%s'.", resume_time)
-        elif (skip_intro or utils.addon_info.addon.getSettingBool('skip_intro')) and utils.kodi_resumes() is False:
-            if intro:
+
+        elif intro and utils.kodi_resumes() is False:
+            skip = utils.addon_info.addon.getSettingInt('skip_intro')
+            if skip == 1 or (skip == 2 and kodi_utils.ask_skip_intro(intro) is True):
                 resume_time = intro
                 logger.info("Skipping intro of '%s' seconds.", resume_time)
-            else:
-                logger.info("Cannot skip intro: no intro data available.")
 
         if resume_time:
             list_item.setProperties({

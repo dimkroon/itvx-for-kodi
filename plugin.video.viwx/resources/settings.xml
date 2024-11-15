@@ -29,10 +29,17 @@
 					<default>false</default>
 					<control type="toggle"/>
 				</setting>
-				<setting id="skip_intro" label="30114" type="boolean" help="30314">
+				<setting id="skip_intro" label="30114" type="integer" help="30314">
 					<level>0</level>
-					<default>false</default>
-					<control type="toggle"/>
+					<default>1</default>
+					<constraints>
+						<options>
+							<option label="30115">0</option>
+							<option label="30116">1</option>
+							<option label="30117">2</option>
+						</options>
+					</constraints>
+					<control type="spinner" format="string"/>
 				</setting>
 				<setting id="hide_paid" label="30104" type="boolean" help="30304">
 					<level>0</level>

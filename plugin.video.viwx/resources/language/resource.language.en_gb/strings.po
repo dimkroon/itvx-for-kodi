@@ -66,9 +66,20 @@ msgid "Log level"
 msgstr ""
 
 msgctxt "#30114"
-msgid "Skip intro whenever available"
+msgid "Skip intro"
 msgstr ""
 
+msgctxt "#30115"
+msgid "Never"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Whenever available"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Ask when available"
+msgstr ""
 
 msgctxt "#30120"
 msgid "Live channels"
@@ -148,10 +159,9 @@ msgid "When a category or collection has more items than specified here, items w
 msgstr ""
 
 msgctxt "#30314"
-msgid "Skip opening titles and recap whenever possible.\n"
-"If disabled you can always use the context menu to skip the intro of the selected episode."
+msgid "Skip recap and/or opening titles.\n"
+"Not always available. Sometimes even varies between episodes of the same programme."
 msgstr ""
-
 
 msgctxt "#30311"
 msgid "Target of viwX logging.\n"
@@ -291,6 +301,11 @@ msgstr ""
 msgctxt "#30628"
 msgid "Import succeeded, but the token was rejected by ITV.\nEnsure to copy all data exactly as is.\nEnsure the data is not older than 6 months."
 msgstr ""
+
+msgctxt "#30629"
+msgid "Skip intro of {} seconds?"
+msgstr ""
+
 
 # Generic button texts
 msgctxt "#30790"
