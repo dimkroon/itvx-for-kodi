@@ -18,6 +18,8 @@ from codequick import Script
 from . import utils
 from . import kodi_utils
 from .errors import ParseError
+from .kodi_utils import set_playcount
+
 
 TXT_PLAY_FROM_START = 30620
 TXT_VIEW_ALL_EPISODES = 30803
@@ -588,7 +590,7 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False, watched
                  'year': title_data.get('productionYear')},
         'params': {'url': playlist_url, 'name': title}
     }
-    from resources.lib.kodi_utils import set_playcount
+
     if watched_status.get(title_data.get('episodeId'), 0) > 0.95:
         title_obj['info']['playcount'] = 1
         set_playcount(title_obj['params'])
