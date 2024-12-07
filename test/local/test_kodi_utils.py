@@ -7,11 +7,13 @@
 from test.support import fixtures
 fixtures.global_setup()
 
+import json
 import unittest
 from unittest.mock import patch
 
 from resources.lib import kodi_utils
 from resources.lib import utils
+from support.object_checks import has_keys
 
 
 class TestKodiUtils(unittest.TestCase):
@@ -68,6 +70,34 @@ class TestKodiUtils(unittest.TestCase):
         with patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError):
             tz = kodi_utils.local_timezone()
             self.assertIsInstance(tz, utils.ZoneInfo)
+
+    def test_create_callback_url(self):
+        """Check if `create_callback_url` returns exactly the same url as codequick.support.build_path """
+        from codequick.support import build_path
+        from resources.lib import main
+        # With params
+        cb_kwargs = {'url': 'some episode', 'name': 'episode title'}
+        cc_url = build_path(main.play_stream_catchup, **cb_kwargs)
+        ku_url = kodi_utils.create_callback_url('play_stream_catchup', **cb_kwargs)
+        self.assertEqual(cc_url, ku_url)
+        # Without params
+        cc_url = build_path(main.play_stream_catchup)
+        ku_url = kodi_utils.create_callback_url('play_stream_catchup')
+        self.assertEqual(cc_url, ku_url)
+
+    def test_set_playcount(self):
+        with patch("xbmc.executeJSONRPC",
+                   return_value='{"id": 1, "jsonrpc": "2.0", "result": {"value": "ok"}}') as p_rpc:
+            self.assertIsNone(kodi_utils.set_playcount({'url': 'some episode', 'name': 'episode title'}))
+        p_rpc.assert_called_once()
+        json_str = p_rpc.call_args.args[0]
+        data = json.loads(json_str)
+        has_keys(data, 'jsonrpc', 'method', 'params', 'id')
+        self.assertEqual('Files.SetFileDetails', data['method'])
+        self.assertEqual('video', data['params']['media'])
+        self.assertEqual(1, data['params']['playcount'])
+        self.assertTrue(data['params']['file'].startswith('plugin://'))
+        self.assertTrue('?_pickle_=' in data['params']['file'])
 
 
 @patch('xbmcgui.Dialog.ok')
