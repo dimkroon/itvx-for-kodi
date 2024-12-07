@@ -10,9 +10,11 @@ import logging
 
 import xbmc
 import xbmcgui
+import pickle
+from binascii import b2a_hex
 
 from codequick import Script, utils
-from codequick.support import addon_data, logger_id
+from codequick.support import addon_data, logger_id, PICKLE_PROTOCOL
 
 from . utils import addon_info, ZoneInfo
 
@@ -146,11 +148,38 @@ def local_timezone() -> ZoneInfo:
     return _local_timezone
 
 
+def create_callback_url(callback: str, path: str = 'resources/lib/main', **params):
+    """A stripped down version of codequick.support.build_path().
+
+    Intended for use in `set_playcount()` and alike to build a callback url exactly the same as
+    codequick does, but without having to create intermediate objects like CallbackRef or Route,
+    and deal with other options and python versions we don't use anyway.
+
+    It just creates the url as quickly as possible. Doesn't do any checking on `callback` and
+    `path`, so better ensure that it doesn't start or end with a '/', and that callback is in fact
+    the name of a registered callback.
+
+    :param callback: Name of the callback function.
+    :param path: Optional, full path to the module where `callback` is located, defaults to `resources/lib/main`.
+    :param params: Optional keyword arguments to be passed to the callback.
+
+    """
+    if params:
+        param_str = '?_pickle_=' + b2a_hex(pickle.dumps(params, PICKLE_PROTOCOL)).decode('ascii')
+    else:
+        param_str = ''
+
+    cb_url = '/'.join(('plugin:/',
+                       addon_info.id,
+                       path,
+                       callback,
+                       param_str))
+    return cb_url
+
+
 def set_playcount(params):
-    from codequick.support import build_path
-    from resources.lib.main import play_stream_catchup
-    full_url = build_path(play_stream_catchup, _title_=params['name'], **params)
-    json_str = '{{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {{"file":"{}", "media": "video", "playcount": 1}}, "id": 1}}'.format(
-        full_url)
+    full_url = create_callback_url('play_stream_catchup', _title_=params['name'], **params)
+    json_str = '{{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {{"file":"{}", '\
+               '"media": "video", "playcount": 1}}, "id": 1}}'.format(full_url)
     response = xbmc.executeJSONRPC(json_str)
     logger.debug("set_playcount JSONRPC response: %s", response)
