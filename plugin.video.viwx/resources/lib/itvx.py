@@ -606,7 +606,20 @@ def sync_last_watched(prefer_bsl):
     """Sync the status of the changed last watched programmes to Kodi's database.
 
     """
+    logger.debug("*** Sync watched state started ***")
+    strt_t = time.monotonic()
+
     from concurrent import futures
+    from codequick.storage import PersistentList
+
+    # Extend the list of programmeIds to check with those that are no
+    # longer on the list since last used.
+    with PersistentList('watching.cache', 2592000) as prev_watching:
+        finished_watching = [progr_id for progr_id in prev_watching if progr_id not in programme_ids]
+        prev_watching.clear()
+        prev_watching.extend(programme_ids)
+
+    programme_ids.extend(finished_watching)
 
     log = logging.getLogger(logger.name + '.sync_watched_state')
     start_t = time.monotonic()
@@ -653,6 +666,8 @@ def sync_last_watched(prefer_bsl):
         log.error("Unexpected failure\n", exc_info=True)
     finally:
         log.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - start_t)
+
+    logger.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - strt_t)
 
 
 def get_resume_point(production_id: str):
