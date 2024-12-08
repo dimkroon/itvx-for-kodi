@@ -575,13 +575,28 @@ def sync_watched_state(programme_ids: list):
     and sync watched status to Kodi's database.
 
     """
+    logger.debug("*** Sync watched state started ***")
+    strt_t = time.monotonic()
+
     from concurrent import futures
+    from codequick.storage import PersistentList
+
+    # Extend the list of programmeIds to check with those that are no
+    # longer on the list since last used.
+    with PersistentList('watching.cache', 2592000) as prev_watching:
+        finished_watching = [progr_id for progr_id in prev_watching if progr_id not in programme_ids]
+        prev_watching.clear()
+        prev_watching.extend(programme_ids)
+
+    programme_ids.extend(finished_watching)
 
     with futures.ThreadPoolExecutor(max_workers=16) as executor:
         # Due to the default cache time of episodes() syncing is effectively limited to once every 0.5 hrs.
         future_objects = [executor.submit(episodes, '/watch/undefined/' + pgm_id.replace('_', 'a'),  use_cache=True)
                           for pgm_id in programme_ids]
         futures.wait(future_objects)
+
+    logger.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - strt_t)
 
 
 def get_resume_point(production_id: str):
