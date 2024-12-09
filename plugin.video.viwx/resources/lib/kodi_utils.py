@@ -182,4 +182,4 @@ def set_playcount(params):
     json_str = '{{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {{"file":"{}", '\
                '"media": "video", "playcount": 1}}, "id": 1}}'.format(full_url)
     response = xbmc.executeJSONRPC(json_str)
-    logger.debug("set_playcount JSONRPC response: %s", response)
+    logger.debug("set_playcount of '%s', JSONRPC response: %s", params.get('url'), response)
