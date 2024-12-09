@@ -9,6 +9,7 @@ import logging
 import typing
 import string
 import sys
+from time import monotonic
 
 import requests
 import xbmc
@@ -427,13 +428,15 @@ def list_productions(plugin, url, series_idx=None):
         opened_series = list(series_map.values())[0]
     else:
         opened_series = series_map.get(series_idx, None)
-
+    t_t = 0
     if opened_series:
         # list episodes of a series
         plugin.content_type = 'episode'
         episodes = opened_series['episodes']
         for episode in episodes:
+            t_s = monotonic()
             li = Listitem.from_dict(play_stream_catchup, **episode)
+            t_t += monotonic() - t_s
             date = episode['info'].get('date')
             if date:
                 try:
@@ -441,6 +444,7 @@ def list_productions(plugin, url, series_idx=None):
                 except ValueError:
                     li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
             yield li
+        logger.debug("*** Spent %s seconds creating ListItems from dict ***", t_t)
     else:
         # List folders of all series
         plugin.content_type = 'season'
