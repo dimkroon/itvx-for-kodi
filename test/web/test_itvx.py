@@ -104,6 +104,9 @@ class TestItvX(unittest.TestCase):
         items = itvx.get_last_watched()
         pass
 
+    def test_sync_watched_state(self):
+        itvx.sync_watched_state(['1_7842'])
+
     def test_because_you_watched(self):
         uid = itv_account.itv_session().user_id
         byw_list = itvx.because_you_watched(uid)
