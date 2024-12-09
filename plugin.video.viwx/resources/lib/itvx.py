@@ -359,33 +359,24 @@ def episodes_progress(programme_id, progress_cache=None):
         progress_data = None
     if progress_data is None:
         progress_data = []
-    itv_progress = {item['episodeId']: item['percentageWatched'] for item in progress_data}
+    progr_map = {item['episodeId']: item['percentageWatched'] for item in progress_data}
 
-    # Open the persistent cache if the caller hasn't passed one and find the episodes that have changed.
-    if progress_cache is None:
-        log.debug("Opening cached progress...")
-        cached_pgrss = PersistentDict('progress.cache', 31 * 86400)
-    else:
-        cached_pgrss = progress_cache
+    # Open the persistent cache if no cached dict is passed and find the episodes that have changed.
+    cached_progress = progress_cache if progress_cache is not None else PersistentDict('progress.cache', 31 * 86400)
     try:
-        old_progress = cached_pgrss.get(programme_id)
+        old_progress = cached_progress.get(programme_id)
         if old_progress:
-            log.debug("Cached progress has %s items", len(old_progress))
-            new_items = {episode_id: progress for episode_id, progress in itv_progress.items()
+            new_items = {episode_id: progress for episode_id, progress in progr_map.items()
                          if old_progress.get(episode_id) != progress}
-            log.debug("%s new items", len(new_items))
         else:
-            log.debug("No progress cached")
-            new_items = itv_progress.copy()
-        cached_pgrss[programme_id] = itv_progress
-        log.debug("%s episodes of %s have changed", len(new_items), len(itv_progress))
-    except:
-        log.error("Failed to get watched status:\n", exc_info=True)
-        return {}
+            new_items = progr_map
+        cached_progress[programme_id] = progr_map
     finally:
         # Only save and close if the cache was opened here.
         if progress_cache is None:
-            cached_pgrss.close()
+            cached_progress.close()
+
+    cache.set_item(url, new_items, 300)
     return new_items
 
 
@@ -606,68 +597,43 @@ def sync_last_watched(prefer_bsl):
     """Sync the status of the changed last watched programmes to Kodi's database.
 
     """
-    logger.debug("*** Sync watched state started ***")
-    strt_t = time.monotonic()
-
-    from concurrent import futures
-    from codequick.storage import PersistentList
-
-    # Extend the list of programmeIds to check with those that are no
-    # longer on the list since last used.
-    with PersistentList('watching.cache', 2592000) as prev_watching:
-        finished_watching = [progr_id for progr_id in prev_watching if progr_id not in programme_ids]
-        prev_watching.clear()
-        prev_watching.extend(programme_ids)
-
-    programme_ids.extend(finished_watching)
-
-    log = logging.getLogger(logger.name + '.sync_watched_state')
-    start_t = time.monotonic()
-    log.debug("*** Sync watched state started ***")
     try:
-        lw_data = _get_watching()
-        if not lw_data:
-            log.info("Aborted; no last watched programmes.")
-            return
-        cur_watching = {item['programmeId']: (item['episodeId'], item['percentageWatched']) for item in lw_data}
+        logger.debug("*** Sync watched state started ***")
+        strt_t = time.monotonic()
 
-        with PersistentDict('watching.cache') as prev_watching:
-            # Get the programmeIds of that have changed since the last sync
-            programme_ids = {prog_id for prog_id, status in cur_watching.items()
-                             if prev_watching.get(prog_id) != status}
-            # Get the Ids of programmes that have been fully watched.
-            finished_watching = {progr_id for progr_id in prev_watching.keys() if progr_id not in cur_watching}
-            log.info("Syncing %s changed programmes and %s finished programmes",
-                     len(programme_ids), len(finished_watching))
+        from concurrent import futures
+
+        # Extend the list of programmeIds with those that are no longer on the list.
+        # These are either too old and have been removed by ITV, or the last episode
+        # of a programme has been fully watched since the last time it was checked.
+        with PersistentList('watching.cache', 32 * 86400) as prev_watching:
+            finished_watching = [progr_id for progr_id in prev_watching if progr_id not in programme_ids]
+            logger.info("[sync_watched_state] Added %s finished programmes", len(finished_watching))
             prev_watching.clear()
-            prev_watching.update(cur_watching)
-        programme_ids.update(finished_watching)
-        if not programme_ids:
-            log.info("No changes")
-            return
+            prev_watching.extend(programme_ids)
+        programme_ids.extend(finished_watching)
 
-        # Get the info of the programmess and their progress.
+        # Check which programmes have episodes that have actually changed watched status. This will make
+        # web requests to obtain progress of all programmes, but the next step will use the cached status.
         with PersistentDict('progress.cache', 32 * 86400) as cached_progress:
             with futures.ThreadPoolExecutor(max_workers=16) as executor:
-                progress_results = [executor.submit(episodes_progress, pgm_id.replace('/', '_'), cached_progress)
-                                    for pgm_id in programme_ids]
-                programme_results = [executor.submit(get_page_data, '/watch/undefined/' + pgm_id.replace('/', 'a'), 300)
-                                     for pgm_id in programme_ids]
-                futures.wait(progress_results + programme_results)
+                pending_results = [executor.submit(episodes_progress, pgm_id, cached_progress)
+                                   for pgm_id in programme_ids]
+                futures.wait(pending_results)
+            watched_pgms = [pgm_id for pgm_id, progress in zip(programme_ids, (r.result() for r in pending_results))
+                            if progress]
 
-        for pgm, progrss in zip((r.result() for r in programme_results),
-                                (r.result() for r in progress_results)):
-            log.info("Syncing %s episodes of programme %s", len(progrss), pgm['programme'].get('programmeId'))
-            for series in pgm['seriesList']:
-                for title in series['titles']:
-                    if title.get('episodeId') in progrss:
-                        parsex.parse_episode_title(title, prefer_bsl=prefer_bsl, watched_status=progrss)
+        # Request the episode listing(s) to update the watched status.
+        logger.info("[sync_watched_state] Syncing %s programmes", len(watched_pgms))
+        with futures.ThreadPoolExecutor(max_workers=16) as executor:
+            # Due to the default cache time of episodes() syncing is effectively limited to once every 0.5 hrs.
+            future_objects = [executor.submit(episodes, '/watch/undefined/' + pgm_id.replace('_', 'a'),  use_cache=False)
+                              for pgm_id in watched_pgms]
+            futures.wait(future_objects)
+
+        logger.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - strt_t)
     except:
-        log.error("Unexpected failure\n", exc_info=True)
-    finally:
-        log.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - start_t)
-
-    logger.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - strt_t)
+        logger.error("[sync_watched_state] Unexpected failure\n", exc_info=True)
 
 
 def get_resume_point(production_id: str):
