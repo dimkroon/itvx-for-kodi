@@ -198,10 +198,9 @@ def iso_duration_2_seconds(iso_str: str) -> int | None:
                 hours, minutes, seconds = match.groups(default=0)
                 return int(float(hours) * 3600 + float(minutes) * 60 + float(seconds))
     except (ValueError, AttributeError, TypeError):
-        pass
-
-    logger.warning("Invalid ISO8601 duration: '%s'", iso_str)
-    return None
+        if iso_str is not None:
+            logger.warning("Invalid ISO8601 duration: '%s'", iso_str)
+        return None
 
 
 def reformat_date(date_string: str, old_format: str, new_format: str) -> str:
