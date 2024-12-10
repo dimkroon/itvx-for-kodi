@@ -186,3 +186,25 @@ def set_playcount(params):
                '"media": "video", "playcount": 1}}, "id": 1}}'.format(full_url)
     response = xbmc.executeJSONRPC(json_str)
     logger.debug("set_playcount JSONRPC response: %s", response)
+
+
+def create_listitem(callback, label, **data):
+    path = create_callback_url(callback.__name__, **data.get('params', {}))
+    info = data.get('info', {})
+    label = label or info.get('title', '')
+    cb_route = callback.route
+    li = xbmcgui.ListItem(label, offscreen=True)
+    art = clean_dict(data, 'art')
+    li.setArt(art)
+    info_labels = clean_dict(data, 'info')
+    li.setInfo('video', info_labels)
+    props = clean_dict(data, 'properties')
+    props['IsPlayable'] = str(cb_route.is_playable).lower()
+    li.setProperties(props)
+    is_folder = cb_route.is_folder
+    li.setIsFolder(cb_route.is_folder)
+    return path, li, is_folder
+
+
+def clean_dict(raw_dict, key):
+    return {k:v for k, v in raw_dict.get(key, {}).items() if v is not None}
