@@ -429,22 +429,38 @@ def list_productions(plugin, url, series_idx=None):
     else:
         opened_series = series_map.get(series_idx, None)
     t_t = 0
+    t_t2 = 0
+    t_t3 = 0
     if opened_series:
+        listitems = []
         # list episodes of a series
         plugin.content_type = 'episode'
         episodes = opened_series['episodes']
         for episode in episodes:
-            t_s = monotonic()
-            li = Listitem.from_dict(play_stream_catchup, **episode)
-            t_t += monotonic() - t_s
-            date = episode['info'].get('date')
-            if date:
-                try:
-                    li.info.date(date, '%Y-%m-%dT%H:%M:%S.%fZ')
-                except ValueError:
-                    li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
-            yield li
-        logger.debug("*** Spent %s seconds creating ListItems from dict ***", t_t)
+            # t_s = monotonic()
+            # li = Listitem.from_dict(play_stream_catchup, **episode)
+            # t_t += monotonic() - t_s
+            t_s2 = monotonic()
+            li2 = kodi_utils.create_listitem(play_stream_catchup, **episode)
+            t_t2 += monotonic() - t_s2
+            t_s3 = monotonic()
+            li3 = Listitem()
+            t_t3 += monotonic() - t_s3
+            # date = episode['info'].get('date')
+            # if date:
+            #     try:
+            #         li.info.date(date, '%Y-%m-%dT%H:%M:%S.%fZ')
+            #     except ValueError:
+            #         li.info.date(date, '%Y-%m-%dT%H:%M:%SZ')
+            # yield li
+            listitems.append(li2)
+        logger.critical("*** Spent %s seconds creating Codequick ListItems from dict ***", t_t)
+        logger.critical("*** Spent %s seconds creating Kodi ListItems from dict ***", t_t2)
+        logger.critical("*** Spent %s seconds creating empty Codequick ListItems ***", t_t3)
+        handle = int(sys.argv[1])
+        xbmcplugin.addDirectoryItems(handle, listitems)
+        xbmcplugin.endOfDirectory(handle, True)
+        return
     else:
         # List folders of all series
         plugin.content_type = 'season'
