@@ -357,17 +357,23 @@ def episodes_progress(programme_id, progress_cache=None):
     if progress_data is None:
         progress_data = []
     progr_map = {item['episodeId']: item['percentageWatched'] for item in progress_data}
-
+    logger.debug("opening cached progress...")
     # Open the persistent cache if no cached dict is passed and find the episodes that have changed.
     cached_progress = progress_cache if progress_cache is not None else PersistentDict('progress.cache', 31 * 86400)
     try:
         old_progress = cached_progress.get(programme_id)
+        logger.debug("chached progress has %s items", len(old_progress))
         if old_progress:
             new_items = {episode_id: progress for episode_id, progress in progr_map.items()
                          if old_progress.get(episode_id) != progress}
+            logger.debug("%s new items", len(new_items))
         else:
             new_items = progr_map
         cached_progress[programme_id] = progr_map
+        logger.debug("[episode_progress] Progress of programme %s: %s episodes of %s have changed",
+                     programme_id, len(new_items), len(progr_map))
+    except:
+        logger.error("Failed to get watched status of %s,\n", programme_id, exc_info=True)
     finally:
         # Only save and close if the cache was opened here.
         if progress_cache is None:
