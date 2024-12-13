@@ -193,16 +193,23 @@ def create_listitem(callback, label, **data):
     info = data.get('info', {})
     label = label or info.get('title', '')
     cb_route = callback.route
+    is_folder = cb_route.is_folder
     li = xbmcgui.ListItem(label, offscreen=True)
     art = clean_dict(data, 'art')
-    li.setArt(art)
+    art = {}
+    art['icon'] = "DefaultFolder.png" # if is_folder else "DefaultVideo.png"
+    # li.setArt(art)
     info_labels = clean_dict(data, 'info')
+    info_labels['mediatype'] = 'video'
     li.setInfo('video', info_labels)
     props = clean_dict(data, 'properties')
-    props['IsPlayable'] = str(cb_route.is_playable).lower()
+    is_playable = str(cb_route.is_playable).lower()
+    # logger.debug("Listitem IsPlayable = %s", is_playable)
+    props['IsPlayable'] = str(is_playable).lower()
+    if is_playable:
+        li.setPath(path)
     li.setProperties(props)
-    is_folder = cb_route.is_folder
-    li.setIsFolder(cb_route.is_folder)
+    li.setIsFolder(is_folder)
     return path, li, is_folder
 
 
