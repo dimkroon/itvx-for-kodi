@@ -458,9 +458,10 @@ def list_productions(plugin, url, series_idx=None):
         logger.critical("*** Spent %s seconds creating Kodi ListItems from dict ***", t_t2)
         logger.critical("*** Spent %s seconds creating empty Codequick ListItems ***", t_t3)
         handle = int(sys.argv[1])
+        logger.info("sys[argv0] = %s", sys.argv[0])
         xbmcplugin.addDirectoryItems(handle, listitems)
         xbmcplugin.endOfDirectory(handle, True)
-        return
+        sys.exit(0)
     else:
         # List folders of all series
         plugin.content_type = 'season'
