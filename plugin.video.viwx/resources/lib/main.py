@@ -599,6 +599,9 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
                     'TotalTime': '7200'
                 })
                 logger.info("Resume from %s", resume_time)
+        else:
+            logger.debug ("############ Startpercent")
+            list_item.setProperty('StartPercent', '50.0')
         return list_item
 
 
