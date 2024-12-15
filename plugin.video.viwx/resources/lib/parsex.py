@@ -657,13 +657,15 @@ def parse_last_watched_item(item, utc_now):
             'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
                                item['productionId'].replace('/', '_').replace('#', '.' )),
                        'name': progr_name,
-                       'set_resume_point': True},
+                       # 'set_resume_point': True
+                       },
             'properties': {
                 # This causes Kodi not to offer the standard resume dialog, so we can obtain
                 # resume time at the time of resolving the video url and play from there, or show
                 # a 'resume from' dialog.
-                'resumetime': '0',
-                'totaltime': 60
+                # 'resumetime': '300',
+                'totaltime': '3600',
+                'StartPercent' : '50'
             }
         }
     }
