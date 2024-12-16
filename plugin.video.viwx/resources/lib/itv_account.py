@@ -123,7 +123,7 @@ class ItvSession:
                     'sec-fetch-dest':       'empty',
                     'sec-fetch-mode':       'cors',
                     'sec-fetch-site':       'same-site',
-                    'priority':             'u=1',
+                    'priority':             'u=0',
                     'te':                   'trailers'
                 },
                 timeout=fetch.WEB_TIMEOUT
