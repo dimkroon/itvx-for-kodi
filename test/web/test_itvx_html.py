@@ -115,7 +115,8 @@ def check_programme(self, progr_data):
     has_keys(progr_data, 'title', 'image', 'longDescription', 'description',
              'encodedProgrammeId', 'titleSlug', 'tier', 'visuallySigned',
              obj_name=obj_name)
-    expect_keys(progr_data, 'categories', 'programmeId')
+    expect_keys(progr_data, 'programmeId')
+    misses_keys(progr_data, 'categories')
     # Only programme details pages (like episodes, specials, films) still have this field.
     # Its presence is specifically checked in their tests.
     expect_misses_keys(progr_data, 'imagePresets')
@@ -124,7 +125,8 @@ def check_programme(self, progr_data):
     self.assertTrue(is_not_empty(progr_data['longDescription'], str))
     self.assertTrue(is_not_empty(progr_data['description'], str))
     self.assertTrue(is_url(progr_data['image']))
-    self.assertTrue(is_not_empty(progr_data['categories'], list))
+    self.assertTrue(is_not_empty(progr_data['genres'], list))
+    has_keys(progr_data['genres'][0], 'id', 'name')
     self.assertTrue(is_not_empty(progr_data['titleSlug'], str))
     self.assertTrue(is_tier_info(progr_data['tier']))
     if 'numberOfAvailableSeries' in progr_data:
@@ -149,7 +151,7 @@ def check_series(self, series, parent_name):
 def check_title(self, title, parent_name):
     obj_name = '{}-title-{}'.format(parent_name, title['episodeTitle'])
     has_keys(title, 'accessibilityTags', 'audioDescribed', 'availabilityFrom', 'availabilityUntil', 'broadcastDateTime',
-             'categories', 'contentInfo', 'dateTime', 'description',
+             'genres', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
              'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
              'subtitled', 'audioDescribed',
@@ -164,12 +166,18 @@ def check_title(self, title, parent_name):
     self.assertTrue(is_iso_utc_time(title['availabilityFrom']))
     self.assertTrue(is_iso_utc_time(title['availabilityUntil']))
     self.assertTrue(is_iso_utc_time(title['broadcastDateTime']) or title['broadcastDateTime'] is None)
-    self.assertIsInstance(title['categories'], list)
+    self.assertTrue(is_not_empty(title['genres'], list))
+    has_keys(title['genres'][0], 'id', 'name')
     self.assertIsInstance(title['contentInfo'], str)        # can be empty in films, specials, or episodes in sections like 'latest episodes'.
-    self.assertTrue(is_iso_utc_time(title['dateTime']))
+    self.assertTrue(is_iso_utc_time(title['dateTime']) or title['dateTime'] is None)
     self.assertTrue(is_not_empty(title['description'], str))
-    self.assertTrue(is_not_empty(title['duration'], str))
-    self.assertFalse(title['duration'].startswith('P'))  # duration is not in iso format
+    self.assertTrue(is_not_empty(title['duration'], str) or title['duration'] is None)
+    if title['duration'] is not None:
+        self.assertFalse(title['duration'].startswith('P'))  # duration is not in iso format
+    if title['notFormattedDuration'] is None:
+        self.assertIsNone(title['duration'])
+    else:
+        self.assertTrue(title['notFormattedDuration'].startswith('PT'))
     self.assertTrue(is_encoded_episode_id(title['encodedEpisodeId']))
     self.assertTrue(is_not_empty(title['episodeTitle'], str) or title['episodeTitle'] is None)
     check_genres(self, title['genres'])
@@ -336,11 +344,11 @@ def check_item_type_brand(testcase, item, parent_name):
     has_keys(item, 'title', 'contentType', 'titleSlug', 'description', 'genres', 'dateTime', 'imageTemplate',
              'numberOfAvailableSeries', 'series', 'programmeId', 'encodedProgrammeId', 'contentInfo', 'isPaid',
              obj_name=name)
-    expect_keys(item, 'partnership', 'contentOwner','categories', 'channel', 'ccid', obj_name=name)
+    expect_keys(item, 'partnership', 'contentOwner', 'channel', 'ccid', obj_name=name)
+    misses_keys(item, 'categories')
     testcase.assertTrue(is_not_empty(item['title'], str))
     testcase.assertTrue(is_not_empty(item['titleSlug'], str))
     testcase.assertTrue(is_not_empty(item['description'], str))
-    testcase.assertTrue(is_not_empty(item['categories'], list))
     check_genres(testcase, item['genres'], name)
     testcase.assertTrue(item['dateTime'] is None or is_iso_utc_time(item['dateTime']))
     testcase.assertTrue(is_url(item['imageTemplate']))
