@@ -6,6 +6,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
+import sys
 from typing import Dict, List, Tuple
 
 from unittest.mock import patch
@@ -100,6 +101,10 @@ def set_credentials(session=None) -> None:
     credentials_set = s.refresh()
     if credentials_set is False:
         credentials_set = s.login(account_login.UNAME, account_login.PASSW)
+        if not credentials_set:
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
 
 
 def setup_web_test(*args):
