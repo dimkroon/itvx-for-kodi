@@ -10,6 +10,7 @@ import os
 import json
 import logging
 
+from codequick import Script
 from codequick.support import logger_id
 
 from . import utils
@@ -20,6 +21,9 @@ from .errors import *
 
 logger = logging.getLogger(logger_id + '.account')
 SESS_DATA_VERS = 2
+
+TXT_INVALID_EMAIL_OR_PASSW = 30616
+TXT_LOGIN_FORBIDDEN = 30617
 
 
 class ItvSession:
@@ -141,8 +145,8 @@ class ItvSession:
             status_code = e.response.status_code
             if status_code in (400, 403):
                 msg = {
-                    400: 'Invalid username or password',
-                    403: 'Forbidden\nIf this error persists wait a few hours before trying again.'
+                    400: Script.localize(TXT_INVALID_EMAIL_OR_PASSW),
+                    403: Script.localize(TXT_LOGIN_FORBIDDEN)
                 }.get(status_code, 'Sign in failed.')
                 logger.info("Sign in failed: %r: %r", e, e.response.content)
                 raise AuthenticationError(msg) from None
