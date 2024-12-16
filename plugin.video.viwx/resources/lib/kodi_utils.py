@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2024 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -30,8 +30,6 @@ MSG_LOGGED_OUT_SUCCESS = 30613
 
 TXT_USERNAME = 30614
 TXT_PASSWORD = 30615
-TXT_INVALID_USERNAME = 30616
-TXT_INVALID_PASSWORD = 30617
 TXT_TRY_AGAIN = 30618
 TXT_RESUME_FROM = 30619
 TXT_PLAY_FROM_START = 30620
@@ -87,11 +85,6 @@ def show_login_result(success: bool, message: str = None):
 
 def ask_login_retry(reason):
     """Show a message that login has failed and ask whether to try again."""
-
-    if reason.lower() == 'invalid username':
-        reason = Script.localize(TXT_INVALID_USERNAME)
-    elif reason.lower() == 'invalid password':
-        reason = Script.localize(TXT_INVALID_PASSWORD)
 
     msg = '\n\n'.join((reason, Script.localize(TXT_TRY_AGAIN)))
 
