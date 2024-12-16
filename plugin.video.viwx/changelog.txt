@@ -1,3 +1,7 @@
+v 1.5.2
+Fixes:
+- Login failed with error 'Forbidden' even though email and password were correct.
+
 v 1.5.1
 Fixes:
 - News clips failed to play with KeyError 'Brand'.
