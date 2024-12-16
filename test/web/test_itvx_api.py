@@ -342,8 +342,10 @@ class LastWatched(unittest.TestCase):
                 # Some episodes' series and/or episode number are None, e.g. episodes of The Chase
                 object_checks.has_keys(item, 'seriesNumber', 'episodeNumber')
 
-            if item['contentType'] in ('FILM', 'SPECIAL'):
+            if item['contentType'] == 'FILM':
                 self.assertIsNotNone(utils.iso_duration_2_seconds(item['duration']))
+            elif item['contentType'] == 'SPECIAL':
+                self.assertTrue(utils.iso_duration_2_seconds(item['duration']) or item['duration'] is None)
             else:
                 self.assertIsNone(item['duration'])
 
@@ -699,8 +701,8 @@ class Playlists(unittest.TestCase):
 
     def test_get_playlist_premium_catchup(self):
         """Request a premium stream without a premium account."""
-        # 2Point4 Children S1E1
-        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_0848_0006.001')
+        # Judge John Deed S1E1
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_5323_0001.001')
         object_checks.has_keys(resp, 'Message', 'TransactionId')
         self.assertTrue('message: User does not have entitlements' in resp['Message'])
 

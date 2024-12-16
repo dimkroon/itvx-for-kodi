@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viwx" name="viwX" version="1.5.1" provider-name="Dimitri Kroon">
+<addon id="plugin.video.viwx" name="viwX" version="1.5.2" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.5"/>
@@ -30,18 +30,9 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
-[B]v1.5.1[/B]
+[B]v1.5.2[/B]
 [B]Fixes:[/B]
-* News clips failed to play with KeyError 'Brand'.
-* Error messages when opening an empty 'Continue Watching' list.
-* Stream-only FAST channels stalled in advert breaks.
-* Programmes are now reported as having been fully played when the user has skipped to the end while playing.
-* Some programmes were missing en IPTV EPG.
-* Search now requests the same number of items as a generic web browser does.
-
-[B]New Features:[/B]
-* Paid items are excluded from search results based on the setting 'Hide premium content'.
-* On most live channels it's now possible to seek back up to 1 hour from the moment the channel is started.
+- Login failed with error 'Forbidden' even though email and password were correct.
     </news>
     <reuselanguageinvoker>true</reuselanguageinvoker>
   </extension>

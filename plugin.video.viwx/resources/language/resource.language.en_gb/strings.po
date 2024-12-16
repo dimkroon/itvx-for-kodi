@@ -181,7 +181,7 @@ msgid "Signed out!"
 msgstr ""
 
 msgctxt "#30614"
-msgid "User name"
+msgid "Email"
 msgstr ""
 
 msgctxt "#30615"
@@ -189,11 +189,11 @@ msgid "Password"
 msgstr ""
 
 msgctxt "#30616"
-msgid "Invalid username"
+msgid "Invalid email or password"
 msgstr ""
 
 msgctxt "#30617"
-msgid "Invalid password"
+msgid "Forbidden\nIf this error persists wait a few hours before trying again."
 msgstr ""
 
 msgctxt "#30618"
