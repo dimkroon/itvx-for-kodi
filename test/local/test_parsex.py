@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -62,6 +62,14 @@ class Generic(unittest.TestCase):
         self.assertEqual('title', parsex.sort_title('The Title'))
         self.assertEqual('thetitle', parsex.sort_title('TheTitle'))
 
+    @patch('resources.lib.utils.addon_info.localise', lambda x: 'View all episodes')
+    def test_ctx_menu_all_episodes(self):
+        ctx = parsex.ctx_mnu_all_episodes('125a54')
+        self.assertIsInstance(ctx, tuple)
+        self.assertEqual(2, len(ctx))
+        self.assertEqual('View all episodes', ctx[0])
+        self.assertTrue(ctx[1].startswith('Container.Update(plugin://plugin'))
+
     def test_parse_hero(self):
         data = open_json('json/index-data.json')
         for item_data in data['heroContent']:
@@ -70,7 +78,17 @@ class Generic(unittest.TestCase):
             self.assertTrue(obj['type'] in main.callb_map.keys())
             is_li_compatible_dict(self, obj['show'])
 
-        #An item of unknown type
+        # A series item
+        item = deepcopy(data['heroContent'][1])
+        self.assertEqual('series', item['contentType'])
+        self.assertGreater(item['series'], 1)
+        obj = parsex.parse_hero_content(item)
+        self.assertIsInstance(obj['show']['params']['series_idx'], str)
+        self.assertIsInstance(obj['ctx_mnu'], list)
+        self.assertEqual(1, len(obj['ctx_mnu']))
+        self.assertTrue('list_productions' in obj['ctx_mnu'][0][1])
+
+        # An item of unknown type
         item = deepcopy(data['heroContent'][0])
         item['contentType'] = 'some new type'
         self.assertIsNone(parsex.parse_hero_content(item))
@@ -80,7 +98,7 @@ class Generic(unittest.TestCase):
         self.assertIsNone(parsex.parse_hero_content(item))
 
         # Watch From the start context menu on simulcastSpot item
-        item = deepcopy(data['heroContent'][3])
+        item = deepcopy(data['heroContent'][2])
         self.assertEqual('simulcastspot', item['contentType'])
         item['startDateTime'] = '20:15'
         with patch('resources.lib.parsex.datetime', new=mockeddt):
@@ -346,7 +364,6 @@ class Generic(unittest.TestCase):
         self.assertIsInstance(show['ctx_mnu'], list)
         for item in show['ctx_mnu']:
             self.assertIsInstance(item, tuple)
-
 
     def test_parse_schedule(self):
         data = open_json('json/schedule_data.json')['tvGuideData']

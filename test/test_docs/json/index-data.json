@@ -28,58 +28,28 @@
       ]
     },
     {
-      "imagePresets": {},
+      "ariaLabel": "Watch series 14 of Vera",
+      "attribution": {"contentOwner": null, "partnership": null},
+      "brandImageTemplate": "https://ovp.itv.com/images/programme/mz0gq64/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "ccid": "175qdnj",
+      "contentInfo": ["Drama", "Crime & Thriller", "Series 14"],
+      "contentOwner": null,
       "contentType": "series",
-      "title": "Tell Me Everything",
-      "imageTemplate": "https://ovp.itv.com/images/series/0ln19dm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/rgcr13g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "10/1188",
-      "encodedProgrammeId": {
-        "letterA": "10a1188",
-        "underscore": "10_1188"
-      },
-      "encodedEpisodeId": {
-        "letterA": "10a1188a0001",
-        "underscore": "10_1188_0001"
-      },
-      "categories": [
-        "DRAMA_AND_SOAPS"
-      ],
-      "description": "Death, drugs... destruction? Stream the twisty drama the critics love",
-      "series": 1,
       "ctaLabel": "Watch Now",
-      "genre": "Drama & Soaps",
-      "contentInfo": [
-        "Drama & Soaps",
-        "Series 1"
-      ]
-    },
-    {
-      "imagePresets": {},
-      "contentType": "series",
-      "title": "The Reunion",
-      "imageTemplate": "https://ovp.itv.com/images/series/nxvtv9h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/y36nhcw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "10/2578",
-      "encodedProgrammeId": {
-        "letterA": "10a2578",
-        "underscore": "10_2578"
-      },
-      "encodedEpisodeId": {
-        "letterA": "10a2578a0001",
-        "underscore": "10_2578_0001"
-      },
-      "categories": [
-        "DRAMA_AND_SOAPS"
-      ],
-      "description": "Three friends, one tragic secret - don\u2019t miss ITVX\u2019s starry new thriller",
-      "series": 1,
-      "ctaLabel": "Watch Now",
-      "genre": "Drama & Soaps",
-      "contentInfo": [
-        "Drama & Soaps",
-        "Series 1"
-      ]
+      "description": "The obsessive crime-cracker is back! Don't miss the gripping final series. As she faces a fresh set of baffling cases, will her dogged pursuit of justice lead her to the truth?",
+      "encodedEpisodeId": {"letterA": "1a7314a0061", "underscore": "1_7314_0061"},
+      "encodedProgrammeId": {"letterA": "1a7314", "underscore": "1_7314"},
+      "genre": ["Drama"],
+      "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}],
+      "imageTemplate": "https://ovp.itv.com/images/series/175qdnj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isPaid": false,
+      "numberOfEpisodes": 4,
+      "partnership": null,
+      "programmeId": "1/7314",
+      "series": 14,
+      "strapline": {"text": "New series", "variant": "default"},
+      "subgenres": [{"id": "CRIME_AND_THRILLER", "name": "Crime & Thriller"}, {"id": "CONTEMPORARY_BRITISH", "name": "Contemporary"}],
+      "title": "Vera"
     },
     {
       "contentType": "simulcastspot",

@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -62,7 +62,7 @@ class MainMenu(TestCase):
                 items_with_ctx_menus += 1
         # Check 'My ItvX' is present
         self.assertTrue(items[0].label == 'My itvX')
-        self.assertEqual(6, items_with_ctx_menus)
+        self.assertEqual(5, items_with_ctx_menus)
 
 
 class LiveChannels(TestCase):
