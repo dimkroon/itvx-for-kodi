@@ -156,14 +156,18 @@ def parse_hero_content(hero_data):
             if series_idx:
                 context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
-        elif item_type in ('special', 'film'):
+        elif item_type in ('special', 'film', 'episode'):
             item['info'].update(plot=''.join(('[B]Watch ',
                                               'FILM' if item_type == 'film' else 'NOW',
                                               '[/B]\n',
                                               hero_data.get('description'))),
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
-            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+            item['params'] = {'url': build_url(title,
+                                               hero_data['encodedProgrammeId']['letterA'],
+                                               hero_data.get('encodedEpisodeId', {}).get('letterA')),
                               'name': title}
+            if item_type == 'episode':
+                context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
         else:
             logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
