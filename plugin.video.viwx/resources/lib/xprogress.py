@@ -14,8 +14,9 @@ from xbmc import Player, Monitor
 from codequick.support import logger_id
 
 from resources.lib import fetch
-from . itv_account import itv_session
-from . itvx import PLATFORM_TAG
+from .errors import FetchError
+from .itv_account import itv_session
+from .itvx import PLATFORM_TAG
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
@@ -175,11 +176,14 @@ class PlayTimeMonitor(Player):
             "x-playerType": "shaka",
             "x-resume": "cross"
         }
-        resp = fetch.web_request('post', EVT_URL, data=data)
+        try:
+            resp = fetch.web_request('post', EVT_URL, data=data)
+        except FetchError:
+            # Continue trying to send events until the player stops.
+            return
         if resp.content != b'ok':
             logger.warning("Error sending 'open' event for production %s: %s - %s",
                            self._production_id, resp.status_code, resp.text)
-            self._status = PlayState.STOPPED
 
     def _post_event_startup_complete(self):
         logger.debug("Event Startup Complete - position %s", self._playtime)
@@ -238,7 +242,11 @@ class PlayTimeMonitor(Player):
             'seq': self._event_seq_nr,
             'type': evt_type
         }
-        resp = fetch.web_request('post', EVT_URL, data=post_data)
+        try:
+            resp = fetch.web_request('post', EVT_URL, data=post_data)
+        except FetchError:
+            # Continue to try to send events until the player stops.
+            return
         if resp.content == b'ok':
             self._post_errors = 0
         else:
