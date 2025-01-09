@@ -17,7 +17,7 @@ from resources.lib import fetch
 from . itv_account import itv_session
 from . itvx import PLATFORM_TAG
 from . import errors
-
+from . interval import SkipIntervals
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
 
@@ -36,10 +36,11 @@ class PlayTimeMonitor(Player):
     POLL_PERIOD = 1
     REPORT_PERIOD = 30
 
-    def __init__(self, production_id):
+    def __init__(self, production_id, skip_intervals=None):
         super(PlayTimeMonitor, self).__init__()
         self._instance_id = None
         self._production_id = production_id
+        self._skip_intervals = skip_intervals if skip_intervals is not None else SkipIntervals()
         self._event_seq_nr = 0
         self._playtime = 0
         self._totaltime = 0
@@ -122,12 +123,17 @@ class PlayTimeMonitor(Player):
             return
         logger.debug("Playtime Monitor start")
         report_t = time.monotonic() + self.REPORT_PERIOD
+        skip = next(self._skip_intervals)
         while not (self.monitor.waitForAbort(self.POLL_PERIOD) or self._status is PlayState.STOPPED):
             try:
                 self._playtime = self.getTime()
             except RuntimeError:  # Player just stopped playing
                 self.onPlayBackStopped()
                 break
+            if skip.start <= self._playtime < skip.end:
+                logger.debug("Skipping from %s to %s at position %s", skip.start, skip.end, self._playtime)
+                self.seekTime(skip['end'])
+                skip = next(self._skip_intervals)
             if time.monotonic() > report_t:
                 report_t += self.REPORT_PERIOD
                 self._post_event_heartbeat()
@@ -259,10 +265,10 @@ class PlayTimeMonitor(Player):
             logger.warning("Aborting progress monitoring; more than 3 events have failed.")
 
 
-def playtime_monitor(production_id):
+def playtime_monitor(production_id, skip_intervals):
     logger.debug("playtime monitor running from thead %s", threading.current_thread().native_id)
     try:
-        player = PlayTimeMonitor(production_id)
+        player = PlayTimeMonitor(production_id, skip_intervals)
         player.initialise()
         player.wait_until_playing(15)
         player.monitor_progress()
