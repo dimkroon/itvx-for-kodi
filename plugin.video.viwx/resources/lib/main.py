@@ -579,7 +579,6 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
         if not list_item:
             return False
 
-        plugin.register_delayed(xprogress.playtime_monitor, production_id=production_id)
         subtitles = itv.get_vtt_subtitles(subtitle_url)
         if subtitles:
             list_item.setSubtitles(subtitles)
@@ -592,11 +591,12 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
         if set_resume_point:
             resume_time = itvx.get_resume_point(production_id)
             logger.info("Resume from '%s'.", resume_time)
-
         elif intro and utils.kodi_resumes() is False:
-            skip = utils.addon_info.addon.getSettingInt('skip_intro')
-            if skip == 1 or (skip == 2 and kodi_utils.ask_skip_intro(intro) is True):
-                resume_time = intro
+            skip_setting = utils.addon_info.addon.getSettingInt('skip_intro')
+            if skip_setting == 0 or (skip_setting == 2 and kodi_utils.ask_skip_intro(intro.total_seconds) is False):
+                intro = None
+            elif intro.skip_from_start:
+                resume_time = next(intro).end
                 logger.info("Skipping intro of '%s' seconds.", resume_time)
 
         if resume_time:
@@ -605,6 +605,8 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
                 'TotalTime': '7200'
             })
             logger.info("Resume point set to '%s'", resume_time)
+
+        plugin.register_delayed(xprogress.playtime_monitor, production_id=production_id, skip_intervals=intro)
         return list_item
 
 

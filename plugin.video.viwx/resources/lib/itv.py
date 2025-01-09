@@ -126,20 +126,31 @@ def get_intro(video_data):
     of video, timecode data may or may not be present.
 
     """
+    from resources.lib.interval import SkipIntervals
+
+    timecodes = video_data.get('Timecodes')
+    if not timecodes:
+        return None
+    return SkipIntervals(timecodes.get('OpeningTitles'), timecodes.get('Recap'))
+
     try:
         timecodes = video_data.get('Timecodes')
         if not timecodes:
             return 0
 
-        opening_time = 0
-        recap_time = 0
+
         opening_titles = timecodes.get('OpeningTitles')
         if opening_titles:
-            opening_time = timecode2seconds(opening_titles.get('EndTime'))
+            opening_time = (timecode2seconds(opening_titles.get('StartTime')), timecode2seconds(opening_titles.get('EndTime')))
+        else:
+            opening_time = (0, 0)
         recap = timecodes.get('Recap')
         if recap:
-            recap_time = timecode2seconds(recap.get('EndTime'))
+            recap_time = (timecode2seconds(recap.get('StartTime')), timecode2seconds(recap.get('EndTime')))
+        else:
+            recap_time = (0, 0)
         logger.debug("Intro opening time = %s, intro recap = %s", opening_time, recap_time)
+        intro = sorted((recap_time, opening_time))
         return max(opening_time, recap_time)
     except:
         logger.warning("Failed get timecodes from playlist", exc_info=True)
