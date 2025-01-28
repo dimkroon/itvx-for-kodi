@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -235,19 +235,20 @@ def check_catchup_dash_stream_info(playlist):
     has_keys(playlist, 'Video', 'ProductionId', 'VideoType', 'ContentBreaks', obj_name='Playlist')
 
     video_inf = playlist['Video']
-    has_keys(video_inf, 'Duration', 'Timecodes', 'Base', 'MediaFiles', 'Subtitles', 'Token',
+    has_keys(video_inf, 'Duration', 'Timecodes', 'MediaFiles', 'Subtitles', 'Token',
              obj_name="Playlist['Video']")
+    misses_keys(video_inf, 'Base', obj_name="Playlist['Video']")
 
     assert isinstance(video_inf['Duration'], str)
     assert isinstance(video_inf['Token'], (type(None), str))
-    assert video_inf['Base'].startswith('https://') and video_inf['Base'].endswith('/')
 
     strm_inf = video_inf['MediaFiles']
     assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
     for strm in strm_inf:
-        assert (not strm['Href'].startswith('https://')) and '.mpd?' in strm['Href'], \
+        assert (strm['Href'].startswith('https://')) and '.mpd?' in strm['Href'], \
             "Unexpected playlist url: <{}>".format(strm['Href'])
         assert is_url(strm['KeyServiceUrl']), "Unexpected KeyServiceUrl url: <{}>".format(strm['KeyServiceUrl'])
+        assert 'Resolution' in strm
 
     subtitles = video_inf['Subtitles']
     assert isinstance(subtitles, (type(None), list)), 'MediaFiles is not a list but {}'.format(type(strm_inf))
