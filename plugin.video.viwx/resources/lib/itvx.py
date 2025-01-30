@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -67,12 +67,7 @@ def get_now_next_schedule(local_tz=None):
     # Use local time format without seconds. Fix weird kodi formatting for 12-hour clock.
     time_format = xbmc.getRegion('time').replace(':%S', '').replace('%I%I:', '%I:')
 
-    live_data = fetch.get_json(
-        'https://nownext.oasvc.itv.com/channels',
-        params={
-            'broadcaster': 'itv',
-            'featureSet': FEATURE_SET,
-            'platformTag': PLATFORM_TAG})
+    live_data = fetch.get_json('https://nownext.oasvc.itv.com/channels')
 
     fanart_url = live_data['images']['backdrop']
     channels = live_data['channels']
@@ -413,10 +408,12 @@ def get_playlist_url_from_episode_page(page_url, prefer_bsl=False):
     data = get_page_data(page_url)
 
     try:
-        episode = data['seriesList'][0]['titles'][0]
-    except KeyError:
-        # news item
+        # news, specials and normal episodes (The latter only occurs when not
+        # selected from a series folder, e.g. as hero item)
         episode = data['episode']
+    except KeyError:
+        # Some pages, like films, do not have a field 'episode', but do have a series list with one item.
+        episode = data['seriesList'][0]['titles'][0]
 
     if prefer_bsl:
         return episode.get('bslPlaylistUrl') or episode['playlistUrl']

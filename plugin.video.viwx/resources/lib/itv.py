@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -65,22 +65,22 @@ stream_req_data = {
     },
     'device': {
         'manufacturer': 'Firefox',
-        'model': '110',
+        'model': '127',
         'os': {
             'name': 'Linux',
             'type': 'desktop',
+            'version': 'x86_64'
         }
     },
     'user': {
-        'entitlements': [],
-        'itvUserId': '',
         'token': ''
     },
     'variantAvailability': {
-        'featureset': {
-            'max': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
-            'min': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
+        'drm': {
+            'maxSupported': 'L3',
+            'system': 'widevine'
         },
+        'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
         'platformTag': 'dotcom',
         'player': 'dash'
     }
@@ -97,15 +97,13 @@ def _request_stream_data(url, stream_type='live'):
     if stream_type == 'live':
         accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
         # Live MUST have a featureset containing an item without outband-webvtt, or a bad request is returned.
-        min_features = ['mpeg-dash', 'widevine']
+        featureset = {'max': ['mpeg-dash', 'widevine'], 'min': ['mpeg-dash', 'widevine']}
     else:
-        accept_type = 'application/vnd.itv.vod.playlist.v2+json'
-        # ITV appears now to use the min feature for catchup streams, causing subtitles
-        # to go missing if not specified here. Min and max both specifying webvtt appears to
-        # be no problem for catchup streams that don't have subtitles.
-        min_features = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
+        accept_type = 'application/vnd.itv.vod.playlist.v4+json'
+        # Contrary to live, catchup now has a single featureq set
+        featureset = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
 
-    stream_req_data['variantAvailability']['featureset']['min'] = min_features
+    stream_req_data['variantAvailability']['featureset'] = featureset
 
     stream_data = fetch_authenticated(
         fetch.post_json, url,
@@ -152,9 +150,20 @@ def get_catchup_urls(episode_url):
     """
     playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
     stream_data = playlist['Video']
-    url_base = stream_data.get('Base', '')
-    video_locations = stream_data['MediaFiles'][0]
-    dash_url = url_base + video_locations['Href']
+
+    # Select the media with the highest resolution
+    highest_resolution = 0
+    video_locations = None
+    for media in stream_data['MediaFiles']:
+        res = int(media.get('Resolution', 0 ))
+        if res > highest_resolution:
+            video_locations = media
+            highest_resolution = res
+    if video_locations is None:
+        # Some items, in particular short news clip, may still have the old format of media files.
+        video_locations = stream_data['MediaFiles'][0]
+
+    dash_url = video_locations['Href']
     key_service = video_locations.get('KeyServiceUrl')
     try:
         # Usually stream_data['Subtitles'] is just None when subtitles are not available,

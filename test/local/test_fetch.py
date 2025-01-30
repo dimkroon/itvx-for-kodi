@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -48,7 +48,7 @@ class TestPersistentCookieJar(TestCase):
         jar = fetch.PersistentCookieJar('my/file')
         self.assertIs(jar._has_changed, False)
         cookie = MagicMock()
-        cookie.name='hdntl'
+        cookie.name = 'hdntl'
         jar.set_cookie(cookie)
         self.assertIs(jar._has_changed, False)
         jar.set_cookie(MagicMock())
@@ -76,7 +76,7 @@ class TestHttpSession(TestCase):
 
     @patch('resources.lib.fetch._create_cookiejar')
     def test_http_session_is_singleton(self, p_create):
-           # remove a possible existing instance
+        # remove a possible existing instance
         s = fetch.HttpSession()
         ss = fetch.HttpSession()
         self.assertTrue(s is ss)
@@ -105,6 +105,7 @@ class SetDefaultCookies(TestCase):
         'SyrenisCookiePrivacyLink_213aea86-31e5-43f3-8d6b-e01ba0d420c7',
         'SyrenisCookieConsentDate_213aea86-31e5-43f3-8d6b-e01ba0d420c7'
     ]
+
     @patch('requests.Session.post', return_value=HttpResponse(content=b'Post Sucessful'))
     def test_get_default_cookies(self, _):
 
@@ -175,7 +176,7 @@ class WebRequest(TestCase):
             self.assertRaises(errors.AuthenticationError, fetch.web_request, 'get', URL)
 
         with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=403)):
-            self.assertRaises(errors.HttpError, fetch.web_request, 'get', URL)
+            self.assertRaises(errors.GeoRestrictedError, fetch.web_request, 'get', URL)
 
         with patch('requests.sessions.Session.request', return_value=HttpResponse(
                 status_code=403, text=json.dumps({'error': 'invalid_grant'}))):
@@ -193,11 +194,14 @@ class WebRequest(TestCase):
                 status_code=403, text=json.dumps({'Message': 'User does not have entitlements'}))):
             self.assertRaises(errors.AccessRestrictedError, fetch.web_request, 'get', URL)
 
+        # Geo-block respones do not have a description any more, but leave this test to
+        # ensure an old-style response is still handled correctly.
         with patch('requests.sessions.Session.request', return_value=HttpResponse(
                 status_code=403, text=json.dumps({'Message': 'Outside Of Allowed Geographic Region'}))):
             self.assertRaises(errors.GeoRestrictedError, fetch.web_request, 'get', URL)
 
-        with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=500, reason='server error')):
+        with patch('requests.sessions.Session.request',
+                   return_value=HttpResponse(status_code=500, reason='server error')):
             with self.assertRaises(errors.HttpError) as err:
                 fetch.web_request('get', URL)
             self.assertEqual(500, err.exception.code)

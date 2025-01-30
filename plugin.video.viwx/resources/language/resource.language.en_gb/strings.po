@@ -138,6 +138,11 @@ msgid "Show a dialog with the option to play the current program from the start 
 "When disabled 'play form the start' is still available on the context menu of the main live channels."
 msgstr ""
 
+msgctxt "#30332"
+msgid "It may take a few hours before this setting takes effect.\n"
+"To force an update, select 'Refresh channels and guide now' in IPTV Manager's settings. You may also need te restart Kodi."
+msgstr ""
+
 msgctxt "#30401"
 msgid "You will be asked to enter your username and password after which the addon will try to sign in to "
 "your account. You will remain signed in until you sign out or sign in with another account."

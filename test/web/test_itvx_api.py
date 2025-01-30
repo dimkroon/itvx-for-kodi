@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -25,6 +25,7 @@ from resources.lib import utils
 from resources.lib import main
 from test.support import object_checks
 from test.support import testutils
+from local.test_account import build_test_tokens
 
 
 setUpModule = fixtures.setup_web_test
@@ -79,8 +80,7 @@ class LiveSchedules(unittest.TestCase):
         self.check_schedule(now, end)
 
     def test_now_next(self):
-        resp = requests.get('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,'
-                            'outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
+        resp = requests.get('https://nownext.oasvc.itv.com/channels')
         data = resp.json()
         # testutils.save_json(data, 'schedule/now_next.json')
         object_checks.has_keys(data, 'channels', 'images', 'ts')
@@ -529,7 +529,7 @@ stream_req_data = {
     },
     'device': {
         'manufacturer': 'Firefox',
-        'model': '105',
+        'model': '1127',
         'os': {
             'name': 'Linux',
             'type': 'desktop',
@@ -537,16 +537,16 @@ stream_req_data = {
         }
     },
     'user': {
-        'entitlements': [],
-        'itvUserId': '',
         'token': ''
     },
     'variantAvailability': {
-        'featureset': {
-            'min': ['mpeg-dash', 'widevine'],
-            'max': ['mpeg-dash', 'widevine', 'hd']
+        'drm': {
+            'maxSupported': 'L3',
+            'system': 'widevine'
         },
-        'platformTag': 'dotcom'
+        'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
+        'platformTag': 'dotcom',
+        'player': 'dash'
     }
 }
 
@@ -562,12 +562,13 @@ class Playlists(unittest.TestCase):
         post_data = copy.deepcopy(stream_req_data)
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
-        feature_set = post_data['variantAvailability']['featureset']
 
-        # Catchup MUST have outband-webvtt in min feature set to return subtitles.
-        # Live, however must have a min feature set WITHOUT outband-webvtt, or it wil return 400 - Bad Request
-        if stream_type == 'vod':
-            feature_set['min'].append('outband-webvtt')
+        # Live has still the old style feature set with min and max sets.
+        if stream_type == 'live':
+            post_data['variantAvailability']['featureset']= {
+                'max': ['mpeg-dash', 'widevine'],
+                'min': ['mpeg-dash', 'widevine']
+            }
 
         return post_data
 
@@ -598,10 +599,11 @@ class Playlists(unittest.TestCase):
     def test_get_playlist_simulcast(self):
         for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
             strm_data = self.get_playlist_live(channel)
+            # testutils.save_json(strm_data, 'playlists/pl_itv1.json')
             object_checks.check_live_stream_info(strm_data['Playlist'])
 
     def test_get_playlist_fast(self):
-        for chan_id in range(1, 21):
+        for chan_id in range(20, 21):
             channel = 'FAST{}'.format(chan_id)
             strm_data = self.get_playlist_live(channel)
             # if chan_id == 20:
@@ -616,7 +618,7 @@ class Playlists(unittest.TestCase):
         url = 'https://simulcast.itv.com/playlist/itvonline/ITV'
         headers = {
             'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+            'User-Agent': fetch.USER_AGENT,
             'Origin': 'https://www.itv.com'}
         default_cookies = fetch.set_default_cookies()
 
@@ -685,8 +687,8 @@ class Playlists(unittest.TestCase):
 
         resp = requests.post(
             url,
-            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
-                     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
+                     'User-Agent': fetch.USER_AGENT,
                      'Origin': 'https://www.itv.com',
                      },
             json=post_data,
@@ -696,7 +698,7 @@ class Playlists(unittest.TestCase):
 
     def test_get_playlist_catchup(self):
         strm_data = self.get_playlist_catchup()
-        # testutils.save_json(strm_data, 'playlists/doc_martin.json')
+        # testutils.save_json(strm_data, 'playlists/pl_doc_martin.json')
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
 
     def test_get_playlist_premium_catchup(self):
@@ -708,9 +710,7 @@ class Playlists(unittest.TestCase):
 
     def test_manifest_vod(self):
         strm_data = self.get_playlist_catchup()
-        base_url = strm_data['Playlist']['Video']['Base']
-        path = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
-        mpd_url = base_url + path
+        mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
         resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
         self.assertGreater(len(manifest), 1000)
@@ -735,7 +735,7 @@ class Playlists(unittest.TestCase):
                 url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
-            # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
+            testutils.save_json(strm_data, 'playlists/pl_news_short.json')
             if is_short:
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
@@ -793,3 +793,27 @@ class ChannelLogos(unittest.TestCase):
             width, height = get_image_size(response.content)
             self.assertEqual(512, width)
             self.assertAlmostEqual(512, height, delta=2)
+
+
+class SignIn(unittest.TestCase):
+    def test_refresh_with_invalid_tokens(self):
+        refresh_tkn = build_test_tokens('Peter')[1]
+        resp = requests.get(
+            url='https://auth.prd.user.itv.com/token',
+            params={'refresh': refresh_tkn},
+            headers={'user-agent': fetch.USER_AGENT,
+                     'accept': 'application/vnd.user.auth.v2+json',
+                     'accept-language':  'en-GB,en;q=0.5',
+                     'accept-encoding':  'gzip, deflate, br, zstd',
+                     'origin':           'https://www.itv.com',
+                     'referer':          'https://www.itv.com/',
+                     'sec-fetch-dest':   'empty',
+                     'sec-fetch-mode':   'cors',
+                     'sec-fetch-site':   'same-site',
+                     'te':               'trailers'}
+        )
+        self.assertEqual(400, resp.status_code)
+        data = resp.json()
+        self.assertEqual('invalid_grant', data['error'])
+        self.assertEqual('The token is not a valid JWT token', data['error_description'])
+        self.assertIsNone(data['validation_errors'])

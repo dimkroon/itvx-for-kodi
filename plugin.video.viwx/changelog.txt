@@ -1,3 +1,14 @@
+v 1.5.3
+Fixes:
+- Show a proper geo-blocked message again.
+- All catchup played in low resolution.
+- Sometimes a message to login was shown when the actual issue was a connection error.
+
+Changes:
+- Added support for hero items of type 'episode'.
+- Hero items of type 'series' now navigate directly into the intended series folder.
+  If the programme has more than 1 series the items has a context menu entry 'view all episodes' to navigate to the whole programme.
+
 v 1.5.2
 Fixes:
 - Login failed with error 'Forbidden' even though email and password were correct.

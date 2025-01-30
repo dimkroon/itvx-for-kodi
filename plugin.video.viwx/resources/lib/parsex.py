@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -63,6 +63,17 @@ def sort_title(title: str):
     """
     l_title = title.lower()
     return l_title[4:] if l_title.startswith('the ') else l_title
+
+
+def ctx_mnu_all_episodes(programme_id: str, programme_name: str = 'undefined'):
+    callback_qs = urlencode({'url': ''.join(('/watch/', programme_name, '/', programme_id))})
+    return (utils.addon_info.localise(TXT_VIEW_ALL_EPISODES),
+            ''.join(('Container.Update(plugin://',
+                     utils.addon_info.id,
+                     '/resources/lib/main/wrapper.list_productions?',
+                     callback_qs,
+                     ')'))
+            )
 
 
 def scrape_json(html_page):
@@ -138,18 +149,25 @@ def parse_hero_content(hero_data):
                     pass
 
         elif item_type in ('series', 'brand'):
+            series_idx = hero_data.get('series', '')
             item['info'].update(plot=''.join((hero_data.get('ariaLabel', ''), '\n\n', hero_data.get('description'))))
             item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
-                              'series_idx': hero_data.get('series')}
+                              'series_idx': str(series_idx)}
+            if series_idx:
+                context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
-        elif item_type in ('special', 'film'):
+        elif item_type in ('special', 'film', 'episode'):
             item['info'].update(plot=''.join(('[B]Watch ',
                                               'FILM' if item_type == 'film' else 'NOW',
                                               '[/B]\n',
                                               hero_data.get('description'))),
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
-            item['params'] = {'url': build_url(title, hero_data['encodedProgrammeId']['letterA']),
+            item['params'] = {'url': build_url(title,
+                                               hero_data['encodedProgrammeId']['letterA'],
+                                               hero_data.get('encodedEpisodeId', {}).get('letterA')),
                               'name': title}
+            if item_type == 'episode':
+                context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
         else:
             logger.warning("Hero item %s is of unknown type: %s", hero_data['title'], item_type)
@@ -253,7 +271,7 @@ def parse_editorial_slider(url, slider_data):
 def parse_collection_item(show_data, hide_paid=False):
     """Parse a show item from a collection page
 
-    Very much like category content, but not just quite.
+    Very much like category content, but just not quite.
 
     """
     # noinspection PyBroadException
@@ -652,14 +670,7 @@ def parse_last_watched_item(item, utc_now):
     if item['contentType'] == 'FILM':
         item_dict['show']['art']['poster'] = img_link.format(**IMG_PROPS_POSTER)
     elif item['contentType'] == 'EPISODE' and progr_id:
-        ctx_mnu = (utils.addon_info.localise(TXT_VIEW_ALL_EPISODES),
-                   ''.join(('Container.Update(plugin://',
-                            utils.addon_info.id,
-                            '/resources/lib/main/wrapper.list_productions?',
-                            urlencode({'url': '/watch/undefined/' + progr_id}),
-                            ')'))
-                   )
-        item_dict['ctx_mnu'] = [ctx_mnu]
+        item_dict['ctx_mnu'] = [ctx_mnu_all_episodes(progr_id)]
     return item_dict
 
 

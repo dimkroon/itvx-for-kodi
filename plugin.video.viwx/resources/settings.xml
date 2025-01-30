@@ -68,7 +68,7 @@
 						<dependency type="visible" on="property" name="infobool" operator="!is">System.HasAddon(service.iptv.manager)</dependency>
 					</dependencies>
 				</setting>
-				<setting id="iptv.enabled" label="30132" type="boolean" help="">
+				<setting id="iptv.enabled" label="30132" type="boolean" help="30332">
 					<level>0</level>
 					<default>true</default>
 					<control type="toggle"/>
