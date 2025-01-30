@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -209,15 +209,15 @@ class Refresh(unittest.TestCase):
         self.assertEqual(self.ct_sess.account_data['itv_session'],
                          {'access_token': '2nd_token', 'refresh_token': '2nd_refresh'})
 
-    def test_refresh_with_http_errors(self, p_save):
+    def test_refresh_with_request_errors(self, p_save):
+        with patch('resources.lib.fetch.get_json', side_effect=errors.AuthenticationError()):
+            self.assertFalse(self.ct_sess.refresh())
         with patch('resources.lib.fetch.get_json', side_effect=errors.HttpError(400, 'Bad request')):
-            self.assertFalse(self.ct_sess.refresh())
-        with patch('resources.lib.fetch.get_json', side_effect=errors.HttpError(401, 'Unauthorized')):
-            self.assertFalse(self.ct_sess.refresh())
-        with patch('resources.lib.fetch.get_json', side_effect=errors.HttpError(403, 'Forbidden')):
-            self.assertFalse(self.ct_sess.refresh())
-        with patch('resources.lib.fetch.get_json', side_effect=errors.HttpError(404, 'Not found')):
-            self.assertFalse(self.ct_sess.refresh())
+            self.assertRaises(errors.HttpError, self.ct_sess.refresh)
+        with patch('resources.lib.fetch.get_json', side_effect=errors.GeoRestrictedError()):
+            self.assertRaises(errors.GeoRestrictedError, self.ct_sess.refresh)
+        with patch('resources.lib.fetch.get_json', side_effect=errors.FetchError()):
+            self.assertRaises(errors.FetchError, self.ct_sess.refresh)
         p_save.assert_not_called()
 
     @patch('resources.lib.fetch.get_json', return_value={'token': '2nd_token', 'refreshToken': '2nd_refresh'})

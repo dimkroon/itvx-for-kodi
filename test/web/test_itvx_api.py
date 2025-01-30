@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -25,6 +25,7 @@ from resources.lib import utils
 from resources.lib import main
 from test.support import object_checks
 from test.support import testutils
+from local.test_account import build_test_tokens
 
 
 setUpModule = fixtures.setup_web_test
@@ -793,3 +794,27 @@ class ChannelLogos(unittest.TestCase):
             width, height = get_image_size(response.content)
             self.assertEqual(512, width)
             self.assertAlmostEqual(512, height, delta=2)
+
+
+class SignIn(unittest.TestCase):
+    def test_refresh_with_invalid_tokens(self):
+        refresh_tkn = build_test_tokens('Peter')[1]
+        resp = requests.get(
+            url='https://auth.prd.user.itv.com/token',
+            params={'refresh': refresh_tkn},
+            headers={'user-agent': fetch.USER_AGENT,
+                     'accept': 'application/vnd.user.auth.v2+json',
+                     'accept-language':  'en-GB,en;q=0.5',
+                     'accept-encoding':  'gzip, deflate, br, zstd',
+                     'origin':           'https://www.itv.com',
+                     'referer':          'https://www.itv.com/',
+                     'sec-fetch-dest':   'empty',
+                     'sec-fetch-mode':   'cors',
+                     'sec-fetch-site':   'same-site',
+                     'te':               'trailers'}
+        )
+        self.assertEqual(400, resp.status_code)
+        data = resp.json()
+        self.assertEqual('invalid_grant', data['error'])
+        self.assertEqual('The token is not a valid JWT token', data['error_description'])
+        self.assertIsNone(data['validation_errors'])

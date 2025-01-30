@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -189,7 +189,9 @@ class ItvSession:
             self.save_account_data()
             logger.info("Tokens refreshed.")
             return True
-        except (KeyError, ValueError, FetchError) as e:
+        except (KeyError, ValueError, AuthenticationError) as e:
+            # An invalid token returns HTTP status 400 with json data, which is handled by fetch in the usual way.
+            # An expired token is yet to be tested.
             logger.warning("Failed to refresh ITVtokens - %s: %s" % (type(e), e))
         except TypeError:
             logger.warning("Failed to refresh ITV tokens - No account data present.")
