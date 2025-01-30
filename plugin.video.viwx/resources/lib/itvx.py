@@ -67,12 +67,7 @@ def get_now_next_schedule(local_tz=None):
     # Use local time format without seconds. Fix weird kodi formatting for 12-hour clock.
     time_format = xbmc.getRegion('time').replace(':%S', '').replace('%I%I:', '%I:')
 
-    live_data = fetch.get_json(
-        'https://nownext.oasvc.itv.com/channels',
-        params={
-            'broadcaster': 'itv',
-            'featureSet': FEATURE_SET,
-            'platformTag': PLATFORM_TAG})
+    live_data = fetch.get_json('https://nownext.oasvc.itv.com/channels')
 
     fanart_url = live_data['images']['backdrop']
     channels = live_data['channels']

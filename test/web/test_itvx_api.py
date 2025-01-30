@@ -80,8 +80,7 @@ class LiveSchedules(unittest.TestCase):
         self.check_schedule(now, end)
 
     def test_now_next(self):
-        resp = requests.get('https://nownext.oasvc.itv.com/channels?broadcaster=itv&featureSet=mpeg-dash,clearkey,'
-                            'outband-webvtt,hls,aes,playready,widevine,fairplay&platformTag=dotcom')
+        resp = requests.get('https://nownext.oasvc.itv.com/channels')
         data = resp.json()
         # testutils.save_json(data, 'schedule/now_next.json')
         object_checks.has_keys(data, 'channels', 'images', 'ts')
