@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -207,7 +207,7 @@ def sub_menu_my_itvx(_):
             yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type':'byw'})
     except Exception as e:
         # Log the error, but don't let the whole submenu fail because of this.
-        logger.error("Error getting the qlast watched programme: %s\n", e, exc_info=True)
+        logger.error("Error getting the last watched programme: %s\n", e, exc_info=True)
     yield Listitem.from_dict(generic_list, 'Recommended for You', params={'list_type':'recommended'})
 
 

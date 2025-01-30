@@ -271,7 +271,7 @@ def parse_editorial_slider(url, slider_data):
 def parse_collection_item(show_data, hide_paid=False):
     """Parse a show item from a collection page
 
-    Very much like category content, but not just quite.
+    Very much like category content, but just not quite.
 
     """
     # noinspection PyBroadException

@@ -131,7 +131,6 @@ def convert_consent(cookiejar):
     """Replace Cassie consent cookies for Syrenis.
 
     """
-    to_be_removed = []
     # RequestCookieJar's items() returns a list of tuples
     try:
         for name, value in cookiejar.items():
@@ -185,7 +184,7 @@ def set_default_cookies(cookiejar: RequestsCookieJar = None):
     elif cookiejar is not None:
         raise ValueError("Parameter cookiejar must be an instance of RequestCookiejar")
 
-    my_guid  = str(uuid4())
+    my_guid = str(uuid4())
 
     # noinspection PyBroadException
     try:
@@ -198,30 +197,30 @@ def set_default_cookies(cookiejar: RequestsCookieJar = None):
                      'Referer': 'https://www.itv.com/'},
             timeout=WEB_TIMEOUT,
             json={
-                "CookieFormID":5,
-                "LicenseID":"9FA306B9-83BD-4F83-A061-52D3589ABADB",
-                "DivID":"cassie-widget",
-                "Preferences":[
-                    {"FieldID":"s122_c113","IsChecked":0},
-                    {"FieldID":"s135_c126","IsChecked":0},
-                    {"FieldID":"s134_c125","IsChecked":0},
-                    {"FieldID":"s138_c129","IsChecked":0},
-                    {"FieldID":"s157_c147","IsChecked":0},
-                    {"FieldID":"s136_c127","IsChecked":0},
-                    {"FieldID":"s137_c128","IsChecked":0}],
-                "appCodeName":"Mozilla",
-                "appName":"Netscape",
-                "appVersion":"5.0 (X11)",
-                "cookieEnabled":True,
-                "geolocation":"",
-                "language":"en-GB",
-                "platform":"Linux x86_64",
-                "referrer":"",
-                "submissionSource":"prebanner_reject_all",
-                "visitGUID":my_guid,
-                "WebsiteURL":"https://www.itv.com/",
-                "PrivacyPolicyID":"1",
-                "custom1stPartyData":None}
+                "CookieFormID": 5,
+                "LicenseID": "9FA306B9-83BD-4F83-A061-52D3589ABADB",
+                "DivID": "cassie-widget",
+                "Preferences": [
+                    {"FieldID": "s122_c113", "IsChecked": 0},
+                    {"FieldID": "s135_c126", "IsChecked": 0},
+                    {"FieldID": "s134_c125", "IsChecked": 0},
+                    {"FieldID": "s138_c129", "IsChecked": 0},
+                    {"FieldID": "s157_c147", "IsChecked": 0},
+                    {"FieldID": "s136_c127", "IsChecked": 0},
+                    {"FieldID": "s137_c128", "IsChecked": 0}],
+                "appCodeName": "Mozilla",
+                "appName": "Netscape",
+                "appVersion": "5.0 (X11)",
+                "cookieEnabled": True,
+                "geolocation": "",
+                "language": "en-GB",
+                "platform": "Linux x86_64",
+                "referrer": "",
+                "submissionSource": "prebanner_reject_all",
+                "visitGUID": my_guid,
+                "WebsiteURL": "https://www.itv.com/",
+                "PrivacyPolicyID": "1",
+                "custom1stPartyData": None}
         )
         resp.raise_for_status()
         if resp.text != "Post Sucessful":
@@ -236,7 +235,8 @@ def set_default_cookies(cookiejar: RequestsCookieJar = None):
                 '[{"FieldID":"s122_c113","IsChecked":0},{"FieldID":"s135_c126","IsChecked":0},{"FieldID":"s134_c125","IsChecked":0},{"FieldID":"s138_c129","IsChecked":0},{"FieldID":"s157_c147","IsChecked":0},{"FieldID":"s136_c127","IsChecked":0},{"FieldID":"s137_c128","IsChecked":0}]',
                 **std_cookie_args)
         jar.set('SyrenisCookiePrivacyLink_213aea86-31e5-43f3-8d6b-e01ba0d420c7', '1', **std_cookie_args)
-        jar.set('SyrenisCookieConsentDate_213aea86-31e5-43f3-8d6b-e01ba0d420c7', str(int(time.time() * 1000)), **std_cookie_args)
+        jar.set('SyrenisCookieConsentDate_213aea86-31e5-43f3-8d6b-e01ba0d420c7',
+                str(int(time.time() * 1000)), **std_cookie_args)
         logger.info("Updated consent cookies.")
 
         # set other cookies
