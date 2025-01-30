@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -281,11 +281,13 @@ def web_request(method, url, headers=None, data=None, **kwargs):
                 # Errors from https://magni.itv.com/playlist/itvonline:
                 if 'User does not have entitlements' in resp_data.get('Message', ''):
                     raise AccessRestrictedError()
-                if 'Outside Of Allowed Geographic Region' in resp_data.get('Message', ''):
-                    raise GeoRestrictedError
 
         if e.response.status_code == 401:
             raise AuthenticationError()
+        elif e.response.status_code == 403:
+            # Geoblocks have no error info any more, just the text 'Not found'
+            # Regard all 403 responses without error description as a geo-block.
+            raise GeoRestrictedError
         else:
             resp = e.response
             raise HttpError(resp.status_code, resp.reason) from None
