@@ -933,7 +933,7 @@ class MyList(unittest.TestCase):
         #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
         #   presented and playable on the website.
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+              'ady,widevine,fairplay,progressive&platform=ctv%size=52'.format(self.userid)
         headers = {'authorization': 'Bearer ' + self.token}
         # Both webbrowser and app authenticate with header, without any cookie.
         resp = requests.get(url, headers=headers)
@@ -954,7 +954,7 @@ class MyList(unittest.TestCase):
     def test_get_my_list_content_type_json(self):
         """Request My List with content-type = application/json"""
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+              'ady,widevine,fairplay,progressive&platform=ctv&size=52'.format(self.userid)
         headers = {'authorization': 'Bearer ' + self.token,
                    'accept': 'application/json'}
         resp = requests.get(url, headers=headers)
