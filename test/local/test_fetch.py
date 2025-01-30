@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -175,7 +175,7 @@ class WebRequest(TestCase):
             self.assertRaises(errors.AuthenticationError, fetch.web_request, 'get', URL)
 
         with patch('requests.sessions.Session.request', return_value=HttpResponse(status_code=403)):
-            self.assertRaises(errors.HttpError, fetch.web_request, 'get', URL)
+            self.assertRaises(errors.GeoRestrictedError, fetch.web_request, 'get', URL)
 
         with patch('requests.sessions.Session.request', return_value=HttpResponse(
                 status_code=403, text=json.dumps({'error': 'invalid_grant'}))):
@@ -193,6 +193,8 @@ class WebRequest(TestCase):
                 status_code=403, text=json.dumps({'Message': 'User does not have entitlements'}))):
             self.assertRaises(errors.AccessRestrictedError, fetch.web_request, 'get', URL)
 
+        # Geo-block respones do not have a description any more, but leave this test to
+        # ensure an old-style response is still handled correctly.
         with patch('requests.sessions.Session.request', return_value=HttpResponse(
                 status_code=403, text=json.dumps({'Message': 'Outside Of Allowed Geographic Region'}))):
             self.assertRaises(errors.GeoRestrictedError, fetch.web_request, 'get', URL)
