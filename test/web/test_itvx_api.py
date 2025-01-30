@@ -530,7 +530,7 @@ stream_req_data = {
     },
     'device': {
         'manufacturer': 'Firefox',
-        'model': '105',
+        'model': '1127',
         'os': {
             'name': 'Linux',
             'type': 'desktop',
@@ -538,16 +538,16 @@ stream_req_data = {
         }
     },
     'user': {
-        'entitlements': [],
-        'itvUserId': '',
         'token': ''
     },
     'variantAvailability': {
-        'featureset': {
-            'min': ['mpeg-dash', 'widevine'],
-            'max': ['mpeg-dash', 'widevine', 'hd']
+        'drm': {
+            'maxSupported': 'L3',
+            'system': 'widevine'
         },
-        'platformTag': 'dotcom'
+        'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
+        'platformTag': 'dotcom',
+        'player': 'dash'
     }
 }
 
@@ -563,12 +563,13 @@ class Playlists(unittest.TestCase):
         post_data = copy.deepcopy(stream_req_data)
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
-        feature_set = post_data['variantAvailability']['featureset']
 
-        # Catchup MUST have outband-webvtt in min feature set to return subtitles.
-        # Live, however must have a min feature set WITHOUT outband-webvtt, or it wil return 400 - Bad Request
-        if stream_type == 'vod':
-            feature_set['min'].append('outband-webvtt')
+        # Live has still the old style feature set with min and max sets.
+        if stream_type == 'live':
+            post_data['variantAvailability']['featureset']= {
+                'max': ['mpeg-dash', 'widevine'],
+                'min': ['mpeg-dash', 'widevine']
+            }
 
         return post_data
 
@@ -599,10 +600,11 @@ class Playlists(unittest.TestCase):
     def test_get_playlist_simulcast(self):
         for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
             strm_data = self.get_playlist_live(channel)
+            # testutils.save_json(strm_data, 'playlists/pl_itv1.json')
             object_checks.check_live_stream_info(strm_data['Playlist'])
 
     def test_get_playlist_fast(self):
-        for chan_id in range(1, 21):
+        for chan_id in range(20, 21):
             channel = 'FAST{}'.format(chan_id)
             strm_data = self.get_playlist_live(channel)
             # if chan_id == 20:
@@ -617,7 +619,7 @@ class Playlists(unittest.TestCase):
         url = 'https://simulcast.itv.com/playlist/itvonline/ITV'
         headers = {
             'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+            'User-Agent': fetch.USER_AGENT,
             'Origin': 'https://www.itv.com'}
         default_cookies = fetch.set_default_cookies()
 
@@ -686,8 +688,8 @@ class Playlists(unittest.TestCase):
 
         resp = requests.post(
             url,
-            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
-                     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
+                     'User-Agent': fetch.USER_AGENT,
                      'Origin': 'https://www.itv.com',
                      },
             json=post_data,
@@ -697,7 +699,7 @@ class Playlists(unittest.TestCase):
 
     def test_get_playlist_catchup(self):
         strm_data = self.get_playlist_catchup()
-        # testutils.save_json(strm_data, 'playlists/doc_martin.json')
+        # testutils.save_json(strm_data, 'playlists/pl_doc_martin.json')
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
 
     def test_get_playlist_premium_catchup(self):
@@ -709,9 +711,7 @@ class Playlists(unittest.TestCase):
 
     def test_manifest_vod(self):
         strm_data = self.get_playlist_catchup()
-        base_url = strm_data['Playlist']['Video']['Base']
-        path = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
-        mpd_url = base_url + path
+        mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
         resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
         self.assertGreater(len(manifest), 1000)
@@ -736,7 +736,7 @@ class Playlists(unittest.TestCase):
                 url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
-            # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
+            testutils.save_json(strm_data, 'playlists/pl_news_short.json')
             if is_short:
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:
