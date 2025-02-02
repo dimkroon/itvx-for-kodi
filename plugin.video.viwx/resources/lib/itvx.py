@@ -658,10 +658,12 @@ mobile_strm_req_data = {
     "token": ""
   },
   "variantAvailability": {
-    "featureset": {
-
+    'drm': {
+      'maxSupported': 'L3',
+      'system': 'widevine'
     },
-    "platformTag": "ctv"
+      'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
+      "platformTag": "ctv"
   }
 }
 
@@ -670,10 +672,7 @@ features_live = {
     "max": ["hd", "mpeg-dash", "widevine", "inband-webvtt"]
 }
 
-features_catchup = {
-    "min": ["hd", "mpeg-dash", "widevine", "single-track", "outband-webvtt"],
-    "max": ["hd", "mpeg-dash", "widevine", "single-track", "outband-webvtt"]
-}
+features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
 
 
 def _request_stream_data(url, stream_type='live'):
@@ -688,7 +687,7 @@ def _request_stream_data(url, stream_type='live'):
         accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
         stream_req_data['variantAvailability']['featureset'] = features_live
     else:
-        accept_type = 'application/vnd.itv.vod.playlist.v2+json'
+        accept_type = 'application/vnd.itv.vod.playlist.v4+json'
         stream_req_data['variantAvailability']['featureset'] = features_catchup
 
     stream_data = fetch_authenticated(
