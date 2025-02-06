@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -7,11 +7,14 @@
 
 import os
 import sys
+import re
 from typing import Dict, List, Tuple
 
 from unittest.mock import patch
 
 import xbmcvfs
+import xbmcaddon
+
 
 patch_g = None
 
@@ -36,7 +39,11 @@ def global_setup():
                          new=lambda self, item: info_map.get(item, ''))
         patch_g.start()
 
-        xbmcvfs.translatePath = lambda path: path
+        # Translate path with special:// protocol to a path in the kodifs directory on the
+        # top of out test folder.
+        xbmcvfs.translatePath = translate_path_mock
+        xbmcvfs.File = FileMock
+        xbmcaddon.Addon.getLocalizedString = localise_mock
 
         # prevent requesting MyList items at the import of main.
         patch("resources.lib.cache.my_list_programmes", new=list()).start()
@@ -200,3 +207,62 @@ def patch_listitem():
             return self._path
 
     xbmcgui.ListItem = LI
+
+
+def translate_path_mock(path: str):
+    """Translate 'special://' paths to folders in a directory named 'kodifs' in the top
+    test directory, assuming this file is in a folder directly under test/.
+
+    It is not accurate enough to reliably translate every possible special path, but it's
+    enough to suit our needs right now.
+    """
+    if not path.startswith('special://'):
+        return path
+    special_path = path[10:]
+    test_base = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'kodifs'))
+    special_base_dir = special_path.split('/', 1)[0]
+    os.makedirs(os.path.join(test_base, special_base_dir), exist_ok=True)
+    local_dir = os.path.join(test_base, special_path)
+    return local_dir
+
+
+# noinspection PyUnusedLocal
+def localise_mock(self, str_id):
+    """Return the text corresponding to str_id in the original language file.
+    Returns only the text of the first line in the file.
+
+    """
+    pattern = f'msgctxt "#{str_id}"\nmsgid "([^"]*)"'
+    test_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
+    lang_file = os.path.join(
+        test_dir,
+        '../plugin.video.viwx/resources/language/resource.language.en_gb/strings.po')
+    with open(lang_file) as f:
+        lang_texts = f.read()
+    match = re.search(pattern, lang_texts)
+    if match:
+        return match[1]
+    return ''
+
+
+class FileMock(xbmcvfs.File):
+    def __init__(self, filepath: str, mode: str | None = None) -> None:
+        super().__init__(filepath, mode)    # doesn't do anything, but keeps pycharm happy.
+        if mode is None:
+            mode = 'r'
+        self._file = open(translate_path_mock(filepath), mode)
+
+    def read(self, numBytes: int = 0) -> str:
+        # For some reason Kodi's default numBytes == 0, while python requires -1 to read all content.
+        if numBytes == 0:
+            numBytes = -1
+        return self._file.read(numBytes)
+
+    def write(self, buffer: str | bytes | bytearray) -> bool:
+        return bool(self._file.write(buffer))
+
+    def close(self) -> None:
+        self._file.close()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()

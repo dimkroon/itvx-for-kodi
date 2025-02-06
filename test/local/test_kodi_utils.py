@@ -82,7 +82,7 @@ class MessageDialog(unittest.TestCase):
         p_ok.assert_called_once_with('Title', 'Message')
         self.assertRaises(TypeError, kodi_utils.msg_dlg, title='Title')
 
-    def test_open_with_translatable_string(self, p_ok):
+    def test_open_with_string_id(self, p_ok):
         kodi_utils.msg_dlg(30101)
         p_ok.assert_called_once_with('viwX', 'Catchup programs')
         p_ok.reset_mock()

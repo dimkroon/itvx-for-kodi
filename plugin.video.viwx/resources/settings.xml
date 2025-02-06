@@ -133,15 +133,29 @@
 						<close>false</close>
 					</control>
 				</setting>
-				<setting id="account-sign-out" label="30202" type="action" help="30402">
-					<level>0</level>
-					<data>RunPlugin(plugin://$ID/resources/lib/settings/logout)</data>
-					<control type="button" format="action" />
-				</setting>
 				<setting id="show_password_chars" label="30203" type="boolean" help="30403">
 					<level>0</level>
 					<default>false</default>
 					<control type="toggle"/>
+				</setting>
+				<setting id="import-cookie" label="30204" type="action" help="30404">
+					<level>0</level>
+					<data>RunPlugin(plugin://$ID/resources/lib/settings/import_tokens)</data>
+					<control type="button" format="action">
+						<close>false</close>
+					</control>
+				</setting>
+				<setting id="export-cookie" label="30205" type="action" help="30405">
+					<level>0</level>
+					<data>RunPlugin(plugin://$ID/resources/lib/settings/export_tokens)</data>
+					<control type="button" format="action">
+						<close>false</close>
+					</control>
+				</setting>
+				<setting id="account-sign-out" label="30202" type="action" help="30402">
+					<level>0</level>
+					<data>RunPlugin(plugin://$ID/resources/lib/settings/logout)</data>
+					<control type="button" format="action" />
 				</setting>
 			</group>
         </category>

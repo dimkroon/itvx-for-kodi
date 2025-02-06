@@ -101,6 +101,14 @@ msgctxt "#30203"
 msgid "Show password"
 msgstr ""
 
+msgctxt "#30204"
+msgid "Import authentication tokens"
+msgstr ""
+
+msgctxt "#30205"
+msgid "Export authentication tokens"
+msgstr ""
+
 # Help texts
 
 msgctxt "#30302"
@@ -157,6 +165,16 @@ msgid "Show password in plain text while you type.\n"
 "If disabled the password will be masked with '*' characters, making your password invisible to others, and yourself."
 msgstr ""
 
+msgctxt "#30404"
+msgid "An alternative way to sign in - import tokens from another Kodi device or from a web browser.\n"
+"Visit https://github.com/dimkroon/itvx-for-kodi/wiki for more info."
+msgstr ""
+
+msgctxt "#30405"
+msgid "Export the authentication tokens from this device so you can import them on another device.\n"
+"Visit https://github.com/dimkroon/itvx-for-kodi/wiki for ore info."
+msgstr ""
+
 # Script texts
 
 # Texts in dialogs
@@ -198,7 +216,9 @@ msgid "Invalid email or password"
 msgstr ""
 
 msgctxt "#30617"
-msgid "Forbidden\nIf this error persists wait a few hours before trying again."
+msgid "Forbidden\n"
+"If this error persists wait a few hours before trying again.\n"
+"Visit https://github.com/dimkroon/itvx-for-kodi/wiki for alternative log in methods."
 msgstr ""
 
 msgctxt "#30618"
@@ -219,6 +239,30 @@ msgstr ""
 
 msgctxt "#30622"
 msgid "This stream is only available to users with an itvX premium account"
+msgstr ""
+
+msgctxt "#30623"
+msgid "Cannot to export tokens.\nNo user is currently signed in."
+msgstr ""
+
+msgctxt "#30624"
+msgid "Export succeeded.\nData saved to:\n{file_path}."
+msgstr ""
+
+msgctxt "#30625"
+msgid "Export failed.\nMake sure the folder is writable."
+msgstr ""
+
+msgctxt "#30626"
+msgid "Import succeeded.\nYou are now signed in as '{nickname}'."
+msgstr ""
+
+msgctxt "#30627"
+msgid "Import failed.\nThe file has invalid data."
+msgstr ""
+
+msgctxt "#30628"
+msgid "Cookie import succeeded, but signing in failed.\nCheck the log for more info"
 msgstr ""
 
 # Generic button texts

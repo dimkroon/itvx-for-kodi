@@ -416,6 +416,7 @@ class AccountMock:
         self.login = MagicMock()
         self.cookie = MagicMock()
         self.account_data = {'refreshed': time.time()}
+
     def alt_refresh(self):
         self.account_data['refreshed'] = time.time()
 
@@ -436,7 +437,7 @@ class GetAuthenticated(unittest.TestCase):
     @patch('resources.lib.kodi_utils.show_msg_not_logged_in', return_value=True)
     def test_authenticated_fetch_not_logged_in(self, mocked_dialog, mocked_exec_buildin, mocked_get):
         account = AccountMock()
-        account.account_data = ''
+        account.account_data = {}
         account.refresh = MagicMock(return_value=False)
         with patch("resources.lib.itv_account.itv_session", return_value=account):
             with self.assertRaises(SystemExit) as cm:
@@ -451,7 +452,7 @@ class GetAuthenticated(unittest.TestCase):
     @patch('resources.lib.kodi_utils.show_msg_not_logged_in', return_value=True)
     def test_authenticated_fetch_not_logged_in_without_sign_in_dialog(self, mocked_dialog, mocked_exec_buildin, mocked_get):
         account = AccountMock()
-        account.account_data = ''
+        account.account_data = {}
         account.refresh = MagicMock(return_value=False)
         with patch("resources.lib.itv_account.itv_session", return_value=account):
             with self.assertRaises(errors.AuthenticationError) as cm:
