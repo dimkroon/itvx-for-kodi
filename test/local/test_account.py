@@ -307,7 +307,7 @@ class PropUserId(unittest.TestCase):
         acc_data['itv_session'] = session_dta['itv_session']
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
             sess = itv_account.ItvSession()
-        sess.log_out()
+            sess.log_out()
         self.assertEqual('', sess.user_id)
 
 
@@ -336,7 +336,7 @@ class PropUserNickName(unittest.TestCase):
         acc_data['itv_session'] = session_dta['itv_session']
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
             sess = itv_account.ItvSession()
-        sess.log_out()
+            sess.log_out()
         self.assertEqual('', sess.user_nickname)
 
 

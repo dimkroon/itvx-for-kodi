@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -62,10 +62,10 @@ class LiveSchedule(TestCase):
 
 class RequestStreamData(TestCase):
     def test_request_with_auth_failure(self):
-        itv_account.itv_session().log_out()
-        with self.assertRaises(SystemExit) as cm:
-            itv._request_stream_data('some/url')
-        self.assertEqual(1, cm.exception.code)
+        with patch.object(itv_account.itv_session(), 'account_data', {}):
+            with self.assertRaises(SystemExit) as cm:
+                itv._request_stream_data('some/url')
+            self.assertEqual(1, cm.exception.code)
 
 
 class GetCatchupUrls(TestCase):
