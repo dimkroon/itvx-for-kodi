@@ -30,10 +30,8 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
-[B]v1.5.3[/B]
+[B]v 1.6.0[/B]
 [B]Fixes:[/B]
-v 1.6.0
-Fixes:
 - 'Continue watching' items could sometimes have and incorrect resume point.
 - Another attempt to fix issues with signing in with email and password.
 
