@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -60,12 +60,6 @@ class TestKodiUtils(unittest.TestCase):
         kodi_utils.ask_play_from_start('Title')
         self.assertRaises(ValueError, kodi_utils.ask_play_from_start, 1235)
 
-    def test_msg_dlg(self):
-        kodi_utils.msg_dlg('Message')
-        kodi_utils.msg_dlg('Message', 'Title')
-        self.assertRaises(TypeError, kodi_utils.msg_dlg, title='Title')
-        self.assertRaises(ValueError, kodi_utils.msg_dlg, 12345)
-
     def test_get_system_setting(self):
         with patch("xbmc.executeJSONRPC",
                    return_value='{"id": 1, "jsonrpc": "2.0", "result": {"value": "Europe/Amsterdam"}}') as p_rpc:
@@ -76,3 +70,29 @@ class TestKodiUtils(unittest.TestCase):
         with patch("xbmc.executeJSONRPC",
                    return_value='{"error":{"code":-32602,"message":"Invalid params."},"id": 1,"jsonrpc": "2.0"}'):
             self.assertRaises(ValueError, kodi_utils.get_system_setting, "my.setting")
+
+
+@patch('xbmcgui.Dialog.ok')
+class MessageDialog(unittest.TestCase):
+    def test_open_with_text(self, p_ok):
+        kodi_utils.msg_dlg('Message')
+        p_ok.assert_called_once_with('viwX', 'Message')
+        p_ok.reset_mock()
+        kodi_utils.msg_dlg('Message', 'Title')
+        p_ok.assert_called_once_with('Title', 'Message')
+        self.assertRaises(TypeError, kodi_utils.msg_dlg, title='Title')
+
+    def test_open_with_string_id(self, p_ok):
+        kodi_utils.msg_dlg(30101)
+        p_ok.assert_called_once_with('viwX', 'Catchup programs')
+        p_ok.reset_mock()
+        kodi_utils.msg_dlg(30101, 30100)
+        p_ok.assert_called_once_with('General', 'Catchup programs')
+
+    def test_open_with_formattable_string(self, p_ok):
+        kodi_utils.msg_dlg('value = {number}', number=102)
+        p_ok.assert_called_once_with('viwX', 'value = 102')
+        p_ok.reset_mock()
+        # No formatting when no keyword arguments are passed
+        kodi_utils.msg_dlg('value = {number}', title='Title')
+        p_ok.assert_called_once_with('Title', 'value = {number}')
