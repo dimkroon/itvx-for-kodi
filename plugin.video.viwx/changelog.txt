@@ -1,3 +1,12 @@
+v 1.6.0
+Fixes:
+- 'Continue watching' items could sometimes have and incorrect resume point.
+- Another attempt to fix issues singing in with email and password.
+
+New Features:
+- Possibility to import authentication tokens copied from a web browser or another instance of
+  viwX as an alternative to authenticate.
+
 v 1.5.3
 Fixes:
 - Show a proper geo-blocked message again.
