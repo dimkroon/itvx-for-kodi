@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -121,10 +121,18 @@ def ask_play_from_start(title=None):
             Script.localize(TXT_PLAY_FROM_START))
 
 
-def msg_dlg(msg, title=None):
-    if not isinstance(msg, str) or not isinstance(title, (type(None), str)):
+def msg_dlg(msg, title=None, **kwargs):
+    if not isinstance(msg, (str, int)) or not isinstance(title, (type(None), str, int)):
         logger.error("Invalid argument passed to message dialog: '%s', '%s'", msg, title)
-        raise ValueError('Arguments must be of type string')
+        raise ValueError('Arguments must be of type string or int')
+
+    if isinstance(msg, int):
+        msg = Script.localize(msg)
+    if kwargs:
+        msg = msg.format(**kwargs)
+
+    if isinstance(title, int):
+        title = Script.localize(title)
 
     dlg = xbmcgui.Dialog()
     if title is None:

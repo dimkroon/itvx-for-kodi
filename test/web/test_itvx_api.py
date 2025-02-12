@@ -247,7 +247,7 @@ class MyList(unittest.TestCase):
         # NOTE:
         #   Platform dotcom may return fewer items than mobile and ctv. The website now uses platform ctv.
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
+              'ady,widevine,fairplay,progressive&platform=ctv&size=52'.format(self.userid)
         headers = {'authorization': 'Bearer ' + self.token}
         # Both webbrowser and app authenticate with header, without any cookie.
         resp = requests.get(url, headers=headers)
@@ -483,7 +483,8 @@ class Recommended(unittest.TestCase):
         resp = requests.get(url, headers=self.headers,
                             params=self.get_features(version=2, tier='PAID'), allow_redirects=False)
         self.assertEqual(200, resp.status_code)
-        self.assertEqual(data, resp.json())
+        paid_data = resp.json()
+        self.assertEqual(data, paid_data)
 
     def test_recommendations_homepage_with_invalid_userid(self):
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/none'
@@ -735,7 +736,7 @@ class Playlists(unittest.TestCase):
                 url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
             strm_data = self.get_playlist_catchup(playlist_url)
-            testutils.save_json(strm_data, 'playlists/pl_news_short.json')
+            # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
             if is_short:
                 object_checks.check_news_collection_stream_info(strm_data['Playlist'])
             else:

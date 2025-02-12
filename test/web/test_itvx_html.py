@@ -12,7 +12,7 @@ fixtures.global_setup()
 import time
 import unittest
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from resources.lib import fetch, parsex, utils, errors, main, itv_account
 from support.object_checks import (
@@ -785,7 +785,7 @@ class TvGuide(unittest.TestCase):
         self.assertRaises(requests.Timeout, requests.get, 'https://www.itv.com/watch/tv-guide/', timeout=3)
 
     def test_html_guide_of_today(self):
-        today = datetime.utcnow().strftime('%Y-%m-%d')
+        today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
         url = 'https://www.itv.com/watch/tv-guide/' + today
         query = {'position': 'end'}
         page = requests.get(url, headers=self.headers, timeout=3).text
@@ -794,7 +794,7 @@ class TvGuide(unittest.TestCase):
         self.check_guide(schedule_data['tvGuideData'])
 
     def test_html_guide_week_ago(self):
-        week_ago = datetime.utcnow() - timedelta(days=7)
+        week_ago = datetime.now(timezone.utc) - timedelta(days=7)
         url = 'https://www.itv.com/watch/tv-guide/' + week_ago.strftime('%Y-%m-%d')
         page = requests.get(url, headers=self.headers, timeout=3).text
         data = parsex.scrape_json(page)
@@ -806,7 +806,7 @@ class TvGuide(unittest.TestCase):
         self.assertEqual(week_ago.date(), start_t.date())
 
     def test_html_guide_week_ahead(self):
-        week_ahead = datetime.utcnow() + timedelta(days=7)
+        week_ahead = datetime.now(timezone.utc) + timedelta(days=7)
         url = 'https://www.itv.com/watch/tv-guide/' + week_ahead.strftime('%Y-%m-%d')
         page = requests.get(url, headers=self.headers, timeout=3).text
         data = parsex.scrape_json(page)
@@ -829,7 +829,7 @@ class TvGuide(unittest.TestCase):
 
     def test_html_guide_8days_ahead(self):
         """If more than 7 days ahead is requested, the schedules of today are returned."""
-        today = datetime.utcnow()
+        today = datetime.now(timezone.utc)
         far_ahead = (today + timedelta(days=8)).strftime(('%Y-%m-%d'))
         url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
         data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
@@ -933,7 +933,7 @@ class MyList(unittest.TestCase):
         #   Platform dotcom may return fewer items than mobile and ctv, even when those items are
         #   presented and playable on the website.
         url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv%size=52'.format(self.userid)
+              'ady,widevine,fairplay,progressive&platform=ctv&size=52'.format(self.userid)
         headers = {'authorization': 'Bearer ' + self.token}
         # Both webbrowser and app authenticate with header, without any cookie.
         resp = requests.get(url, headers=headers)

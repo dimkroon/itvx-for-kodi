@@ -23,8 +23,8 @@ from resources.lib import utils
 
 
 WEB_TIMEOUT = (3.5, 12)
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0'
-USER_AGENT_VERSION = '127.0'
+USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:135.0) Gecko/20100101 Firefox/135.0'
+USER_AGENT_VERSION = '135.0'
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))

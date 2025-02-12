@@ -1,20 +1,30 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+
 from test.support import fixtures
 fixtures.global_setup()
+
+import xbmcgui
 
 import logging as py_logging
 
 import unittest
 from unittest.mock import MagicMock, patch
 
+from resources.lib import itv_account
 from resources.lib import settings
 from resources.lib import addon_log
 from resources.lib import errors
+
+from support.testutils import doc_path
+
+
+setUpModule = fixtures.setup_local_tests
+tearDownModule = fixtures.tear_down_local_tests
 
 
 class Login(unittest.TestCase):
@@ -104,6 +114,84 @@ class LoginRetryBehaviour(unittest.TestCase):
         self.assertFalse(settings.login())
         self.assertEqual(2, p_ask_retry.call_count)
         self.assertEqual(2, p_post.call_count)  # 1 original login, 1 after first retry
+
+
+@patch('resources.lib.itv_account.ItvSession.save_account_data')
+class ImportAuthTokens(unittest.TestCase):
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/firefox-cookie.txt'))
+    def test_import_firefox(self, p_dlg, p_refresh, _):
+        settings.import_tokens.test()
+        p_dlg.assert_called_once()
+        p_refresh.assert_called_once()
+        acc_data = itv_account.itv_session().account_data
+        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/chromium-cookie.json'))
+    def test_import_chromium(self, p_dlg, p_refresh, _):
+        settings.import_tokens.test()
+        p_dlg.assert_called_once()
+        p_refresh.assert_called_once()
+        acc_data = itv_account.itv_session().account_data
+        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/viwx-cookie.txt'))
+    def test_import_viwx(self, p_dlg, p_refresh, _):
+        settings.import_tokens.test()
+        p_dlg.assert_called_once()
+        p_refresh.assert_called_once()
+        acc_data = itv_account.itv_session().account_data
+        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=False)
+    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/viwx-cookie.txt'))
+    def test_import_success_refresh_fails(self, _, __, p_save):
+        """Data is saved when refresh fails."""
+        settings.import_tokens.test()
+        p_save.assert_called_once()
+        acc_data = itv_account.itv_session().account_data
+        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('some_folder/some_file'))
+    def test_import_non_existing_file(self, p_dlg, p_refresh, _):
+        """Since the file is selected by a file open dialog, this should never happen"""
+        self.assertRaises(FileNotFoundError, settings.import_tokens.test)
+        p_dlg.assert_called_once()
+        p_refresh.assert_not_called()
+
+    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
+    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/invalid-cookie.txt'))
+    def test_import_invalid_file(self, p_dlg, p_refresh, p_save):
+        settings.import_tokens.test()
+        p_dlg.assert_called_once()
+        p_refresh.assert_not_called()
+        p_save.assert_not_called()
+
+
+@patch('xbmcvfs.copy')
+class ExportAuthTokens(unittest.TestCase):
+    @patch('xbmcgui.Dialog.browseSingle', return_value='special://profile')
+    def test_export(self, _, p_copy):
+        # check we are signed in
+        self.assertGreater(itv_account.itv_session().account_data['refreshed'], 0 )
+        settings.export_tokens.test()
+        p_copy.assert_called_once()
+
+    @patch('xbmcgui.Dialog.browseSingle', return_value='special://profile')
+    def test_export_not_signed_in(self, _, p_copy):
+        with patch.object(itv_account.itv_session(), '_user_id', ''):
+            settings.export_tokens.test()
+            p_copy.assert_not_called()
+
+    @patch('xbmcgui.Dialog.browseSingle', return_value='')
+    def test_export_dialog_canceled(self, _, p_copy):
+        # check we are signed in
+        self.assertGreater(itv_account.itv_session().account_data['refreshed'], 0)
+        settings.export_tokens.test()
+        p_copy.assert_not_called()
 
 
 class TestSettings(unittest.TestCase):

@@ -182,7 +182,6 @@ class ItvSession:
             session_data = self.account_data['itv_session']
             session_data.update(new_tokens)
             sess_cookie_str = build_cookie(session_data)
-            logger.debug("New Itv.Session cookie: %s" % sess_cookie_str)
             self.account_data['cookies']['Itv.Session'] = sess_cookie_str
             self.account_data['refreshed'] = time.time()
             self._user_id, self._user_nickname, self._expire_time = parse_token(session_data.get('access_token'))
@@ -269,7 +268,7 @@ def fetch_authenticated(funct, url, login=True, **kwargs):
                 raise AuthenticationError
 
             try:
-                if account.account_data['refreshed'] < time.time() - 4 * 3600:
+                if account.account_data.get('refreshed', 0.0) < time.time() - 4 * 3600:
                     # renew tokens periodically
                     logger.debug("Token cache time has expired.")
                     raise AuthenticationError
