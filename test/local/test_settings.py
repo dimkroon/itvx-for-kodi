@@ -147,7 +147,7 @@ class ImportAuthTokens(unittest.TestCase):
 
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=False)
     @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/viwx-cookie.txt'))
-    def test_import_viwx(self, _, __, p_save):
+    def test_import_success_refresh_fails(self, _, __, p_save):
         """Data is saved when refresh fails."""
         settings.import_tokens.test()
         p_save.assert_called_once()
