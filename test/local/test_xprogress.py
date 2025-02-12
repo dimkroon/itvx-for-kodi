@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2023-2024 Dimitri Kroon.
+#  Copyright (c) 2023-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -261,8 +261,21 @@ class TestPLayTimeMonitor(TestCase):
             p_fetch.assert_called_once()
             self.assertIs(mon._status, xprogress.PlayState.PLAYING)
 
-        # posting event keeps failing
+        # posting event keeps failing with a non-ok response body
         with patch('resources.lib.fetch.web_request', return_value=HttpResponse(content=b'not allowed')):
+            mon = xprogress.PlayTimeMonitor('')
+            mon._status = xprogress.PlayState.PLAYING
+            mon._handle_event({}, 'heartbeat')
+            self.assertIs(mon._status, xprogress.PlayState.PLAYING)
+            mon._handle_event({}, 'heartbeat')
+            self.assertIs(mon._status, xprogress.PlayState.PLAYING)
+            mon._handle_event({}, 'heartbeat')
+            self.assertIs(mon._status, xprogress.PlayState.PLAYING)
+            mon._handle_event({}, 'heartbeat')
+            self.assertIs(mon._status, xprogress.PlayState.STOPPED)
+
+        # posting event keeps failing with HTTP errors
+        with patch('resources.lib.fetch.web_request', side_effect=errors.AuthenticationError):
             mon = xprogress.PlayTimeMonitor('')
             mon._status = xprogress.PlayState.PLAYING
             mon._handle_event({}, 'heartbeat')
@@ -278,6 +291,15 @@ class TestPLayTimeMonitor(TestCase):
         with patch('resources.lib.fetch.web_request', side_effect=itertools.chain(
                 itertools.repeat(HttpResponse(content=b'not allowed'), 3),
                 itertools.repeat(HttpResponse(content=b'ok')))) as p_fetch:
+            mon = xprogress.PlayTimeMonitor('')
+            mon._status = xprogress.PlayState.PLAYING
+            for _ in range(8):
+                mon._handle_event({}, 'heartbeat')
+                self.assertIs(mon._status, xprogress.PlayState.PLAYING)
+            self.assertEqual(8, p_fetch.call_count)
+
+        # posting event fails with network error; should just continue (until video stops).
+        with patch('resources.lib.fetch.web_request', side_effect=errors.FetchError) as p_fetch:
             mon = xprogress.PlayTimeMonitor('')
             mon._status = xprogress.PlayState.PLAYING
             for _ in range(8):

@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2023-2024 Dimitri Kroon.
+#  Copyright (c) 2023-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -16,6 +16,7 @@ from codequick.support import logger_id
 from resources.lib import fetch
 from . itv_account import itv_session
 from . itvx import PLATFORM_TAG
+from . import errors
 
 
 logger = logging.getLogger('.'.join((logger_id, __name__.split('.', 2)[-1])))
@@ -238,16 +239,24 @@ class PlayTimeMonitor(Player):
             'seq': self._event_seq_nr,
             'type': evt_type
         }
-        resp = fetch.web_request('post', EVT_URL, data=post_data)
-        if resp.content == b'ok':
-            self._post_errors = 0
-        else:
-            logger.info("Posting progress event failed with HTTP status: %s - %s", resp.status_code, resp.content)
+        try:
+            resp = fetch.web_request('post', EVT_URL, data=post_data)
+            if resp.content == b'ok':
+                self._post_errors = 0
+            else:
+                logger.info("Posting progress event failed with HTTP status: %s - %s", resp.status_code, resp.content)
+                self._post_errors += 1
+        except (errors.HttpError, errors.AuthenticationError, errors.GeoRestrictedError) as err:
+            logger.warning("Posting progress event failed: %s", err)
             self._post_errors += 1
-            if self._post_errors > 3:
-                # No use going on if event posting continues to fail.
-                self._status = PlayState.STOPPED
-                logger.warning("Aborting progress monitoring; more than 3 events have failed.")
+        except (errors.FetchError, OSError):
+            # Ignore network issues, just keep trying until the video stops playing.
+            return
+
+        if self._post_errors > 3:
+            # No use going on if event posting continues to fail.
+            self._status = PlayState.STOPPED
+            logger.warning("Aborting progress monitoring; more than 3 events have failed.")
 
 
 def playtime_monitor(production_id):
