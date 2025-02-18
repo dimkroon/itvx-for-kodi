@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -20,6 +20,8 @@ class TestObjectChecks(TestCase):
         self.assertFalse(oc.is_url('https://adskj/jbhnkjn.jpg?some=query&string=', '.png'))
         self.assertTrue(oc.is_url('https://adskj/jbhnkjn.jpg', ('.bmp', '.jpg', '.png')))
         self.assertFalse(oc.is_url('https://adskj/jbhnkjn.jpg', ('.bmp', '.gif', '.png')))
+        self.assertTrue(oc.is_url('https://jbhnkjn.JPG', '.jpg'))
+        self.assertTrue(oc.is_url('https://jbhnkjn.JPG', '.JPG'))
 
     def test_is_iso_time(self):
         self.assertTrue(oc.is_iso_utc_time("2019-05-26T23:10:32Z"))

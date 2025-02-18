@@ -80,10 +80,14 @@ def is_url(url: str, ext: str| list | tuple | None = None) -> bool:
     result = url.startswith('https://')
     result = result and url.find('//', 7) == -1
     if ext is not None:
+        # Some urls have a file extension in uppercase
+        l_url = url.lower()
         if isinstance(ext, (tuple, list)):
-            result = result and any(url.endswith(extension) or extension + '?' in url for extension in ext)
+            l_ext = (e.lower() for e in ext)
+            result = result and any(l_url.endswith(extension) or extension + '?' in l_url for extension in l_ext)
         else:
-            result = result and (url.endswith(ext) or ext + '?' in url)
+            l_ext = ext.lower()
+            result = result and (l_url.endswith(l_ext) or l_ext + '?' in l_url)
     return result
 
 
@@ -339,7 +343,7 @@ def check_short_form_item(item):
 
     assert is_not_empty(item['episodeTitle'], str)
     assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp', '.gif')), \
-           "item '{}' has not a valid imageUrl".format(item['episodeTitle'])
+           "item '{}' has not a valid imageUrl: '{}'".format(item['episodeTitle'], item['imageUrl'])
     # True shortform items have a field 'href', but items produced by heroAndLatest and curatedRails
     # on the news category page don't.
     if 'href' in item:

@@ -75,7 +75,7 @@ class LiveSchedules(unittest.TestCase):
             return schedule
 
     def test_main_channels_schedules_4hrs(self):
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         end = now + timedelta(hours=4)
         self.check_schedule(now, end)
 
