@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -9,8 +9,11 @@ import json
 import os.path
 import re
 
+from collections.abc import Iterable
+from unittest.mock import Mock
 from datetime import datetime
 from requests.models import Response
+from resources.lib import itv_account
 
 
 def doc_path(doc: str) -> str:
@@ -104,3 +107,16 @@ class mockeddt(datetime):
         else:
             return cls.mocked_now.replace(tzinfo=None)
 
+
+class SessionMock(itv_account.ItvSession):
+    def __init__(self, login=True, refresh=True):
+        super().__init__()
+        if isinstance(login, Iterable):
+            self.login = Mock(side_effect=login)
+        else:
+            self.login = Mock(return_value=login)
+        if isinstance(refresh, Iterable):
+            self.refresh = Mock(side_effect=refresh)
+        else:
+            self.refresh = Mock(return_value=refresh)
+    save_account_data = Mock()

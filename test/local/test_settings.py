@@ -20,7 +20,7 @@ from resources.lib import settings
 from resources.lib import addon_log
 from resources.lib import errors
 
-from support.testutils import doc_path
+from support.testutils import doc_path, open_doc, SessionMock
 
 
 setUpModule = fixtures.setup_local_tests
@@ -116,59 +116,87 @@ class LoginRetryBehaviour(unittest.TestCase):
         self.assertEqual(2, p_post.call_count)  # 1 original login, 1 after first retry
 
 
-@patch('resources.lib.itv_account.ItvSession.save_account_data')
+@patch('resources.lib.settings.check_token_data')
 class ImportAuthTokens(unittest.TestCase):
-    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/firefox-cookie.txt'))
-    def test_import_firefox(self, p_dlg, p_refresh, _):
+    def test_import_file(self, p_dlg, p_check):
         settings.import_tokens.test()
         p_dlg.assert_called_once()
-        p_refresh.assert_called_once()
+        p_check.assert_called_once()
+
+    @patch('xbmcgui.Dialog.browseSingle', return_value='')
+    def test_file_select_canceled(self, p_dlg, p_check):
+        settings.import_tokens.test()
+        p_dlg.assert_called_once()
+        p_check.assert_not_called()
+
+
+class HandleTokenData(unittest.TestCase):
+    def test_handle_token_data(self):
+        for fname in ('firefox-cookie.txt', 'chromium-cookie.txt', 'viwx-tokens.txt'):
+            raw_data = open_doc('cookie-files/' + fname)()
+            with patch("resources.lib.itv_account._itv_session_obj", SessionMock()) as p_session:
+                settings.check_token_data(raw_data)
+                acc_data = itv_account.itv_session().account_data
+                self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+                p_session.refresh.assert_called_once()
+
+    def test_handle_cripled_cookie(self):
+        for fname in ('firefox-cookie.txt', 'chromium-cookie.txt'):
+            raw_data = open_doc('cookie-files/' + fname)()
+            with patch("resources.lib.itv_account._itv_session_obj", SessionMock()) as p_session:
+                # First character missing
+                settings.check_token_data(raw_data[1:])
+                acc_data = itv_account.itv_session().account_data
+                self.assertNotEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+                p_session.refresh.assert_not_called()
+                # Last character missing
+                settings.check_token_data(raw_data[:-1])
+                acc_data = itv_account.itv_session().account_data
+                self.assertNotEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+                p_session.refresh.assert_not_called()
+                # Something in between is missing, making data invalid json
+                settings.check_token_data(raw_data[:40] + raw_data[-30:])
+                acc_data = itv_account.itv_session().account_data
+                self.assertNotEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+                p_session.refresh.assert_not_called()
+
+    @patch("resources.lib.itv_account._itv_session_obj", SessionMock())
+    def test_invalid_viwx_token_data(self):
+        settings.check_token_data('{"vers": 2}')
+        itv_account.itv_session().refresh.assert_not_called()
+        settings.check_token_data('"vers": 2')
+        itv_account.itv_session().refresh.assert_not_called()
+
+    @patch("resources.lib.itv_account._itv_session_obj", SessionMock())
+    def test_handle_unknown_file(self):
+        settings.check_token_data('some invalid data')
         acc_data = itv_account.itv_session().account_data
-        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+        self.assertNotEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+        itv_account.itv_session().refresh.assert_not_called()
 
-    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
-    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/chromium-cookie.json'))
-    def test_import_chromium(self, p_dlg, p_refresh, _):
-        settings.import_tokens.test()
-        p_dlg.assert_called_once()
-        p_refresh.assert_called_once()
-        acc_data = itv_account.itv_session().account_data
-        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+    @patch("resources.lib.itv_account._itv_session_obj", SessionMock())
+    def test_cookie_file_not_signed_in(self):
+        settings.check_token_data('{"tokens":{"content":{}}}')
+        itv_account.itv_session().refresh.assert_not_called()
 
-    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
-    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/viwx-cookie.txt'))
-    def test_import_viwx(self, p_dlg, p_refresh, _):
-        settings.import_tokens.test()
-        p_dlg.assert_called_once()
-        p_refresh.assert_called_once()
-        acc_data = itv_account.itv_session().account_data
-        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
+    @patch("resources.lib.itv_account._itv_session_obj", SessionMock(refresh=False))
+    def test_refresh_fails(self):
+        settings.check_token_data(open_doc('cookie-files/firefox-cookie.txt')())
 
-    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=False)
-    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/viwx-cookie.txt'))
-    def test_import_success_refresh_fails(self, _, __, p_save):
-        """Data is saved when refresh fails."""
-        settings.import_tokens.test()
-        p_save.assert_called_once()
-        acc_data = itv_account.itv_session().account_data
-        self.assertEqual('this.isarefresh.token', acc_data['itv_session']['refresh_token'])
 
-    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
-    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('some_folder/some_file'))
-    def test_import_non_existing_file(self, p_dlg, p_refresh, _):
-        """Since the file is selected by a file open dialog, this should never happen"""
-        self.assertRaises(FileNotFoundError, settings.import_tokens.test)
-        p_dlg.assert_called_once()
-        p_refresh.assert_not_called()
+class ParseCookies(unittest.TestCase):
+    def test_parse_cookie_data(self):
+        tokens = settings._parse_cookie('{"tokens":{"content": "These are the tokens"}}')
+        self.assertEqual(tokens, "These are the tokens")
 
-    @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
-    @patch('xbmcgui.Dialog.browseSingle', return_value=doc_path('cookie-files/invalid-cookie.txt'))
-    def test_import_invalid_file(self, p_dlg, p_refresh, p_save):
-        settings.import_tokens.test()
-        p_dlg.assert_called_once()
-        p_refresh.assert_not_called()
-        p_save.assert_not_called()
+    def test_not_signed_in_cookies(self):
+        with self.assertRaises(errors.ParseError):
+            settings._parse_cookie('{"tokens":{}}')
+
+    def test_invalid_data(self):
+        with self.assertRaises(errors.ParseError):
+            settings._parse_cookie('{"tokens": "My token"}')
 
 
 @patch('xbmcvfs.copy')
@@ -181,10 +209,16 @@ class ExportAuthTokens(unittest.TestCase):
         p_copy.assert_called_once()
 
     @patch('xbmcgui.Dialog.browseSingle', return_value='special://profile')
-    def test_export_not_signed_in(self, _, p_copy):
+    def test_export_failures(self, _, p_copy):
+        # not signed in
         with patch.object(itv_account.itv_session(), '_user_id', ''):
             settings.export_tokens.test()
             p_copy.assert_not_called()
+        # write failed
+        with patch('xbmcvfs.exists', return_value=False):
+            self.assertGreater(itv_account.itv_session().account_data['refreshed'], 0)
+            settings.export_tokens.test()
+            p_copy.assert_called_once()
 
     @patch('xbmcgui.Dialog.browseSingle', return_value='')
     def test_export_dialog_canceled(self, _, p_copy):
