@@ -78,6 +78,26 @@ def get_json_data(url, max_age=None, auth=False, **kwargs):
     return data
 
 
+def get_json_data(url, max_age=None, auth=False, **kwargs):
+    """Return the json object from url. Return from cache if available and not
+
+    Return the data from cache if present and not expired, or request the page by HTTP.
+
+    """
+    if max_age:
+        cached_data = cache.get_item(url)
+        if cached_data is not None:
+            return cached_data
+
+    if auth:
+        data = itv_account.fetch_authenticated(fetch.get_json, url, **kwargs)
+    else:
+        data = fetch.get_json(url, **kwargs)
+    if max_age:
+        cache.set_item(url, data, max_age)
+    return data
+
+
 def get_now_next_schedule(local_tz=None):
     """Get the name and start time of the current and next programme for each live channel.
 
@@ -588,9 +608,9 @@ def initialise_my_list():
             cache.my_list_programmes = False
 
 
-def _get_watching():
+def get_last_watched():
     url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features={}'.format(
-        itv_account.itv_session().user_id, FEATURE_SET)
+            itv_account.itv_session().user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     try:
         data = get_json_data(url, max_age=600, auth=True, headers=header)
