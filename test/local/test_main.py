@@ -388,6 +388,7 @@ class Categories(TestCase):
         check_list_items(self, items)
 
 
+@patch("resources.lib.itvx.episodes_progress", lambda *a, **k: {})   # disable progress sync
 @patch("resources.lib.cache.get_item", new=lambda *a, **k: None)     # disable cache
 class Productions(TestCase):
     @patch("resources.lib.itvx.episodes", return_value=[])
