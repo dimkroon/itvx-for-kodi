@@ -68,6 +68,42 @@ class GetPageData(TestCase):
         p_set_item.assert_called_with(full_url, data, 20)
 
 
+@patch('resources.lib.cache.set_item')
+@patch('resources.lib.fetch.get_json', return_value={"data": "my data"})
+class GetJsonData(TestCase):
+    @patch('resources.lib.cache.get_item', return_value={'data': 'Cached data'})
+    def test_get_json_data_without_cache(self, p_get_item, p_get_json, p_set_item):
+        data = itvx.get_json_data('https://my.url')
+        self.assertDictEqual({"data": "my data"}, data)
+        p_get_item.assert_not_called()
+        p_set_item.assert_not_called()
+        p_get_json.assert_called_with('https://my.url')
+
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value={"data": "authenticated data"})
+    def test_get_authenticated_json_data_without_cache(self, p_fetch_auth, _, __):
+        url = 'https://my.url'
+        data = itvx.get_json_data(url, auth=True)
+        self.assertDictEqual({"data": "authenticated data"}, data)
+        p_fetch_auth.assert_called_once()
+
+    @patch('resources.lib.cache.get_item', return_value={'data': 'Cached data'})
+    def test_get_json_data_from_cache(self, p_get_item, p_get_json, p_set_item):
+        data = itvx.get_json_data('https://my.url', max_age=20)
+        self.assertDictEqual({'data': 'Cached data'}, data)
+        p_get_item.assert_called_with('https://my.url')
+        p_set_item.assert_not_called()
+        p_get_json.assert_not_called()
+
+    @patch('resources.lib.cache.get_item', return_value=None)
+    def test_get_json_data_from_empty_cache(self, p_get_item, _, p_set_item):
+        url = 'https://my.url'
+        data = itvx.get_json_data(url, max_age=20)
+        self.assertDictEqual({"data": "my data"}, data)
+        p_get_item.assert_called_with(url)
+        p_set_item.assert_called_with(url, data, 20)
+
+
+
 @patch('resources.lib.fetch.get_json', new=lambda *a, **k: open_json('schedule/now_next.json'))
 class NowNextSchedule(TestCase):
     def test_get_now_next_schedule(self):
