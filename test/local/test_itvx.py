@@ -331,16 +331,17 @@ class Categories(TestCase):
         self.assertListEqual( [], itvx.category_news_content('my/url', 'curatedRails', 'SomeRail'))
 
 
+@patch('resources.lib.itvx.episodes_progress', return_value={})
 class Episodes(TestCase):
     @patch('resources.lib.fetch.get_document', new=open_doc('html/series_miss-marple.html'))
-    def test_episodes_marple(self):
+    def test_episodes_marple(self, _):
         series_listing, programme_id = itvx.episodes('asd')
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
         self.assertTrue(is_not_empty(programme_id, str))
 
     @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
-    def test_paid_episodes(self):
+    def test_paid_episodes(self, _):
         series_listing, programme_id = itvx.episodes('asd')
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(7, len(series_listing))
@@ -348,7 +349,7 @@ class Episodes(TestCase):
         self.assertTrue(is_not_empty(programme_id, str))
 
     @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
-    def test_episodes_with_cache(self, _):
+    def test_episodes_with_cache(self, _, __):
         series_listing1, programme_id1 = itvx.episodes('asd', use_cache=False)
         self.assertIsInstance(series_listing1, dict)
         self.assertEqual(len(series_listing1), 6)
@@ -357,7 +358,7 @@ class Episodes(TestCase):
         self.assertDictEqual(series_listing1, series_listing2)
         self.assertEqual(programme_id1, programme_id2)
 
-    def test_missing_episodes_data(self):
+    def test_missing_episodes_data(self, _):
         data = open_json('html/series_miss-marple_data.json')
         del data['seriesList']
         with patch('resources.lib.itvx.get_page_data', return_value=data):
@@ -365,7 +366,7 @@ class Episodes(TestCase):
             self.assertFalse(is_not_empty(series_listing, dict))
             self.assertIsNone(programme_id)
 
-    def test_merge_multiple_series_with_same_series_number(self):
+    def test_merge_multiple_series_with_same_series_number(self, _):
         data = open_json('html/series_miss-marple_data.json')
         # Check we operate on the expected object.
         series_list = data['seriesList']
@@ -467,7 +468,8 @@ class LastWatched(TestCase):
             results = itvx.get_last_watched()
             self.assertIsInstance(results, list)
             self.assertEqual(len(results), 0)
-        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError):
+        cache.purge()
+        with patch('resources.lib.itv_account.fetch_authenticated', side_effect=errors.HttpError(404, 'not found')):
             results = itvx.get_last_watched()
             self.assertIsInstance(results, list)
             self.assertEqual(len(results), 0)
