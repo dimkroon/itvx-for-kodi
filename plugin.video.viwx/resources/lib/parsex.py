@@ -591,7 +591,9 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False, watched
         'params': {'url': playlist_url, 'name': title}
     }
 
-    if watched_status.get(title_data.get('episodeId'), 0) > 0.95:
+    # An episode can appear multiple times in a programme list, e.g. in 'recent episodes'.
+    # Ensure to sync only once.
+    if watched_status.pop(title_data.get('episodeId'), 0) > 0.95:
         title_obj['info']['playcount'] = 1
         set_playcount(title_obj['params'])
 

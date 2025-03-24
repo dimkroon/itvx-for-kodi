@@ -338,6 +338,8 @@ def episodes_progress(programme_id, progress_cache=None):
     the specified programme where progress has changed since the last time it was
     checked.
 
+    Callers can modify the returned dict without affecting the cache.
+
     """
     log = logging.getLogger('.'.join((logger.name, 'episode_progress', programme_id)))
     user_id = itv_account.itv_session().user_id
@@ -373,8 +375,8 @@ def episodes_progress(programme_id, progress_cache=None):
                          if old_progress.get(episode_id) != progress}
             log.debug("%s new items", len(new_items))
         else:
-            new_items = itv_progress
             log.debug("No progress cached")
+            new_items = itv_progress.copy()
         cached_pgrss[programme_id] = itv_progress
         log.debug("%s episodes of %s have changed", len(new_items), len(itv_progress))
     except:
@@ -384,7 +386,14 @@ def episodes_progress(programme_id, progress_cache=None):
         # Only save and close if the cache was opened here.
         if progress_cache is None:
             cached_pgrss.close()
-
+    # FIXME: This is wrong. There is no point in caching new items. The whole point of getting
+    #        progress is to sync watched state with the Kodi database. These new items will most
+    #        like have been synced, so it's no use to return them again if called shortly afterwards.
+    #        It's probably better to cache the request and perform the comparison to the progress
+    #        cache each time.
+    #        This function kinda assumes that the status of the returned episodes are successfully
+    #        synced to the Kod db. In that respect one could argue that it should return an empty
+    #        dict when it's called again before the cache expires.
     cache.set_item(url, new_items, 300)
     return new_items
 
