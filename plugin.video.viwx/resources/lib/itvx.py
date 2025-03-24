@@ -57,6 +57,26 @@ def get_page_data(url, cache_time=None):
     return data
 
 
+def get_json_data(url, max_age=None, auth=False, **kwargs):
+    """Return the json object from url. Return from cache if available and not
+
+    Return the data from cache if present and not expired, or request the page by HTTP.
+
+    """
+    if max_age:
+        cached_data = cache.get_item(url)
+        if cached_data is not None:
+            return cached_data
+
+    if auth:
+        data = itv_account.fetch_authenticated(fetch.get_json, url, **kwargs)
+    else:
+        data = fetch.get_json(url, **kwargs)
+    if max_age:
+        cache.set_item(url, data, max_age)
+    return data
+
+
 def get_now_next_schedule(local_tz=None):
     """Get the name and start time of the current and next programme for each live channel.
 
@@ -589,18 +609,12 @@ def initialise_my_list():
 
 
 def get_last_watched():
-    user_id = itv_account.itv_session().user_id
-    cache_key = 'last_watched_' + user_id
-    cached_data = cache.get_item(cache_key)
-    if cached_data is not None:
-        return cached_data
-
     url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features={}'.format(
-            user_id, FEATURE_SET)
+            itv_account.itv_session().user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
     try:
-        data = itv_account.fetch_authenticated(fetch.get_json, url, headers=header)
+        data = get_json_data(url, max_age=600, auth=True, headers=header)
     except (errors.HttpError, errors.ParseError):
         # A wide variety of responses have been observed when the watch list has no items.
         # Just regard any HTTP, or JSON decoding error as an empty list.
@@ -609,7 +623,6 @@ def get_last_watched():
         watched_list = [parsex.parse_last_watched_item(item, utc_now) for item in data]
     else:
         watched_list = []
-    cache.set_item(cache_key, watched_list, 600)
     return watched_list
 
 
