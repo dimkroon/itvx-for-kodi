@@ -501,9 +501,10 @@ class WatchProgress(unittest.TestCase):
         self.assertIsInstance(data, list)
         for episode in data:
             object_checks.is_not_empty(episode['episodeId'], str)
+            object_checks.is_not_empty(episode['episodeCCId'], str)
             self.assertGreaterEqual(episode['percentageWatched'], 0.0)
             self.assertLess(episode['percentageWatched'], 1.1)      # can occasionally be a tiny bit over 100%
-            self.assertEqual(2, len(episode))                       # Just to flag when more items become available
+            self.assertEqual(3, len(episode))                       # Just to flag when more items become available
 
     def test_progress_by_resume(self):
         """Try to request resume data of the entire programme, rather than the usual production.
