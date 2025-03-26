@@ -608,9 +608,9 @@ def initialise_my_list():
             cache.my_list_programmes = False
 
 
-def get_last_watched():
+def _get_watching():
     url = 'https://content.prd.user.itv.com/lastwatched/user/{}/ctv?features={}'.format(
-            itv_account.itv_session().user_id, FEATURE_SET)
+        itv_account.itv_session().user_id, FEATURE_SET)
     header = {'accept': 'application/vnd.user.content.v1+json'}
     try:
         data = get_json_data(url, max_age=600, auth=True, headers=header)
@@ -635,42 +635,53 @@ def sync_last_watched(prefer_bsl):
     """Sync the status of the changed last watched programmes to Kodi's database.
 
     """
+    from concurrent import futures
+
     log = logging.getLogger(logger.name + '.sync_watched_state')
     try:
-        logger.debug("*** Sync watched state started ***")
-        strt_t = time.monotonic()
+        log.debug("*** Sync watched state started ***")
+        start_t = time.monotonic()
+        lw_data = _get_watching()
+        if not lw_data:
+            return
+        cur_watching = {item['programmeId']: (item['episodeId'], item['percentageWatched']) for item in lw_data}
 
-        from concurrent import futures
-
-        # Extend the list of programmeIds with those that are no longer on the list.
-        # These are either too old and have been removed by ITV, or the last episode
-        # of a programme has been fully watched since the last time it was checked.
-        with PersistentList('watching.cache', 32 * 86400) as prev_watching:
-            finished_watching = [progr_id for progr_id in prev_watching if progr_id not in programme_ids]
-            log.info("Added %s finished programmes", len(finished_watching))
+        with PersistentDict('watching.cache') as prev_watching:
+            # Get the programmeIds of that have changed since the last sync
+            programme_ids = {prog_id for prog_id, status in cur_watching.items()
+                             if prev_watching.get(prog_id) != status}
+            # Get the Ids of programmes that have been fully watched.
+            finished_watching = {progr_id for progr_id in prev_watching.keys() if progr_id not in cur_watching}
+            log.info("Syncing %s changed programmes and %s finished programmes",
+                     len(programme_ids), len(finished_watching))
             prev_watching.clear()
-            prev_watching.extend(programme_ids)
-        programme_ids.extend(finished_watching)
+            prev_watching.update(cur_watching)
+        programme_ids.update(finished_watching)
 
         # Check which programmes have episodes that have actually changed watched status. This will make
         # web requests to obtain progress of all programmes, but the next step will use the cached status.
         with PersistentDict('progress.cache', 32 * 86400) as cached_progress:
             with futures.ThreadPoolExecutor(max_workers=16) as executor:
-                pending_results = [executor.submit(episodes_progress, pgm_id, cached_progress)
-                                   for pgm_id in programme_ids]
-                futures.wait(pending_results)
-            watched_pgms = [pgm_id for pgm_id, progress in zip(programme_ids, (r.result() for r in pending_results))
-                            if progress]
+                progress_results = [executor.submit(episodes_progress, pgm_id.replace('/', '_'), cached_progress)
+                                    for pgm_id in programme_ids]
+                programme_results = [executor.submit(get_page_data, '/watch/undefined/' + pgm_id.replace('/', 'a'), 300)
+                                     for pgm_id in programme_ids]
+                futures.wait(progress_results + programme_results)
+        progress = dict(zip(programme_ids, (r.result() for r in progress_results)))
+        for pgm_id, pgm in dict(zip(programme_ids, (r.result() for r in programme_results))).items():
+            pgm_progress = progress[pgm_id]
+            log.info("Syncing %s episodes of programme %s", len(pgm_progress), pgm_id)
+            for series in pgm['seriesList']:
+                for title in series['titles']:
+                    if pgm_progress.pop(title.get('episodeId'), 0) > 0.95:
+                        if prefer_bsl:
+                            playlist_url = title.get('bslPlaylistUrl') or title['playlistUrl']
+                        else:
+                            playlist_url = title['playlistUrl']
+                        epsiode_title = title['episodeTitle'] or title['heroCtaLabel']
+                        kodi_utils.set_playcount({'url': playlist_url, 'name': epsiode_title})
 
-        # Request the episode listing(s) to update the watched status.
-        log.info("Syncing %s programmes", len(watched_pgms))
-        with futures.ThreadPoolExecutor(max_workers=16) as executor:
-            # Due to the default cache time of episodes() syncing is effectively limited to once every 0.5 hrs.
-            future_objects = [executor.submit(episodes, '/watch/undefined/' + pgm_id.replace('_', 'a'),  use_cache=False)
-                              for pgm_id in watched_pgms]
-            futures.wait(future_objects)
-
-        log.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - strt_t)
+        log.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - start_t)
     except:
         log.error("Unexpected failure\n", exc_info=True)
 
