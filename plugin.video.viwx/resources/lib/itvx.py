@@ -639,11 +639,12 @@ def sync_last_watched(prefer_bsl):
     from concurrent import futures
 
     log = logging.getLogger(logger.name + '.sync_watched_state')
+    start_t = time.monotonic()
+    log.debug("*** Sync watched state started ***")
     try:
-        log.debug("*** Sync watched state started ***")
-        start_t = time.monotonic()
         lw_data = _get_watching()
         if not lw_data:
+            log.info("Aborted; no last watched programmes.")
             return
         cur_watching = {item['programmeId']: (item['episodeId'], item['percentageWatched']) for item in lw_data}
 
@@ -658,9 +659,11 @@ def sync_last_watched(prefer_bsl):
             prev_watching.clear()
             prev_watching.update(cur_watching)
         programme_ids.update(finished_watching)
+        if not programme_ids:
+            log.info("No changes")
+            return
 
-        # Check which programmes have episodes that have actually changed watched status. This will make
-        # web requests to obtain progress of all programmes, but the next step will use the cached status.
+        # Check which programmes contain episodes that have actually changed watched status.
         with PersistentDict('progress.cache', 32 * 86400) as cached_progress:
             with futures.ThreadPoolExecutor(max_workers=16) as executor:
                 progress_results = [executor.submit(episodes_progress, pgm_id.replace('/', '_'), cached_progress)
@@ -668,23 +671,18 @@ def sync_last_watched(prefer_bsl):
                 programme_results = [executor.submit(get_page_data, '/watch/undefined/' + pgm_id.replace('/', 'a'), 300)
                                      for pgm_id in programme_ids]
                 futures.wait(progress_results + programme_results)
-        progress = dict(zip(programme_ids, (r.result() for r in progress_results)))
-        for pgm_id, pgm in dict(zip(programme_ids, (r.result() for r in programme_results))).items():
-            pgm_progress = progress[pgm_id]
-            log.info("Syncing %s episodes of programme %s", len(pgm_progress), pgm_id)
+
+        for pgm, progrss in zip((r.result() for r in programme_results),
+                                (r.result() for r in progress_results)):
+            log.info("Syncing %s episodes of programme %s", len(progrss), pgm.get('programmeId'))
             for series in pgm['seriesList']:
                 for title in series['titles']:
-                    if pgm_progress.pop(title.get('episodeId'), 0) > 0.95:
-                        if prefer_bsl:
-                            playlist_url = title.get('bslPlaylistUrl') or title['playlistUrl']
-                        else:
-                            playlist_url = title['playlistUrl']
-                        epsiode_title = title['episodeTitle'] or title['heroCtaLabel']
-                        kodi_utils.set_playcount({'url': playlist_url, 'name': epsiode_title})
-
-        log.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - start_t)
+                    if title.get('episodeId') in progrss:
+                        parsex.parse_episode_title(title, prefer_bsl=prefer_bsl, watched_status=progrss)
     except:
         log.error("Unexpected failure\n", exc_info=True)
+    finally:
+        log.debug("*** Sync watched state ended in %s sec. ***", time.monotonic() - start_t)
 
 
 def get_resume_point(production_id: str):
