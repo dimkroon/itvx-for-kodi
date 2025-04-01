@@ -369,12 +369,8 @@ def episodes_progress(programme_id, progress_cache=None):
 
     url = 'https://content.prd.user.itv.com/progress/user/{}/programmeId/{}'.format(
         itv_account.itv_session().user_id, programme_id)
-    cached_data = cache.get_item(url)
-    if cached_data is not None:
-        return cached_data
-
     try:
-        progress_data = itv_account.fetch_authenticated(fetch.get_json, url)
+        progress_data = get_json_data(url, 300, auth=True)
     except errors.FetchError:
         # ITVX returns HTTP status 404 when no watched status is available.
         progress_data = None
@@ -407,15 +403,6 @@ def episodes_progress(programme_id, progress_cache=None):
         # Only save and close if the cache was opened here.
         if progress_cache is None:
             cached_pgrss.close()
-    # FIXME: This is wrong. There is no point in caching new items. The whole point of getting
-    #        progress is to sync watched state with the Kodi database. These new items will most
-    #        like have been synced, so it's no use to return them again if called shortly afterwards.
-    #        It's probably better to cache the request and perform the comparison to the progress
-    #        cache each time.
-    #        This function kinda assumes that the status of the returned episodes are successfully
-    #        synced to the Kod db. In that respect one could argue that it should return an empty
-    #        dict when it's called again before the cache expires.
-    cache.set_item(url, new_items, 300)
     return new_items
 
 
@@ -663,7 +650,7 @@ def sync_last_watched(prefer_bsl):
             log.info("No changes")
             return
 
-        # Check which programmes contain episodes that have actually changed watched status.
+        # Get the info of the programmess and their progress.
         with PersistentDict('progress.cache', 32 * 86400) as cached_progress:
             with futures.ThreadPoolExecutor(max_workers=16) as executor:
                 progress_results = [executor.submit(episodes_progress, pgm_id.replace('/', '_'), cached_progress)
@@ -674,7 +661,7 @@ def sync_last_watched(prefer_bsl):
 
         for pgm, progrss in zip((r.result() for r in programme_results),
                                 (r.result() for r in progress_results)):
-            log.info("Syncing %s episodes of programme %s", len(progrss), pgm.get('programmeId'))
+            log.info("Syncing %s episodes of programme %s", len(progrss), pgm['programme'].get('programmeId'))
             for series in pgm['seriesList']:
                 for title in series['titles']:
                     if title.get('episodeId') in progrss:
