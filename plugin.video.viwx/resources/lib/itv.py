@@ -140,6 +140,12 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
 
     key_service = video_locations['KeyServiceUrl']
+    if key_service is None:
+        # This has been observed, but the situation is rather short-lived, log the data
+        # in the hope it will shed some light on the issue.
+        import json
+        logger.warning("KeyServiceUrl is 'None', stream data:\n%s",
+                       json.dumps(stream_data, indent=4))
     return dash_url, key_service, None
 
 
