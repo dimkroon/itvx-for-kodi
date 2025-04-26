@@ -232,11 +232,7 @@ def check_rail_item_type_collection(testcase, item, parent_name):
     has_keys(item, 'contentType', 'title', 'titleSlug', 'collectionId', 'imageTemplate',
              obj_name=item_name)
     misses_keys(item, 'imagePresets', 'channel', obj_name=item_name)
-    if parent_name == 'heroContent':
-        testcase.assertTrue(is_not_empty(item['strapline'], dict))
-    else:
-        # Description can be empty
-        testcase.assertIsInstance(item['description'], (str, type(None)))
+    testcase.assertIsInstance(item['description'], (str, type(None)))
     testcase.assertTrue(is_url(item['imageTemplate']))
     testcase.assertTrue(is_not_empty(item['title'], str))
     testcase.assertTrue(is_not_empty(item['titleSlug'], str))
