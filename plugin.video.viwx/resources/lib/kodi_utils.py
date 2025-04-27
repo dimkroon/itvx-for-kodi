@@ -177,9 +177,14 @@ def create_callback_url(callback: str, path: str = 'resources/lib/main', **param
     return cb_url
 
 
-def set_playcount(params):
+def set_playcount(params: dict, duration: int):
+    """Mark a playable as fully played.
+
+    Set playcount to 1 and ensure the resume position is cleared by setting it to 0.
+    """
     full_url = create_callback_url('play_stream_catchup', _title_=params['name'], **params)
-    json_str = '{{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {{"file":"{}", '\
-               '"media": "video", "playcount": 1}}, "id": 1}}'.format(full_url)
+    json_str = '{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {"file":"%s", ' \
+               '"media": "video", "playcount": 1, "resume": {"position": 0, "total": %s}}, "id": 1}' % (
+                    full_url, duration)
     response = xbmc.executeJSONRPC(json_str)
     logger.debug("set_playcount of '%s', JSONRPC response: %s", params.get('url'), response)
