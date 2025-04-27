@@ -568,6 +568,7 @@ def parse_episode_title(title_data, brand_fanart=None, watched_status=None):
     if not isinstance(series_nr, int):
         series_nr = None
 
+    duration = utils.iso_duration_2_seconds(title_data['notFormattedDuration'])
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -576,7 +577,7 @@ def parse_episode_title(title_data, brand_fanart=None, watched_status=None):
                 },
         'info': {'title': info_title,
                  'plot': plot,
-                 'duration': utils.iso_duration_2_seconds(title_data['notFormattedDuration']),
+                 'duration': duration,
                  'date': title_data['dateTime'],
                  'episode': episode_nr,
                  'season': series_nr,
@@ -588,7 +589,7 @@ def parse_episode_title(title_data, brand_fanart=None, watched_status=None):
     # Ensure to sync only once.
     if watched_status.pop(title_data.get('episodeId'), 0) > 0.95:
         title_obj['info']['playcount'] = 1
-        set_playcount(title_obj['params'])
+        set_playcount(title_obj['params'], duration or 3600)
 
     return title_obj
 
