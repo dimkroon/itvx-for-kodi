@@ -88,7 +88,7 @@ class TestKodiUtils(unittest.TestCase):
     def test_set_playcount(self):
         with patch("xbmc.executeJSONRPC",
                    return_value='{"id": 1, "jsonrpc": "2.0", "result": {"value": "ok"}}') as p_rpc:
-            self.assertIsNone(kodi_utils.set_playcount({'url': 'some episode', 'name': 'episode title'}))
+            self.assertIsNone(kodi_utils.set_playcount({'url': 'some episode', 'name': 'episode title'}, duration=0))
         p_rpc.assert_called_once()
         json_str = p_rpc.call_args.args[0]
         data = json.loads(json_str)
