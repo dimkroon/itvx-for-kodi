@@ -734,7 +734,7 @@ class TvGuide(unittest.TestCase):
     }
     def check_guide(self, data):
         obj_name = 'HTMLguide'
-        has_keys(data, 'ITV', 'ITV2', 'ITVBe', 'ITV3', 'ITV4', obj_name=obj_name)
+        has_keys(data, 'ITV1', 'ITV2', 'ITVBe', 'ITV3', 'ITV4', obj_name=obj_name)
         for chan_name, chan_guide in data.items():
             for item in chan_guide:
                 o_name = '.'.join((obj_name, chan_name, item.get('title', 'Unknown')))

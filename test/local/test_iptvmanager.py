@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2024 Dimitri Kroon.
+#  Copyright (c) 2024-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -30,7 +30,7 @@ class TestIptvmanager(unittest.TestCase):
                 self.assertTrue(is_not_empty(chan[key], str))
 
     def test_send_epg(self):
-        epg_data = {'ITV': [{'start': "23:23", 'end': '12:43', 'title': 'my title', 'description': ''}],
+        epg_data = {'ITV1': [{'start': "23:23", 'end': '12:43', 'title': 'my title', 'description': ''}],
                     'ITV2': [{'start': "23:23", 'end': '12:43', 'title': 'his title', 'description': ''}],
                     'ITV3': [{'start': "23:23", 'end': '12:43', 'title': 'm title', 'description': ''}]}
         mocked_socket = MagicMock()
