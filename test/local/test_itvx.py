@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -108,7 +108,7 @@ class FullSchedule(TestCase):
     def test_full_schedule(self, _):
         schedules = itvx.get_full_schedule()
         self.assertIsInstance(schedules, dict)
-        channels = ('ITV', 'ITV2', 'ITVBe', 'ITV3', 'ITV4')
+        channels = ('ITV1', 'ITV2', 'ITVBe', 'ITV3', 'ITV4')
         has_keys(schedules, *channels)
         for progr_list in schedules.values():
             self.assertIsInstance(progr_list, list)
