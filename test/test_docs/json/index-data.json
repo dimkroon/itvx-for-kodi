@@ -146,17 +146,14 @@
       ]
     },
     {
-      "contentType": "collection",
-      "title": "All Star Movies",
-      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/allstarmovies/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "strapline": {
-        "text": "Massive movies, stellar stars",
-        "variant": "default"
-      },
       "ariaLabel": "View Collection",
+      "collectionId": "4RsQ8fqzRaWW9xW3oZqmql",
+      "contentType": "collection",
       "ctaLabel": "View Collection",
-      "collectionId": "5m5pvqBmAvwoVtx5o7bLKL",
-      "titleSlug": "all-star-movies"
+      "description": "Take a trip down memory lane with all your childhood favourites – from Willo the Wisp and Bernard’s Watch to Camberwick Green and Count Duckula!",
+      "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/oldschoolclassicsavod/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "title": "Old school classics ",
+      "titleSlug": "old-school-classics"
     },
     {
       "imagePresets": {},

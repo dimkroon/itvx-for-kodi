@@ -72,10 +72,10 @@ class LiveSchedules(unittest.TestCase):
             channel_info = channel_data['_embedded']['channel']
             object_checks.has_keys(channel_info, 'name', 'strapline', '_links')
             self.assertTrue(channel_info['_links']['playlist']['href'].startswith('https'))
-            return schedule
+        return schedule
 
     def test_main_channels_schedules_4hrs(self):
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         end = now + timedelta(hours=4)
         self.check_schedule(now, end)
 

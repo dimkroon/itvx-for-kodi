@@ -232,11 +232,7 @@ def check_rail_item_type_collection(testcase, item, parent_name):
     has_keys(item, 'contentType', 'title', 'titleSlug', 'collectionId', 'imageTemplate',
              obj_name=item_name)
     misses_keys(item, 'imagePresets', 'channel', obj_name=item_name)
-    if parent_name == 'heroContent':
-        testcase.assertTrue(is_not_empty(item['strapline'], dict))
-    else:
-        # Description can be empty
-        testcase.assertIsInstance(item['description'], (str, type(None)))
+    testcase.assertIsInstance(item['description'], (str, type(None)))
     testcase.assertTrue(is_url(item['imageTemplate']))
     testcase.assertTrue(is_not_empty(item['title'], str))
     testcase.assertTrue(is_not_empty(item['titleSlug'], str))
@@ -738,7 +734,7 @@ class TvGuide(unittest.TestCase):
     }
     def check_guide(self, data):
         obj_name = 'HTMLguide'
-        has_keys(data, 'ITV', 'ITV2', 'ITVBe', 'ITV3', 'ITV4', obj_name=obj_name)
+        has_keys(data, 'ITV1', 'ITV2', 'ITVBe', 'ITV3', 'ITV4', obj_name=obj_name)
         for chan_name, chan_guide in data.items():
             for item in chan_guide:
                 o_name = '.'.join((obj_name, chan_name, item.get('title', 'Unknown')))
@@ -801,7 +797,7 @@ class TvGuide(unittest.TestCase):
         # testutils.save_json(schedule_data, 'json/schedule_week_ago.json')
         self.check_guide(data['tvGuideData'])
         # Check that the schedules are indeed from a week ago
-        first_prgrm = data['tvGuideData']['ITV'][0]
+        first_prgrm = data['tvGuideData']['ITV1'][0]
         start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
         self.assertEqual(week_ago.date(), start_t.date())
 
@@ -813,7 +809,7 @@ class TvGuide(unittest.TestCase):
         # testutils.save_json(schedule_data, 'json/schedule_week_ahead.json')
         self.check_guide(data['tvGuideData'])
         # Check that the schedules are indeed from a week ahead
-        first_prgrm = data['tvGuideData']['ITV'][0]
+        first_prgrm = data['tvGuideData']['ITV1'][0]
         start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
         self.assertEqual(week_ahead.date(), start_t.date())
 
@@ -823,7 +819,7 @@ class TvGuide(unittest.TestCase):
         far_ahead = (today - timedelta(days=8)).strftime('%Y-%m-%d')
         url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
         data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
-        first_prgrm = data['tvGuideData']['ITV'][0]
+        first_prgrm = data['tvGuideData']['ITV1'][0]
         start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
         self.assertEqual(today.date(), start_t.date())
 
@@ -833,7 +829,7 @@ class TvGuide(unittest.TestCase):
         far_ahead = (today + timedelta(days=8)).strftime(('%Y-%m-%d'))
         url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
         data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
-        first_prgrm = data['tvGuideData']['ITV'][0]
+        first_prgrm = data['tvGuideData']['ITV1'][0]
         start_t = datetime.strptime(first_prgrm['start'], '%Y-%m-%dT%H:%M:%SZ')
         self.assertEqual(today.date(), start_t.date())
 
