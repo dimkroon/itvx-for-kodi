@@ -57,6 +57,16 @@ def premium_plot(plot: str):
     return '\n'.join(('[COLOR yellow]itvX premium[/COLOR]', plot))
 
 
+def accessibility_str(acc_tags, colour='blue'):
+    """Return a string displaying accessibility tags."""
+
+    tags_str = ','.join(acc_tags)
+    if colour and tags_str:
+        return ''.join(('[COLOR ', colour, '](', tags_str, ')[/COLOR]'))
+    else:
+        return tags_str
+
+
 def sort_title(title: str):
     """Return a string te be used as sort title of `title`
 
@@ -562,7 +572,10 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
 
     title = _get_hero_cta_label(title_data['heroCtaLabel']) or title_data.get('episodeTitle') or ''
     img_url = title_data['image']
+    accessibility_tags = set(title_data['accessibilityTags'])
     plot = '\n\n'.join(t for t in (title_data['longDescription'], title_data.get('guidance')) if t)
+    if accessibility_tags:
+        plot = plot + '\n' + accessibility_str(accessibility_tags)
     if title_data['premium']:
         plot = premium_plot(plot)
 
