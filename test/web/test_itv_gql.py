@@ -19,9 +19,10 @@ from support.object_checks import is_url
 class GetPlaylistUrl(TestCase):
     def test_get_vod_playlist_url(self):
         ccid = 'hcnxs56'  # an episode of 'a spy among friends', has BSL and AD
-        playlist_url = itv_gql.get_playlist_url(ccid)
+        playlist_url, has_ad = itv_gql.get_playlist_url(ccid)
         self.assertTrue(is_url(playlist_url))
-        bsl_playlist_url = itv_gql.get_playlist_url(ccid, prefer_bsl=True)
+        self.assertTrue(has_ad)
+        bsl_playlist_url, has_ad = itv_gql.get_playlist_url(ccid, prefer_bsl=True)
         self.assertTrue(is_url(bsl_playlist_url))
         self.assertNotEqual(playlist_url, bsl_playlist_url)
 

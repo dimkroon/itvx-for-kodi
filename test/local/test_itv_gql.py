@@ -58,9 +58,9 @@ class GqlPostQuery(TestCase):
 class VodPlayList(TestCase):
     @patch('resources.lib.fetch.get_json', return_value=open_json('gql/vod-by-ccid.json'))
     def test_get_vod_playlist_url(self, _):
-        vod_url = itv_gql.get_playlist_url('asdfg')
+        vod_url, has_ad = itv_gql.get_playlist_url('asdfg')
         self.assertTrue(is_url(vod_url))
-        bsl_url = itv_gql.get_playlist_url('asdfg', prefer_bsl=True)
+        bsl_url, has_ad = itv_gql.get_playlist_url('asdfg', prefer_bsl=True)
         self.assertTrue(is_url(bsl_url))
         self.assertNotEqual(vod_url, bsl_url)
 
@@ -77,7 +77,7 @@ class VodPlayList(TestCase):
             }
         })
         with patch('resources.lib.fetch.get_json', return_value=json_data):
-            vod_url = itv_gql.get_playlist_url('asdfg')
+            vod_url, has_ad = itv_gql.get_playlist_url('asdfg')
             self.assertTrue(is_url(vod_url))
 
 

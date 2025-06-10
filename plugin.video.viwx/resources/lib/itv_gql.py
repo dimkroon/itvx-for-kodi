@@ -74,9 +74,10 @@ def get_playlist_url(ccid: str, prefer_bsl: bool = False):
     version = titles[0]['latestAvailableVersion']
     bsl = version['bsl']
     if prefer_bsl and bsl:
-        return bsl.get('playlistUrl') or version['playlistUrl']
+        playlist = bsl.get('playlistUrl') or version['playlistUrl']
     else:
-        return version['playlistUrl']
+        playlist = version['playlistUrl']
+    return playlist, version['audioDescribed']
 
 
 def get_short_playlist_url(ccid: str, is_sport: bool = False):

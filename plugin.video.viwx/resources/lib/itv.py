@@ -86,13 +86,13 @@ def get_live_urls(url=None, title=None, start_time=None, full_hd=False):
     return dash_url, key_service, None
 
 
-def get_catchup_urls(playlist_url, full_hd=False):
+def get_catchup_urls(playlist_url, full_hd=False, has_ad=False):
     """Return the urls to the dash stream, key service and subtitles for a particular catchup
     episode and the type of video.
 
     """
     from resources.lib import itvx
-    playlist = itvx._request_stream_data(playlist_url, 'catchup', full_hd)['Playlist']
+    playlist = itvx._request_stream_data(playlist_url, 'catchup', full_hd, has_ad)['Playlist']
     stream_data = playlist['Video']
 
     # Select the media with the highest resolution
