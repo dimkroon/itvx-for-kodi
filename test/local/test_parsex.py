@@ -135,6 +135,20 @@ class Generic(unittest.TestCase):
         url = parsex.build_url("Watch Thursday's ITV Evening News", '10a3819')
         self.assertEqual('https://www.itv.com/watch/watch-thursdays-itv-evening-news/10a3819', url)
 
+    def test_accessibility_str(self):
+        a_s = parsex.accessibility_str(['s'])
+        self.assertEqual(a_s, '[COLOR blue](s)[/COLOR]')
+        a_s = parsex.accessibility_str(['ad', 's'])
+        self.assertEqual(a_s, '[COLOR blue](ad,s)[/COLOR]')
+        a_s = parsex.accessibility_str(['ad', 'bsl', 's'])
+        self.assertEqual(a_s, '[COLOR blue](ad,bsl,s)[/COLOR]')
+        a_s = parsex.accessibility_str(['ad', 'bsl', 's'], colour='yellow')
+        self.assertEqual(a_s, '[COLOR yellow](ad,bsl,s)[/COLOR]')
+        a_s = parsex.accessibility_str(['ad', 'bsl', 's'], colour=None)
+        self.assertEqual(a_s, 'ad,bsl,s')
+        a_s = parsex.accessibility_str([])
+        self.assertEqual(a_s, '')
+
     def test_sort_title(self):
         self.assertEqual('my title', parsex.sort_title('My Title'))
         self.assertEqual('title', parsex.sort_title('The Title'))

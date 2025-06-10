@@ -708,7 +708,8 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
                 'https://www.itv.com/watch/stonehouse/10a1973',         # programme with BSL
-                'https://www.itv.com/watch/the-chase/1a7842/',          # Some episode do not have a title
+                'https://www.itv.com/watch/the-chase/1a7842/',          # Some episode do not have a title            # programme with BSL and AD
+                'https://www.itv.com/watch/code-of-silence/10a5340',    # programme with AD
                 ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_miss-marple.html')

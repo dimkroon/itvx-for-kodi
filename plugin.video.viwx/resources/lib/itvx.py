@@ -663,7 +663,7 @@ features_live = {
     "max": ["hd", "mpeg-dash", "widevine", "inband-webvtt"]
 }
 
-features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
+features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track', 'inband-audio-description']
 
 
 def _request_stream_data(url, stream_type='live', full_hd=False):
