@@ -1,0 +1,459 @@
+{
+  "navAdServerParams": {
+    "area": "video",
+    "programmeTitle": "Code of Silence",
+    "channel": null,
+    "category": "DRAMA_AND_SOAPS",
+    "episodeId": "10_5340"
+  },
+  "forceRefresh": true,
+  "isAccessibleByKids": false,
+  "newsVideos": null,
+  "subnav": null,
+  "programme": {
+    "ccid": "1v32dzd",
+    "contentOwner": null,
+    "description": "A dangerous game of pursuit\u2014unmissable new crime drama",
+    "encodedProgrammeId": {
+      "letterA": "10a5340",
+      "underscore": "10_5340"
+    },
+    "genres": [
+      {
+        "id": "DRAMA_AND_SOAPS",
+        "name": "Drama"
+      }
+    ],
+    "heroCtaLabel": "Series 1, Episode 1",
+    "image": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "longDescription": "A dangerous game of pursuit\u2014unmissable new crime drama starring Rose Ayling-Ellis. A deaf waitress with vital lip-reading abilities is pulled into an elaborate investigation.",
+    "numberOfAvailableSeries": 1,
+    "partnership": null,
+    "programmeId": "10_5340",
+    "tier": [
+      "FREE"
+    ],
+    "title": "Code of Silence",
+    "titleSlug": "code-of-silence",
+    "visuallySigned": false,
+    "attribution": {
+      "partnership": null,
+      "contentOwner": null
+    },
+    "imagePresets": {
+      "0": {
+        "1x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"
+      },
+      "768": {
+        "1x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"
+      },
+      "1280": {
+        "1x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      },
+      "1920": {
+        "1x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/v2/images/programme/1v32dzd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      }
+    }
+  },
+  "seriesList": [
+    {
+      "seriesNumber": "1",
+      "seriesLabel": "Series 1",
+      "legacyId": "10/5340-01",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "longRunning": false,
+      "numberOfAvailableEpisodes": 6,
+      "titles": [
+        {
+          "ccid": "27dmvck",
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY",
+            "WIDEVINE",
+            "INBAND_AUDIO_DESCRIPTION"
+          ],
+          "availabilityFrom": "2025-05-18T06:00:00Z",
+          "availabilityUntil": "2030-05-17T22:59:00Z",
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "channel": "ITV",
+          "fullSeriesRange": [],
+          "heroCtaLabel": "Series 1, Episode 1",
+          "contentInfo": "S1:E1",
+          "contentOwner": null,
+          "dateTime": "2025-05-18T20:00:00.000Z",
+          "description": "A deaf catering worker is called upon by a police detective. ",
+          "duration": "1h",
+          "episode": 1,
+          "episodeId": "10/5340/0001",
+          "encodedEpisodeId": {
+            "letterA": "10a5340a0001",
+            "underscore": "10_5340_0001"
+          },
+          "episodeTitle": null,
+          "guidance": "With some strong language. Violent scenes and flashing images from the start. ",
+          "image": "https://ovp.itv.com/v2/images/episode/27dmvck/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": true,
+          "longDescription": "A deaf catering worker who is struggling to make ends meet is called upon by a police detective superintendent to lip-read the conversations of criminals.",
+          "longRunning": false,
+          "nextProductionId": "10/5340/0002",
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_5340_0001.001",
+          "premium": false,
+          "productionId": "10/5340/0001#001",
+          "productionType": "EPISODE",
+          "productionYear": null,
+          "programmeId": "10/5340",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true,
+          "broadcastDateTime": "2025-05-18T20:00:00Z",
+          "attribution": {
+            "partnership": null,
+            "contentOwner": null
+          }
+        },
+        {
+          "ccid": "8vjzs6m",
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY",
+            "WIDEVINE",
+            "INBAND_AUDIO_DESCRIPTION"
+          ],
+          "availabilityFrom": "2025-05-18T06:00:00Z",
+          "availabilityUntil": "2030-05-17T22:59:00Z",
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "channel": "ITV",
+          "fullSeriesRange": [],
+          "heroCtaLabel": "Series 1, Episode 2",
+          "contentInfo": "S1:E2",
+          "contentOwner": null,
+          "dateTime": "2025-05-19T20:00:00.000Z",
+          "description": " Alison's vital lipreading uncovers the gang's plans for London.",
+          "duration": "1h",
+          "episode": 2,
+          "episodeId": "10/5340/0002",
+          "encodedEpisodeId": {
+            "letterA": "10a5340a0002",
+            "underscore": "10_5340_0002"
+          },
+          "episodeTitle": null,
+          "guidance": "With some strong language and violence.",
+          "image": "https://ovp.itv.com/v2/images/episode/8vjzs6m/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": true,
+          "longDescription": "Alison's vital lipreading aids the detectives in uncovering the gang's plans, but she can only conceal her meeting with Liam from them for so long.",
+          "longRunning": false,
+          "nextProductionId": "10/5340/0003",
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_5340_0002.001",
+          "premium": false,
+          "productionId": "10/5340/0002#001",
+          "productionType": "EPISODE",
+          "productionYear": null,
+          "programmeId": "10/5340",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true,
+          "broadcastDateTime": "2025-05-19T20:00:00Z",
+          "attribution": {
+            "partnership": null,
+            "contentOwner": null
+          }
+        },
+        {
+          "ccid": "715q21g",
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY",
+            "WIDEVINE",
+            "INBAND_AUDIO_DESCRIPTION"
+          ],
+          "availabilityFrom": "2025-05-18T06:00:00Z",
+          "availabilityUntil": "2030-05-17T22:59:00Z",
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "channel": "ITV",
+          "fullSeriesRange": [],
+          "heroCtaLabel": "Series 1, Episode 3",
+          "contentInfo": "S1:E3",
+          "contentOwner": null,
+          "dateTime": "2025-05-25T20:00:00.000Z",
+          "description": "Alison's risky tactics identify the gang's target.",
+          "duration": "1h",
+          "episode": 3,
+          "episodeId": "10/5340/0003",
+          "encodedEpisodeId": {
+            "letterA": "10a5340a0003",
+            "underscore": "10_5340_0003"
+          },
+          "episodeTitle": null,
+          "guidance": "with some strong language and violence",
+          "image": "https://ovp.itv.com/v2/images/episode/715q21g/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": true,
+          "longDescription": "Alison's risky tactics identify the gang's target, but her deception and the gang's escalating violence threaten to unravel her relationship with Liam.",
+          "longRunning": false,
+          "nextProductionId": "10/5340/0004",
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_5340_0003.001",
+          "premium": false,
+          "productionId": "10/5340/0003#001",
+          "productionType": "EPISODE",
+          "productionYear": null,
+          "programmeId": "10/5340",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true,
+          "broadcastDateTime": "2025-05-25T20:00:00Z",
+          "attribution": {
+            "partnership": null,
+            "contentOwner": null
+          }
+        },
+        {
+          "ccid": "0qdkb2s",
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY",
+            "WIDEVINE",
+            "INBAND_AUDIO_DESCRIPTION"
+          ],
+          "availabilityFrom": "2025-05-18T06:00:00Z",
+          "availabilityUntil": "2030-05-17T22:59:00Z",
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "channel": "ITV",
+          "fullSeriesRange": [],
+          "heroCtaLabel": "Series 1, Episode 4",
+          "contentInfo": "S1:E4",
+          "contentOwner": null,
+          "dateTime": "2025-05-26T20:00:00.000Z",
+          "description": "Alison joins Liam on a luxury trip where she scrabbles for clues.",
+          "duration": "1h",
+          "episode": 4,
+          "episodeId": "10/5340/0004",
+          "encodedEpisodeId": {
+            "letterA": "10a5340a0004",
+            "underscore": "10_5340_0004"
+          },
+          "episodeTitle": "Episode 4",
+          "guidance": "with some strong language and violence",
+          "image": "https://ovp.itv.com/v2/images/episode/0qdkb2s/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": true,
+          "longDescription": "Alison joins Liam on a luxury trip where she scrabbles for clues about his plans while torn between her growing feelings for him and the police's doubts.",
+          "longRunning": false,
+          "nextProductionId": "10/5340/0005",
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_5340_0004.001",
+          "premium": false,
+          "productionId": "10/5340/0004#001",
+          "productionType": "EPISODE",
+          "productionYear": null,
+          "programmeId": "10/5340",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true,
+          "broadcastDateTime": "2025-05-26T20:00:00Z",
+          "attribution": {
+            "partnership": null,
+            "contentOwner": null
+          }
+        },
+        {
+          "ccid": "wqtmrcs",
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY",
+            "WIDEVINE",
+            "INBAND_AUDIO_DESCRIPTION"
+          ],
+          "availabilityFrom": "2025-05-18T06:00:00Z",
+          "availabilityUntil": "2030-05-17T22:59:00Z",
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "channel": "ITV",
+          "fullSeriesRange": [],
+          "heroCtaLabel": "Series 1, Episode 5",
+          "contentInfo": "S1:E5",
+          "contentOwner": null,
+          "dateTime": "2025-06-01T20:00:00.000Z",
+          "description": "Alison discovers Liam's betrayal and races to stop the heist.",
+          "duration": "1h",
+          "episode": 5,
+          "episodeId": "10/5340/0005",
+          "encodedEpisodeId": {
+            "letterA": "10a5340a0005",
+            "underscore": "10_5340_0005"
+          },
+          "episodeTitle": null,
+          "guidance": "with some strong language and violence",
+          "image": "https://ovp.itv.com/v2/images/episode/wqtmrcs/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": true,
+          "longDescription": "Alison discovers Liam's betrayal and races to stop the gang's heist - chaos erupts as lives are endangered and Alison is forced to confront the fallout.",
+          "longRunning": false,
+          "nextProductionId": "10/5340/0006",
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_5340_0005.004",
+          "premium": false,
+          "productionId": "10/5340/0005#004",
+          "productionType": "EPISODE",
+          "productionYear": null,
+          "programmeId": "10/5340",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true,
+          "broadcastDateTime": "2025-06-01T20:00:00Z",
+          "attribution": {
+            "partnership": null,
+            "contentOwner": null
+          }
+        },
+        {
+          "ccid": "6m90hrk",
+          "accessibilityTags": [
+            "ad",
+            "s"
+          ],
+          "audioDescribed": true,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "PLAYREADY",
+            "WIDEVINE",
+            "INBAND_AUDIO_DESCRIPTION"
+          ],
+          "availabilityFrom": "2025-05-18T06:00:00Z",
+          "availabilityUntil": "2030-05-17T22:59:00Z",
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "channel": "ITV",
+          "fullSeriesRange": [],
+          "heroCtaLabel": "Series 1, Episode 6",
+          "contentInfo": "S1:E6",
+          "contentOwner": null,
+          "dateTime": "2025-06-02T20:00:00.000Z",
+          "description": "Alison is reeling when her life is suddenly threatened.",
+          "duration": "1h",
+          "episode": 6,
+          "episodeId": "10/5340/0006",
+          "encodedEpisodeId": {
+            "letterA": "10a5340a0006",
+            "underscore": "10_5340_0006"
+          },
+          "episodeTitle": null,
+          "guidance": "with some strong language and violence",
+          "image": "https://ovp.itv.com/v2/images/episode/6m90hrk/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "linearContent": true,
+          "longDescription": "Alison is reeling from Liam's betrayal and consumed with guilt over her role in the heist when her life is suddenly threatened by one of the gang.",
+          "longRunning": false,
+          "notFormattedDuration": "PT1H",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_5340_0006.001",
+          "premium": false,
+          "productionId": "10/5340/0006#001",
+          "productionType": "EPISODE",
+          "productionYear": null,
+          "programmeId": "10/5340",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": false,
+          "regionalisation": true,
+          "broadcastDateTime": "2025-06-02T20:00:00Z",
+          "attribution": {
+            "partnership": null,
+            "contentOwner": null
+          }
+        }
+      ]
+    }
+  ],
+  "initialSelectedSeries": "1"
+}
