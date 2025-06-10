@@ -80,7 +80,7 @@ stream_req_data = {
             'maxSupported': 'L3',
             'system': 'widevine'
         },
-        'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
+        'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track', 'inband-audio-description'],
         'platformTag': 'dotcom',
         'player': 'dash'
     }
@@ -100,8 +100,10 @@ def _request_stream_data(url, stream_type='live'):
         featureset = {'max': ['mpeg-dash', 'widevine'], 'min': ['mpeg-dash', 'widevine']}
     else:
         accept_type = 'application/vnd.itv.vod.playlist.v4+json'
-        # Contrary to live, catchup now has a single featureq set
-        featureset = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
+        # Contrary to live, catchup now has a single feature set
+        # TODO: If 'inband-audio-description' is specified on a programme that does not
+        #       have AD, playlist requests will fail with 404 - Not Found.
+        featureset = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track', 'inband-audio-description']
 
     stream_req_data['variantAvailability']['featureset'] = featureset
 
