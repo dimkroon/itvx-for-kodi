@@ -236,17 +236,20 @@ def localise_mock(self, str_id):
     Returns only the text of the first line in the file.
 
     """
-    pattern = f'msgctxt "#{str_id}"\nmsgid "([^"]*)"'
-    test_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
-    lang_file = os.path.join(
-        test_dir,
-        '../plugin.video.viwx/resources/language/resource.language.en_gb/strings.po')
-    with open(lang_file) as f:
-        lang_texts = f.read()
-    match = re.search(pattern, lang_texts)
-    if match:
-        return match[1]
-    return ''
+    if 30000 <= str_id <= 30999:
+        pattern = f'msgctxt "#{str_id}"\nmsgid "([^"]*)"'
+        test_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
+        lang_file = os.path.join(
+            test_dir,
+            '../plugin.video.viwx/resources/language/resource.language.en_gb/strings.po')
+        with open(lang_file) as f:
+            lang_texts = f.read()
+        match = re.search(pattern, lang_texts)
+        if match:
+            return match[1]
+        return ''
+    else:
+        return 'UNKNOWN_SYS_STRING'
 
 
 class FileMock(xbmcvfs.File):
