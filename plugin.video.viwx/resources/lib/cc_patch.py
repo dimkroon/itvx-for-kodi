@@ -78,7 +78,7 @@ def patch_label_prop():
         """Set label and only copy to fields that do not already have a value"""
         self.listitem.setLabel(label)
         unformatted_label = strip_formatting("", label)
-        self.params.setdefault("_title_", unformatted_label)
+        # self.params.setdefault("_title_", unformatted_label)
         self.info.setdefault("title", unformatted_label)
 
     Listitem.label = Listitem.label.setter(label_setter)  # type: ignore
