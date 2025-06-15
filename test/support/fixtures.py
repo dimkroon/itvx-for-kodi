@@ -61,6 +61,10 @@ def global_setup():
         # Use an xbmcgui.ListItem that stores the values which have been set.
         patch_listitem()
 
+        # Apply codequick patches
+        from resources.lib.cc_patch import patch_label_prop
+        patch_label_prop()
+
 
 patch_1 = None
 
