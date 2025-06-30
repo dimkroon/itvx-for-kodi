@@ -96,6 +96,11 @@ class ItvSession:
             f.write(data_str)
         logger.info("ITV account data saved to file.")
 
+    def get_pairing_code(self):
+        """Request a code to
+
+        """
+
     def login(self, uname: str, passw: str):
         """Sign in to itv account with `uname` and `passw`.
 
