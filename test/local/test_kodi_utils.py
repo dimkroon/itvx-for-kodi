@@ -26,11 +26,6 @@ class TestKodiUtils(unittest.TestCase):
         with patch('xbmcgui.Dialog.yesno', return_value=False):
             self.assertFalse(kodi_utils.show_msg_not_logged_in())
 
-    def test_show_login_result(self):
-        self.assertIsNone(kodi_utils.show_login_result(True))
-        self.assertIsNone(kodi_utils.show_login_result(True, 'some msg'))
-        self.assertIsNone(kodi_utils.show_login_result(False))
-
     # noinspection PyMethodMayBeStatic
     def test_ask_login_retry(self):
         self.assertTrue(kodi_utils.ask_login_retry('some_reason'))

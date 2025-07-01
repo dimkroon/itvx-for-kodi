@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2024 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -48,45 +48,6 @@ class TestLogin(unittest.TestCase):
         itv_sess = itv_account.ItvSession()
         self.assertRaises(errors.AuthenticationError, itv_sess.login, 'user.name', account_login.PASSW)
         self.assertRaises(errors.AuthenticationError, itv_sess.login, account_login.UNAME, 'password')
-
-    @unittest.skip("login() already doesn't use cookies at all.")
-    def test_sign_in_using_no_cookies(self):
-        """Try to sign in without any cookies.
-
-        """
-        cookie_file = os.path.join(utils.addon_info.profile, 'tmp_cookies')
-        try:
-            os.remove(cookie_file)
-        except FileNotFoundError:
-            pass
-
-        cj = fetch.PersistentCookieJar(cookie_file)
-
-        with patch.object(fetch.HttpSession(), 'cookies', cj):
-            s = itv_account.ItvSession()
-            # Login does not require cookies at all.
-            result = s.login(account_login.UNAME, account_login.PASSW)
-            self.assertTrue(result)
-
-    @unittest.skip("login() doesn't use cookies.")
-    def test_sign_in_with_fresh_consent_cookies(self):
-        """Try to sign a new set of consent cookies.
-
-        """
-        cookie_file = os.path.join(utils.addon_info.profile, 'tmp_cookies')
-        try:
-            os.remove(cookie_file)
-        except FileNotFoundError:
-            pass
-
-        cj = fetch.PersistentCookieJar(cookie_file)
-        fetch.set_default_cookies(cj)
-
-        with patch.object(fetch.HttpSession(), 'cookies', cj):
-            s = itv_account.ItvSession()
-            # Login requires consent cookies, or will time out.
-            result = s.login(account_login.UNAME, account_login.PASSW)
-            self.assertTrue(result)
 
 
 class TestTokens(unittest.TestCase):

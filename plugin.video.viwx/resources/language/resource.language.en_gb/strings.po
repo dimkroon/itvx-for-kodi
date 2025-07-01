@@ -196,7 +196,7 @@ msgid "You need to sign in to your itvX account.\n"
 msgstr ""
 
 msgctxt "#30612"
-msgid "Successfully signed in!"
+msgid "Successfully signed in as '{nickname}'"
 msgstr ""
 
 msgctxt "#30613"

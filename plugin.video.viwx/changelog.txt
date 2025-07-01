@@ -1,3 +1,7 @@
+v 1.6.2
+Fixes:
+- Logging in to IVX account with username and password works again.
+
 v 1.6.1
 Fixes:
 - NO IPTV EPG.
