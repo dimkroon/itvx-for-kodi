@@ -21,7 +21,7 @@ from resources.lib import errors
 
 logger = logging.getLogger('.'.join((logger_id, __name__)))
 
-
+TXT_LOGIN_SUCCESS = 30612
 TXT_EXPORT_NOT_SINGED_IN = 30623
 TXT_EXPORT_SUCCESS = 30624
 TXT_EXPORT_FAIL = 30625
@@ -47,8 +47,9 @@ def login(_=None):
             logger.info("Entering login credentials canceled by user")
             return
         try:
-            itv_account.itv_session().login(uname, passw)
-            kodi_utils.show_login_result(success=True)
+            session = itv_account.itv_session()
+            session.login(uname, passw)
+            kodi_utils.msg_dlg(TXT_LOGIN_SUCCESS, nickname=session.user_nickname)
             from resources.lib import cache
             import xbmc
             cache.my_list_programmes = None

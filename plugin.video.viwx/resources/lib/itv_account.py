@@ -98,7 +98,6 @@ class ItvSession:
         Raises AuthenticationError if login fails, or other exceptions as they occur, like e.g. FetchError.
         """
         import requests
-        from resources.lib.telemetry_data import telemetry_factory
         self.account_data = {}
 
         req_data = {
@@ -121,9 +120,8 @@ class ItvSession:
                     'accept-language':      'en-GB,en;q=0.5',
                     'accept-encoding':      'gzip, deflate',
                     'content-type':         'application/json',
-                    'akamai-bm-telemetry':  telemetry_factory.get_data(),
-                    'origin':               'https://www.itv.com',
-                    'referer':              'https://www.itv.com/',
+                    'origin':               'https://app.10ft.itv.com',
+                    'referer':              'https://app.10ft.itv.com/',
                     'sec-fetch-dest':       'empty',
                     'sec-fetch-mode':       'cors',
                     'sec-fetch-site':       'same-site',

@@ -153,8 +153,7 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(itv_account.SESS_DATA_VERS, ct_sess.account_data['vers'])
         headers = p_post.call_args.kwargs['headers']
         has_keys(headers, 'user-agent', 'accept', 'accept-language', 'accept-encoding', 'content-type',
-                 'akamai-bm-telemetry', 'origin', 'referer', 'sec-fetch-dest', 'sec-fetch-mode', 'sec-fetch-site',
-                 'priority', 'te')
+                 'origin', 'referer', 'sec-fetch-dest', 'sec-fetch-mode', 'sec-fetch-site', 'priority', 'te')
 
     def test_login_encounters_http_errors(self, p_save):
         # with patch('requests.post', side_effect=errors.AuthenticationError):

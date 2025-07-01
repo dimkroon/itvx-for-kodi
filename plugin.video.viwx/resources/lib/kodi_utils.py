@@ -25,7 +25,6 @@ TXT_MORE_INFO = 30604
 
 TXT_ACCOUNT_ERROR = 30610
 MSG_LOGIN = 30611
-MSG_LOGIN_SUCCESS = 30612
 MSG_LOGGED_OUT_SUCCESS = 30613
 
 TXT_USERNAME = 30614
@@ -70,17 +69,6 @@ def show_msg_not_logged_in():
             yeslabel=Script.localize(TXT_LOGIN_NOW))
     logger.debug("Dialog 'Open settings to login' result: {}".format('YES' if result else 'NO' ))
     return result
-
-
-def show_login_result(success: bool, message: str = None):
-    if success:
-        icon = Script.NOTIFY_INFO
-        if not message:
-            message = Script.localize(MSG_LOGIN_SUCCESS)
-    else:
-        icon = Script.NOTIFY_WARNING
-
-    Script.notify(Script.localize(TXT_ITV_ACCOUNT), message, icon)
 
 
 def ask_login_retry(reason):
