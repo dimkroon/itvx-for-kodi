@@ -232,26 +232,25 @@ class Search(unittest.TestCase):
         self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
 
-# ----------------------------------------------------------------------------------------------------------------------
-
 class MyList(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.token = itv_account.itv_session().access_token
         cls.userid = itv_account.itv_session().user_id
+        # Query parameters features and platform are required!!
+        # NOTE:
+        #   Platform dotcom may return fewer items than mobile and ctv.
+        #   The website now uses platform dotcom,but has been using ctv for quite some time.
+        cls.mylist_url = ('https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,'
+                          'hls,aes,playready,widevine,fairplay,progressive&platform=ctv&size=52').format(cls.userid)
+        # Both webbrowser and app authenticate with a header, no cookies required.
+        cls.headers =  {'authorization': 'Bearer ' + cls.token}
 
     def test_get_my_list_no_content_type(self):
         """Request My List without specifying the content-type
 
         """
-        # Query parameters features and platform are required!!
-        # NOTE:
-        #   Platform dotcom may return fewer items than mobile and ctv. The website now uses platform ctv.
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv&size=52'.format(self.userid)
-        headers = {'authorization': 'Bearer ' + self.token}
-        # Both webbrowser and app authenticate with header, without any cookie.
-        resp = requests.get(url, headers=headers)
+        resp = requests.get(self.mylist_url, headers=self.headers)
         data = resp.json()
         # testutils.save_json(data, 'mylist/mylist_data.json')
 
@@ -275,34 +274,59 @@ class MyList(unittest.TestCase):
 
     def test_get_my_list_content_type_json(self):
         """Request My List with content-type = application/json"""
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid)
-        headers = {'authorization': 'Bearer ' + self.token,
-                   'accept': 'application/json'}
-        resp = requests.get(url, headers=headers)
+        headers = self.headers.copy()
+        headers['accept'] = 'application/json'
+        resp = requests.get(self.mylist_url, headers=headers)
         data = resp.json()
         # testutils.save_json(data, 'mylist/mylist_json_data.json')
 
         self.assertIsInstance(data, list)
         self.assertEqual(resp.headers['content-type'], 'application/json')
 
-    def test_add_programme(self):
+    def test_add_and_remove_programme(self):
         """At present only programmes can be added to the list, no individual episodes.
 
         Itv always returns HTTP status 200 when a syntactical valid request has been made. However,
         that is no guarantee that the requested programme is in fact added to My List.
 
+        .. note ::
+            ITV now accepts ccid's as well as legacy programme ID's
+
         """
-        progr_id = '2_7931'
+        progr_id = '2_7931'            # a spy among friends
         episode_id = '2_7931_0001_001'
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}? \
-              features=mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive& \
-              platform=ctv'.format(self.userid, progr_id, episode_id)
-        headers = {'authorization': 'Bearer ' + self.token}
-        # Both webbrowser and app authenticate with header, without any cookie.
-        resp = requests.post(url, headers=headers)
+        qs = '?features=mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive&platform=ctv&size=52'
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}'.format(self.userid, progr_id, episode_id)
+
+        # Without querystring the response is 201-Created without content
+        # Note: The presence of query argument 'size' does not affect the response.
+        resp = requests.post(url, headers=self.headers)
+        self.assertEqual(201, resp.status_code)
+        self.assertEqual(b'', resp.content)
+
+        # With querystring the response is 200-OK with the new list in the body,
+        # but it takes a bit longer to complete.
+        url = url + qs
+        resp = requests.post(url, headers=self.headers)
+        self.assertEqual(200, resp.status_code)
         data = resp.json()
-        self.assertIsInstance(data, dict)
+        pgm_ids = [item['programmeId'].replace('/', '_') for item in data['items']]
+        self.assertTrue(progr_id in pgm_ids)
+
+        # Add an already added programme again
+        resp = requests.post(url, headers=self.headers)
+        self.assertEqual(200, resp.status_code)
+
+        # Delete a programme
+        resp = requests.delete(url, headers=self.headers)
+        self.assertEqual(200, resp.status_code)
+        data = resp.json()
+        pgm_ids = [item['programmeId'].replace('/', '_') for item in data['items']]
+        self.assertFalse(progr_id in pgm_ids)
+
+        # Delete a programme that is not on the list
+        resp = requests.delete(url, headers=self.headers)
+        self.assertEqual(200, resp.status_code)
 
 
 class LastWatched(unittest.TestCase):

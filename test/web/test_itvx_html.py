@@ -14,7 +14,7 @@ import unittest
 import requests
 from datetime import datetime, timedelta, timezone
 
-from resources.lib import fetch, parsex, main, itv_account
+from resources.lib import fetch, parsex, main, itv_account, errors
 from support.object_checks import (
     has_keys,
     expect_keys,
@@ -215,7 +215,7 @@ def check_title(self, title, parent_name):
 
     if title['productionType'] == 'FILM':
         self.assertGreater(title['productionYear'], 1900)
-        self.assertTrue('episode' not in title)
+        self.assertIsNone(title['episode'])
         self.assertIsNone(title['series'])
 
 
@@ -274,8 +274,9 @@ def check_item_type_page(testcase, item, parent_name):
         'Origin': 'https: /www.itv.com',
     }
     # Check url without query string fails
-    resp = requests.get(url, headers=headers, timeout=4)
-    testcase.assertEqual(404, resp.status_code)
+    # Since june 2025 requests without query time out, instead of returning not found.
+    testcase.assertRaises(requests.Timeout, requests.get, url, headers=headers, timeout=3)
+    # testcase.assertEqual(404, resp.status_code)
     # Check the contents of the collection page with querystring added to url
     CollectionPages.check_page(testcase, url + '?ind', parent_name)
 
@@ -327,8 +328,11 @@ def check_item_type_simulcastspot(self, item, parent_name):
     self.assertTrue(is_url(item['imageTemplate']))
     # Generic check on start and end time. Items from hero use a different format than those from collection.
     # Hero and collection will each perform additional checks on the format.
-    self.assertTrue(is_not_empty(item['startDateTime'], str))
-    self.assertTrue(is_not_empty(item['endDateTime'], str))
+    # TODO: Review
+    #       Noticed one simulcastspot from a collection where both values are None, but
+    #       is there still any value in testing it like this?
+    self.assertTrue(is_not_empty(item['startDateTime'], str) or item['startDateTime'] is None)
+    self.assertTrue(is_not_empty(item['endDateTime'], str) or item['endDateTime'] is None)
     # We see a move to ID based genres at ITVX, but this has still the old single value genre
     # Just to detect a change
     self.assertTrue(is_not_empty(item['genre'], str))
@@ -484,7 +488,15 @@ class CollectionPages(unittest.TestCase):
         if url in checked_urls:
             return
 
-        page_data = parsex.scrape_json(fetch.get_document(url))
+        try:
+            page_data = parsex.scrape_json(fetch.get_document(url))
+        except errors.HttpError as err:
+            if err.code == 404:
+                # Happens sometimes; the 'show all' button on the website isn't working either.
+                print(f"ERROR: Page '{url} not found!")
+                return
+            else:
+                raise
         checked_urls.append(url)
 
         if parent_name:
@@ -559,8 +571,6 @@ class CollectionPages(unittest.TestCase):
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
         editorial_sliders = page_data['editorialSliders']
         for rail in editorial_sliders.values():
-            # TODO: inadvertently disabled???
-            continue
             pagelink = rail['collection'].get('headingLink', {}).get('href')
             if not pagelink:
                 continue
@@ -729,7 +739,7 @@ class TvGuide(unittest.TestCase):
     """
     headers = {
         # Without these headers the requests will time out.
-        'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
+        'user-agent': fetch.USER_AGENT,
         'Origin': 'https: /www.itv.com',
     }
 

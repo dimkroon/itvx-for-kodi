@@ -113,11 +113,12 @@ class TestGetProductions(unittest.TestCase):
                                       series_idx='1')
         self.assertGreater(len(items), 1)
 
-    def test_get_productions_midsummer_murder_folder_other_episodes(self):
+    def test_get_productions_non_numeric_series(self):
+        """Get the production if a series with a non-numeric index"""
         items = main.list_productions(MagicMock(),
-                                      'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                                      'https://www.itv.com/watch/doc-martin/26104',
                                       series_idx='others')
-        self.assertEqual(len(items), 1)
+        self.assertEqual(len(items), 2)
 
     def test_get_productions_above_suspicion_folder_1(self):
         items = main.list_productions(MagicMock(),
@@ -130,9 +131,9 @@ class TestGetProductions(unittest.TestCase):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/the-chase/1a7842')
         self.assertGreater(len(items), 1)
 
-    def test_get_productions_doctor_foster(self):
+    def test_get_productions_of_a_paid_programme(self):
         """Productions of a paid programme"""
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/doctor-foster/2a7438')
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/wallander/10a2176')
         self.assertGreater(len(items), 1)
 
     def test_get_productions_bad_girls(self):
