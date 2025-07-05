@@ -582,8 +582,8 @@ class Playlists(unittest.TestCase):
     def get_playlist_live(self, channel):
         """Get the playlist of one of the itvx live channels
 
-        For all channels other than the headers User Agent and Origin are required.
-        And the cookie consent cookies must be present. If any of those are missing the request will time out.
+        For all channels no other headers than User Agent and Origin are required.
+        If any of those are missing the request will time out.
 
         Since accessToken is provided in the body, authentication by cookie or header is not needed.
         """
@@ -598,7 +598,6 @@ class Playlists(unittest.TestCase):
                 'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
                 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
                 'Origin': 'https://www.itv.com'},
-            cookies=fetch.HttpSession().cookies,  # acc_data.cookie,
             json=post_data, timeout=10)
         strm_data = resp.json()
         return strm_data
@@ -616,28 +615,6 @@ class Playlists(unittest.TestCase):
             # if chan_id == 20:
             #     testutils.save_json(strm_data, 'playlists/pl_fast_non_dar.json')
             object_checks.check_live_stream_info(strm_data['Playlist'])
-
-    def test_playlist_live_cookie_requirement(self):
-        """Test that consent cookies are required for a playlist request and that these are the
-        only required cookies.
-
-        """
-        url = 'https://simulcast.itv.com/playlist/itvonline/ITV'
-        headers = {
-            'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-            'User-Agent': fetch.USER_AGENT,
-            'Origin': 'https://www.itv.com'}
-        default_cookies = fetch.set_default_cookies()
-
-        with self.assertRaises(requests.exceptions.ReadTimeout):
-            requests.post(url, headers=headers, json=self.create_post_data('live'), timeout=2)
-
-        jar = RequestsCookieJar()
-        for cookie in default_cookies:
-            if cookie.name.startswith("Syrenis"):
-                jar.set_cookie(cookie)
-        self.assertTrue(len(jar.items()), "No Syrenis consent cookies")
-        requests.post(url, headers=headers, cookies=jar, json=self.create_post_data('live'), timeout=2)
 
     def test_manifest_live_simulcast(self):
         strm_data = self.get_playlist_live('ITV')
