@@ -63,7 +63,8 @@ class LiveSchedules(unittest.TestCase):
             programs = channel_data['_embedded']['slot']
             for program in programs:
                 object_checks.has_keys(program, 'programmeTitle', 'startTime', 'onAirTimeUTC', 'productionId')
-                self.assertTrue(program['startTime'].endswith('Z') or program['startTime'].endswith('+01:00'))     # start time is in format '2022-11-22T20:00Z'
+                # start time is in a format like '2022-11-22T20:00Z'
+                self.assertTrue(program['startTime'].endswith('Z') or program['startTime'].endswith('+01:00'))
                 # Ascertain startTime has no seconds
                 if program['startTime'].endswith('Z'):
                     self.assertEqual(17, len(program['startTime']))
@@ -109,7 +110,7 @@ class LiveSchedules(unittest.TestCase):
                     # Since May 2024 a channel name 'ITV Sport' has empty data.
                     for k in progr_keys:
                         self.assertFalse(program[k])
-                    self.assertTrue(chan['name'].lower() in ('itv sport'))
+                    self.assertTrue(chan['name'].lower() in ('itv sport', ))
                 else:
                     self.assertTrue(object_checks.is_iso_utc_time(program['start']))
                     self.assertTrue(object_checks.is_iso_utc_time(program['end']))
@@ -294,8 +295,9 @@ class MyList(unittest.TestCase):
         """
         progr_id = '2_7931'
         episode_id = '2_7931_0001_001'
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid, progr_id, episode_id)
+        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}? \
+              features=mpeg-dash,outband-webvtt,hls,aes,playready,widevine,fairplay,progressive& \
+              platform=ctv'.format(self.userid, progr_id, episode_id)
         headers = {'authorization': 'Bearer ' + self.token}
         # Both webbrowser and app authenticate with header, without any cookie.
         resp = requests.post(url, headers=headers)
@@ -320,7 +322,7 @@ class LastWatched(unittest.TestCase):
             object_checks.expect_keys(item, 'categories', "channel", "channelLink", "contentOwner", "imageLink",
                                       "episodeId", "longRunning", "partnership",
                                       obj_name='Watching: {}'.format(item['programmeTitle']))
-            self.assertTrue(item['contentType']in ('EPISODE', 'FILM', 'SPECIAL'))
+            self.assertTrue(item['contentType'] in ('EPISODE', 'FILM', 'SPECIAL'))
             self.assertTrue(object_checks.is_iso_utc_time(item['availabilityEnd']))
             self.assertTrue(object_checks.is_iso_utc_time(item['broadcastDatetime']))
             self.assertTrue(object_checks.is_not_empty(item['episodeId'], str))
@@ -507,7 +509,9 @@ class Recommended(unittest.TestCase):
     def test_recommendatation_homepage_more_items(self):
         # request more than 12 items
         url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.get_features(version=3, size=24), allow_redirects=False)
+        resp = requests.get(url, headers=self.headers,
+                            params=self.get_features(version=3, size=24),
+                            allow_redirects=False)
         data = resp.json()
         self.assertTrue(24, len(data))
         for progr in data:
@@ -516,7 +520,9 @@ class Recommended(unittest.TestCase):
     def test_recommendations_homepage_mobile(self):
         """This request fails without an apikey header"""
         url = 'https://api.itv/hub/recommendations/homepage/' + self.userid
-        resp = requests.get(url, headers=self.headers, params=self.get_features(platform='mobile', version=3), allow_redirects=False)
+        resp = requests.get(url, headers=self.headers,
+                            params=self.get_features(platform='mobile', version=3),
+                            allow_redirects=False)
         self.assertEqual(401, resp.status_code)
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -592,7 +598,7 @@ class Playlists(unittest.TestCase):
                 'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
                 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
                 'Origin': 'https://www.itv.com'},
-                cookies=fetch.HttpSession().cookies,  # acc_data.cookie,
+            cookies=fetch.HttpSession().cookies,  # acc_data.cookie,
             json=post_data, timeout=10)
         strm_data = resp.json()
         return strm_data
@@ -636,7 +642,7 @@ class Playlists(unittest.TestCase):
     def test_manifest_live_simulcast(self):
         strm_data = self.get_playlist_live('ITV')
         start_again_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
-        start_time = datetime.utcnow() - timedelta(seconds=30)
+        start_time = datetime.now(timezone.utc) - timedelta(seconds=30)
         mpd_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
         resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
@@ -666,7 +672,7 @@ class Playlists(unittest.TestCase):
         DAR channels never play more than appr. 5 minutes from the live edge.
         """
         strm_data = self.get_playlist_live('FAST16')
-        start_time = datetime.strftime(datetime.now(timezone.utc) - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S' )
+        start_time = datetime.strftime(datetime.now(timezone.utc) - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S')
         mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl'].format(START_TIME=start_time)
         resp = requests.get(mpd_url, headers=self.manifest_headers, cookies=fetch.HttpSession().cookies)
         self.assertEqual(200, resp.status_code)
@@ -725,7 +731,7 @@ class Playlists(unittest.TestCase):
             is_short = True
             if 'encodedProgrammeId' in item.keys():
                 # The new item is a 'normal' catchup title
-                # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
+                # Do not use field 'href' as it has non-a-encoded program and episode Id's which won't work.
                 url = '/'.join(('https://www.itv.com/watch',
                                 item['titleSlug'],
                                 item['encodedProgrammeId']['letterA'],
@@ -771,21 +777,22 @@ class ChannelLogos(unittest.TestCase):
         import struct
         import imghdr
 
-        # Modified version of https://stackoverflow.com/questions/8032642/how-can-i-obtain-the-image-size-using-a-standard-python-class-without-using-an
+        # A modified version of https://stackoverflow.com/questions/8032642/how-can-i-obtain-the-image-size-using-a
+        # -standard-python-class-without-using-an
         def get_image_size(imgdata):
-            '''Determine the image type of fhandle and return its size.
-            from draco'''
+            """Determine the image type of fhandle and return its size.
+            from draco"""
             head = imgdata[:24]
             if len(head) != 24:
-                return
+                return None
             if imghdr.what(None, h=imgdata) == 'png':
                 check = struct.unpack('>i', head[4:8])[0]
                 if check != 0x0d0a1a0a:
-                    return
-                width, height = struct.unpack('>ii', head[16:24])
+                    return None
+                w, h = struct.unpack('>ii', head[16:24])
             else:
-                return
-            return width, height
+                return None
+            return w, h
 
         for url in self.logo_urls:
             url += '?w=512'

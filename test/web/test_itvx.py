@@ -15,7 +15,7 @@ from typing import Generator
 
 from codequick import Route
 
-from resources.lib import itvx, errors, itv_account
+from resources.lib import itvx, itv_account
 from resources.lib import cache
 from test.support.object_checks import is_url, has_keys, is_li_compatible_dict
 

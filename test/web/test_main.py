@@ -108,15 +108,21 @@ class TestGetProductions(unittest.TestCase):
         self.assertGreater(len(items), 1)
 
     def test_get_productions_midsummer_murder_folder_1(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='1')
+        items = main.list_productions(MagicMock(),
+                                      'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                                      series_idx='1')
         self.assertGreater(len(items), 1)
 
     def test_get_productions_midsummer_murder_folder_other_episodes(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='others')
+        items = main.list_productions(MagicMock(),
+                                      'https://www.itv.com/watch/midsomer-murders/Ya1096',
+                                      series_idx='others')
         self.assertEqual(len(items), 1)
 
     def test_get_productions_above_suspicion_folder_1(self):
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/above-suspicion/35460', series_idx='1')
+        items = main.list_productions(MagicMock(),
+                                      'https://www.itv.com/watch/above-suspicion/35460',
+                                      series_idx='1')
         self.assertEqual(len(items), 2)
 
     def test_get_productions_the_chase(self):
@@ -139,6 +145,7 @@ class TestGetProductions(unittest.TestCase):
         # Stonehouse, a series with versions that include British Sign Language
         items = main.list_productions.test('https://www.itv.com/watch/stonehouse/10a1973')
         self.assertEqual(3, len(items))
+
 
 class TestPlayCatchup(unittest.TestCase):
     def test_play_itv_1(self):

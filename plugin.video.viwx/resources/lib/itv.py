@@ -155,7 +155,7 @@ def get_catchup_urls(episode_url):
     highest_resolution = 0
     video_locations = None
     for media in stream_data['MediaFiles']:
-        res = int(media.get('Resolution', 0 ))
+        res = int(media.get('Resolution', 0))
         if res > highest_resolution:
             video_locations = media
             highest_resolution = res

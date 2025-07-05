@@ -9,7 +9,7 @@ from __future__ import annotations
 import time
 import unittest
 
-from resources.lib import  utils
+from resources.lib import utils
 
 
 def has_keys(dict_obj, *keys, obj_name='dictionary'):
@@ -26,7 +26,7 @@ def has_keys(dict_obj, *keys, obj_name='dictionary'):
         )
 
 
-def misses_keys(dict_obj: str, *keys: str, obj_name: str = 'dictionary') -> None:
+def misses_keys(dict_obj: dict, *keys: str, obj_name: str = 'dictionary') -> bool:
     """Checks if all keys are NOT present in the dictionary
 
     :param dict_obj: The dictionary to check
@@ -46,7 +46,7 @@ def misses_keys(dict_obj: str, *keys: str, obj_name: str = 'dictionary') -> None
     return True
 
 
-def expect_keys(dict_obj: dict, *keys: str, obj_name: str ='dictionary'):
+def expect_keys(dict_obj: dict, *keys: str, obj_name: str = 'dictionary'):
     """Print a warning if a key is not present, but do not fail a test.
     """
     try:
@@ -65,7 +65,7 @@ def expect_misses_keys(dict_obj, *keys, obj_name='dictionary'):
         return False
 
 
-def is_url(url: str, ext: str| list | tuple | None = None) -> bool:
+def is_url(url: str, ext: str | list | tuple | None = None) -> bool:
     """Short and simple check if the string `url` is indeed a URL.
     This is in no way intended to completely validate the URL - it is just to check
     that the string is not just a path without protocol specification, or just some
@@ -114,12 +114,12 @@ def is_encoded_programme_or_episode_id(item: dict) -> bool:
         us = item['underscore']
         if la == '' and us == '':
             return True
-        if not(isinstance(la, str) and la):
+        if not (isinstance(la, str) and la):
             return False
         for char in '_/':
             if char in la:
                 return False
-        if not(isinstance(us, str) and us):
+        if not (isinstance(us, str) and us):
             return False
         for char in 'a/':
             if char in us:
@@ -180,15 +180,15 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
 
 
 def is_tier_info(item) -> bool:
-    if not isinstance( item, list):
+    if not isinstance(item, list):
         return False
     return 'FREE' in item or 'PAID' in item
 
 
-def is_not_empty(item, type):
-    if not isinstance(item, type):
+def is_not_empty(item, item_type):
+    if not isinstance(item, item_type):
         return False
-    if type in (int, float, bool):
+    if item_type in (int, float, bool):
         return True
     else:
         return bool(item)
@@ -312,10 +312,10 @@ def check_short_form_item(item):
     has_keys(item, 'episodeTitle', 'imageUrl', 'contentType', obj_name=objname)
     misses_keys(item, 'isPaid', 'tier', 'imagePresets')
 
-    assert(item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
+    assert (item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
 
     if item['contentType'] == 'fastchannelspot':
-        assert(item['channel'].startswith('fast'))
+        assert (item['channel'].startswith('fast'))
         misses_keys(item, 'description, synopsis', obj_name=objname)
     else:
         has_keys(item, 'episodeId', 'titleSlug', 'dateTime', obj_name=objname)
@@ -417,7 +417,7 @@ def check_item_type_programme(testcase, progr_data, parent):
     testcase.assertTrue(is_url(progr_data['itvxImageUrl']))
     testcase.assertFalse(is_encoded_programme_id(progr_data['programmeId']))
     testcase.assertTrue(is_not_empty(progr_data['programmeId'], str))
-    testcase.assertTrue(progr_data['tier'] in('FREE', 'PAID'))
+    testcase.assertTrue(progr_data['tier'] in ('FREE', 'PAID'))
 
     testcase.assertIsInstance(progr_data['numberOfAvailableSeries'], list)
     testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))
@@ -428,7 +428,7 @@ def check_genres(testcase, genre_item, item_name='unknown'):
 
     :param unittest.TestCase testcase: Instanceof unittest.TestCase to run the tests in.
     :param list genre_item: The value of a field named 'genres' in data returned by ITVX.
-
+    :param item_name: Name to be used in error en debug messages.
     """
     for genre in genre_item:
         has_keys(genre, 'id', 'name', obj_name=item_name)
@@ -437,4 +437,3 @@ def check_genres(testcase, genre_item, item_name='unknown'):
             genre['id'] in
             ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'],
             f"Unexpected genre '{genre['id']}' in item f{item_name}")
-

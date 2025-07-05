@@ -178,6 +178,7 @@ def parse_hero_content(hero_data):
                 'ctx_mnu': context_mnu}
     except:
         logger.warning("Failed to parse hero item '%s':\n", hero_data.get('title', 'unknown title'), exc_info=True)
+        return None
 
 
 def parse_short_form_slider(slider_data, url=None):
@@ -198,7 +199,7 @@ def parse_short_form_slider(slider_data, url=None):
             # A shortFormSlider from the main page
             params = {'url': 'https://www.itv.com', 'slider': slider_data.get('key')}
         else:
-            return
+            return None
 
         return {'type': 'collection',
                 'show': {'label': title,
@@ -219,7 +220,7 @@ def parse_view_all(slider_data):
     header = slider_data['header']
     link = header.get('linkHref')
     if not link:
-        return
+        return None
     url = 'https://www.itv.com' + link
 
     if link.startswith('/watch/categories'):
@@ -230,7 +231,7 @@ def parse_view_all(slider_data):
         params = {'url': url}
     else:
         logger.warning("Unknown linkHref on %s: '%s", slider_data.get('key'), link)
-        return
+        return None
 
     return {'type': item_type,
             'show': {'label': header.get('linkText') or 'View All',
@@ -247,7 +248,7 @@ def parse_editorial_slider(url, slider_data):
         coll_data = slider_data['collection']
         if not coll_data.get('shows'):
             # Has happened. Items without field `shows` have an invalid headingLink
-            return
+            return None
         page_link = coll_data.get('headingLink')
         base_url = 'https://www.itv.com/watch'
         if page_link:
@@ -512,7 +513,7 @@ def parse_search_result(search_data, hide_paid=False):
 
     if 'PAID' in result_data['tier']:
         if hide_paid:
-            return
+            return None
         plot = premium_plot(result_data['synopsis'])
     else:
         plot = result_data['synopsis']
@@ -601,6 +602,7 @@ def parse_my_list_item(item, hide_paid=False):
         return item_dict
     except:
         logger.warning("Unexpected error parsing MyList item:\n", exc_info=True)
+        return None
 
 
 def parse_last_watched_item(item, utc_now):
@@ -640,7 +642,6 @@ def parse_last_watched_item(item, utc_now):
     else:
         title = '{} - [I]{}% watched[/I]'.format(progr_name, int(item['percentageWatched'] * 100))
 
-
     item_dict = {
         'type': 'vodstream',
         'programme_id': progr_id,
@@ -648,7 +649,7 @@ def parse_last_watched_item(item, utc_now):
             'label': episode_name or progr_name,
             'art': {'thumb': img_link.format(**IMG_PROPS_THUMB),
                     'fanart': img_link.format(**IMG_PROPS_FANART)},
-            'info': {'title': title ,
+            'info': {'title': title,
                      'plot': info,
                      'sorttitle': sort_title(title),
                      'date': utils.reformat_date(item['viewedOn'], "%Y-%m-%dT%H:%M:%SZ", "%d.%m.%Y"),
@@ -656,7 +657,7 @@ def parse_last_watched_item(item, utc_now):
                      'season': series_nr,
                      'episode': episode_nr},
             'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
-                               item['productionId'].replace('/', '_').replace('#', '.' )),
+                               item['productionId'].replace('/', '_').replace('#', '.')),
                        'name': progr_name,
                        'set_resume_point': True},
             'properties': {
@@ -709,3 +710,4 @@ def parse_schedule_item(data):
         return item
     except:
         logger.error("Failed to parse html schedule item", exc_info=True)
+        return None
