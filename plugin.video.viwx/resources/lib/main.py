@@ -199,16 +199,16 @@ def root(_):
 @Route.register(content_type='videos')
 def sub_menu_my_itvx(_):
     # Ensure to add at least one parameter to persuade dynamic listing that we actually call the list.
-    yield Listitem.from_dict(generic_list, 'My List', params={'list_type':'mylist', 'filter_char': None})
-    yield Listitem.from_dict(generic_list, 'Continue Watching', params={'list_type':'watching', 'filter_char': None})
+    yield Listitem.from_dict(generic_list, 'My List', params={'list_type': 'mylist', 'filter_char': None})
+    yield Listitem.from_dict(generic_list, 'Continue Watching', params={'list_type': 'watching', 'filter_char': None})
     try:
         last_programme = itvx.because_you_watched(itv_account.itv_session().user_id, name_only=True)
         if last_programme:
-            yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type':'byw'})
+            yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type': 'byw'})
     except Exception as e:
         # Log the error, but don't let the whole submenu fail because of this.
         logger.error("Error getting the last watched programme: %s\n", e, exc_info=True)
-    yield Listitem.from_dict(generic_list, 'Recommended for You', params={'list_type':'recommended'})
+    yield Listitem.from_dict(generic_list, 'Recommended for You', params={'list_type': 'recommended'})
 
 
 def _my_list_context_mnu(list_item, programme_id, refresh=True, retry=True):
@@ -326,13 +326,13 @@ def sub_menu_live(_):
 @Route.register(content_type='videos')
 def list_collections(_):
     """A list of all available collections."""
-    url ='https://www.itv.com'
+    url = 'https://www.itv.com'
     main_page = itvx.get_page_data(url, cache_time=3600)
     for slider in main_page['shortFormSliderContent']:
         if slider['key'] == 'newsShortForm':
             # News is already on the home page by default.
             continue
-        item  = parsex.parse_short_form_slider(slider)
+        item = parsex.parse_short_form_slider(slider)
         if item:
             yield Listitem.from_dict(list_collection_content, **item['show'])
 
@@ -340,7 +340,6 @@ def list_collections(_):
         item = parsex.parse_editorial_slider(url, slider)
         if item:
             yield Listitem.from_dict(list_collection_content, **item['show'])
-
 
 
 @Route.register(cache_ttl=-1, content_type='videos')

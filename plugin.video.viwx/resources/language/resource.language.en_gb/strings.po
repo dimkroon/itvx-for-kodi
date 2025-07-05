@@ -134,9 +134,9 @@ msgid "When a category or collection has more items than specified here, items w
 msgstr ""
 
 msgctxt "#30311"
-msgid "Target of itvX logging.\n"
+msgid "Target of viwX logging.\n"
 "Default is the standard 'Kodi log' - nothing will be logged until 'debug logging' is enabled in Kodi's settings.\n"
-"'File' logs to itvX's own log file stored in the addon's user data directory. Only of use if you know where to "
+"'File' logs to viwX's own log file stored in the addon's user data directory. Only of use if you know where to "
 "find that file.\n"
 "'No logging' if you want to ensure the addon spends as little time on logging as possible."
 msgstr ""

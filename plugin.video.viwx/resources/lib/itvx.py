@@ -29,7 +29,8 @@ from .itv import get_live_schedule
 logger = logging.getLogger(logger_id + '.itvx')
 
 
-FEATURE_SET = 'hd,progressive,single-track,mpeg-dash,widevine,widevine-download,inband-ttml,hls,aes,inband-webvtt,outband-webvtt,inband-audio-description'
+FEATURE_SET = ('hd,progressive,single-track,mpeg-dash,widevine,widevine-download,'
+               'inband-ttml,hls,aes,inband-webvtt,outband-webvtt,inband-audio-description')
 PLATFORM_TAG = 'mobile'
 
 
@@ -85,7 +86,7 @@ def get_now_next_schedule(local_tz=None):
                 logger.info("No Now/Next info available for channel '%s': %s", channel.get('id'), prog)
                 continue
 
-            details = ': '.join(s for s in(displ_title, prog.get('detailedDisplayTitle')) if s)
+            details = ': '.join(s for s in (displ_title, prog.get('detailedDisplayTitle')) if s)
             start_t = prog['start'][:19]
             utc_start = datetime(*(time.strptime(start_t, '%Y-%m-%dT%H:%M:%S')[0:6]), tzinfo=utc_tz)
 
@@ -282,7 +283,7 @@ def episodes(url, use_cache=False, prefer_bsl=False):
     programme_title = programme['title']
     programme_thumb = programme['image'].format(**parsex.IMG_PROPS_THUMB)
     programme_fanart = programme['image'].format(**parsex.IMG_PROPS_FANART)
-    description  = programme.get('longDescription') or programme.get('description') or programme_title
+    description = programme.get('longDescription') or programme.get('description') or programme_title
     if 'FREE' in programme['tier']:
         brand_description = description
     else:
@@ -419,7 +420,6 @@ def get_playlist_url_from_episode_page(page_url, prefer_bsl=False):
         return episode.get('bslPlaylistUrl') or episode['playlistUrl']
     else:
         return episode['playlistUrl']
-
 
 
 def search(search_term, hide_paid=False):
@@ -566,14 +566,14 @@ def recommended(user_id, hide_paid=False):
     """
     recommended_url = 'https://recommendations.prd.user.itv.com/recommendations/homepage/' + user_id
 
-    recommended = cache.get_item(recommended_url)
-    if not recommended:
+    recom_dta = cache.get_item(recommended_url)
+    if not recom_dta:
         req_params = {'features': FEATURE_SET, 'platform': PLATFORM_TAG, 'size': 24, 'version': 3}
-        recommended = fetch.get_json(recommended_url, params=req_params)
-        if not recommended:
+        recom_dta = fetch.get_json(recommended_url, params=req_params)
+        if not recom_dta:
             return None
-        cache.set_item(recommended_url, recommended, 43200)
-    return list(filter(None, (parsex.parse_my_list_item(item, hide_paid) for item in recommended)))
+        cache.set_item(recommended_url, recom_dta, 43200)
+    return list(filter(None, (parsex.parse_my_list_item(item, hide_paid) for item in recom_dta)))
 
 
 def because_you_watched(user_id, name_only=False, hide_paid=False):
@@ -582,14 +582,14 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
     Returns 204 - No Content when user ID is invalid. Doesn't require authentication.
     """
     if not user_id:
-        return
+        return None
     byw_url = 'https://recommendations.prd.user.itv.com/recommendations/byw/' + user_id
     byw = cache.get_item(byw_url)
     if not byw:
         req_params = {'features': FEATURE_SET, 'platform': 'ctv', 'size': 12, 'version': 2}
         byw = fetch.get_json(byw_url, params=req_params)
         if not byw:
-            return
+            return None
         cache.set_item(byw_url, byw, 1800)
 
     if name_only:

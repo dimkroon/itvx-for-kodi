@@ -291,6 +291,8 @@ def fetch_authenticated(funct, url, login=True, **kwargs):
                     sys.exit(1)
                 else:
                     raise
+    # Just to silence linters
+    return None
 
 
 def convert_session_data(acc_data: dict) -> dict:
