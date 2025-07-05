@@ -470,16 +470,6 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
     logger.debug('dash manifest url: %s', manifest_url)
     logger.debug('dash key service url: %s', key_service_url)
 
-    # Ensure to get a fresh hdntl cookie as they expire after 12 or 24 hrs.
-    # Use a plain requests.get() to prevent sending an existing hdntl cookie,
-    # and other cookies are not required.
-    resp = requests.get(url=manifest_url,
-                        allow_redirects=False,
-                        headers={'user-agent': fetch.USER_AGENT},
-                        timeout=fetch.WEB_TIMEOUT)
-    hdntl_cookie = resp.cookies.get('hdntl', '')
-    logger.debug("Received hdntl cookie: %s", hdntl_cookie)
-
     PROTOCOL = 'mpd'
     DRM = 'com.widevine.alpha'
 
@@ -503,8 +493,7 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
             'Origin=https://www.itv.com&'
             'Sec-Fetch-Dest=empty&'
             'Sec-Fetch-Mode=cors&'
-            'Sec-Fetch-Site=same-site&'
-            'cookie=', 'hdntl=', hdntl_cookie))
+            'Sec-Fetch-Site=same-site'))
 
     play_item.setProperties({
         'inputstream': is_helper.inputstream_addon,
