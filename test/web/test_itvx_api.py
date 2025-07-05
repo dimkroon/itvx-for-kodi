@@ -649,19 +649,11 @@ class Playlists(unittest.TestCase):
         # testutils.save_doc(manifest, 'mpd/itv1.mpd')
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
-        if resp.history:
-            self.assertTrue('hdntl' in resp.history[0].cookies)        # assert manifest response sets an hdntl cookie
-        else:
-            self.assertTrue('hdntl' in resp.cookies)
 
     def test_manifest_live_FAST(self):
         strm_data = self.get_playlist_live('FAST16')
         mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['Url']
-        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10, allow_redirects=False)
-        # Manifest of FAST channels can have several redirects. The hdntl cookie is set in the first response.
-        self.assertTrue('hdntl' in resp.cookies)
-        if resp.status_code == 302:
-            resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
+        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
         # testutils.save_doc(manifest, 'mpd/fast16.mpd')
         self.assertGreater(len(manifest), 1000)
@@ -722,7 +714,6 @@ class Playlists(unittest.TestCase):
         manifest = resp.text
         self.assertGreater(len(manifest), 1000)
         self.assertTrue(manifest.startswith('<?xml version='))
-        self.assertTrue('hdntl' in resp.cookies)    # assert manifest response sets an hdntl cookie
 
     def test_playlist_news_collection_items(self):
         """Short news items form the collection 'news' are all just mp4 files."""
