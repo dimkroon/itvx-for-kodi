@@ -85,6 +85,14 @@ msgctxt "#30133"
 msgid "Go to IPTV Manager settings"
 msgstr ""
 
+msgctxt "#30140"
+msgid "Stream quality"
+msgstr ""
+
+msgctxt "#30141"
+msgid "Enable full HD (1080p)"
+msgstr ""
+
 msgctxt "#30200"
 msgid "itvX account"
 msgstr ""
@@ -149,6 +157,11 @@ msgstr ""
 msgctxt "#30332"
 msgid "It may take a few hours before this setting takes effect.\n"
 "To force an update, select 'Refresh channels and guide now' in IPTV Manager's settings. You may also need te restart Kodi."
+msgstr ""
+
+msgctxt "#30341"
+msgid "May not work on all devices.\n"
+"When streams don't play, switch off to revert back to 720p HD."
 msgstr ""
 
 msgctxt "#30401"

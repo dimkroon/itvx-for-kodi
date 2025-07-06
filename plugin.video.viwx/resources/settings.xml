@@ -3,6 +3,13 @@
     <section id="plugin.video.viwx">
         <!-- General -->
         <category id="general" label="30100" help="">
+			<group id="grp-strm-quality" label="30140">
+				<setting id="FHD_enabled" label="30141" type="boolean" help="30341">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+			</group>
 			<group id="grp1" label="30101">
 				<setting id="subtitles_show" label="30102" type="boolean" help="30302">
 					<level>0</level>
