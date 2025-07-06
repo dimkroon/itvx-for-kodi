@@ -82,7 +82,7 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False, 
             # enough buffer automatically use the maximum available time shift for that channel.
             start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
-
+    dash_url = dash_url.replace('ctv-low', 'ctv', 1)
     key_service = video_locations['KeyServiceUrl']
     return dash_url, key_service, None
 
