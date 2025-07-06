@@ -190,16 +190,11 @@ class TestPlayCatchup(unittest.TestCase):
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 
 
-@unittest.skip("not to interfere with tests of bugfix branch")
 class TestSearch(unittest.TestCase):
     def test_search_chase(self):
-        items = main.do_search(MagicMock(), 'chase')
+        items = main.do_search.test('chase')
         self.assertGreater(len(items), 4)
 
     def test_search_mear(self):
-        items = main.do_search(MagicMock(), 'mear')
-        self.assertGreater(len(items), 4)
-
-    def test_search_monday(self):
-        items = main.do_search(MagicMock(), 'monday')
+        items = main.do_search.test('mear')
         self.assertGreater(len(items), 4)

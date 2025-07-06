@@ -118,15 +118,16 @@ class LiveSchedules(unittest.TestCase):
                         self.assertTrue(object_checks.is_iso_utc_time(program['broadcastAt']))
 
 
-@unittest.skip("not to interfere with tests of bugfix branch")
 class Search(unittest.TestCase):
     def setUp(self) -> None:
         self.search_url = 'https://textsearch.prd.oasvc.itv.com/search'
         self.search_params = {
             'broadcaster': 'itv',
+            'channelType': 'simulcast',
             'featureSet': 'clearkey,outband-webvtt,hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe',
             'onlyFree': 'false',
             'platform': 'dotcom',
+            'pretx': 'true',
             'size': '24'
         }.copy()
 
@@ -205,31 +206,23 @@ class Search(unittest.TestCase):
         if resp.status_code == 200:
             self.assertListEqual([], resp.json()['results'])
 
-    def test_search_foster_with_paid(self):
-        """Results contains a Doctor Foster programme, which can only be watch with a premium account."""
+    def test_search_foster_with_paid_results(self):
+        """Results contains a Doctor Foster programme, which can only be watched with a premium account."""
         # Search including paid
-        url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,'
-               'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=false&platform=ctv&query='
-               + quote('doctor foster'))
-        resp = requests.get(url,
-                            headers={'accept': 'application/json'})
+        self.search_params['query'] = 'doctor foster'
+        resp = requests.get(self.search_url, self.search_params, headers={'accept': 'application/json'})
         data = resp.json()
         self.check_result(data)
+        # Ensure premium result are present.
         self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
-        # self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
 
-    def test_search_foster_only_free(self):
-        # Search exclude paid
-        url = ('https://textsearch.prd.oasvc.itv.com/search?broadcaster=itv&featureSet=clearkey,outband-webvtt,'
-               'hls,aes,playready,widevine,fairplay,bbts,progressive,hd,rtmpe&onlyFree=true&platform=ctv&query='
-               + quote('doctor foster'))
-        resp = requests.get(url,
-                            headers={'accept': 'application/json'})
+        # Check if the (now legacy) parameter 'onlyFree' filters premium content from the resutls
+        self.search_params['onlyFree'] = 'true'
+        resp = requests.get(self.search_url, self.search_params, headers={'accept': 'application/json'})
         data = resp.json()
-        self.assertGreater(len(data['results']), 0)
         self.check_result(data)
-        # self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
-        self.assertTrue(all('FREE' == result['data']['tier'] for result in data['results']))
+        # Ensure premium result are still present.
+        self.assertTrue(any('PAID' == result['data']['tier'] for result in data['results']))
 
 
 class MyList(unittest.TestCase):
