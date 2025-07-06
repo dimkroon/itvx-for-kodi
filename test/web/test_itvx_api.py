@@ -574,6 +574,70 @@ stream_req_data = {
     }
 }
 
+mobile_strm_req_data = {
+  "client": {
+    "id": "android",
+    "service": "itv.x",
+    "supportsAdPods": False,
+    "version": "0.6.0"
+  },
+  "device": {
+    "advertisingIdentifier": "00000000-0000-0000-0000-000000000000",
+    "firmware": "22",
+    "id": "xplayer",
+    "manufacturer": "",
+    "model": "",
+    "os": {
+      "name": "android",
+      "type": "android",
+      "version": "12.0"
+    }
+  },
+  "preview": False,
+  "user": {
+    "entitlements": [],
+    "itvUserId": "",
+    "status": "reg",
+    "subscribed": "false",
+    "token": ""
+  },
+  "variantAvailability": {
+    "featureset": {
+
+    },
+    "platformTag": "ctv"
+  }
+}
+
+features_live = {
+    "min": [
+        "mpeg-dash",
+        "widevine",
+      ],
+    "max": [
+        "hd",
+        "mpeg-dash",
+        "widevine",
+        "inband-webvtt"
+    ]
+}
+
+features_catchup = {
+    "min": [
+        "hd",
+        "mpeg-dash",
+        "widevine",
+        "single-track",
+        "outband-webvtt"
+      ],
+    "max": [
+        "hd",
+        "mpeg-dash",
+        "widevine",
+        "single-track",
+        "outband-webvtt"
+    ]
+}
 
 class Playlists(unittest.TestCase):
     manifest_headers = {
@@ -583,7 +647,7 @@ class Playlists(unittest.TestCase):
     @staticmethod
     def create_post_data(stream_type):
         acc_data = itv_account.itv_session()
-        post_data = copy.deepcopy(stream_req_data)
+        post_data = copy.deepcopy(mobile_strm_req_data)
         post_data['user']['token'] = acc_data.access_token
         post_data['client']['supportsAdPods'] = True
 
@@ -680,10 +744,15 @@ class Playlists(unittest.TestCase):
 
         resp = requests.post(
             url,
-            headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
-                     'User-Agent': fetch.USER_AGENT,
-                     'Origin': 'https://www.itv.com',
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
+                     'User-Agent': 'X-Player',
+                     # 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                     # 'Origin': 'https://www.itv.com',
                      },
+            # headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
+            #          'User-Agent': 'ITV_Player_(Android)',
+            #          'Origin': 'https://www.itv.com',
+            #          },
             json=post_data,
             timeout=10)
         resp = resp.json()
