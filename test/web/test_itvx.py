@@ -136,8 +136,10 @@ class TestItvX(unittest.TestCase):
             # something else with subtitles:
             'https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001', )
         for url in urls:
-            result = itvx._request_stream_data(url, 'vod')
-            check_catchup_dash_stream_info(result['Playlist'])
+            result = itvx._request_stream_data(url, stream_type='vod', full_hd=False)
+            check_catchup_dash_stream_info(result['Playlist'], full_hd=False)
+            result = itvx._request_stream_data(url, stream_type='vod', full_hd=True)
+            check_catchup_dash_stream_info(result['Playlist'], full_hd=True)
 
     def test__request_stream_data_live(self):
         result = itvx._request_stream_data('https://simulcast.itv.com/playlist/itvonline/ITV', 'live')

@@ -14,8 +14,6 @@ import copy
 from datetime import datetime, timedelta, timezone
 
 import requests
-from requests.cookies import RequestsCookieJar
-from urllib.parse import quote
 
 from resources.lib import itv_account
 from resources.lib import fetch
@@ -237,7 +235,7 @@ class MyList(unittest.TestCase):
         cls.mylist_url = ('https://my-list.prd.user.itv.com/user/{}/mylist?features=mpeg-dash,outband-webvtt,'
                           'hls,aes,playready,widevine,fairplay,progressive&platform=ctv&size=52').format(cls.userid)
         # Both webbrowser and app authenticate with a header, no cookies required.
-        cls.headers =  {'authorization': 'Bearer ' + cls.token}
+        cls.headers = {'authorization': 'Bearer ' + cls.token}
 
     def test_get_my_list_no_content_type(self):
         """Request My List without specifying the content-type
@@ -545,7 +543,7 @@ class Recommended(unittest.TestCase):
 # ----------------------------------------------------------------------------------------------------------------------
 
 
-stream_req_data = {
+web_req_data = {
     'client': {
         'id': 'browser',
         'supportsAdPods': False,
@@ -574,7 +572,7 @@ stream_req_data = {
     }
 }
 
-mobile_strm_req_data = {
+mobile_req_data = {
   "client": {
     "id": "android",
     "service": "itv.x",
@@ -602,11 +600,33 @@ mobile_strm_req_data = {
     "token": ""
   },
   "variantAvailability": {
-    "featureset": {
-
-    },
+    "featureset": {},
     "platformTag": "ctv"
   }
+}
+
+freeview_req_data = {
+    "client": {
+        "id": "freeview",
+        "isp": {},
+        "supportsAdPods": True,
+        "appVersion": "3.564.0",
+        "version": "3.564.0",
+        "service": "itv.x",
+        "thirdPartyPaymentModel": "free",
+        "ssaiClientSdkVersion": "3"
+    },
+    "device": {
+        "manufacturer": "LG",
+        "model": "oled77g36la",
+        "os": {"name": "oled77g36la"}
+    },
+    "user": {"token": ""},
+    "variantAvailability": {
+        "featureset": {},
+        "platformTag": "ctv",
+        "drm": {"system": "widevine", "maxSupported": "L3"}
+    }
 }
 
 features_live = {
@@ -622,45 +642,36 @@ features_live = {
     ]
 }
 
-features_catchup = {
-    "min": [
-        "hd",
-        "mpeg-dash",
-        "widevine",
-        "single-track",
-        "outband-webvtt"
-      ],
-    "max": [
-        "hd",
-        "mpeg-dash",
-        "widevine",
-        "single-track",
-        "outband-webvtt"
-    ]
-}
+features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
+
 
 class Playlists(unittest.TestCase):
     manifest_headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
         'Origin': 'https://www.itv.com'}
 
-    @staticmethod
-    def create_post_data(stream_type):
-        acc_data = itv_account.itv_session()
-        post_data = copy.deepcopy(mobile_strm_req_data)
-        post_data['user']['token'] = acc_data.access_token
+    @classmethod
+    def setUpClass(cls):
+        cls.acc_data = itv_account.itv_session()
+        cls.acc_data.refresh()
+
+    def create_post_data(self, stream_type, platform='freeview'):
+        req_data = {
+            'web': web_req_data,
+            'mobile': mobile_req_data,
+            'freeview': freeview_req_data
+        }.get(platform)
+        post_data = copy.deepcopy(req_data)
+        post_data['user']['token'] = self.acc_data.access_token
         post_data['client']['supportsAdPods'] = True
 
-        # Live has still the old style feature set with min and max sets.
         if stream_type == 'live':
-            post_data['variantAvailability']['featureset']= {
-                'max': ['mpeg-dash', 'widevine'],
-                'min': ['mpeg-dash', 'widevine']
-            }
-
+            post_data['variantAvailability']['featureset'] = features_live
+        else:
+            post_data['variantAvailability']['featureset'] = features_catchup
         return post_data
 
-    def get_playlist_live(self, channel):
+    def get_playlist_live(self, channel, platform='freeview'):
         """Get the playlist of one of the itvx live channels
 
         For all channels no other headers than User Agent and Origin are required.
@@ -668,9 +679,7 @@ class Playlists(unittest.TestCase):
 
         Since accessToken is provided in the body, authentication by cookie or header is not needed.
         """
-        acc_data = itv_account.itv_session()
-        acc_data.refresh()
-        post_data = self.create_post_data('live')
+        post_data = self.create_post_data('live', platform)
 
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         resp = requests.post(
@@ -683,60 +692,102 @@ class Playlists(unittest.TestCase):
         strm_data = resp.json()
         return strm_data
 
-    def test_get_playlist_simulcast(self):
-        for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'ITVBe'):
-            strm_data = self.get_playlist_live(channel)
-            # testutils.save_json(strm_data, 'playlists/pl_itv1.json')
-            object_checks.check_live_stream_info(strm_data['Playlist'])
-
-    def test_get_playlist_fast(self):
-        for chan_id in range(20, 21):
-            channel = 'FAST{}'.format(chan_id)
-            strm_data = self.get_playlist_live(channel)
-            # if chan_id == 20:
-            #     testutils.save_json(strm_data, 'playlists/pl_fast_non_dar.json')
-            object_checks.check_live_stream_info(strm_data['Playlist'])
-
-    def test_manifest_live_simulcast(self):
-        strm_data = self.get_playlist_live('ITV')
-        start_again_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
-        start_time = datetime.now(timezone.utc) - timedelta(seconds=30)
+    def get_manifest_live(self, channel, platform):
+        """Get the manifest from the start-again url"""
+        playlist = self.get_playlist_live(channel, platform)
+        start_again_url = playlist['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+        start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
         mpd_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
         resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text
+        return manifest
+
+    def test_get_playlist_simulcast_web(self):
+        for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'ITVBe'):
+            strm_data = self.get_playlist_live(channel, 'web')
+            # testutils.save_json(strm_data, 'playlists/pl_itv1.json')
+            object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
+
+    def test_get_playlist_simulcast_freeview(self):
+        for channel in ('ITV', 'ITV2', 'ITV4'):
+            strm_data = self.get_playlist_live(channel, 'freeview')
+            # testutils.save_json(strm_data, 'playlists/pl_itv1.json')
+            object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=True)
+        for channel in ('ITV3', 'ITVBe'):
+            strm_data = self.get_playlist_live(channel, 'freeview')
+            object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
+            self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+
+    def test_get_playlist_fast_web(self):
+        for chan_id in (5, 20):
+            channel = 'FAST{}'.format(chan_id)
+            strm_data = self.get_playlist_live(channel, 'web')
+            # if chan_id == 20:
+            #     testutils.save_json(strm_data, 'playlists/pl_fast_non_dar.json')
+            object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
+            if chan_id == 20:
+                # FAST20 - GoUSA TV is always non-dar
+                self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+            else:
+                self.assertTrue(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+
+    def test_get_playlist_fast_freeview(self):
+        """Freeview fast channels are 720p by default"""
+        for chan_id in (5, 20):
+            channel = 'FAST{}'.format(chan_id)
+            strm_data = self.get_playlist_live(channel, 'freeview')
+            object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
+            # All freeview live streams are non-dar
+            self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+
+    def test_manifest_live_simulcast_web(self):
+        manifest = self.get_manifest_live('ITV', 'web')
         # testutils.save_doc(manifest, 'mpd/itv1.mpd')
-        self.assertGreater(len(manifest), 1000)
-        self.assertTrue(manifest.startswith('<?xml version='))
+        max_res = object_checks.check_dash_manifest(self, manifest)
+        self.assertEqual(720, max_res)
+
+    def test_manifest_live_simulcast_freeview(self):
+        manifest = self.get_manifest_live('ITV', 'freeview')
+        max_res = object_checks.check_dash_manifest(self, manifest)
+        self.assertEqual(1080, max_res)
 
     def test_manifest_live_FAST(self):
-        strm_data = self.get_playlist_live('FAST16')
-        mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['Url']
-        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
-        manifest = resp.text
-        # testutils.save_doc(manifest, 'mpd/fast16.mpd')
-        self.assertGreater(len(manifest), 1000)
-        self.assertTrue(manifest.startswith('<?xml version='))
+        """NOTE: FAST channels change frequently, some channels may not return a valid manifest."""
+        for chan in ('5', '16', '20'):
+            manifest = self.get_manifest_live('FAST' + chan, 'web')
+            max_res = object_checks.check_dash_manifest(self, manifest)
+            self.assertEqual(720, max_res)
+            manifest = self.get_manifest_live('FAST' + chan, 'freeview')
+            max_res = object_checks.check_dash_manifest(self, manifest)
+            self.assertEqual(720, max_res)
 
-    def test_manifest_live_FAST_playagain(self):
-        """As of appr. mid 2024 play-again works again on FAST channels, although non
-        DAR channels never play more than appr. 5 minutes from the live edge.
+    def test_force_freeview_full_hd(self):
+        """On freeview only the ITV1, ITV2 and ITV4 are in full HD by default.
+        Test if we can obtain the other channels in 1080P as well by replacing
+        'ctv_low' with 'ctv' in the manifest url.
+
+        .. note ::
+            Fast channels change often and some might not be available any more.
         """
-        strm_data = self.get_playlist_live('FAST16')
-        start_time = datetime.strftime(datetime.now(timezone.utc) - timedelta(seconds=20), '%Y-%m-%dT%H:%M:%S')
-        mpd_url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl'].format(START_TIME=start_time)
-        resp = requests.get(mpd_url, headers=self.manifest_headers, cookies=fetch.HttpSession().cookies)
-        self.assertEqual(200, resp.status_code)
-        manifest = resp.text
-        # testutils.save_doc(manifest, 'mpd/fast16.mpd')
-        self.assertGreater(len(manifest), 1000)
-        self.assertTrue(manifest.startswith('<?xml version='))
+        for channel in ('ITV3', 'FAST5', 'FAST20'):
+            playlist = self.get_playlist_live(channel, 'freeview')
+            start_again_url = playlist['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+            self.assertTrue('ctv-low.mpd' in start_again_url)
+            start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
+            mpd_url = start_again_url.replace('ctv-low', 'ctv').format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
+            resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
+            max_res = object_checks.check_dash_manifest(self, resp.text)
+            self.assertEqual(1080, max_res)
 
-    def get_playlist_catchup(self, url=None):
+    # -----------------------
+    #       VOD
+    # -----------------------
+
+    def get_playlist_catchup(self, url=None, platform='freeview'):
         """Request stream of a catchup episode (i.e. production)
 
-        Unlike live channels, pLaylist requests for VOD don't need any cookie.
         """
-        post_data = self.create_post_data('vod')
+        post_data = self.create_post_data('vod', platform)
 
         if not url:
             # request playlist of an episode of Doc Martin
@@ -744,12 +795,12 @@ class Playlists(unittest.TestCase):
 
         resp = requests.post(
             url,
-            headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
+            headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
                      'User-Agent': 'X-Player',
                      # 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
                      # 'Origin': 'https://www.itv.com',
                      },
-            # headers={'Accept': 'application/vnd.itv.vod.playlist.v2+json',
+            # headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
             #          'User-Agent': 'ITV_Player_(Android)',
             #          'Origin': 'https://www.itv.com',
             #          },
@@ -759,48 +810,59 @@ class Playlists(unittest.TestCase):
         return resp
 
     def test_get_playlist_catchup(self):
-        strm_data = self.get_playlist_catchup()
+        strm_data = self.get_playlist_catchup(platform='web')
         # testutils.save_json(strm_data, 'playlists/pl_doc_martin.json')
-        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=False)
+        strm_data = self.get_playlist_catchup(platform='freeview')
+        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=True)
 
     def test_get_playlist_premium_catchup(self):
-        """Request a premium stream without a premium account."""
+        """Request a premium stream _without_ a premium account."""
         # Judge John Deed S1E1
         resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_5323_0001.001')
         object_checks.has_keys(resp, 'Message', 'TransactionId')
         self.assertTrue('message: User does not have entitlements' in resp['Message'])
 
     def test_manifest_vod(self):
-        strm_data = self.get_playlist_catchup()
-        mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
-        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
-        manifest = resp.text
-        self.assertGreater(len(manifest), 1000)
-        self.assertTrue(manifest.startswith('<?xml version='))
+        for platform in ('web', 'freeview'):
+            strm_data = self.get_playlist_catchup(platform=platform)
+            mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
+            resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
+            max_res = object_checks.check_dash_manifest(self, resp.text)
+            if platform == 'web':
+                self.assertEqual(720, max_res)
+            else:
+                self.assertEqual(1080, max_res)
 
     def test_playlist_news_collection_items(self):
         """Short news items form the collection 'news' are all just mp4 files."""
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
+        checked_types = set()
         for item in page_data['shortFormSliderContent'][0]['items']:
-            is_short = True
-            if 'encodedProgrammeId' in item.keys():
+            content_type = item['contentType']
+            if content_type in checked_types:
+                continue
+            checked_types.add(content_type)
+            if content_type == 'shortform':
+                url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
+            elif 'encodedProgrammeId' in item.keys():
                 # The new item is a 'normal' catchup title
-                # Do not use field 'href' as it has non-a-encoded program and episode Id's which won't work.
+                # Do not use field 'href' as it has non-a-encoded program and episode IDs which won't work.
                 url = '/'.join(('https://www.itv.com/watch',
                                 item['titleSlug'],
                                 item['encodedProgrammeId']['letterA'],
                                 item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
-                is_short = False
             else:
-                # This news item is a 'short' item
-                url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
+                raise AssertionError("Unknown news item type '{}'.".format(content_type))
+
             playlist_url = itvx.get_playlist_url_from_episode_page(url)
-            strm_data = self.get_playlist_catchup(playlist_url)
-            # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
-            if is_short:
-                object_checks.check_news_collection_stream_info(strm_data['Playlist'])
-            else:
-                object_checks.check_catchup_dash_stream_info(strm_data['Playlist'])
+            for platform in ('web', 'freeview'):
+                strm_data = self.get_playlist_catchup(playlist_url, platform)
+                # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
+                if content_type == 'shortform':
+                    object_checks.check_news_collection_stream_info(strm_data['Playlist'])
+                else:
+                    object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=platform == 'freeview')
 
 
 class ChannelLogos(unittest.TestCase):

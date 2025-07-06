@@ -8,6 +8,8 @@
 from __future__ import annotations
 import time
 import unittest
+import urllib
+import re
 
 from resources.lib import utils
 
@@ -194,7 +196,7 @@ def is_not_empty(item, item_type):
         return bool(item)
 
 
-def check_live_stream_info(playlist):
+def check_live_stream_info(playlist, full_hd=False):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.online.playlist.sim.v3+json, which is
     returned for live channels
@@ -213,12 +215,20 @@ def check_live_stream_info(playlist):
     strm_inf = video_inf['VideoLocations']
     assert isinstance(strm_inf, list), 'VideoLocations is not a list but {}'.format(type(strm_inf))
     for strm in strm_inf:
-        assert isinstance(strm['IsDar'], bool)
         assert is_url(strm['Url'], '.mpd')
         assert is_url(strm['StartAgainUrl'], '.mpd')
         assert is_url(strm['KeyServiceUrl'])
+        assert 'widevine' in strm['KeyServiceUrl'].lower()
         assert '{START_TIME}' in strm['StartAgainUrl']
-
+        if full_hd:
+            # Freeview live streams are all non-dar, even if supportsAdPods is True
+            assert strm['IsDar'] is False
+            assert 'ctv.mpd' in strm['StartAgainUrl']
+        else:
+            url = strm['StartAgainUrl']
+            assert ('dotcom.mpd' in url
+                    or 'dotcom-low.mpd' in url
+                    or 'ctv-low.mpd' in url)
 
 def has_adverts(playlist):
     breaks = playlist['ContentBreaks']
@@ -231,7 +241,7 @@ def has_adverts(playlist):
     return has_breaks
 
 
-def check_catchup_dash_stream_info(playlist):
+def check_catchup_dash_stream_info(playlist, full_hd=False):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.vod.playlist.v2+json, which is
     returned for catchup productions
@@ -248,11 +258,18 @@ def check_catchup_dash_stream_info(playlist):
 
     strm_inf = video_inf['MediaFiles']
     assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
+    resolutions = []
     for strm in strm_inf:
-        assert (strm['Href'].startswith('https://')) and '.mpd?' in strm['Href'], \
-            "Unexpected playlist url: <{}>".format(strm['Href'])
+        strm_url = urllib.parse.unquote(strm['Href'])
+        assert (strm_url.startswith('https://')) and '.mpd?' in strm_url, \
+            "Unexpected playlist url: <{}>".format(strm_url)
         assert is_url(strm['KeyServiceUrl']), "Unexpected KeyServiceUrl url: <{}>".format(strm['KeyServiceUrl'])
-        assert 'Resolution' in strm
+        assert 'widevine' in strm['KeyServiceUrl'].lower()
+        resolutions.append(strm['Resolution'])
+    if full_hd:
+        assert ['1080', '720', '576'] == resolutions
+    else:
+        assert ['720', '576'] == resolutions
 
     subtitles = video_inf['Subtitles']
     assert isinstance(subtitles, (type(None), list)), 'MediaFiles is not a list but {}'.format(type(strm_inf))
@@ -437,3 +454,15 @@ def check_genres(testcase, genre_item, item_name='unknown'):
             genre['id'] in
             ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'],
             f"Unexpected genre '{genre['id']}' in item f{item_name}")
+
+
+def check_dash_manifest(testcase, mpd: str):
+    """Check that `mpd` is a dash manifest and return the maximum video resolution
+
+    """
+    adapt_sets = re.findall(r'<AdaptationSet(.+?)</AdaptationSet>', mpd, re.DOTALL | re.IGNORECASE)
+    for adapt_set in adapt_sets:
+        if 'contentType="video"' in adapt_set:
+            max_res = re.search(r'maxHeight="(\d{3,4})"', adapt_set, re.IGNORECASE).group(1)
+            return int(max_res)
+    raise AssertionError("Invalid DASH manifest")
