@@ -535,6 +535,13 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None, play
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         logger.info("Created live url from channel name: '%s'", url)
 
+    tv_region = addon.setting['tv_region']
+    if tv_region == 'by_account':
+        tv_region = itv_account.itv_session().tv_region
+    if tv_region:
+        # Only affects freeview streams, is currently ignored by web.
+        url = url + '?region=' + tv_region
+
     if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
         start_time = None
     fhd_enabled = addon.setting['FHD_enabled'] == 'true'

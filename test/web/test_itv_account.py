@@ -84,6 +84,7 @@ class TestTokens(unittest.TestCase):
         self._check_token_type(token_data[0])
         user_data = token_data[1]
         object_checks.has_keys(user_data, *ACCESS_TKN_FIELDS)
+        self.assertEqual(len(user_data), len(ACCESS_TKN_FIELDS))
         self.assertTrue(user_data['isActive'])
         self.assertEqual('https://auth.itv.com', user_data['iss'])  # issuer
         self.assertTrue(testutils.is_uuid(user_data['sub']))

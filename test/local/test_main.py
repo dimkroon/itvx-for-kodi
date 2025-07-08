@@ -4,6 +4,8 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+import xbmcaddon
+
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -508,6 +510,22 @@ class PlayStreamLive(TestCase):
     @patch('resources.lib.itv.get_live_urls', side_effect=ValueError)
     def test_play_stream_live_without_other_error(self, _):
         self.assertRaises(ValueError, main.play_stream_live.test, channel='ITV', url=None)
+
+    @patch('resources.lib.itv.get_live_urls', return_value=open_json('playlists/pl_itv1.json'))
+    def test_play_live_with_region(self, p_req_strm):
+        # region from ITV account
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: 'by_account' if s == 'tv_region' else ''):
+            with patch.object(itv_account.itv_session(), '_tv_region', 'my-area'):
+                main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('?region=my-area'))
+        # region from viwX's settings
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: 'other-area' if s == 'tv_region' else ''):
+            main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('?region=other-area'))
+        # missing region
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: ''):
+            main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('/ITV'))
 
 
 class PlayStreamCatchup(TestCase):

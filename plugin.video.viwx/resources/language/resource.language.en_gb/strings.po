@@ -73,6 +73,10 @@ msgctxt "#30121"
 msgid "Offer to play from the start"
 msgstr ""
 
+msgctxt "#30122"
+msgid "TV region"
+msgstr ""
+
 msgctxt "#30131"
 msgid "Install IPTV Manager"
 msgstr ""
@@ -152,6 +156,11 @@ msgstr ""
 msgctxt "#30321"
 msgid "Show a dialog with the option to play the current program from the start each time a live channel is being started.\n"
 "When disabled 'play form the start' is still available on the context menu of the main live channels."
+msgstr ""
+
+msgctxt "#30322"
+msgid "Region for local news and weather on ITV1.\n"
+"Only available when Full HD is enabled."
 msgstr ""
 
 msgctxt "#30332"

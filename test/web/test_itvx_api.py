@@ -10,6 +10,7 @@ fixtures.global_setup()
 
 import unittest
 import copy
+import time
 
 from datetime import datetime, timedelta, timezone
 
@@ -671,7 +672,7 @@ class Playlists(unittest.TestCase):
             post_data['variantAvailability']['featureset'] = features_catchup
         return post_data
 
-    def get_playlist_live(self, channel, platform='freeview'):
+    def get_playlist_live(self, channel, platform='freeview', query_str=''):
         """Get the playlist of one of the itvx live channels
 
         For all channels no other headers than User Agent and Origin are required.
@@ -681,7 +682,7 @@ class Playlists(unittest.TestCase):
         """
         post_data = self.create_post_data('live', platform)
 
-        url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
+        url = 'https://simulcast.itv.com/playlist/itvonline/' + channel + query_str
         resp = requests.post(
             url,
             headers={
@@ -717,6 +718,24 @@ class Playlists(unittest.TestCase):
             strm_data = self.get_playlist_live(channel, 'freeview')
             object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
             self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+
+    def test_playlist_live_regional_freeview(self):
+        strm_data = self.get_playlist_live('ITV', 'freeview')
+        url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+        self.assertTrue('/itv1/' in url)
+        strm_data = self.get_playlist_live('ITV', 'freeview', '?region=granada')
+        url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+        self.assertTrue('/itv1-gran/' in url)
+
+    def test_playlist_live_regional_web(self):
+        strm_data = self.get_playlist_live('ITV', 'web')
+        url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+        self.assertTrue('/itv1/' in url)
+        strm_data = self.get_playlist_live('ITV', 'web', '?region=granada')
+        url = strm_data['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
+        # Region has no effect on web streams
+        self.assertFalse('/itv1-gran/' in url)
+        self.assertTrue('/itv1/' in url)
 
     def test_get_playlist_fast_web(self):
         for chan_id in (5, 20):
@@ -774,7 +793,8 @@ class Playlists(unittest.TestCase):
             start_again_url = playlist['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
             self.assertTrue('ctv-low.mpd' in start_again_url)
             start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
-            mpd_url = start_again_url.replace('ctv-low', 'ctv').format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
+            mpd_url = (start_again_url.replace('ctv-low', 'ctv').
+                       format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S')))
             resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
             max_res = object_checks.check_dash_manifest(self, resp.text)
             self.assertEqual(1080, max_res)
@@ -941,3 +961,25 @@ class SignIn(unittest.TestCase):
         self.assertEqual('invalid_grant', data['error'])
         self.assertEqual('The token is not a valid JWT token', data['error_description'])
         self.assertIsNone(data['validation_errors'])
+
+
+class Region(unittest.TestCase):
+    def test_available_regions(self):
+        resp = requests.get('https://config.fe.itv.com/3.564.0/freeview')
+        self.assertEqual(200, resp.status_code)
+        config = resp.json()
+        new_regions = config['regions']
+        # testutils.save_json(new_regions, 'json/regions.json')
+        regions = testutils.open_json('json/regions.json')
+        self.assertDictEqual(regions, new_regions)
+
+    @unittest.skip("Run manually when regions have changed.")
+    def test_region_to_settings(self):
+        """Print out all regions in a format that can be used in the addon's settings."""
+        regions = testutils.open_json('json/regions.json')
+        for k, v in regions.items():
+            if v['broadcaster'] == 'STV':
+                continue
+            label = k.replace("_", " ").title()
+            print(f'<option label="{label}">{v["region"]}</option>')
+        time.sleep(1)
