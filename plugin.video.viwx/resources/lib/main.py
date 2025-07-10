@@ -10,7 +10,6 @@ import typing
 import string
 import sys
 
-import pytz
 import requests
 import xbmc
 import xbmcplugin
@@ -266,7 +265,7 @@ def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
 @Route.register(content_type='videos')
 def sub_menu_live(_):
     try:
-        local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
+        local_tz = utils.ZoneInfo(kodi_utils.get_system_setting('locale.timezone'))
     except ValueError:
         # To be Matrix compatible
         from tzlocal import get_localzone

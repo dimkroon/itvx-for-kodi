@@ -10,14 +10,14 @@ fixtures.global_setup()
 
 from unittest import TestCase
 from unittest.mock import patch
+from datetime import timezone
 import types
 import time
-import pytz
 
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
-from resources.lib import itvx, errors, main, cache, parsex, itv_account
+from resources.lib import itvx, errors, main, cache, utils, itv_account
 
 
 setUpModule = fixtures.setup_local_tests
@@ -80,8 +80,8 @@ class NowNextSchedule(TestCase):
 
     @patch('xbmc.getRegion', return_value='%H:%M')
     def test_now_next_in_local_time(self, _):
-        local_tz = pytz.timezone('America/Fort_Nelson')
-        schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
+        local_tz = utils.ZoneInfo('America/Fort_Nelson')
+        schedule = itvx.get_now_next_schedule(local_tz=timezone.utc)
         utc_times = [item['startTime'] for item in schedule[0]['slot']]
         schedule = itvx.get_now_next_schedule(local_tz=local_tz)
         ca_times = [item['startTime'] for item in schedule[0]['slot']]
@@ -94,11 +94,11 @@ class NowNextSchedule(TestCase):
 
     def test_now_next_in_system_time_format(self):
         with patch('xbmc.getRegion', return_value='%H:%M'):
-            schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
+            schedule = itvx.get_now_next_schedule(local_tz=timezone.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('23:00', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
-            schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
+            schedule = itvx.get_now_next_schedule(local_tz=timezone.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('11:00 pm', start_time.lower())
 

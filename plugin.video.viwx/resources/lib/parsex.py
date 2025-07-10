@@ -8,8 +8,7 @@
 
 import json
 import logging
-import pytz
-from datetime import datetime
+from datetime import datetime, timezone
 from urllib.parse import urlencode
 
 from codequick.support import logger_id
@@ -124,16 +123,15 @@ def parse_hero_content(hero_data):
             if item_type == 'simulcastspot':
                 # Create a 'Watch from the start' context menu item
                 try:
-                    import pytz
                     from datetime import timedelta
                     start_t = utils.strptime(hero_data['startDateTime'], '%H:%M')
-                    btz = pytz.timezone('Europe/London')
-                    british_start = btz.localize(datetime.now()).replace(hour=start_t.hour, minute=start_t.minute)
-                    utc_start = british_start.astimezone(pytz.utc)
+                    btz = utils.ZoneInfo('Europe/London')
+                    british_start = datetime.now(tz=btz).replace(hour=start_t.hour, minute=start_t.minute)
+                    utc_start = british_start.astimezone(timezone.utc)
                     # Don't create 'Watch from the start' when the programme is yet to begin.
                     # This breaks the edge case where a programme that started before midnight is
                     # watched after midnight.
-                    if utc_start < datetime.now(pytz.utc):
+                    if utc_start < datetime.now(timezone.utc):
                         params = item['params']
                         params['start_time'] = utc_start.strftime('%Y-%m-%dT%H:%M:%S')
                         cmd = ''.join((
@@ -352,7 +350,7 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
             return None
 
         # dateTime field occasionally has milliseconds. Strip these when present.
-        item_time = pytz.UTC.localize(utils.strptime(item_data['dateTime'][:19], '%Y-%m-%dT%H:%M:%S'))
+        item_time = utils.strptime(item_data['dateTime'][:19], '%Y-%m-%dT%H:%M:%S').replace(tzinfo=timezone.utc)
         loc_time = item_time.astimezone(time_zone)
         title = item_data.get('episodeTitle')
         plot = '\n'.join((loc_time.strftime(time_fmt), item_data.get('synopsis', title)))

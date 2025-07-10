@@ -7,7 +7,6 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import pytz
 import unittest
 from unittest.mock import patch
 
@@ -19,6 +18,7 @@ from support.object_checks import has_keys, is_li_compatible_dict
 from resources.lib import parsex
 from resources.lib import errors
 from resources.lib import main
+from resources.lib.utils import ZoneInfo
 
 
 setUpModule = fixtures.setup_local_tests
@@ -217,7 +217,7 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, item['show'])
 
     def test_parse_shortform_item(self):
-        tz_uk = pytz.timezone('Europe/London')
+        tz_uk = ZoneInfo('Europe/London')
 
         # ShortForm from collection
         data = open_json('json/test_collection.json')
@@ -311,46 +311,47 @@ class Generic(unittest.TestCase):
             is_li_compatible_dict(self, show['show'])
 
     def test_parse_last_watched_availability(self):
+        tz_utc = timezone.utc
         data = open_json('usercontent/last_watched_all.json')[0]
-        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+        utc_now = datetime.now(tz=tz_utc).replace(tzinfo=None)
 
-        some_years = (datetime.utcnow() + timedelta(days=370)).replace(microsecond=0)
-        data['availabilityEnd'] = some_years.isoformat() + 'Z'
+        some_years = (datetime.now(tz=tz_utc) + timedelta(days=370)).replace(microsecond=0)
+        data['availabilityEnd'] = some_years.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('over a year' in item['show']['info']['plot'])
 
-        some_months = (datetime.utcnow() + timedelta(days=62)).replace(microsecond=0)
-        data['availabilityEnd'] = some_months.isoformat() + 'Z'
+        some_months = (datetime.now(tz=tz_utc) + timedelta(days=62)).replace(microsecond=0)
+        data['availabilityEnd'] = some_months.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('2 months' in item['show']['info']['plot'])
 
-        one_months = (datetime.utcnow() + timedelta(days=32)).replace(microsecond=0)
-        data['availabilityEnd'] = one_months.isoformat() + 'Z'
+        one_months = (datetime.now(tz=tz_utc) + timedelta(days=32)).replace(microsecond=0)
+        data['availabilityEnd'] = one_months.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('1 month' in item['show']['info']['plot'])
 
-        some_days = (datetime.utcnow() + timedelta(days=4, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = some_days.isoformat() + 'Z'
+        some_days = (datetime.now(tz=tz_utc) + timedelta(days=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_days.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('4 days available' in item['show']['info']['plot'])
 
-        one_day = (datetime.utcnow() + timedelta(days=1, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = one_day.isoformat() + 'Z'
+        one_day = (datetime.now(tz=tz_utc) + timedelta(days=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_day.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('1 day available' in item['show']['info']['plot'])
 
-        some_hours = (datetime.utcnow() + timedelta(hours=4, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = some_hours.isoformat() + 'Z'
+        some_hours = (datetime.now(tz=tz_utc) + timedelta(hours=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_hours.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('4 hours available' in item['show']['info']['plot'])
 
-        one_hours = (datetime.utcnow() + timedelta(hours=1, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = one_hours.isoformat() + 'Z'
+        one_hours = (datetime.now(tz=tz_utc) + timedelta(hours=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_hours.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('1 hour available' in item['show']['info']['plot'])
 
-        zero_hours = (datetime.utcnow() + timedelta(minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = zero_hours.isoformat() + 'Z'
+        zero_hours = (datetime.now(tz=tz_utc) + timedelta(minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = zero_hours.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('0 hours available' in item['show']['info']['plot'])
 

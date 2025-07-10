@@ -12,7 +12,7 @@ import time
 
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
-import pytz
+from datetime import timezone
 
 from test.support.testutils import open_json, open_doc
 from test.support.object_checks import has_keys, is_url
@@ -20,6 +20,7 @@ from test.support.object_checks import has_keys, is_url
 from resources.lib import itv
 from resources.lib import itv_account
 from resources.lib import errors
+from resources.lib.utils import ZoneInfo
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -37,8 +38,8 @@ class LiveSchedule(TestCase):
 
     @patch('xbmc.getRegion', return_value='%H:%M')
     def test_live_schedules_in_local_time(self, _):
-        local_tz = pytz.timezone('America/Fort_Nelson')
-        schedule = itv.get_live_schedule(local_tz=pytz.utc)
+        local_tz = ZoneInfo('America/Fort_Nelson')
+        schedule = itv.get_live_schedule(local_tz=timezone.utc)
         utc_times = [item['startTime'] for item in schedule[0]['slot']]
         schedule = itv.get_live_schedule(local_tz=local_tz)
         ca_times = [item['startTime'] for item in schedule[0]['slot']]
@@ -51,11 +52,11 @@ class LiveSchedule(TestCase):
 
     def test_live_schedules_system_time_format(self):
         with patch('xbmc.getRegion', return_value='%H:%M'):
-            schedule = itv.get_live_schedule(local_tz=pytz.utc)
+            schedule = itv.get_live_schedule(local_tz=timezone.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('19:30', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
-            schedule = itv.get_live_schedule(local_tz=pytz.utc)
+            schedule = itv.get_live_schedule(local_tz=timezone.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('07:30 pm', start_time.lower())
 

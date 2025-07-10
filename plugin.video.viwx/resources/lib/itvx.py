@@ -9,7 +9,6 @@
 import time
 import logging
 
-import pytz
 import requests
 import xbmc
 
@@ -24,6 +23,7 @@ from . import cache
 from . import itv_account
 
 from .itv import get_live_schedule
+from .utils import ZoneInfo
 
 
 logger = logging.getLogger(logger_id + '.itvx')
@@ -62,9 +62,9 @@ def get_now_next_schedule(local_tz=None):
     Present start time conform Kodi's time zone setting.
     """
     if local_tz is None:
-        local_tz = pytz.timezone('Europe/London')
+        local_tz = ZoneInfo('Europe/London')
 
-    utc_tz = pytz.utc
+    utc_tz = timezone.utc
     # Use local time format without seconds. Fix weird kodi formatting for 12-hour clock.
     time_format = xbmc.getRegion('time').replace(':%S', '').replace('%I%I:', '%I:')
 
@@ -117,7 +117,7 @@ def get_live_channels(local_tz=None):
         return cached_schedule
 
     if local_tz is None:
-        local_tz = pytz.timezone('Europe/London')
+        local_tz = ZoneInfo('Europe/London')
 
     schedule = get_now_next_schedule(local_tz)
     main_schedule = get_live_schedule(6, local_tz=local_tz)
@@ -184,7 +184,7 @@ def collection_content(url=None, slider=None, hide_paid=False):
     is not None, return the contents of that particular slider on the collection page.
 
     """
-    uk_tz = pytz.timezone('Europe/London')
+    uk_tz = ZoneInfo('Europe/London')
     time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
     is_main_page = url == 'https://www.itv.com'
 
@@ -368,7 +368,7 @@ def category_news_content(url, sub_cat, rail=None, hide_paid=False):
     page_data = get_page_data(url, cache_time=900)
     news_sub_cats = page_data['data']
 
-    uk_tz = pytz.timezone('Europe/London')
+    uk_tz = ZoneInfo('Europe/London')
     time_fmt = ' '.join((xbmc.getRegion('dateshort'), xbmc.getRegion('time')))
 
     # A normal listing of TV shows in the category News, like normal category content
