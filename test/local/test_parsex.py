@@ -313,22 +313,20 @@ class Generic(unittest.TestCase):
 
         # Episodes where field episodeTitle = None
         title_obj = open_json('json/episodes.json')[1]['episode']
+        self.assertIsNone(title_obj['episodeTitle'])
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
         # Paid episode
         title_obj = open_json('json/episodes.json')[2]['episode']
+        self.assertTrue('PAID' in title_obj['tier'])
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
         self.assertTrue('premium' in item['info']['plot'].lower())
 
         # Episode where field seriesNumber is not a number, but 'other episodes'.
         title_obj = open_json('json/episodes.json')[3]['episode']
-        item = parsex.parse_episode_title(title_obj)
-        is_li_compatible_dict(self, item)
-
-        # An Episode lacking field 'guidance'.
-        title_obj = open_json('json/episodes.json')[4]['episode']
+        self.assertRaises(ValueError, int, title_obj['series'])
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 

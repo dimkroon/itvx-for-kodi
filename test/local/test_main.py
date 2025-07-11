@@ -393,11 +393,11 @@ class Productions(TestCase):
             for episode in series_listing:
                 self.assertIs(episode.path, main.play_stream_catchup.route)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsomer-murders.json'))
     def test_programme_with_series_other(self, _):
-        list_items = main.list_productions.test('some/url/to/downton', series_idx='others')
+        list_items = main.list_productions.test('some/url/to/mids murders', series_idx='others')
         self.assertIsInstance(list_items, list)
-        self.assertEqual(4, len(list_items))
+        self.assertEqual(1, len(list_items))
 
 
 class Search(TestCase):
