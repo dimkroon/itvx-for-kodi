@@ -306,6 +306,20 @@ class Generic(unittest.TestCase):
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)
 
+    def test_get_hero_cta_label(self):
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'S1: E2 - episode 2'})
+        self.assertEqual( 'episode 2', result)
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'S1:E2 - episode 2'})
+        self.assertEqual('episode 2', result)
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'episode 2'})
+        self.assertEqual('episode 2', result)
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': ''})
+        self.assertEqual('watch now', result)
+        result = parsex._get_hero_cta_label({'label': '', 'episodeLabel': ''})
+        self.assertEqual('', result)
+        result = parsex._get_hero_cta_label('episode title')
+        self.assertEqual('', result)
+
     def test_parse_episode_title(self):
         title_obj = open_json('json/episodes.json')[0]['episode']
         item = parsex.parse_episode_title(title_obj)
