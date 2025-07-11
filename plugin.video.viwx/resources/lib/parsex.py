@@ -15,6 +15,7 @@ from codequick.support import logger_id
 from codequick import Script
 
 from . import utils
+from . import kodi_utils
 from .errors import ParseError
 
 TXT_PLAY_FROM_START = 30620
@@ -100,6 +101,66 @@ def scrape_json(html_page):
     raise ParseError('No data available')
 
 
+def parse_simulcast_item(sim_dta: dict) -> dict:
+    """Parse simulcast items from various sources like hero, search, etc"""
+
+    plain_title = sim_dta.get('title') or sim_dta['brandTitle']
+    channel = sim_dta.get('channel') or sim_dta['channelId']
+    description = sim_dta.get('description') or sim_dta.get('synopsis', '')
+    img_link = sim_dta.get('imageTemplate') or sim_dta.get('imageHref')
+    start_t = sim_dta.get('startDateTime') or sim_dta.get('startDateAndTime')
+    end_t = sim_dta.get('endDateTime') or sim_dta.get('endDateAndTime')
+    utc_now = datetime.now(tz=timezone.utc)
+    tz_local = kodi_utils.local_timezone()
+    tz_utc = timezone.utc
+
+    try:
+        utc_start = utils.strptime(start_t, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=tz_utc)
+        utc_end = utils.strptime(start_t, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=tz_utc)
+        title = plain_title
+    except ValueError:
+        # Simulcast hero items have a start and end as British local time in hh:mm format.
+        start_hrs, start_mins = start_t.split(':')
+        end_hrs, end_mins = end_t.split(':')
+        btz = utils.ZoneInfo('Europe/London')
+        # Add today's date. This goes wrong when it's just past midnight and the live item started
+        # the day before. Since simulcast items can have a start time in the future as well as in
+        # the past, there's no way to determine the real date. However, it's unlikely live hero
+        # items will be presented at such a time.
+
+        brit_start = datetime.now(tz=btz).replace(hour=int(start_hrs), minute=int(start_mins))
+        brit_end = datetime.now(tz=btz).replace(hour=int(end_hrs), minute=int(end_mins))
+        utc_start = brit_start.astimezone(tz_utc)
+        utc_end = brit_end.astimezone(tz_utc)
+        # Title in the colour used for all hero items.
+        title = ''.join(('[COLOR orange]', plain_title, '[/COLOR]'))
+
+    if utc_start < utc_now:
+        title = title + '   [B][I][COLOR yellow]on now[/COLOR][/i][/B]'
+        ctx_mnu = [ctx_mnu_watch_from_start(channel, utc_start.strftime("'%Y-%m-%dT%H:%M:%S'"))]
+    else:
+        ctx_mnu = []
+    plot = ''. join(('Live on ', channel, ' ',
+                     utc_start.astimezone(tz_local).strftime('%H:%m'),
+                     ' - ',
+                     utc_end.astimezone(tz_local).strftime('%H:%M'),
+                     '\n',
+                     description))
+
+    return {
+        'type': 'simulcastspot',
+        'programme_id': None,
+        'show': {
+            'label': plain_title,
+            'art': {'thumb': img_link.format(**IMG_PROPS_THUMB)},
+            'info': {'plot': plot,
+                     'title': title},
+            'params': {'channel': channel},
+        },
+        'ctx_mnu': ctx_mnu
+    }
+
+
 # noinspection PyTypedDict
 def parse_hero_content(hero_data):
     # noinspection PyBroadException
@@ -112,6 +173,9 @@ def parse_hero_content(hero_data):
             info = item['show']['info']
             info['title'] = ''.join(('[COLOR orange]', info['title'], '[/COLOR]'))
             return item
+
+        if item_type == 'simulcastspot':
+            return parse_simulcast_item(hero_data)
 
         context_mnu = []
 
@@ -126,28 +190,9 @@ def parse_hero_content(hero_data):
         if brand_img:
             item['art']['fanart'] = brand_img.format(**IMG_PROPS_FANART)
 
-        if item_type in ('simulcastspot', 'fastchannelspot'):
+        if item_type == 'fastchannelspot':
             item['params'] = {'channel': hero_data['channel'], 'url': None}
             item['info'].update(plot='[B]Watch Live[/B]\n' + hero_data.get('description', ''))
-            if item_type == 'simulcastspot':
-                # Create a 'Watch from the start' context menu item
-                try:
-                    from datetime import timedelta
-                    start_t = utils.strptime(hero_data['startDateTime'], '%H:%M')
-                    btz = utils.ZoneInfo('Europe/London')
-                    british_start = datetime.now(tz=btz).replace(hour=start_t.hour, minute=start_t.minute)
-                    utc_start = british_start.astimezone(timezone.utc)
-                    # Don't create 'Watch from the start' when the programme is yet to begin.
-                    # This breaks the edge case where a programme that started before midnight is
-                    # watched after midnight.
-                    if utc_start < datetime.now(timezone.utc):
-                        context_mnu.append(ctx_mnu_watch_from_start(item['params']['channel'],
-                                                                    utc_start.strftime('%Y-%m-%dT%H:%M:%S')))
-                except:
-                    # Don't let errors on Watch from the Start ruin the whole item.
-                    logger.warning("Failed to parse start time of simulcast hero item '%s':\n",
-                                   hero_data.get('title', 'unknown title'), exc_info=True)
-                    pass
 
         elif item_type in ('series', 'brand'):
             series_idx = hero_data.get('series', '')
@@ -285,6 +330,8 @@ def parse_collection_item(show_data, hide_paid=False):
 
         if content_type in ('collection', 'page'):
             return parse_item_type_collection(show_data)
+        if content_type == 'simulcastspot':
+            return parse_simulcast_item(show_data)
 
         if show_data.get('isPaid'):
             if hide_paid:
@@ -303,9 +350,9 @@ def parse_collection_item(show_data, hide_paid=False):
                      'sorttitle': sort_title(title)},
         }
 
-        if content_type in ('fastchannelspot', 'simulcastspot'):
+        if content_type == 'fastchannelspot':
             programme_item['params'] = {'channel': show_data['channel'], 'url': None}
-            # TODO: Enable watch from the start on simulcastspots
+
         else:
             programme_item['params'] = {'url': build_url(show_data['titleSlug'],
                                         show_data['encodedProgrammeId']['letterA'],

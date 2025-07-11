@@ -40,6 +40,63 @@ class TestScrapeJson(unittest.TestCase):
                           '<script id="__NEXT_DATA__" type="application/json">{data=[1,2]}</script>')
 
 
+class ParseSimulcastItem(unittest.TestCase):
+    def check_result(self, result):
+        is_li_compatible_dict(self, result['show'])
+        self.assertEqual('simulcastspot', result['type'])
+
+    def check_ctx_mnu(self, item, is_present=True):
+        """Check the context menu 'Watch from the start'."""
+        self.assertIsInstance(item['ctx_mnu'], list)
+        if not is_present:
+            self.assertListEqual([], item['ctx_mnu'])
+        else:
+            self.assertIsInstance(item['ctx_mnu'][0], tuple)
+            cmd = item['ctx_mnu'][0][1]
+            self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
+            self.assertTrue('start_time=' in cmd)
+            self.assertTrue('play_from_start=True' in cmd)
+
+    def test_simucast_hero(self):
+        """Hero start and end time is in British local time in 'HH:MM'
+         format, so requires some special treatment."""
+        data = open_json('json/index-data.json')
+        data = deepcopy(data['heroContent'][2])
+        data['startDateTime'] = '18:15'
+        with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            # Programme has already started
+            dt_mock.mocked_now = datetime.now(tz=timezone.utc).replace(hour=19, minute=0)
+            obj = parsex.parse_simulcast_item(data)
+            is_li_compatible_dict(self, obj['show'])
+            self.check_ctx_mnu(obj, is_present=True)
+
+            # Programme has yet to start - should return a valid item without context menu.
+            dt_mock.mocked_now = datetime.now(tz=timezone.utc).replace(hour=17, minute=0)
+            obj = parsex.parse_simulcast_item(data)
+            self.check_ctx_mnu(obj, is_present=False)
+
+        # Invalid start time in hero data
+        dt_mock.mocked_now = datetime.now(tz=timezone.utc).replace(hour=22)
+        data['startDateTime'] = '2024-3-16T20:15:00'        #
+        self.assertRaises(ValueError, parsex.parse_simulcast_item, data)
+
+    def test_simulcast_collection(self):
+        data = deepcopy(open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows'][0])
+        self.assertEqual('simulcastspot', data['contentType'])
+        data['startDateTime'] = '2024-03-16T20:15:00Z'
+        with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            # Programme has already started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 21, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=True)
+            # Programme has yet to started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 20, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=False)
+
+
 class Generic(unittest.TestCase):
     def test_build_url(self):
         url = parsex.build_url('Astrid and Lily Save the World', '10a2921')
@@ -113,32 +170,6 @@ class Generic(unittest.TestCase):
         # Invalid item
         item = {'contentType': 'special', 'title': False}
         self.assertIsNone(parsex.parse_hero_content(item))
-
-        # Watch From the start context menu on simulcastSpot item
-        item = deepcopy(data['heroContent'][2])
-        self.assertEqual('simulcastspot', item['contentType'])
-        item['startDateTime'] = '20:15'
-        with patch('resources.lib.parsex.datetime', new=mockeddt):
-            # Programme has already started
-            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=21)
-            obj = parsex.parse_hero_content(item)
-            self.assertIsInstance(obj['ctx_mnu'], list)
-            self.assertIsInstance(obj['ctx_mnu'][0], tuple)
-            cmd = obj['ctx_mnu'][0][1]
-            self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
-            self.assertTrue('start_time=' in cmd)
-            self.assertTrue('play_from_start=True' in cmd)
-
-            # Programme has yet to start - should return a valid item without context menu.
-            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=18)
-            obj = parsex.parse_hero_content(item)
-            self.assertListEqual(obj['ctx_mnu'], [])
-
-            # Invalid start time in ITVX data - should return a valid item without context menu.
-            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=22)
-            item['startDateTime'] = '2024-3-16T20:15:00:'
-            obj = parsex.parse_hero_content(item)
-            self.assertListEqual(obj['ctx_mnu'], [])
 
     def test_parse_main_page_short_form_slider(self):
         data = open_json('html/index-data.json')
