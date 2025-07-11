@@ -264,14 +264,7 @@ def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
 
 @Route.register(content_type='videos')
 def sub_menu_live(_):
-    try:
-        local_tz = utils.ZoneInfo(kodi_utils.get_system_setting('locale.timezone'))
-    except ValueError:
-        # To be Matrix compatible
-        from tzlocal import get_localzone
-        local_tz = get_localzone()
-
-    tv_schedule = itvx.get_live_channels(local_tz)
+    tv_schedule = itvx.get_live_channels(kodi_utils.local_timezone())
 
     for item in tv_schedule:
         chan_name = item['name']
