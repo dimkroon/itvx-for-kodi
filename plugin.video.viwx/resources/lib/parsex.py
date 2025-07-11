@@ -75,6 +75,15 @@ def ctx_mnu_all_episodes(programme_id: str, programme_name: str = 'undefined'):
             )
 
 
+def ctx_mnu_watch_from_start(chan_id, start_time):
+    cmd = ''.join((
+        'PlayMedia(plugin://', utils.addon_info.id,
+        '/resources/lib/main/play_stream_live/?channel=', chan_id,
+        '&start_time=', start_time[:19],
+        '&play_from_start=True, noresume)'))
+    return utils.addon_info.localise(TXT_PLAY_FROM_START), cmd
+
+
 def scrape_json(html_page):
     # noinspection GrazieInspection
     """Return the json data embedded in a script tag on an html page"""
@@ -132,14 +141,8 @@ def parse_hero_content(hero_data):
                     # This breaks the edge case where a programme that started before midnight is
                     # watched after midnight.
                     if utc_start < datetime.now(timezone.utc):
-                        params = item['params']
-                        params['start_time'] = utc_start.strftime('%Y-%m-%dT%H:%M:%S')
-                        cmd = ''.join((
-                            'PlayMedia(plugin://', utils.addon_info.id,
-                            '/resources/lib/main/play_stream_live/?channel=', params['channel'],
-                            '&start_time=', params['start_time'],
-                            '&play_from_start=True, noresume)'))
-                        context_mnu.append((Script.localize(TXT_PLAY_FROM_START), cmd))
+                        context_mnu.append(ctx_mnu_watch_from_start(item['params']['channel'],
+                                                                    utc_start.strftime('%Y-%m-%dT%H:%M:%S')))
                 except:
                     # Don't let errors on Watch from the Start ruin the whole item.
                     logger.warning("Failed to parse start time of simulcast hero item '%s':\n",

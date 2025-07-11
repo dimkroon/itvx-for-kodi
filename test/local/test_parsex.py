@@ -70,6 +70,15 @@ class Generic(unittest.TestCase):
         self.assertEqual('View all episodes', ctx[0])
         self.assertTrue(ctx[1].startswith('Container.Update(plugin://plugin'))
 
+    @patch('resources.lib.utils.addon_info.localise', lambda x: 'Watch from the start')
+    def test_ctx_menu_watch_from_start(self):
+        ctx = parsex.ctx_mnu_watch_from_start('ITV1', '2025-05-06T07:08:09Z')
+        self.assertIsInstance(ctx, tuple)
+        self.assertEqual(2, len(ctx))
+        self.assertEqual('Watch from the start', ctx[0])
+        self.assertTrue(ctx[1].startswith('PlayMedia(plugin://plugin'))
+        self.assertTrue('start_time=2025-05-06T07:08:09' in ctx[1])  # 'Z' stripped of time.
+
     def test_parse_hero(self):
         data = open_json('json/index-data.json')
         for item_data in data['heroContent']:
