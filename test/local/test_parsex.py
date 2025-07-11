@@ -96,6 +96,22 @@ class ParseSimulcastItem(unittest.TestCase):
             self.check_result(result)
             self.check_ctx_mnu(result, is_present=False)
 
+    def test_simulcast_search_result(self):
+        data = deepcopy(open_json('search/test_results.json')['results'][6]['data'])
+        self.assertEqual('simulcast', data['channelType'])
+        data['startDateAndTime'] = '2024-03-16T20:15:00Z'
+        with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            # Programme has already started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 21, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=True)
+            # Programme has yet to started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 20, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=False)
+
 
 class Generic(unittest.TestCase):
     def test_build_url(self):
@@ -317,21 +333,24 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, item)
 
     def test_parse_search_result(self):
-        # These files contain programmes, episodes, films and specials both and without a specialProgramme field.
-        for file in ('search/search_results_mear.json', 'search/search_monday.json'):
-            data = open_json(file)
-            for result_item in data['results']:
-                item = parsex.parse_search_result(result_item)
-                has_keys(item, 'type', 'show')
-                is_li_compatible_dict(self, item['show'])
+        data = open_json('search/test_results.json')
+        for result_item in data['results']:
+            item = parsex.parse_search_result(result_item)
+            has_keys(item, 'type', 'show')
+            is_li_compatible_dict(self, item['show'])
+
 
         # unknown entity type
         search_result = data['results'][0]
         search_result['entityType'] = 'dfgs'
         self.assertIsNone(parsex.parse_search_result(search_result))
 
+        # both entity type and channeltype are absent
+        del search_result['entityType']
+        self.assertIsNone(parsex.parse_search_result(search_result))
+
     def test_parse_search_result_paid(self):
-        search_result = open_json('search/search_monday.json')['results'][0]        # a paid episode
+        search_result = open_json('search/test_results.json')['results'][0]        # a paid episode
         self.assertIsNone(parsex.parse_search_result(search_result, hide_paid=True))
 
     def test_parse_mylist(self):

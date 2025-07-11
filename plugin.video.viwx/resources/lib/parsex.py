@@ -555,9 +555,12 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
 
 
 def parse_search_result(search_data, hide_paid=False):
-    entity_type = search_data['entityType']
+    entity_type = search_data.get('entityType') or search_data.get('channelType')
     result_data = search_data['data']
     api_episode_id = ''
+
+    if entity_type == 'simulcast':
+        return parse_simulcast_item(result_data)
 
     if 'PAID' in result_data['tier']:
         if hide_paid:

@@ -449,6 +449,9 @@ def do_search(addon, search_query):
         if result is None:
             continue
         li = Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
+        ctx_mnus = result.get('ctx_mnu')
+        if ctx_mnus:
+            li.context.extend(ctx_mnus)
         _my_list_context_mnu(li, result['programme_id'], refresh=False)
         yield li
 

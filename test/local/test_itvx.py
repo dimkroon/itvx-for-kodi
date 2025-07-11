@@ -320,14 +320,14 @@ class Categories(TestCase):
             for item in items:
                 check_item(self, item)
 
-            if sub_cat[0] in ('heroAndLatestData','longformData'):
+            if sub_cat[0] in ('heroAndLatestData', 'longformData'):
                 free_items = itvx.category_news_content('my/url', *sub_cat, hide_paid=True)
                 self.assertEqual(len(items), len(free_items))
 
         # Unknown subcategory and/or rail
-        self.assertListEqual( [], itvx.category_news_content('my/url', 'SomeSubCat', None))
-        self.assertListEqual( [], itvx.category_news_content('my/url', 'SomeSubCat', 'SomeRail'))
-        self.assertListEqual( [], itvx.category_news_content('my/url', 'curatedRails', 'SomeRail'))
+        self.assertListEqual([], itvx.category_news_content('my/url', 'SomeSubCat', None))
+        self.assertListEqual([], itvx.category_news_content('my/url', 'SomeSubCat', 'SomeRail'))
+        self.assertListEqual([], itvx.category_news_content('my/url', 'curatedRails', 'SomeRail'))
 
 
 class Episodes(TestCase):
@@ -380,22 +380,30 @@ class Episodes(TestCase):
 
 
 class Search(TestCase):
-    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/test_results.json')()))
     def test_simple_search(self, _):
         result = itvx.search('the_chase')
         self.assertIsInstance(result, types.GeneratorType)
-        self.assertEqual(10, len(list(result)))
+        self.assertEqual(8, len(list(result)))
 
-    @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
-    def test_search_without_results(self, _):
-        result = itvx.search('xprs')
-        self.assertIsNone(result)
+    def test_search_without_results(self):
+        """Currently, empty results seems to consistently return HTTP status 204, but
+        keep testing all empty results observed in the past."""
+        with patch('requests.sessions.Session.send', return_value=HttpResponse(204)):
+            result = itvx.search('xprs')
+            self.assertIsNone(result)
+        with patch('requests.sessions.Session.send', return_value=HttpResponse(200, content=b'{"results": []}')):
+            result = itvx.search('xprs')
+            self.assertListEqual([], list(result))
+        with patch('requests.sessions.Session.send', return_value=HttpResponse(200, content=b'no content')):
+            result = itvx.search('xprs')
+            self.assertIsNone(result)
 
-    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
-    def test_search_hide_paid(self, p_get):
-        results = list(itvx.search('xprs'))
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/test_results.json')()))
+    def test_search_hide_paid(self, _):
+        results = list(itvx.search('blbl'))
         self.assertIsInstance(results[0], dict)
-        results = list(itvx.search('xprs', hide_paid=True))
+        results = list(itvx.search('blbl', hide_paid=True))
         self.assertIsNone(results[0])
 
 

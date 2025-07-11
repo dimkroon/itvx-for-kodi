@@ -198,3 +198,7 @@ class TestSearch(unittest.TestCase):
     def test_search_mear(self):
         items = main.do_search.test('mear')
         self.assertGreater(len(items), 4)
+
+    def test_search_with_live_results(self):
+        items = main.do_search.test('ITV1')
+        self.assertGreater(len(items), 4)

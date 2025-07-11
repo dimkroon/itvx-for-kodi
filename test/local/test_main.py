@@ -402,48 +402,33 @@ class Productions(TestCase):
 
 class Search(TestCase):
     @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
-    def test_search_the_chase(self, _):
-        results = main.do_search.test('the chase')
-        self.assertEqual(10, len(results))
-        self.assertIs(results[0].path, main.list_productions.route)     # programme
-        self.assertIs(results[4].path, main.play_title.route)           # special with field specialProgramme
+           return_value=HttpResponse(text=open_doc('search/test_results.json')()))
+    def test_search_all_result_types(self, _):
+        """Results from a document with all known types of result."""
+        results = main.do_search.test('sdagca')
+        self.assertEqual(8, len(results))
+        self.assertIs(results[0].path, main.list_productions.route)  # programme
+        self.assertIs(results[4].path, main.play_title.route)  # film
 
     @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_results_mear.json')()))
-    def test_search_mear(self, _):
-        results = main.do_search.test('mear')
-        self.assertEqual(10, len(results))
-        self.assertIs(results[0].path, main.list_productions.route)     # programme
-        self.assertIs(results[4].path, main.play_title.route)           # film
-
-    @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
-    def test_search_monday(self, _):
-        results = main.do_search.test('monday')
-        self.assertEqual(3, len(results))
-        self.assertIs(results[0].path, main.list_productions.route)
-        self.assertIs(results[2].path, main.play_title.route)           # special without field specialProgramme
-
-    @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+           return_value=HttpResponse(text=open_doc('search/test_results.json')()))
     def test_search_hide_paid(self, _):
-        results = main.do_search.test('monday')
-        self.assertEqual(3, len(results))
+        results = main.do_search.test('___')
+        self.assertEqual(8, len(results))
         with patch('xbmcaddon.Addon.getSetting', return_value='true'):
-            results = main.do_search.test('monday')
-            self.assertEqual(2, len(results))
+            results = main.do_search.test('__')
+            self.assertEqual(5, len(results))
 
     def test_search_result_with_unknown_entitytype(self):
-        search_data = open_json('search/search_results_mear.json')
+        search_data = open_json('search/test_results.json')
         with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_1 = main.do_search.test('kjhbn')
-            self.assertEqual(10, len(results_1))
+            self.assertEqual(8, len(results_1))
         # check again with one item having an unknown entity type
         search_data['results'][3]['entityType'] = 'video'
         with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_2 = main.do_search.test('kjhbn')
-            self.assertEqual(9, len(results_2))
+            self.assertEqual(7, len(results_2))
 
     @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
     def test_search_with_no_results(self, _):
@@ -451,10 +436,10 @@ class Search(TestCase):
         self.assertIs(results, False)
 
     @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+           return_value=HttpResponse(text=open_doc('search/test_results.json')()))
     @patch('resources.lib.main._my_list_context_mnu')
     def test_search_context_menu_does_not_refresh_container(self, p_ctx_mnu, _):
-        main.do_search.test('monday')
+        main.do_search.test('__')
         self.assertIs(False, p_ctx_mnu.call_args.kwargs['refresh'])
 
 
