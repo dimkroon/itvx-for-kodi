@@ -1,4 +1,4 @@
 requests>=2.31.0
-backports.zoneinfo;python_version<"3.9"
+pytz>=2024.1
 Kodistubs>=19.0.3
 tzlocal>=5.0.1

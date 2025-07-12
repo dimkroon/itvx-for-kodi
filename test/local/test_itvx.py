@@ -10,14 +10,14 @@ fixtures.global_setup()
 
 from unittest import TestCase
 from unittest.mock import patch
-from datetime import timezone
 import types
 import time
+import pytz
 
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
 
-from resources.lib import itvx, errors, main, cache, utils, itv_account
+from resources.lib import itvx, errors, main, cache, parsex, itv_account
 
 
 setUpModule = fixtures.setup_local_tests
@@ -80,8 +80,8 @@ class NowNextSchedule(TestCase):
 
     @patch('xbmc.getRegion', return_value='%H:%M')
     def test_now_next_in_local_time(self, _):
-        local_tz = utils.ZoneInfo('America/Fort_Nelson')
-        schedule = itvx.get_now_next_schedule(local_tz=timezone.utc)
+        local_tz = pytz.timezone('America/Fort_Nelson')
+        schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
         utc_times = [item['startTime'] for item in schedule[0]['slot']]
         schedule = itvx.get_now_next_schedule(local_tz=local_tz)
         ca_times = [item['startTime'] for item in schedule[0]['slot']]
@@ -94,11 +94,11 @@ class NowNextSchedule(TestCase):
 
     def test_now_next_in_system_time_format(self):
         with patch('xbmc.getRegion', return_value='%H:%M'):
-            schedule = itvx.get_now_next_schedule(local_tz=timezone.utc)
+            schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('23:00', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
-            schedule = itvx.get_now_next_schedule(local_tz=timezone.utc)
+            schedule = itvx.get_now_next_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('11:00 pm', start_time.lower())
 
@@ -320,33 +320,33 @@ class Categories(TestCase):
             for item in items:
                 check_item(self, item)
 
-            if sub_cat[0] in ('heroAndLatestData', 'longformData'):
+            if sub_cat[0] in ('heroAndLatestData','longformData'):
                 free_items = itvx.category_news_content('my/url', *sub_cat, hide_paid=True)
                 self.assertEqual(len(items), len(free_items))
 
         # Unknown subcategory and/or rail
-        self.assertListEqual([], itvx.category_news_content('my/url', 'SomeSubCat', None))
-        self.assertListEqual([], itvx.category_news_content('my/url', 'SomeSubCat', 'SomeRail'))
-        self.assertListEqual([], itvx.category_news_content('my/url', 'curatedRails', 'SomeRail'))
+        self.assertListEqual( [], itvx.category_news_content('my/url', 'SomeSubCat', None))
+        self.assertListEqual( [], itvx.category_news_content('my/url', 'SomeSubCat', 'SomeRail'))
+        self.assertListEqual( [], itvx.category_news_content('my/url', 'curatedRails', 'SomeRail'))
 
 
 class Episodes(TestCase):
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
-    def test_episodes_marple(self, _):
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/series_miss-marple.html'))
+    def test_episodes_marple(self):
         series_listing, programme_id = itvx.episodes('asd')
         self.assertIsInstance(series_listing, dict)
         self.assertEqual(len(series_listing), 6)
         self.assertTrue(is_not_empty(programme_id, str))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
-    def test_paid_episodes(self, _):
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
+    def test_paid_episodes(self):
         series_listing, programme_id = itvx.episodes('asd')
         self.assertIsInstance(series_listing, dict)
-        self.assertEqual(6, len(series_listing))
+        self.assertEqual(7, len(series_listing))
         self.assertEqual(7, len(series_listing['1']['episodes']))
         self.assertTrue(is_not_empty(programme_id, str))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
+    @patch('resources.lib.fetch.get_document', return_value=open_doc('html/series_miss-marple.html')())
     def test_episodes_with_cache(self, _):
         series_listing1, programme_id1 = itvx.episodes('asd', use_cache=False)
         self.assertIsInstance(series_listing1, dict)
@@ -380,30 +380,22 @@ class Episodes(TestCase):
 
 
 class Search(TestCase):
-    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/test_results.json')()))
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
     def test_simple_search(self, _):
         result = itvx.search('the_chase')
         self.assertIsInstance(result, types.GeneratorType)
-        self.assertEqual(8, len(list(result)))
+        self.assertEqual(10, len(list(result)))
 
-    def test_search_without_results(self):
-        """Currently, empty results seems to consistently return HTTP status 204, but
-        keep testing all empty results observed in the past."""
-        with patch('requests.sessions.Session.send', return_value=HttpResponse(204)):
-            result = itvx.search('xprs')
-            self.assertIsNone(result)
-        with patch('requests.sessions.Session.send', return_value=HttpResponse(200, content=b'{"results": []}')):
-            result = itvx.search('xprs')
-            self.assertListEqual([], list(result))
-        with patch('requests.sessions.Session.send', return_value=HttpResponse(200, content=b'no content')):
-            result = itvx.search('xprs')
-            self.assertIsNone(result)
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
+    def test_search_without_results(self, _):
+        result = itvx.search('xprs')
+        self.assertIsNone(result)
 
-    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/test_results.json')()))
-    def test_search_hide_paid(self, _):
-        results = list(itvx.search('blbl'))
+    @patch('requests.sessions.Session.send', return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+    def test_search_hide_paid(self, p_get):
+        results = list(itvx.search('xprs'))
         self.assertIsInstance(results[0], dict)
-        results = list(itvx.search('blbl', hide_paid=True))
+        results = list(itvx.search('xprs', hide_paid=True))
         self.assertIsNone(results[0])
 
 
@@ -476,8 +468,8 @@ class GetPLaylistUrl(TestCase):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
-    def test_get_playlist_from_premium_episode(self, _):
+    @patch('resources.lib.fetch.get_document', new=open_doc('html/paid_episode_downton-abbey-s1e1.html'))
+    def test_get_playlist_from_premium_episode(self):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
@@ -670,33 +662,3 @@ class Recommendations(TestCase):
         res = itvx.recommended('my_user_id')
         p_fetch.assert_called_once()
         self.assertIs(res, None)
-
-
-@patch.object(itv_account.itv_session(), 'account_data', {'refreshed': time.time(), 'itv_session': {'access_token': 'abc'}, 'cookies': {'asdfg':'defg'}})
-@patch('resources.lib.fetch.post_json')
-class RequestStreamData(TestCase):
-    def test_request_live_default(self, p_post):
-        itvx._request_stream_data('some/url')
-        post_dta = p_post.call_args.kwargs['data']
-        self.assertEqual('dotcom', post_dta['variantAvailability']['platformTag'])
-
-    def test_request_live_full_hd(self, p_post):
-        itvx._request_stream_data('some/url', full_hd=True)
-        post_dta = p_post.call_args.kwargs['data']
-        self.assertEqual('ctv', post_dta['variantAvailability']['platformTag'])
-
-    def test_request_vod_default(self, p_post):
-        itvx._request_stream_data('some/url', stream_type='vod')
-        post_dta = p_post.call_args.kwargs['data']
-        self.assertEqual('dotcom', post_dta['variantAvailability']['platformTag'])
-
-    def test_request_vod_full_hd(self, p_post):
-        itvx._request_stream_data('some/url', stream_type='vod', full_hd=True)
-        post_dta = p_post.call_args.kwargs['data']
-        self.assertEqual('ctv', post_dta['variantAvailability']['platformTag'])
-
-    def test_request_with_auth_failure(self, _):
-        with patch.object(itv_account.itv_session(), 'account_data', {}):
-            with self.assertRaises(SystemExit) as cm:
-                itvx._request_stream_data('some/url')
-            self.assertEqual(1, cm.exception.code)

@@ -4,7 +4,6 @@
   "maxScore": 0.0,
   "results": [
     {
-      "Dev-comment:": "PAID programme",
       "id": "czy3088-itv_hub-dotcom-ITV-fairplay-hls",
       "entityType": "programme",
       "streamingPlatform": "itv_hub",
@@ -37,7 +36,6 @@
       "score": 9.9
     },
     {
-      "Dev-comment:": "FREE programme",
       "id": "n8v714s-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
       "entityType": "programme",
       "streamingPlatform": "itv_hub",
@@ -66,7 +64,26 @@
       "score": 5.4
     },
     {
-      "Dev-comment:": "Special of a FREE series",
+      "id": "bg2hvhw-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+      "entityType": "special",
+      "streamingPlatform": "itv_hub",
+      "broadcaster": "ITV",
+      "data": {
+        "specialCCId": "hxt8hhq",
+        "legacyId": {
+          "officialFormat": "10/3536/0001",
+          "apiEncoded": "10_3536_0001"
+        },
+        "productionId": "10/3536/0001#001",
+        "platform": "dotcom",
+        "specialTitle": "The Martin Lewis Money Show Live: Cost of Living Special",
+        "synopsis": "Martin brings his energy hike must-knows for the months ahead",
+        "imageHref": "https://ovp.itv.com/images/special/hxt8hhq/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+        "tier": "FREE"
+      },
+      "score": 4.8
+    },
+    {
       "id": "66fz05s-itv_hub-dotcom-fairplay-hls",
       "entityType": "special",
       "streamingPlatform": "itv_hub",
@@ -94,7 +111,6 @@
       "score": 15.75
     },
     {
-      "Dev-comment:": "Special of a PAID series",
       "id": "h7y8n21-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
       "entityType": "special",
       "streamingPlatform": "itv_hub",
@@ -127,7 +143,6 @@
       "score": 18.75
     },
     {
-      "Dev-comment:": "FREE film",
       "id": "gxbgppb-itv_hub-dotcom-ITV-fairplay-hls",
       "entityType": "film",
       "streamingPlatform": "itv_hub",
@@ -148,69 +163,25 @@
       "score": 11.333333
     },
     {
-      "Dev-comment:": "PAID film",
-      "broadcaster": "ITV",
-      "contentType": "vod",
-      "data": {
-        "filmCCId": "qbhw4tp",
-        "filmTitle": "Doctor Who Am I",
-        "imageHref": "https://ovp.itv.com/images/film/qbhw4tp/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
-        "legacyId": {
-          "apiEncoded": "10_3632_0001",
-          "officialFormat": "10/3632/0001"
-        },
-        "platform": "dotcom",
-        "productionId": "10/3632/0001#001",
-        "synopsis": "A Doctor Who writer embarks on his biggest adventure... into fan culture",
-        "tier": "PAID"
-      },
-      "entityType": "film",
-      "id": "qbhw4tp-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
-      "score": 92.66652,
-      "streamingPlatform": "itv_hub"
-    },
-    {
-      "Dev-comment:": "A simulcast item that is on now",
-      "channelType": "simulcast",
-      "contentType": "live",
-      "data": {
-        "brandTitle": "Tour de France Highlights",
-        "channelId": "ITV",
-        "channelName": "ITV1",
-        "channelType": "simulcast",
-        "endDateAndTime": "2025-07-08T23:30:00Z",
-        "imageHref": "https://ovp.itv.com/images/episode/0yzz5m8/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
-        "isLive": false,
-        "startDateAndTime": "2025-07-08T22:40:00Z",
-        "synopsis": "Gary Imlach presents highlights from Stage 4 of the 2025 Tour de France.",
-        "tileImageHref": "https://ovp.itv.com/images/episode/0yzz5m8/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
-        "title": "Stage 4: Amiens Metropole - Rouen",
-        "titleCCId": "0yzz5m8"
-      },
-      "id": "ITV-now",
-      "score": 663.8272,
-      "streamingPlatform": "itv_hub"
-    },
-    {
-      "Dev-comment:": "A simulcast item with a future probramme",
-      "channelType": "simulcast",
-      "contentType": "live",
-      "data": {
-        "brandTitle": "Unwind With ITV4",
-        "channelId": "ITV4",
-        "channelName": "ITV4",
-        "channelType": "simulcast",
-        "endDateAndTime": "2025-07-09T02:00:00Z",
-        "imageHref": "https://ovp.itv.com/images/programme/sc8gp0l/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
-        "isLive": false,
-        "startDateAndTime": "2025-07-09T01:40:00Z",
-        "synopsis": "Your daily escape designed to calm the mind and encourage relaxation and reflection.",
-        "tileImageHref": "https://ovp.itv.com/images/programme/sc8gp0l/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
-        "titleCCId": "hpf4l17"
-      },
-      "id": "ITV4-next",
-      "score": 42.5,
-      "streamingPlatform": "itv_hub"
-    }
+            "broadcaster": "ITV",
+            "contentType": "vod",
+            "data": {
+                "filmCCId": "qbhw4tp",
+                "filmTitle": "Doctor Who Am I",
+                "imageHref": "https://ovp.itv.com/images/film/qbhw4tp/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+                "legacyId": {
+                    "apiEncoded": "10_3632_0001",
+                    "officialFormat": "10/3632/0001"
+                },
+                "platform": "dotcom",
+                "productionId": "10/3632/0001#001",
+                "synopsis": "A Doctor Who writer embarks on his biggest adventure... into fan culture",
+                "tier": "PAID"
+            },
+            "entityType": "film",
+            "id": "qbhw4tp-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+            "score": 92.66652,
+            "streamingPlatform": "itv_hub"
+        }
   ]
 }

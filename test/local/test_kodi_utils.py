@@ -11,7 +11,6 @@ import unittest
 from unittest.mock import patch
 
 from resources.lib import kodi_utils
-from resources.lib import utils
 
 
 class TestKodiUtils(unittest.TestCase):
@@ -66,13 +65,6 @@ class TestKodiUtils(unittest.TestCase):
         with patch("xbmc.executeJSONRPC",
                    return_value='{"error":{"code":-32602,"message":"Invalid params."},"id": 1,"jsonrpc": "2.0"}'):
             self.assertRaises(ValueError, kodi_utils.get_system_setting, "my.setting")
-
-    def test_local_time_zone(self):
-        tz = kodi_utils.local_timezone()
-        self.assertIsInstance(tz, utils.ZoneInfo)
-        with patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError):
-            tz = kodi_utils.local_timezone()
-            self.assertIsInstance(tz, utils.ZoneInfo)
 
 
 @patch('xbmcgui.Dialog.ok')

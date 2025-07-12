@@ -108,22 +108,15 @@ class TestGetProductions(unittest.TestCase):
         self.assertGreater(len(items), 1)
 
     def test_get_productions_midsummer_murder_folder_1(self):
-        items = main.list_productions(MagicMock(),
-                                      'https://www.itv.com/watch/midsomer-murders/Ya1096',
-                                      series_idx='1')
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='1')
         self.assertGreater(len(items), 1)
 
-    def test_get_productions_non_numeric_series(self):
-        """Get the production if a series with a non-numeric index"""
-        items = main.list_productions(MagicMock(),
-                                      'https://www.itv.com/watch/doc-martin/26104',
-                                      series_idx='others')
-        self.assertEqual(len(items), 2)
+    def test_get_productions_midsummer_murder_folder_other_episodes(self):
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/midsomer-murders/Ya1096', series_idx='others')
+        self.assertEqual(len(items), 1)
 
     def test_get_productions_above_suspicion_folder_1(self):
-        items = main.list_productions(MagicMock(),
-                                      'https://www.itv.com/watch/above-suspicion/35460',
-                                      series_idx='1')
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/above-suspicion/35460', series_idx='1')
         self.assertEqual(len(items), 2)
 
     def test_get_productions_the_chase(self):
@@ -131,9 +124,9 @@ class TestGetProductions(unittest.TestCase):
         items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/the-chase/1a7842')
         self.assertGreater(len(items), 1)
 
-    def test_get_productions_of_a_paid_programme(self):
+    def test_get_productions_doctor_foster(self):
         """Productions of a paid programme"""
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/wallander/10a2176')
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/doctor-foster/2a7438')
         self.assertGreater(len(items), 1)
 
     def test_get_productions_bad_girls(self):
@@ -147,10 +140,9 @@ class TestGetProductions(unittest.TestCase):
         items = main.list_productions.test('https://www.itv.com/watch/stonehouse/10a1973')
         self.assertEqual(3, len(items))
 
-
 class TestPlayCatchup(unittest.TestCase):
     def test_play_itv_1(self):
-        result = main.play_stream_live.test("itv", 'https://simulcast.itv.com/playlist/itvonline/itv', None)
+        result = main.play_stream_live(MagicMock(), "itv", 'https://simulcast.itv.com/playlist/itvonline/itv', None)
         self.assertEqual('itv', result.getLabel())
         self.assertIsInstance(result, XbmcListItem)
 
@@ -190,15 +182,16 @@ class TestPlayCatchup(unittest.TestCase):
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 
 
+@unittest.skip("not to interfere with tests of bugfix branch")
 class TestSearch(unittest.TestCase):
     def test_search_chase(self):
-        items = main.do_search.test('chase')
+        items = main.do_search(MagicMock(), 'chase')
         self.assertGreater(len(items), 4)
 
     def test_search_mear(self):
-        items = main.do_search.test('mear')
+        items = main.do_search(MagicMock(), 'mear')
         self.assertGreater(len(items), 4)
 
-    def test_search_with_live_results(self):
-        items = main.do_search.test('ITV1')
+    def test_search_monday(self):
+        items = main.do_search(MagicMock(), 'monday')
         self.assertGreater(len(items), 4)

@@ -24,8 +24,8 @@ from resources.lib import fetch
 from resources.lib import utils
 
 from test.support.object_checks import has_keys
-from test.support.testutils import is_uuid, HttpResponse, SessionMock
-
+from test.support.testutils import is_uuid
+from test.support.testutils import HttpResponse
 
 # noinspection PyPep8Naming
 setUpModule = fixtures.setup_local_tests
@@ -34,7 +34,7 @@ tearDownModule = fixtures.tear_down_local_tests
 
 ACCESS_TKN_FIELDS = ('iss', 'sub', 'exp', 'iat', 'broadcastErrorMsg', 'broadcastResponseCode', 'broadcaster',
                      'isActive', 'nonce', 'name', 'scope', 'entitlements', 'paymentSource', 'showPrivacyNotice',
-                     'under18', 'accountProfileIdInUse', 'region', 'postcodeValidatedOn', 'profileType')
+                     'under18', 'accountProfileIdInUse')
 REFRESH_TKN_FIELDS = ('iss', 'sub', 'exp', 'iat', 'nonce', 'scope', 'auth_time', 'accountProfileIdInUse')
 PROFILE_TKN_FIELDS = ('iss', 'sub', 'exp', 'iat', 'nonce', 'name', 'under18', 'scope')
 
@@ -59,10 +59,7 @@ def build_test_tokens(user_nick, account_id=None, exp_time=None):
                 "paymentSource": "",
                 "showPrivacyNotice": False,
                 "under18": False,
-                "accountProfileIdInUse": None,
-                "region": "border_england",
-                "postcodeValidatedOn": 1751882688768,
-                "profileType": "main"}
+                "accountProfileIdInUse": None}
 
     def create_token(tkn_data, key):
         return '.'.join((
@@ -342,28 +339,6 @@ class PropUserNickName(unittest.TestCase):
         self.assertEqual('', sess.user_nickname)
 
 
-class PropTvRegion(unittest.TestCase):
-    def test_prop_tv_region(self):
-        acc_data = deepcopy(account_data_v2)
-        acc_data['itv_session'] = session_dta['itv_session']
-        with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(acc_data))):
-            sess = SessionMock()
-        self.assertEqual('granada', sess.tv_region)
-        sess.log_out()
-        self.assertEqual('', sess.tv_region)
-        # The absence of tv_region does not trigger a login or refresh.
-        sess.login.assert_not_called()
-        sess.refresh.assert_not_called()
-
-    def test_prop_tv_region_not_logged_in(self):
-        with patch('resources.lib.itv_account.open', side_effect=IOError):
-            sess = SessionMock()
-        self.assertEqual('', sess.tv_region)
-        # The absence of tv_region does not trigger a login or refresh.
-        sess.login.assert_not_called()
-        sess.refresh.assert_not_called()
-
-
 class Misc(unittest.TestCase):
     def test_read_account_data(self):
         with patch('resources.lib.itv_account.open', mock_open(read_data=json.dumps(account_data_v2))):
@@ -416,24 +391,20 @@ class Misc(unittest.TestCase):
         self.assertEqual('', ct_sess.user_id)
         self.assertEqual('', ct_sess.user_nickname)
 
-    @patch('resources.lib.itv_account.ItvSession.read_account_data')
-    def test_parse_token(self, _):
+    def test_parse_token(self):
         access_tkn, _, __ = build_test_tokens('My username')
-        sess = itv_account.ItvSession()
-        sess.parse_token(access_tkn)
-        self.assertTrue(is_uuid(sess.user_id))
-        self.assertIsInstance(sess._expire_time, int)
-        self.assertEqual('My username', sess.user_nickname)
-        self.assertEqual('granada', sess.tv_region)
+        a_user_id, a_user_nick, a_exp_time = itv_account.parse_token(access_tkn)
+        self.assertTrue(is_uuid(a_user_id))
+        self.assertIsInstance(a_exp_time, int)
+        self.assertEqual('My username', a_user_nick)
 
-        invalid_token = access_tkn[:60] + access_tkn[92:]
-        sess.parse_token(invalid_token)
-        self.assertEqual('', sess.user_id)
-        self.assertEqual('', sess.user_nickname)
-        self.assertEqual('', sess.tv_region)
+        invalid_token = access_tkn[:60] + access_tkn[90:]
+        a_user_id, a_user_nick, a_exp_time = itv_account.parse_token(invalid_token)
+        self.assertIsNone(a_user_id)
+        self.assertIsNone(a_user_nick)
         # on parse errors expire time is set to now(), to force a refresh on the next call
-        self.assertIsInstance(sess._expire_time, int)
-        self.assertAlmostEqual(sess._expire_time, time.time() + time.timezone, delta=1)
+        self.assertIsInstance(a_exp_time, int)
+        self.assertAlmostEqual(a_exp_time, time.time() + time.timezone, delta=1)
 
 
 class AccountMock:
