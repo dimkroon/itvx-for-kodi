@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viwx" name="viwX" version="1.6.2" provider-name="Dimitri Kroon">
+<addon id="plugin.video.viwx" name="viwX" version="1.7.0" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.5"/>
@@ -31,9 +31,13 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
-[B]v 1.6.2[/B]
+[B]v 1.7.0[/B]
+[B]New Features:[/B]
+- Optional full HD streams - must be enabled in settings, off by default.
+
 [B]Fixes:[/B]
-- Logging in to IVX account with username and password works again.
+- Search with live items in the results failed.
+- Some episode listings failed.
     </news>
     <reuselanguageinvoker>true</reuselanguageinvoker>
   </extension>
