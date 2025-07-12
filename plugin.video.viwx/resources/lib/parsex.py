@@ -8,6 +8,8 @@
 
 import json
 import logging
+import pytz
+import re
 from datetime import datetime, timezone
 from urllib.parse import urlencode
 
@@ -88,7 +90,6 @@ def ctx_mnu_watch_from_start(chan_id, start_time):
 def scrape_json(html_page):
     # noinspection GrazieInspection
     """Return the json data embedded in a script tag on an html page"""
-    import re
     result = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.+?)</script>', html_page, flags=re.DOTALL)
     if result:
         json_str = result[1]
@@ -511,20 +512,40 @@ def parse_item_type_collection(item_data):
     return {'type': 'collection', 'show': item}
 
 
+def _get_hero_cta_label(hero_cta: dict) -> str:
+    """Return the episode title obtained from heroCtaLabel.
+
+    episodeLabel is usually like "S1:E3 - Episode 3, but not always..."
+    Can also be an empy string in which case field 'label' is returned.
+    """
+    try:
+        label = hero_cta['episodeLabel'] or hero_cta['label']
+        match = re.match(r'S\d{1,2}: ?E\d{1,3} - (.*)', label)
+        if match:
+            label = match[1]
+        return label
+    except:
+        logger.error("Failed to parse heroCtaLabel '%s'\n", hero_cta, exc_info=True)
+        return ''
+
+
 def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     """Parse a title from episodes listing"""
-    # Note: episodeTitle may be None
-    title = title_data['episodeTitle'] or title_data['heroCtaLabel']
+
+    # Note: episodeTitle may be None, so prefer title from heroCtaLabel, but even that
+    # may not always have the required fields.
+
+    title = _get_hero_cta_label(title_data['heroCtaLabel']) or title_data.get('episodeTitle') or ''
     img_url = title_data['image']
     plot = '\n\n'.join(t for t in (title_data['longDescription'], title_data.get('guidance')) if t)
     if title_data['premium']:
         plot = premium_plot(plot)
 
     episode_nr = title_data.get('episode')
-    if episode_nr and title_data['episodeTitle'] is not None:
-        info_title = '{}. {}'.format(episode_nr, title_data['episodeTitle'])
+    if episode_nr is not None:
+        info_title = '{}. {}'.format(episode_nr, title)
     else:
-        info_title = title_data['heroCtaLabel']
+        info_title = title
 
     series_nr = title_data.get('series')
     if not isinstance(series_nr, int):

@@ -155,10 +155,10 @@ def check_title(self, title, parent_name):
              'genres', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
              'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
-             'subtitled', 'audioDescribed',
+             'subtitled', 'audioDescribed', 'heroCtaLabel',
              obj_name=obj_name)
 
-    expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'heroCtaLabel', 'episodeId',
+    expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
                 'productionId', 'programmeId', 'subtitled', 'visuallySigned', 'regionalisation', obj_name=obj_name)
 
@@ -203,6 +203,9 @@ def check_title(self, title, parent_name):
         self.assertTrue(is_not_empty(title['episode'], int))
         # Some episodes do not belong to a series, like the Christmas special
         self.assertTrue(is_not_empty(title['series'], int) or title['series'] is None)
+        # We use this a a fallback when title is None, but even this can be an empty string
+        self.assertTrue(isinstance(title['heroCtaLabel']['episodeLabel'], str))
+        self.assertTrue(is_not_empty(title['heroCtaLabel']['label'], str))
 
     if title['productionType'] == 'SPECIAL':
         self.assertIsNone(title['episode'])
@@ -552,6 +555,7 @@ class CollectionPages(unittest.TestCase):
                     return
                 heading_link = collection_data.get('headingLink')
                 if heading_link:
+                    continue
                     # Yes, strip trailing white space. It has actually happened...
                     page_ref = 'https://www.itv.com/watch' + heading_link['href'].rstrip()
                     CollectionPages.check_page(testcase, page_ref, parent_name)
@@ -657,7 +661,8 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
-                'https://www.itv.com/watch/stonehouse/10a1973',          # programme with BSL
+                'https://www.itv.com/watch/stonehouse/10a1973',         # programme with BSL
+                'https://www.itv.com/watch/the-chase/1a7842/',          # Some episode do not have a title
                 ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_miss-marple.html')
@@ -673,6 +678,7 @@ class WatchPages(unittest.TestCase):
         page = fetch.get_document(url)
         # testutils.save_doc(page, 'html/paid_episode_downton-abbey-s1e1.html')
         data = parsex.scrape_json(page)
+        testutils.save_json(data, 'html/paid_episode_downton-abbey-s1e1.json')
         programme_data = data['programme']
         check_programme(self, programme_data)
         self.assertListEqual(['PAID'], programme_data['tier'])
