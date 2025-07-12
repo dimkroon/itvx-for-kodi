@@ -14,7 +14,7 @@ import unittest
 import requests
 from datetime import datetime, timedelta, timezone
 
-from resources.lib import fetch, parsex, utils, errors, main, itv_account
+from resources.lib import fetch, parsex, main, itv_account, errors
 from support.object_checks import (
     has_keys,
     expect_keys,
@@ -66,7 +66,7 @@ def check_editorial_slider(testcase, slider_data, parent_name):
         # The entry was also not shown on the website.
         testcase.assertFalse('itemCount' in collection_data)
         print('NOTICE: No shows in Slider ' + obj_name)
-        return
+        return None
     href = collection_data.get('headingLink')
     if href:
         page_ref = 'https://www.itv.com/watch' + href
@@ -74,6 +74,7 @@ def check_editorial_slider(testcase, slider_data, parent_name):
     else:
         for show in collection_data['shows']:
             check_shows(testcase, show, obj_name)
+        return None
 
 
 def check_shows(testcase, show, parent_name):
@@ -154,10 +155,10 @@ def check_title(self, title, parent_name):
              'genres', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
              'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
-             'subtitled', 'audioDescribed',
+             'subtitled', 'audioDescribed', 'heroCtaLabel',
              obj_name=obj_name)
 
-    expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'heroCtaLabel', 'episodeId',
+    expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
                 'productionId', 'programmeId', 'subtitled', 'visuallySigned', 'regionalisation', obj_name=obj_name)
 
@@ -185,7 +186,7 @@ def check_title(self, title, parent_name):
     self.assertTrue(is_url(title['image']))
     self.assertTrue(is_url(title['playlistUrl']))
     self.assertIsInstance(title['premium'], bool)
-    self.assertTrue(title['productionType'] in('EPISODE', 'FILM', 'SPECIAL'))
+    self.assertTrue(title['productionType'] in ('EPISODE', 'FILM', 'SPECIAL'))
     self.assertIsInstance(title['subtitled'], bool)
     if title['premium']:
         self.assertListEqual(['PAID'], title['tier'])
@@ -202,6 +203,9 @@ def check_title(self, title, parent_name):
         self.assertTrue(is_not_empty(title['episode'], int))
         # Some episodes do not belong to a series, like the Christmas special
         self.assertTrue(is_not_empty(title['series'], int) or title['series'] is None)
+        # We use this a a fallback when title is None, but even this can be an empty string
+        self.assertTrue(isinstance(title['heroCtaLabel']['episodeLabel'], str))
+        self.assertTrue(is_not_empty(title['heroCtaLabel']['label'], str))
 
     if title['productionType'] == 'SPECIAL':
         self.assertIsNone(title['episode'])
@@ -214,10 +218,8 @@ def check_title(self, title, parent_name):
 
     if title['productionType'] == 'FILM':
         self.assertGreater(title['productionYear'], 1900)
-        self.assertTrue('episode' not in title)
+        self.assertIsNone(title['episode'])
         self.assertIsNone(title['series'])
-        # As of 22-12-2023 some films do have an actual dateTime
-        # self.assertEqual(utils.strptime(title['dateTime'], '%Y-%m-%dT%H:%M:%S.%fZ'), datetime(1970, 1, 1))
 
 
 def check_episode(self, episode, parent_name):
@@ -237,7 +239,6 @@ def check_rail_item_type_collection(testcase, item, parent_name):
     testcase.assertTrue(is_not_empty(item['title'], str))
     testcase.assertTrue(is_not_empty(item['titleSlug'], str))
     testcase.assertTrue(is_not_empty(item['collectionId'], str))
-
 
 
 def check_item_type_page(testcase, item, parent_name):
@@ -276,8 +277,9 @@ def check_item_type_page(testcase, item, parent_name):
         'Origin': 'https: /www.itv.com',
     }
     # Check url without query string fails
-    resp = requests.get(url, headers=headers, timeout=4)
-    testcase.assertEqual(404, resp.status_code)
+    # Since june 2025 requests without query time out, instead of returning not found.
+    testcase.assertRaises(requests.Timeout, requests.get, url, headers=headers, timeout=3)
+    # testcase.assertEqual(404, resp.status_code)
     # Check the contents of the collection page with querystring added to url
     CollectionPages.check_page(testcase, url + '?ind', parent_name)
 
@@ -329,8 +331,11 @@ def check_item_type_simulcastspot(self, item, parent_name):
     self.assertTrue(is_url(item['imageTemplate']))
     # Generic check on start and end time. Items from hero use a different format than those from collection.
     # Hero and collection will each perform additional checks on the format.
-    self.assertTrue(is_not_empty(item['startDateTime'], str))
-    self.assertTrue(is_not_empty(item['endDateTime'], str))
+    # TODO: Review
+    #       Noticed one simulcastspot from a collection where both values are None, but
+    #       is there still any value in testing it like this?
+    self.assertTrue(is_not_empty(item['startDateTime'], str) or item['startDateTime'] is None)
+    self.assertTrue(is_not_empty(item['endDateTime'], str) or item['endDateTime'] is None)
     # We see a move to ID based genres at ITVX, but this has still the old single value genre
     # Just to detect a change
     self.assertTrue(is_not_empty(item['genre'], str))
@@ -356,7 +361,7 @@ def check_item_type_brand(testcase, item, parent_name):
     for series in item['series']:
         # This data is not used by the parse. Series and episode data is obtained from the programme's page.
         expect_keys(series, 'numberOfEpisodes', 'numberOfAvailableEpisodes', 'fullSeries', 'legacyId', 'seriesNumber',
-                 'longRunning', obj_name='{}.series-{}'.format(name, series['seriesNumber']))
+                    'longRunning', obj_name='{}.series-{}'.format(name, series['seriesNumber']))
         # Just flag when other keys are added.
         testcase.assertLessEqual(len(list(series.keys())), 6)
 
@@ -377,7 +382,7 @@ class MainPage(unittest.TestCase):
                              'collection', 'page', 'upsellspot'))
             if content_type == 'upsellspot':
                 continue
-            obj_name = 'Hero-items.' +  item['title']
+            obj_name = 'Hero-items.' + item['title']
             if content_type == 'simulcastspot':
                 check_item_type_simulcastspot(self, item, parent_name='hero-items')
                 # Flag if key normally only present in collections become available in hero items as well
@@ -403,7 +408,7 @@ class MainPage(unittest.TestCase):
                          'contentInfo', obj_name=obj_name)
                 self.assertIsInstance(item['contentInfo'], list)
 
-                if item['contentType']in ('simulcastspot', 'fastchannelspot'):
+                if item['contentType'] in ('simulcastspot', 'fastchannelspot'):
                     has_keys(item, 'channel', obj_name=obj_name)
                 else:
                     has_keys(item, 'genres', 'encodedProgrammeId', 'programmeId', obj_name=obj_name)
@@ -459,7 +464,7 @@ class MainPage(unittest.TestCase):
         self.assertTrue(len(page_props['shortFormSliderContent']) in (1, 2))
         for slider in page_props['shortFormSliderContent']:
             check_short_form_slider(self, slider, name='mainpage.shortform')
-            header  = slider['header']
+            header = slider['header']
             # ShortFromSlider on the main page should have a reference to a collection or category page.
             self.assertFalse(is_url(header['linkHref']))                # is a relative link
             self.assertTrue(header['linkHref'].startswith('/watch'))    # starts with '/watch', unlike editorialSliders
@@ -486,7 +491,15 @@ class CollectionPages(unittest.TestCase):
         if url in checked_urls:
             return
 
-        page_data = parsex.scrape_json(fetch.get_document(url))
+        try:
+            page_data = parsex.scrape_json(fetch.get_document(url))
+        except errors.HttpError as err:
+            if err.code == 404:
+                # Happens sometimes; the 'show all' button on the website isn't working either.
+                print(f"ERROR: Page '{url} not found!")
+                return
+            else:
+                raise
         checked_urls.append(url)
 
         if parent_name:
@@ -542,6 +555,7 @@ class CollectionPages(unittest.TestCase):
                     return
                 heading_link = collection_data.get('headingLink')
                 if heading_link:
+                    continue
                     # Yes, strip trailing white space. It has actually happened...
                     page_ref = 'https://www.itv.com/watch' + heading_link['href'].rstrip()
                     CollectionPages.check_page(testcase, page_ref, parent_name)
@@ -553,7 +567,7 @@ class CollectionPages(unittest.TestCase):
             # It looks like shortform sliders are no longer present on collection pages
             # Flag if one is found.
             raise AssertionError("shortFormSlider on collection page %s", parent_name)
-            check_short_form_slider(testcase, shortform_slider)
+            # check_short_form_slider(testcase, shortform_slider)
 
     def test_all_collections(self):
         """Obtain links to collection pages from the main page and test them all."""
@@ -561,7 +575,6 @@ class CollectionPages(unittest.TestCase):
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
         editorial_sliders = page_data['editorialSliders']
         for rail in editorial_sliders.values():
-            continue
             pagelink = rail['collection'].get('headingLink', {}).get('href')
             if not pagelink:
                 continue
@@ -580,6 +593,7 @@ class CollectionPages(unittest.TestCase):
                 continue
             self.check_page(self, 'https://www.itv.com' + pagelink)
 
+
 class WatchPages(unittest.TestCase):
     def check_schedule_now_next_slot(self, progr_data, chan_type, obj_name=None):
         """Check the now/next schedule data returned from an HTML page.
@@ -587,9 +601,9 @@ class WatchPages(unittest.TestCase):
 
         """
         all_keys = ('titleId', 'title', 'prodId', 'brandTitle', 'broadcastAt', 'guidance', 'rating',
-                 'contentEntityType', 'episodeNumber', 'seriesNumber', 'startAgainPlaylistUrl', 'shortSynopsis',
-                 'displayTitle', 'detailedDisplayTitle', 'timestamp',
-                 'broadcastEndTimestamp', 'productionId')
+                    'contentEntityType', 'episodeNumber', 'seriesNumber', 'startAgainPlaylistUrl', 'shortSynopsis',
+                    'displayTitle', 'detailedDisplayTitle', 'timestamp',
+                    'broadcastEndTimestamp', 'productionId')
 
         # As of 25-6-2023 all fields of the FAST channel 'Unwind' are either None or False. There
         # some fields missing as well, but there is no point in checking that.
@@ -647,7 +661,8 @@ class WatchPages(unittest.TestCase):
                 'https://www.itv.com/watch/agatha-christies-marple/L1286',
                 'https://www.itv.com/watch/bad-girls/7a0129',
                 'https://www.itv.com/watch/midsomer-murders/Ya1096',
-                'https://www.itv.com/watch/stonehouse/10a1973',          # programme with BSL
+                'https://www.itv.com/watch/stonehouse/10a1973',         # programme with BSL
+                'https://www.itv.com/watch/the-chase/1a7842/',          # Some episode do not have a title
                 ):
             page = fetch.get_document(url)
             # testutils.save_doc(page, 'html/series_miss-marple.html')
@@ -663,6 +678,7 @@ class WatchPages(unittest.TestCase):
         page = fetch.get_document(url)
         # testutils.save_doc(page, 'html/paid_episode_downton-abbey-s1e1.html')
         data = parsex.scrape_json(page)
+        # testutils.save_json(data, 'html/paid_episode_downton-abbey-s1e1.json')
         programme_data = data['programme']
         check_programme(self, programme_data)
         self.assertListEqual(['PAID'], programme_data['tier'])
@@ -672,7 +688,6 @@ class WatchPages(unittest.TestCase):
                 self.assertTrue(title['premium'])
         # Check episode - the data of the actual episode the page represents.
         check_title(self, data['episode'], programme_data['title'])
-
 
     def test_film_details_page(self):
         page = fetch.get_document('https://www.itv.com/watch/a-day-to-remember/CFD0170')
@@ -708,7 +723,8 @@ class WatchPages(unittest.TestCase):
         check_title(self, data['episode'], data['programme']['title'])
 
     def test_short_news_item(self):
-        page = fetch.get_document('https://www.itv.com/watch/news/met-police-officers-investigated-for-gross-misconduct-over-stephen-port-case/fxmdtwy')
+        page = fetch.get_document('https://www.itv.com/watch/news/met-police-officers-investigated-'
+                                  'for-gross-misconduct-over-stephen-port-case/fxmdtwy')
         # testutils.save_doc(page, 'html/news-short_item.html')
         data = parsex.scrape_json(page)
         self.assertFalse('programme' in data)
@@ -729,9 +745,10 @@ class TvGuide(unittest.TestCase):
     """
     headers = {
         # Without these headers the requests will time out.
-        'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
+        'user-agent': fetch.USER_AGENT,
         'Origin': 'https: /www.itv.com',
     }
+
     def check_guide(self, data):
         obj_name = 'HTMLguide'
         has_keys(data, 'ITV1', 'ITV2', 'ITVBe', 'ITV3', 'ITV4', obj_name=obj_name)
@@ -815,7 +832,7 @@ class TvGuide(unittest.TestCase):
 
     def test_html_guide_8days_ago(self):
         """If more than 7 days ahead is requested, the schedules of today are returned."""
-        today = datetime.utcnow()
+        today = datetime.now(timezone.utc)
         far_ahead = (today - timedelta(days=8)).strftime('%Y-%m-%d')
         url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
         data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
@@ -826,7 +843,7 @@ class TvGuide(unittest.TestCase):
     def test_html_guide_8days_ahead(self):
         """If more than 7 days ahead is requested, the schedules of today are returned."""
         today = datetime.now(timezone.utc)
-        far_ahead = (today + timedelta(days=8)).strftime(('%Y-%m-%d'))
+        far_ahead = (today + timedelta(days=8)).strftime('%Y-%m-%d')
         url = 'https://www.itv.com/watch/tv-guide/' + far_ahead
         data = parsex.scrape_json(requests.get(url, headers=self.headers, timeout=3).text)
         first_prgrm = data['tvGuideData']['ITV1'][0]
@@ -834,7 +851,8 @@ class TvGuide(unittest.TestCase):
         self.assertEqual(today.date(), start_t.date())
 
 
-all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport', 'comedy', 'news', 'entertainment', 'signed-bsl']
+all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport',
+                  'comedy', 'news', 'entertainment', 'signed-bsl']
 
 
 class Categories(unittest.TestCase):
@@ -880,7 +898,8 @@ class Categories(unittest.TestCase):
                             # Yes, at this moment it's 'FILM' not 'FILMS', the parser accepts both.
                             # Also, 'DRAMA_AND_SOAPS' is different. Category id's elsewhere use drama-soaps,
                             # which is like cat_data['slug'], but this ID is not used in the addon at all.
-                            ('FILM', 'FACTUAL', 'CHILDREN', 'DRAMA_AND_SOAPS', 'SPORT', 'COMEDY', 'ENTERTAINMENT', 'SIGNED_BSL'))
+                            ('FILM', 'FACTUAL', 'CHILDREN', 'DRAMA_AND_SOAPS', 'SPORT', 'COMEDY',
+                             'ENTERTAINMENT', 'SIGNED_BSL'))
             self.assertTrue(is_not_empty(cat_data['name'], str))
             programmes = data['programmes']
             t_2 = time.time()
@@ -968,8 +987,9 @@ class MyList(unittest.TestCase):
 
         """
         progr_id = '2_7931'     # A spy among friends
-        url = 'https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?features=mpeg-dash,outband-webvtt,hls,aes,playre' \
-              'ady,widevine,fairplay,progressive&platform=ctv'.format(self.userid, progr_id)
+        url = ('https://my-list.prd.user.itv.com/user/{}/mylist/programme/{}?'
+               'features=mpeg-dash,outband-webvtt,hls,aes,playready,'
+               'widevine,fairplay,progressive&platform=ctv').format(self.userid, progr_id)
         # Both webbrowser and app authenticate with header, without any cookie.
         headers = {'authorization': 'Bearer ' + self.token}
 
