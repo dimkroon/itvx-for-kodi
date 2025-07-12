@@ -9,7 +9,6 @@ import os
 import logging
 
 from datetime import datetime, timedelta, timezone
-import pytz
 import xbmc
 
 from codequick import Script
@@ -28,9 +27,9 @@ def get_live_schedule(hours=4, local_tz=None):
 
     """
     if local_tz is None:
-        local_tz = pytz.timezone('Europe/London')
-    btz = pytz.timezone('Europe/London')
-    british_now = datetime.now(pytz.utc).astimezone(btz)
+        local_tz = utils.ZoneInfo('Europe/London')
+    btz = utils.ZoneInfo('Europe/London')
+    british_now = datetime.now(timezone.utc).astimezone(btz)
 
     # Request TV schedules for the specified number of hours from now, in british time
     from_date = british_now.strftime('%Y%m%d%H%M')
@@ -49,7 +48,7 @@ def get_live_schedule(hours=4, local_tz=None):
     for channel in schedule:
         for program in channel['slot']:
             time_str = program['startTime'][:16]
-            brit_time = btz.localize(strptime(time_str, '%Y-%m-%dT%H:%M'))
+            brit_time = (strptime(time_str, '%Y-%m-%dT%H:%M')).replace(tzinfo=btz)
             program['startTime'] = brit_time.astimezone(local_tz).strftime(time_format)
             program['orig_start'] = program['onAirTimeUTC'][:19]
 

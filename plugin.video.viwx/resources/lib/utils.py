@@ -11,6 +11,11 @@ import time
 import string
 from datetime import datetime
 
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:
+    from backports.zoneinfo import ZoneInfo
+
 from xbmcvfs import translatePath
 import xbmcaddon
 

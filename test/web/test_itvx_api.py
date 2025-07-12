@@ -135,18 +135,23 @@ class Search(unittest.TestCase):
         results = resp_obj['results']
         self.assertIsInstance(results, list)
         for item in results:
-            object_checks.has_keys(item, 'id', 'entityType', 'streamingPlatform', 'data', 'score',
+            object_checks.has_keys(item, 'id', 'contentType', 'streamingPlatform', 'data', 'score',
                                    obj_name='resultItem')
-
-            if item['entityType'] == 'programme':
-                self.check_programme_item(item['data'])
-            elif item['entityType'] == 'special':
-                self.check_special_item(item['data'])
-            elif item['entityType'] == 'film':
-                self.check_film_item(item['data'])
+            if item['contentType'] == 'live':
+                self.assertEqual('simulcast', item['channelType'])  # Flag if other types like fast turn up.
+                object_checks.misses_keys(item, 'entityType', obj_name='resultItem')
+                self.check_simulcast_item(item['data'])
             else:
-                raise AssertionError('unknown entityType {}'.format(item['entityType']))
-            self.assertTrue(item['data']['tier'] in ('PAID', 'FREE'))
+                self.assertEqual('vod', item['contentType'])
+                if item['entityType'] == 'programme':
+                    self.check_programme_item(item['data'])
+                elif item['entityType'] == 'special':
+                    self.check_special_item(item['data'])
+                elif item['entityType'] == 'film':
+                    self.check_film_item(item['data'])
+                else:
+                    raise AssertionError('unknown entityType {}'.format(item['entityType']))
+                self.assertTrue(item['data']['tier'] in ('PAID', 'FREE'))
 
     def check_programme_item(self, item_data):
         object_checks.has_keys(item_data, 'programmeCCId', 'legacyId', 'productionId', 'programmeTitle',
@@ -172,15 +177,26 @@ class Search(unittest.TestCase):
             self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
             # Check this programmeId has 2 underscores, since it is in fact more like an episodeId.
             self.assertEqual(2, item_data['legacyId']['apiEncoded'].count('_'))
-        object_checks.is_url(item_data['imageHref'])
+        self.assertTrue(object_checks.is_url(item_data['imageHref']))
 
     def check_film_item(self, item_data):
         object_checks.has_keys(item_data, 'filmCCId', 'legacyId', 'productionId', 'filmTitle',
                                'synopsis', 'imageHref', 'tier',
                                obj_name='specialItem.data')
-        object_checks.is_url(item_data['imageHref'])
+        self.assertTrue(object_checks.is_url(item_data['imageHref']))
         self.assertTrue(object_checks.is_not_empty(item_data['legacyId']['apiEncoded'], str))
         self.assertFalse('/' in item_data['legacyId']['apiEncoded'])
+
+    def check_simulcast_item(self, item_data):
+        object_checks.has_keys(item_data, 'startDateAndTime', 'endDateAndTime', 'channelId', 'channelName',
+                               'channelType', 'titleCCId', 'brandTitle', 'imageHref', 'tileImageHref', 'isLive',
+                               'synopsis', obj_name='simulcast.data')
+        self.assertTrue(object_checks.is_url(item_data['imageHref']))
+        self.assertTrue(object_checks.is_not_empty(item_data['channelName'], str))
+        self.assertTrue(object_checks.is_not_empty(item_data['channelId'], str))
+        self.assertTrue(object_checks.is_not_empty(item_data['synopsis'], str))
+        self.assertTrue(object_checks.is_iso_utc_time(item_data['startDateAndTime']))   # Note 'And' in the field name
+        self.assertTrue(object_checks.is_iso_utc_time(item_data['endDateAndTime']))
 
     def test_search_normal_chase(self):
         self.search_params['query'] = 'the chase'
@@ -193,6 +209,12 @@ class Search(unittest.TestCase):
         self.search_params['query'] = 'monday'
         resp = requests.get(self.search_url, params=self.search_params).json()
         # testutils.save_json(resp, 'search/search_monday.json')
+        self.check_result(resp)
+        self.assertGreater(len(resp['results']), 3)
+
+    def test_search_with_simulcast_result(self):
+        self.search_params['query'] = 'itv1'
+        resp = requests.get(self.search_url, params=self.search_params).json()
         self.check_result(resp)
         self.assertGreater(len(resp['results']), 3)
 

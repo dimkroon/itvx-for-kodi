@@ -13,7 +13,7 @@ import xbmcgui
 from codequick import Script, utils
 from codequick.support import addon_data, logger_id
 
-from . utils import addon_info
+from . utils import addon_info, ZoneInfo
 
 logger = logging.getLogger(logger_id + '.kodi_utils')
 
@@ -139,3 +139,18 @@ def get_system_setting(setting_id):
         msg = data.get('message') or "Failed to get setting"
         logger.error("get_system_setting failed for setting_id '%s': '%s'", setting_id, msg)
         raise ValueError('system setting error: {}'.format(msg))
+
+
+_local_timezone = None
+
+
+def local_timezone() -> ZoneInfo:
+    global _local_timezone
+    if not _local_timezone:
+        try:
+            _local_timezone = ZoneInfo(get_system_setting('locale.timezone'))
+        except ValueError:
+            # To be Matrix compatible
+            from tzlocal import get_localzone
+            _local_timezone = get_localzone()
+    return _local_timezone

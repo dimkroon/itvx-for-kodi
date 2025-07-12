@@ -10,14 +10,13 @@ import typing
 import string
 import sys
 
-import pytz
 import requests
 import xbmc
 import xbmcplugin
 from xbmcgui import ListItem
 
 from codequick import Route, Resolver, Listitem, Script, run as cc_run
-from codequick.support import logger_id, build_path, dispatcher
+from codequick.support import logger_id, dispatcher
 
 from resources.lib import itv, itv_account, itvx
 from resources.lib import utils
@@ -265,14 +264,7 @@ def generic_list(addon, list_type='mylist', filter_char=None, page_nr=0):
 
 @Route.register(content_type='videos')
 def sub_menu_live(_):
-    try:
-        local_tz = pytz.timezone(kodi_utils.get_system_setting('locale.timezone'))
-    except ValueError:
-        # To be Matrix compatible
-        from tzlocal import get_localzone
-        local_tz = get_localzone()
-
-    tv_schedule = itvx.get_live_channels(local_tz)
+    tv_schedule = itvx.get_live_channels(kodi_utils.local_timezone())
 
     for item in tv_schedule:
         chan_name = item['name']
@@ -317,9 +309,7 @@ def sub_menu_live(_):
 
         # add 'play from the start' context menu item for channels that support this feature
         if program_start_time:
-            cmd = 'PlayMedia({}, noresume)'.format(
-                build_path(play_stream_live, play_from_start=True, **callback_kwargs))
-            li.context.append((Script.localize(TXT_PLAY_FROM_START), cmd))
+            li.context.append(parsex.ctx_mnu_watch_from_start(chan_name, program_start_time))
         yield li
 
 
@@ -459,6 +449,9 @@ def do_search(addon, search_query):
         if result is None:
             continue
         li = Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
+        ctx_mnus = result.get('ctx_mnu')
+        if ctx_mnus:
+            li.context.extend(ctx_mnus)
         _my_list_context_mnu(li, result['programme_id'], refresh=False)
         yield li
 
