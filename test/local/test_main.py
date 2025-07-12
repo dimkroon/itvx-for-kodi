@@ -4,6 +4,8 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+import xbmcaddon
+
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -391,57 +393,42 @@ class Productions(TestCase):
             for episode in series_listing:
                 self.assertIs(episode.path, main.play_stream_catchup.route)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsomer-murders.json'))
     def test_programme_with_series_other(self, _):
-        list_items = main.list_productions.test('some/url/to/downton', series_idx='others')
+        list_items = main.list_productions.test('some/url/to/mids murders', series_idx='others')
         self.assertIsInstance(list_items, list)
-        self.assertEqual(4, len(list_items))
+        self.assertEqual(1, len(list_items))
 
 
 class Search(TestCase):
     @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/the_chase.json')()))
-    def test_search_the_chase(self, _):
-        results = main.do_search.test('the chase')
-        self.assertEqual(10, len(results))
-        self.assertIs(results[0].path, main.list_productions.route)     # programme
-        self.assertIs(results[4].path, main.play_title.route)           # special with field specialProgramme
+           return_value=HttpResponse(text=open_doc('search/test_results.json')()))
+    def test_search_all_result_types(self, _):
+        """Results from a document with all known types of result."""
+        results = main.do_search.test('sdagca')
+        self.assertEqual(8, len(results))
+        self.assertIs(results[0].path, main.list_productions.route)  # programme
+        self.assertIs(results[4].path, main.play_title.route)  # film
 
     @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_results_mear.json')()))
-    def test_search_mear(self, _):
-        results = main.do_search.test('mear')
-        self.assertEqual(10, len(results))
-        self.assertIs(results[0].path, main.list_productions.route)     # programme
-        self.assertIs(results[4].path, main.play_title.route)           # film
-
-    @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
-    def test_search_monday(self, _):
-        results = main.do_search.test('monday')
-        self.assertEqual(3, len(results))
-        self.assertIs(results[0].path, main.list_productions.route)
-        self.assertIs(results[2].path, main.play_title.route)           # special without field specialProgramme
-
-    @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+           return_value=HttpResponse(text=open_doc('search/test_results.json')()))
     def test_search_hide_paid(self, _):
-        results = main.do_search.test('monday')
-        self.assertEqual(3, len(results))
+        results = main.do_search.test('___')
+        self.assertEqual(8, len(results))
         with patch('xbmcaddon.Addon.getSetting', return_value='true'):
-            results = main.do_search.test('monday')
-            self.assertEqual(2, len(results))
+            results = main.do_search.test('__')
+            self.assertEqual(5, len(results))
 
     def test_search_result_with_unknown_entitytype(self):
-        search_data = open_json('search/search_results_mear.json')
+        search_data = open_json('search/test_results.json')
         with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_1 = main.do_search.test('kjhbn')
-            self.assertEqual(10, len(results_1))
+            self.assertEqual(8, len(results_1))
         # check again with one item having an unknown entity type
         search_data['results'][3]['entityType'] = 'video'
         with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_2 = main.do_search.test('kjhbn')
-            self.assertEqual(9, len(results_2))
+            self.assertEqual(7, len(results_2))
 
     @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
     def test_search_with_no_results(self, _):
@@ -449,10 +436,10 @@ class Search(TestCase):
         self.assertIs(results, False)
 
     @patch('requests.sessions.Session.send',
-           return_value=HttpResponse(text=open_doc('search/search_monday.json')()))
+           return_value=HttpResponse(text=open_doc('search/test_results.json')()))
     @patch('resources.lib.main._my_list_context_mnu')
     def test_search_context_menu_does_not_refresh_container(self, p_ctx_mnu, _):
-        main.do_search.test('monday')
+        main.do_search.test('__')
         self.assertIs(False, p_ctx_mnu.call_args.kwargs['refresh'])
 
 
@@ -469,7 +456,7 @@ class CreateDashStreamItem(TestCase):
 
 
 class PlayStreamLive(TestCase):
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': 'blabla'})
@@ -509,6 +496,22 @@ class PlayStreamLive(TestCase):
     def test_play_stream_live_without_other_error(self, _):
         self.assertRaises(ValueError, main.play_stream_live.test, channel='ITV', url=None)
 
+    @patch('resources.lib.itv.get_live_urls', return_value=open_json('playlists/pl_itv1.json'))
+    def test_play_live_with_region(self, p_req_strm):
+        # region from ITV account
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: 'by_account' if s == 'tv_region' else ''):
+            with patch.object(itv_account.itv_session(), '_tv_region', 'my-area'):
+                main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('?region=my-area'))
+        # region from viwX's settings
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: 'other-area' if s == 'tv_region' else ''):
+            main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('?region=other-area'))
+        # missing region
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: ''):
+            main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('/ITV'))
+
 
 class PlayStreamCatchup(TestCase):
     def setUp(self) -> None:
@@ -519,12 +522,12 @@ class PlayStreamCatchup(TestCase):
         # Ensure to clear patched session objects
         itv_account._itv_session_obj = None
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_play_short_news_item(self, _):
         result = main.play_stream_catchup.test('some/url', 'a short news item')
         self.assertIsInstance(result, XbmcListItem)
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode(self, _, __):
@@ -537,7 +540,7 @@ class PlayStreamCatchup(TestCase):
         self.assertFalse('IsPlayable' in result._props)
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode_without_title(self, _, __):
@@ -547,21 +550,21 @@ class PlayStreamCatchup(TestCase):
         with self.assertRaises(KeyError):
             result._info['video']['title']
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=('my/subs.file', ))
     def test_play_episode_with_subtitles(self, _, __, ___):
         result = main.play_stream_catchup.test('some/url', 'my episode')
         self.assertEqual(len(result._subtitles), 1)
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=None)
     def test_play_episode_without_subtitles(self, _, __, ___):
         result = main.play_stream_catchup.test('some/url', 'my episode')
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
     @patch('resources.lib.itvx.get_resume_point', return_value=32)
     def test_play_episode_with_resume(self, _, __, ___):
@@ -586,7 +589,7 @@ class PlayStreamCatchup(TestCase):
     def test_play_catchup_with_other_error(self, _):
         self.assertRaises(ValueError, main.play_stream_catchup.test, 'url', '')
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=False)
     def test_play_catchup_inputstream_adaptive_not_installed(self, _, __):
         result = main.play_stream_catchup.test('url', '')

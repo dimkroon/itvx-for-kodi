@@ -7,7 +7,6 @@
 from test.support import fixtures
 fixtures.global_setup()
 
-import pytz
 import unittest
 from unittest.mock import patch
 
@@ -19,6 +18,7 @@ from support.object_checks import has_keys, is_li_compatible_dict
 from resources.lib import parsex
 from resources.lib import errors
 from resources.lib import main
+from resources.lib.utils import ZoneInfo
 
 
 setUpModule = fixtures.setup_local_tests
@@ -38,6 +38,79 @@ class TestScrapeJson(unittest.TestCase):
         # invalid json
         self.assertRaises(errors.ParseError, parsex.scrape_json,
                           '<script id="__NEXT_DATA__" type="application/json">{data=[1,2]}</script>')
+
+
+class ParseSimulcastItem(unittest.TestCase):
+    def check_result(self, result):
+        is_li_compatible_dict(self, result['show'])
+        self.assertEqual('simulcastspot', result['type'])
+
+    def check_ctx_mnu(self, item, is_present=True):
+        """Check the context menu 'Watch from the start'."""
+        self.assertIsInstance(item['ctx_mnu'], list)
+        if not is_present:
+            self.assertListEqual([], item['ctx_mnu'])
+        else:
+            self.assertIsInstance(item['ctx_mnu'][0], tuple)
+            cmd = item['ctx_mnu'][0][1]
+            self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
+            self.assertTrue('start_time=' in cmd)
+            self.assertTrue('play_from_start=True' in cmd)
+
+    def test_simucast_hero(self):
+        """Hero start and end time is in British local time in 'HH:MM'
+         format, so requires some special treatment."""
+        data = open_json('json/index-data.json')
+        data = deepcopy(data['heroContent'][2])
+        data['startDateTime'] = '18:15'
+        with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            # Programme has already started
+            dt_mock.mocked_now = datetime.now(tz=timezone.utc).replace(hour=19, minute=0)
+            obj = parsex.parse_simulcast_item(data)
+            is_li_compatible_dict(self, obj['show'])
+            self.check_ctx_mnu(obj, is_present=True)
+
+            # Programme has yet to start - should return a valid item without context menu.
+            dt_mock.mocked_now = datetime.now(tz=timezone.utc).replace(hour=17, minute=0)
+            obj = parsex.parse_simulcast_item(data)
+            self.check_ctx_mnu(obj, is_present=False)
+
+        # Invalid start time in hero data
+        dt_mock.mocked_now = datetime.now(tz=timezone.utc).replace(hour=22)
+        data['startDateTime'] = '2024-3-16T20:15:00'        #
+        self.assertRaises(ValueError, parsex.parse_simulcast_item, data)
+
+    def test_simulcast_collection(self):
+        data = deepcopy(open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows'][0])
+        self.assertEqual('simulcastspot', data['contentType'])
+        data['startDateTime'] = '2024-03-16T20:15:00Z'
+        with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            # Programme has already started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 21, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=True)
+            # Programme has yet to started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 20, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=False)
+
+    def test_simulcast_search_result(self):
+        data = deepcopy(open_json('search/test_results.json')['results'][6]['data'])
+        self.assertEqual('simulcast', data['channelType'])
+        data['startDateAndTime'] = '2024-03-16T20:15:00Z'
+        with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            # Programme has already started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 21, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=True)
+            # Programme has yet to started
+            dt_mock.mocked_now = datetime(2024, 3, 16, 20, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=False)
 
 
 class Generic(unittest.TestCase):
@@ -69,6 +142,15 @@ class Generic(unittest.TestCase):
         self.assertEqual(2, len(ctx))
         self.assertEqual('View all episodes', ctx[0])
         self.assertTrue(ctx[1].startswith('Container.Update(plugin://plugin'))
+
+    @patch('resources.lib.utils.addon_info.localise', lambda x: 'Watch from the start')
+    def test_ctx_menu_watch_from_start(self):
+        ctx = parsex.ctx_mnu_watch_from_start('ITV1', '2025-05-06T07:08:09Z')
+        self.assertIsInstance(ctx, tuple)
+        self.assertEqual(2, len(ctx))
+        self.assertEqual('Watch from the start', ctx[0])
+        self.assertTrue(ctx[1].startswith('PlayMedia(plugin://plugin'))
+        self.assertTrue('start_time=2025-05-06T07:08:09' in ctx[1])  # 'Z' stripped of time.
 
     def test_parse_hero(self):
         data = open_json('json/index-data.json')
@@ -104,32 +186,6 @@ class Generic(unittest.TestCase):
         # Invalid item
         item = {'contentType': 'special', 'title': False}
         self.assertIsNone(parsex.parse_hero_content(item))
-
-        # Watch From the start context menu on simulcastSpot item
-        item = deepcopy(data['heroContent'][2])
-        self.assertEqual('simulcastspot', item['contentType'])
-        item['startDateTime'] = '20:15'
-        with patch('resources.lib.parsex.datetime', new=mockeddt):
-            # Programme has already started
-            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=21)
-            obj = parsex.parse_hero_content(item)
-            self.assertIsInstance(obj['ctx_mnu'], list)
-            self.assertIsInstance(obj['ctx_mnu'][0], tuple)
-            cmd = obj['ctx_mnu'][0][1]
-            self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
-            self.assertTrue('start_time=' in cmd)
-            self.assertTrue('play_from_start=True' in cmd)
-
-            # Programme has yet to start - should return a valid item without context menu.
-            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=18)
-            obj = parsex.parse_hero_content(item)
-            self.assertListEqual(obj['ctx_mnu'], [])
-
-            # Invalid start time in ITVX data - should return a valid item without context menu.
-            mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=22)
-            item['startDateTime'] = '2024-3-16T20:15:00:'
-            obj = parsex.parse_hero_content(item)
-            self.assertListEqual(obj['ctx_mnu'], [])
 
     def test_parse_main_page_short_form_slider(self):
         data = open_json('html/index-data.json')
@@ -217,7 +273,7 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, item['show'])
 
     def test_parse_shortform_item(self):
-        tz_uk = pytz.timezone('Europe/London')
+        tz_uk = ZoneInfo('Europe/London')
 
         # ShortForm from collection
         data = open_json('json/test_collection.json')
@@ -250,6 +306,20 @@ class Generic(unittest.TestCase):
         item = parsex.parse_collection_item({})
         self.assertIsNone(item)
 
+    def test_get_hero_cta_label(self):
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'S1: E2 - episode 2'})
+        self.assertEqual( 'episode 2', result)
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'S1:E2 - episode 2'})
+        self.assertEqual('episode 2', result)
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'episode 2'})
+        self.assertEqual('episode 2', result)
+        result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': ''})
+        self.assertEqual('watch now', result)
+        result = parsex._get_hero_cta_label({'label': '', 'episodeLabel': ''})
+        self.assertEqual('', result)
+        result = parsex._get_hero_cta_label('episode title')
+        self.assertEqual('', result)
+
     def test_parse_episode_title(self):
         title_obj = open_json('json/episodes.json')[0]['episode']
         item = parsex.parse_episode_title(title_obj)
@@ -257,41 +327,42 @@ class Generic(unittest.TestCase):
 
         # Episodes where field episodeTitle = None
         title_obj = open_json('json/episodes.json')[1]['episode']
+        self.assertIsNone(title_obj['episodeTitle'])
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
         # Paid episode
         title_obj = open_json('json/episodes.json')[2]['episode']
+        self.assertTrue('PAID' in title_obj['tier'])
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
         self.assertTrue('premium' in item['info']['plot'].lower())
 
         # Episode where field seriesNumber is not a number, but 'other episodes'.
         title_obj = open_json('json/episodes.json')[3]['episode']
-        item = parsex.parse_episode_title(title_obj)
-        is_li_compatible_dict(self, item)
-
-        # An Episode lacking field 'guidance'.
-        title_obj = open_json('json/episodes.json')[4]['episode']
+        self.assertRaises(ValueError, int, title_obj['series'])
         item = parsex.parse_episode_title(title_obj)
         is_li_compatible_dict(self, item)
 
     def test_parse_search_result(self):
-        # These files contain programmes, episodes, films and specials both and without a specialProgramme field.
-        for file in ('search/search_results_mear.json', 'search/search_monday.json'):
-            data = open_json(file)
-            for result_item in data['results']:
-                item = parsex.parse_search_result(result_item)
-                has_keys(item, 'type', 'show')
-                is_li_compatible_dict(self, item['show'])
+        data = open_json('search/test_results.json')
+        for result_item in data['results']:
+            item = parsex.parse_search_result(result_item)
+            has_keys(item, 'type', 'show')
+            is_li_compatible_dict(self, item['show'])
+
 
         # unknown entity type
         search_result = data['results'][0]
         search_result['entityType'] = 'dfgs'
         self.assertIsNone(parsex.parse_search_result(search_result))
 
+        # both entity type and channeltype are absent
+        del search_result['entityType']
+        self.assertIsNone(parsex.parse_search_result(search_result))
+
     def test_parse_search_result_paid(self):
-        search_result = open_json('search/search_monday.json')['results'][0]        # a paid episode
+        search_result = open_json('search/test_results.json')['results'][0]        # a paid episode
         self.assertIsNone(parsex.parse_search_result(search_result, hide_paid=True))
 
     def test_parse_mylist(self):
@@ -311,46 +382,47 @@ class Generic(unittest.TestCase):
             is_li_compatible_dict(self, show['show'])
 
     def test_parse_last_watched_availability(self):
+        tz_utc = timezone.utc
         data = open_json('usercontent/last_watched_all.json')[0]
-        utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
+        utc_now = datetime.now(tz=tz_utc).replace(tzinfo=None)
 
-        some_years = (datetime.utcnow() + timedelta(days=370)).replace(microsecond=0)
-        data['availabilityEnd'] = some_years.isoformat() + 'Z'
+        some_years = (datetime.now(tz=tz_utc) + timedelta(days=370)).replace(microsecond=0)
+        data['availabilityEnd'] = some_years.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('over a year' in item['show']['info']['plot'])
 
-        some_months = (datetime.utcnow() + timedelta(days=62)).replace(microsecond=0)
-        data['availabilityEnd'] = some_months.isoformat() + 'Z'
+        some_months = (datetime.now(tz=tz_utc) + timedelta(days=62)).replace(microsecond=0)
+        data['availabilityEnd'] = some_months.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('2 months' in item['show']['info']['plot'])
 
-        one_months = (datetime.utcnow() + timedelta(days=32)).replace(microsecond=0)
-        data['availabilityEnd'] = one_months.isoformat() + 'Z'
+        one_months = (datetime.now(tz=tz_utc) + timedelta(days=32)).replace(microsecond=0)
+        data['availabilityEnd'] = one_months.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('1 month' in item['show']['info']['plot'])
 
-        some_days = (datetime.utcnow() + timedelta(days=4, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = some_days.isoformat() + 'Z'
+        some_days = (datetime.now(tz=tz_utc) + timedelta(days=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_days.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('4 days available' in item['show']['info']['plot'])
 
-        one_day = (datetime.utcnow() + timedelta(days=1, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = one_day.isoformat() + 'Z'
+        one_day = (datetime.now(tz=tz_utc) + timedelta(days=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_day.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('1 day available' in item['show']['info']['plot'])
 
-        some_hours = (datetime.utcnow() + timedelta(hours=4, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = some_hours.isoformat() + 'Z'
+        some_hours = (datetime.now(tz=tz_utc) + timedelta(hours=4, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = some_hours.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('4 hours available' in item['show']['info']['plot'])
 
-        one_hours = (datetime.utcnow() + timedelta(hours=1, minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = one_hours.isoformat() + 'Z'
+        one_hours = (datetime.now(tz=tz_utc) + timedelta(hours=1, minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = one_hours.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('1 hour available' in item['show']['info']['plot'])
 
-        zero_hours = (datetime.utcnow() + timedelta(minutes=1)).replace(microsecond=0)
-        data['availabilityEnd'] = zero_hours.isoformat() + 'Z'
+        zero_hours = (datetime.now(tz=tz_utc) + timedelta(minutes=1)).replace(microsecond=0)
+        data['availabilityEnd'] = zero_hours.isoformat()[:19] + 'Z'
         item = parsex.parse_last_watched_item(data, utc_now)
         self.assertTrue('0 hours available' in item['show']['info']['plot'])
 
