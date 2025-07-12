@@ -12,7 +12,7 @@ import time
 
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
-from datetime import timezone
+import pytz
 
 from test.support.testutils import open_json, open_doc
 from test.support.object_checks import has_keys, is_url
@@ -20,7 +20,6 @@ from test.support.object_checks import has_keys, is_url
 from resources.lib import itv
 from resources.lib import itv_account
 from resources.lib import errors
-from resources.lib.utils import ZoneInfo
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
@@ -38,8 +37,8 @@ class LiveSchedule(TestCase):
 
     @patch('xbmc.getRegion', return_value='%H:%M')
     def test_live_schedules_in_local_time(self, _):
-        local_tz = ZoneInfo('America/Fort_Nelson')
-        schedule = itv.get_live_schedule(local_tz=timezone.utc)
+        local_tz = pytz.timezone('America/Fort_Nelson')
+        schedule = itv.get_live_schedule(local_tz=pytz.utc)
         utc_times = [item['startTime'] for item in schedule[0]['slot']]
         schedule = itv.get_live_schedule(local_tz=local_tz)
         ca_times = [item['startTime'] for item in schedule[0]['slot']]
@@ -52,17 +51,25 @@ class LiveSchedule(TestCase):
 
     def test_live_schedules_system_time_format(self):
         with patch('xbmc.getRegion', return_value='%H:%M'):
-            schedule = itv.get_live_schedule(local_tz=timezone.utc)
+            schedule = itv.get_live_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('19:30', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
-            schedule = itv.get_live_schedule(local_tz=timezone.utc)
+            schedule = itv.get_live_schedule(local_tz=pytz.utc)
             start_time = schedule[0]['slot'][0]['startTime']
             self.assertEqual('07:30 pm', start_time.lower())
 
 
+class RequestStreamData(TestCase):
+    def test_request_with_auth_failure(self):
+        with patch.object(itv_account.itv_session(), 'account_data', {}):
+            with self.assertRaises(SystemExit) as cm:
+                itv._request_stream_data('some/url')
+            self.assertEqual(1, cm.exception.code)
+
+
 class GetCatchupUrls(TestCase):
-    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     def test_catchup_urls(self, _):
         mpd, key, subs, video_type, prod_id = itv.get_catchup_urls('itv1/url')
         self.assertTrue(is_url(mpd))
@@ -70,7 +77,7 @@ class GetCatchupUrls(TestCase):
         self.assertTrue(is_url(subs))
         self.assertEqual(video_type, 'CATCHUP')
 
-    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_shorform_urls(self, _):
         mpd, key, subs, video_type, prod_id = itv.get_catchup_urls('itv1/url')
         self.assertTrue(is_url(mpd))
@@ -80,7 +87,7 @@ class GetCatchupUrls(TestCase):
 
 
 class GetLiveUrls(TestCase):
-    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     def test_get_dar_urls(self, _):
         mpd, key, subs = itv.get_live_urls('itv1/url')
         self.assertTrue(is_url(mpd))
@@ -88,7 +95,16 @@ class GetLiveUrls(TestCase):
         self.assertTrue(is_url(key))
         self.assertIsNone(subs)
 
-    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_fast_non_dar.json'))
+    def test_get_non_dar_urls(self, _):
+        # Only DAAR live stremas use the startagain url
+        mpd, key, subs = itv.get_live_urls('itv.com/FAST15')
+        self.assertTrue(is_url(mpd))
+        self.assertFalse('?t=' in mpd)
+        self.assertTrue(is_url(key))
+        self.assertIsNone(subs)
+
+    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     def test_get_live_urls_start_again(self, _):
         mpd, key, subs = itv.get_live_urls('itv1/url', start_time='2023-05-06T17:18:32Z', play_from_start=True)
         self.assertTrue(is_url(mpd))
@@ -100,7 +116,7 @@ class GetLiveUrls(TestCase):
         playlist = open_json('playlists/pl_itv1.json')
         for item in playlist['Playlist']['Video']['VideoLocations']:
             del item['StartAgainUrl']
-        with patch('resources.lib.itvx._request_stream_data', return_value=playlist):
+        with patch('resources.lib.itv._request_stream_data', return_value=playlist):
             mpd, key, subs = itv.get_live_urls('itv1/url', start_time='2023-05-06T17:18:32Z', play_from_start=True)
         self.assertTrue(is_url(mpd))
         self.assertFalse('?t=' in mpd)

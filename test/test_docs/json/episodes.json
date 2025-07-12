@@ -2,196 +2,162 @@
   {
     "development_description": "Just a regular episode.",
     "episode": {
-      "ccid": "hf1g32f",
-      "accessibilityTags": [
-        "ad",
-        "s"
-      ],
-      "audioDescribed": true,
-      "availabilityFeatures": [
-        "MPEG_DASH",
-        "OUTBAND_WEBVTT",
-        "PLAYREADY",
-        "WIDEVINE",
-        "INBAND_AUDIO_DESCRIPTION"
-      ],
-      "availabilityFrom": "2024-11-30T18:30:00Z",
-      "availabilityUntil": "2027-11-30T23:59:00Z",
-      "genres": [
-        {
-          "id": "DRAMA_AND_SOAPS",
-          "name": "Drama"
-        }
-      ],
-      "channel": "ITV3",
-      "fullSeriesRange": [],
-      "heroCtaLabel": {
-        "label": "Watch Now",
-        "ariaLabel": "Watch episode 1 of series 2, Sleeping Murder",
-        "episodeLabel": "S2: E1 - Sleeping Murder"
-      },
-      "contentInfo": "S2:E1",
-      "contentOwner": null,
-      "dateTime": "2011-09-03T23:10:00.000Z",
-      "description": "Crime thriller. Ghostly apparitions lead Miss Marple to an unsolved murder.",
-      "duration": "2h",
-      "episode": 1,
-      "episodeId": "9D/13133",
-      "encodedEpisodeId": {
-        "letterA": "9Da13133",
-        "underscore": "9D_13133"
-      },
-      "episodeTitle": "Sleeping Murder",
-      "guidance": "Violence and the aftermath of violence.",
-      "image": "https://ovp.itv.com/v2/images/episode/hf1g32f/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "isFullSeries": true,
-      "linearContent": false,
-      "longDescription": "Crime thriller. When Gwenda Halliday moves into the home of her dreams, she begins to see ghostly apparitions that lead Miss Marple to an unsolved murder.",
-      "longRunning": false,
-      "nextProductionId": "9D/13135",
-      "notFormattedDuration": "PT2H",
-      "partnership": null,
-      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13133.001",
-      "premium": false,
-      "productionId": "9D/13133#001",
-      "productionType": "EPISODE",
-      "contentType": "episode",
-      "productionYear": null,
-      "programmeId": "L1286",
-      "series": 2,
-      "subtitled": true,
-      "tier": [
-        "FREE"
-      ],
-      "visuallySigned": false,
-      "regionalisation": false,
-      "broadcastDateTime": "2011-09-03T23:10:00Z"
-    }
-  },
-  {
-    "development_description": "Episode where field episodeTitle is null.",
-    "episode": {
-      "ccid": "wrt9gsc",
       "accessibilityTags": [
         "s"
       ],
       "audioDescribed": false,
       "availabilityFeatures": [
-        "OUTBAND_WEBVTT",
-        "HLS",
-        "FAIRPLAY"
+        "MPEG_DASH",
+        "WIDEVINE"
       ],
-      "availabilityFrom": "2022-12-22T07:00:00Z",
-      "availabilityUntil": "2027-05-31T22:59:00Z",
-      "genres": [
-        {
-          "id": "DRAMA_AND_SOAPS",
-          "name": "Drama"
-        }
+      "availabilityFrom": "2022-02-14T09:54:00Z",
+      "availabilityUntil": "2024-11-30T23:59:59.999Z",
+      "broadcastDateTime": "2023-01-06T09:10:00Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
       ],
-      "channel": "ITV",
-      "fullSeriesRange": [],
-      "heroCtaLabel": {
-        "label": "Watch Now",
-        "ariaLabel": "Watch episode 6 of series 6, Episode 6",
-        "episodeLabel": "S6: E6 - Episode 6"
-      },
-      "contentInfo": "S6:E6",
+      "ccid": "34njkq5",
+      "channel": "ITV3",
+      "heroCtaLabel": "Series 1, Episode 4",
+      "contentInfo": "S1, E4. A Murder Is Announced",
       "contentOwner": null,
-      "dateTime": null,
-      "description": "Tanya Tucker arrives at the prison in a sweatbox for possession of Class A drugs.",
-      "duration": "1h",
-      "episode": 6,
-      "episodeId": "7/0129/0077",
+      "dateTime": "2023-01-06T09:10:00.000Z",
+      "description": "Zo\u00eb Wanamaker guest stars as Miss Marple sets about uncovering a village's dark secrets.",
+      "duration": "2h 5m",
       "encodedEpisodeId": {
-        "letterA": "7a0129a0077",
-        "underscore": "7_0129_0077"
+        "letterA": "9Da13067",
+        "underscore": "9D_13067"
       },
-      "episodeTitle": null,
-      "guidance": "With violence, adult scenes and flashing images.",
-      "image": "https://ovp.itv.com/v2/images/episode/wrt9gsc/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "isFullSeries": false,
+      "episode": 4,
+      "episodeId": "9D/13067",
+      "episodeTitle": "A Murder Is Announced",
+      "fullSeriesRange": [],
+      "guidance": "",
+      "image": "https://ovp.itv.com/images/episode/34njkq5/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isFullSeries": true,
       "linearContent": false,
-      "longDescription": "Tanya Tucker, a glamorous footballer's wife, arrives at the prison for possession of Class A drugs. With a tough time ahead of her, she goes on a mission to help a friend.",
+      "longDescription": "Zo\u00eb Wanamaker guest stars when Miss Marple sets about uncovering a village's dark secrets, following the announcement of a murder in the personal columns of a local paper.",
       "longRunning": false,
-      "nextProductionId": "7/0129/0078",
-      "notFormattedDuration": "PT1H",
+      "nextProductionId": "9D/13133",
+      "notFormattedDuration": "PT2H5M",
       "partnership": null,
-      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/7_0129_0077.002",
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/9D_13067.003",
       "premium": false,
-      "productionId": "7/0129/0077#002",
+      "productionId": "9D/13067#003",
       "productionType": "EPISODE",
-      "contentType": "episode",
-      "productionYear": null,
-      "programmeId": "7/0129",
-      "series": 6,
+      "programmeId": "L1286",
+      "series": 1,
       "subtitled": true,
       "tier": [
         "FREE"
       ],
       "visuallySigned": false,
-      "regionalisation": false,
-      "broadcastDateTime": null
+      "regionalisation": false
+    }
+  },
+  {
+    "development_description": "Episode where field episodeTitle is null.",
+    "episode": {
+      "accessibilityTags": [
+        "s"
+      ],
+      "audioDescribed": false,
+      "availabilityFeatures": [
+        "MPEG_DASH",
+        "OUTBAND_WEBVTT",
+        "WIDEVINE"
+      ],
+      "availabilityFrom": "2025-05-31T22:59:00Z",
+      "availabilityUntil": "2025-05-31T22:59:59.999Z",
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "ccid": "7y5tkft",
+      "channel": "ITV",
+      "heroCtaLabel": "Series 7, Episode 1",
+      "contentInfo": "S7, E1",
+      "contentOwner": null,
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Fenner has a difficult time adjusting to life on the other side of the bars.",
+      "duration": "1h 30m",
+      "encodedEpisodeId": {
+        "letterA": "7a0129a0085",
+        "underscore": "7_0129_0085"
+      },
+      "episode": 1,
+      "episodeId": "7/0129/0085",
+      "episodeTitle": null,
+      "fullSeriesRange": [],
+      "guidance": "Contains strong language, violence, sex references and hard drug use.",
+      "image": "https://ovp.itv.com/images/episode/7y5tkft/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "isFullSeries": false,
+      "linearContent": false,
+      "longDescription": "Fenner has a difficult time adjusting to life on the other side of the bars when some fellow inmates start harassing the former prison officer.",
+      "longRunning": false,
+      "nextProductionId": "7/0129/0086",
+      "notFormattedDuration": "PT1H30M",
+      "partnership": null,
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/7_0129_0085.002",
+      "premium": false,
+      "productionId": "7/0129/0085#002",
+      "productionType": "EPISODE",
+      "programmeId": "7/0129",
+      "series": 7,
+      "subtitled": true,
+      "tier": [
+        "FREE"
+      ],
+      "visuallySigned": false,
+      "regionalisation": false
     }
   },
   {
     "development_description": "Paid Episode.",
     "episode": {
-      "ccid": "4xw287f",
       "accessibilityTags": [
-        "ad",
         "s"
       ],
-      "audioDescribed": true,
+      "audioDescribed": false,
       "availabilityFeatures": [
-        "MPEG_DASH",
-        "OUTBAND_WEBVTT",
-        "PLAYREADY",
-        "WIDEVINE",
-        "INBAND_AUDIO_DESCRIPTION"
+        "FAIRPLAY",
+        "HLS"
       ],
       "availabilityFrom": "2023-11-01T00:01:00Z",
       "availabilityUntil": "2025-10-31T23:59:00Z",
-      "genres": [
-        {
-          "id": "DRAMA_AND_SOAPS",
-          "name": "Drama"
-        }
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
       ],
+      "ccid": "vf3jc2z",
       "channel": "ITV",
-      "fullSeriesRange": [],
-      "heroCtaLabel": {
-        "label": "Watch Now",
-        "ariaLabel": "Watch episode 1 of series 1, Episode 1",
-        "episodeLabel": "S1: E1 - Episode 1"
-      },
-      "contentInfo": "S1:E1",
+      "heroCtaLabel": "Series 1, Episode 7",
+      "contentInfo": "S1, E7",
       "contentOwner": null,
-      "dateTime": "2010-09-26T20:00:00.000Z",
-      "description": "The first episode of the period drama. It is April 1912, and the Titanic has been sunk.",
-      "duration": "1h 30m",
-      "episode": 1,
-      "episodeId": "1/8697/0001",
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Glittering period drama. The family is stunned when Lady Cora finds that she is pregnant.",
+      "duration": "1h",
       "encodedEpisodeId": {
-        "letterA": "1a8697a0001",
-        "underscore": "1_8697_0001"
+        "letterA": "1a8697a0007",
+        "underscore": "1_8697_0007"
       },
+      "episode": 7,
+      "episodeId": "1/8697/0007",
       "episodeTitle": null,
+      "fullSeriesRange": [],
       "guidance": null,
-      "image": "https://ovp.itv.com/v2/images/episode/4xw287f/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "image": "https://ovp.itv.com/images/episode/vf3jc2z/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub\u0026fallback=standard\u0026w={width}\u0026h={height}\u0026q={quality}\u0026blur={blur}\u0026bg={bg}",
       "isFullSeries": true,
       "linearContent": false,
-      "longDescription": "The first episode of the glittering period drama. It is April 1912, and news arrives of the sinking of the Titanic with the loss of Downton's heir James and his son Patrick.",
+      "longDescription": "Glittering period drama. The family is astonished when Lady Cora Crawley finds that she is pregnant, and the announcement leaves Mary wondering how to answer Matthew's proposal.",
       "longRunning": false,
-      "nextProductionId": "1/8697/0002",
-      "notFormattedDuration": "PT1H30M",
+      "nextProductionId": "1/8697/0008",
+      "notFormattedDuration": "PT1H",
       "partnership": null,
-      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0001.003",
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0007.003",
       "premium": true,
-      "productionId": "1/8697/0001#003",
+      "productionId": "1/8697/0007#003",
       "productionType": "EPISODE",
-      "contentType": "episode",
-      "productionYear": null,
       "programmeId": "1/8697",
       "series": 1,
       "subtitled": true,
@@ -199,68 +165,57 @@
         "PAID"
       ],
       "visuallySigned": false,
-      "regionalisation": false,
-      "broadcastDateTime": "2010-09-26T20:00:00Z"
+      "regionalisation": false
     }
   },
   {
-    "development_description": "Paid episode with the non-integer series number 'other' - Manufactured for testing. Haven't seen in the wild for a while.",
+    "development_description": "Paid episode with the non-integer series number 'other'.",
     "episode": {
-      "ccid": "4zr1dwx",
       "accessibilityTags": [
         "ad",
         "s"
       ],
       "audioDescribed": true,
       "availabilityFeatures": [
-        "MPEG_DASH",
-        "OUTBAND_WEBVTT",
-        "PLAYREADY",
-        "WIDEVINE",
-        "INBAND_AUDIO_DESCRIPTION"
+        "FAIRPLAY",
+        "HD",
+        "HLS",
+        "SINGLE_TRACK"
       ],
       "availabilityFrom": "2023-11-01T00:01:00Z",
       "availabilityUntil": "2025-10-31T23:59:00Z",
-      "genres": [
-        {
-          "id": "DRAMA_AND_SOAPS",
-          "name": "Drama"
-        }
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
       ],
+      "ccid": "53wt28m",
       "channel": "ITV",
-      "fullSeriesRange": [],
-      "heroCtaLabel": {
-        "label": "Watch Now",
-        "ariaLabel": "Watch episode 1 of series 6, Episode 1",
-        "episodeLabel": "S6: E1 - Episode 1"
-      },
-      "contentInfo": "S6:E1",
+      "heroCtaLabel": "Watch Episode",
+      "contentInfo": "2h",
       "contentOwner": null,
-      "dateTime": "2015-09-20T20:00:00.000Z",
-      "description": "Period drama. Secrets and rifts threaten the unity of the family.",
-      "duration": "1h",
-      "episode": 1,
-      "episodeId": "1/8697/0044",
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Tensions run high as the family host a lavish Christmas party",
+      "duration": "2h",
       "encodedEpisodeId": {
-        "letterA": "1a8697a0044",
-        "underscore": "1_8697_0044"
+        "letterA": "1a8697a0016",
+        "underscore": "1_8697_0016"
       },
-      "episodeTitle": null,
+      "episode": null,
+      "episodeId": "1/8697/0016",
+      "episodeTitle": "Downton Abbey Christmas Special 2011 (Series 2)",
+      "fullSeriesRange": [],
       "guidance": null,
-      "image": "https://ovp.itv.com/v2/images/episode/4zr1dwx/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "isFullSeries": false,
+      "image": "https://ovp.itv.com/images/special/53wt28m/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub\u0026fallback=standard\u0026w={width}\u0026h={height}\u0026q={quality}\u0026blur={blur}\u0026bg={bg}",
       "linearContent": false,
-      "longDescription": "It is now 1925, when secrets and rifts threaten the unity of the family, while those below stairs are faced with social changes.",
+      "longDescription": "It's Christmas 1919 and the family host a lavish Christmas party, but tensions are running high, and Bates' arrest has cast a shadow over the festivities.",
       "longRunning": false,
-      "nextProductionId": "1/8697/0045",
-      "notFormattedDuration": "PT1H",
+      "notFormattedDuration": "PT2H",
       "partnership": null,
-      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0044.002",
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0016.002",
       "premium": true,
-      "productionId": "1/8697/0044#002",
-      "productionType": "EPISODE",
-      "contentType": "episode",
-      "productionYear": null,
+      "productionId": "1/8697/0016#002",
+      "productionType": "SPECIAL",
+      "productionYear": 2011,
       "programmeId": "1/8697",
       "series": "others",
       "subtitled": true,
@@ -268,8 +223,64 @@
         "PAID"
       ],
       "visuallySigned": false,
-      "regionalisation": false,
-      "broadcastDateTime": "2015-09-20T20:00:00Z"
+      "regionalisation": false
+    }
+  },
+  {
+    "development_description": "Episode without a field 'guidance'.",
+    "episode": {
+      "accessibilityTags": [
+        "ad",
+        "s"
+      ],
+      "audioDescribed": true,
+      "availabilityFeatures": [
+        "FAIRPLAY",
+        "HD",
+        "HLS",
+        "SINGLE_TRACK"
+      ],
+      "availabilityFrom": "2023-11-01T00:01:00Z",
+      "availabilityUntil": "2025-10-31T23:59:00Z",
+      "broadcastDateTime": null,
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "ccid": "53wt28m",
+      "channel": "ITV",
+      "heroCtaLabel": "Watch Episode",
+      "contentInfo": "2h",
+      "contentOwner": null,
+      "dateTime": "1970-01-01T00:00:00.000Z",
+      "description": "Tensions run high as the family host a lavish Christmas party",
+      "duration": "2h",
+      "encodedEpisodeId": {
+        "letterA": "1a8697a0016",
+        "underscore": "1_8697_0016"
+      },
+      "episode": null,
+      "episodeId": "1/8697/0016",
+      "episodeTitle": "Downton Abbey Christmas Special 2011 (Series 2)",
+      "fullSeriesRange": [],
+      "image": "https://ovp.itv.com/images/special/53wt28m/itv_hub/06_RailPromoLandscape/16x9?distributionPartner=itv_hub\u0026fallback=standard\u0026w={width}\u0026h={height}\u0026q={quality}\u0026blur={blur}\u0026bg={bg}",
+      "linearContent": false,
+      "longDescription": "It's Christmas 1919 and the family host a lavish Christmas party, but tensions are running high, and Bates' arrest has cast a shadow over the festivities.",
+      "longRunning": false,
+      "notFormattedDuration": "PT2H",
+      "partnership": null,
+      "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/1_8697_0016.002",
+      "premium": true,
+      "productionId": "1/8697/0016#002",
+      "productionType": "SPECIAL",
+      "productionYear": 2011,
+      "programmeId": "1/8697",
+      "series": "others",
+      "subtitled": true,
+      "tier": [
+        "FREE"
+      ],
+      "visuallySigned": false,
+      "regionalisation": false
     }
   }
 ]

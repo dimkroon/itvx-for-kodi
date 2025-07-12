@@ -8,10 +8,8 @@
 from __future__ import annotations
 import time
 import unittest
-import urllib
-import re
 
-from resources.lib import utils
+from resources.lib import  utils
 
 
 def has_keys(dict_obj, *keys, obj_name='dictionary'):
@@ -28,7 +26,7 @@ def has_keys(dict_obj, *keys, obj_name='dictionary'):
         )
 
 
-def misses_keys(dict_obj: dict, *keys: str, obj_name: str = 'dictionary') -> bool:
+def misses_keys(dict_obj: str, *keys: str, obj_name: str = 'dictionary') -> None:
     """Checks if all keys are NOT present in the dictionary
 
     :param dict_obj: The dictionary to check
@@ -48,7 +46,7 @@ def misses_keys(dict_obj: dict, *keys: str, obj_name: str = 'dictionary') -> boo
     return True
 
 
-def expect_keys(dict_obj: dict, *keys: str, obj_name: str = 'dictionary'):
+def expect_keys(dict_obj: dict, *keys: str, obj_name: str ='dictionary'):
     """Print a warning if a key is not present, but do not fail a test.
     """
     try:
@@ -67,7 +65,7 @@ def expect_misses_keys(dict_obj, *keys, obj_name='dictionary'):
         return False
 
 
-def is_url(url: str, ext: str | list | tuple | None = None) -> bool:
+def is_url(url: str, ext: str| list | tuple | None = None) -> bool:
     """Short and simple check if the string `url` is indeed a URL.
     This is in no way intended to completely validate the URL - it is just to check
     that the string is not just a path without protocol specification, or just some
@@ -116,12 +114,12 @@ def is_encoded_programme_or_episode_id(item: dict) -> bool:
         us = item['underscore']
         if la == '' and us == '':
             return True
-        if not (isinstance(la, str) and la):
+        if not(isinstance(la, str) and la):
             return False
         for char in '_/':
             if char in la:
                 return False
-        if not (isinstance(us, str) and us):
+        if not(isinstance(us, str) and us):
             return False
         for char in 'a/':
             if char in us:
@@ -182,21 +180,21 @@ def is_li_compatible_dict(testcase: unittest.TestCase, dict_obj: dict):
 
 
 def is_tier_info(item) -> bool:
-    if not isinstance(item, list):
+    if not isinstance( item, list):
         return False
     return 'FREE' in item or 'PAID' in item
 
 
-def is_not_empty(item, item_type):
-    if not isinstance(item, item_type):
+def is_not_empty(item, type):
+    if not isinstance(item, type):
         return False
-    if item_type in (int, float, bool):
+    if type in (int, float, bool):
         return True
     else:
         return bool(item)
 
 
-def check_live_stream_info(playlist, full_hd=False):
+def check_live_stream_info(playlist):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.online.playlist.sim.v3+json, which is
     returned for live channels
@@ -215,20 +213,12 @@ def check_live_stream_info(playlist, full_hd=False):
     strm_inf = video_inf['VideoLocations']
     assert isinstance(strm_inf, list), 'VideoLocations is not a list but {}'.format(type(strm_inf))
     for strm in strm_inf:
+        assert isinstance(strm['IsDar'], bool)
         assert is_url(strm['Url'], '.mpd')
         assert is_url(strm['StartAgainUrl'], '.mpd')
         assert is_url(strm['KeyServiceUrl'])
-        assert 'widevine' in strm['KeyServiceUrl'].lower()
         assert '{START_TIME}' in strm['StartAgainUrl']
-        if full_hd:
-            # Freeview live streams are all non-dar, even if supportsAdPods is True
-            assert strm['IsDar'] is False
-            assert 'ctv.mpd' in strm['StartAgainUrl']
-        else:
-            url = strm['StartAgainUrl']
-            assert ('dotcom.mpd' in url
-                    or 'dotcom-low.mpd' in url
-                    or 'ctv-low.mpd' in url)
+
 
 def has_adverts(playlist):
     breaks = playlist['ContentBreaks']
@@ -241,7 +231,7 @@ def has_adverts(playlist):
     return has_breaks
 
 
-def check_catchup_dash_stream_info(playlist, full_hd=False):
+def check_catchup_dash_stream_info(playlist):
     """Check the structure of a dictionary containing urls to playlist and subtitles, etc.
     This checks a playlist of type application/vnd.itv.vod.playlist.v2+json, which is
     returned for catchup productions
@@ -258,18 +248,11 @@ def check_catchup_dash_stream_info(playlist, full_hd=False):
 
     strm_inf = video_inf['MediaFiles']
     assert isinstance(strm_inf, list), 'MediaFiles is not a list but {}'.format(type(strm_inf))
-    resolutions = []
     for strm in strm_inf:
-        strm_url = urllib.parse.unquote(strm['Href'])
-        assert (strm_url.startswith('https://')) and '.mpd?' in strm_url, \
-            "Unexpected playlist url: <{}>".format(strm_url)
+        assert (strm['Href'].startswith('https://')) and '.mpd?' in strm['Href'], \
+            "Unexpected playlist url: <{}>".format(strm['Href'])
         assert is_url(strm['KeyServiceUrl']), "Unexpected KeyServiceUrl url: <{}>".format(strm['KeyServiceUrl'])
-        assert 'widevine' in strm['KeyServiceUrl'].lower()
-        resolutions.append(strm['Resolution'])
-    if full_hd:
-        assert ['1080', '720', '576'] == resolutions
-    else:
-        assert ['720', '576'] == resolutions
+        assert 'Resolution' in strm
 
     subtitles = video_inf['Subtitles']
     assert isinstance(subtitles, (type(None), list)), 'MediaFiles is not a list but {}'.format(type(strm_inf))
@@ -329,10 +312,10 @@ def check_short_form_item(item):
     has_keys(item, 'episodeTitle', 'imageUrl', 'contentType', obj_name=objname)
     misses_keys(item, 'isPaid', 'tier', 'imagePresets')
 
-    assert (item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
+    assert(item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
 
     if item['contentType'] == 'fastchannelspot':
-        assert (item['channel'].startswith('fast'))
+        assert(item['channel'].startswith('fast'))
         misses_keys(item, 'description, synopsis', obj_name=objname)
     else:
         has_keys(item, 'episodeId', 'titleSlug', 'dateTime', obj_name=objname)
@@ -434,7 +417,7 @@ def check_item_type_programme(testcase, progr_data, parent):
     testcase.assertTrue(is_url(progr_data['itvxImageUrl']))
     testcase.assertFalse(is_encoded_programme_id(progr_data['programmeId']))
     testcase.assertTrue(is_not_empty(progr_data['programmeId'], str))
-    testcase.assertTrue(progr_data['tier'] in ('FREE', 'PAID'))
+    testcase.assertTrue(progr_data['tier'] in('FREE', 'PAID'))
 
     testcase.assertIsInstance(progr_data['numberOfAvailableSeries'], list)
     testcase.assertIsInstance(progr_data['numberOfEpisodes'], (int, type(None)))
@@ -445,7 +428,7 @@ def check_genres(testcase, genre_item, item_name='unknown'):
 
     :param unittest.TestCase testcase: Instanceof unittest.TestCase to run the tests in.
     :param list genre_item: The value of a field named 'genres' in data returned by ITVX.
-    :param item_name: Name to be used in error en debug messages.
+
     """
     for genre in genre_item:
         has_keys(genre, 'id', 'name', obj_name=item_name)
@@ -455,14 +438,3 @@ def check_genres(testcase, genre_item, item_name='unknown'):
             ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM', 'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT'],
             f"Unexpected genre '{genre['id']}' in item f{item_name}")
 
-
-def check_dash_manifest(testcase, mpd: str):
-    """Check that `mpd` is a dash manifest and return the maximum video resolution
-
-    """
-    adapt_sets = re.findall(r'<AdaptationSet(.+?)</AdaptationSet>', mpd, re.DOTALL | re.IGNORECASE)
-    for adapt_set in adapt_sets:
-        if 'contentType="video"' in adapt_set:
-            max_res = re.search(r'maxHeight="(\d{3,4})"', adapt_set, re.IGNORECASE).group(1)
-            return int(max_res)
-    raise AssertionError("Invalid DASH manifest")

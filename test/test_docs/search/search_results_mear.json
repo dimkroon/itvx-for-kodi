@@ -1,0 +1,247 @@
+{
+	"tookLongest": 60,
+	"tookTotal": 170,
+	"maxScore": 0,
+	"results": [
+		{
+			"id": "yqc14cn-itv_hub-dotcom-ITV-fairplay-hls",
+			"entityType": "programme",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"programmeCCId": "c1kp5vk",
+				"legacyId": {
+					"officialFormat": "2/5252",
+					"apiEncoded": "2_5252"
+				},
+				"productionId": "2/5252/0010#001",
+				"platform": "dotcom",
+				"programmeTitle": "DNA Journey",
+				"synopsis": "Famous faces bond over their remarkable family secrets.",
+				"latestAvailableEpisode": {
+					"episodeCCId": "wy5bw14",
+					"legacyId": {
+						"officialFormat": "2/5252/0010",
+						"apiEncoded": "2_5252_0010"
+					},
+					"imageHref": "https://ovp.itv.com/images/programme/c1kp5vk/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+				},
+				"totalAvailableEpisodes": 12,
+				"tier": "FREE"
+			},
+			"score": 59.999996
+		},
+		{
+			"id": "0rm7g3g-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+			"entityType": "programme",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"programmeCCId": "8wv7q1b",
+				"legacyId": {
+					"officialFormat": "2/5898",
+					"apiEncoded": "2_5898"
+				},
+				"productionId": "2/5898/0007#003",
+				"platform": "dotcom",
+				"programmeTitle": "Wild China with Ray Mears",
+				"synopsis": "Savour some truly iconic wildlife - from giant pandas to pink dolphins",
+				"latestAvailableEpisode": {
+					"episodeCCId": "1dnfb7b",
+					"legacyId": {
+						"officialFormat": "2/5898/0007",
+						"apiEncoded": "2_5898_0007"
+					},
+					"imageHref": "https://ovp.itv.com/images/programme/8wv7q1b/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+				},
+				"totalAvailableEpisodes": 6,
+				"tier": "FREE"
+			},
+			"score": 21.75
+		},
+		{
+			"id": "604nhp6-itv_hub-dotcom-ITV-fairplay-hd-hls",
+			"entityType": "programme",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"programmeCCId": "qvqx9k6",
+				"legacyId": {
+					"officialFormat": "10/1098",
+					"apiEncoded": "10_1098"
+				},
+				"productionId": "10/1098/0025#001",
+				"platform": "dotcom",
+				"programmeTitle": "Maid Marian & Her Merry Men",
+				"synopsis": "Classic comedy take on Robin Hood with Maid Marian at the helm",
+				"latestAvailableEpisode": {
+					"episodeCCId": "bg37hm9",
+					"legacyId": {
+						"officialFormat": "10/1098/0025",
+						"apiEncoded": "10_1098_0025"
+					},
+					"imageHref": "https://ovp.itv.com/images/programme/qvqx9k6/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard"
+				},
+				"totalAvailableEpisodes": 25,
+				"tier": "PAID",
+				"brandingMetadata": {
+					"partnership": "BRITBOX",
+					"contentOwner": "BBC"
+				}
+			},
+			"score": 18.75
+		},
+		{
+			"id": "h7y8n21-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+			"entityType": "special",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"specialCCId": "l0cxg6t",
+				"legacyId": {
+					"officialFormat": "10/1098/0026",
+					"apiEncoded": "10_1098_0026"
+				},
+				"productionId": "10/1098/0026#001",
+				"platform": "dotcom",
+				"specialTitle": "Maid Marian & Her Merry Men Christmas Special: 1993",
+				"specialProgramme": {
+					"programmeCCId": "qvqx9k6",
+					"legacyId": {
+						"officialFormat": "10/1098",
+						"apiEncoded": "10_1098"
+					},
+					"programmeTitle": "Maid Marian & Her Merry Men"
+				},
+				"synopsis": "Christmas Special 1993. A handsome stranger arrives and makes an offer to King John.",
+				"imageHref": "https://ovp.itv.com/images/special/l0cxg6t/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "PAID",
+				"brandingMetadata": {
+					"partnership": "BRITBOX",
+					"contentOwner": "BBC"
+				}
+			},
+			"score": 18.75
+		},
+		{
+			"id": "gxbgppb-itv_hub-dotcom-ITV-fairplay-hls",
+			"entityType": "film",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"filmCCId": "ys1mv4z",
+				"legacyId": {
+					"officialFormat": "10/2721/0001",
+					"apiEncoded": "10_2721_0001"
+				},
+				"productionId": "10/2721/0001#001",
+				"platform": "dotcom",
+				"filmTitle": "It's A Very Merry Muppet Christmas Movie",
+				"synopsis": "It's a muppetful life and one frog can make a world of difference",
+				"imageHref": "https://ovp.itv.com/images/film/ys1mv4z/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "FREE"
+			},
+			"score": 11.333333
+		},
+		{
+			"id": "57hzc2r-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+			"entityType": "film",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"filmCCId": "x2m37mn",
+				"legacyId": {
+					"officialFormat": "10/3113/0001",
+					"apiEncoded": "10_3113_0001"
+				},
+				"productionId": "10/3113/0001#001",
+				"platform": "dotcom",
+				"filmTitle": "A Very Merry Toy Store",
+				"synopsis": "Can business rivals put their past behind them to fight a bigger foe?",
+				"imageHref": "https://ovp.itv.com/images/film/x2m37mn/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "FREE"
+			},
+			"score": 11.333333
+		},
+		{
+			"id": "j3tmd77-itv_hub-dotcom-ITV-fairplay-hls",
+			"entityType": "film",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"filmCCId": "7q50hrb",
+				"legacyId": {
+					"officialFormat": "10/3711/0001",
+					"apiEncoded": "10_3711_0001"
+				},
+				"productionId": "10/3711/0001#001",
+				"platform": "dotcom",
+				"filmTitle": "Merry Madagascar",
+				"synopsis": "Santa Claus is marooned in Madagascar - will he be able to travel home?",
+				"imageHref": "https://ovp.itv.com/images/film/7q50hrb/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "FREE"
+			},
+			"score": 11.333333
+		},
+		{
+			"id": "bksjdzf-itv_hub-dotcom-ITV-fairplay-hls-outband-webvtt",
+			"entityType": "film",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"filmCCId": "c5qgv9k",
+				"legacyId": {
+					"officialFormat": "10/2712/0001",
+					"apiEncoded": "10_2712_0001"
+				},
+				"productionId": "10/2712/0001#001",
+				"platform": "dotcom",
+				"filmTitle": "Merry Ex-Mas",
+				"synopsis": "Dive into this festive story of past grievances and love not quite lost",
+				"imageHref": "https://ovp.itv.com/images/film/c5qgv9k/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "FREE"
+			},
+			"score": 11.333333
+		},
+		{
+			"id": "dwm2zvj-itv_hub-dotcom-ITV-fairplay-hls",
+			"entityType": "film",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"filmCCId": "jkfk16j",
+				"legacyId": {
+					"officialFormat": "10/3145/0001",
+					"apiEncoded": "10_3145_0001"
+				},
+				"productionId": "10/3145/0001#001",
+				"platform": "dotcom",
+				"filmTitle": "Mesrine: Public Enemy",
+				"synopsis": "Brutal and unflinching - Vincent Cassel returns as the notorious gangster",
+				"imageHref": "https://ovp.itv.com/images/film/jkfk16j/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "FREE"
+			},
+			"score": 6
+		},
+		{
+			"id": "zjp4l9q-itv_hub-dotcom-ITV-fairplay-hls",
+			"entityType": "film",
+			"streamingPlatform": "itv_hub",
+			"broadcaster": "ITV",
+			"data": {
+				"filmCCId": "82s6c88",
+				"legacyId": {
+					"officialFormat": "10/3144/0001",
+					"apiEncoded": "10_3144_0001"
+				},
+				"productionId": "10/3144/0001#001",
+				"platform": "dotcom",
+				"filmTitle": "Mesrine: Killer Instinct",
+				"synopsis": "He's a loyal son, a dedicated soldier... and a feared criminal ",
+				"imageHref": "https://ovp.itv.com/images/film/82s6c88/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}&fallback=standard",
+				"tier": "FREE"
+			},
+			"score": 6
+		}
+	]
+}

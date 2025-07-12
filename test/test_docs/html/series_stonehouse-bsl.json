@@ -1,1 +1,261 @@
-{"navAdServerParams": {"area": "video", "programmeTitle": "Stonehouse", "channel": null, "category": "DRAMA_AND_SOAPS", "episodeId": "10_1973"}, "forceRefresh": true, "isAccessibleByKids": false, "newsVideos": null, "subnav": null, "programme": {"ccid": "9s5xlhd", "channel": "ITV3", "contentOwner": null, "description": "Secrets & spies - Matthew Macfadyen in a gripping true story", "encodedProgrammeId": {"letterA": "10a1973", "underscore": "10_1973"}, "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}], "heroCtaLabel": "", "image": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}", "longDescription": "Scandal & deceit - the gripping true story of John Stonehouse, MP. How did this high-flying member of Harold Wilson's government pull off the ultimate deception?", "numberOfAvailableSeries": 1, "partnership": null, "programmeId": "10/1973", "tier": ["FREE"], "title": "Stonehouse", "titleSlug": "stonehouse", "visuallySigned": true, "attribution": {"partnership": null, "contentOwner": null}, "imagePresets": {"0": {"1x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false", "2x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"}, "768": {"1x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false", "2x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"}, "1280": {"1x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false", "2x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"}, "1920": {"1x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false", "2x": "https://ovp.itv.com/v2/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"}}}, "seriesList": [{"seriesNumber": "1", "seriesLabel": "Series 1", "legacyId": "10/1973-01", "fullSeries": true, "seriesType": "SERIES", "longRunning": false, "numberOfAvailableEpisodes": 3, "titles": [{"ccid": "3v909lt", "accessibilityTags": ["ad", "s", "bsl"], "audioDescribed": true, "availabilityFeatures": ["MPEG_DASH", "OUTBAND_WEBVTT", "PLAYREADY", "WIDEVINE", "INBAND_AUDIO_DESCRIPTION"], "availabilityFrom": "2023-01-23T11:10:00Z", "availabilityUntil": "2027-07-26T22:59:00Z", "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}], "channel": "ITV3", "fullSeriesRange": [], "heroCtaLabel": {"label": "Watch Now", "ariaLabel": "Watch episode 1 of series 1, Episode 1", "episodeLabel": "S1: E1 - Episode 1"}, "contentInfo": "S1:E1", "contentOwner": null, "dateTime": null, "description": "In 1974, ambitious British politician John Stonehouse hatches an outlandish plan.", "duration": "1h", "episode": 1, "episodeId": "10/1973/0001", "encodedEpisodeId": {"letterA": "10a1973a0001", "underscore": "10_1973_0001"}, "episodeTitle": null, "guidance": "Adult content", "image": "https://ovp.itv.com/v2/images/episode/3v909lt/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}", "isFullSeries": true, "linearContent": false, "longDescription": "In 1974, ambitious British politician John Stonehouse hatches an outlandish plan to disappear.", "longRunning": false, "nextProductionId": "10/1973/0002", "notFormattedDuration": "PT1H", "partnership": null, "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0001.003", "premium": false, "productionId": "10/1973/0001#003", "productionType": "EPISODE", "contentType": "episode", "productionYear": null, "programmeId": "10/1973", "series": 1, "subtitled": true, "tier": ["FREE"], "visuallySigned": true, "bslPlaylistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0001.005", "regionalisation": false, "broadcastDateTime": null}, {"ccid": "8fkh9yl", "accessibilityTags": ["ad", "s", "bsl"], "audioDescribed": true, "availabilityFeatures": ["MPEG_DASH", "OUTBAND_WEBVTT", "PLAYREADY", "WIDEVINE", "INBAND_AUDIO_DESCRIPTION"], "availabilityFrom": "2023-01-23T11:10:00Z", "availabilityUntil": "2027-07-26T22:59:00Z", "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}], "channel": "ITV3", "fullSeriesRange": [], "heroCtaLabel": {"label": "Watch Now", "ariaLabel": "Watch episode 2 of series 1, Episode 2", "episodeLabel": "S1: E2 - Episode 2"}, "contentInfo": "S1:E2", "contentOwner": null, "dateTime": null, "description": "John - now hiding out in Melbourne - draws suspicion from the local police.", "duration": "1h", "episode": 2, "episodeId": "10/1973/0002", "encodedEpisodeId": {"letterA": "10a1973a0002", "underscore": "10_1973_0002"}, "episodeTitle": null, "guidance": "adult content ", "image": "https://ovp.itv.com/v2/images/episode/8fkh9yl/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}", "isFullSeries": true, "linearContent": false, "longDescription": "When John - now hiding out in Melbourne - draws suspicion from the local police, Barbara and Sheila fly to Australia to confront him.", "longRunning": false, "nextProductionId": "10/1973/0003", "notFormattedDuration": "PT1H", "partnership": null, "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0002.003", "premium": false, "productionId": "10/1973/0002#003", "productionType": "EPISODE", "contentType": "episode", "productionYear": null, "programmeId": "10/1973", "series": 1, "subtitled": true, "tier": ["FREE"], "visuallySigned": true, "bslPlaylistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0002.005", "regionalisation": false, "broadcastDateTime": null}, {"ccid": "bpddsjg", "accessibilityTags": ["ad", "s", "bsl"], "audioDescribed": true, "availabilityFeatures": ["MPEG_DASH", "OUTBAND_WEBVTT", "PLAYREADY", "WIDEVINE", "INBAND_AUDIO_DESCRIPTION"], "availabilityFrom": "2023-01-23T11:10:00Z", "availabilityUntil": "2027-07-26T22:59:00Z", "genres": [{"id": "DRAMA_AND_SOAPS", "name": "Drama"}], "channel": "ITV3", "fullSeriesRange": [], "heroCtaLabel": {"label": "Watch Now", "ariaLabel": "Watch episode 3 of series 1, Episode 3", "episodeLabel": "S1: E3 - Episode 3"}, "contentInfo": "S1:E3", "contentOwner": null, "dateTime": "2023-08-30T21:00:00.000Z", "description": "Will John Stonehouse finally face the consequences of his actions?", "duration": "1h", "episode": 3, "episodeId": "10/1973/0003", "encodedEpisodeId": {"letterA": "10a1973a0003", "underscore": "10_1973_0003"}, "episodeTitle": null, "guidance": "adult content", "image": "https://ovp.itv.com/v2/images/episode/bpddsjg/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}", "isFullSeries": true, "linearContent": false, "longDescription": "With Harold Wilson's fate undetermined, John Stonehouse and Sheila go on trial to face the consequences.", "longRunning": false, "notFormattedDuration": "PT1H", "partnership": null, "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0003.003", "premium": false, "productionId": "10/1973/0003#003", "productionType": "EPISODE", "contentType": "episode", "productionYear": null, "programmeId": "10/1973", "series": 1, "subtitled": true, "tier": ["FREE"], "visuallySigned": true, "bslPlaylistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0003.005", "regionalisation": false, "broadcastDateTime": "2023-08-30T21:00:00Z"}]}], "initialSelectedSeries": "1"}
+{
+  "navAdServerParams": {
+    "area": "video",
+    "programmeTitle": "Stonehouse",
+    "channel": null,
+    "category": [
+      "DRAMA_AND_SOAPS"
+    ],
+    "episodeId": "10_1973"
+  },
+  "forceRefresh": true,
+  "isAccessibleByKids": false,
+  "newsVideos": null,
+  "subnav": null,
+  "programme": {
+    "ccid": "9s5xlhd",
+    "programmeId": "10_1973",
+    "encodedProgrammeId": {
+      "letterA": "10a1973",
+      "underscore": "10_1973"
+    },
+    "title": "Stonehouse",
+    "longDescription": "Scandal & deceit - the gripping true story of John Stonehouse, MP. How did this high-flying member of Harold Wilson's government pull off the ultimate deception?",
+    "description": "Secrets, spies & scandals - Matthew Macfadyen in a gripping true story",
+    "genres": [
+      {
+        "id": "DRAMA_AND_SOAPS",
+        "name": "Drama"
+      }
+    ],
+    "image": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "categories": [
+      "DRAMA_AND_SOAPS"
+    ],
+    "titleSlug": "stonehouse",
+    "contentOwner": null,
+    "partnership": null,
+    "tier": [
+      "FREE"
+    ],
+    "numberOfAvailableSeries": 1,
+    "heroCtaLabel": "Series 1, Episode 1",
+    "visuallySigned": true,
+    "imagePresets": {
+      "0": {
+        "1x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=767&q=65&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1074&q=65&blur=0&bg=false"
+      },
+      "768": {
+        "1x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1279&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1791&q=80&blur=0&bg=false"
+      },
+      "1280": {
+        "1x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      },
+      "1920": {
+        "1x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=1597&q=80&blur=0&bg=false",
+        "2x": "https://ovp.itv.com/images/programme/9s5xlhd/itv_hub/01_Hero_DesktopCTV/16x9?distributionPartner=itv_hub&fallback=standard&w=2236&q=80&blur=0&bg=false"
+      }
+    }
+  },
+  "seriesList": [
+    {
+      "seriesNumber": "1",
+      "seriesLabel": "Series 1",
+      "legacyId": "10/1973-01",
+      "fullSeries": true,
+      "seriesType": "SERIES",
+      "numberOfAvailableEpisodes": 3,
+      "titles": [
+        {
+          "accessibilityTags": [
+            "s",
+            "bsl"
+          ],
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "OUTBAND_WEBVTT",
+            "HLS",
+            "FAIRPLAY"
+          ],
+          "availabilityFrom": "2027-07-26T22:59:00Z",
+          "availabilityUntil": "2027-07-26T22:59:59.999Z",
+          "broadcastDateTime": null,
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "ccid": "3v909lt",
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 1",
+          "contentInfo": "S1, E1",
+          "contentOwner": null,
+          "dateTime": "1970-01-01T00:00:00.000Z",
+          "description": "In 1974, ambitious British politician John Stonehouse hatches an outlandish plan.",
+          "duration": "1h 15m",
+          "encodedEpisodeId": {
+            "letterA": "10a1973a0001",
+            "underscore": "10_1973_0001"
+          },
+          "episode": 1,
+          "episodeId": "10/1973/0001",
+          "episodeTitle": null,
+          "fullSeriesRange": [],
+          "guidance": "Adult content",
+          "image": "https://ovp.itv.com/images/episode/3v909lt/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "In 1974, ambitious British politician John Stonehouse hatches an outlandish plan to disappear.",
+          "longRunning": false,
+          "nextProductionId": "10/1973/0002",
+          "notFormattedDuration": "PT1H15M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0001.003",
+          "premium": false,
+          "productionId": "10/1973/0001#003",
+          "productionType": "EPISODE",
+          "programmeId": "10/1973",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": true,
+          "bslPlaylistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0001.005",
+          "regionalisation": false
+        },
+        {
+          "accessibilityTags": [
+            "s",
+            "bsl"
+          ],
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "HLS",
+            "FAIRPLAY"
+          ],
+          "availabilityFrom": "2027-07-26T22:59:00Z",
+          "availabilityUntil": "2027-07-26T22:59:59.999Z",
+          "broadcastDateTime": null,
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "ccid": "8fkh9yl",
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 2",
+          "contentInfo": "S1, E2",
+          "contentOwner": null,
+          "dateTime": "1970-01-01T00:00:00.000Z",
+          "description": "John - now hiding out in Melbourne - draws suspicion from the local police.",
+          "duration": "1h 5m",
+          "encodedEpisodeId": {
+            "letterA": "10a1973a0002",
+            "underscore": "10_1973_0002"
+          },
+          "episode": 2,
+          "episodeId": "10/1973/0002",
+          "episodeTitle": null,
+          "fullSeriesRange": [],
+          "guidance": "adult content ",
+          "image": "https://ovp.itv.com/images/episode/8fkh9yl/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "When John - now hiding out in Melbourne - draws suspicion from the local police, Barbara and Sheila fly to Australia to confront him.",
+          "longRunning": false,
+          "nextProductionId": "10/1973/0003",
+          "notFormattedDuration": "PT1H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0002.003",
+          "premium": false,
+          "productionId": "10/1973/0002#003",
+          "productionType": "EPISODE",
+          "programmeId": "10/1973",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": true,
+          "bslPlaylistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0002.005",
+          "regionalisation": false
+        },
+        {
+          "accessibilityTags": [
+            "s",
+            "bsl"
+          ],
+          "audioDescribed": false,
+          "availabilityFeatures": [
+            "MPEG_DASH",
+            "OUTBAND_WEBVTT",
+            "WIDEVINE"
+          ],
+          "availabilityFrom": "2023-01-23T11:10:00Z",
+          "availabilityUntil": "2027-07-26T22:59:00Z",
+          "broadcastDateTime": "2023-08-30T21:00:00Z",
+          "categories": [
+            "DRAMA_AND_SOAPS"
+          ],
+          "genres": [
+            {
+              "id": "DRAMA_AND_SOAPS",
+              "name": "Drama"
+            }
+          ],
+          "ccid": "bpddsjg",
+          "channel": "ITV3",
+          "heroCtaLabel": "Series 1, Episode 3",
+          "contentInfo": "S1, E3",
+          "contentOwner": null,
+          "dateTime": "2023-08-30T21:00:00.000Z",
+          "description": "Will John Stonehouse finally face the consequences of his actions?",
+          "duration": "1h 5m",
+          "encodedEpisodeId": {
+            "letterA": "10a1973a0003",
+            "underscore": "10_1973_0003"
+          },
+          "episode": 3,
+          "episodeId": "10/1973/0003",
+          "episodeTitle": null,
+          "fullSeriesRange": [],
+          "guidance": "adult content",
+          "image": "https://ovp.itv.com/images/episode/bpddsjg/itv_hub/08_Episodic/16x9?distributionPartner=itv_hub&fallback=standard&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+          "isFullSeries": true,
+          "linearContent": false,
+          "longDescription": "With Harold Wilson's fate undetermined, John Stonehouse and Sheila go on trial to face the consequences.",
+          "longRunning": false,
+          "notFormattedDuration": "PT1H5M",
+          "partnership": null,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0003.003",
+          "premium": false,
+          "productionId": "10/1973/0003#003",
+          "productionType": "EPISODE",
+          "programmeId": "10/1973",
+          "series": 1,
+          "subtitled": true,
+          "tier": [
+            "FREE"
+          ],
+          "visuallySigned": true,
+          "bslPlaylistUrl": "https://magni.itv.com/playlist/itvonline/ITV/10_1973_0003.005",
+          "regionalisation": false
+        }
+      ],
+      "longRunning": false
+    }
+  ],
+  "initialSelectedSeries": "1"
+}

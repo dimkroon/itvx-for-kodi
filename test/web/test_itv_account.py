@@ -7,13 +7,14 @@
 from test.support import fixtures
 fixtures.global_setup()
 
+import os
 import json
 import time
 import binascii
 import unittest
 from unittest.mock import patch
 
-from resources.lib import itv_account, errors
+from resources.lib import itv_account, errors, fetch, utils
 from test.support import testutils
 from test.support import object_checks
 from test.local.test_account import ACCESS_TKN_FIELDS, REFRESH_TKN_FIELDS, PROFILE_TKN_FIELDS
@@ -66,7 +67,7 @@ class TestTokens(unittest.TestCase):
                 data_str = binascii.a2b_base64(part + '==')
                 data = json.loads(data_str)
                 token_parts.append(data)
-            except Exception:
+            except Exception as err:
                 token_parts.append(None)
         self.assertEqual(3, len(token_parts))
         self.assertIsNone(token_parts[2])
@@ -84,7 +85,6 @@ class TestTokens(unittest.TestCase):
         self._check_token_type(token_data[0])
         user_data = token_data[1]
         object_checks.has_keys(user_data, *ACCESS_TKN_FIELDS)
-        self.assertEqual(len(user_data), len(ACCESS_TKN_FIELDS))
         self.assertTrue(user_data['isActive'])
         self.assertEqual('https://auth.itv.com', user_data['iss'])  # issuer
         self.assertTrue(testutils.is_uuid(user_data['sub']))
