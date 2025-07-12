@@ -4,6 +4,8 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+import xbmcaddon
+
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -469,7 +471,7 @@ class CreateDashStreamItem(TestCase):
 
 
 class PlayStreamLive(TestCase):
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.refresh', return_value=True)
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': 'blabla'})
@@ -509,6 +511,22 @@ class PlayStreamLive(TestCase):
     def test_play_stream_live_without_other_error(self, _):
         self.assertRaises(ValueError, main.play_stream_live.test, channel='ITV', url=None)
 
+    @patch('resources.lib.itv.get_live_urls', return_value=open_json('playlists/pl_itv1.json'))
+    def test_play_live_with_region(self, p_req_strm):
+        # region from ITV account
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: 'by_account' if s == 'tv_region' else ''):
+            with patch.object(itv_account.itv_session(), '_tv_region', 'my-area'):
+                main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('?region=my-area'))
+        # region from viwX's settings
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: 'other-area' if s == 'tv_region' else ''):
+            main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('?region=other-area'))
+        # missing region
+        with patch('xbmcaddon.Addon.getSetting', lambda _, s: ''):
+            main.play_stream_live.test(channel='ITV', url=None)
+            self.assertTrue(p_req_strm.call_args[0][0].endswith('/ITV'))
+
 
 class PlayStreamCatchup(TestCase):
     def setUp(self) -> None:
@@ -519,12 +537,12 @@ class PlayStreamCatchup(TestCase):
         # Ensure to clear patched session objects
         itv_account._itv_session_obj = None
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_play_short_news_item(self, _):
         result = main.play_stream_catchup.test('some/url', 'a short news item')
         self.assertIsInstance(result, XbmcListItem)
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode(self, _, __):
@@ -537,7 +555,7 @@ class PlayStreamCatchup(TestCase):
         self.assertFalse('IsPlayable' in result._props)
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode_without_title(self, _, __):
@@ -547,21 +565,21 @@ class PlayStreamCatchup(TestCase):
         with self.assertRaises(KeyError):
             result._info['video']['title']
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=('my/subs.file', ))
     def test_play_episode_with_subtitles(self, _, __, ___):
         result = main.play_stream_catchup.test('some/url', 'my episode')
         self.assertEqual(len(result._subtitles), 1)
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=None)
     def test_play_episode_without_subtitles(self, _, __, ___):
         result = main.play_stream_catchup.test('some/url', 'my episode')
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
     @patch('resources.lib.itvx.get_resume_point', return_value=32)
     def test_play_episode_with_resume(self, _, __, ___):
@@ -586,7 +604,7 @@ class PlayStreamCatchup(TestCase):
     def test_play_catchup_with_other_error(self, _):
         self.assertRaises(ValueError, main.play_stream_catchup.test, 'url', '')
 
-    @patch('resources.lib.itv._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
+    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=False)
     def test_play_catchup_inputstream_adaptive_not_installed(self, _, __):
         result = main.play_stream_catchup.test('url', '')

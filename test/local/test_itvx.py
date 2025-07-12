@@ -662,3 +662,33 @@ class Recommendations(TestCase):
         res = itvx.recommended('my_user_id')
         p_fetch.assert_called_once()
         self.assertIs(res, None)
+
+
+@patch.object(itv_account.itv_session(), 'account_data', {'refreshed': time.time(), 'itv_session': {'access_token': 'abc'}, 'cookies': {'asdfg':'defg'}})
+@patch('resources.lib.fetch.post_json')
+class RequestStreamData(TestCase):
+    def test_request_live_default(self, p_post):
+        itvx._request_stream_data('some/url')
+        post_dta = p_post.call_args.kwargs['data']
+        self.assertEqual('dotcom', post_dta['variantAvailability']['platformTag'])
+
+    def test_request_live_full_hd(self, p_post):
+        itvx._request_stream_data('some/url', full_hd=True)
+        post_dta = p_post.call_args.kwargs['data']
+        self.assertEqual('ctv', post_dta['variantAvailability']['platformTag'])
+
+    def test_request_vod_default(self, p_post):
+        itvx._request_stream_data('some/url', stream_type='vod')
+        post_dta = p_post.call_args.kwargs['data']
+        self.assertEqual('dotcom', post_dta['variantAvailability']['platformTag'])
+
+    def test_request_vod_full_hd(self, p_post):
+        itvx._request_stream_data('some/url', stream_type='vod', full_hd=True)
+        post_dta = p_post.call_args.kwargs['data']
+        self.assertEqual('ctv', post_dta['variantAvailability']['platformTag'])
+
+    def test_request_with_auth_failure(self, _):
+        with patch.object(itv_account.itv_session(), 'account_data', {}):
+            with self.assertRaises(SystemExit) as cm:
+                itvx._request_stream_data('some/url')
+            self.assertEqual(1, cm.exception.code)

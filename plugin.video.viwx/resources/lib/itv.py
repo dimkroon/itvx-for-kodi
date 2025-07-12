@@ -56,65 +56,7 @@ def get_live_schedule(hours=4, local_tz=None):
     return schedule
 
 
-stream_req_data = {
-    'client': {
-        'id': 'browser',
-        'service': 'itv.x',
-        'supportsAdPods': False,
-        'version': '4.1'
-    },
-    'device': {
-        'manufacturer': 'Firefox',
-        'model': '127',
-        'os': {
-            'name': 'Linux',
-            'type': 'desktop',
-            'version': 'x86_64'
-        }
-    },
-    'user': {
-        'token': ''
-    },
-    'variantAvailability': {
-        'drm': {
-            'maxSupported': 'L3',
-            'system': 'widevine'
-        },
-        'featureset': ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track'],
-        'platformTag': 'dotcom',
-        'player': 'dash'
-    }
-}
-
-
-def _request_stream_data(url, stream_type='live'):
-    from .itv_account import itv_session, fetch_authenticated
-    session = itv_session()
-
-    stream_req_data['user']['token'] = session.access_token
-    stream_req_data['client']['supportsAdPods'] = stream_type != 'live'
-
-    if stream_type == 'live':
-        accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
-        # Live MUST have a featureset containing an item without outband-webvtt, or a bad request is returned.
-        featureset = {'max': ['mpeg-dash', 'widevine'], 'min': ['mpeg-dash', 'widevine']}
-    else:
-        accept_type = 'application/vnd.itv.vod.playlist.v4+json'
-        # Contrary to live, catchup now has a single featureq set
-        featureset = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
-
-    stream_req_data['variantAvailability']['featureset'] = featureset
-
-    stream_data = fetch_authenticated(
-        fetch.post_json, url,
-        data=stream_req_data,
-        headers={'Accept': accept_type},
-        cookies=session.cookie)
-
-    return stream_data
-
-
-def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
+def get_live_urls(url=None, title=None, start_time=None, play_from_start=False, full_hd=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. note::
@@ -122,9 +64,10 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
         data returned by get_catchup_urls(...).
 
     """
-    channel = url.rsplit('/', 1)[1]
+    # import web_pdb; web_pdb.set_trace()
+    from . import itvx
 
-    stream_data = _request_stream_data(url)
+    stream_data = itvx._request_stream_data(url, full_hd=full_hd)
     video_locations = stream_data['Playlist']['Video']['VideoLocations'][0]
     dash_url = video_locations['Url']
     start_again_url = video_locations.get('StartAgainUrl')
@@ -133,22 +76,24 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False):
         if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
-        elif video_locations.get('IsDar'):
+        else:
             # Go 1 hour back to ensure we get the timeshift stream with adverts embedded
-            # and can skip back a bit in the stream.
+            # and can skip back a bit in the stream. Some FAST channels that do have a large
+            # enough buffer automatically use the maximum available time shift for that channel.
             start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))
-
+    dash_url = dash_url.replace('ctv-low', 'ctv', 1)
     key_service = video_locations['KeyServiceUrl']
     return dash_url, key_service, None
 
 
-def get_catchup_urls(episode_url):
+def get_catchup_urls(episode_url, full_hd=False):
     """Return the urls to the dash stream, key service and subtitles for a particular catchup
     episode and the type of video.
 
     """
-    playlist = _request_stream_data(episode_url, 'catchup')['Playlist']
+    from resources.lib import itvx
+    playlist = itvx._request_stream_data(episode_url, 'catchup', full_hd)['Playlist']
     stream_data = playlist['Video']
 
     # Select the media with the highest resolution

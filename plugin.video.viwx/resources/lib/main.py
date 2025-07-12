@@ -535,13 +535,21 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None, play
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         logger.info("Created live url from channel name: '%s'", url)
 
+    tv_region = addon.setting['tv_region']
+    if tv_region == 'by_account':
+        tv_region = itv_account.itv_session().tv_region
+    if tv_region:
+        # Only affects freeview streams, is currently ignored by web.
+        url = url + '?region=' + tv_region
+
     if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
         start_time = None
-
+    fhd_enabled = addon.setting['FHD_enabled'] == 'true'
     manifest_url, key_service_url, subtitle_url = itv.get_live_urls(url,
                                                                     title,
                                                                     start_time,
-                                                                    play_from_start)
+                                                                    play_from_start,
+                                                                    fhd_enabled)
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)
     if list_item:
         if start_time and ('?t=' in manifest_url or '&t=' in manifest_url):
@@ -556,8 +564,9 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None, play
 def play_stream_catchup(plugin, url, name, set_resume_point=False):
 
     logger.info('play catchup stream - %s  url=%s', name, url)
+    fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
-        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url)
+        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url, fhd_enabled)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')

@@ -31,7 +31,7 @@ logger = logging.getLogger(logger_id + '.itvx')
 
 FEATURE_SET = ('hd,progressive,single-track,mpeg-dash,widevine,widevine-download,'
                'inband-ttml,hls,aes,inband-webvtt,outband-webvtt,inband-audio-description')
-PLATFORM_TAG = 'mobile'
+PLATFORM_TAG = 'ctv'
 
 
 def get_page_data(url, cache_time=None):
@@ -596,3 +596,98 @@ def because_you_watched(user_id, name_only=False, hide_paid=False):
         return byw['watched_programme']
     else:
         return list(filter(None, (parsex.parse_my_list_item(item, hide_paid) for item in byw['recommendations'])))
+
+
+web_req_data = {
+    'client': {
+        'id': 'browser',
+        'service': 'itv.x',
+        'supportsAdPods': False,
+        'version': '4.1'
+    },
+    'device': {
+        'manufacturer': 'Firefox',
+        'model': fetch.USER_AGENT_VERSION,
+        'os': {
+            'name': 'Linux',
+            'type': 'desktop',
+            'version': 'x86_64'
+        }
+    },
+    'user': {
+        'token': ''
+    },
+    'variantAvailability': {
+        'drm': {
+            'maxSupported': 'L3',
+            'system': 'widevine'
+        },
+        'featureset': None,
+        'platformTag': 'dotcom',
+        'player': 'dash'
+    }
+}
+
+freeview_req_data = {
+    "client": {
+        "id": "freeview",
+        "isp": {},
+        "supportsAdPods": False,
+        "appVersion": "3.564.0",
+        "version": "3.564.0",
+        "service": "itv.x",
+        "thirdPartyPaymentModel": "free",
+        "ssaiClientSdkVersion": "3"
+    },
+    "device": {
+        "manufacturer": "LG",
+        "model": "oled77g36la",
+        "os": {
+            "name": "oled77g36la"
+        }
+    },
+    "user": {"token": ""},
+    "variantAvailability": {
+        "drm": {
+            'maxSupported': 'L3',
+            'system': 'widevine'
+        },
+        "featureset": None,
+        "platformTag": "ctv"
+    }
+}
+
+
+features_live = {
+    "min": ["mpeg-dash", "widevine",],
+    "max": ["hd", "mpeg-dash", "widevine", "inband-webvtt"]
+}
+
+features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
+
+
+def _request_stream_data(url, stream_type='live', full_hd=False):
+    from .itv_account import itv_session, fetch_authenticated
+    session = itv_session()
+
+    if full_hd:
+        stream_req_data = freeview_req_data
+    else:
+        stream_req_data = web_req_data
+
+    stream_req_data['user']['token'] = session.access_token
+
+    if stream_type == 'live':
+        accept_type = 'application/vnd.itv.online.playlist.sim.v3+json'
+        stream_req_data['variantAvailability']['featureset'] = features_live
+    else:
+        accept_type = 'application/vnd.itv.vod.playlist.v4+json'
+        stream_req_data['variantAvailability']['featureset'] = features_catchup
+
+    stream_data = fetch_authenticated(
+        fetch.post_json, url,
+        data=stream_req_data,
+        headers={'Accept': accept_type})
+
+    return stream_data
+
