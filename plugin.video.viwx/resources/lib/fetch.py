@@ -267,8 +267,12 @@ def web_request(method, url, headers=None, data=None, **kwargs):
                     descr = resp_data.get("error_description", 'Login failed')
                     raise AuthenticationError(descr)
                 # Errors from https://magni.itv.com/playlist/itvonline:
+                # Premmium content without a premium account
                 if 'User does not have entitlements' in resp_data.get('Message', ''):
                     raise AccessRestrictedError()
+                # Premium content without being signed in.
+                if 'UserTokenValidationFailed for user: None' in resp_data.get('Message', ''):
+                    raise AuthenticationError("You must be signed in with an ITVX premium account")
 
         if e.response.status_code == 401:
             raise AuthenticationError()
