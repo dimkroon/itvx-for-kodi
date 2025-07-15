@@ -364,12 +364,14 @@ def check_short_form_item(item):
 
 
 def check_category_item(item):
-    """Check a news item from the section 'longformData' which contains full episodes from itv news
-    and other news related programmes.
+    """Check an item in a category listing, except most items from news.
+
+    Only used for items from the section 'longformData' in categorie News, which contains
+    full episodes from a news-related programme.
 
     """
     title = item['title']
-    # TODO: Check if this is the same as a normal episode
+    # TODO: Check if this is the same as item type brand in object checks
     has_keys(
         item,
         'title', 'titleSlug', 'encodedProgrammeId', 'channel', 'description', 'imageTemplate',
@@ -380,18 +382,17 @@ def check_category_item(item):
     assert is_not_empty(item['title'], str)
     # Only the contentType from items in category news vary, normal category items are all of type 'brand'.
     assert item['contentType'] in ('series', 'special', 'film', 'episode', 'brand')
-    assert isinstance(item['titleSlug'], str) and item['titleSlug'], "Invalid titleSlug in '{}'.".format(title)
+    assert is_not_empty(item['titleSlug'], str)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
     if 'encodedEpisodeId' in item:
         assert is_encoded_episode_id(item['encodedEpisodeId']), "Invalid encodedEpisodeId in {}".format(title)
         assert item['encodedEpisodeId']['letterA'] != '', "Legacy use of empty encodedEpisodeId"
-            # As of may 2024 payable items in categories -> new -> Latest Programmes do have
-            # the same programme and episode ID, which is a bug, and they won't play on the web either.
-            # So commented out for now to pass web tests.
-            #assert item['encodedProgrammeId'] != item['encodedEpisodeId']
+        assert item['encodedProgrammeId'] != item['encodedEpisodeId']
+        assert is_not_empty(item['brandCCId'], str)
     else:
         # Check that items lacking an encodedEpisodeId are playable. Brands can be both.
         assert 'series' not in item['contentInfo'].lower()
+        assert is_not_empty(item['titleCCId'], str)
     assert isinstance(item['description'], str) and item['description'], "Invalid description in '{}'.".format(title)
     assert is_url(item['imageTemplate']), "Invalid imageTemple in '{}'.".format(title)
     # ContentInfo is at this moment what is being shown on the web, but can be empty, or have

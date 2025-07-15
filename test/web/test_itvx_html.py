@@ -138,19 +138,21 @@ def check_shows(testcase, show, parent_name):
     if content_type == 'brand':
         return check_item_type_brand(testcase, show, parent_name)
     # Not always present: 'contentInfo'
-    has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate',
+    has_keys(show, 'contentType', 'title', 'titleCCId', 'description', 'titleSlug', 'imageTemplate',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     if content_type in ('series', 'episode', 'film', 'special'):
         has_keys(show, 'encodedEpisodeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
+        if show['contentType'] in ('series', 'episode'):
+            testcase.assertTrue(is_not_empty(show['brandCCId'], str))
     else:
         raise AssertionError("A non-playable should already have been checked by it's dedicated checker.")
     testcase.assertTrue(is_url(show['imageTemplate']))
 
 
 def check_programme(self, progr_data):
-    """Formerly known as 'Brand'"""
+    """AKA 'Brand'"""
     obj_name = progr_data['title']
-    has_keys(progr_data, 'title', 'image', 'longDescription', 'description',
+    has_keys(progr_data, 'title', 'ccid', 'image', 'longDescription', 'description',
              'encodedProgrammeId', 'titleSlug', 'tier', 'visuallySigned',
              obj_name=obj_name)
     expect_keys(progr_data, 'programmeId')
@@ -158,6 +160,7 @@ def check_programme(self, progr_data):
     # Only programme details pages (like episodes, specials, films) still have this field.
     # Its presence is specifically checked in their tests.
     expect_misses_keys(progr_data, 'imagePresets')
+    self.assertTrue(is_not_empty(progr_data['ccid'], str))
     self.assertTrue(is_encoded_programme_id(progr_data['encodedProgrammeId']))
     self.assertTrue(is_not_empty(progr_data['title'], str))
     self.assertTrue(is_not_empty(progr_data['longDescription'], str))
@@ -189,13 +192,13 @@ def check_series(self, series, parent_name):
 def check_title(self, title, parent_name):
     obj_name = '{}-title-{}'.format(parent_name, title['episodeTitle'])
     has_keys(title, 'accessibilityTags', 'audioDescribed', 'availabilityFrom', 'availabilityUntil', 'broadcastDateTime',
-             'genres', 'contentInfo', 'dateTime', 'description',
+             'genres', 'ccid', 'contentInfo', 'dateTime', 'description',
              'duration', 'encodedEpisodeId', 'episodeTitle', 'genres', 'guidance', 'image', 'longDescription',
              'notFormattedDuration', 'playlistUrl', 'productionType', 'premium', 'tier', 'series', 'visuallySigned',
              'subtitled', 'audioDescribed', 'heroCtaLabel',
              obj_name=obj_name)
 
-    expect_keys(title, 'availabilityFeatures', 'ccid', 'channel', 'episodeId',
+    expect_keys(title, 'availabilityFeatures', 'channel', 'episodeId',
                 'fullSeriesRange', 'linearContent', 'longRunning', 'partnership',
                 'productionId', 'programmeId', 'subtitled', 'visuallySigned', 'regionalisation', obj_name=obj_name)
 
@@ -338,7 +341,7 @@ def check_collection_item_type_fastchannelspot(self, item, parent_name):
 
 def check_mylist_item(testcase, item, parent_name):
     obj_name = '.'.join((parent_name, item['programmeTitle']))
-    has_keys(item, 'categories', 'contentType', 'contentOwner', 'dateAdded', 'duration',
+    has_keys(item, 'categories', 'ccid', 'contentType', 'contentOwner', 'dateAdded', 'duration',
              'imageLink', 'itvxImageLink', 'longRunning', 'numberOfAvailableSeries',
              'numberOfEpisodes', 'partnership', 'programmeId', 'programmeTitle', 'synopsis',
              'tier', obj_name=obj_name)
@@ -348,6 +351,7 @@ def check_mylist_item(testcase, item, parent_name):
     testcase.assertTrue(item['tier'] in ('FREE', 'PAID'))
     testcase.assertTrue(is_iso_utc_time(item['dateAdded']))
     testcase.assertTrue(is_url(item['itvxImageLink']))
+    testcase.assertTrue(is_not_empty(item['ccid'], str))
     testcase.assertTrue(is_not_empty(item['programmeId'], str))
     testcase.assertFalse(is_encoded_programme_id(item['programmeId']))  # Programme ID in My List is NOT encoded.
 
@@ -380,11 +384,11 @@ def check_item_type_simulcastspot(self, item, parent_name):
 
 def check_item_type_brand(testcase, item, parent_name):
     name = '{}.{}'.format(parent_name, item.get('title', 'unknown'))
-    has_keys(item, 'title', 'contentType', 'titleSlug', 'description', 'genres', 'dateTime', 'imageTemplate',
+    has_keys(item, 'title', 'brandCCId', 'contentType', 'titleSlug', 'description', 'genres', 'dateTime', 'imageTemplate',
              'numberOfAvailableSeries', 'series', 'programmeId', 'encodedProgrammeId', 'contentInfo', 'isPaid',
              obj_name=name)
-    expect_keys(item, 'partnership', 'contentOwner', 'channel', 'ccid', obj_name=name)
-    misses_keys(item, 'categories')
+    expect_keys(item, 'partnership', 'contentOwner', 'channel', obj_name=name)
+    misses_keys(item, 'categories', 'ccid')
     testcase.assertTrue(is_not_empty(item['title'], str))
     testcase.assertTrue(is_not_empty(item['titleSlug'], str))
     testcase.assertTrue(is_not_empty(item['description'], str))
