@@ -565,7 +565,10 @@ def play_stream_catchup(plugin, url, set_resume_point=False):
 
     logger.info('play catchup stream url=%s', url)
     playlist_url = itv_qql.get_playlist_url(ccid=url, prefer_bsl=plugin.setting.get_boolean('prefer_bsl'))
+    play_vod(plugin, playlist_url, set_resume_point)
 
+
+def play_vod(plugin, playlist_url, set_resume_point=False):
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
         manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(
@@ -600,6 +603,23 @@ def play_stream_catchup(plugin, url, set_resume_point=False):
                 })
                 logger.info("Resume from %s", resume_time)
         return list_item
+
+
+@Resolver.register
+def play_title(plugin, url):
+    """Play an episode from a url to the episode's html page.
+
+    While episodes obtained from list_productions() have direct urls to stream's
+    playlist, episodes from listings obtained by parsing html pages have an url
+    to the respective episode's details html page.
+
+    """
+    try:
+        url = itvx.get_playlist_url_from_episode_page(url, plugin.setting.get_boolean('prefer_bsl'))
+    except AccessRestrictedError:
+        kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
+        return False
+    return play_vod(plugin, url)
 
 
 @Script.register
@@ -655,5 +675,6 @@ callb_map = {
     'special': play_stream_catchup,
     'film': play_stream_catchup,
     'title': play_stream_catchup,
-    'vodstream': play_stream_catchup
+    'vodstream': play_stream_catchup,
+    'short-episode': play_title,
 }
