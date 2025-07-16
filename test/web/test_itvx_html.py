@@ -453,13 +453,13 @@ class MainPage(unittest.TestCase):
                 if item['contentType'] in ('simulcastspot', 'fastchannelspot'):
                     has_keys(item, 'channel', obj_name=obj_name)
                 else:
-                    has_keys(item, 'genres', 'encodedProgrammeId', 'programmeId', obj_name=obj_name)
+                    has_keys(item, 'brandCCId', 'genres', 'encodedProgrammeId', 'programmeId', obj_name=obj_name)
                     self.assertTrue(is_encoded_programme_id(item['encodedProgrammeId']))
                     check_genres(self, item['genres'])
 
                 if item['contentType'] == 'special':
                     # Field 'dateTime' not always present in special title
-                    has_keys(item, 'encodedEpisodeId', 'duration', obj_name=obj_name)
+                    has_keys(item, 'titleCCId', 'encodedEpisodeId', 'duration', obj_name=obj_name)
                     self.assertTrue(is_encoded_episode_id(item['encodedEpisodeId']))
 
                 if item['contentType'] == 'episode':
@@ -467,12 +467,12 @@ class MainPage(unittest.TestCase):
                     misses_keys(item, 'duration', obj_name=obj_name)
 
                 if item['contentType'] == 'series':
-                    has_keys(item, 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=obj_name)
+                    has_keys(item, 'titleCCId', 'encodedEpisodeId', 'brandImageTemplate', 'series', obj_name=obj_name)
                     self.assertTrue(is_encoded_episode_id(item['encodedEpisodeId']))
 
                 if item['contentType'] == 'film':
                     # Fields not always present:  'dateTime'
-                    has_keys(item, 'productionYear', 'duration', obj_name=obj_name)
+                    has_keys(item, 'titleCCId', 'productionYear', 'duration', obj_name=obj_name)
 
                 if item['contentType'] == 'brand':
                     # Just to check over time if this is always true
