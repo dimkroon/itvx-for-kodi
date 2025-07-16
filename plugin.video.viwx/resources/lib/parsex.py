@@ -210,10 +210,7 @@ def parse_hero_content(hero_data):
                                               '[/B]\n',
                                               hero_data.get('description'))),
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
-            item['params'] = {'url': build_url(title,
-                                               hero_data['encodedProgrammeId']['letterA'],
-                                               hero_data.get('encodedEpisodeId', {}).get('letterA'))
-                              }
+            item['params'] = {'ccid': hero_data['titleCCId']}
             if item_type == 'episode':
                 context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
@@ -364,6 +361,10 @@ def parse_collection_item(show_data, hide_paid=False):
         if content_type == 'fastchannelspot':
             programme_item['params'] = {'channel': show_data['channel'], 'url': None}
 
+        elif is_playable:
+            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+            programme_item['params'] = {'ccid': show_data['titleCCId']}
+
         else:
             programme_item['params'] = {'url': build_url(show_data['titleSlug'],
                                         show_data['encodedProgrammeId']['letterA'],
@@ -372,8 +373,6 @@ def parse_collection_item(show_data, hide_paid=False):
         if 'FILMS' in show_data.get('categories', ''):
             programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
 
-        if is_playable:
-            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
         return {'type': content_type,
                 'programme_id': show_data.get('encodedProgrammeId', {}).get('underscore'),
                 'show': programme_item}
@@ -383,7 +382,7 @@ def parse_collection_item(show_data, hide_paid=False):
 
 
 # noinspection GrazieInspection
-def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
+def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False, is_sport=False):
     """Parse an item from a shortFormSlider.
 
     ShortFormSliders are found on the main page. Some collection pages used to have
@@ -400,19 +399,18 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
             # hero and curated rails from the news category lack a field 'genre'.
             # Since sportShortFrom is only ever present on the main page, it's safe
             # to assume genry is news.
-            url = '/'.join(('https://www.itv.com/watch',
-                            item_data.get('genre', 'news'),
-                            item_data['titleSlug'],
-                            item_data['episodeId']))
+            params = {'ccid': item_data['episodeId'], 'is_sport': is_sport}
 
         elif content_type == 'episode':
             # The news item is a 'normal' catchup title. Is usually just the latest ITV news,
             # or a full sports programme.
             # Do not use field 'href' as it is known to have non-a-encoded program and episode Id's which doesn't work.
+            # Currently under test to see if these types of items are still present.
             url = '/'.join(('https://www.itv.com/watch',
                             item_data['titleSlug'],
                             item_data['encodedProgrammeId']['letterA'],
                             item_data.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
+            params = {'url': url}
         else:
             logger.info("Disregarding shortform item of type '%s'", content_type)
             return None
@@ -432,12 +430,12 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
         # TODO: consider adding poster image, but it is not always present.
         #       Add date.
         return {
-            'type': 'title',
+            'type': 'short-episode' if content_type == 'episode' else content_type,
             'show': {
                 'label': title,
                 'art': {'thumb': item_data['imageUrl'].format(**IMG_PROPS_THUMB)},
                 'info': {'plot': plot, 'sorttitle': sort_title(title), 'duration': item_data.get('duration')},
-                'params': {'url': url}
+                'params': params
             }
         }
     except Exception as err:
@@ -484,7 +482,7 @@ def parse_category_item(prog, category_id):
 
     if is_playable:
         programme_item['info']['duration'] = playtime
-        programme_item['params'] = {'url': build_url(title, prog['encodedProgrammeId']['letterA'])}
+        programme_item['params'] = {'ccid': prog['titleCCId']}
     else:
         # A Workaround for an issue at ITVX where news programmes' programmeId already contain an
         # episodeId and programme and episode IDs are the same. On the website these programmes
@@ -554,7 +552,7 @@ def _get_hero_cta_label(hero_cta: dict) -> str:
         return ''
 
 
-def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
+def parse_episode_title(title_data, brand_fanart=None):
     """Parse a title from episodes listing"""
 
     # Note: episodeTitle may be None, so prefer title from heroCtaLabel, but even that
@@ -576,11 +574,6 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     if not isinstance(series_nr, int):
         series_nr = None
 
-    if prefer_bsl:
-        playlist_url = title_data.get('bslPlaylistUrl') or title_data['playlistUrl']
-    else:
-        playlist_url = title_data['playlistUrl']
-
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -594,7 +587,7 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
                  'episode': episode_nr,
                  'season': series_nr,
                  'year': title_data.get('productionYear')},
-        'params': {'url': playlist_url}
+        'params': {'ccid': title_data['ccid']}
     }
 
     return title_obj
@@ -603,7 +596,6 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
 def parse_search_result(search_data, hide_paid=False):
     entity_type = search_data.get('entityType') or search_data.get('channelType')
     result_data = search_data['data']
-    api_episode_id = ''
 
     if entity_type == 'simulcast':
         return parse_simulcast_item(result_data)
@@ -620,6 +612,7 @@ def parse_search_result(search_data, hide_paid=False):
         title = '[B]{}[/B] - {} episodes'.format(prog_name, result_data.get('totalAvailableEpisodes', ''))
         img_url = result_data['latestAvailableEpisode']['imageHref']
         api_prod_id = result_data['legacyId']['apiEncoded']
+        params = {'url': build_url(prog_name, api_prod_id.replace('_', 'a'))}
 
     elif entity_type == 'special':
         # A single programme without episodes
@@ -627,10 +620,10 @@ def parse_search_result(search_data, hide_paid=False):
         img_url = result_data['imageHref']
 
         programme = result_data.get('specialProgramme')
+        params = {'ccid': result_data['specialCCId']}
         if programme:
             prog_name = programme['programmeTitle']
             api_prod_id = programme['legacyId']['apiEncoded']
-            api_episode_id = result_data['legacyId']['officialFormat']
         else:
             prog_name = title
             api_prod_id = result_data['legacyId']['apiEncoded']
@@ -641,9 +634,8 @@ def parse_search_result(search_data, hide_paid=False):
         prog_name = result_data['filmTitle']
         title = '[B]Film[/B] - ' + result_data['filmTitle']
         img_url = result_data['imageHref']
+        params = {'ccid': result_data['filmCCId']}
         api_prod_id = result_data['legacyId']['apiEncoded']
-        if api_prod_id.count('_') > 1:
-            api_prod_id = api_prod_id.rpartition('_')[0]
 
     else:
         logger.warning("Unknown search result item entityType %s", entity_type)
@@ -657,7 +649,7 @@ def parse_search_result(search_data, hide_paid=False):
             'art': {'thumb': img_url.format(**IMG_PROPS_THUMB)},
             'info': {'plot': plot,
                      'title': title},
-            'params': {'url': build_url(prog_name, api_prod_id.replace('_', 'a'), api_episode_id.replace('/', 'a'))}
+            'params': params
         }
     }
 
@@ -679,6 +671,11 @@ def parse_my_list_item(item, hide_paid=False):
         img_link = item.get('itvxImageLink') or item.get('itvxImageUrl')
         is_playable = item['contentType'].lower() != 'programme'
 
+        if is_playable:
+            params = {'ccid': item['ccid']}
+        else:
+            params = {'url': build_url(progr_name, progr_id.replace('/', 'a'))}
+
         item_dict = {
             'type': item['contentType'].lower(),
             'programme_id': progr_id,
@@ -691,7 +688,7 @@ def parse_my_list_item(item, hide_paid=False):
                          'duration': utils.iso_duration_2_seconds(item.get('duration')),
                          'sorttitle': sort_title(progr_name),
                          'date': item.get('dateAdded')},
-                'params': {'url': build_url(progr_name, progr_id.replace('/', 'a'))}
+                'params': params
             }
         }
         if item['contentType'] == 'FILM':
@@ -753,8 +750,7 @@ def parse_last_watched_item(item, utc_now):
                      'duration': utils.duration_2_seconds(item['duration']),
                      'season': series_nr,
                      'episode': episode_nr},
-            'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
-                               item['productionId'].replace('/', '_').replace('#', '.')),
+            'params': {'ccid': item['titleCCId'],
                        'set_resume_point': True},
             'properties': {
                 # This causes Kodi not to offer the standard resume dialog, so we can obtain

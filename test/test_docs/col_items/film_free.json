@@ -1,0 +1,32 @@
+{
+  "Dev_Comment": "Film - Free",
+  "contentType": "film",
+  "genres": [
+    {
+      "id": "CHILDREN",
+      "name": "Kids"
+    }
+  ],
+  "duration": "PT1H33M",
+  "contentInfo": "1h 33m",
+  "title": "How to Train Your Dragon",
+  "titleSlug": "how-to-train-your-dragon",
+  "partnership": null,
+  "contentOwner": null,
+  "dateTime": "2025-05-25T13:20:00Z",
+  "channel": "itv",
+  "description": "He's off to hunt dragons... but ends up befriending one instead!",
+  "imageTemplate": "https://ovp.itv.com/v2/images/film/3md8pp0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "3md8pp0",
+  "programmeId": "10/5353/0001B",
+  "encodedProgrammeId": {
+    "letterA": "10a5353a0001B",
+    "underscore": "10_5353_0001B"
+  },
+  "episodeId": "10/5353/0001",
+  "encodedEpisodeId": {
+    "letterA": "10a5353a0001",
+    "underscore": "10_5353_0001"
+  },
+  "isPaid": false
+}

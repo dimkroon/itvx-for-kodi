@@ -15,7 +15,7 @@ import inspect
 
 from datetime import datetime, timezone
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 from codequick import Listitem
 import xbmcgui
@@ -95,7 +95,7 @@ class MainMenu(TestCase):
                 items_with_ctx_menus += 1
         # Check 'My ItvX' is present
         self.assertTrue(items[0].label == 'My itvX')
-        self.assertEqual(6, items_with_ctx_menus)
+        self.assertEqual(2, items_with_ctx_menus)
         check_list_items(self, items)
 
 
@@ -273,7 +273,7 @@ class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_get_collection_trending(self, _):
         shows = list(filter(None, main.list_collection_content.test(slider='trendingSliderContent')))
-        self.assertGreater(len(shows), 10)
+        self.assertEqual(len(shows), 4)
         check_list_items(self, shows)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
@@ -309,30 +309,30 @@ class Categories(TestCase):
     def test_category_film(self, _):
         items = main.list_category.test('category/films')
         self.assertIsInstance(items, list)
-        self.assertEqual(292, len(items))
+        self.assertEqual(394, len(items))
         check_list_items(self, items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_get_category_children_paginated(self, _):
-        """Category with 128 programmes."""
+        """Category with 140 programmes."""
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 60) * 2):  # no a-z, page length = 30
             programmes = list(filter(None, main.list_category.test('sdfg')))
             self.assertEqual(61, len(programmes))
             check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', page_nr=2)))
-            self.assertEqual(8, len(programmes))
+            self.assertEqual(20, len(programmes))
             check_list_items(self, programmes)
-        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 125)):  # no a-z, page length = 55
+        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 135)):  # no a-z, page length = 55
             # content must be more than 5 longer than page length before actual pagination is performed.
             programmes = list(filter(None, main.list_category.test('sdfg')))
-            self.assertEqual(128, len(programmes))
+            self.assertEqual(140, len(programmes))
             check_list_items(self, programmes)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_category_children_az_list(self, _):
-        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0)):  # a-z on 20 items, page length=0
+        with patch('xbmcaddon.Addon.getSettingInt', side_effect=(100, 0)):  # a-z on 100 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg')))
-            self.assertEqual(20, len(programmes))
+            self.assertEqual(22, len(programmes))
             check_list_items(self, programmes)
             self.assertEqual('A', programmes[0].label)
             self.assertEqual('A', programmes[0].params['filter_char'])
@@ -341,10 +341,10 @@ class Categories(TestCase):
     def test_category_drama_list_by_character(self, _):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0) * 2):  # a-z on 20 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
-            self.assertEqual(19, len(programmes))
+            self.assertEqual(24, len(programmes))
             check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='0-9')))
-            self.assertEqual(1, len(programmes))
+            self.assertEqual(3, len(programmes))
             check_list_items(self, programmes)
         # Test content of 'A' divided in sub-pages
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 6)*3):  # a-z on 20 items, page length=6
@@ -352,7 +352,7 @@ class Categories(TestCase):
             self.assertEqual(7, len(programmes))
             check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A', page_nr=2)))
-            # Categories 'A' has 19 items
+            # Categories 'A' has 24 items
             self.assertEqual(7, len(programmes))  # The remaining item of the last page is added to this one.
             check_list_items(self, programmes)
 
@@ -461,7 +461,7 @@ class Search(TestCase):
         results = main.do_search.test('sdagca')
         self.assertEqual(8, len(results))
         self.assertIs(results[0].path, main.list_productions.route)  # programme
-        self.assertIs(results[4].path, main.play_title.route)  # film
+        self.assertIs(results[4].path, main.play_stream_catchup.route)  # film
         check_list_items(self, results)
 
     @patch('requests.sessions.Session.send',
@@ -569,7 +569,50 @@ class PlayStreamLive(TestCase):
             self.assertTrue(p_req_strm.call_args[0][0].endswith('/ITV'))
 
 
-class PlayStreamCatchup(TestCase):
+# noinspection PyMethodMayBeStatic
+@patch('resources.lib.itv_gql.get_playlist_url', return_value='pl_url')
+@patch('resources.lib.main.play_vod')
+class PlayStreamCatchUp(TestCase):
+    def test_play_stream_catchup_bsl_treu(self, p_play_vod, p_get_playlist):
+        plugin = MagicMock()
+        plugin.setting = {'prefer_bsl': 'false'}
+        main.play_stream_catchup(plugin, 'myccid', set_resume_point=False)
+        p_get_playlist.assert_called_once_with(ccid='myccid', prefer_bsl=False)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url', False)
+
+    def test_play_stream_catchup_bsl_false(self, p_play_vod, p_get_playlist):
+        plugin = MagicMock()
+        plugin.setting = {'prefer_bsl': 'true'}
+        main.play_stream_catchup(plugin, 'myccid', set_resume_point=False)
+        p_get_playlist.assert_called_once_with(ccid='myccid', prefer_bsl=True)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url', False)
+
+    def test_play_stream_catchup_set_resume(self, p_play_vod, p_get_playlist):
+        plugin = MagicMock()
+        plugin.setting = {'prefer_bsl': 'false'}
+        main.play_stream_catchup(plugin, 'myccid', set_resume_point=True)
+        p_get_playlist.assert_called_once_with(ccid='myccid', prefer_bsl=False)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url', True)
+
+
+# noinspection PyMethodMayBeStatic
+@patch('resources.lib.itv_gql.get_short_playlist_url', return_value='pl_url')
+@patch('resources.lib.main.play_vod')
+class PlayClip(TestCase):
+    def test_play_clip_news(self, p_play_vod, p_get_playlist):
+        plugin = MagicMock()
+        main.play_clip(plugin, 'shortid', False)
+        p_get_playlist.assert_called_once_with(ccid='shortid', is_sport=False)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url')
+
+    def test_play_clip_sport(self, p_play_vod, p_get_playlist):
+        plugin = MagicMock()
+        main.play_clip(plugin, 'shortid', True)
+        p_get_playlist.assert_called_once_with(ccid='shortid', is_sport=True)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url')
+
+
+class PlayVOD(TestCase):
     def setUp(self) -> None:
         itv_account._itv_session_obj = None
 
@@ -580,14 +623,14 @@ class PlayStreamCatchup(TestCase):
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_play_short_news_item(self, _):
-        result = main.play_stream_catchup.test('some/url')
+        result = main.play_vod(MagicMock(), 'some/url')
         self.assertIsInstance(result, XbmcListItem)
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode(self, _, __):
-        result = main.play_stream_catchup.test('some/url')
+        result = main.play_vod(MagicMock(), 'some/url')
         self.assertIsInstance(result, XbmcListItem)
         with self.assertRaises(KeyError):
             result._info['video']['plot']
@@ -598,27 +641,27 @@ class PlayStreamCatchup(TestCase):
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=('my/subs.file', ))
     def test_play_episode_with_subtitles(self, _, __, ___):
-        result = main.play_stream_catchup.test('some/url')
+        result = main.play_vod(MagicMock(), 'some/url')
         self.assertEqual(len(result._subtitles), 1)
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=None)
     def test_play_episode_without_subtitles(self, _, __, ___):
-        result = main.play_stream_catchup.test('some/url')
+        result = main.play_vod(MagicMock(), 'some/url')
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
     @patch('resources.lib.itvx.get_resume_point', return_value=32)
     def test_play_episode_with_resume(self, _, __, ___):
-        result = main.play_stream_catchup.test('some/url', set_resume_point=True)
+        result = main.play_vod(MagicMock(), 'some/url', set_resume_point=True)
         self.assertEqual('32', result._props['ResumeTime'])
         self.assertTrue('TotalTime' in result._props)
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
-        result = main.play_stream_catchup.test('url')
+        result = main.play_vod(MagicMock(), 'url')
         self.assertIs(result, False)
 
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_doc_martin.json'))
@@ -626,23 +669,23 @@ class PlayStreamCatchup(TestCase):
         # Ensure we have an empty file and session object
         with patch.object(itv_account.itv_session(), 'account_data', {}):
             with self.assertRaises(SystemExit) as cm:
-                main.play_stream_catchup.test('url')
+                main.play_vod(MagicMock(), 'url')
             self.assertEqual(1, cm.exception.code)
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=ValueError)
     def test_play_catchup_with_other_error(self, _):
-        self.assertRaises(ValueError, main.play_stream_catchup.test, 'url')
+        self.assertRaises(ValueError, main.play_vod, MagicMock(), 'url')
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=False)
     def test_play_catchup_inputstream_adaptive_not_installed(self, _, __):
-        result = main.play_stream_catchup.test('url')
+        result = main.play_vod(MagicMock(), 'url')
         self.assertIs(result, False)
 
 
 class PlayTitle(TestCase):
     @patch('resources.lib.itvx.get_playlist_url_from_episode_page', return_value='my.url')
-    @patch('resources.lib.main.play_stream_catchup', return_value='play_success')
+    @patch('resources.lib.main.play_vod', return_value='play_success')
     def test_play_episode(self, _, p_get_playlist):
         result = main.play_title.test('page.url')
         p_get_playlist.assert_called_once_with('page.url', False)

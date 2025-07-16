@@ -86,18 +86,19 @@ def get_live_urls(url=None, title=None, start_time=None, full_hd=False):
     return dash_url, key_service, None
 
 
-def get_catchup_urls(episode_url, full_hd=False):
+def get_catchup_urls(playlist_url, full_hd=False):
     """Return the urls to the dash stream, key service and subtitles for a particular catchup
     episode and the type of video.
 
     """
     from resources.lib import itvx
-    playlist = itvx._request_stream_data(episode_url, 'catchup', full_hd)['Playlist']
+    playlist = itvx._request_stream_data(playlist_url, 'catchup', full_hd)['Playlist']
     stream_data = playlist['Video']
 
     # Select the media with the highest resolution
     highest_resolution = 0
     video_locations = None
+    base_url = stream_data.get('Base')
     for media in stream_data['MediaFiles']:
         res = int(media.get('Resolution', 0))
         if res > highest_resolution:
@@ -107,7 +108,10 @@ def get_catchup_urls(episode_url, full_hd=False):
         # Some items, in particular short news clip, may still have the old format of media files.
         video_locations = stream_data['MediaFiles'][0]
 
-    dash_url = video_locations['Href']
+    if base_url:
+        dash_url = base_url + video_locations['Href']
+    else:
+        dash_url = video_locations['Href']
     key_service = video_locations.get('KeyServiceUrl')
     try:
         # Usually stream_data['Subtitles'] is just None when subtitles are not available,

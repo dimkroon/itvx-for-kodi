@@ -94,3 +94,7 @@ class MessageDialog(unittest.TestCase):
         # No formatting when no keyword arguments are passed
         kodi_utils.msg_dlg('value = {number}', title='Title')
         p_ok.assert_called_once_with('Title', 'value = {number}')
+
+    def test_open_with_invalid_arguments(self, _):
+        self.assertRaises(ValueError, kodi_utils.msg_dlg, {'value': 102}, title='title')
+        self.assertRaises(ValueError, kodi_utils.msg_dlg, 'message', title=10.3)

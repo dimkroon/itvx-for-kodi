@@ -1,0 +1,35 @@
+{
+  "Dev_Comment": "Film - Paid",
+  "contentType": "film",
+  "genres": [
+    {
+      "id": "FILM",
+      "name": "Film"
+    }
+  ],
+  "duration": "PT2H2M",
+  "contentInfo": "2h 2m",
+  "title": "The Fourth Protocol",
+  "titleSlug": "the-fourth-protocol",
+  "partnership": null,
+  "contentOwner": null,
+  "dateTime": null,
+  "channel": "itv2",
+  "description": "Frederick Forsyth's edgy spy story - Pierce Brosnan stars",
+  "imageTemplate": "https://ovp.itv.com/v2/images/film/k89kzfk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "k89kzfk",
+  "programmeId": "CFD0265",
+  "encodedProgrammeId": {
+    "letterA": "CFD0265",
+    "underscore": "CFD0265"
+  },
+  "episodeId": "CFD0265/0001",
+  "encodedEpisodeId": {
+    "letterA": "CFD0265a0001",
+    "underscore": "CFD0265_0001"
+  },
+  "isPaid": true,
+  "tagNames": [
+    "premium"
+  ]
+}

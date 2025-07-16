@@ -329,7 +329,8 @@ def check_short_form_item(item):
     has_keys(item, 'episodeTitle', 'imageUrl', 'contentType', obj_name=objname)
     misses_keys(item, 'href', 'isPaid', 'tier', 'imagePresets')
 
-    assert (item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
+    # As of 2026-01 flag if other types are still present in shortform-like sliders
+    assert (item['contentType'] in ('shortform', )) #'episode', 'fastchannelspot'))
 
     if item['contentType'] == 'fastchannelspot':
         assert (item['channel'].startswith('fast'))

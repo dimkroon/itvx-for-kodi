@@ -8,12 +8,10 @@
 
 import json
 import logging
-
+import requests
 
 from codequick.support import logger_id
 
-from . import itvx
-from . import errors
 from . import fetch
 
 logger = logging.getLogger(logger_id + '.itvx')
@@ -33,6 +31,22 @@ def _gql_query(query, variables=None, operation_name=None):
         params=params
     )
     return resp
+
+
+def _gql_post(url, query, variables=None):
+    data = {'query': query}
+    if variables:
+        data['variables'] = variables
+    resp = requests.post(
+            url,
+            headers={
+             'user-agent': fetch.USER_AGENT,
+             'origin': 'https://app.10ft.itv.com',
+             'referer': 'https://app.10ft.itv.com/'
+            },
+            json=data)
+    data = json.loads(resp.content)
+    return data
 
 
 def get_playlist_url(ccid: str, prefer_bsl: bool = False):
@@ -66,39 +80,36 @@ def get_playlist_url(ccid: str, prefer_bsl: bool = False):
 
 
 def get_short_playlist_url(ccid: str, is_sport: bool = False):
-    query = {
-        'query': (
-            'query GetClipByCcid($ccid: ID!, $isNews: Boolean!, $isSport: Boolean!) {'
-                'clip(ccid: $ccid) @include(if: $isNews) {'
-                    'ccid '
-                    'title '
-                    'duration '
-                    'playlistLink '
-                    'subtitles '
-                    'guidance '
-                    'syndicatedToSTV '
-                '}'
-                'sportsClip(ccid: $ccid) @include(if: $isSport) {'
-                    'ccid '
-                    'title '
-                    'duration '
-                    'playlistLink '
-                    'subtitles '
-                    'guidance '
-                    'syndicatedToSTV '
-                '}'
+    query = (
+        'query GetClipByCcid($ccid: ID!, $isNews: Boolean!, $isSport: Boolean!) {'
+            'clip(ccid: $ccid) @include(if: $isNews) {'
+                'ccid '
+                'title '
+                'duration '
+                'playlistLink '
+                'subtitles '
+                'guidance '
+                'syndicatedToSTV '
             '}'
-        ),
-        'variables': {
-            "ccid": ccid,
-            "isNews": not is_sport,
-            "isSport": is_sport
-        }
+            'sportsClip(ccid: $ccid) @include(if: $isSport) {'
+                'ccid '
+                'title '
+                'duration '
+                'playlistLink '
+                'subtitles '
+                'guidance '
+                'syndicatedToSTV '
+            '}'
+        '}'
+    )
+    variables = {
+        "ccid": ccid,
+        "isNews": not is_sport,
+        "isSport": is_sport
     }
 
-    resp = requests.post(
-        url='https://shortform.prd.shows.itv.com/graphql',
-        json=query
-    )
-    data = json.loads(resp.content)
-    return data['playlistUrl']
+    data = _gql_post('https://shortform.prd.shows.itv.com/graphql', query, variables)
+    if is_sport:
+        return data['data']['sportsClip']['playlistLink']
+    else:
+        return data['data']['clip']['playlistLink']

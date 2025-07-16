@@ -1,0 +1,77 @@
+{
+  "Dev_Comment": "Series - Free",
+  "contentType": "series",
+  "series": [
+    {
+      "seriesNumber": 7
+    },
+    {
+      "seriesNumber": 10
+    },
+    {
+      "seriesNumber": 11
+    },
+    {
+      "seriesNumber": 5
+    },
+    {
+      "seriesNumber": 2
+    },
+    {
+      "seriesNumber": 6
+    },
+    {
+      "seriesNumber": 8
+    },
+    {
+      "seriesNumber": 4
+    },
+    {
+      "seriesNumber": 3
+    },
+    {
+      "seriesNumber": 12
+    },
+    {
+      "seriesNumber": 9
+    },
+    {
+      "seriesNumber": 1
+    }
+  ],
+  "seriesNumber": 12,
+  "contentInfo": "Series 1 - 12",
+  "title": "Love Island",
+  "titleSlug": "love-island",
+  "partnership": null,
+  "contentOwner": null,
+  "channel": "itv2",
+  "description": "A scorching summer just got hotter. ",
+  "dateTime": "2025-06-09T20:00:00Z",
+  "genres": [
+    {
+      "id": "ENTERTAINMENT",
+      "name": "Entertainment & Reality"
+    }
+  ],
+  "imageTemplate": "https://ovp.itv.com/v2/images/series/xqjt1py/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "xqjt1py",
+  "brandCCId": "wkk03p7",
+  "programmeId": "2/3697",
+  "encodedProgrammeId": {
+    "letterA": "2a3697",
+    "underscore": "2_3697"
+  },
+  "episodeId": "2/3697/0737",
+  "encodedEpisodeId": {
+    "letterA": "2a3697a0737",
+    "underscore": "2_3697_0737"
+  },
+  "isPaid": false,
+  "tagNames": [
+    {
+      "label": "new-content",
+      "displayText": "New Episode"
+    }
+  ]
+}

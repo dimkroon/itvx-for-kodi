@@ -1,33 +1,6 @@
 {
   "heroContent": [
     {
-      "imagePresets": {},
-      "contentType": "special",
-      "title": "Harry - The Interview",
-      "imageTemplate": "https://ovp.itv.com/images/special/vygg10g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "programmeId": "10/3975",
-      "encodedProgrammeId": {
-        "letterA": "10a3975",
-        "underscore": "10_3975"
-      },
-      "encodedEpisodeId": {
-        "letterA": "10a3975a0001",
-        "underscore": "10_3975_0001"
-      },
-      "categories": [
-        "NEWS"
-      ],
-      "description": "Prince Harry opens up to ITV's Tom Bradby in an exclusive interview",
-      "dateTime": "2023-01-08T21:00:00Z",
-      "duration": "1h 30m",
-      "ctaLabel": "Watch Episode",
-      "genre": "News",
-      "contentInfo": [
-        "News",
-        "1h 30m"
-      ]
-    },
-    {
       "Dev_Comment": "Series - Free 2025-07-22 01:28",
       "audioDescribed": true,
       "contentType": "series",
@@ -83,68 +56,6 @@
         "text": "New series - stream every episode",
         "variant": "default"
       }
-    },
-    {
-      "contentType": "simulcastspot",
-      "title": "Britain's Got Talent",
-      "description": "Always entertaining, always surprising, plus Ant & Dec! An epic night in",
-      "channel": "ITV",
-      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/britainsgottalents17/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "genre": "Entertainment",
-      "ctaLabel": "Watch Live",
-      "ariaLabel": "Watch live, Britain's Got Talent",
-      "contentInfo": [
-        "Entertainment"
-      ],
-      "strapline": {
-        "text": "Stream it now",
-        "variant": "live-and-fast"
-      },
-      "startDateTime": "19:30",
-      "endDateTime": "21:00",
-      "tagName": "live"
-    },
-    {
-      "imagePresets": {},
-      "contentType": "fastchannelspot",
-      "title": "Crime Drama Channel",
-      "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-crimedrama/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "description": "From Cracker to Karen Pirie, stream the exclusive Crime Drama channel",
-      "channel": "fast7",
-      "ctaLabel": "Watch Now",
-      "contentInfo": []
-    },
-    {
-      "imagePresets": {},
-      "contentType": "film",
-      "title": "Coyote Ugly",
-      "imageTemplate": "https://ovp.itv.com/images/film/nch31g7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "isPaid": false,
-      "ccid": "nch31g7",
-      "programmeId": "17523",
-      "encodedProgrammeId": {
-        "letterA": "17523",
-        "underscore": "17523"
-      },
-      "description": "It’s time to get up & boogie on the bar in this irresistible comedy-drama",
-      "productionYear": 2000,
-      "dateTime": "2023-06-25T17:55:00Z",
-      "duration": "2h",
-      "ctaLabel": "Watch Film",
-      "genre": [
-        "Films",
-        "Comedy",
-        "Romantic"
-      ],
-      "contentInfo": [
-        [
-          "Films",
-          "Comedy",
-          "Romantic"
-        ],
-        "2h",
-        2000
-      ]
     },
     {
       "Dev_Comment": "Collection 2025-07-22 01:28",
@@ -221,53 +132,6 @@
         "text": "Stream every episode",
         "variant": "default"
       }
-    },
-    {
-      "contentType": "episode",
-      "ariaLabel": "Watch Now",
-      "attribution": {
-        "contentOwner": null,
-        "partnership": null
-      },
-      "brandImageTemplate": "https://ovp.itv.com/images/programme/71xn0cw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "contentInfo": [
-        "Ent & Reality",
-        "Celebrity"
-      ],
-      "contentOwner": null,
-      "ctaLabel": "Series 6, Episode 1",
-      "description": "The Masked Singer is back with more epic outfits & jaw-dropping reveals! And a brand-new detective, Maya Jama, joins the celebrity panel.",
-      "encodedEpisodeId": {
-        "letterA": "2a6976a0065",
-        "underscore": "2_6976_0065"
-      },
-      "encodedProgrammeId": {
-        "letterA": "2a6976",
-        "underscore": "2_6976"
-      },
-      "episode": 1,
-      "genres": [
-        {
-          "id": "ENTERTAINMENT",
-          "name": "Entertainment & Reality"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/images/episode/g4zhx4v/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "isPaid": false,
-      "partnership": null,
-      "programmeId": "2/6976",
-      "series": 6,
-      "subgenres": [
-        {
-          "id": "CELEBRITY",
-          "name": "Celebrity"
-        },
-        {
-          "id": "MUSIC_PROGRAMMES",
-          "name": "Music Programmes"
-        }
-      ],
-      "title": "The Masked Singer"
     }
   ],
  "editorialSliders": [
@@ -8082,18 +7946,17 @@
         "linkText": "View All"
       },
       "items": [
-        {
+         {
           "contentType": "shortform",
-          "episodeTitle": "How farms are being targeted by criminal gangs stealing machinery to order for Russia",
-          "episodeId": "z3khg27",
-          "titleSlug": "how-farms-are-being-targeted-by-criminal-gangs-stealing-machinery-to-order-for-russia",
-          "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3V5n5Y0U1Ifw3c4WQPEoE3/84a5ea87391405c35b1624c2e5d3646a/ITVX_RURAL_CRIME_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "synopsis": "ITV News has been shown figures which reveal the surge in demand for heavy machinery since the invasion of Ukraine and subsequent sanctions.",
-          "dateTime": "2024-05-10T18:10:00Z",
-          "duration": 301,
-          "posterImage": "https://images.ctfassets.net/go68aep20o4s/4rqz4D7C6k6b9qvxl3hX8W/ee8717d498d9d6f9f74b5c0a62b6ab30/ITVX_RURAL_CRIME_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-          "genre": "news",
-          "href": "/watch/news/undefined"
+          "episodeTitle": "Talking Royals: Behind the scenes in Brazil as Prince William delivers royal wakeup call ",
+          "episodeId": "d89cmbr",
+          "titleSlug": "talking-royals-behind-the-scenes-in-brazil-as-prince-william-delivers-royal-wakeup-call",
+          "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5w2siwPgOeqn3auJwytlak/de1d7cb1386631ee123ea1c26aefceda/ITVX_TR_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "synopsis": "Charlene White is joined by Royal Editor Chris Ship, Royal expert Lizzie Robinson and survivalist Ray Mears to discuss Prince William's recent trip to Brazil.",
+          "dateTime": "2025-11-07T17:16:35.846Z",
+          "duration": 1724,
+          "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/1C4kUkzCgFVpjY9n5CiIkZ/27308b208a8bdaecabc0ff284cb61539/ITVX_TR_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+          "genre": "news"
         },
         {
           "contentType": "episode",
@@ -8195,253 +8058,74 @@
   ],
   "trendingSliderContent": {
     "header": {
-      "title": "Trending"
+      "title": "Top 10 Most Watched"
     },
     "items": [
       {
-        "programmeId": "2_3697",
-        "title": "Love Island",
-        "imageUrl": "https://ovp.itv.com/images/programme/wkk03p7/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Grab love by the horns with a brand new series - new episodes every day",
+        "contentType": "programme",
+        "programmeId": "10_0591",
+        "title": "Trigger Point",
+        "titleSlug": "trigger-point",
+        "imageUrl": "https://ovp.itv.com/v2/images/programme/34wy7xr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "Hold your breath\u2026 the heart-pounding thriller with Vicky McClure returns",
         "encodedProgrammeId": {
-          "letterA": "2a3697",
-          "underscore": "2_3697"
+          "letterA": "10a0591",
+          "underscore": "10_0591"
         },
-        "encodedEpisodeId": {
-          "letterA": "2a3697a0395",
-          "underscore": "2_3697_0395"
-        },
-        "contentType": "episode",
-        "tagNames": null,
+        "contentInfo": "Series 1 - 3",
         "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S9, E7",
-        "titleSlug": "love-island"
+        "contentOwner": null
       },
       {
-        "programmeId": "1_7314",
-        "title": "Vera",
-        "imageUrl": "https://ovp.itv.com/images/programme/mz0gq64/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Brenda Blethyn is the obsessive crime-cracker - new episodes every Sunday",
+        "contentType": "programme",
+        "programmeId": "10_4928",
+        "title": "Big Brother",
+        "titleSlug": "big-brother",
+        "imageUrl": "https://ovp.itv.com/v2/images/programme/r829kmj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "Follow every twist and turn as housemates live under the camera's gaze",
         "encodedProgrammeId": {
-          "letterA": "1a7314",
-          "underscore": "1_7314"
+          "letterA": "10a4928",
+          "underscore": "10_4928"
         },
-        "encodedEpisodeId": {
-          "letterA": "1a7314a0050",
-          "underscore": "1_7314_0050"
-        },
-        "contentType": "episode",
-        "tagNames": null,
+        "contentInfo": "Series 1 - 3",
         "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S11, E6. The Way The Wind Blows",
-        "titleSlug": "vera"
+        "contentOwner": null
       },
       {
-        "programmeId": "10_0158",
-        "title": "Maternal",
-        "imageUrl": "https://ovp.itv.com/images/programme/zdv3n6n/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Life & death on medicine's frontline - catch every ep of this tense drama",
+        "contentType": "programme",
+        "programmeId": "10_6295",
+        "title": "Borderline",
+        "titleSlug": "borderline",
+        "imageUrl": "https://ovp.itv.com/v2/images/programme/8yg8sf6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "Two worlds collide in this twisty crime thriller set on the Irish border",
         "encodedProgrammeId": {
-          "letterA": "10a0158",
-          "underscore": "10_0158"
+          "letterA": "10a6295",
+          "underscore": "10_6295"
         },
-        "encodedEpisodeId": {
-          "letterA": "10a0158a0006",
-          "underscore": "10_0158_0006"
-        },
-        "contentType": "episode",
-        "tagNames": null,
+        "contentInfo": "Series 1",
         "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S1, E6",
-        "titleSlug": "maternal"
+        "contentOwner": null
       },
       {
-        "programmeId": "2_5040",
-        "title": "Dancing on Ice",
-        "imageUrl": "https://ovp.itv.com/images/programme/61jh3y7/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Who will win at the rink? Well-known faces train up as ice dancers",
+        "contentType": "programme",
+        "programmeId": "1_8697",
+        "title": "Downton Abbey",
+        "titleSlug": "downton-abbey",
+        "imageUrl": "https://ovp.itv.com/v2/images/programme/cyxs0m3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "ITV's iconic Sunday night drama is now available to stream in full",
         "encodedProgrammeId": {
-          "letterA": "2a5040",
-          "underscore": "2_5040"
+          "letterA": "1a8697",
+          "underscore": "1_8697"
         },
-        "encodedEpisodeId": {
-          "letterA": "2a5040a0052",
-          "underscore": "2_5040_0052"
-        },
-        "contentType": "episode",
-        "tagNames": null,
+        "contentInfo": "Series 1 - 6",
         "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S15, E2",
-        "titleSlug": "dancing-on-ice"
-      },
-      {
-        "programmeId": "10_2553",
-        "title": "The Sex Lives of College Girls",
-        "imageUrl": "https://ovp.itv.com/images/programme/1mmwvc6/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Revel in a rowdy world of rumours, romance, sex & sorority gatherings",
-        "encodedProgrammeId": {
-          "letterA": "10a2553",
-          "underscore": "10_2553"
-        },
-        "encodedEpisodeId": {
-          "letterA": "10a2553a0020",
-          "underscore": "10_2553_0020"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S2, E10. The Rooming Lottery",
-        "titleSlug": "the-sex-lives-of-college-girls"
-      },
-      {
-        "programmeId": "2_5131",
-        "title": "Love Island: Aftersun",
-        "imageUrl": "https://ovp.itv.com/images/programme/8ck1sm8/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Get all the latest gossip from the villa & interviews with ex-Islanders",
-        "encodedProgrammeId": {
-          "letterA": "2a5131",
-          "underscore": "2_5131"
-        },
-        "encodedEpisodeId": {
-          "letterA": "2a5131a0050",
-          "underscore": "2_5131_0050"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S9, E1",
-        "titleSlug": "love-island-aftersun"
-      },
-      {
-        "programmeId": "10_1865",
-        "title": "Without Sin",
-        "imageUrl": "https://ovp.itv.com/images/programme/tq0d5qj/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Don't miss Vicky McClure in ITVX's gripping psychological thriller",
-        "encodedProgrammeId": {
-          "letterA": "10a1865",
-          "underscore": "10_1865"
-        },
-        "encodedEpisodeId": {
-          "letterA": "10a1865a0004",
-          "underscore": "10_1865_0004"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S1, E4",
-        "titleSlug": "without-sin"
-      },
-      {
-        "programmeId": "10_2578",
-        "title": "The Reunion",
-        "imageUrl": "https://ovp.itv.com/images/programme/y36nhcw/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Three friends, one tragic secret - don\u2019t miss ITVX\u2019s starry new thriller",
-        "encodedProgrammeId": {
-          "letterA": "10a2578",
-          "underscore": "10_2578"
-        },
-        "encodedEpisodeId": {
-          "letterA": "10a2578a0006",
-          "underscore": "10_2578_0006"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S1, E6",
-        "titleSlug": "the-reunion"
-      },
-      {
-        "programmeId": "2_7928",
-        "title": "Litvinenko",
-        "imageUrl": "https://ovp.itv.com/images/programme/thbygtd/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Don't miss ITVX's exclusive new true crime drama - David Tennant stars",
-        "encodedProgrammeId": {
-          "letterA": "2a7928",
-          "underscore": "2_7928"
-        },
-        "encodedEpisodeId": {
-          "letterA": "2a7928a0004",
-          "underscore": "2_7928_0004"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S1, E4",
-        "titleSlug": "litvinenko"
-      },
-      {
-        "programmeId": "15894",
-        "title": "Footballers' Wives",
-        "imageUrl": "https://ovp.itv.com/images/programme/hx02jt4/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "The WAGs must fight to keep their secrets safe - stream every episode",
-        "encodedProgrammeId": {
-          "letterA": "15894",
-          "underscore": "15894"
-        },
-        "encodedEpisodeId": {
-          "letterA": "680398",
-          "underscore": "680398"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S5, E8",
-        "titleSlug": "footballers-wives"
-      },
-      {
-        "programmeId": "10_2465",
-        "title": "One Tree Hill",
-        "imageUrl": "https://ovp.itv.com/images/programme/wzf5c59/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Hit US drama - two estranged brothers attempt to bond over basketball",
-        "encodedProgrammeId": {
-          "letterA": "10a2465",
-          "underscore": "10_2465"
-        },
-        "encodedEpisodeId": {
-          "letterA": "10a2465a0188",
-          "underscore": "10_2465_0188"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S9, E14. One Tree Hill",
-        "titleSlug": "one-tree-hill"
-      },
-      {
-        "programmeId": "10_2042",
-        "title": "Loaded in Paradise",
-        "imageUrl": "https://ovp.itv.com/images/programme/g5yckpl/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "description": "Watch as pairs splash the cash in this action-packed race around Greece",
-        "encodedProgrammeId": {
-          "letterA": "10a2042",
-          "underscore": "10_2042"
-        },
-        "encodedEpisodeId": {
-          "letterA": "10a2042a0015",
-          "underscore": "10_2042_0015"
-        },
-        "contentType": "episode",
-        "tagNames": null,
-        "partnership": null,
-        "contentOwner": null,
-        "contentInfo": "S1, E15. The Big, Fat, Greek Finale",
-        "titleSlug": "loaded-in-paradise"
+        "contentOwner": null
       }
     ],
     "key": "getMostPopular",
     "isRail": true,
-    "tileType": "standard"
+    "dataTestId": "trending-rail",
+    "tileType": "numbered"
   },
   "sponsorship": true
 }

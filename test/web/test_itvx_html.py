@@ -50,8 +50,9 @@ checked_urls = []
 saved_col_item_types = set(os.path.splitext(fname)[0] for fname in os.listdir(testutils.doc_path('col_items')))
 saved_hero_item_types = set(os.path.splitext(fname)[0] for fname in os.listdir(testutils.doc_path('hero_items')))
 
+
 def save_item(item, source):
-    """Save one of the variations of each collection item type."""
+    """Save one of the variations of each collection item type if not already stored."""
 
     cfg = {
         'collection': {'base_folder': 'col_items/', 'saved': saved_col_item_types},
@@ -655,14 +656,12 @@ class WatchPages(unittest.TestCase):
                     'displayTitle', 'detailedDisplayTitle', 'timestamp',
                     'broadcastEndTimestamp', 'productionId')
 
-        # As of 25-6-2023 all fields of the FAST channel 'Unwind' are either None or False. There
-        # some fields missing as well, but there is no point in checking that.
-        # From 10-2023 fields of 'citv' are also all None or False. Most likely to be removed in the future.
+        # Several channels do not broadcast individual programmes and consequently do not
+        # have EGP data. Until 11-2025 we checked if it was a knows channel, like a special
+        # sports event, but these types of channels seem to appear more frequently, like
+        # 'space live' and a continuous stream of a Christmas fireplace are now often .
+        # If there's no EPG at all, just assume it's one of those and quit further checks.
         if all(not progr_data.get(k) for k in all_keys):
-            name = obj_name.lower()
-            self.assertTrue(name.startswith('unwind') or
-                            name.startswith('itv sport') or
-                            name.startswith('space live 24/7 channel'))
             return
 
         has_keys(progr_data, *all_keys, obj_name=obj_name)

@@ -5,22 +5,27 @@
   "collection": {
     "id": "58DOqcyNCNMqcAWNIFvXzJ",
     "page": "collections",
+    "itemCount": 14,
     "headingTitle": "ITVX Live: Choose a channel to match your mood!",
+    "headingLink": {
+      "href": "/collections/itvx-live-choose-a-channel-to-match-your-mood/58DOqcyNCNMqcAWNIFvXzJ",
+      "text": "View All"
+    },
     "imageUrl": null,
     "sliderName": "itvx_live_choose_a_channel_to_match_your_mood",
     "isChildrenCollection": false,
     "subsequentJourney": {
       "name": "FAST channels rail sub journey",
       "label": "View All",
-      "destinationUrl": " /collections/58DOqcyNCNMqcAWNIFvXzJ"
+      "destinationUrl": "/collections/58DOqcyNCNMqcAWNIFvXzJ"
     },
     "shows": [
       {
         "contentType": "fastchannelspot",
-        "title": "Comedy 24/7 Channel",
-        "description": "The channel dedicated to big laughs!",
-        "channel": "fast16",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-comedy247/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "title": "Space Live 24/7 Channel",
+        "description": "Watch the 24/7 live stream",
+        "channel": "fast22",
+        "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-spacelive/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -31,10 +36,10 @@
       },
       {
         "contentType": "fastchannelspot",
-        "title": "Love Island Channel",
-        "description": "Escape to the villa, any time you like",
-        "channel": "fast20",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-loveisland/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "title": "Xmas Movies Channel",
+        "description": "Festive cheer, 24/7",
+        "channel": "fast1",
+        "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-xmasmovies2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -45,10 +50,10 @@
       },
       {
         "contentType": "fastchannelspot",
-        "title": "ITVX Kids Channel",
-        "description": "From Oddbods to Bob the Builder",
-        "channel": "fast6",
-        "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-itvxkids/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "title": "Midsomer Murders Channel",
+        "description": "Every murder, every episode, 24/7",
+        "channel": "fast12",
+        "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-midsomermurders/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "",
         "startDateTime": null,
         "endDateTime": null,
@@ -57,14 +62,15 @@
           "live"
         ]
       }
-    ]
+    ],
+    "adServed": false
   },
   "editorialSliders": null,
   "navAdServerParams": {
     "area": "collections",
-    "category": [],
+    "category": "",
     "appname": "dotcom",
-    "appversion": "2.226.2",
+    "appversion": "2.435.3",
     "size": "hubsponsorbutton"
   },
   "collectionSlug": "itvx-live-choose-a-channel-to-match-your-mood",

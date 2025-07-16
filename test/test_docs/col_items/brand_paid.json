@@ -1,0 +1,72 @@
+{
+  "Dev_Comment": "Brand - Paid",
+  "contentType": "brand",
+  "partnership": "BRITBOX",
+  "contentOwner": "BBC",
+  "title": "Absolutely Fabulous",
+  "titleSlug": "absolutely-fabulous",
+  "description": "Patsy & Eddie love to booze & bitch in this hit 90s sitcom",
+  "genres": [
+    {
+      "id": "COMEDY",
+      "name": "Comedy"
+    }
+  ],
+  "dateTime": null,
+  "channel": "itv",
+  "imageTemplate": "https://ovp.itv.com/v2/images/programme/74mfq9w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "numberOfAvailableSeries": 5,
+  "series": [
+    {
+      "numberOfEpisodes": 6,
+      "numberOfAvailableEpisodes": 6,
+      "fullSeries": true,
+      "legacyId": "2/7232-01",
+      "seriesNumber": 1,
+      "longRunning": false
+    },
+    {
+      "numberOfEpisodes": 6,
+      "numberOfAvailableEpisodes": 6,
+      "fullSeries": true,
+      "legacyId": "2/7232-02",
+      "seriesNumber": 2,
+      "longRunning": false
+    },
+    {
+      "numberOfEpisodes": 6,
+      "numberOfAvailableEpisodes": 6,
+      "fullSeries": true,
+      "legacyId": "2/7232-03",
+      "seriesNumber": 3,
+      "longRunning": false
+    },
+    {
+      "numberOfEpisodes": 6,
+      "numberOfAvailableEpisodes": 6,
+      "fullSeries": true,
+      "legacyId": "2/7232-04",
+      "seriesNumber": 4,
+      "longRunning": false
+    },
+    {
+      "numberOfEpisodes": 8,
+      "numberOfAvailableEpisodes": 8,
+      "fullSeries": true,
+      "legacyId": "2/7232-05",
+      "seriesNumber": 5,
+      "longRunning": false
+    }
+  ],
+  "brandCCId": "74mfq9w",
+  "programmeId": "2/7232",
+  "encodedProgrammeId": {
+    "letterA": "2a7232",
+    "underscore": "2_7232"
+  },
+  "contentInfo": "Series 1 - 5",
+  "isPaid": true,
+  "tagNames": [
+    "premium"
+  ]
+}

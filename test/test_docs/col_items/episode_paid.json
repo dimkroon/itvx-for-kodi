@@ -1,0 +1,38 @@
+{
+  "Dev_Comment": "Episode - Paid",
+  "contentType": "episode",
+  "title": "Million Dollar Listing: New York",
+  "titleSlug": "million-dollar-listing-new-york",
+  "episodeTitle": "Uncensored",
+  "episodeNumber": 14,
+  "seriesNumber": 3,
+  "contentInfo": "S3, E14. Uncensored",
+  "genres": [
+    {
+      "id": "ENTERTAINMENT",
+      "name": "Entertainment & Reality"
+    }
+  ],
+  "partnership": "ITVX",
+  "contentOwner": "HAYU",
+  "description": "The best stuff they never dared to show you, until now.",
+  "dateTime": null,
+  "channel": "itv",
+  "imageTemplate": "https://ovp.itv.com/v2/images/episode/ckrxvxx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "ckrxvxx",
+  "brandCCId": "yrqdf83",
+  "programmeId": "2/4653",
+  "encodedProgrammeId": {
+    "letterA": "2a4653",
+    "underscore": "2_4653"
+  },
+  "episodeId": "2/4653/0092",
+  "encodedEpisodeId": {
+    "letterA": "2a4653a0092",
+    "underscore": "2_4653_0092"
+  },
+  "isPaid": true,
+  "tagNames": [
+    "premium"
+  ]
+}

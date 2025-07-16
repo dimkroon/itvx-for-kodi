@@ -1,0 +1,15 @@
+{
+    "Dev_Comment": "Page 2025-07-24 19:46",
+    "contentType": "page",
+    "title": "Loads of fantastic movies - stream them all for free!",
+    "titleSlug": "loads-of-fantastic-movies-stream-them-all-for-free",
+    "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/allstarmoviesv18/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "strapline": {
+        "text": "Stream your faves",
+        "variant": "default"
+    },
+    "pageId": "3A1vTB8LPXerUueqcJKe6V",
+    "ctaLabel": "View Collection",
+    "ariaLabel": "View Collection",
+    "description": "Watch hundreds of blockbusters with all the biggest stars from Fight Club & The Hobbit to Rocky & Jaws - enjoy this fabulous film frenzy!"
+}

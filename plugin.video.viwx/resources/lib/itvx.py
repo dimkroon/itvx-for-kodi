@@ -205,10 +205,11 @@ def collection_content(url=None, slider=None, hide_paid=False):
 
         elif slider in ('newsShortForm', 'sportShortForm'):
             # Return items from the main page's News or Sports short form.
+            is_sport = slider == 'sportShortForm'
             for slider_data in page_data['shortFormSliderContent']:
                 if slider_data['key'] == slider:
                     for short_item in slider_data['items']:
-                        yield parsex.parse_shortform_item(short_item, uk_tz, time_fmt, hide_paid)
+                        yield parsex.parse_shortform_item(short_item, uk_tz, time_fmt, hide_paid, is_sport=is_sport)
                     # A 'View All' item,
                     view_all_item = parsex.parse_view_all(slider_data)
                     if view_all_item:
@@ -261,7 +262,7 @@ def collection_content(url=None, slider=None, hide_paid=False):
             return
 
 
-def episodes(url, use_cache=False, prefer_bsl=False):
+def episodes(url, use_cache=False):
     """Get a listing of series and their episodes
 
     Return a tuple of a series map and a programmeId.
@@ -316,7 +317,7 @@ def episodes(url, use_cache=False, prefer_bsl=False):
                 'episodes': []
             })
         series_obj['episodes'].extend(
-            [parsex.parse_episode_title(episode, programme_fanart, prefer_bsl) for episode in series['titles']])
+            [parsex.parse_episode_title(episode, programme_fanart) for episode in series['titles']])
 
     programme_data = {'programme_id': programme_id, 'series_map': series_map}
     cache.set_item(url, programme_data, expire_time=1800)
