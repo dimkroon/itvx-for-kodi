@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 from __future__ import annotations
@@ -336,6 +336,7 @@ def check_short_form_item(item):
         misses_keys(item, 'description, synopsis', obj_name=objname)
     else:
         has_keys(item, 'episodeId', 'titleSlug', 'dateTime', obj_name=objname)
+        assert all('ccid' not in key.lower() for key in item.keys())
         assert is_not_empty(item['episodeId'], str)
         assert is_not_empty(item['titleSlug'], str)
         assert is_iso_utc_time(item['dateTime'])
