@@ -210,10 +210,7 @@ def parse_hero_content(hero_data):
                                               '[/B]\n',
                                               hero_data.get('description'))),
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
-            item['params'] = {'url': build_url(title,
-                                               hero_data['encodedProgrammeId']['letterA'],
-                                               hero_data.get('encodedEpisodeId', {}).get('letterA'))
-                              }
+            item['params'] = {'url': hero_data['titleCCId']}
             if item_type == 'episode':
                 context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
@@ -364,6 +361,10 @@ def parse_collection_item(show_data, hide_paid=False):
         if content_type == 'fastchannelspot':
             programme_item['params'] = {'channel': show_data['channel'], 'url': None}
 
+        elif is_playable:
+            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
+            programme_item['params'] = {'url': show_data['titleCCId']}
+
         else:
             programme_item['params'] = {'url': build_url(show_data['titleSlug'],
                                         show_data['encodedProgrammeId']['letterA'],
@@ -372,8 +373,6 @@ def parse_collection_item(show_data, hide_paid=False):
         if 'FILMS' in show_data.get('categories', ''):
             programme_item['art']['poster'] = show_data['imageTemplate'].format(**IMG_PROPS_POSTER)
 
-        if is_playable:
-            programme_item['info']['duration'] = utils.duration_2_seconds(content_info)
         return {'type': content_type,
                 'programme_id': show_data.get('encodedProgrammeId', {}).get('underscore'),
                 'show': programme_item}
@@ -432,7 +431,7 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
         # TODO: consider adding poster image, but it is not always present.
         #       Add date.
         return {
-            'type': 'title',
+            'type': 'short-episode',
             'show': {
                 'label': title,
                 'art': {'thumb': item_data['imageUrl'].format(**IMG_PROPS_THUMB)},
@@ -484,7 +483,7 @@ def parse_category_item(prog, category_id):
 
     if is_playable:
         programme_item['info']['duration'] = playtime
-        programme_item['params'] = {'url': build_url(title, prog['encodedProgrammeId']['letterA'])}
+        programme_item['params'] = {'url': prog['titleCCId']}
     else:
         # A Workaround for an issue at ITVX where news programmes' programmeId already contain an
         # episodeId and programme and episode IDs are the same. On the website these programmes
@@ -576,11 +575,6 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
     if not isinstance(series_nr, int):
         series_nr = None
 
-    if prefer_bsl:
-        playlist_url = title_data.get('bslPlaylistUrl') or title_data['playlistUrl']
-    else:
-        playlist_url = title_data['playlistUrl']
-
     title_obj = {
         'label': title,
         'art': {'thumb': img_url.format(**IMG_PROPS_THUMB),
@@ -594,7 +588,7 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
                  'episode': episode_nr,
                  'season': series_nr,
                  'year': title_data.get('productionYear')},
-        'params': {'url': playlist_url}
+        'params': {'url': title_data['ccid']}
     }
 
     return title_obj

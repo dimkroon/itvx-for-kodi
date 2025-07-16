@@ -73,7 +73,7 @@ class TestItvX(unittest.TestCase):
         if items is not None:
             self.assertEqual(len(list(items)), 0)
 
-    def test_get_playlist_url_from_episode_page(self):
+    def test_get_ccid_from_episode_page(self):
         # TODO: Test programmes that are actually used by this function
         #       All these programmes below are episodes and their playlists are
         #       obtained by the episode parser.
@@ -89,7 +89,9 @@ class TestItvX(unittest.TestCase):
 
         # A news special with signed stream
         episode_url = 'https://www.itv.com/watch/ramadan-a-journey-across-britain/10a5684a0001B'
-        url = itvx.get_playlist_url_from_episode_page(episode_url)
+        # a short news clip
+        episode_url = 'https://www.itv.com/watch/news/unforgivable-damning-report-finds-death-of-learning-disabled-man-was-entirely-preventable/3slhltz'
+        url = itvx.get_ccid_from_episode_page(episode_url)
         self.assertTrue(is_url(url))
         bsl_url = itvx.get_playlist_url_from_episode_page(episode_url, True)
         self.assertTrue(is_url(url))
