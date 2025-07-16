@@ -212,8 +212,8 @@ def parse_hero_content(hero_data):
                                 duration=utils.duration_2_seconds(hero_data.get('duration')))
             item['params'] = {'url': build_url(title,
                                                hero_data['encodedProgrammeId']['letterA'],
-                                               hero_data.get('encodedEpisodeId', {}).get('letterA')),
-                              'name': title}
+                                               hero_data.get('encodedEpisodeId', {}).get('letterA'))
+                              }
             if item_type == 'episode':
                 context_mnu.append(ctx_mnu_all_episodes(hero_data['encodedProgrammeId']['letterA']))
 
@@ -594,7 +594,7 @@ def parse_episode_title(title_data, brand_fanart=None, prefer_bsl=False):
                  'episode': episode_nr,
                  'season': series_nr,
                  'year': title_data.get('productionYear')},
-        'params': {'url': playlist_url, 'name': title}
+        'params': {'url': playlist_url}
     }
 
     return title_obj
@@ -755,7 +755,6 @@ def parse_last_watched_item(item, utc_now):
                      'episode': episode_nr},
             'params': {'url': ('https://magni.itv.com/playlist/itvonline/ITV/' +
                                item['productionId'].replace('/', '_').replace('#', '.')),
-                       'name': progr_name,
                        'set_resume_point': True},
             'properties': {
                 # This causes Kodi not to offer the standard resume dialog, so we can obtain

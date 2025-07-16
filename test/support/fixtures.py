@@ -260,7 +260,7 @@ class FileMock(xbmcvfs.File):
         self._file = open(translate_path_mock(filepath), mode)
 
     def read(self, numBytes: int = 0) -> str:
-        # For some reason Kodi's default numBytes == 0, while python requires -1 to read all content.
+        # For some reason Kodi's default numBytes == 0, while Python requires -1 to read all content.
         if numBytes == 0:
             numBytes = -1
         return self._file.read(numBytes)

@@ -173,8 +173,7 @@ class TestPlayCatchup(unittest.TestCase):
 
     def test_play_vod_episode_julia_bradbury(self):
         result = main.play_stream_catchup(MagicMock(),
-                                          url='https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001',
-                                          name='Walks with Julia Bradbury')
+                                          url='https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001')
         self.assertEqual('Walks with Julia Bradbury', result.getLabel())
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue(object_checks.is_url(result.getPath(), '.mpd'))
@@ -185,7 +184,7 @@ class TestPlayCatchup(unittest.TestCase):
         news_item = page_data['shortFormSliderContent'][0]['items'][0]
         item_url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
         # play the item
-        result = main.play_title.test(item_url, 'news item')
+        result = main.play_title.test(item_url)
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 
