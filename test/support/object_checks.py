@@ -336,6 +336,7 @@ def check_short_form_item(item):
         misses_keys(item, 'description, synopsis', obj_name=objname)
     else:
         has_keys(item, 'episodeId', 'titleSlug', 'dateTime', obj_name=objname)
+        misses_keys(item, 'titleCCId', 'ccid')
         assert is_not_empty(item['episodeId'], str)
         assert is_not_empty(item['titleSlug'], str)
         assert is_iso_utc_time(item['dateTime'])
