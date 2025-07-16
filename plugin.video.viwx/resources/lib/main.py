@@ -12,7 +12,6 @@ import sys
 
 from functools import wraps
 
-import requests
 import xbmc
 import xbmcplugin
 from xbmcgui import ListItem
@@ -193,7 +192,7 @@ def root(_):
     yield Listitem.from_dict(sub_menu_my_itvx, 'My itvX')
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     for item in itvx.main_page_items():
-        callback = callb_map.get(item['type'], play_title)
+        callback = callb_map.get(item['type'], play_stream_catchup)
         li = Listitem.from_dict(callback, **item['show'])
         li.context.extend(item.get('ctx_mnu', []))
         _my_list_context_mnu(li, item.get('programme_id'))
@@ -457,7 +456,7 @@ def do_search(addon, search_query):
     for result in search_results:
         if result is None:
             continue
-        li = Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
+        li = Listitem.from_dict(callb_map.get(result['type'], play_stream_catchup), **result['show'])
         ctx_mnus = result.get('ctx_mnu')
         if ctx_mnus:
             li.context.extend(ctx_mnus)
@@ -555,11 +554,22 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None):
 
 @Resolver.register
 def play_stream_catchup(plugin, url, set_resume_point=False):
+    """Play a VOD title based on the title's features and user preference.
+
+    Param url is actually just the title's ccid, but named url here to
+    provide the same interface as many other callback handlers, so parsers
+    don't have to handle playables differently.
+
+    """
+    from resources.lib import itv_qql
 
     logger.info('play catchup stream url=%s', url)
+    playlist_url = itv_qql.get_playlist_url(ccid=url, prefer_bsl=plugin.setting.get_boolean('prefer_bsl'))
+
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
-        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url, fhd_enabled)
+        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(
+            playlist_url, fhd_enabled)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
@@ -590,23 +600,6 @@ def play_stream_catchup(plugin, url, set_resume_point=False):
                 })
                 logger.info("Resume from %s", resume_time)
         return list_item
-
-
-@Resolver.register
-def play_title(plugin, url):
-    """Play an episode from a url to the episode's html page.
-
-    While episodes obtained from list_productions() have direct urls to stream's
-    playlist, episodes from listings obtained by parsing html pages have an url
-    to the respective episode's details html page.
-
-    """
-    try:
-        url = itvx.get_playlist_url_from_episode_page(url, plugin.setting.get_boolean('prefer_bsl'))
-    except AccessRestrictedError:
-        kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
-        return False
-    return play_stream_catchup(plugin, url)
 
 
 @Script.register
@@ -658,9 +651,9 @@ callb_map = {
     'programme': list_productions,
     'simulcastspot': play_stream_live,
     'fastchannelspot': play_stream_live,
-    'episode': play_title,
-    'special': play_title,
-    'film': play_title,
-    'title': play_title,
+    'episode': play_stream_catchup,
+    'special': play_stream_catchup,
+    'film': play_stream_catchup,
+    'title': play_stream_catchup,
     'vodstream': play_stream_catchup
 }
