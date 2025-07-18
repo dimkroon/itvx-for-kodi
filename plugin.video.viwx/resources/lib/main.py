@@ -561,11 +561,11 @@ def play_stream_catchup(plugin, url, set_resume_point=False):
     don't have to handle playables differently.
 
     """
-    from resources.lib import itv_qql
+    from resources.lib import itv_gql
 
     logger.info('play catchup stream url=%s', url)
-    playlist_url = itv_qql.get_playlist_url(ccid=url, prefer_bsl=plugin.setting.get_boolean('prefer_bsl'))
-    play_vod(plugin, playlist_url, set_resume_point)
+    playlist_url = itv_gql.get_playlist_url(ccid=url, prefer_bsl=plugin.setting.get_boolean('prefer_bsl'))
+    return play_vod(plugin, playlist_url, set_resume_point)
 
 
 def play_vod(plugin, playlist_url, set_resume_point=False):
