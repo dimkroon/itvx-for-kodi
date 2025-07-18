@@ -13,14 +13,18 @@ type Genre {
 }
 
 type Version {
-    "Duration format :'PT3M'"
+    audioDescribed: Boolean
+    availability: AvailabilityInfo
+    bsl: Bsl
+    compliance: Compliance
+    "Duration in ISO format :'PT3M'"
     duration: String
     legacyId: String
-    availability: AvailabilityInfo
-    compliance: Compliance
     linearContent: Boolean
     playlistUrl: String
     scheduleEvent: ScheduleEvent
+    subtitled: Boolean
+    tier: [String]
     variants: [Variant]
     visuallySigned: Boolean
 }
@@ -49,6 +53,11 @@ type AvailabilityInfo {
     start: String               # "2021-04-01T04:54:00Z"
     "Probably the date to when the content is available - string in the format '2022-12-01T11:25:00Z'"
     end: String                 # "2023-01-23T23:59:59.999Z"
+}
+
+"Info regarding signed version"
+type Bsl {
+    playlistUrl: String
 }
 
 type  Compliance {

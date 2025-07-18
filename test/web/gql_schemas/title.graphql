@@ -47,7 +47,6 @@ type Episode {
     contentOwner: String
     "----------------Fields not common to titles in general"
     brand: Brand
-    brandLegacyId: String
     episodeNumber: Int
     " As these are tags I suppose the type is string-like, but I've only seen empty lists"
     merchandisingTags: [String]
