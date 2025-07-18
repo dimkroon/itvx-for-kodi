@@ -21,7 +21,6 @@ from resources.lib import itv_gql
 from support.object_checks import is_url
 from support import object_checks, testutils
 
-
 setUpModule = fixtures.setup_web_test
 
 
@@ -291,13 +290,15 @@ class Shows(unittest.TestCase):
         vars = ('{'
                 '"broadcaster":"UNKNOWN",'
                 '"titleLegacyId":"10/3819/0001",'
-                '"features":["HD","PROGRESSIVE","SINGLE_TRACK ","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD","INBAND_TTML","HLS","AES","INBAND_WEBVTT" ]'
+                '"features":["HD","PROGRESSIVE","SINGLE_TRACK","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD","INBAND_TTML","HLS","AES","INBAND_WEBVTT" ]'
                 '}')
         operationName = 'TitleLegacyId'
+        resp = _gql_query(compress(query), vars, operationName)
+        pass
 
     def test_get_episode_page(self):
         query = """
-            'query=query EpisodePage($broadcaster: Broadcaster, $brandLegacyId: BrandLegacyId, $features: [Feature!]) { 
+            'query EpisodePage($broadcaster: Broadcaster, $brandLegacyId: BrandLegacyId, $features: [Feature!]) { 
                 brands(filter: {legacyId: $brandLegacyId, tiers: ["FREE", "PAID"]}) { 
                     __typename 
                     title 
@@ -502,6 +503,8 @@ class Shows(unittest.TestCase):
                 '"features":["HD","PROGRESSIVE","SINGLE_TRACK","MPEG_DASH","WIDEVINE","WIDEVINE_DOWNLOAD","INBAND_TTML","HLS","AES","INBAND_WEBVTT","OUTBAND_WEBVTT","INBAND_AUDIO_DESCRIPTION"]'
                 '}')
         operationName='EpisodePage'
+        resp = _gql_query(compress(query), vars, operationName)
+        pass
 
     def test_versions(self):
         query = """
@@ -599,6 +602,51 @@ class Shows(unittest.TestCase):
         result = _gql_query(compress(query), variables=vars)
         print(json.dumps(result, indent=4))
         pass
+
+    def test_version_from_title(self):
+        query = """
+        query TitleLegacyId($broadcaster: Broadcaster, $titleLegacyId: TitleLegacyId, $features: [Feature!]) {
+            titles(filter: {legacyId: $titleLegacyId, broadcaster: $broadcaster, available: "NOW", platform: MOBILE, features: $features, tiers: ["FREE", "PAID"]}) { 
+                __typename 
+                title 
+                ccid
+                brandLegacyId 
+                latestAvailableVersion { 
+                    audioDescribed
+                    playlistUrl 
+                    bsl { playlistUrl }
+                }
+            } 
+        }
+        """
+        vars = ('{'
+                '"broadcaster":"UNKNOWN",'
+                '"titleLegacyId":"10/3819/0001",'
+                '"features":["HD","MPEG_DASH","WIDEVINE","INBAND_WEBVTT", "INBAND_AUDIO_DESCRIPTION" ]'
+                '}')
+        operationName = 'TitleLegacyId'
+        resp = _gql_query(compress(query), vars, operationName)
+        pass
+
+    def test_request_a_title_from_ccid(self):
+        query = (
+            'query Title {'
+                'titles(filter: {ccid: "%s"}) {' 
+                    '__typename '
+                    'title '
+                    'ccid '
+                    'brandLegacyId '
+                    'latestAvailableVersion {' 
+                        'audioDescribed '
+                        'playlistUrl '
+                        'bsl { playlistUrl }'
+                    '}'
+                '}' 
+            '}'
+        ) % "9r8cx9g"
+        resp = _gql_query(compress(query))
+        pass
+
 
 class GetPlaylistUrl(TestCase):
     def test_get_vod_playlist_url(self):
