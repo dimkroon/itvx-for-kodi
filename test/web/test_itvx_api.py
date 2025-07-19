@@ -879,32 +879,33 @@ class Playlists(unittest.TestCase):
     def test_playlist_news_collection_items(self):
         """Short news items form the collection 'news' are all just mp4 files."""
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
-        checked_types = set()
-        for item in page_data['shortFormSliderContent'][0]['items']:
-            content_type = item['contentType']
-            if content_type in checked_types:
-                continue
-            checked_types.add(content_type)
-            if content_type == 'shortform':
-                url = '/'.join(('https://www.itv.com/watch/news', item['titleSlug'], item['episodeId']))
-            elif 'encodedProgrammeId' in item.keys():
-                # The new item is a 'normal' catchup title
-                # Do not use field 'href' as it has non-a-encoded program and episode IDs which won't work.
-                url = '/'.join(('https://www.itv.com/watch',
-                                item['titleSlug'],
-                                item['encodedProgrammeId']['letterA'],
-                                item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
-            else:
-                raise AssertionError("Unknown news item type '{}'.".format(content_type))
-
-            playlist_url = itvx.get_playlist_url_from_episode_page(url)
-            for platform in ('web', 'freeview'):
-                strm_data = self.get_playlist_catchup(playlist_url, platform)
-                # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
+        for slider in page_data['shortFormSliderContent']:
+            checked_types = set()
+            for item in slider['items']:
+                content_type = item['contentType']
+                if content_type in checked_types:
+                    continue
+                checked_types.add(content_type)
                 if content_type == 'shortform':
-                    object_checks.check_news_collection_stream_info(strm_data['Playlist'])
+                    url = '/'.join(('https://www.itv.com/watch', item['genre'], item['titleSlug'], item['episodeId']))
+                elif 'encodedProgrammeId' in item.keys():
+                    # The new item is a 'normal' catchup title
+                    # Do not use field 'href' as it has non-a-encoded program and episode IDs which won't work.
+                    url = '/'.join(('https://www.itv.com/watch',
+                                    item['titleSlug'],
+                                    item['encodedProgrammeId']['letterA'],
+                                    item.get('encodedEpisodeId', {}).get('letterA', ''))).rstrip('/')
                 else:
-                    object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=platform == 'freeview')
+                    raise AssertionError("Unknown news item type '{}'.".format(content_type))
+
+                playlist_url = itvx.get_playlist_url_from_episode_page(url)
+                for platform in ('web', 'freeview'):
+                    strm_data = self.get_playlist_catchup(playlist_url, platform)
+                    # testutils.save_json(strm_data, 'playlists/pl_news_short.json')
+                    if content_type == 'shortform':
+                        object_checks.check_news_collection_stream_info(strm_data['Playlist'])
+                    else:
+                        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=platform == 'freeview')
 
 
 class ChannelLogos(unittest.TestCase):
