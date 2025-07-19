@@ -343,8 +343,8 @@ def check_short_form_item(item):
 
     if item['contentType'] == 'shortform':
         # items like news and sport clips
-        has_keys(item, 'duration', 'synopsis')
-        misses_keys(item, 'programmeTitle', 'encodedProgrammeId', 'encodedEpisodeId')
+        has_keys(item, 'duration', 'synopsis', 'titleSlug')
+        misses_keys(item, 'href', 'programmeTitle', 'encodedProgrammeId', 'encodedEpisodeId')
         assert isinstance(item['synopsis'], str, ) and item['synopsis']
         assert isinstance(item.get('duration'), int)
         # episodeId on real clips does not require letterA encoding

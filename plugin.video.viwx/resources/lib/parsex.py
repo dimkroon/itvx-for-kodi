@@ -384,8 +384,10 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
 
         if content_type == 'shortform':
             # This item is a 'short item', aka 'news clip'.
-            href = item_data.get('href', '/watch/news/undefined')
-            url = ''.join(('https://www.itv.com', href, '/', item_data['episodeId']))
+            url = '/'.join(('https://www.itv.com/watch',
+                            item_data['genre'],
+                            item_data['titleSlug'],
+                            item_data['episodeId']))
 
         elif content_type == 'episode':
             # The news item is a 'normal' catchup title. Is usually just the latest ITV news,
