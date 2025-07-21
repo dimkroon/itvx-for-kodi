@@ -383,9 +383,12 @@ def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
         content_type = item_data['contentType']
 
         if content_type == 'shortform':
-            # This item is a 'short item', aka 'news clip'.
+            # This item is a 'short item', aka 'news clip' or 'sport clip'.
+            # hero and curated rails from the news category lack a field 'genre'.
+            # Since sportShortFrom is only ever present on the main page, it's safe
+            # to assume genry is news.
             url = '/'.join(('https://www.itv.com/watch',
-                            item_data['genre'],
+                            item_data.get('genre', 'news'),
                             item_data['titleSlug'],
                             item_data['episodeId']))
 
