@@ -83,8 +83,9 @@ class ParseSimulcastItem(unittest.TestCase):
     def test_simulcast_collection(self):
         data = deepcopy(open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows'][0])
         self.assertEqual('simulcastspot', data['contentType'])
-        data['startDateTime'] = '2024-03-16T20:15:00Z'
         with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            data['startDateTime'] = '2024-03-16T20:15:00Z'
+            data['endDateTime'] = '2024-03-16T22:00:00Z'
             # Programme has already started
             dt_mock.mocked_now = datetime(2024, 3, 16, 21, 00, 00, tzinfo=timezone.utc)
             result = parsex.parse_simulcast_item(data)
@@ -92,6 +93,12 @@ class ParseSimulcastItem(unittest.TestCase):
             self.check_ctx_mnu(result, is_present=True)
             # Programme has yet to started
             dt_mock.mocked_now = datetime(2024, 3, 16, 20, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=False)
+            # DateTimes are None, found in some collection items
+            data['startDateTime'] = None
+            data['endDateTime'] = None
             result = parsex.parse_simulcast_item(data)
             self.check_result(result)
             self.check_ctx_mnu(result, is_present=False)
