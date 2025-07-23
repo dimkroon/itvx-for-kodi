@@ -193,7 +193,9 @@ def collection_content(url=None, slider=None, hide_paid=False):
     if slider:
         # Return the contents of the specified slider
         if slider == 'shortFormSlider':
-            # return the items from the shortFormSlider on a collection page.
+            # Issue a warning; shortformSliders are no longer present in collections
+            logger.warning("Unexpected shortFormSlider found on page '%s'", url)
+            # Keep this in, just in case...
             for item in page_data['shortFormSlider']['items']:
                 yield parsex.parse_shortform_item(item, uk_tz, time_fmt)
             return

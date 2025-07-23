@@ -377,8 +377,10 @@ def parse_collection_item(show_data, hide_paid=False):
 def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
     """Parse an item from a shortFormSlider.
 
-    ShortFormSliders are found on the main page, some collection pages.
-    Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
+    ShortFormSliders are found on the main page. Some collection pages used to have
+    shortFromSliders, but this field has not been seen on collection for quite some time.
+    Items from heroAndLatest and curatedRails in category news also have a shortForm-like
+    content and are handled by this parser.
 
     """
     try:
