@@ -42,6 +42,32 @@ NONE_T = type(None)
 checked_urls = []
 
 
+# A list of already saved types of collection items.
+# Used to save one item of each type, to be used in test documents.
+saved_col_item_types = []
+
+
+def save_collection_item(item):
+    """Save one of the variations of each collection item type."""
+    content_type = item.get('contentType')
+    if content_type in ('simulcastspot', 'fastchannelspot'):
+        if item['startDateTime'] is None:
+            content_type = content_type + '_none'
+        else:
+            content_type = content_type + '_date'
+    if content_type in ('brand', 'series', 'episode', 'special', 'film'):
+        if item['isPaid']:
+            content_type = content_type + '_paid'
+        else:
+            content_type = content_type + '_free'
+
+    if content_type not in saved_col_item_types:
+        save_item = {'Dev_Comment': content_type.replace('_', ' - ').title()}
+        save_item.update(item)
+        fname = 'col_items/' + content_type + '.json'
+        testutils.save_json(save_item, fname)
+
+
 def check_editorial_slider(testcase, slider_data, parent_name):
     """Check an editorial slider from the main page, or a (sub) collection page
 
@@ -84,23 +110,27 @@ def check_shows(testcase, show, parent_name):
                         'simulcastspot', 'page', None),
                         "{}: Unexpected title type '{}'.".format('.'.join((parent_name, show['title'])),
                                                                  show.get('contentType', '')))
-    if show.get('contentType') is None:
+    content_type = show.get('contentType')
+    if content_type is None:
         # This type is not actually a show
         return True
-    if show['contentType'] == 'collection':
+
+    save_collection_item(show)
+
+    if content_type == 'collection':
         return check_rail_item_type_collection(testcase, show, parent_name)
-    if show['contentType'] == 'fastchannelspot':
+    if content_type == 'fastchannelspot':
         return check_collection_item_type_fastchannelspot(testcase, show, parent_name)
-    if show['contentType'] == 'simulcastspot':
+    if content_type == 'simulcastspot':
         return check_item_type_simulcastspot(testcase, show, parent_name)
-    if show['contentType'] == 'page':
+    if content_type == 'page':
         return check_item_type_page(testcase, show, parent_name)
-    if show['contentType'] == 'brand':
+    if content_type == 'brand':
         return check_item_type_brand(testcase, show, parent_name)
     # Not always present: 'contentInfo'
     has_keys(show, 'contentType', 'title', 'description', 'titleSlug', 'imageTemplate',
              'encodedProgrammeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
-    if show['contentType'] in ('series', 'episode', 'film', 'special'):
+    if content_type in ('series', 'episode', 'film', 'special'):
         has_keys(show, 'encodedEpisodeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     else:
         # FIXME: Changed to expect_misses_keys, should be changed back some time.
@@ -639,7 +669,6 @@ class WatchPages(unittest.TestCase):
     def test_watch_live_itv1(self):
         """The jsonp data primarily contains now/next schedule of all live channels"""
         page = fetch.get_document('https://www.itv.com/watch?channel=itv')
-        # testutils.save_doc(page, 'html/watch-itv1.html')
         data = parsex.scrape_json(page)
 
         # !!! Field channelsMetaData absent since 18-3-2023 !!!
@@ -864,7 +893,6 @@ class Categories(unittest.TestCase):
         """
         t_s = time.time()
         page = fetch.get_document('https://www.itv.com/watch/categories')
-        # testutils.save_doc(page, 'html/categories.html')
         t_1 = time.time()
         data = parsex.scrape_json(page)
         # testutils.save_json(data, 'html/categories_data.json')
@@ -953,7 +981,6 @@ class MyList(unittest.TestCase):
         # Both webbrowser and app authenticate with header, without any cookie.
         resp = requests.get(url, headers=headers)
         data = resp.json()
-        # testutils.save_json(data, 'mylist/mylist_data.json')
 
         # When no particular type of content is requested a dict is returned
         self.assertIsInstance(data, dict)

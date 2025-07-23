@@ -55,701 +55,558 @@
   },
   "navAdServerParams": {
     "area": "category",
-    "category": [
-      "news"
-    ]
+    "category": "news"
   },
   "data": {
+    "eventData": {
+      "logo": null,
+      "background": "https://images.ctfassets.net/pjshm78m9jt4/4NHfDls9G3pcVH0MIPFzsJ/f77c7ae20b330630ce4ea1eeef13d31f/news-background.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+      "title": "ITV News Default Event",
+      "feed": null
+    },
     "heroAndLatestData": [
       {
         "contentType": "shortform",
-        "episodeTitle": "The latest ITV News headlines - as Netanyahu vows to fight until victory in Gaza",
-        "episodeId": "b0qf9t1",
-        "titleSlug": "the-latest-itv-news-headlines-as-netanyahu-vows-to-fight-until-victory-in-gaza",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6IcdqrSU31crFbkr5CorF5/d24f23323e4e8f774b3f45154cfd2daa/thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch a short summary of today's top stories from the ITV News team",
-        "dateTime": "2024-05-12T15:55:00Z",
-        "duration": 80,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5WormY02hP58O2wccZCZ7v/ff921aa042e203ca0cce8e61b72aa2dc/BULLETIN_POSTER_1105.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "contentType": "shortform",
-        "episodeTitle": "Lord Cameron: 'Ongoing process' to review weapons sales to Israel",
-        "episodeId": "83vmp8g",
-        "titleSlug": "lord-cameron-ongoing-process-to-review-weapons-sales-to-israel",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/42t0we6BTpTlcp5B9FzBdl/6081281d75ea134c89ba079b95dbb8cf/CAMERON_THUMB_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The Foreign Secretary said the UK had a 'rigorous legal process' as he defended his decision not to pause arms sales to Israel.",
-        "dateTime": "2024-05-12T11:42:00Z",
-        "duration": 111,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/6uCEJXvb3hY8r6tC0uT5Dx/e4dd2258333e73e3cffd8bbcdb90dd2e/CAMERON_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "contentType": "shortform",
-        "episodeTitle": "Eurovision boss booed in controversy-laden night in Malmo",
-        "episodeId": "cnd2fjr",
-        "titleSlug": "eurovision-boss-booed-in-controversy-laden-night-in-malmo",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2PiZjJ5wg1skEoQwRX2fiL/c66684fe186c2d7dade221a1d292ed70/EUROVISION_THUMB_V3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The contest was won by Switzerland's Nemo, who said they hoped the contest could 'live up to its promise to stand up for peace' in their victory speech.",
-        "dateTime": "2024-05-12T15:32:00Z",
-        "duration": 171,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5YfnUC9BI981LDJHBKPyKw/9db4713a58a90de5beace8cd3651f620/AP24132838527603.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "contentType": "shortform",
-        "episodeTitle": "Natalie Elphicke accused of lobbying justice secretary to interfere in husband\u2019s sex offence trial",
-        "episodeId": "zqv9xn0",
-        "titleSlug": "natalie-elphicke-accused-of-lobbying-justice-secretary-to-interfere-in-husbands-sex-offence-trial",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5h3w18ZsLBDs4prDvNBJCR/8b1d04c3e6730e672020506e109eca40/Elphicke_thumb_1105.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The Tory defector is alleged to have inappropriately pressured the Justice Secretary to help with her husband's case in 2020, a claim Elphicke denies.",
-        "dateTime": "2024-05-11T21:55:00Z",
-        "duration": 98,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/6bhqFgXlkjFJ9CEqoOtx0o/b5dc7d173988aebd1c77265cc3a55cbe/Elphicke_poster_1105.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "contentType": "shortform",
-        "episodeTitle": "Working parents of children over nine-months-old can now apply for childcare allowance",
-        "episodeId": "9x9wcn5",
-        "titleSlug": "working-parents-of-children-over-nine-months-old-can-now-apply-for-childcare-allowance",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6xiYrCWsY596wEbw2yDgK/aea4908499aa2f3843dc4fb50f00b4f6/thumb_childcare_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The government's expansion of funded childcare has continued with working parents of children over nine-months-old now able to apply for the scheme.",
-        "dateTime": "2024-05-12T08:37:00Z",
-        "duration": 45,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/394vYW3PsXeu3M7Q4ptNqZ/abff8b31dfd0c9373e3f5501ae46f9a4/poster_childcare.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "contentType": "shortform",
-        "episodeTitle": "MPs call for tax on stadium concerts to help smaller venues",
-        "episodeId": "mn1r49s",
-        "titleSlug": "mps-call-for-tax-on-stadium-concerts-to-help-smaller-venues",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1T2UbhvqTREd2mXVcTBm4S/908fcf92394d7f340550485219896a4a/VENUE_THUMB_PR.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "A group of cross-party MPs says artists are facing a 'cost-of-touring crisis' as promoters struggle to make shows financially viable.",
-        "dateTime": "2024-05-12T09:38:00Z",
+        "episodeTitle": "The latest headlines - as over a hundred arrested across UK at events related to Palestine Action",
+        "episodeId": "54g9b5b",
+        "titleSlug": "the-latest-headlines-as-over-a-hundred-arrested-across-uk-at-events-related-to-palestine-action",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/6CdrnIlJjwrabGLWuZDn4X/206efa4d74fdd79074a388c9c09a3bcb/main_poster_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Catch up with the latest UK and international headlines from the ITV News team.",
+        "dateTime": "2025-07-19T23:10:00Z",
         "duration": 137,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/7lmcR7Ag7mBSRdIy2Lp4Ag/620b817f344ee383495621348d7abbaf/VENUE_POSTER_PR.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/11aaooFPm6XIXeRz6JKCG3/500212f55a05dc7508a9ae3b137f66f0/poster.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/ZUghy0nCkJ1TAS4Dcdx2v/e5dd6c989c4db3b56d6b967924dbd45d/thumb_verty.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       },
       {
         "contentType": "shortform",
-        "episodeTitle": "Further Rafah evacuations ordered after U.S. says Israel 'likely' violated international law",
-        "episodeId": "px06y44",
-        "titleSlug": "further-rafah-evacuations-ordered-after-us-says-israel-likely-violated-international-law",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1RYgN0VshIp8BS1o3uhk80/745c79f0de00a2f2df795e8548297261/ITVX_STORY_THUMBNAIL.00_00_00_19.Still007.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "A U.S. report stated it is 'reasonable to assess' there may have been some breaches but said it did not have all the necessary information.",
-        "dateTime": "2024-05-11T21:53:00Z",
-        "duration": 134,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/72x98KIB0VVy0fy9XEODWb/ca667d82e93c85846d59379198b6db41/POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+        "episodeTitle": "Donald Trump threatens to sue Rupert Murdoch over allegations linking him to Jeffery Epstein",
+        "episodeId": "hr0ql97",
+        "titleSlug": "donald-trump-threatens-to-sue-rupert-murdoch-over-allegations-linking-him-to-jeffery-epstein",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/24KcO4MlMOqC7eZd7WFAvw/946093341938a3ca64d733a023d4055f/ITVX_PAGE_THUMBNAILS.00_00_50_04.Still020.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Trump promised a lawsuit after The Wall Street Journal reports on sexually suggestive letter, allegedly signed by him, and found in Epstein's birthday album.",
+        "dateTime": "2025-07-19T08:30:00Z",
+        "duration": 106,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/1ZUoqPmmU9VdHKB15nOmhz/1fdfce61e1e5ce6c7f17bdf96371b04e/ITVX_PAGE_THUMBNAILS.00_00_50_22.Still010.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/54clj6SsrW2FH6BFsvkkFI/8f19e588a609503407169faeeec6a123/TRUMP_VERT_EPSTEIN.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       },
       {
         "contentType": "shortform",
-        "episodeTitle": "M25 closure: Everything you need to know as major motorway shuts for second time",
-        "episodeId": "220qvhn",
-        "titleSlug": "m25-closure-everything-you-need-to-know-as-major-motorway-shuts-for-second-time",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7BZP4IHsXFKL96aFRLwMBP/dddca963d0fe5f7194c0a3847bd257ae/ITVX_STORY_THUMBNAIL.00_00_00_19.Still009.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "The UK's busiest motorway will close again, this time between Junction 9 at Leatherhead and Junction 10 for the A3.",
-        "dateTime": "2024-05-10T21:05:00Z",
-        "duration": 104,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/1HbAiJBs1zA0Y8eaQBOWQa/52ace8de52d8ea5ed943a6079c40a346/ITVX_M25_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+        "episodeTitle": "Syria's interim president calls for a ceasefire after hundreds die in clashes between rival militias",
+        "episodeId": "674ynrt",
+        "titleSlug": "syrias-interim-president-calls-for-a-ceasefire-after-hundreds-die-in-clashes-between-rival-militias",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1WFmEjTzGUQ0hF7ofQ4yOR/c3c3e94d4755e0f1273c7e07cf960b0b/SUYRAI_THUMB_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Syria\u2019s President Ahmad al-Sharaa has urged Sunni Bedouin tribes to honor a ceasefire aimed at ending deadly clashes with Druze-linked militias Sweida.",
+        "dateTime": "2025-07-19T12:10:00Z",
+        "duration": 97,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/17RcDnbz7VEqWb1w6nPnJV/eede90160d96cbd3e8885ae3843ae860/SYRIA_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/2VzdfsUqvkVRX70T7Y0bJd/4dcc54614dc88c6d1c9fd00f192bfd1f/SYRIA_VERT.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       },
       {
         "contentType": "shortform",
-        "episodeTitle": "How farms are being targeted by criminal gangs stealing machinery to order for Russia",
-        "episodeId": "z3khg27",
-        "titleSlug": "how-farms-are-being-targeted-by-criminal-gangs-stealing-machinery-to-order-for-russia",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3V5n5Y0U1Ifw3c4WQPEoE3/84a5ea87391405c35b1624c2e5d3646a/ITVX_RURAL_CRIME_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "ITV News has been shown figures which reveal the surge in demand for heavy machinery since the invasion of Ukraine and subsequent sanctions.",
-        "dateTime": "2024-05-10T18:10:00Z",
-        "duration": 301,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/4rqz4D7C6k6b9qvxl3hX8W/ee8717d498d9d6f9f74b5c0a62b6ab30/ITVX_RURAL_CRIME_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
-      },
-      {
-        "contentType": "episode",
-        "episodeTitle": "Trump on Trial: All the analysis after Stormy Daniel's graphic testimony",
-        "episodeId": "10/5756/0004",
-        "titleSlug": "trump-on-trial-all-the-analysis-after-stormy-daniels-graphic-testimony",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6CREqnZztU3Izglkxq5DrA/5bde585968a0fb36cfeeb2a7f347629c/x_promo_slate.png?w={width}&h={height}&q={quality}&fm={image_format}",
-        "dateTime": "2024-05-10T19:37:00Z",
-        "programmeId": "10/5756",
-        "programmeTitle": "Trump on Trial",
-        "encodedEpisodeId": {
-          "letterA": "10a5756a0004",
-          "underscore": "10_5756_0004"
-        },
-        "encodedProgrammeId": {
-          "letterA": "10a5756",
-          "underscore": "10_5756"
-        }
+        "episodeTitle": "Serious water pollution incidents in England up 60% last year",
+        "episodeId": "r00q5kb",
+        "titleSlug": "serious-water-pollution-incidents-in-england-up-60percent-last-year",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/P2GgeBBwjf8Hlu19j6adf/fba8a1f19378934e4f825c0eab52b3bb/POLLUTION_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "New data from the Environment Agency found that, last year,  a total of 75 category 1 and 2 incidents were recorded - up from 47 in 2023.",
+        "dateTime": "2025-07-18T13:09:00Z",
+        "duration": 280,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/22AyLXvN9zyMSR5jpTIbna/5c9af08bffab9a8735f8800eeef52b89/POLLUTION_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/6gbI9jwCuAhM7pIBR4dbN8/86c0c4f1f9fe856b7a08acf73fd86b5c/pollution_vert.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       },
       {
         "contentType": "shortform",
-        "episodeTitle": "The Rundown: ITV News' daily update for teenagers",
-        "episodeId": "d0sgy38",
-        "titleSlug": "the-rundown-itv-news-daily-update-for-teenagers",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5FjKNHjnLplbYtN2dNb26P/ec6fa78add2b584a311f123f1e020217/rundown.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch a new edition of The Rundown every afternoon.",
-        "dateTime": "2024-05-12T12:32:00Z",
-        "duration": 79,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/5FjKNHjnLplbYtN2dNb26P/ec6fa78add2b584a311f123f1e020217/rundown.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+        "episodeTitle": "Tributes paid at school after one child killed and others seriously injured in Somerset bus crash",
+        "episodeId": "52v7df2",
+        "titleSlug": "tributes-paid-at-school-after-one-child-killed-and-others-seriously-injured-in-somerset-bus-crash",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/6Daap6bNqcQpLmc96JscVJ/e50395b70a016049a897ff7df91bc62d/TRIBUTES_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "The coach was carrying 60-70 passengers and was heading back to Minehead Middle School.",
+        "dateTime": "2025-07-18T18:08:00Z",
+        "duration": 168,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/48O23B7TxEVnm6MRzRaa2h/818916c818e81256e5c7544d490ffba5/TRIBUTES_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/7usf3Kq4U61Wp2v2m3wo56/576eb3f88bbec3616b08165db5479c07/vert_tributes.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       },
       {
         "contentType": "shortform",
-        "episodeTitle": "Sunny with a chance of thunderstorms: Watch the latest ITV forecast ",
+        "episodeTitle": "Postmistress wrongly convicted of theft is the first to have her case referred to Court of Appeal",
+        "episodeId": "shrl82m",
+        "titleSlug": "postmistress-wrongly-convicted-of-theft-is-the-first-to-have-her-case-referred-to-court-of-appeal",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/23ROnFA634lt6k390SfmUD/28f3f3d55afa9a8edd82e0e3dc7ad537/ITVX_PAGE_THUMBNAILS.00_01_13_10.Still015.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Patricia Owen died in 2003, long before details of the Post Office's failures came to light.",
+        "dateTime": "2025-07-18T16:08:35.595Z",
+        "duration": 136,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/3wp0f9146PoI793D4HssrP/33aba5754a5ca9d3e4209d57469ea390/FotoJet__53_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/1oc5vPvKkzdbVBTa9qbT6N/0b0754ed74eaaeb8dcb13605cd1422a7/ITVX_PAGE_THUMBNAILS.00_01_18_08.Still016.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "contentType": "shortform",
+        "episodeTitle": "Spies and special forces among more than 100 Britons\u2019 details included in Afghan data leak",
+        "episodeId": "fj2fcc4",
+        "titleSlug": "spies-and-special-forces-among-more-than-100-britons-details-included-in-afghan-data-leak",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/46OHZE2yqzKRLeciJ6P6jh/6e2b3271b8caf881efa3f4ad15864b18/AFGHAN_HORIZ_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Details of MI6 spies, SAS and special forces personnel were included in the data leak that resulted in thousands of Afghans being secretly relocated to the UK",
+        "dateTime": "2025-07-18T18:08:00Z",
+        "duration": 120,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/48LpBgKZSxfgymumu6B82N/f4441609030124c3565ca1cbddeeb8c2/AFGHAN_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/5ebceMncISKBs8aN6UVG6t/d656764bb8b335c656188c2b79319e62/AFGHAN_VERTI_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "contentType": "shortform",
+        "episodeTitle": "Gaza's deadly aid sites: What's going wrong?",
+        "episodeId": "7t8tkcl",
+        "titleSlug": "gazas-deadly-aid-sites-whats-going-wrong",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/7dkIFgDIhRubElPvxLqOoq/633566b2ed8022ccdcbe169bb843a163/GAZA_THUMB_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "As of July 13th the UN has recorded 674 people killed in the vicinity of the new US-Israel backed Gaza Humanitarian Foundation sites.",
+        "dateTime": "2025-07-18T15:32:36.683Z",
+        "duration": 398,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/79j9mY5IW4ssqM7ASN9ysr/0c8c8676372621defeb6f9972ba85664/GAZA_THUMB_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/MLp9sVkWpUqH7aS0S5Wzc/e3390b5a9306f94b44a0d55d9ee6f325/GAZA_VERT_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "contentType": "shortform",
+        "episodeTitle": "Drilling Antarctica: What ice can tell us about our past and the future",
+        "episodeId": "jy1gkrm",
+        "titleSlug": "drilling-antarctica-what-ice-can-tell-us-about-our-past-and-the-future",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2L6Ksvd1MzgT8LXMfYZgGd/d992e6e02e636642fa5f5ff9cdf88817/ice_core.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Scientists have drilled down into the ice and extracted a core which is 2.8km long where the deepest part could be up to 1.5million years old.",
+        "dateTime": "2025-07-17T23:01:00Z",
+        "duration": 164,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/6B7p9EJqrH27PWrpbtBmSU/70a97a04d939c322df7ba3b4af049d67/ICE_CORE_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/2zbua6GHDTiKOEsE3r7se5/1e4f07d973489cb8a6ad570cef3ab252/ICE_CORE_VERT.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "contentType": "shortform",
+        "episodeTitle": "Talking Royals: The King and Prince Harry\u2019s \u2018peace summit\u2019, and Queen Camilla\u2019s quirky birthday gift",
+        "episodeId": "h2x25xg",
+        "titleSlug": "talking-royals-the-king-and-prince-harrys-peace-summit-and-queen-camillas-quirky-birthday-gift",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5Rchppm79DVQmWDlTi0T8S/1044837f46cab91ea63a793217f11293/ITVX_HORIZONTAL_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Charlene is joined by Chris and Lizzie to discuss the not-so-secret meeting between the King and Harry's teams. Plus, what do you gift a Queen on her birthday?",
+        "dateTime": "2025-07-18T16:16:17.565Z",
+        "duration": 1705,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/5Rchppm79DVQmWDlTi0T8S/1044837f46cab91ea63a793217f11293/ITVX_HORIZONTAL_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/7GPrBcG0kjBoPj5XUAN3Gm/d4a52e5a6885add7ce33716c76df7b12/ITVX_VERTICAL_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+      },
+      {
+        "contentType": "shortform",
+        "episodeTitle": "Thunderstorms on the way: Watch the latest ITV forecast  ",
         "episodeId": "5vrpnr4",
-        "titleSlug": "sunny-with-a-chance-of-thunderstorms-watch-the-latest-itv-forecast",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1gFcRLnZ4HAKGQ8buOPqdR/885181fb0be0f0884bab5139977525e8/THUMB_WEATHER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch the latest UK forecast from the ITV Weather team. ",
-        "dateTime": "2024-05-12T11:49:00Z",
-        "duration": 61,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/3xCWi30qWELspcrlXPdkaH/052c137f7ce0d53e6955b56ddf813e9c/THUMB_WEATHER.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+        "titleSlug": "thunderstorms-on-the-way-watch-the-latest-itv-forecast",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/7dcaVE696m2wzsbArS8llZ/bf9d0bf1382eb7e458b7ed7331d1b4e1/LUCY_WEATHER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Watch the latest UK forecast from the ITV Weather team.   ",
+        "dateTime": "2025-07-18T16:53:00Z",
+        "duration": 193,
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/7dcaVE696m2wzsbArS8llZ/bf9d0bf1382eb7e458b7ed7331d1b4e1/LUCY_WEATHER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/17BA8drtQF3Q5ybXYa7jvP/d1a9fbe00399422118ea60bd4b40f507/weather_vertical.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       },
       {
         "contentType": "shortform",
-        "episodeTitle": "Watch Sunday's ITV News",
-        "episodeId": "xs6dccr",
-        "titleSlug": "watch-sundays-itv-news",
-        "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4QGXncGkCTBg7xVcF9M1kZ/33f4af04053b08500b09703cca92ab14/news_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "synopsis": "Watch the latest bulletin from ITV News.",
-        "dateTime": "2024-05-12T11:48:00Z",
+        "episodeTitle": "Watch Saturday's ITV News",
+        "episodeId": "z79dty1",
+        "titleSlug": "watch-saturdays-itv-news",
+        "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2qQp57v1K97rbQa71mKs4w/096f7a461ee7971613f67895b533eb77/ITV_NEWS_BLANK_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "synopsis": "Catch up with the latest UK and international headlines from the ITV News team.",
+        "dateTime": "2025-07-19T12:10:00Z",
         "duration": 422,
-        "posterImage": "https://images.ctfassets.net/go68aep20o4s/4QGXncGkCTBg7xVcF9M1kZ/33f4af04053b08500b09703cca92ab14/news_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
+        "posterImage": "https://images.ctfassets.net/pjshm78m9jt4/6nPpclYql7nX0z4Silf1OH/c2fe91007f477ffca7b9f548767490f4/ITV_NEWS_BLANK_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+        "portraitImage": "https://images.ctfassets.net/pjshm78m9jt4/7wyvbcsb8mQqmGQ9A26my/b6b96708980b2e7b3a2c69c92248b931/ITV_NEWS_BLACK_THUMB_VERT.jpg?w={width}&h={height}&q={quality}&fm={image_format}"
       }
     ],
     "curatedRails": [
       {
-        "title": "Politics",
+        "title": "Exclusive Reports",
         "clips": [
           {
-            "contentType": "shortform",
-            "episodeTitle": "Lord Cameron: 'Ongoing process' to review weapons sales to Israel",
-            "episodeId": "83vmp8g",
-            "titleSlug": "lord-cameron-ongoing-process-to-review-weapons-sales-to-israel",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/42t0we6BTpTlcp5B9FzBdl/6081281d75ea134c89ba079b95dbb8cf/CAMERON_THUMB_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The Foreign Secretary said the UK had a 'rigorous legal process' as he defended his decision not to pause arms sales to Israel.",
-            "dateTime": "2024-05-12T11:42:00Z",
-            "duration": 111
+            "contentType": "episode",
+            "episodeTitle": "The Evolution of Putin: Bullied Child, KGB Man, Autocrat",
+            "episodeId": "10/6964/0001",
+            "titleSlug": "the-evolution-of-putin-bullied-child-kgb-man-autocrat",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/DqUDVtPH2Qa7L3x4NM4GH/724b99a25b57a333f3e66f782a00c8ef/EVOLUTION_OF_PUTIN_YT_1.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "dateTime": "2025-07-14T14:10:08.086Z",
+            "programmeId": "10/6964/0001B",
+            "programmeTitle": "The Evolution of Putin: Bullied Child, KGB Man, Autocrat",
+            "encodedEpisodeId": {
+              "letterA": "10a6964a0001",
+              "underscore": "10_6964_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a6964a0001B",
+              "underscore": "10_6964_0001B"
+            }
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Rwanda plan out, anti-terror powers in: Starmer unveils small boats strategy",
-            "episodeId": "0m3cdyw",
-            "titleSlug": "rwanda-plan-out-anti-terror-powers-in-starmer-unveils-small-boats-strategy",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2aKi5JKqakshri81jtza9f/99d327af1b35e2fb189de0a02e606d64/THUMB_STARMER_NEW_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Labour leader Sir Keir Starmer has unveiled his party's plans to tackle small boat crossings in the channel and scrap the Rwanda policy.",
-            "dateTime": "2024-05-10T21:22:00Z",
-            "duration": 156
+            "episodeTitle": "'We wish we'd never asked for help': Family's hurt as thousands with learning disabilities locked up",
+            "episodeId": "780gs2k",
+            "titleSlug": "we-wish-wed-never-asked-for-help-familys-hurt-as-thousands-with-learning-disabilities-locked-up",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/71gsJquZsXWH0cOm4arL5E/91989559f9264d2940681b948fd25368/ITVX_STORY_THUMBNAIL.00_00_02_10.Still007.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Exclusive analysis by Mencap, for ITV News, shows more than 2,000 people with autism and learning disabilities locked away in in-patient units across England.",
+            "dateTime": "2025-07-14T17:58:00Z",
+            "duration": 390
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Rishi Sunak tells ITV News 'the economy has real momentum' as UK exits recession",
-            "episodeId": "42kxwyw",
-            "titleSlug": "rishi-sunak-tells-itv-news-the-economy-has-real-momentum-as-uk-exits-recession",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/DdJUhGlBzpaaWkUW47W12/ff4b52a73838a9494d63ac3808a4f4e6/ITVX_ECONOMY_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The UK economy grew by 0.6% in the last quarter, boosted by retail, public transport, and car manufacturing.",
-            "dateTime": "2024-05-10T21:14:00Z",
-            "duration": 201
+            "episodeTitle": "Activist Mahmoud Khalil: Trump administration targeting those who don't fit its vision of America",
+            "episodeId": "1rpx191",
+            "titleSlug": "activist-mahmoud-khalil-trump-administration-targeting-those-who-dont-fit-its-vision-of-america",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1M1ZCt5oxyNj916jUNsO0Y/cbe07be369700b72676a4ed92db3fb4a/KHALIL_HORI.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "In his first interview with a UK broadcaster, Mahmoud Khalil tells ITV News that his arrest was \"the heaviest moment\" of his life.",
+            "dateTime": "2025-07-04T10:58:00Z",
+            "duration": 331
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'Is Nigel Farage welcome in Labour?' Starmer pressed on Tory defection",
-            "episodeId": "bhjsvkg",
-            "titleSlug": "is-nigel-farage-welcome-in-labour-starmer-pressed-on-tory-defection",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/x617sopnpzWzaLFgDxjSD/0b9e3ad19e8523535ec1de093cbb7c0e/ELPHICKE_STARMER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Labour MPs have privately expressed concern about who is allowed into the Labour Party following the defection of Dover MP Natalie Elphicke on Wednesday.",
-            "dateTime": "2024-05-10T12:54:00Z",
-            "duration": 162
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Rwanda plan out, anti-terror powers in: Starmer unveils small boats strategy",
-            "episodeId": "0m3cdyw",
-            "titleSlug": "rwanda-plan-out-anti-terror-powers-in-starmer-unveils-small-boats-strategy",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2aKi5JKqakshri81jtza9f/99d327af1b35e2fb189de0a02e606d64/THUMB_STARMER_NEW_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Labour leader Sir Keir Starmer has unveiled his party's plans to tackle small boat crossings in the channel and scrap the Rwanda policy.",
-            "dateTime": "2024-05-10T21:22:00Z",
-            "duration": 156
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "PM meets university leaders to call for end to antisemitic abuse on campuses",
-            "episodeId": "wn0y1tc",
-            "titleSlug": "pm-meets-university-leaders-to-call-for-end-to-antisemitic-abuse-on-campuses",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4EsmsZeEyijyjwRxa83VwZ/71da3bf995c69137e6c480fa9b5d3c9b/ITVX_ANTISEMITISM_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Student encampments have been set up at more than a dozen universities in the UK against the war in Gaza. Ministers want more done to protect Jewish students.",
-            "dateTime": "2024-05-09T18:00:00Z",
-            "duration": 180
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Natalie Elphicke apologises for comments about ex-husband's sexual assault victims",
-            "episodeId": "h11fsdq",
-            "titleSlug": "natalie-elphicke-apologises-for-comments-about-ex-husbands-sexual-assault-victims",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4Ff6G0HQ2rBBH8UUH8V0sm/e6c1ed1e4ec0a1ec0d5e71ab00c608e7/NATALIE.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Ms Elphicke\u2019s former husband and predecessor as MP for Dover, Charlie Elphicke, was convicted in 2020 of sexually assaulting two women and jailed for two years.",
-            "dateTime": "2024-05-09T15:31:00Z",
-            "duration": 147
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Conservative MP Nadhim Zahawi to stand down at next general election",
-            "episodeId": "vl77j9t",
-            "titleSlug": "conservative-mp-nadhim-zahawi-to-stand-down-at-next-general-election",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/q8l3FE0eLQKTYUuRBeTOx/467d55075f475288ff0b6bc7912cfea0/ZAHAWI_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The former chancellor, who has been the MP for Stratford-Upon-Avon for 14 years, said it was time for a \"new, energetic Conservative\" to take over.",
-            "dateTime": "2024-05-09T10:50:53.072Z",
-            "duration": 204
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Shock and unease among MPs after 'right-wing Tory' Natalie Elphicke defects",
-            "episodeId": "fz13vwh",
-            "titleSlug": "shock-and-unease-among-mps-after-right-wing-tory-natalie-elphicke-defects",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5xuJ98EuIjKLtWRgCxdZuj/1ac103820b7c1cfd36446c3b2506f82e/ELPHICKE_THUMB_NEW.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Natalie Elphicke, the MP for Dover, said \"under Rishi Sunak, the Conservatives have become a byword for incompetence and division.\" ",
-            "dateTime": "2024-05-08T05:35:00Z",
-            "duration": 366
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Rishi Sunak claims UK heading for hung parliament in wake of local election losses",
-            "episodeId": "z8fjt7z",
-            "titleSlug": "rishi-sunak-claims-uk-heading-for-hung-parliament-in-wake-of-local-election-losses",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/kCVdlGyJy0anCA1g8uTon/fc6f6eece0da0c0b165f67a12d57cb84/PM_THUMB_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The Prime Minister has been urged to change course by many in his party after the Conservatives lost almost half of their council seats.",
-            "dateTime": "2024-05-06T21:23:00Z",
-            "duration": 171
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "West Midlands mayoral election: Labour's Richard Parker beats Conservative Andy Street ",
-            "episodeId": "ypg437c",
-            "titleSlug": "west-midlands-mayoral-election-labours-richard-parker-beats-conservative-andy-street",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4FnINjLg1qik1cbJyerROx/de25e741822ccc73e909647688472ecf/ITVX_THUMBNAIL_RICHARD_PARKER_LABOUR.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Lewis Warner has the story of the West Midlands mayoral election, as Labour\u2019s Richard Parker narrowly beats Andy Street in a huge blow for the Conservatives. ",
-            "dateTime": "2024-05-04T23:25:50.631Z",
-            "duration": 586
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Labour's Sadiq Khan wins historic third term as London Mayor",
-            "episodeId": "rq1xsbg",
-            "titleSlug": "labours-sadiq-khan-wins-historic-third-term-as-london-mayor",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/35XpO9D77Do1nsQfjwQBOR/a2d472cefa176e1a18b522787a98d7dd/HOWSEC_EXPLAIN_0304.00_00_00_10.Still001.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Mr Khan said he faced a campaign of 'non-stop negativity', but he couldn\u2019t be more proud to 'answer the fearmongering with facts'.",
-            "dateTime": "2024-05-04T17:07:32.178Z",
-            "duration": 216
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Local Elections 2024: Labour gains and Conservative losses pile pressure on PM",
-            "episodeId": "6j2xh0h",
-            "titleSlug": "local-elections-2024-labour-gains-and-conservative-losses-pile-pressure-on-pm",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6SgJo0pxM9EZXjeqJaXUX9/e173a3027830c8dcee0294bdb06137af/SUNAK.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The Prime Minister has called local election results \"disappointing\" for his party after Labour made strong gains across the country.",
-            "dateTime": "2024-05-03T21:34:00Z",
-            "duration": 975
-          }
-        ]
-      },
-      {
-        "title": "World",
-        "clips": [
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Eurovision boss booed in controversy-laden night in Malmo",
-            "episodeId": "cnd2fjr",
-            "titleSlug": "eurovision-boss-booed-in-controversy-laden-night-in-malmo",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2PiZjJ5wg1skEoQwRX2fiL/c66684fe186c2d7dade221a1d292ed70/EUROVISION_THUMB_V3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The contest was won by Switzerland's Nemo, who said they hoped the contest could 'live up to its promise to stand up for peace' in their victory speech.",
-            "dateTime": "2024-05-12T15:32:00Z",
-            "duration": 171
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Further Rafah evacuations ordered after U.S. says Israel 'likely' violated international law",
-            "episodeId": "px06y44",
-            "titleSlug": "further-rafah-evacuations-ordered-after-us-says-israel-likely-violated-international-law",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1RYgN0VshIp8BS1o3uhk80/745c79f0de00a2f2df795e8548297261/ITVX_STORY_THUMBNAIL.00_00_00_19.Still007.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "A U.S. report stated it is 'reasonable to assess' there may have been some breaches but said it did not have all the necessary information.",
-            "dateTime": "2024-05-11T21:53:00Z",
-            "duration": 134
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Russian forces launch attack on Ukrainian city of Kharkiv",
-            "episodeId": "bz20lbg",
-            "titleSlug": "russian-forces-launch-attack-on-ukrainian-city-of-kharkiv",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4irbpIeJUuaIcUkZpkkLBm/d7903c85058978abf8c7e6bc9cbb4dcf/KHAKIV_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Thousands of troops tried to break through Ukrainian defences near the border before they were halted.",
-            "dateTime": "2024-05-10T21:25:00Z",
-            "duration": 155
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Joe Biden threatens to halt weapons supply if Israel launches Rafah offensive",
-            "episodeId": "h354mkp",
-            "titleSlug": "joe-biden-threatens-to-halt-weapons-supply-if-israel-launches-rafah-offensive",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/iyIGnmoeSElDUieQ8N2G1/be778e3492415bf0cfe2a77861d0fd4f/BIDEN_THUMB_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "President Joe Biden has warned Israel that the U.S. will stop supplying some weapons if it launches a major ground operation in the city of Rafah.",
-            "dateTime": "2024-05-09T10:00:00Z",
-            "duration": 78
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Israel continues strikes near Rafah despite U.S. halting bomb shipments",
-            "episodeId": "cgdmvkn",
-            "titleSlug": "israel-continues-strikes-near-rafah-despite-us-halting-bomb-shipments",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2dnzCIHG2vEghg3aw0A5NF/90cb5a50ca6c40bdd44a1d4bc48370ca/ITVX_GAZA_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Aid agencies have warned of dire consequences after the Rafah border crossing in southern Gaza was forced to close.",
-            "dateTime": "2024-05-08T18:00:00Z",
-            "duration": 231
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Trump trial: Stormy Daniels details alleged sexual encounter with former president",
-            "episodeId": "04rxvtr",
-            "titleSlug": "trump-trial-stormy-daniels-details-alleged-sexual-encounter-with-former-president",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6envVd1GgfTI3lT5ijYCGt/dcffff69c6e776b2b783d41cfe06f0a5/ITVX_TRUMP_THUMBNAIL_V2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Stormy Daniels says she met Trump at a celebrity golf tournament in 2006 and was then invited to have dinner with him. Trump denies having any sexual encounter.",
-            "dateTime": "2024-05-07T21:13:00Z",
-            "duration": 308
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Aid charities warn of crisis as Israel takes control of Rafah crossing",
-            "episodeId": "ch6jszb",
-            "titleSlug": "aid-charities-warn-of-crisis-as-israel-takes-control-of-rafah-crossing",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/65AhpKgmONMRqk4Nz7tUfn/f98296c37a7c9fabf2eeed9a7f49e542/israel_thumb_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Israel is pressing ahead with targeted strikes in Eastern Rafah after Hamas issued a statement saying it accepts a ceasefire agreement.",
-            "dateTime": "2024-05-07T21:23:00Z",
-            "duration": 396
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Israeli army tells 100,000 Palestinians to evacuate parts of Rafah ahead of expected assault",
-            "episodeId": "z018yrm",
-            "titleSlug": "israeli-army-tells-100000-palestinians-to-evacuate-parts-of-rafah-ahead-of-expected-assault",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5VmARIDBenpnOZvLw3RIHH/a3cb937142d50432ea96e1b57ba8ea80/rafah_7.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The Israeli army says this is a 'limited scope' operation and has not confirmed if this is part of a larger scale invasion of the Southern Gazan city.",
-            "dateTime": "2024-05-06T12:52:00Z",
-            "duration": 147
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Gaza ceasefire negotiations stall as Israel brands Hamas' demands 'unacceptable'",
-            "episodeId": "xr3skk0",
-            "titleSlug": "gaza-ceasefire-negotiations-stall-as-israel-brands-hamas-demands-unacceptable",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6feZ0Ayh5B1T3G3yTzcP6C/fc22248f64d1d077afe03596ca75e851/GAZA_THUMB_STRAPS.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The Israeli Prime Minister said Hamas' demands for a permanent ceasefire would leave the group 'intact', which he said was 'unacceptable'.",
-            "dateTime": "2024-05-05T21:16:00Z",
-            "duration": 153
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Rescuers smash through roof to rescue baby in flood-hit Brazil",
-            "episodeId": "rp2l3jy",
-            "titleSlug": "rescuers-smash-through-roof-to-rescue-baby-in-flood-hit-brazil",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2UD3pqmc7fE1hoSRBc7dov/87f58f7613bf821cefee51d3a8cbf824/BRAZIL_NEW_THUBM.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Some cities in southern Brazil are seeing water levels that are at their highest 'since records began'.",
-            "dateTime": "2024-05-04T21:08:00Z",
-            "duration": 114
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Donald Trump's former aide Hope Hicks gives evidence at 'hush money' trial",
-            "episodeId": "2kvl3h0",
-            "titleSlug": "donald-trumps-former-aide-hope-hicks-gives-evidence-at-hush-money-trial",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/33zuwIlDMEbQJr2iMYpNRH/cfea8c3008beee314327fbd5b4a14531/TRUMP_THUMB_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Hope Hicks was previously Trump's campaign spokesperson. She told the court her response to scandals like the Access Hollywood tape was \"deny, deny, deny\".",
-            "dateTime": "2024-05-03T21:37:00Z",
-            "duration": 127
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "China launches space mission to collect samples from 'far side of the moon'",
-            "episodeId": "fd0nvbj",
-            "titleSlug": "china-launches-space-mission-to-collect-samples-from-far-side-of-the-moon",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1OCLc2W9st54XEMtNBqr07/ab75dc1496f0a6ef4cd2fe98abe72620/CHINA_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The Chang'e-6 probe blasted off this morning and aims to collect 2kg of samples from the side of the moon that can't be viewed from Earth, in a world-first. ",
-            "dateTime": "2024-05-03T21:29:00Z",
-            "duration": 198
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Arrests made at UCLA as police clash with pro-Palestinian students across the U.S.",
-            "episodeId": "jtls2rv",
-            "titleSlug": "arrests-made-at-ucla-as-police-clash-with-pro-palestinian-students-across-the-us",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6GLXMidF7UT8ByRcvwCZoO/b55038cfc5006eb8ca37d2a75096ee5d/PALESTINE_PROTESTS_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Chaotic scenes played out at UCLA as police officers in riot gear surged against crowds of demonstrators, leading to numerous arrests.",
-            "dateTime": "2024-05-02T21:22:00Z",
-            "duration": 204
-          }
-        ]
-      },
-      {
-        "title": "Special Reports",
-        "clips": [
-          {
-            "contentType": "shortform",
-            "episodeTitle": "How farms are being targeted by criminal gangs stealing machinery to order for Russia",
-            "episodeId": "z3khg27",
-            "titleSlug": "how-farms-are-being-targeted-by-criminal-gangs-stealing-machinery-to-order-for-russia",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3V5n5Y0U1Ifw3c4WQPEoE3/84a5ea87391405c35b1624c2e5d3646a/ITVX_RURAL_CRIME_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "ITV News has been shown figures which reveal the surge in demand for heavy machinery since the invasion of Ukraine and subsequent sanctions.",
-            "dateTime": "2024-05-10T18:10:00Z",
-            "duration": 301
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "World Cup legend Sir Geoff Hurst setting out to tackle scourge of scammers",
-            "episodeId": "5d38hzf",
-            "titleSlug": "world-cup-legend-sir-geoff-hurst-setting-out-to-tackle-scourge-of-scammers",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3StBf9AWsJZqVenEtVY8sD/0596ebfbbb4685f58db6e324410662a0/HURST_THUMB_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The 1966 World Cup hattrick hero says he has been the target of scams and wants to help his generation embrace, rather than fear, technology.",
-            "dateTime": "2024-05-08T15:24:00Z",
-            "duration": 305
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Eurovision 2024: Israel's contestant 'honoured' to represent country despite boycott calls",
-            "episodeId": "8gs0hf0",
-            "titleSlug": "eurovision-2024-israels-contestant-honoured-to-represent-country-despite-boycott-calls",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1wTfgW2QsXya9iDUMMFx68/d935e115915b200e1efbb23bc76f5437/GOLAN_THUMB_4.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Despite large demonstrations planned to coincide with the event, Eden Golan says she \"couldn't ask for a better year to represent\" Israel.",
-            "dateTime": "2024-05-07T21:37:00Z",
-            "duration": 199
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Family of pregnant mother killed by a dangerous driver hope to educate young motorists",
-            "episodeId": "lh7m85j",
-            "titleSlug": "family-of-pregnant-mother-killed-by-a-dangerous-driver-hope-to-educate-young-motorists",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7AlPFnZAuYu0ZfURGs54DW/56d1c339b67dd9ddca26281a68c90412/7PM_NEW.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Frankie Jules-Hough was killed by Adil Iqbal who was steering with one hand and filming himself speeding with the other.",
-            "dateTime": "2024-05-03T18:14:00Z",
-            "duration": 311
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "Dramatic rise in new and expectant mothers receiving mental health support",
-            "episodeId": "1dh84g9",
-            "titleSlug": "dramatic-rise-in-new-and-expectant-mothers-receiving-mental-health-support",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2dP7UN0nY4Xn6uI4y3YUZy/f9841ede868d04f122f68f37c707f4e9/PERINATAL_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Data from NHS England shows that more than 57 thousand women received treatment in the past year - that's up a third compared to the year before.",
-            "dateTime": "2024-05-02T18:21:00Z",
+            "episodeTitle": "Empty houses, broken communities: one month on from the Ballymena riots",
+            "episodeId": "tppgv5b",
+            "titleSlug": "empty-houses-broken-communities-one-month-on-from-the-ballymena-riots",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1fT4uaExQZS12Pc7bwsAtG/51c09417cdda9a4decec04a41e58e3b4/BALLYMENA_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Peter Smith visits Ballymena in Northern Ireland - a town which is still reeling one month after riots aimed mainly at the Roma community.",
+            "dateTime": "2025-07-03T22:12:00Z",
             "duration": 423
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'I tasted death': The shocking rise in NHS workers being assaulted while on shift",
-            "episodeId": "mldy5fc",
-            "titleSlug": "i-tasted-death-the-shocking-rise-in-nhs-workers-being-assaulted-while-on-shift",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2SSk0X6p3jC3ziR4LX0paL/b255ae83d4a65394911c67a87da1c254/HOSPITAL_STRSAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "An NHS nurse has spoken for the first time about almost being strangled to death by a patient, as figures show a 21% rise in violent assaults since 2019.",
-            "dateTime": "2024-05-01T18:17:00Z",
-            "duration": 422
+            "episodeTitle": "Son of Iran's last Shah: Regime 'on verge of collapse' and 'scared of its own people'",
+            "episodeId": "p0khpwx",
+            "titleSlug": "son-of-irans-last-shah-regime-on-verge-of-collapse-and-scared-of-its-own-people",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/4mXfJQznEJhOjNkjP59KX9/8a4343fb2382e5e1e0b4a7da742b78ae/IRAN_V2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Reza Pahlavi, the son of Iran's last Shah, went into exile almost five decades ago. He is often seen as a viable next leader by opponents of the current regime.",
+            "dateTime": "2025-06-24T18:30:00Z",
+            "duration": 270
+          },
+          {
+            "contentType": "episode",
+            "episodeTitle": "Air India Flight 171: Disaster in the Skies",
+            "episodeId": "10/6959/0001",
+            "titleSlug": "air-india-flight-171-disaster-in-the-skies",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/11e5Gfsq0G5Bs64KJgCFwF/ee301bc9fa3cfac3888b6568ec39e2b2/ITVX_STORY_THUMBNAIL.00_00_00_19.Still006.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "dateTime": "2025-06-19T20:50:00Z",
+            "programmeId": "10/6959/0001B",
+            "programmeTitle": "Air India Flight 171: Disaster in the Skies",
+            "encodedEpisodeId": {
+              "letterA": "10a6959a0001",
+              "underscore": "10_6959_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a6959a0001B",
+              "underscore": "10_6959_0001B"
+            }
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "The horrors of Gaza: The tragic story of a boy who has lost both his family and limbs",
-            "episodeId": "tcyx9m4",
-            "titleSlug": "the-horrors-of-gaza-the-tragic-story-of-a-boy-who-has-lost-both-his-family-and-limbs",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/3AQf548L7Yp3cnSQAvfobw/2e5fcf24cd168151727d9a2a460ee024/AHAMAS_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "3-year-old Ahmad lost his parents and both legs in an Israeli airstrike at the start of the Israel-Hamas war, leaving his home in Gaza for treatment.",
-            "dateTime": "2024-04-30T19:09:00Z",
-            "duration": 408
+            "episodeTitle": "47 hours left to live: ITV News witnesses an assisted death in Oregon",
+            "episodeId": "g5r97w4",
+            "titleSlug": "47-hours-left-to-live-itv-news-witnesses-an-assisted-death-in-oregon",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2K7DdyffSdcy1FWzbRmyy3/e9bafb99735b6c387d6b154c67512158/eyewitness_assisted_dying.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Jessica was able to legally access the drugs in her home state of Oregon, USA, where assisted dying has been available for almost thirty years.  ",
+            "dateTime": "2025-03-06T19:40:00Z",
+            "duration": 648
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'She was the best mum': Daughter of Sharon Beshenivsky speaks to ITV News about her mother",
-            "episodeId": "sws69lz",
-            "titleSlug": "she-was-the-best-mum-daughter-of-sharon-beshenivsky-speaks-to-itv-news-about-her-mother",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/37VntkRlAoXvpkIT8BU9OO/8e72b5428aa878c4ce0bbf31744937af/sharon_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The daughter of PC Sharon Beshenivsky, who was shot dead on duty nearly 20 years ago, tells ITV News she's been living in \"a tunnel of darkness\" ever since.",
-            "dateTime": "2024-04-29T16:50:00Z",
-            "duration": 451
+            "episodeTitle": "At least 95 women were killed by men previously known to police over the course of 5 years",
+            "episodeId": "404r7mp",
+            "titleSlug": "at-least-95-women-were-killed-by-men-previously-known-to-police-over-the-course-of-5-years",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5aQypfX2IvnPuKrSSlS0A/ba4495b6941638ef56f661884f8e1e43/WOMEN_KILLED_ITVX_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "In the majority of these cases the women themselves reported the men for domestic related incidents and in 20 cases clear police failings have been identified. ",
+            "dateTime": "2025-06-10T22:15:00Z",
+            "duration": 510
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Fire service bosses talked about wanting to 'kill' and harm female colleagues",
-            "episodeId": "pvccx5r",
-            "titleSlug": "fire-service-bosses-talked-about-wanting-to-kill-and-harm-female-colleagues",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5RiDOHgv2twr4rHjv4zRff/458ba647a685c5bad9fb2d030be6e676/JAN_THUMB_NEW.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Shropshire Fire and Rescue Service's chief fire officer and assistant chief fire officer sent messages suggesting they wanted to harm female colleagues.",
-            "dateTime": "2024-04-23T18:17:00Z",
-            "duration": 443
+            "episodeTitle": "Gang steals \u00a32 million: Inside the shoplifting crime wave | Criminal Gangs Exposed Part 1",
+            "episodeId": "jnykz99",
+            "titleSlug": "gang-steals-pound2-million-inside-the-shoplifting-crime-wave-or-criminal-gangs-exposed-part-1",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3fRmOSzb1QYxcVKdQn0JVz/b984fe8aa338d36a78618611851c7ee9/ITVX_STORY_THUMBNAIL.00_00_00_19.Still006.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "In Part 1 of ITV News' Theft Gangs series, Antoine Allen\u00a0investigates the rise of \u201cstolen to order\u201d\u00a0shoplifting. What\u2019s driving it, and can it be stopped?",
+            "dateTime": "2025-06-06T16:30:00Z",
+            "duration": 913
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Young support for Tories worse than during Blair's 1997 landslide, poll shows",
-            "episodeId": "8hw5m32",
-            "titleSlug": "young-support-for-tories-worse-than-during-blairs-1997-landslide-poll-shows",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1gGVZ0auk0ix1lgXbdA7bB/241c2e49710bd527ac8b5f25dae23cc0/TORIES_NEW_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "An exclusive poll for ITV has revealed just 14% of 18-25 year olds say they will vote Conservative at the next general election. ",
-            "dateTime": "2024-04-17T21:37:00Z",
-            "duration": 264
+            "episodeTitle": "Tool theft crime wave: Unmasking the boot sale thieves | Criminal Gangs Exposed Part 2",
+            "episodeId": "5ddngtz",
+            "titleSlug": "tool-theft-crime-wave-unmasking-the-boot-sale-thieves-or-criminal-gangs-exposed-part-2",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2vBv80o1o8mImuMLJi3Vgk/52d3c80dc77d2011afd4d602f8411f69/ITVX_STORY_THUMBNAIL.00_00_04_04.Still012.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": " In Theft Gangs Part 2: Stolen Tools, Antoine Allen investigates the black market for stolen tools \u2014 where rogue traders profit off the misery of tradespeople.",
+            "dateTime": "2025-06-06T16:37:00Z",
+            "duration": 1038
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'When I grow up I'll make them pay': Israel-Gaza war spreading anger down generations",
-            "episodeId": "q68dz91",
-            "titleSlug": "when-i-grow-up-ill-make-them-pay-israel-gaza-war-spreading-anger-down-generations",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4mQIicRdzcmUgczzsTLaJn/a4c41557aecf05e897c64958b07e645d/GAZA_GENERATIONS_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The conflict unfolding between Israel and Gaza is creating mutual hatred among many young Israelis and Palestinians.",
-            "dateTime": "2024-04-16T21:49:00Z",
-            "duration": 213
+            "episodeTitle": "Women rowers at 'medal factory' Leander Club walked out over personal safety fears",
+            "episodeId": "5fv3k5y",
+            "titleSlug": "women-rowers-at-medal-factory-leander-club-walked-out-over-personal-safety-fears",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/PzEaZbUR6URJtLYWBl4kD/ea0b65f69d586fbdd8bd7af5ea0e9768/rowers_thumb_3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The club has been accused of ignoring the safety fears of its own female rowers, leading them to refuse to train with their male teammates.",
+            "dateTime": "2025-06-04T21:53:00Z",
+            "duration": 315
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'No justice': Widow of subpostmaster who took his own life was denied compensation",
-            "episodeId": "qhkhhqc",
-            "titleSlug": "no-justice-widow-of-subpostmaster-who-took-his-own-life-was-denied-compensation",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5SgW5Wp7hefZ9IM6utt7ez/26f6a1f445e33af4e5e1a624dd0c605d/POST_OFFICE_WIDOW_NEW_TH.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Gowri Jayakanthan has spoken to ITV News about how she blames the Post Office for her husband taking his own life, and how she has been denied compensation.",
-            "dateTime": "2024-04-12T18:30:00Z",
-            "duration": 296
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "'The sound of gunfire is constant': Inside the British field hospital in Gaza ",
-            "episodeId": "43830r5",
-            "titleSlug": "the-sound-of-gunfire-is-constant-inside-the-british-field-hospital-in-gaza",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6uzJq9uPCL8G9QHJxkWk9Y/2aeaa027c9131975df25f270bb9fb438/GAZA_NEW_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Local journalists have filmed on behalf of ITV News inside a British-run field hospital in Gaza, where medics say the sounds of war nearby are near-constant.",
-            "dateTime": "2024-04-11T21:15:00Z",
-            "duration": 255
+            "episodeTitle": "Talking Politics Exclusive: Simon Case on why China's Taiwan intent is an enormous threat to the UK",
+            "episodeId": "h2tlxln",
+            "titleSlug": "talking-politics-exclusive-simon-case-on-why-chinas-taiwan-intent-is-an-enormous-threat-to-the-uk",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/7gphmoIrScWgfIsAILyQ64/0a259cc2cc3df156c8ad8c668fde5208/yt_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "In this special edition of Talking Politics, Robert Peston meets ex-Civil Service chief Simon Case, the Cabinet Secretary to 4 Prime Ministers",
+            "dateTime": "2025-06-02T21:23:30.559Z",
+            "duration": 4799
           }
         ]
       },
       {
-        "title": "News Explained",
+        "title": "Analysis ",
         "clips": [
           {
             "contentType": "shortform",
-            "episodeTitle": "M25 closure: Everything you need to know as major motorway shuts for second time",
-            "episodeId": "220qvhn",
-            "titleSlug": "m25-closure-everything-you-need-to-know-as-major-motorway-shuts-for-second-time",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7BZP4IHsXFKL96aFRLwMBP/dddca963d0fe5f7194c0a3847bd257ae/ITVX_STORY_THUMBNAIL.00_00_00_19.Still009.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The UK's busiest motorway will close again, this time between Junction 9 at Leatherhead and Junction 10 for the A3.",
-            "dateTime": "2024-05-10T21:05:00Z",
-            "duration": 104
+            "episodeTitle": "How \u2018sheer bravado\u2019 got the Sycamore Gap duo jailed",
+            "episodeId": "bnwqxhr",
+            "titleSlug": "how-sheer-bravado-got-the-sycamore-gap-duo-jailed",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/4sRsLRoDVkk4AWyNnDSzaX/252184ddf15e90e25f3da4fb01d6158d/3X_GFXV_SYCAMORE_GAP_THE_SENTENCING_YOUTUBE_THUMBNAIL_V2.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Daniel Graham and Adam Carruthers have been jailed for over 4 years for felling the iconic tree. Are we any closer to knowing why they did it?",
+            "dateTime": "2025-07-16T13:08:00Z",
+            "duration": 777
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "After another extraordinary day of evidence against Trump, who is Stormy Daniels?",
-            "episodeId": "dqykncc",
-            "titleSlug": "after-another-extraordinary-day-of-evidence-against-trump-who-is-stormy-daniels",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2KZPMJ23BlYoiURZ79Bpza/56def92e8f621fce0835665d85ef2037/STORMY_POSTER.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Who is the adult film star at the centre of Donald Trump's hush money trial? ",
-            "dateTime": "2024-05-09T19:15:00Z",
-            "duration": 102
+            "episodeTitle": "What the next few days have in store as third summer heatwave hits UK",
+            "episodeId": "2frvjhn",
+            "titleSlug": "what-the-next-few-days-have-in-store-as-third-summer-heatwave-hits-uk",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/59yAfMv1W16zOZnZ8t4gWf/1bc488afb73d3999fa6fbb79282e6154/weather_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The third heatwave of the year hit parts of the UK on Friday, but Sunday will gradually start to turn a little cooler and cloudier in the north and east.",
+            "dateTime": "2025-07-11T20:35:35.323Z",
+            "duration": 100
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Why is Macron offering free fertility checks to young people in France?",
-            "episodeId": "lbdl9t0",
-            "titleSlug": "why-is-macron-offering-free-fertility-checks-to-young-people-in-france",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4HnXPvrw93aUTH7WC490Jy/deac836c52cfbdfc00f7888079ce902f/MACRON.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "France's birth rate fell to the country's lowest level since World War Two in 2023, prompting Macron to unveil new measures he hopes will reverse the trend.",
-            "dateTime": "2024-05-09T16:56:00Z",
-            "duration": 148
+            "episodeTitle": "How will the UK-France migrant deal work? The numbers explained",
+            "episodeId": "bkrt3lt",
+            "titleSlug": "how-will-the-uk-france-migrant-deal-work-the-numbers-explained",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5Fhr1f6dW8qyuR04IigIrD/b295c8d1d99e9ece13a427099f309c7a/EXPLAINER_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News explains the numbers behind Starmer's plan to tackle small boat crossings. What is the 'one in, one out' plan?",
+            "dateTime": "2025-07-10T20:53:00Z",
+            "duration": 191
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Who are the people deciding if Donald Trump is guilty?",
-            "episodeId": "0crp4sc",
-            "titleSlug": "who-are-the-people-deciding-if-donald-trump-is-guilty",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4BCULfAfD1W0twU0gerHi9/e2c4a5fa063d5ccbd001dbdc7f1e231d/TRUMP_THUMB_NEW.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "We don't know the identities of the jurors in Trump's hush money trial, but we do know some of their jobs, backgrounds, and general opinions on politics.",
-            "dateTime": "2024-04-19T16:14:00Z",
-            "duration": 163
+            "episodeTitle": "Talking Politics: Why we could all be carrying ID cards in new migration controls",
+            "episodeId": "r90fmvq",
+            "titleSlug": "talking-politics-why-we-could-all-be-carrying-id-cards-in-new-migration-controls",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3BRkNxXdF8o3yIxPPug5Ps/2f7da1999d0d8ae6da5d83133139abee/TP_UK_ITVX_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Tom and Robert discuss the flaws in Britain and France's new effort to stop the boats. Plus, why we could be carrying identity cards before the next election.",
+            "dateTime": "2025-07-09T17:31:00Z",
+            "duration": 2826
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Controversy and high security: Everything you need to know about Eurovision 2024",
-            "episodeId": "b7z413n",
-            "titleSlug": "controversy-and-high-security-everything-you-need-to-know-about-eurovision-2024",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4wV9nSnpr0AZ3mqeaALL8B/1a31358ebe0ceae2cb7f1cd02b27f066/ITVX_STORY_THUMBNAIL.00_00_00_19.Still010.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Planned demonstrations over Israel's inclusion in this year's Eurovision Song Contest have added to already heightened security concerns.",
-            "dateTime": "2024-05-09T09:55:00Z",
-            "duration": 157
+            "episodeTitle": "What does it take to prepare a royal state banquet? ",
+            "episodeId": "p7d8qmz",
+            "titleSlug": "what-does-it-take-to-prepare-a-royal-state-banquet",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/6kpMt3UYmDf4x0QR3iSk2K/bf78ebff07a083eeba54a16535087147/ROYAL_THUMB_v2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Macron is the latest of many world leaders to be hosted by the King and Queen - but what does it take to pull off one of the most high-profile dinners?",
+            "dateTime": "2025-07-09T06:00:00Z",
+            "duration": 638
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Why has Rafah become a focal point of the Israel-Gaza war?",
-            "episodeId": "ql7vw2m",
-            "titleSlug": "why-has-rafah-become-a-focal-point-of-the-israel-gaza-war",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4vXjlBLJmaMiB17LZJBaBt/4929744dd0b5315813b0ed9a882f9093/gaza_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Israel has ordered thousands of people to leave eastern Rafah and Israeli forces say they have taken control of the Rafah crossing - a vital aid route.",
-            "dateTime": "2024-05-07T16:44:00Z",
-            "duration": 155
+            "episodeTitle": "Labour's First Year: How has Starmer tackled key issues since winning the election?",
+            "episodeId": "wxvflc4",
+            "titleSlug": "labours-first-year-how-has-starmer-tackled-key-issues-since-winning-the-election",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1ilOtNkwImISoX7mbxJcgq/7cdb378c54d52b0f4c0f3050644b4797/ITVX_LABOUR_FIRST_YEAR.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News looks at how the Government is dealing with the economy, health, immigration and housing in its first year in office.",
+            "dateTime": "2025-07-07T21:20:00Z",
+            "duration": 550
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "The key results to look out for at Local Elections 2024",
-            "episodeId": "6dm1zfn",
-            "titleSlug": "the-key-results-to-look-out-for-at-local-elections-2024",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7tuAyxPqGFNNDxwdIgWnaR/3dc03f09f51c73118aaeee5b33a03e45/TEES_VALLEY_9_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "ITV News Deputy Political Editor Anushka Asthana takes a look at the key battleground seats which could signal how the main parties are faring.",
-            "dateTime": "2024-05-02T21:31:00Z",
-            "duration": 216
+            "episodeTitle": "Talking Royals: Kate's life after treatment, farewell to the Royal Train and William's team talk",
+            "episodeId": "rczs5fr",
+            "titleSlug": "talking-royals-kates-life-after-treatment-farewell-to-the-royal-train-and-williams-team-talk",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/6v96dexHbqDKzD87aDyGr4/9c001020007547000aa90743e41ae444/TALKING_ROYALS_0307.00_31_48_18.Still005.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "This week, Charlene is joined by Chris and Lizzie to discuss Kate's life after treatment. Plus, why the Royal Train's days are numbered and William's team talk.",
+            "dateTime": "2025-07-04T14:48:00Z",
+            "duration": 1684
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Who is John Swinney and what will his government look like?",
-            "episodeId": "wzdcrx0",
-            "titleSlug": "who-is-john-swinney-and-what-will-his-government-look-like",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/66LsOT73Pk7LB3NSSIGFhC/5c8b83bdb5486a9af6947b67ad96ba62/SWINNEY_THUMBNAIL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "John Swinney has been elected as the new SNP leader and will likely become the First Minister of Scotland.",
-            "dateTime": "2024-05-02T17:59:00Z",
-            "duration": 106
+            "episodeTitle": "What's Labour's next embarrassing U-turn? Talking Politics Q&A on one year of PM Starmer",
+            "episodeId": "t9kgpbb",
+            "titleSlug": "whats-labours-next-embarrassing-u-turn-talking-politics-qanda-on-one-year-of-pm-starmer",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/lyKqbO6iGiND7RQyu7waP/3eb298c90a76ecca4487e34fbae5a15d/TP_UK_Q_A_THUMB_FOR_ITVX.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": " In this week's Q&A, Tom Bradby and Robert Peston answer our audience\u2019s questions on Labour to mark 12 months in government.",
+            "dateTime": "2025-07-04T10:27:00Z",
+            "duration": 1139
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "What public events is King Charles expected to attend this summer? ",
-            "episodeId": "99chdp4",
-            "titleSlug": "what-public-events-is-king-charles-expected-to-attend-this-summer",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7p635Em9YFbfuYKGzqc9j7/aae6b31d43962d3edf323d59abb8cb4d/monarch_strap.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "After the King carried out his first public event since his cancer treatment, when can we expect to see him over the coming months?",
-            "dateTime": "2024-04-30T19:46:00Z",
-            "duration": 148
+            "episodeTitle": "Amanda Knox: How I tell my kids mummy was jailed for murder",
+            "episodeId": "6p82z7x",
+            "titleSlug": "amanda-knox-how-i-tell-my-kids-mummy-was-jailed-for-murder",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/78p01cmdkoNwZcPJfu80kn/f8cdc4add173e30f4afb27e40e715598/WYNTK_0407_AMANDA_KNOX_THUMB_VIDEO.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Ten years after her definitive exoneration for Meredith Kercher's killing, she describes being \"forever branded the girl accused of murder.\"",
+            "dateTime": "2025-07-03T16:50:05.862Z",
+            "duration": 935
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Who could replace Humza Yousaf as Scotland's next First Minister?",
-            "episodeId": "hdyg82n",
-            "titleSlug": "who-could-replace-humza-yousaf-as-scotlands-next-first-minister",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/2RxFdk9TpflCvzNTdF7udF/ef6812397ad8d0729c425b97afb81a4b/explainre.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "After Scotland's First Minister Humza Yousaf announced he's stepping down, the SNP must hold its second leadership contest in barely a year.",
-            "dateTime": "2024-04-29T16:25:00Z",
-            "duration": 129
+            "episodeTitle": "Talking Politics USA: A week of wins for 'Daddy' Trump & what Mamdani's win means for the Democrats ",
+            "episodeId": "p0xps5l",
+            "titleSlug": "talking-politics-usa-a-week-of-wins-for-daddy-trump-and-what-mamdanis-win-means-for-the-democrats",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/6wtOZGbD8qR2u1lexP5GK6/655978c82cab211464e54f1c0934555e/TP_USA_MAIN_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Our Washington producer Aisha Kherallah and correspondent Rachel Younger joins Tom Bradby to discuss the latest following a week of wins for the president.",
+            "dateTime": "2025-07-01T14:31:00Z",
+            "duration": 1779
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Local elections 2024: What is happening on Thursday 2nd May?",
-            "episodeId": "1w0m71x",
-            "titleSlug": "local-elections-2024-what-is-happening-on-thursday-2nd-may",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1Kg7AWiQPTyYo7t4YQUPBn/9e9bd03d194d7c5d42b060cd9bf7cc34/LOCAL_ELEX_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Local elections will be taking place across 107 local authorities in England, with voters selecting more than 2,500 councillors, and 10 metro mayors. ",
-            "dateTime": "2024-04-29T15:11:00Z",
-            "duration": 115
+            "episodeTitle": "Welfare bill passes after PM drops key reform in last-minute concession",
+            "episodeId": "1bg6fmk",
+            "titleSlug": "welfare-bill-passes-after-pm-drops-key-reform-in-last-minute-concession",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3LsUYtxENZMVBzZ73A9Cnz/14709b0c39f06cca5ffd45476e8dc55e/welfare_new.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The government won a vote on its controversial, watered down welfare bill on Tuesday night - but faced its biggest backbench rebellion so far.",
+            "dateTime": "2025-07-01T21:26:00Z",
+            "duration": 700
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "What is the PM's new pledge on defence and how does UK spending compare to other countries?",
-            "episodeId": "z34rq37",
-            "titleSlug": "what-is-the-pms-new-pledge-on-defence-and-how-does-uk-spending-compare-to-other-countries",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/1lCZ2xYGGuMaezEWOg41Zl/e5c09074e2aa6862967a0c999184529f/sunakkk.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Rishi Sunak has announced billions in extra defence spending which, he says, will put the country on a \"war footing\" with the world at its \"most dangerous\".",
-            "dateTime": "2024-04-23T18:08:00Z",
-            "duration": 119
+            "episodeTitle": "When would the UK deploy its new nuclear bomb-carrying fighter jets?",
+            "episodeId": "36fs9j8",
+            "titleSlug": "when-would-the-uk-deploy-its-new-nuclear-bomb-carrying-fighter-jets",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/Btn1Ya7thIqMLjvqVGMMm/6dca5d15cf517e5b65eabfdd67c9600c/ITVX_PAGE_THUMBNAILS.00_00_02_17.Still006.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Air defence expert and RUSI fellow Dr Thomas Withington discusses the UK's procurement of F-35A nuclear-carrying fighter jets and what they are capable of.",
+            "dateTime": "2025-06-25T15:39:30.52Z",
+            "duration": 597
+          }
+        ]
+      },
+      {
+        "title": "ITV News in Antarctica",
+        "clips": [
+          {
+            "contentType": "episode",
+            "episodeTitle": "Antarctica: End of the Earth",
+            "episodeId": "10/6963/0001",
+            "titleSlug": "antarctica-end-of-the-earth",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/7uqSXPBWPALj7wfxUlcCSj/501093ed15653be131ef472bf0f9e1ef/ANTARCTICA_THUMB_HORIZONTAL.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "dateTime": "2025-07-08T10:21:49.066Z",
+            "programmeId": "10/6963/0001B",
+            "programmeTitle": "Antarctica: End of the Earth",
+            "encodedEpisodeId": {
+              "letterA": "10a6963a0001",
+              "underscore": "10_6963_0001"
+            },
+            "encodedProgrammeId": {
+              "letterA": "10a6963a0001B",
+              "underscore": "10_6963_0001B"
+            }
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Impact of the pandemic to lower grades and widen social divisions into the 2030s",
-            "episodeId": "dbs3szk",
-            "titleSlug": "impact-of-the-pandemic-to-lower-grades-and-widen-social-divisions-into-the-2030s",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6uGbbojiCkQJoGGbCTpjsB/1f3e6b302814e2052dd927cb5bcad497/THUMB_COVID_EDU_3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Academics are warning that the impacts of the Covid-19 pandemic on education will cause lower grades and widen socio-economic gaps as late as next decade.  ",
-            "dateTime": "2024-04-23T23:11:00Z",
-            "duration": 143
+            "episodeTitle": "Behind the scenes in Antarctica",
+            "episodeId": "ktldyx2",
+            "titleSlug": "behind-the-scenes-in-antarctica",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2lmuRte2zgnhchOYjvndn1/1a807daa70ebd3bcd6e10969b1befa81/STORY7.00_07_50_08.Still002.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A behind the scenes look at how we filmed our epic journey to the continent of Antarctica",
+            "dateTime": "2025-06-20T17:37:00Z",
+            "duration": 409
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Christmas in Antarctica: Shortest day celebrations in full swing",
+            "episodeId": "t7mdhcl",
+            "titleSlug": "christmas-in-antarctica-shortest-day-celebrations-in-full-swing",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/31yDYhWsuJl1TJWeAuZQUi/30dae2b5424759c7d6dff98f5fc6a3da/SHORTEST_DAY_VT.01_04_19_20.Still004.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "For the small community of British Antarctic Survey staff who live there, the occasion is treated like Christmas.",
+            "dateTime": "2025-06-20T18:53:00Z",
+            "duration": 264
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Renowned conservationist Jane Goodall on the importance of young people protecting our planet",
+            "episodeId": "zkgr184",
+            "titleSlug": "renowned-conservationist-jane-goodall-on-the-importance-of-young-people-protecting-our-planet",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1B5BL12mIQefLonb7l2pc4/659661242588dc3ea1da92c6b8a73e85/GOOD_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Jane Goodall reflects on the state of the climate, the importance of conservation work and the job of young people to protect the future of our planet.\u00a0",
+            "dateTime": "2025-06-19T21:37:44.836Z",
+            "duration": 595
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Antarctica's hidden sea life could be used for washing powders and ice creams",
+            "episodeId": "3rhv0zl",
+            "titleSlug": "antarcticas-hidden-sea-life-could-be-used-for-washing-powders-and-ice-creams",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2AofACTJFP46SMyAFDX8Z9/7ee6cb0f62562c5f21455629fc18302c/ITVX_ANTACTICA_THUMBNAIL.00_00_04_03.Still007.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Equipped head-to-toe in dry suits - divers researching below the waves are tethered to a team above the ice to make sure they don\u2019t lose the hole to get back.",
+            "dateTime": "2025-06-18T18:26:00Z",
+            "duration": 389
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "How a warming climate increases the risks and dangers for British scientists in Antartica",
+            "episodeId": "lx2zv0h",
+            "titleSlug": "how-a-warming-climate-increases-the-risks-and-dangers-for-british-scientists-in-antartica",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/4Hp8Fhu6kKk3ygZdKYvPsC/274999e6f0f6cc9daddce7e0d030d066/ANTARCTICA_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "In Antarctica, the climate is changing and so is the way scientists work. Hidden under the snow are crevasses which can go down for dozens of metres.",
+            "dateTime": "2025-06-16T18:11:27.262Z",
+            "duration": 212
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Whales in Antarctica at risk once again due to industrial fishing and microplastics",
+            "episodeId": "fmc4wgz",
+            "titleSlug": "whales-in-antarctica-at-risk-once-again-due-to-industrial-fishing-and-microplastics",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/QIsVnGG5sQWnNTfzOvdwI/f32111cec9b7e54418565333a700b262/ANTARTICA_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Super trawlers are endangering whales with their fishing nets whilst also plundering vast quantities of krill which is the whales main food source.\u202f\u00a0",
+            "dateTime": "2025-06-12T18:27:00Z",
+            "duration": 371
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "The Prime Minister of the Bahamas Philip Davis told ITV News about his fears for the future",
+            "episodeId": "wkyqhbf",
+            "titleSlug": "the-prime-minister-of-the-bahamas-philip-davis-told-itv-news-about-his-fears-for-the-future",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/19na6dCGjKaLaHA5x2d5m6/d610718b654ddabe067f39ed13e0399e/ITVX_ANTARCTICA_THUMBNAIL.00_00_02_09.Still006.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "All this week we've been reporting live from Antarctica on the impact climate change is having there and how that is also affecting the rest of the planet.",
+            "dateTime": "2025-06-12T19:13:00Z",
+            "duration": 336
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Former Secretary of State calls on experts to 'put your science on the line' to save Antarctica ",
+            "episodeId": "xv66vph",
+            "titleSlug": "former-secretary-of-state-calls-on-experts-to-put-your-science-on-the-line-to-save-antarctica",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1UkZ6aDMlfQpLxTPv1IttW/6daf6bfc97fd08381412caa2313d779a/KERRY_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": " John Kerry talks about the climate crisis in Antarctica and accuses Trump of \"turning his back on the greatest marketplace the world has ever known\"",
+            "dateTime": "2025-06-11T06:03:10.469Z",
+            "duration": 464
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Starmer insists he's talked to Trump about climate change in exclusive interview",
+            "episodeId": "vpmg8wl",
+            "titleSlug": "starmer-insists-hes-talked-to-trump-about-climate-change-in-exclusive-interview",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3tkPwwNxy9j5GXVaDjL9vF/8590a86a145349835696f152a6067e60/STARMER_ANTARCTIC_THUMB_HORZ.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Our Science Correspondent Martin Stew pressed the Prime Minister on how seriously he's taking the climate crisis in an interview conducted from Antarctica.",
+            "dateTime": "2025-06-10T21:39:00Z",
+            "duration": 257
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Questions raised over effectiveness of the UN's Ocean Conference after notable US absence",
+            "episodeId": "lhykkpq",
+            "titleSlug": "questions-raised-over-effectiveness-of-the-uns-ocean-conference-after-notable-us-absence",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/48RxQwYOj1nAng8a1ybS76/7b3b9964da680cb77e4b8b433eb0b723/RAGEH_NAT_THUMB_.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "French President says \"the sea is not for sale\" at the UN Ocean Conference. But the summit's effectiveness was questioned with the notable absence of the US.",
+            "dateTime": "2025-06-11T08:03:00Z",
+            "duration": 193
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Sea sickness and spotting icebergs: Life on board an Antarctic expedition in deep winter",
+            "episodeId": "yp168x6",
+            "titleSlug": "sea-sickness-and-spotting-icebergs-life-on-board-an-antarctic-expedition-in-deep-winter",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1MEOAb7HwUEHxZu7IO5OXo/d0675ae861aa59e291738cf63ca4ff9c/ANTARCTICA_7PM_THUMB_3.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News's Martin Stew embarks on a journey aboard the RRS Sir David Attenborough, deep within the Antarctic Circle.",
+            "dateTime": "2025-06-09T10:20:39.033Z",
+            "duration": 359
           }
         ]
       },
@@ -758,140 +615,255 @@
         "clips": [
           {
             "contentType": "shortform",
-            "episodeTitle": "A sports day with a difference - the USAF base inviting people with disabilities to compete",
-            "episodeId": "w9k5by1",
-            "titleSlug": "a-sports-day-with-a-difference-the-usaf-base-inviting-people-with-disabilities-to-compete",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7uuIfedn1PZwdGqfdAkYyo/305bc528171dc6c8f4ef6a3bac8aeeef/SPORTS_MILDENHALL_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The event took place at RAF Mildenhall - just as it has done every year for the last four decades",
-            "dateTime": "2024-05-10T07:54:09.738Z",
+            "episodeTitle": "Murder probe detective says Katie Simpson's death should be 'watershed moment'",
+            "episodeId": "5pgmfjx",
+            "titleSlug": "murder-probe-detective-says-katie-simpsons-death-should-be-watershed-moment",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3b3JJHvxJAU1DBPQTacPZf/e1b0678cb8699776386cc818b0bc47ca/SIMPSON_ITVX.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "A former detective who helped bring Jonathan Creswell to trial says by taking his own life he remained in control until the very end.",
+            "dateTime": "2025-07-17T17:05:00Z",
+            "duration": 434
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Boy, 14, on the challenges of caring for his step-mum who has cancer",
+            "episodeId": "vqhbt54",
+            "titleSlug": "boy-14-on-the-challenges-of-caring-for-his-step-mum-who-has-cancer",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5twBXcNA3LheSRWLVLb7aO/6d0f8d094c94ec4042bb5f3648fe02d3/download.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Leon Surcouf from Jersey started looking after his step-mum following her diagnosis and wants more young carers to be aware of the support which is available.",
+            "dateTime": "2025-07-17T16:15:00Z",
+            "duration": 222
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Three children live with CRELD1 in the UK and there is currently no cure",
+            "episodeId": "3tkn32g",
+            "titleSlug": "three-children-live-with-creld1-in-the-uk-and-there-is-currently-no-cure",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5BTpFPYYG3t3kb49t6oL0C/ac4e657cdd40377571bc1f973388bfe4/gene_kids_new.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The condition causes a huge range of symptoms from seizures, to development delay and heart issues",
+            "dateTime": "2025-07-15T09:53:48.452Z",
+            "duration": 789
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Shining a light on support for young people in one of our most deprived communities ",
+            "episodeId": "mgpgp4t",
+            "titleSlug": "shining-a-light-on-support-for-young-people-in-one-of-our-most-deprived-communities",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/7x7HZAamzKZCbLHyXFxA1L/31ffbbf152f25394514959a571d5c16a/GRA_SALFORD_YOUTH_ZONE_TREATED_3_-_604915_frame_0.jpeg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "More than 3,000 young people have joined Salford Youth Zone since it opened, but the centre is just one example of how young people are given voice in the city",
+            "dateTime": "2025-07-16T13:52:23.569Z",
+            "duration": 154
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Experts warn dermal fillers may never leave the face",
+            "episodeId": "lsrtv3x",
+            "titleSlug": "experts-warn-dermal-fillers-may-never-leave-the-face",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/45dOpIQSL1a3tAvzhOZ5kq/9366001c8991045dd7830dbf74dbadc9/download__1_.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Filler is often used to turn back the clock but as some are now discovering, reversing those results doesn\u2019t always mean going back to where you started.",
+            "dateTime": "2025-07-15T10:11:35.852Z",
+            "duration": 286
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "'He dismembered my daughter's body': Mum's fight to keep killer imprisoned",
+            "episodeId": "1n0516y",
+            "titleSlug": "he-dismembered-my-daughters-body-mums-fight-to-keep-killer-imprisoned",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5pEb6sOfrGEk8hggrKbfoN/55ce14fec98ffb429e9330213b35b940/Screenshot_2025-07-14_at_16.05.15.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The mother of a Chantel Taylor, who was murdered and then dismembered 21 years ago, says she will \"fight\" to keep her killer in prison until her body is found.",
+            "dateTime": "2025-07-14T15:01:14.597Z",
+            "duration": 207
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Steve Cram: NINETEEN85",
+            "episodeId": "7dvzlw4",
+            "titleSlug": "steve-cram-nineteen85",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/WNSnIpUik2WngBNCZwCVr/bd76cbe96c59a02575e4febe54838bf2/Screenshot_2025-07-16_at_16.16.36.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Ian Payne heads back to the summer of 1985 with the Jarrow Arrow as he marks 40 years since breaking three world records in a run of races over 19 days.",
+            "dateTime": "2025-07-16T15:16:49.156Z",
+            "duration": 1058
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Some pupils are arriving at secondary school with reading ages as low as five ",
+            "episodeId": "gyqthhn",
+            "titleSlug": "some-pupils-are-arriving-at-secondary-school-with-reading-ages-as-low-as-five",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2UgAxIkwEgr0ouagdFQLSo/a05d4d24b9ad1050162d3823191c139e/LITERACY_SKILLSSSS.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "It's thought the impact of covid, phones and tablets, and a lack of reading at home could be to blame. ",
+            "dateTime": "2025-07-16T16:38:21.051Z",
+            "duration": 530
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Sycamore Gap: Britain's Lost Landmark",
+            "episodeId": "qfnm3b8",
+            "titleSlug": "sycamore-gap-britains-lost-landmark",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2Wkf0AN4IWDmYm2hLAKEqJ/e4ccc5709cfedd1e320bc04ab4138f47/Sycamore_Gap_-_Britain-s_Lost_Landmark.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "As two men are sentenced for felling one of the world's most iconic trees, Tom Barton reports on the crime, the police investigation and asks why they did it?",
+            "dateTime": "2025-07-14T13:28:55.854Z",
+            "duration": 1431
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Call for action after a rise in misuse and thefts of Blue Badges ",
+            "episodeId": "tsbzd7j",
+            "titleSlug": "call-for-action-after-a-rise-in-misuse-and-thefts-of-blue-badges",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/651sNQ0x6hQfbpy1vMvOe8/e0873c7ff021310b360e47e49be47d29/blue_badge_itvx.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "One disabled driver had their car broken into twice as thieves targeted her Blue Badge.",
+            "dateTime": "2025-07-17T14:29:03.467Z",
+            "duration": 166
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "A special graduation ceremony at a circus school with students showing their talents",
+            "episodeId": "dh9554n",
+            "titleSlug": "a-special-graduation-ceremony-at-a-circus-school-with-students-showing-their-talents",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/74jCwFDa6tKxoUsIYmGThc/fa9919241365d28e9156e3262ae2d386/ITVX_GRAD.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Graduates at the East Sussex School of Circus Arts in Hailsham demonstrated their strength, technique and bravery learnt over the past year. ",
+            "dateTime": "2025-07-16T11:21:18.993Z",
+            "duration": 148
+          },
+          {
+            "contentType": "shortform",
+            "episodeTitle": "Is this 79-year-old Peterborough paperboy the oldest in the country? ",
+            "episodeId": "jtjh6n3",
+            "titleSlug": "is-this-79-year-old-peterborough-paperboy-the-oldest-in-the-country",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3K0eH5VFbFBC6o45A80K4y/a422e6ae77cd1da6ada4a47de215c47c/ANG_X_PENSIONER_PAPERBOY.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Brian Dunmore works seven days a week, delivering 50 papers on every round - and says he loves the buzz",
+            "dateTime": "2025-07-17T16:05:42.976Z",
             "duration": 162
+          }
+        ]
+      },
+      {
+        "title": "Uplifting Stories",
+        "clips": [
+          {
+            "contentType": "shortform",
+            "episodeTitle": "'TV for the Tiktok generation': Microdramas are on the rise in the UK",
+            "episodeId": "0qjln92",
+            "titleSlug": "tv-for-the-tiktok-generation-microdramas-are-on-the-rise-in-the-uk",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/CFVtFnOrmK3TXL3TTLgt6/ef27feb1bbc4a50572d6d1dcb84760af/darcy_thumb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The genre which consists of minute-long episodes designed for smartphones has experienced a boom with the market predicted to be worth $14bn (\u00a311bn) by 2027.",
+            "dateTime": "2025-07-10T21:39:00Z",
+            "duration": 197
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "104-year-old gets her own private cavalcade ahead of Liberation Day",
-            "episodeId": "4552jfj",
-            "titleSlug": "104-year-old-gets-her-own-private-cavalcade-ahead-of-liberation-day",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6fnziU1o1qOEzefZemlHL2/c74b58e5fafdc9f2fbe38549f4e114f8/LIBERATION_CAVALCADE_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Helene Galienne from Guernsey got to experience the Liberation celebrations early after a change of route to the 2024 cavalcade meant it would miss her home.",
-            "dateTime": "2024-05-09T14:00:00Z",
-            "duration": 127
+            "episodeTitle": "Headteacher Mr T ends school term with final Friday rave",
+            "episodeId": "616xcl2",
+            "titleSlug": "headteacher-mr-t-ends-school-term-with-final-friday-rave",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/4dSjpp0QOnWJi8UNOUX5oF/6bb3872cff55f6f00a077eb125fc07d2/CEN_RAVE_ITVX_TH.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "As the school term ends for the summer break, one headteacher in Leicester has a very unique way of ending each week. ",
+            "dateTime": "2025-07-11T10:34:07.6Z",
+            "duration": 308
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'People survived by helping each other': Occupation survivor reflects on ring given by slave worker",
-            "episodeId": "lydwzfk",
-            "titleSlug": "people-survived-by-helping-each-other-occupation-survivor-reflects-on-ring-given-by-slave-worker",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/7sISACW5lyoAQfbSE0SaHS/fd81f5690908bc21e6d1b5fe2c2cbe74/LIBERATION_RING_THUMBNAIL_2.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Michael Vautier's parents risked their lives to ensure slave workers were cared for and recounts how one of them handcrafted a ring to show his gratitude.",
-            "dateTime": "2024-05-09T14:00:00Z",
-            "duration": 378
+            "episodeTitle": "Oasis reunion tour kicks off in Cardiff",
+            "episodeId": "5sfnvwf",
+            "titleSlug": "oasis-reunion-tour-kicks-off-in-cardiff",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5RBV6oNCIpKxbZYfbDSHu3/f834aa67d83de97ef1dcf97870aeb5b6/HORI.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Tens of thousands of fans gathered for the Gallagher brothers' performance at the Principality Stadium in Cardiff.",
+            "dateTime": "2025-07-04T22:00:00Z",
+            "duration": 141
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Critically endangered eel and shark among species identified along Sussex coastline",
-            "episodeId": "sb040p2",
-            "titleSlug": "critically-endangered-eel-and-shark-among-species-identified-along-sussex-coastline",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/52Cl1VqKM4ZK51iDaHf4en/b6e5819cf79c786d7557dbb312372232/SUSSEX_EEL_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Researchers from the University of Sussex recorded the different creatures living under the water across 28 survey sites between Shoreham-by-Sea and Selsey.",
-            "dateTime": "2024-05-01T21:35:00Z",
-            "duration": 173
+            "episodeTitle": "McLaren F1 driver Lando Norris reflects on competing against teammates and driving with Brad Pitt ",
+            "episodeId": "bbg5kgh",
+            "titleSlug": "mclaren-f1-driver-lando-norris-reflects-on-competing-against-teammates-and-driving-with-brad-pitt",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5YXlPBjSZ7vzDTiFDNWKrQ/0afeefafbae24cbd1c30420204c6b4a1/NORRIS_STRAP.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "The 25-year-old looks ahead to Sunday's British Grand Prix, after winning seven Grand Prix titles across as many seasons with McLaren.",
+            "dateTime": "2025-07-02T19:15:27.392Z",
+            "duration": 462
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "'No Mow May' campaign: Why gardeners are being encouraged to let their grass grow",
-            "episodeId": "lvxynqg",
-            "titleSlug": "no-mow-may-campaign-why-gardeners-are-being-encouraged-to-let-their-grass-grow",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/737QNmu46Q7Q0loPa3qGwy/0fdac39108205d0f958313563832079a/GRASS_TEXT_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The annual 'No Mow May' campaign begins on Wednesday, to encourage gardeners to let their grass grow to help the bees, butterflies and other wildlife.",
-            "dateTime": "2024-04-30T21:36:00Z",
-            "duration": 157
+            "episodeTitle": "Black Sabbath get the band back together ahead of final gig at Villa Park",
+            "episodeId": "p77s5xq",
+            "titleSlug": "black-sabbath-get-the-band-back-together-ahead-of-final-gig-at-villa-park",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/4ypIwkzMCqCkR592EkUemy/d5457dd7d96b5e27692a726479c13ded/BLACK_SABBATH_THUMb.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "\"The greatest heavy metal show ever\" is coming to Birmingham as Ozzy Osbourne reunites with all his original Black Sabbath bandmates for his final performance.",
+            "dateTime": "2025-07-03T19:42:29.99Z",
+            "duration": 520
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Oscar-winning actress Cate Blanchett lends her support to the botanical gardens in Sussex ",
-            "episodeId": "qyzlt32",
-            "titleSlug": "oscar-winning-actress-cate-blanchett-lends-her-support-to-the-botanical-gardens-in-sussex",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/10LtUl7ABVuAkY9bd1QStJ/f2f6e571805c83bf2a9c4425bb1da3f3/ash_dieback_thumb.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Scientists at the Millennium Seed Bank are looking at new ways to fight the disease that's destroying our ash trees",
-            "dateTime": "2024-04-24T12:49:39.402Z",
-            "duration": 299
+            "episodeTitle": "28 Years Later: Jodie Comer on acting in a 'Danny Boyle horror' ",
+            "episodeId": "vrp9ly2",
+            "titleSlug": "28-years-later-jodie-comer-on-acting-in-a-danny-boyle-horror",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2L6pNLSZw1zhquV92zIfkf/21d090bdc9e1fdb622701c15c5511bb1/ITVX_STORY_THUMBNAIL.00_00_02_10.Still010.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News Arts Editor Nina Nannar sat down with 28 Years Later star Jodie Comer and director Danny Boyle to discuss why it couldn't wait five year later.",
+            "dateTime": "2025-06-20T15:03:49.853Z",
+            "duration": 154
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Myths and mysteries of Shakespeare's real-life women uncovered in new exhibition",
-            "episodeId": "7lz7450",
-            "titleSlug": "myths-and-mysteries-of-shakespeares-real-life-women-uncovered-in-new-exhibition",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6Q5WCe36o06CeYVsXNoA33/a61954896732de8c08c45ab37c9c0906/downloadITVXSHKSPR.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "An exhibition in Shakespeare's birthplace in Stratford-upon-Avon is uncovering stories of the women who shaped his life, as Charlotte Cross reports.",
-            "dateTime": "2024-04-23T16:38:00.482Z",
-            "duration": 438
+            "episodeTitle": "Girl who lost leg to cancer says nothing will stop her achieving her dreams",
+            "episodeId": "bk8d04g",
+            "titleSlug": "girl-who-lost-leg-to-cancer-says-nothing-will-stop-her-achieving-her-dreams",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2lmM7SSIG0hvntJNcwJ0HF/0abf0f6e4382a71097423eb3dc9aa14e/ANG_X_110625_POLICE_WALK.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Eleven-year-old Millie Blair from Warmington near Peterborough wants to be able to walk again before she goes to secondary school in September",
+            "dateTime": "2025-06-11T16:25:44.639Z",
+            "duration": 210
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Blackpool Rock 'under severe threat' from imported Chinese imitations",
-            "episodeId": "6vwj3d6",
-            "titleSlug": "blackpool-rock-under-severe-threat-from-imported-chinese-imitations",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/O0ANTcbwSYyG03fK3JRT9/ece7acaac225c4c05a1214f78d2d08cd/ROCK_STRAP_2.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "Blackpool rock-makers have said they are facing a 'grave and immediate challenge' after a recent influx of cheap Chinese imports has seen local factories close.",
-            "dateTime": "2024-04-24T18:31:00Z",
-            "duration": 143
+            "episodeTitle": "Meet the search and rescue dogs playing a daily game of life and death",
+            "episodeId": "ffpzs8g",
+            "titleSlug": "meet-the-search-and-rescue-dogs-playing-a-daily-game-of-life-and-death",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/5avuyfafRkHHIOAcIHfmyR/d0b0b1b9046a28f73c7d8a81ed269825/download__13_.png?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "More than a dozen dogs from fire brigades across the country have been in Washington, England's only specialist facilities, for their yearly assessments.",
+            "dateTime": "2025-06-12T09:07:30.831Z",
+            "duration": 248
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "Meet the trio of birds born at a bird sanctuary in the Scottish Borders",
-            "episodeId": "sthvgpq",
-            "titleSlug": "meet-the-trio-of-birds-born-at-a-bird-sanctuary-in-the-scottish-borders",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5AZau6SmQF2mWTWRgTQwSG/197c8452be24f5365796ad8451878f61/EMUs_for_ITVX.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "These flightless birds are native to Australia and can weigh up to 55kg when fully grown.",
-            "dateTime": "2024-04-24T16:49:39.677Z",
-            "duration": 193
+            "episodeTitle": "What happened the last time Harry Potter, Ron Weasley and Hermione Granger were cast? ",
+            "episodeId": "g9t14jf",
+            "titleSlug": "what-happened-the-last-time-harry-potter-ron-weasley-and-hermione-granger-were-cast",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/3CcbYGnix7SIlgpsmrk61D/24d8afa768459af6456a38406ee4fbea/POTTER_THMUB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "ITV News has taken a trip back to August 2000, when the original movie cast held their first press conference.",
+            "dateTime": "2025-05-28T13:11:00Z",
+            "duration": 211
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "The hidden history of Hartlepool's floating museum, the HMS Trincomalee",
-            "episodeId": "rx52djh",
-            "titleSlug": "the-hidden-history-of-hartlepools-floating-museum-the-hms-trincomalee",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/6kqkBxHMOMzbPiEtCuyeuc/fdc4468545988e1149d223b6c0e7e5c8/download__11_.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "This week in 1816 work began on the HMS Trincomalee in Mumbai, India. Now, more than two centuries later, the ship's found a home in Hartlepool as a museum. ",
-            "dateTime": "2024-04-23T13:59:20.789Z",
-            "duration": 423
+            "episodeTitle": "Harry Kane tells ITV News about title relief, watching Spurs and World Cup dream with England",
+            "episodeId": "ydq00xb",
+            "titleSlug": "harry-kane-tells-itv-news-about-title-relief-watching-spurs-and-world-cup-dream-with-england",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/1RdrQJmQDy35uBLFUvjQCl/87160183c0189326275edee7a05c3b05/ITVX_STORY_THUMBNAIL.00_00_00_19.Still006.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "In his first sit-down interview since winning the Bundesliga, England captain Harry Kane speaks to ITV News Sports Editor Steve Scott.",
+            "dateTime": "2025-05-18T16:11:12.179Z",
+            "duration": 536
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "How the Historic Dockyard Chatham has become a popular location for film and TV",
-            "episodeId": "3xc13vl",
-            "titleSlug": "how-the-historic-dockyard-chatham-has-become-a-popular-location-for-film-and-tv",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/4HBeVurHosM7VaE3xuZ4ym/a5c7754cacb215e1d27d929c1913b310/docks_this_one.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "It's 40 years since the site closed - an area with 400 years of shipbuilding heritage  - and it's now a popular attraction with visitors from across the world",
-            "dateTime": "2024-04-16T15:15:00Z",
-            "duration": 411
+            "episodeTitle": "Austria's JJ wins the 2025 Eurovision Song Contest",
+            "episodeId": "jn97gp0",
+            "titleSlug": "austrias-jj-wins-the-2025-eurovision-song-contest",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/2exe1TzY4GOU8XpprBypjt/78aafa005cb4c6858d3d13a1e2d1608b/ITVX_STORY_WITHOUT_PROTEST.00_08_06_21.Still002.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Austrian singer JJ won the Eurovision trophy in a nail-biting finish, pro-Palestine protestors had earlier tried to rush the stage during Israel's performance.",
+            "dateTime": "2025-05-18T02:34:44.053Z",
+            "duration": 138
           },
           {
             "contentType": "shortform",
-            "episodeTitle": "The Suffolk village that has a familiar feel for the US servicemen and women living there",
-            "episodeId": "5kkl8c3",
-            "titleSlug": "the-suffolk-village-that-has-a-familiar-feel-for-the-us-servicemen-and-women-living-there",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5cZDj3pKw6KXPlNUb2nlUr/ebfc48b361b9f19f22edde22f113b024/ANGLIA_150424_LITTLE_AMERICA_ITVX_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The currency, cars and accents around RAF Mildenhall all help the visiting military personnel feel a little more at home",
-            "dateTime": "2024-04-15T15:13:03.806Z",
-            "duration": 492
-          },
-          {
-            "contentType": "shortform",
-            "episodeTitle": "How the peaceful place of pilgrimage became a silver screen set",
-            "episodeId": "5l5bk84",
-            "titleSlug": "how-the-peaceful-place-of-pilgrimage-became-a-silver-screen-set",
-            "imageUrl": "https://images.ctfassets.net/go68aep20o4s/5ZBeMsH4giOIz4JFaF7nCQ/a82b519061f4e1abea4357f05915d3b5/DURHAM_CATHEDRAL_ITVX_THUMBNAIL.png?w={width}&h={height}&q={quality}&fm={image_format}",
-            "synopsis": "The World Heritage Site has been transformed into a magical school and a royal palace",
-            "dateTime": "2024-04-09T10:00:00Z",
-            "duration": 463
+            "episodeTitle": "Freed British-Israeli welcomed outside of Tottenham stadium",
+            "episodeId": "cgfjsxn",
+            "titleSlug": "freed-british-israeli-welcomed-outside-of-tottenham-stadium",
+            "imageUrl": "https://images.ctfassets.net/pjshm78m9jt4/u1Y8vDAMBtTOpMzcxE0Sa/eb2fbca33e9d132c583802fb01d0f9c8/EMILY_V2_THUMB.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
+            "synopsis": "Former British-Israeli hostage Emily Damari was greeted by chants of \"she's one of our own\" outside Tottenham Hotspur Stadium.",
+            "dateTime": "2025-05-11T20:13:57.306Z",
+            "duration": 134
           }
         ]
       }
     ],
     "longformData": [
       {
-        "ccid": "6bvryg0",
+        "brandCCId": "6bvryg0",
         "title": "ITV News Weekend Teatime",
         "titleSlug": "itv-news-weekend-teatime",
         "programmeId": "2/4546",
@@ -899,25 +871,31 @@
           "letterA": "2a4546",
           "underscore": "2_4546"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
-        "episodeId": "2/4546/0865",
+        "episodeId": "2/4546/0981",
         "encodedEpisodeId": {
-          "letterA": "2a4546a0865",
-          "underscore": "2_4546_0865"
+          "letterA": "2a4546a0981",
+          "underscore": "2_4546_0981"
         },
         "description": "ITV Evening News Weekend.",
-        "imageTemplate": "https://ovp.itv.com/images/programme/6bvryg0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "Series 9",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/6bvryg0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 10",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
-        "broadcastDateTime": "2024-05-11T17:00:00Z",
-        "contentType": "series"
+        "broadcastDateTime": "2025-07-19T17:40:00Z",
+        "contentType": "brand"
       },
       {
-        "ccid": "m3kf9ck",
+        "brandCCId": "m3kf9ck",
         "title": "Good Morning Britain",
         "titleSlug": "good-morning-britain",
         "programmeId": "2/3211",
@@ -925,51 +903,63 @@
           "letterA": "2a3211",
           "underscore": "2_3211"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
-        "episodeId": "2/3211/3821",
+        "episodeId": "2/3211/4128",
         "encodedEpisodeId": {
-          "letterA": "2a3211a3821",
-          "underscore": "2_3211_3821"
+          "letterA": "2a3211a4128",
+          "underscore": "2_3211_4128"
         },
         "description": "BAFTA-nominated breakfast show covering the latest news, sport & weather",
-        "imageTemplate": "https://ovp.itv.com/images/programme/m3kf9ck/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "Series 13",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/m3kf9ck/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 12",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
-        "broadcastDateTime": "2024-05-10T05:00:00Z",
-        "contentType": "series"
+        "broadcastDateTime": "2025-07-18T05:00:00Z",
+        "contentType": "brand"
       },
       {
-        "ccid": "2sqyd7n",
-        "title": "Tonight",
-        "titleSlug": "tonight",
-        "programmeId": "1/2803",
+        "titleCCId": "4x6rdbt",
+        "title": "Sycamore Gap: Britain's Lost Landmark",
+        "titleSlug": "sycamore-gap-britains-lost-landmark",
+        "programmeId": "10/7138/0001B",
         "encodedProgrammeId": {
-          "letterA": "1a2803",
-          "underscore": "1_2803"
+          "letterA": "10a7138a0001B",
+          "underscore": "10_7138_0001B"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
-        "episodeId": "1/9757/0146",
+        "episodeId": "10/7138/0001",
         "encodedEpisodeId": {
-          "letterA": "1a9757a0146",
-          "underscore": "1_9757_0146"
+          "letterA": "10a7138a0001",
+          "underscore": "10_7138_0001"
         },
-        "description": "Compelling current affairs stories that get to the heart of what matters",
-        "imageTemplate": "https://ovp.itv.com/images/programme/2sqyd7n/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "Series 25, 26, 26",
+        "description": "Tom Barton on the case to convict the two men who cut down the iconic Sycamore Gap tree.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/4x6rdbt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "30m",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
-        "broadcastDateTime": "2024-05-09T19:30:00Z",
-        "contentType": "series"
+        "broadcastDateTime": "2025-07-15T21:45:00Z",
+        "contentType": "special"
       },
       {
-        "ccid": "ypjrr23",
+        "brandCCId": "ypjrr23",
         "title": "Peston",
         "titleSlug": "peston",
         "programmeId": "2/4458",
@@ -977,32 +967,524 @@
           "letterA": "2a4458",
           "underscore": "2_4458"
         },
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
         "channel": "itv",
-        "episodeId": "2/4458/0324",
+        "episodeId": "2/4458/0364",
         "encodedEpisodeId": {
-          "letterA": "2a4458a0324",
-          "underscore": "2_4458_0324"
+          "letterA": "2a4458a0364",
+          "underscore": "2_4458_0364"
         },
         "description": "ITV News' Robert Peston presents his lively political interview programme",
-        "imageTemplate": "https://ovp.itv.com/images/programme/ypjrr23/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "Series 10",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/ypjrr23/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "Series 10 - 11",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
-        "broadcastDateTime": "2024-05-08T21:45:00Z",
-        "contentType": "series"
+        "broadcastDateTime": "2025-07-02T21:50:00Z",
+        "contentType": "brand"
       },
       {
-        "ccid": "wqn4k85",
+        "brandCCId": "2sqyd7n",
+        "title": "Tonight",
+        "titleSlug": "tonight",
+        "programmeId": "1/2803",
+        "encodedProgrammeId": {
+          "letterA": "1a2803",
+          "underscore": "1_2803"
+        },
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "1/2803/9444",
+        "encodedEpisodeId": {
+          "letterA": "1a2803a9444",
+          "underscore": "1_2803_9444"
+        },
+        "description": "Compelling current affairs stories that get to the heart of what matters",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/2sqyd7n/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "5 Series",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2025-05-29T19:30:00Z",
+        "contentType": "brand"
+      },
+      {
+        "titleCCId": "5b47lv2",
+        "title": "Shock & Awe: Trump's Return",
+        "titleSlug": "shock-and-awe-trumps-return",
+        "programmeId": "10/6701/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6701a0001B",
+          "underscore": "10_6701_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/6701/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6701a0001",
+          "underscore": "10_6701_0001"
+        },
+        "description": "Robert Moore travels across the USA after the re-election of President Donald Trump.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/5b47lv2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2025-05-13T20:00:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "96tptcn",
+        "title": "Our Land: Israel's Other War",
+        "titleSlug": "our-land-israels-other-war",
+        "programmeId": "10/6253/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6253a0001B",
+          "underscore": "10_6253_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/6253/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6253a0001",
+          "underscore": "10_6253_0001"
+        },
+        "description": "A documentary that offers insight into the reality of life in the occupied West Bank.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/96tptcn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2025-03-30T21:20:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "whzjtf4",
+        "title": "Christmas Carols on ITV (2024)",
+        "titleSlug": "christmas-carols-on-itv-2024",
+        "programmeId": "2/4573",
+        "encodedProgrammeId": {
+          "letterA": "2a4573",
+          "underscore": "2_4573"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "2/4573/0008",
+        "encodedEpisodeId": {
+          "letterA": "2a4573a0008",
+          "underscore": "2_4573_0008"
+        },
+        "description": "Louise Redknapp hosts a Christmas Eve celebration from Manchester",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/whzjtf4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-12-24T23:30:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "7rhr6mt",
+        "title": "The Martin Lewis Money Show: Budget Special",
+        "titleSlug": "the-martin-lewis-money-show-budget-special",
+        "programmeId": "2/1827",
+        "encodedProgrammeId": {
+          "letterA": "2a1827",
+          "underscore": "2_1827"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/6274/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6274a0001",
+          "underscore": "10_6274_0001"
+        },
+        "description": "Martin Lewis is on hand with his unique analysis of the first Labour Budget since 2010.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/7rhr6mt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-10-31T20:00:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "2k2j5mq",
+        "title": "Kingdom Uncovered: Inside Saudi Arabia",
+        "titleSlug": "kingdom-uncovered-inside-saudi-arabia",
+        "programmeId": "10/5475/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5475a0001B",
+          "underscore": "10_5475_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5475/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5475a0001",
+          "underscore": "10_5475_0001"
+        },
+        "description": "A female journalist goes undercover to investigate what life is like in Saudi Arabia",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/2k2j5mq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-10-27T22:15:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "sl2wcn6",
+        "title": "Children of the Cult",
+        "titleSlug": "children-of-the-cult",
+        "programmeId": "10/5261/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5261a0001B",
+          "underscore": "10_5261_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5261/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5261a0001",
+          "underscore": "10_5261_0001"
+        },
+        "description": "Follow the international investigation into the Rajneesh organisation",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/sl2wcn6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-10-13T21:15:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "x0crmyg",
+        "title": "The Base: A British Army Scandal",
+        "titleSlug": "the-base-a-british-army-scandal",
+        "programmeId": "10/5624/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5624a0001B",
+          "underscore": "10_5624_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5624/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5624a0001",
+          "underscore": "10_5624_0001"
+        },
+        "description": "Exploring an alleged cover-up that goes to the top of the UK military",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/x0crmyg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-09-29T21:20:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "nmqj2ll",
+        "title": "Israel & Gaza: Into the Abyss",
+        "titleSlug": "israel-and-gaza-into-the-abyss",
+        "programmeId": "10/5335/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5335a0001B",
+          "underscore": "10_5335_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/5335/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5335a0001",
+          "underscore": "10_5335_0001"
+        },
+        "description": "The story of the war in Gaza and the attacks on the 7th of October, 2023",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/nmqj2ll/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h 15m",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-09-15T21:20:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "qz9cqlg",
+        "title": "Tabloids on Trial",
+        "titleSlug": "tabloids-on-trial",
+        "programmeId": "10/5798/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5798a0001B",
+          "underscore": "10_5798_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5798/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5798a0001",
+          "underscore": "10_5798_0001"
+        },
+        "description": "Prince Harry, Hugh Grant & others open up about the hacking scandal",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/qz9cqlg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-07-25T20:00:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "7bqrzqs",
+        "title": "The ITV Election Debate 2024",
+        "titleSlug": "the-itv-election-debate-2024",
+        "programmeId": "10/5876/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5876a0001B",
+          "underscore": "10_5876_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5876/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5876a0001",
+          "underscore": "10_5876_0001"
+        },
+        "description": "Seven politicians go head to head in ITV's General Election debate",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/7bqrzqs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-06-13T19:30:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "t209cf8",
+        "title": "The Martin Lewis Money Show: Summer Special 2024",
+        "titleSlug": "the-martin-lewis-money-show-summer-special-2024",
+        "programmeId": "2/1827",
+        "encodedProgrammeId": {
+          "letterA": "2a1827",
+          "underscore": "2_1827"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "2/1827/0162",
+        "encodedEpisodeId": {
+          "letterA": "2a1827a0162",
+          "underscore": "2_1827_0162"
+        },
+        "description": "Martin hosts a summer special packed with financial 'need to knows'",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/t209cf8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-06-11T19:00:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "2ylb7wm",
+        "title": "The ITV Election Interviews",
+        "titleSlug": "the-itv-election-interviews",
+        "programmeId": "10/5886/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5886a0001B",
+          "underscore": "10_5886_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5886/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5886a0001",
+          "underscore": "10_5886_0001"
+        },
+        "description": "Join the party leaders for in-depth interviews",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/2ylb7wm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "50m",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-06-04T21:10:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "g8mh3pj",
+        "title": "Sunak v Starmer: The ITV Debate",
+        "titleSlug": "sunak-v-starmer-the-itv-debate",
+        "programmeId": "10/5885/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5885a0001B",
+          "underscore": "10_5885_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5885/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5885a0001",
+          "underscore": "10_5885_0001"
+        },
+        "description": "The leaders go head to head in the first TV General Election debate",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/g8mh3pj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h 10m",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-06-04T20:00:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "19lfx6h",
+        "title": "Theresa May: The Accidental Prime Minister",
+        "titleSlug": "theresa-may-the-accidental-prime-minister",
+        "programmeId": "10/5260/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5260a0001B",
+          "underscore": "10_5260_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv",
+        "episodeId": "10/5260/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5260a0001",
+          "underscore": "10_5260_0001"
+        },
+        "description": "Witness the inside story of Theresa May's tumultuous premiership",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/19lfx6h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": "2024-05-27T21:25:00Z",
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "wqn4k85",
         "title": "Passover UK: A Jewish Journey",
         "titleSlug": "passover-uk-a-jewish-journey",
-        "programmeId": "10/5745/0001",
+        "programmeId": "10/5745/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5745a0001",
-          "underscore": "10_5745_0001"
+          "letterA": "10a5745a0001B",
+          "underscore": "10_5745_0001B"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
         "episodeId": "10/5745/0001",
         "encodedEpisodeId": {
@@ -1010,8 +1492,8 @@
           "underscore": "10_5745_0001"
         },
         "description": "Travels across the UK to celebrate the Jewish festival of Passover",
-        "imageTemplate": "https://ovp.itv.com/images/special/wqn4k85/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/wqn4k85/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
@@ -1021,23 +1503,29 @@
         "contentType": "special"
       },
       {
-        "ccid": "jz2037h",
+        "titleCCId": "jz2037h",
         "title": "Ramadan: A Journey Across Britain",
         "titleSlug": "ramadan-a-journey-across-britain",
-        "programmeId": "10/5684/0001",
+        "programmeId": "10/5684/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5684a0001",
-          "underscore": "10_5684_0001"
+          "letterA": "10a5684a0001B",
+          "underscore": "10_5684_0001B"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
         "episodeId": "10/5684/0001",
         "encodedEpisodeId": {
           "letterA": "10a5684a0001",
           "underscore": "10_5684_0001"
         },
-        "description": "Shehab Khan follows the holy month of Ramadan and sees how it's observed.",
-        "imageTemplate": "https://ovp.itv.com/images/special/jz2037h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "40m",
+        "description": "Shehab Khan follows the holy month of Ramadan and sees how it's observed",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/jz2037h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "35m",
         "partnership": null,
         "contentOwner": null,
         "tier": [
@@ -1047,14 +1535,20 @@
         "contentType": "special"
       },
       {
-        "ccid": "nkp0z4y",
+        "titleCCId": "nkp0z4y",
         "title": "Gymnastics: A Culture of Abuse?",
         "titleSlug": "gymnastics-a-culture-of-abuse",
-        "programmeId": "10/4818/0001",
+        "programmeId": "10/4818",
         "encodedProgrammeId": {
-          "letterA": "10a4818a0001",
-          "underscore": "10_4818_0001"
+          "letterA": "10a4818",
+          "underscore": "10_4818"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
         "episodeId": "10/4818/0001",
         "encodedEpisodeId": {
@@ -1062,7 +1556,7 @@
           "underscore": "10_4818_0001"
         },
         "description": "The former gymnasts & their powerful fight for justice ",
-        "imageTemplate": "https://ovp.itv.com/images/special/nkp0z4y/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/nkp0z4y/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
@@ -1073,14 +1567,20 @@
         "contentType": "special"
       },
       {
-        "ccid": "f24msft",
+        "titleCCId": "f24msft",
         "title": "Trump: The Return?",
         "titleSlug": "trump-the-return",
-        "programmeId": "10/5226/0001",
+        "programmeId": "10/5226/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5226a0001",
-          "underscore": "10_5226_0001"
+          "letterA": "10a5226a0001B",
+          "underscore": "10_5226_0001B"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
         "episodeId": "10/5226/0001",
         "encodedEpisodeId": {
@@ -1088,7 +1588,7 @@
           "underscore": "10_5226_0001"
         },
         "description": "Journalist Robert Moore lifts the lid on Donald Trump's latest comeback",
-        "imageTemplate": "https://ovp.itv.com/images/special/f24msft/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/f24msft/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
@@ -1099,14 +1599,20 @@
         "contentType": "special"
       },
       {
-        "ccid": "zpc6shq",
+        "titleCCId": "zpc6shq",
         "title": "The Clinic",
         "titleSlug": "the-clinic",
-        "programmeId": "10/3894/0001",
+        "programmeId": "10/3894",
         "encodedProgrammeId": {
-          "letterA": "10a3894a0001",
-          "underscore": "10_3894_0001"
+          "letterA": "10a3894",
+          "underscore": "10_3894"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
         "episodeId": "10/3894/0001",
         "encodedEpisodeId": {
@@ -1114,8 +1620,8 @@
           "underscore": "10_3894_0001"
         },
         "description": "Timely documentary about the history of a controversial NHS unit",
-        "imageTemplate": "https://ovp.itv.com/images/special/zpc6shq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "1h 5m",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/zpc6shq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
@@ -1125,33 +1631,7 @@
         "contentType": "special"
       },
       {
-        "ccid": "rfh9psj",
-        "title": "ITV News: Live on ITVX",
-        "titleSlug": "itv-news-live-on-itvx",
-        "programmeId": "10/5201",
-        "encodedProgrammeId": {
-          "letterA": "10a5201",
-          "underscore": "10_5201"
-        },
-        "channel": "itv",
-        "episodeId": "10/5201/0027",
-        "encodedEpisodeId": {
-          "letterA": "10a5201a0027",
-          "underscore": "10_5201_0027"
-        },
-        "description": "Follow the latest news live on ITVX from ITV News.",
-        "imageTemplate": "https://ovp.itv.com/images/programme/rfh9psj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "30m",
-        "partnership": null,
-        "contentOwner": null,
-        "tier": [
-          "FREE"
-        ],
-        "broadcastDateTime": null,
-        "contentType": "series"
-      },
-      {
-        "ccid": "10svggg",
+        "brandCCId": "10svggg",
         "title": "ITV News: PMQs",
         "titleSlug": "itv-news-pmqs",
         "programmeId": "10/5200",
@@ -1159,14 +1639,20 @@
           "letterA": "10a5200",
           "underscore": "10_5200"
         },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
         "channel": "itv",
-        "episodeId": "10/5200/0015",
+        "episodeId": "10/5200/0053",
         "encodedEpisodeId": {
-          "letterA": "10a5200a0015",
-          "underscore": "10_5200_0015"
+          "letterA": "10a5200a0053",
+          "underscore": "10_5200_0053"
         },
         "description": "Watch every moment of Prime Minister's Questions",
-        "imageTemplate": "https://ovp.itv.com/images/programme/10svggg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/10svggg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "Series 1",
         "partnership": null,
         "contentOwner": null,
@@ -1174,155 +1660,31 @@
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "series"
+        "contentType": "brand"
       },
       {
-        "ccid": "198yp91",
-        "title": "Trump on Trial",
-        "titleSlug": "trump-on-trial",
-        "programmeId": "10/5756",
+        "titleCCId": "yph9079",
+        "title": "Air India Flight 171: Disaster in the Skies",
+        "titleSlug": "air-india-flight-171-disaster-in-the-skies",
+        "programmeId": "10/6959/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5756",
-          "underscore": "10_5756"
+          "letterA": "10a6959a0001B",
+          "underscore": "10_6959_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5756/0004",
-        "encodedEpisodeId": {
-          "letterA": "10a5756a0004",
-          "underscore": "10_5756_0004"
-        },
-        "description": "Join ITV News as they look back on another big week in the Trump trial",
-        "imageTemplate": "https://ovp.itv.com/images/programme/198yp91/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "Series 1",
-        "partnership": null,
-        "contentOwner": null,
-        "tier": [
-          "FREE"
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
         ],
-        "broadcastDateTime": null,
-        "contentType": "series"
-      },
-      {
-        "ccid": "nydxcwm",
-        "title": "Humza Yousaf Resignation",
-        "titleSlug": "humza-yousaf-resignation",
-        "programmeId": "10/5201/0028",
-        "encodedProgrammeId": {
-          "letterA": "10a5201a0028",
-          "underscore": "10_5201_0028"
-        },
-        "channel": "itv",
-        "episodeId": "10/5201/0028",
-        "encodedEpisodeId": {
-          "letterA": "10a5201a0028",
-          "underscore": "10_5201_0028"
-        },
-        "description": "Scotland's First Minister Humza Yousaf announces his resignation",
-        "imageTemplate": "https://ovp.itv.com/images/special/nydxcwm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "30m",
-        "partnership": null,
-        "contentOwner": null,
-        "tier": [
-          "FREE"
-        ],
-        "broadcastDateTime": null,
-        "contentType": "special"
-      },
-      {
-        "ccid": "4pj7vdr",
-        "title": "ITV News Special: Rishi Sunak Press Conference",
-        "titleSlug": "itv-news-special-rishi-sunak-press-conference",
-        "programmeId": "10/5201/0027",
-        "encodedProgrammeId": {
-          "letterA": "10a5201a0027",
-          "underscore": "10_5201_0027"
-        },
-        "channel": "itv",
-        "episodeId": "10/5201/0027",
-        "encodedEpisodeId": {
-          "letterA": "10a5201a0027",
-          "underscore": "10_5201_0027"
-        },
-        "description": "The Rwanda Bill press conference with analysis from Robert Peston",
-        "imageTemplate": "https://ovp.itv.com/images/special/4pj7vdr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "30m",
-        "partnership": null,
-        "contentOwner": null,
-        "tier": [
-          "FREE"
-        ],
-        "broadcastDateTime": null,
-        "contentType": "special"
-      },
-      {
-        "ccid": "4z4kk2n",
-        "title": "ITVX On The Red Carpet: The Fall Guy",
-        "titleSlug": "itvx-on-the-red-carpet-the-fall-guy",
-        "programmeId": "2/3211/0002",
-        "encodedProgrammeId": {
-          "letterA": "2a3211a0002",
-          "underscore": "2_3211_0002"
-        },
         "channel": "itv2",
-        "episodeId": "2/3211/0002",
+        "episodeId": "10/6959/0001",
         "encodedEpisodeId": {
-          "letterA": "2a3211a0002",
-          "underscore": "2_3211_0002"
+          "letterA": "10a6959a0001",
+          "underscore": "10_6959_0001"
         },
-        "description": "GMB's Richard Arnold meets Ryan Gosling & Emily Blunt at the UK premiere!",
-        "imageTemplate": "https://ovp.itv.com/images/special/4z4kk2n/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "15m",
-        "partnership": null,
-        "contentOwner": null,
-        "tier": [
-          "FREE"
-        ],
-        "broadcastDateTime": null,
-        "contentType": "special"
-      },
-      {
-        "ccid": "3t2y9yj",
-        "title": "The Post Office Scandal: From the ITV News Archives",
-        "titleSlug": "the-post-office-scandal-from-the-itv-news-archives",
-        "programmeId": "10/5381/0001",
-        "encodedProgrammeId": {
-          "letterA": "10a5381a0001",
-          "underscore": "10_5381_0001"
-        },
-        "channel": "itv2",
-        "episodeId": "10/5381/0001",
-        "encodedEpisodeId": {
-          "letterA": "10a5381a0001",
-          "underscore": "10_5381_0001"
-        },
-        "description": "The ITV News archives reveal the real-life stories behind 'Mr Bates vs The Post Office'.",
-        "imageTemplate": "https://ovp.itv.com/images/special/3t2y9yj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "30m",
-        "partnership": null,
-        "contentOwner": null,
-        "tier": [
-          "FREE"
-        ],
-        "broadcastDateTime": null,
-        "contentType": "special"
-      },
-      {
-        "ccid": "3ws2tf8",
-        "title": "Ukraine's Stolen Children",
-        "titleSlug": "ukraines-stolen-children",
-        "programmeId": "10/5054/0001",
-        "encodedProgrammeId": {
-          "letterA": "10a5054a0001",
-          "underscore": "10_5054_0001"
-        },
-        "channel": "itv2",
-        "episodeId": "10/5054/0001",
-        "encodedEpisodeId": {
-          "letterA": "10a5054a0001",
-          "underscore": "10_5054_0001"
-        },
-        "description": "Compelling story of the children taken to Russia after war broke out",
-        "imageTemplate": "https://ovp.itv.com/images/special/3ws2tf8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "ITV News correspondents around the world report on the Air India Flight 171 plane crash",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/yph9079/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
         "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
@@ -1333,212 +1695,324 @@
         "contentType": "special"
       },
       {
-        "ccid": "7d20z73",
-        "title": "Wed 1st May",
-        "titleSlug": "wed-1st-may",
-        "programmeId": "10/5200/0014",
+        "titleCCId": "zh7f7vm",
+        "title": "Diddy: The Rise and Fall of Hip-Hop's 'Bad Boy'",
+        "titleSlug": "diddy-the-rise-and-fall-of-hip-hops-bad-boy",
+        "programmeId": "10/6962/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5200a0014",
-          "underscore": "10_5200_0014"
+          "letterA": "10a6962a0001B",
+          "underscore": "10_6962_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5200/0014",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/6962/0001",
         "encodedEpisodeId": {
-          "letterA": "10a5200a0014",
-          "underscore": "10_5200_0014"
+          "letterA": "10a6962a0001",
+          "underscore": "10_6962_0001"
         },
-        "description": "The panel discuss the political upheaval in Scotland and Rishi Sunak's Rwanda plan.",
-        "imageTemplate": "https://ovp.itv.com/images/episode/7d20z73/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "How Sean Combs went from stardom to one of the most high profile trials in US history.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/zh7f7vm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "n6z6scz",
-        "title": "Wed 24th Apr",
-        "titleSlug": "wed-24th-apr",
-        "programmeId": "10/5200/0013",
+        "titleCCId": "spqqz4r",
+        "title": "Cold Case Justice: Solving the Murder of Louisa Dunne",
+        "titleSlug": "cold-case-justice-solving-the-murder-of-louisa-dunne",
+        "programmeId": "10/6960/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5200a0013",
-          "underscore": "10_5200_0013"
+          "letterA": "10a6960a0001B",
+          "underscore": "10_6960_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5200/0013",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/6960/0001",
         "encodedEpisodeId": {
-          "letterA": "10a5200a0013",
-          "underscore": "10_5200_0013"
+          "letterA": "10a6960a0001",
+          "underscore": "10_6960_0001"
         },
-        "description": "On the day that Angela Rayner takes centre stage in the House of Commons.",
-        "imageTemplate": "https://ovp.itv.com/images/episode/n6z6scz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "Detectives hunt Louisa Dunne's killer to solve one of the UK's oldest cold cases.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/spqqz4r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "jh45r82",
-        "title": "Wed 8th May",
-        "titleSlug": "wed-8th-may",
-        "programmeId": "10/5200/0015",
+        "titleCCId": "s7jvfxs",
+        "title": "The Evolution of Putin: Bullied Child, KGB Man, Autocrat",
+        "titleSlug": "the-evolution-of-putin-bullied-child-kgb-man-autocrat",
+        "programmeId": "10/6964/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5200a0015",
-          "underscore": "10_5200_0015"
+          "letterA": "10a6964a0001B",
+          "underscore": "10_6964_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5200/0015",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/6964/0001",
         "encodedEpisodeId": {
-          "letterA": "10a5200a0015",
-          "underscore": "10_5200_0015"
+          "letterA": "10a6964a0001",
+          "underscore": "10_6964_0001"
         },
-        "description": "Get the latest as Conservative MP Natalie Elphicke defects to Labour",
-        "imageTemplate": "https://ovp.itv.com/images/episode/jh45r82/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "The strange stories of Vladimir Putin's past, told by three people who encountered him.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/s7jvfxs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "d5xw6zm",
-        "title": "Weds 17th Apr",
-        "titleSlug": "weds-17th-apr",
-        "programmeId": "10/5200/0012",
+        "titleCCId": "bvt165p",
+        "title": "Disunited Kingdom?",
+        "titleSlug": "disunited-kingdom",
+        "programmeId": "10/5877/0020B",
         "encodedProgrammeId": {
-          "letterA": "10a5200a0012",
-          "underscore": "10_5200_0012"
+          "letterA": "10a5877a0020B",
+          "underscore": "10_5877_0020B"
         },
-        "channel": "itv",
-        "episodeId": "10/5200/0012",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/5877/0020",
         "encodedEpisodeId": {
-          "letterA": "10a5200a0012",
-          "underscore": "10_5200_0012"
+          "letterA": "10a5877a0020",
+          "underscore": "10_5877_0020"
         },
-        "description": "On the day that Rishi Sunak faces jibes from the opposition about Liz Truss.",
-        "imageTemplate": "https://ovp.itv.com/images/episode/d5xw6zm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "Sabet Choudhury explores the factors behind last summer's anti-immigration riots.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/bvt165p/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "52qwzh2",
-        "title": "Week 1",
-        "titleSlug": "week-1",
-        "programmeId": "10/5756/0001",
+        "titleCCId": "ll1449x",
+        "title": "The 97th Oscars Nominations Live",
+        "titleSlug": "the-97th-oscars-nominations-live",
+        "programmeId": "10/5877/0003B",
         "encodedProgrammeId": {
-          "letterA": "10a5756a0001",
-          "underscore": "10_5756_0001"
+          "letterA": "10a5877a0003B",
+          "underscore": "10_5877_0003B"
         },
-        "channel": "itv",
-        "episodeId": "10/5756/0001",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/5877/0003",
         "encodedEpisodeId": {
-          "letterA": "10a5756a0001",
-          "underscore": "10_5756_0001"
+          "letterA": "10a5877a0003",
+          "underscore": "10_5877_0003"
         },
-        "description": "The case, the jury and the ex-President - get the latest with Tom Bradby",
-        "imageTemplate": "https://ovp.itv.com/images/episode/52qwzh2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "ITV News Special.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/ll1449x/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "tc887hy",
-        "title": "Week 2",
-        "titleSlug": "week-2",
-        "programmeId": "10/5756/0002",
+        "titleCCId": "87nz992",
+        "title": "Antarctica: End of the Earth",
+        "titleSlug": "antarctica-end-of-the-earth",
+        "programmeId": "10/6963/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5756a0002",
-          "underscore": "10_5756_0002"
+          "letterA": "10a6963a0001B",
+          "underscore": "10_6963_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5756/0002",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/6963/0001",
         "encodedEpisodeId": {
-          "letterA": "10a5756a0002",
-          "underscore": "10_5756_0002"
+          "letterA": "10a6963a0001",
+          "underscore": "10_6963_0001"
         },
-        "description": "Rageh Omaar and guests discuss the latest courtroom drama.",
-        "imageTemplate": "https://ovp.itv.com/images/episode/tc887hy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "ITV News journeys to Antarctica - a breathtaking wilderness disappearing faster than ever.",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/87nz992/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "shmcznw",
-        "title": "Week 3",
-        "titleSlug": "week-3",
-        "programmeId": "10/5756/0003",
+        "titleCCId": "xkf8qwp",
+        "title": "Remembering 7/7: 20 Years On",
+        "titleSlug": "remembering-77-20-years-on",
+        "programmeId": "10/6961/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5756a0003",
-          "underscore": "10_5756_0003"
+          "letterA": "10a6961a0001B",
+          "underscore": "10_6961_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5756/0003",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/6961/0001",
         "encodedEpisodeId": {
-          "letterA": "10a5756a0003",
-          "underscore": "10_5756_0003"
+          "letterA": "10a6961a0001",
+          "underscore": "10_6961_0001"
         },
-        "description": "Geraint Vincent is joined by an expert panel for all the courtroom drama",
-        "imageTemplate": "https://ovp.itv.com/images/episode/shmcznw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "Memories of pain, grief and heroism from individuals who endured 7/7",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/xkf8qwp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
       },
       {
-        "ccid": "hx1pqld",
-        "title": "Week 3",
-        "titleSlug": "week-3",
-        "programmeId": "10/5756/0004",
+        "titleCCId": "ljf91k2",
+        "title": "ITV News Special: Britain\u2019s Backstreet Surgery Scandal",
+        "titleSlug": "itv-news-special-britains-backstreet-surgery-scandal",
+        "programmeId": "10/6140/0001B",
         "encodedProgrammeId": {
-          "letterA": "10a5756a0004",
-          "underscore": "10_5756_0004"
+          "letterA": "10a6140a0001B",
+          "underscore": "10_6140_0001B"
         },
-        "channel": "itv",
-        "episodeId": "10/5756/0004",
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/6140/0001",
         "encodedEpisodeId": {
-          "letterA": "10a5756a0004",
-          "underscore": "10_5756_0004"
+          "letterA": "10a6140a0001",
+          "underscore": "10_6140_0001"
         },
-        "description": "Stormy Daniels took centre stage in another extraordinary week",
-        "imageTemplate": "https://ovp.itv.com/images/episode/hx1pqld/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "contentInfo": "",
+        "description": "ITV News investigates the rapid rise of backstreet cosmetic surgery treatments",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/ljf91k2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "30m",
         "partnership": null,
         "contentOwner": null,
         "tier": [
           "FREE"
         ],
         "broadcastDateTime": null,
-        "contentType": "episode"
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "c0ccqb2",
+        "title": "Decoy: The Covert Trap to Catch a Killer",
+        "titleSlug": "decoy-the-covert-trap-to-catch-a-killer",
+        "programmeId": "10/5781/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5781a0001B",
+          "underscore": "10_5781_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/5781/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5781a0001",
+          "underscore": "10_5781_0001"
+        },
+        "description": "How a groundbreaking covert police operation caught a killer",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/c0ccqb2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "30m",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": null,
+        "contentType": "special"
+      },
+      {
+        "titleCCId": "3ws2tf8",
+        "title": "Ukraine's Stolen Children",
+        "titleSlug": "ukraines-stolen-children",
+        "programmeId": "10/5054/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5054a0001B",
+          "underscore": "10_5054_0001B"
+        },
+        "genres": [
+          {
+            "id": "NEWS",
+            "name": "News"
+          }
+        ],
+        "channel": "itv2",
+        "episodeId": "10/5054/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5054a0001",
+          "underscore": "10_5054_0001"
+        },
+        "description": "Compelling story of the children taken to Russia after war broke out",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/3ws2tf8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "contentInfo": "1h",
+        "partnership": null,
+        "contentOwner": null,
+        "tier": [
+          "FREE"
+        ],
+        "broadcastDateTime": null,
+        "contentType": "special"
       }
     ]
   }

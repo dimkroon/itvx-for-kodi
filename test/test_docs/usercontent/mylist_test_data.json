@@ -1,0 +1,98 @@
+[
+    {
+      "Dev_Comment": "Item type special",
+      "programmeId": "10/5835/0001B",
+      "ccid": "pd0xslp",
+      "programmeTitle": "Jason Byrne: The Ironic Bionic Man",
+      "synopsis": "Half man, half natural disaster - join Jason to laugh at his misfortune",
+      "channel": "ITV2",
+      "imageLink": "https://ovp.itv.com/v2/images/special/pd0xslp/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "itvxImageLink": "https://ovp.itv.com/v2/images/special/pd0xslp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "dateAdded": "2025-07-20T18:10:35.678297Z",
+      "categories": [
+        "COMEDY"
+      ],
+      "numberOfEpisodes": null,
+      "tier": "FREE",
+      "duration": "PT1H",
+      "numberOfAvailableSeries": [],
+      "longRunning": null,
+      "contentType": "SPECIAL",
+      "contentOwner": null,
+      "partnership": null
+    },
+    {
+      "Dev_Comment": "Item type programme, paid",
+      "programmeId": "1/9119",
+      "ccid": "mzmngr0",
+      "programmeTitle": "Scott & Bailey",
+      "synopsis": "Don't miss Suranne Jones and Lesley Sharp as quick-witted coppers",
+      "channel": "ITV",
+      "imageLink": "https://ovp.itv.com/v2/images/programme/mzmngr0/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "itvxImageLink": "https://ovp.itv.com/v2/images/programme/mzmngr0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "dateAdded": "2025-07-20T18:09:19.174830Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "numberOfEpisodes": 32,
+      "tier": "PAID",
+      "duration": null,
+      "numberOfAvailableSeries": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "longRunning": false,
+      "contentType": "PROGRAMME",
+      "contentOwner": null,
+      "partnership": null
+    },
+    {
+      "Dev_Comment": "Item type film",
+      "programmeId": "10/5391/0001B",
+      "ccid": "xm435wy",
+      "programmeTitle": "Live Free or Die Hard",
+      "synopsis": "Bruce Willis is the old-school cop taking on a cyber-terrorist attack!",
+      "channel": "ITV4",
+      "imageLink": "https://ovp.itv.com/v2/images/film/xm435wy/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "itvxImageLink": "https://ovp.itv.com/v2/images/film/xm435wy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "dateAdded": "2025-07-20T18:06:51.386981Z",
+      "categories": [
+        "FILM"
+      ],
+      "numberOfEpisodes": null,
+      "tier": "FREE",
+      "duration": "PT2H35M",
+      "numberOfAvailableSeries": [],
+      "longRunning": null,
+      "contentType": "FILM",
+      "contentOwner": null,
+      "partnership": null
+    },
+    {
+      "Dev_Comment": "Item type programme, free",
+      "programmeId": "2/1994",
+      "ccid": "r46m6wc",
+      "programmeTitle": "The Ice Cream Girls",
+      "synopsis": "Chilling crime drama - two teen girls face accusations of murder",
+      "channel": "ITV",
+      "imageLink": "https://ovp.itv.com/v2/images/programme/r46m6wc/itv_hub/04_DesktopCTV_RailTileLandscape/16x9?distributionPartner=itv_hub&fallback=standard&treatment=title&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "itvxImageLink": "https://ovp.itv.com/v2/images/programme/r46m6wc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "dateAdded": "2025-07-20T18:05:29.226121Z",
+      "categories": [
+        "DRAMA_AND_SOAPS"
+      ],
+      "numberOfEpisodes": 3,
+      "tier": "FREE",
+      "duration": null,
+      "numberOfAvailableSeries": [
+        1
+      ],
+      "longRunning": false,
+      "contentType": "PROGRAMME",
+      "contentOwner": null,
+      "partnership": null
+    }
+]

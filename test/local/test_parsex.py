@@ -27,10 +27,9 @@ tearDownModule = fixtures.tear_down_local_tests
 
 class TestScrapeJson(unittest.TestCase):
     def test_scrape_json_watch_pages(self):
-        for page in ('html/index.html', 'html/watch-itv1.html'):
-            get_page = open_doc(page)
-            data = parsex.scrape_json(get_page())
-            self.assertIsInstance(data, dict)
+        get_page = open_doc('html/index.html')
+        data = parsex.scrape_json(get_page())
+        self.assertIsInstance(data, dict)
 
     def test_invalid_page(self):
         # no __NEXT_DATA___
@@ -234,11 +233,16 @@ class Generic(unittest.TestCase):
 
     def test_parse_collection_title(self):
         data = open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows']
-        # film
-        item = parsex.parse_collection_item(data[6])
+        # simulcastspot
+        item = parsex.parse_collection_item(data[0])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertEqual('film', item['type'])
+        self.assertEqual('simulcastspot', item['type'])
+        # fastchannelspot
+        item = parsex.parse_collection_item(data[1])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('fastchannelspot', item['type'])
         # series
         item = parsex.parse_collection_item(data[2])
         has_keys(item, 'type', 'show')
@@ -254,18 +258,23 @@ class Generic(unittest.TestCase):
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('brand', item['type'])
-        # fastchannelspot
-        item = parsex.parse_collection_item(data[1])
+        # special
+        item = parsex.parse_collection_item(data[5])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertEqual('fastchannelspot', item['type'])
-        # simulcastspot
-        item = parsex.parse_collection_item(data[0])
+        self.assertEqual('special', item['type'])
+        # film
+        item = parsex.parse_collection_item(data[6])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
-        self.assertEqual('simulcastspot', item['type'])
+        self.assertEqual('film', item['type'])
         # page
         item = parsex.parse_collection_item(data[7])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('collection', item['type'])
+        # collection
+        item = parsex.parse_collection_item(data[8])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('collection', item['type'])
@@ -373,11 +382,14 @@ class Generic(unittest.TestCase):
         self.assertIsNone(parsex.parse_search_result(search_result, hide_paid=True))
 
     def test_parse_mylist(self):
-        data = open_json('mylist/mylist_data.json')['items']
+        data = open_json('usercontent/mylist_test_data.json')
         for mylist_item in data:
             item = parsex.parse_my_list_item(mylist_item)
             has_keys(item, 'type', 'show')
             is_li_compatible_dict(self, item['show'])
+        # paid item
+        item = parsex.parse_my_list_item(data[1], hide_paid=True)
+        self.assertIsNone(item)
 
     def test_parse_last_watched(self):
         data = open_json('usercontent/last_watched_all.json')

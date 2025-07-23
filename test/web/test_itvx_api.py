@@ -292,7 +292,7 @@ class MyList(unittest.TestCase):
         headers['accept'] = 'application/json'
         resp = requests.get(self.mylist_url, headers=headers)
         data = resp.json()
-        # testutils.save_json(data, 'mylist/mylist_json_data.json')
+        # testutils.save_json(data, 'usercontent/mylist_json_data.json')
 
         self.assertIsInstance(data, list)
         self.assertEqual(resp.headers['content-type'], 'application/json')
