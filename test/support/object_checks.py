@@ -317,7 +317,7 @@ def check_short_form_slider(testcase, slider, name=''):
 
 
 def check_short_form_item(item):
-    """Check the content of a shortForm item from a collection or from category 'News'
+    """Check the content of a shortForm item from the main page or from category 'News'
 
     In both news and collections shortForm items are mostly short mp4 files, but a few are
     normal programmes, like a full news programme, or a full sports match.
@@ -327,7 +327,7 @@ def check_short_form_item(item):
     """
     objname = "shortform item '{}'".format(item.get('episodeTitle', 'unknown title'))
     has_keys(item, 'episodeTitle', 'imageUrl', 'contentType', obj_name=objname)
-    misses_keys(item, 'isPaid', 'tier', 'imagePresets')
+    misses_keys(item, 'href', 'isPaid', 'tier', 'imagePresets')
 
     assert (item['contentType'] in ('shortform', 'episode', 'fastchannelspot'))
 
@@ -361,11 +361,6 @@ def check_short_form_item(item):
     assert is_not_empty(item['episodeTitle'], str)
     assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp', '.gif')), \
            "item '{}' has not a valid imageUrl: '{}'".format(item['episodeTitle'], item['imageUrl'])
-    # True shortform items have a field 'href', but items produced by heroAndLatest and curatedRails
-    # on the news category page don't.
-    if 'href' in item:
-        assert item['href'].startswith('/')
-        assert item['href'].endswith('undefined')
 
 
 def check_category_item(item):

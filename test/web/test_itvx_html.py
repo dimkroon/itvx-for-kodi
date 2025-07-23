@@ -143,10 +143,7 @@ def check_shows(testcase, show, parent_name):
     if content_type in ('series', 'episode', 'film', 'special'):
         has_keys(show, 'encodedEpisodeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
     else:
-        # FIXME: Changed to expect_misses_keys, should be changed back some time.
-        # Due to bugs in ITV since early May 2024 changed these keys are inadvertently present
-        # on some items, causing the web-site to fail as well. Changed to expect in order to pass the tests for now.
-        expect_misses_keys(show, 'encodedEpisodeId', obj_name='{}-show-{}'.format(parent_name, show['title']))
+        raise AssertionError("A non-playable should already have been checked by it's dedicated checker.")
     testcase.assertTrue(is_url(show['imageTemplate']))
 
 
@@ -596,7 +593,6 @@ class CollectionPages(unittest.TestCase):
                     return
                 heading_link = collection_data.get('headingLink')
                 if heading_link:
-                    continue
                     # Yes, strip trailing white space. It has actually happened...
                     page_ref = 'https://www.itv.com/watch' + heading_link['href'].rstrip()
                     CollectionPages.check_page(testcase, page_ref, parent_name)
