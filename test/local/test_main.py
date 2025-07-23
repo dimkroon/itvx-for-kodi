@@ -111,7 +111,7 @@ class MyItvx(TestCase):
         with patch('resources.lib.fetch.web_request',
                    return_value=HttpResponse(text=open_doc('usercontent/last_watched_all.json')())) as p_fetch:
             shows = list(main.generic_list.test('watching', filter_char=None))
-            self.assertEqual(7, len(shows))
+            self.assertEqual(10, len(shows))
             p_fetch.assert_called_once()
         # All responses below have been observed in the wild when the watched list had no items.
         cache.purge()
@@ -131,7 +131,7 @@ class MyItvx(TestCase):
             result = main.generic_list.test('watching', filter_char=None)
             self.assertIs(result, False)
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_list_mylist(self, _):
         li_items = main.generic_list.test(filter_char=None, page_nr=None)
         self.assertIsInstance(li_items, list)
@@ -142,13 +142,13 @@ class MyItvx(TestCase):
     def test_my_list_context_menu_not_logged_in(self):
         main._my_list_context_mnu(Listitem(), '1234')
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_add_mylist_item(self, _):
         result = main.update_mylist.test(progr_id='10_1511', operation='add')
         # Callbacks of type Script should not return data
         self.assertIsNone(result)
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     @patch('xbmc.executebuiltin')
     def test_add_mylist_item_container_refresh(self, p_exec_builtin, _):
         main.update_mylist.test('10_1511', 'add', refresh=False)
@@ -164,7 +164,7 @@ class MyItvx(TestCase):
         with patch('resources.lib.itv_account.fetch_authenticated', side_effect=SystemExit):
             self.assertRaises(SystemExit, main.update_mylist.test, progr_id='10_1511', operation='add')
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_delete_mylist_item(self, _):
         result = main.update_mylist.test(progr_id='10_1511', operation='remove')
         # Callbacks of type Script should not return data
@@ -324,21 +324,21 @@ class Categories(TestCase):
     def test_sub_category_news_hero_items(self, _):
         items = main.list_news_sub_category.test('my/url', 'heroAndLatestData', None)
         self.assertIsInstance(items, list)
-        self.assertEqual(13, len(items))
+        self.assertEqual(12, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_long_format_items(self, _):
         """These are in fact the tv shows in the category news."""
         items = main.list_news_sub_category.test('my/url', 'longformData', None)
         self.assertIsInstance(items, list)
-        self.assertEqual(25, len(items))
+        self.assertEqual(36, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_rails(self, _):
         """Very much the same as collection news, but divided in various sub categories."""
-        items = main.list_news_sub_category.test('my/url', 'curatedRails', 'Politics')
+        items = main.list_news_sub_category.test('my/url', 'curatedRails', 'All Around The UK')
         self.assertIsInstance(items, list)
-        self.assertEqual(13, len(items))
+        self.assertEqual(12, len(items))
 
 
 @patch("resources.lib.cache.get_item", new=lambda *a, **k: None)     # disable cache

@@ -54,11 +54,11 @@ class LiveSchedule(TestCase):
         with patch('xbmc.getRegion', return_value='%H:%M'):
             schedule = itv.get_live_schedule(local_tz=timezone.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('19:30', start_time)
+            self.assertEqual('14:05', start_time)
         with patch('xbmc.getRegion', return_value='%I:%M %p'):
             schedule = itv.get_live_schedule(local_tz=timezone.utc)
             start_time = schedule[0]['slot'][0]['startTime']
-            self.assertEqual('07:30 pm', start_time.lower())
+            self.assertEqual('02:05 pm', start_time.lower())
 
 
 class GetCatchupUrls(TestCase):

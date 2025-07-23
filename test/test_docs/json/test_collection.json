@@ -5,7 +5,7 @@
   "collection": null,
   "editorialSliders": [
     {
-      "test_comment": "A 'normal' editorialSlider with shows of all types and a headingLink",
+      "Dev_Comment": "A 'normal' editorialSlider with shows of all types and a headingLink",
       "containerType": "Rail",
       "displayType": "Standard",
       "id": "zyqPJaRe6vOFftNzu4HY8",
@@ -15,41 +15,57 @@
           "href": "/collections/dont-miss-a-moment/3ctGv6rzQ2etzrAmPOvWsh",
           "text": "View All"
         },
-        "sliderName": "editorial_rail_slot1",
-        "itemCount": 8,
+        "sliderName": "test_rail",
+        "itemCount": 15,
         "shows": [
           {
-            "imagePresets": {},
+            "Dev_Comment": "Simulcastspot - None",
             "contentType": "simulcastspot",
-            "title": "Rugby World Cup 2023: Ireland v Scotland",
-            "channel": "itv",
-            "tagNames": [
-              "live"
-            ],
-            "description": "Ireland v Scotland",
-            "contentInfo": "19:15-22:20",
-            "genre": "Sport",
-            "startDateTime": "2023-10-07T18:15:00Z",
-            "endDateTime": "2023-10-07T21:20:00Z",
-            "progress": 41,
-            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/rwcirlvsco/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
-          },
-          {
-            "imagePresets": {},
-            "contentType": "fastchannelspot",
-            "title": "Rugby World Cup Classics",
-            "channel": "fast13",
-            "tagNames": [
-              "live"
-            ],
-            "description": "Classic matches, 24/7",
-            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/fast-rugbyworldcup/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "title": "ITV Quiz",
+            "description": "Stream it now",
+            "channel": "itvbe",
+            "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/itvquiz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "genre": "Entertainment",
+            "contentInfo": "Entertainment",
             "startDateTime": null,
             "endDateTime": null,
-            "progress": null
+            "progress": null,
+            "tagNames": [
+              "live"
+            ]
           },
           {
-            "imagePresets": {},
+            "Dev_Comment": "Fastchannelspot - Date",
+            "contentType": "fastchannelspot",
+            "title": "Comedy 24/7 Channel",
+            "description": "Watch the channel",
+            "channel": "fast16",
+            "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-comedy247/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "contentInfo": "14:00-17:00",
+            "startDateTime": "2023-08-31T13:00:00Z",
+            "endDateTime": "2023-08-31T16:00:00Z",
+            "progress": 100,
+            "tagNames": [
+              "live"
+            ]
+          },
+          {
+            "Dev_Comment": "fastchannelspot - None",
+            "contentType": "fastchannelspot",
+            "title": "Vera Channel",
+            "description": "Stream every episode",
+            "channel": "fast2",
+            "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-vera/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "contentInfo": "",
+            "startDateTime": null,
+            "endDateTime": null,
+            "progress": null,
+            "tagNames": [
+              "live"
+            ]
+          },
+          {
+            "Dev_Comment": "Series - Free",
             "contentType": "series",
             "title": "Grand Slammers: Inside HMP The Mount",
             "channel": "itv",
@@ -81,116 +97,388 @@
             "imageTemplate": "https://ovp.itv.com/images/series/k4pc5j1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
           },
           {
-            "imagePresets": {},
-            "contentType": "episode",
-            "title": "Rugby World Cup 2023 Highlights",
-            "channel": "itv",
-            "ccid": "tkc3ff2",
-            "description": "All the best bits!",
-            "isPaid": false,
-            "episodeId": "10/4850/0035",
-            "programmeId": "10/4850",
-            "encodedEpisodeId": {
-              "letterA": "10a4850a0035",
-              "underscore": "10_4850_0035"
-            },
-            "encodedProgrammeId": {
-              "letterA": "10a4850",
-              "underscore": "10_4850"
-            },
-            "titleSlug": "rugby-world-cup-2023-highlights",
-            "categories": [
-              "SPORT"
+            "Dev_Comment": "Series - Paid",
+            "contentType": "series",
+            "series": [
+              {
+                "seriesNumber": 1
+              }
             ],
             "seriesNumber": 1,
-            "episodeNumber": 35,
-            "episodeTitle": "Wales v Georgia (Group Stages) - 7 Oct",
-            "contentInfo": "S1, E35. Wales v Georgia (Group Stages) - 7 Oct",
-            "imageTemplate": "https://ovp.itv.com/images/episode/tkc3ff2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
-          },
-          {
-            "imagePresets": {},
-            "contentType": "brand",
-            "title": "SailGP 2023/24",
-            "channel": "itv",
-            "ccid": "yzqyd1g",
-            "description": "High-octane action - ten international teams compete in identical boats",
-            "isPaid": false,
-            "episodeId": "10/4771/0008",
-            "programmeId": "10/4771",
-            "encodedProgrammeId": {
-              "letterA": "10a4771",
-              "underscore": "10_4771"
-            },
-            "titleSlug": "sailgp-202324",
-            "categories": [
-              "SPORT"
-            ],
-            "numberOfAvailableSeries": 1,
             "contentInfo": "Series 1",
-            "imageTemplate": "https://ovp.itv.com/images/programme/yzqyd1g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+            "title": "Martina Cole's Lady Killers",
+            "titleSlug": "martina-coles-lady-killers",
+            "partnership": null,
+            "contentOwner": null,
+            "channel": "itv",
+            "description": "Leading crime writer, Martina Cole, investigates female serial killers",
+            "dateTime": null,
+            "genres": [
+              {
+                "id": "FACTUAL",
+                "name": "Documentaries & Lifestyle"
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/v2/images/series/98f5bf3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "98f5bf3",
+            "brandCCId": "y7vd7s5",
+            "programmeId": "35865",
+            "encodedProgrammeId": {
+              "letterA": "35865",
+              "underscore": "35865"
+            },
+            "episodeId": "1042444",
+            "encodedEpisodeId": {
+              "letterA": "1042444",
+              "underscore": "1042444"
+            },
+            "isPaid": true,
+            "tagNames": [
+              "premium"
+            ]
           },
           {
             "imagePresets": {},
-            "contentType": "special",
-            "title": "England's Grand",
-            "channel": "itv",
-            "ccid": "q7qlkcc",
-            "description": "Gareth Southgate, Harry Kane & more celebrate England 1,000th match",
-            "isPaid": false,
-            "episodeId": "2/7654/0001",
-            "programmeId": "2/7654",
-            "encodedProgrammeId": {
-              "letterA": "2a7654",
-              "underscore": "2_7654"
-            },
-            "titleSlug": "englands-grand",
-            "dateTime": "2020-11-10T23:45:00Z",
-            "categories": [
-              "SPORT"
+            "contentType": "episode",
+            "title": "Kate Garraway's Life Stories",
+            "titleSlug": "kate-garraways-life-stories",
+            "episodeTitle": "Charlotte Church",
+            "episodeNumber": 5,
+            "seriesNumber": 13,
+            "contentInfo": "S13, E5. Charlotte Church",
+            "genres": [
+              {
+                "id": "ENTERTAINMENT",
+                "name": "Entertainment & Reality"
+              }
             ],
+            "partnership": null,
+            "contentOwner": null,
+            "description": "Charlotte Church joins Kate Garraway to talk about her extraordinary life and career.",
+            "dateTime": "2022-02-17T21:00:00Z",
+            "channel": "itv",
+            "imageTemplate": "https://ovp.itv.com/v2/images/episode/3bgp0v1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "3bgp0v1",
+            "brandCCId": "zkkyn2d",
+            "programmeId": "1/7234",
+            "encodedProgrammeId": {
+              "letterA": "1a7234",
+              "underscore": "1_7234"
+            },
+            "episodeId": "1/7234/0106",
+            "encodedEpisodeId": {
+              "letterA": "1a7234a0106",
+              "underscore": "1_7234_0106"
+            },
+            "isPaid": false
+          },
+          {
+            "Dev_Comment": "Episode - Paid",
+            "contentType": "episode",
+            "title": "Million Dollar Listing: New York",
+            "titleSlug": "million-dollar-listing-new-york",
+            "episodeTitle": "Uncensored",
+            "episodeNumber": 14,
+            "seriesNumber": 3,
+            "contentInfo": "S3, E14. Uncensored",
+            "genres": [
+              {
+                "id": "ENTERTAINMENT",
+                "name": "Entertainment & Reality"
+              }
+            ],
+            "partnership": "ITVX",
+            "contentOwner": "HAYU",
+            "description": "The best stuff they never dared to show you, until now.",
+            "dateTime": null,
+            "channel": "itv",
+            "imageTemplate": "https://ovp.itv.com/v2/images/episode/ckrxvxx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "ckrxvxx",
+            "brandCCId": "yrqdf83",
+            "programmeId": "2/4653",
+            "encodedProgrammeId": {
+              "letterA": "2a4653",
+              "underscore": "2_4653"
+            },
+            "episodeId": "2/4653/0092",
+            "encodedEpisodeId": {
+              "letterA": "2a4653a0092",
+              "underscore": "2_4653_0092"
+            },
+            "isPaid": true,
+            "tagNames": [
+              "premium"
+            ]
+          },
+          {
+            "Dev_Comment": "Brand - FREE",
+            "contentType": "brand",
+            "partnership": null,
+            "contentOwner": null,
+            "title": "The Reunion",
+            "titleSlug": "the-reunion",
+            "description": "Three friends, one sad secret - stream the boxset of this starry thriller",
+            "genres": [
+              {
+                "id": "DRAMA_AND_SOAPS",
+                "name": "Drama"
+              }
+            ],
+            "dateTime": "2023-09-01T21:00:00Z",
+            "channel": "itv",
+            "imageTemplate": "https://ovp.itv.com/v2/images/programme/y36nhcw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "numberOfAvailableSeries": 1,
+            "series": [
+              {
+                "numberOfEpisodes": 6,
+                "numberOfAvailableEpisodes": 6,
+                "fullSeries": true,
+                "legacyId": "10/2578-01",
+                "seriesNumber": 1,
+                "longRunning": false
+              }
+            ],
+            "brandCCId": "y36nhcw",
+            "programmeId": "10/2578",
+            "encodedProgrammeId": {
+              "letterA": "10a2578",
+              "underscore": "10_2578"
+            },
+            "contentInfo": "Series 1",
+            "isPaid": false
+          },
+          {
+            "Dev_Comment": "Brand - Paid",
+            "contentType": "brand",
+            "partnership": "BRITBOX",
+            "contentOwner": "BBC",
+            "title": "Absolutely Fabulous",
+            "titleSlug": "absolutely-fabulous",
+            "description": "Patsy & Eddie love to booze & bitch in this hit 90s sitcom",
+            "genres": [
+              {
+                "id": "COMEDY",
+                "name": "Comedy"
+              }
+            ],
+            "dateTime": null,
+            "channel": "itv",
+            "imageTemplate": "https://ovp.itv.com/v2/images/programme/74mfq9w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "numberOfAvailableSeries": 5,
+            "series": [
+              {
+                "numberOfEpisodes": 6,
+                "numberOfAvailableEpisodes": 6,
+                "fullSeries": true,
+                "legacyId": "2/7232-01",
+                "seriesNumber": 1,
+                "longRunning": false
+              },
+              {
+                "numberOfEpisodes": 6,
+                "numberOfAvailableEpisodes": 6,
+                "fullSeries": true,
+                "legacyId": "2/7232-02",
+                "seriesNumber": 2,
+                "longRunning": false
+              },
+              {
+                "numberOfEpisodes": 6,
+                "numberOfAvailableEpisodes": 6,
+                "fullSeries": true,
+                "legacyId": "2/7232-03",
+                "seriesNumber": 3,
+                "longRunning": false
+              },
+              {
+                "numberOfEpisodes": 6,
+                "numberOfAvailableEpisodes": 6,
+                "fullSeries": true,
+                "legacyId": "2/7232-04",
+                "seriesNumber": 4,
+                "longRunning": false
+              },
+              {
+                "numberOfEpisodes": 8,
+                "numberOfAvailableEpisodes": 8,
+                "fullSeries": true,
+                "legacyId": "2/7232-05",
+                "seriesNumber": 5,
+                "longRunning": false
+              }
+            ],
+            "brandCCId": "74mfq9w",
+            "programmeId": "2/7232",
+            "encodedProgrammeId": {
+              "letterA": "2a7232",
+              "underscore": "2_7232"
+            },
+            "contentInfo": "Series 1 - 5",
+            "isPaid": true,
+            "tagNames": [
+              "premium"
+            ]
+          },
+          {
+            "Dev_Comment": "Special - FREE",
+            "contentType": "special",
+            "duration": "PT1H",
+            "contentInfo": "1h",
+            "title": "Flying for Britain with David Jason",
+            "titleSlug": "flying-for-britain-with-david-jason",
+            "partnership": null,
+            "contentOwner": null,
+            "dateTime": "2020-09-15T19:00:00Z",
+            "channel": "itv",
+            "description": "Celebrate 80 years since the Battle of Britain with David Jason",
+            "genres": [
+              {
+                "id": "FACTUAL",
+                "name": "Documentaries & Lifestyle"
+              }
+            ],
+            "imageTemplate": "https://ovp.itv.com/v2/images/special/3tm2y5z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "3tm2y5z",
+            "programmeId": "2/7125",
+            "encodedProgrammeId": {
+              "letterA": "2a7125",
+              "underscore": "2_7125"
+            },
+            "episodeId": "2/7125/0001",
+            "encodedEpisodeId": {
+              "letterA": "2a7125a0001",
+              "underscore": "2_7125_0001"
+            },
+            "isPaid": false
+          },
+          {
+            "Dev_Comment": "Special - Paid",
+            "contentType": "special",
             "duration": "PT1H30M",
             "contentInfo": "1h 30m",
-            "imageTemplate": "https://ovp.itv.com/images/special/q7qlkcc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
-          },
-          {
-            "imagePresets": {},
-            "contentType": "film",
-            "title": "This Sporting Life",
+            "title": "Steve Coogan's Live Stand Up Down Under",
+            "titleSlug": "steve-coogans-live-stand-up-down-under",
+            "partnership": null,
+            "contentOwner": null,
+            "dateTime": null,
             "channel": "itv2",
-            "ccid": "6v54nq5",
-            "description": "Richard Harris is remarkable as a miner who wants to quit his job",
-            "isPaid": false,
-            "episodeId": "CFD0696/0001",
-            "programmeId": "CFD0696",
-            "encodedProgrammeId": {
-              "letterA": "CFD0696",
-              "underscore": "CFD0696"
-            },
-            "titleSlug": "this-sporting-life",
-            "categories": [
-              "FILMS"
+            "description": "Steve Coogan takes his legendary wit and iconic characters to Australia!",
+            "genres": [
+              {
+                "id": "COMEDY",
+                "name": "Comedy"
+              }
             ],
-            "duration": "PT2H10M",
-            "contentInfo": "2h 10m",
-            "imageTemplate": "https://ovp.itv.com/images/film/6v54nq5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+            "imageTemplate": "https://ovp.itv.com/v2/images/special/md8s5nr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "md8s5nr",
+            "programmeId": "10/6347/0001B",
+            "encodedProgrammeId": {
+              "letterA": "10a6347a0001B",
+              "underscore": "10_6347_0001B"
+            },
+            "episodeId": "10/6347/0001",
+            "encodedEpisodeId": {
+              "letterA": "10a6347a0001",
+              "underscore": "10_6347_0001"
+            },
+            "isPaid": true,
+            "tagNames": [
+              "premium"
+            ]
           },
           {
-            "imagePresets": {},
+            "Dev_Comment": "Film - FREE",
+            "contentType": "film",
+            "genres": [
+              {
+                "id": "FILM",
+                "name": "Film"
+              }
+            ],
+            "duration": "PT3H15M",
+            "contentInfo": "3h 15m",
+            "title": "The Hobbit: An Unexpected Journey",
+            "titleSlug": "the-hobbit-an-unexpected-journey",
+            "partnership": null,
+            "contentOwner": null,
+            "dateTime": null,
+            "channel": "itv2",
+            "description": "A reluctant hobbit, an epic journey. The adventure trilogy begins!",
+            "imageTemplate": "https://ovp.itv.com/v2/images/film/w94tpnz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "w94tpnz",
+            "programmeId": "2/3676",
+            "encodedProgrammeId": {
+              "letterA": "2a3676",
+              "underscore": "2_3676"
+            },
+            "episodeId": "2/3676/0001",
+            "encodedEpisodeId": {
+              "letterA": "2a3676a0001",
+              "underscore": "2_3676_0001"
+            },
+            "isPaid": false
+          },
+          {
+            "Dev_Comment": "Film - Paid",
+            "contentType": "film",
+            "genres": [
+              {
+                "id": "FILM",
+                "name": "Film"
+              }
+            ],
+            "duration": "PT2H2M",
+            "contentInfo": "2h 2m",
+            "title": "The Fourth Protocol",
+            "titleSlug": "the-fourth-protocol",
+            "partnership": null,
+            "contentOwner": null,
+            "dateTime": null,
+            "channel": "itv2",
+            "description": "Frederick Forsyth's edgy spy story - Pierce Brosnan stars",
+            "imageTemplate": "https://ovp.itv.com/v2/images/film/k89kzfk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "titleCCId": "k89kzfk",
+            "programmeId": "CFD0265",
+            "encodedProgrammeId": {
+              "letterA": "CFD0265",
+              "underscore": "CFD0265"
+            },
+            "episodeId": "CFD0265/0001",
+            "encodedEpisodeId": {
+              "letterA": "CFD0265a0001",
+              "underscore": "CFD0265_0001"
+            },
+            "isPaid": true,
+            "tagNames": [
+              "premium"
+            ]
+          },
+          {
+            "Dev_Comment": "Page",
             "contentType": "page",
-            "title": "Hundreds of drama boxsets... and all available for free!",
-            "channel": "",
-            "encodedProgrammeId": {"letterA": ""},
-            "titleSlug": "hundreds-of-drama-boxsets-and-all-available-for-free",
-            "pageId": "7t0D1BJZbgBhKQsyx7qWS2",
-            "imageTemplate": "https://ovp.itv.com/images/promotional-artpack/dramacollection/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}"
+            "title": "Retro Kids TV",
+            "titleSlug": "retro-kids-tv",
+            "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/retrokids-page/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "description": null,
+            "pageId": "2S8Jiu79nSBtHnt4AuOVpm",
+            "adServed": false
+          },
+          {
+            "Dev_Comment": "Collection",
+            "contentType": "collection",
+            "title": "A Taste of Disney+",
+            "titleSlug": "a-taste-of-disney",
+            "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/atasteofdisney/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+            "description": null,
+            "collectionId": "3bjMRFiMGkX3Yo98sffGQp",
+            "adServed": false
           }
         ],
         "isChildrenCollection": false
       }
     },
     {
-      "test_comment": "An editorialSlider without a headingLink",
+      "Dev_Comment": "An editorialSlider without a headingLink",
       "containerType": "Rail",
       "displayType": "Promo Portrait",
       "id": "1qO1Pb87LraYmK0ru2uFEv",
@@ -334,7 +622,7 @@
       }
     },
     {
-      "test_comment": "An editorialSlider without shows. It's headingLink is invalid. This slider not shown in a web browser",
+      "Dev_Comment": "An editorialSlider without shows. It's headingLink is invalid. This slider not shown in a web browser",
       "containerType": "Rail",
       "displayType": "Standard",
       "id": "2GEQCjxI0s7INA1vhWH1XQ",
@@ -349,6 +637,7 @@
     }
   ],
   "shortFormSlider": {
+    "Dev_Comment": "shorFormSliders are now only present on the main page. This is kept in until viwX drops support for shortform in collections",
     "header": {
       "title": "Rugby World Cup 2023"
     },
@@ -364,8 +653,7 @@
         "dateTime": "2023-10-07T19:14:01.185Z",
         "duration": 83,
         "posterImage": "https://images.ctfassets.net/zkw1wfs2si3w/2567qDAyWPMPI8lwN6RK8E/7bad58785fac58ce184695781cf7fabf/lowe_try_irl.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
-        "genre": "sport",
-        "href": "/watch/sport/undefined"
+        "genre": "sport"
       },
       {
         "contentType": "episode",
@@ -385,8 +673,7 @@
         "programmeId": "2/4138",
         "imageUrl": "https://images.ctfassets.net/zkw1wfs2si3w/7AjUyh0LGctJ2RpAyukwpO/9d4310b3044e786a5b56c1e4a396c07c/RWC-2023-Live-Match-Pool-IRL-V-SCO_05_TabletMobile_RailTileLandscape_WithLogo_1920x1080.jpg?w={width}&h={height}&q={quality}&fm={image_format}",
         "dateTime": "2023-10-08T10:47:39.946Z",
-        "genre": "sport",
-        "href": "/watch/sport/undefined"
+        "genre": "sport"
       }
     ],
     "key": "sportShortForm",
