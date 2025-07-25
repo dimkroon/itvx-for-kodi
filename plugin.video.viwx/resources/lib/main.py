@@ -72,8 +72,8 @@ def dynamic_listing(func=None):
             return False
         else:
             args[0].register_delayed(cache.clean)
-            logger.debug("wrapper diverts route to: %s", func.__name__)
-            result = func(*args, **kwargs)
+            logger.debug("wrapper diverts route to: %s", func.__name__)  # type: ignore
+            result = func(*args, **kwargs)  # type: ignore
             if isinstance(result, typing.Generator):
                 result = list(result)
             if result:
@@ -203,7 +203,9 @@ def sub_menu_my_itvx(_):
     try:
         last_programme = itvx.because_you_watched(itv_account.itv_session().user_id, name_only=True)
         if last_programme:
-            yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type': 'byw'})
+            yield Listitem.from_dict(generic_list,
+                                     'Because You Watched ' + last_programme,  # type: ignore
+                                     params={'list_type': 'byw'})
     except Exception as e:
         # Log the error, but don't let the whole submenu fail because of this.
         logger.error("Error getting the last watched programme: %s\n", e, exc_info=True)

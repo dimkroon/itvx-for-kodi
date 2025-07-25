@@ -69,6 +69,9 @@ def get_now_next_schedule(local_tz=None):
     time_format = xbmc.getRegion('time').replace(':%S', '').replace('%I%I:', '%I:')
 
     live_data = fetch.get_json('https://nownext.oasvc.itv.com/channels')
+    if not live_data:
+        logger.error("Failed to get live channels data from nownext.oasvc.itv.com")
+        return []
 
     fanart_url = live_data['images']['backdrop']
     channels = live_data['channels']
@@ -326,7 +329,7 @@ def episodes(url, use_cache=False, prefer_bsl=False):
 
 
 def categories():
-    """Return all available categorie names."""
+    """Return all available category names."""
     data = get_page_data('https://www.itv.com/watch/categories', cache_time=86400)
     cat_list = data['subnav']['items']
     return ({'label': cat['label'], 'params': {'path': cat['url']}} for cat in cat_list)
@@ -465,7 +468,7 @@ def search(search_term, hide_paid=False):
     return (parsex.parse_search_result(result, hide_paid) for result in results)
 
 
-def my_list(user_id, programme_id=None, operation=None, offer_login=True, use_cache=True):
+def my_list(user_id, programme_id=None, operation='', offer_login=True, use_cache=True):
     """Get itvX's 'My List', or add or remove an item from 'My List' and return the updated list.
 
     A regular browser uses platform ctv in these requests.
@@ -546,7 +549,7 @@ def get_resume_point(production_id: str):
         url = 'https://content.prd.user.itv.com/resume/user/{}/productionid/{}'.format(
             itv_account.itv_session().user_id, production_id)
         data = itv_account.fetch_authenticated(fetch.get_json, url)
-        resume_time = data['progress']['time'].split(':')
+        resume_time = data['progress']['time'].split(':')  # type: ignore
         resume_point = int(resume_time[0]) * 3600 + int(resume_time[1]) * 60 + float(resume_time[2])
         return resume_point
     except errors.HttpError as err:
@@ -692,4 +695,3 @@ def _request_stream_data(url, stream_type='live', full_hd=False):
         headers={'Accept': accept_type})
 
     return stream_data
-

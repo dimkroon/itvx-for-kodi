@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -53,4 +53,4 @@ def patch_label_prop():
         self.params.setdefault("_title_", unformatted_label)
         self.info.setdefault("title", unformatted_label)
 
-    Listitem.label = Listitem.label.setter(label_setter)
+    Listitem.label = Listitem.label.setter(label_setter)  # type: ignore

@@ -4,6 +4,7 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+from __future__ import annotations
 import json
 import logging
 
@@ -38,7 +39,7 @@ BTN_TXT_OK = 30790
 BTN_TXT_CANCEL = 30791
 
 
-def ask_credentials(username: str = None, password: str = None):
+def ask_credentials(username: str | None = None, password: str | None = None):
     """Ask the user to enter his username and password.
     Return a tuple of (username, password). Each or both can be empty when the
     user has canceled the operation.
