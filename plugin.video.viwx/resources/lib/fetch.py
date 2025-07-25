@@ -128,24 +128,7 @@ class HttpSession(requests.sessions.Session):
         return resp
 
 
-def convert_consent(cookiejar):
-    """Replace Cassie consent cookies for Syrenis.
-
-    """
-    # RequestCookieJar's items() returns a list of tuples
-    try:
-        for name, value in cookiejar.items():
-            if name.startswith("Cassie"):
-                del cookiejar[name]
-
-        set_default_cookies(cookiejar)
-        cookiejar.cassie_converted = True
-        cookiejar.save()
-    except:
-        logger.error("Error converting consent cookies:\n", exc_info=True)
-
-
-def _create_cookiejar() -> PersistentCookieJar:
+def _create_cookiejar():
     """Restore a cookiejar from file. If the file does not exist create new one and
     apply the default cookies.
 
@@ -160,13 +143,9 @@ def _create_cookiejar() -> PersistentCookieJar:
             # if the file has been copied from another system.
             cj.filename = cookie_file
             logger.info("Restored cookies from file")
-            if not getattr(cj, "cassie_converted", None):
-                convert_consent(cj)
-
     except (FileNotFoundError, pickle.UnpicklingError):
         cj = PersistentCookieJar(cookie_file)
         set_default_cookies(cj)
-        cj.cassie_converted = True
         logger.info("Created new cookiejar")
     return cj
 
