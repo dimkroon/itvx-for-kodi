@@ -623,3 +623,12 @@ class Run(TestCase):
     def test_run_failure(self, p_end_of_dir, _, __):
         main.run()
         p_end_of_dir.assert_called_once_with(1, False)
+
+    @patch('resources.lib.main.cc_run', return_value=None)
+    @patch.object(main, 'running_version', '1.0.0')
+    @patch('xbmcaddon.Addon.getAddonInfo', lambda _, s: '2.0.0' if s == 'version' else '')
+    def test_run_outdated_version(self, _):
+        with self.assertRaises(SystemExit) as cm:
+            main.run()
+        err = cm.exception
+        self.assertEqual(1, err.code)

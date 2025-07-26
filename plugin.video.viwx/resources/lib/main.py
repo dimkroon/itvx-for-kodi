@@ -28,9 +28,11 @@ from resources.lib import xprogress
 from resources.lib.errors import *
 
 
+running_version = utils.addon_info.addon.getAddonInfo('version')
+
 logger = logging.getLogger(logger_id + '.main')
 logger.critical('-------------------------------------')
-logger.critical('--- version: %s', utils.addon_info.addon.getAddonInfo('version'))
+logger.critical('--- version: %s', running_version)
 # logger.info('short date format %s', xbmc.getRegion('dateshort'))
 # logger.info('long date format %s', xbmc.getRegion('datelong'))
 # logger.info('time format %s', xbmc.getRegion('time'))
@@ -636,6 +638,15 @@ def update_mylist(_, progr_id, operation, refresh=True):
 def run():
     if isinstance(cc_run(), Exception):
         xbmcplugin.endOfDirectory(int(sys.argv[1]), False)
+    # Due to reuselanguageinvoker the addon may have been updated, while it still
+    # keeps running the old version. Exit with non-zero status to force the current
+    # LanguageInvoker thread to end.
+    if running_version != utils.addon_info.addon.getAddonInfo('version'):
+        logger.warning("Detected add-on upgrade to %s while still running %s. "
+                       "Exiting non-zero now to end this LanguageInvoker thread",
+                       utils.addon_info.addon.getAddonInfo('version'),
+                       running_version)
+        sys.exit(1)
 
 
 """
