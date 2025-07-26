@@ -1,3 +1,9 @@
+v 1.7.2
+Fixes:
+- In some cases, Kodi continued to run the previous version for a while after the add-on was updated.
+- Short news clips fail to play in category News.
+- Support live items without start and end time.
+
 v 1.7.1
 Fixes:
 - Short sport clips fail to play with error 'Not Found'
