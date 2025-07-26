@@ -28,9 +28,11 @@ from resources.lib import xprogress
 from resources.lib.errors import *
 
 
+running_version = utils.addon_info.addon.getAddonInfo('version')
+
 logger = logging.getLogger(logger_id + '.main')
 logger.critical('-------------------------------------')
-logger.critical('--- version: %s', utils.addon_info.addon.getAddonInfo('version'))
+logger.critical('--- version: %s', running_version)
 # logger.info('short date format %s', xbmc.getRegion('dateshort'))
 # logger.info('long date format %s', xbmc.getRegion('datelong'))
 # logger.info('time format %s', xbmc.getRegion('time'))
@@ -72,8 +74,8 @@ def dynamic_listing(func=None):
             return False
         else:
             args[0].register_delayed(cache.clean)
-            logger.debug("wrapper diverts route to: %s", func.__name__)
-            result = func(*args, **kwargs)
+            logger.debug("wrapper diverts route to: %s", func.__name__)  # type: ignore
+            result = func(*args, **kwargs)  # type: ignore
             if isinstance(result, typing.Generator):
                 result = list(result)
             if result:
@@ -203,7 +205,9 @@ def sub_menu_my_itvx(_):
     try:
         last_programme = itvx.because_you_watched(itv_account.itv_session().user_id, name_only=True)
         if last_programme:
-            yield Listitem.from_dict(generic_list, 'Because You Watched ' + last_programme, params={'list_type': 'byw'})
+            yield Listitem.from_dict(generic_list,
+                                     'Because You Watched ' + last_programme,  # type: ignore
+                                     params={'list_type': 'byw'})
     except Exception as e:
         # Log the error, but don't let the whole submenu fail because of this.
         logger.error("Error getting the last watched programme: %s\n", e, exc_info=True)
@@ -634,6 +638,15 @@ def update_mylist(_, progr_id, operation, refresh=True):
 def run():
     if isinstance(cc_run(), Exception):
         xbmcplugin.endOfDirectory(int(sys.argv[1]), False)
+    # Due to reuselanguageinvoker the addon may have been updated, while it still
+    # keeps running the old version. Exit with non-zero status to force the current
+    # LanguageInvoker thread to end.
+    if running_version != utils.addon_info.addon.getAddonInfo('version'):
+        logger.warning("Detected add-on upgrade to %s while still running %s. "
+                       "Exiting non-zero now to end this LanguageInvoker thread",
+                       utils.addon_info.addon.getAddonInfo('version'),
+                       running_version)
+        sys.exit(1)
 
 
 """

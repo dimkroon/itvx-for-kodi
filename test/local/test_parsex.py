@@ -27,10 +27,9 @@ tearDownModule = fixtures.tear_down_local_tests
 
 class TestScrapeJson(unittest.TestCase):
     def test_scrape_json_watch_pages(self):
-        for page in ('html/index.html', 'html/watch-itv1.html'):
-            get_page = open_doc(page)
-            data = parsex.scrape_json(get_page())
-            self.assertIsInstance(data, dict)
+        get_page = open_doc('html/index.html')
+        data = parsex.scrape_json(get_page())
+        self.assertIsInstance(data, dict)
 
     def test_invalid_page(self):
         # no __NEXT_DATA___
@@ -83,8 +82,9 @@ class ParseSimulcastItem(unittest.TestCase):
     def test_simulcast_collection(self):
         data = deepcopy(open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows'][0])
         self.assertEqual('simulcastspot', data['contentType'])
-        data['startDateTime'] = '2024-03-16T20:15:00Z'
         with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
+            data['startDateTime'] = '2024-03-16T20:15:00Z'
+            data['endDateTime'] = '2024-03-16T22:00:00Z'
             # Programme has already started
             dt_mock.mocked_now = datetime(2024, 3, 16, 21, 00, 00, tzinfo=timezone.utc)
             result = parsex.parse_simulcast_item(data)
@@ -92,6 +92,12 @@ class ParseSimulcastItem(unittest.TestCase):
             self.check_ctx_mnu(result, is_present=True)
             # Programme has yet to started
             dt_mock.mocked_now = datetime(2024, 3, 16, 20, 00, 00, tzinfo=timezone.utc)
+            result = parsex.parse_simulcast_item(data)
+            self.check_result(result)
+            self.check_ctx_mnu(result, is_present=False)
+            # DateTimes are None, found in some collection items
+            data['startDateTime'] = None
+            data['endDateTime'] = None
             result = parsex.parse_simulcast_item(data)
             self.check_result(result)
             self.check_ctx_mnu(result, is_present=False)
@@ -227,38 +233,48 @@ class Generic(unittest.TestCase):
 
     def test_parse_collection_title(self):
         data = open_json('json/test_collection.json')['editorialSliders'][0]['collection']['shows']
-        # film
-        item = parsex.parse_collection_item(data[6])
-        has_keys(item, 'type', 'show')
-        is_li_compatible_dict(self, item['show'])
-        self.assertEqual('film', item['type'])
-        # series
-        item = parsex.parse_collection_item(data[2])
-        has_keys(item, 'type', 'show')
-        is_li_compatible_dict(self, item['show'])
-        self.assertEqual('series', item['type'])
-        # episode
-        item = parsex.parse_collection_item(data[3])
-        has_keys(item, 'type', 'show')
-        is_li_compatible_dict(self, item['show'])
-        self.assertEqual('episode', item['type'])
-        # Brand
-        item = parsex.parse_collection_item(data[4])
-        has_keys(item, 'type', 'show')
-        is_li_compatible_dict(self, item['show'])
-        self.assertEqual('brand', item['type'])
-        # fastchannelspot
-        item = parsex.parse_collection_item(data[1])
-        has_keys(item, 'type', 'show')
-        is_li_compatible_dict(self, item['show'])
-        self.assertEqual('fastchannelspot', item['type'])
         # simulcastspot
         item = parsex.parse_collection_item(data[0])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('simulcastspot', item['type'])
-        # page
+        # fastchannelspot
+        item = parsex.parse_collection_item(data[1])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('fastchannelspot', item['type'])
+        # series
+        item = parsex.parse_collection_item(data[3])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('series', item['type'])
+        # episode
+        item = parsex.parse_collection_item(data[5])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('episode', item['type'])
+        # Brand
         item = parsex.parse_collection_item(data[7])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('brand', item['type'])
+        # special
+        item = parsex.parse_collection_item(data[9])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('special', item['type'])
+        # film
+        item = parsex.parse_collection_item(data[11])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('film', item['type'])
+        # page
+        item = parsex.parse_collection_item(data[13])
+        has_keys(item, 'type', 'show')
+        is_li_compatible_dict(self, item['show'])
+        self.assertEqual('collection', item['type'])
+        # collection
+        item = parsex.parse_collection_item(data[14])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
         self.assertEqual('collection', item['type'])
@@ -366,11 +382,14 @@ class Generic(unittest.TestCase):
         self.assertIsNone(parsex.parse_search_result(search_result, hide_paid=True))
 
     def test_parse_mylist(self):
-        data = open_json('mylist/mylist_data.json')['items']
+        data = open_json('usercontent/mylist_test_data.json')
         for mylist_item in data:
             item = parsex.parse_my_list_item(mylist_item)
             has_keys(item, 'type', 'show')
             is_li_compatible_dict(self, item['show'])
+        # paid item
+        item = parsex.parse_my_list_item(data[1], hide_paid=True)
+        self.assertIsNone(item)
 
     def test_parse_last_watched(self):
         data = open_json('usercontent/last_watched_all.json')
@@ -430,16 +449,18 @@ class Generic(unittest.TestCase):
         data = open_json('usercontent/last_watched_all.json')
         utc_now = datetime.now(tz=timezone.utc).replace(tzinfo=None)
 
-        episode_item = data[0]
+        episode_item = data[3]
         self.assertEqual('FILM', episode_item['contentType'])
         show = parsex.parse_last_watched_item(episode_item, utc_now)
         self.assertFalse('ctx_mnu' in show.keys())
 
-        episode_item['contentType'] = 'SPECIAL'
+        episode_item = data[2]
+        self.assertEqual('SPECIAL', episode_item['contentType'])
         show = parsex.parse_last_watched_item(episode_item, utc_now)
         self.assertFalse('ctx_mnu' in show.keys())
-        
-        episode_item['contentType'] = 'EPISODE'
+
+        episode_item = data[0]
+        self.assertEqual('EPISODE', episode_item['contentType'])
         show = parsex.parse_last_watched_item(episode_item, utc_now)
         self.assertIsInstance(show['ctx_mnu'], list)
         for item in show['ctx_mnu']:

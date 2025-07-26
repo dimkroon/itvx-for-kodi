@@ -5,6 +5,7 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
+from __future__ import annotations
 import os
 import logging
 import requests
@@ -74,7 +75,7 @@ class CustomHttpAdapter(HTTPAdapter):
     def init_poolmanager(self, *args, **kwargs):
         import urllib3
         import ssl
-        logger.info('Urllib3 version %s', urllib3.__version__)
+        logger.info('Urllib3 version %s', urllib3.__version__)  # type: ignore
         logger.info(ssl.OPENSSL_VERSION)
 
         ctx = ssl.create_default_context()
@@ -123,25 +124,8 @@ class HttpSession(requests.sessions.Session):
                 hooks=hooks, stream=stream, verify=verify, cert=cert, json=json)
 
         # noinspection PyUnresolvedReferences
-        self.cookies.save()
+        self.cookies.save()  # type: ignore
         return resp
-
-
-def convert_consent(cookiejar):
-    """Replace Cassie consent cookies for Syrenis.
-
-    """
-    # RequestCookieJar's items() returns a list of tuples
-    try:
-        for name, value in cookiejar.items():
-            if name.startswith("Cassie"):
-                del cookiejar[name]
-
-        set_default_cookies(cookiejar)
-        cookiejar.cassie_converted = True
-        cookiejar.save()
-    except:
-        logger.error("Error converting consent cookies:\n", exc_info=True)
 
 
 def _create_cookiejar():
@@ -159,17 +143,14 @@ def _create_cookiejar():
             # if the file has been copied from another system.
             cj.filename = cookie_file
             logger.info("Restored cookies from file")
-            if not getattr(cj, "cassie_converted", None):
-                convert_consent(cj)
-
     except (FileNotFoundError, pickle.UnpicklingError):
-        cj = set_default_cookies(PersistentCookieJar(cookie_file))
-        cj.cassie_converted = True
+        cj = PersistentCookieJar(cookie_file)
+        set_default_cookies(cj)
         logger.info("Created new cookiejar")
     return cj
 
 
-def set_default_cookies(cookiejar: RequestsCookieJar = None):
+def set_default_cookies(cookiejar: RequestsCookieJar | None = None):
     """Post a cookie consent form rejecting all cookies.
 
     On success, set the required consent and other cookies.
@@ -263,6 +244,7 @@ def web_request(method, url, headers=None, data=None, **kwargs):
         resp.raise_for_status()
         return resp
     except requests.HTTPError as e:
+        resp = e.response
         # noinspection PyUnboundLocalVariable
         logger.info("HTTP error %s for url %s: '%s'",
                     e.response.status_code,

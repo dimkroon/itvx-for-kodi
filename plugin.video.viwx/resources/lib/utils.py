@@ -188,6 +188,8 @@ def iso_duration_2_seconds(iso_str: str) -> int | None:
     Handles only hours, minutes and seconds.
 
     """
+    if iso_str is None:
+        return None
     try:
         if len(iso_str) > 3:
             import re

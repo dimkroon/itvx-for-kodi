@@ -182,22 +182,28 @@ class Collections(TestCase):
         self.assertEqual(4, len(items))
         for item in items:
             check_item(self, item)
-        items2 = list(filter(None, itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1', hide_paid=True)))
+        items2 = list(filter(None, itvx.collection_content(url='https://www.itv.com',
+                                                           slider='editorial_rail_slot1',
+                                                           hide_paid=True)))
         self.assertListEqual(items, items2)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/editorial_slider.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
     def test_collection_from_test_rail(self, _):
         """Test a specially crafted slider with all possible types of items."""
-        items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='test_rail')))
-        self.assertEqual(10, len(items))
+        items = list(filter(None, itvx.collection_content('https://www.itv.com/collection/zldshmoh',
+                                                          slider='test_rail')))
+        self.assertEqual(15, len(items))
         for item in items:
             check_item(self, item)
         self.assertEqual('simulcastspot', items[0]['type'])
         self.assertEqual('fastchannelspot', items[1]['type'])
-        self.assertEqual('collection', items[8]['type'])
-        self.assertEqual('collection', items[9]['type'])
-        items2 = list(filter(None, itvx.collection_content('https://www.itv.com', slider='test_rail', hide_paid=True)))
-        self.assertListEqual(items, items2)
+        self.assertEqual('collection', items[13]['type'])
+        self.assertEqual('collection', items[14]['type'])
+        # Filter paid items
+        items2 = list(filter(None, itvx.collection_content('https://www.itv.com/collection/zldshmoh',
+                                                           slider='test_rail',
+                                                           hide_paid=True)))
+        self.assertEqual(15, len(items))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
     def test_collection_content_from_collection_page(self, _):
@@ -311,10 +317,11 @@ class Categories(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_news_sub_categories(self, _):
-        # Known subcategategories
+        # All subcategories in the test document.
         for sub_cat in (('heroAndLatestData', None), ('longformData', None),
-                        ('curatedRails', 'Politics'), ('curatedRails', 'World'),
-                        ('curatedRails', 'Special Reports'), ('curatedRails', 'News Explained')):
+                        ('curatedRails', 'Exclusive Reports'), ('curatedRails', 'Analysis '),
+                        ('curatedRails', 'ITV News in Antarctica'), ('curatedRails', 'All Around The UK'),
+                        ('curatedRails', 'Uplifting Stories')):
             items = itvx.category_news_content('my/url', *sub_cat)
             self.assertGreater(len(items), 4)
             for item in items:
@@ -505,7 +512,7 @@ class GetMyList(TestCase):
     def setUp(self):
         cache.purge()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_get_mylist(self, p_fetch):
         result_1 = itvx.my_list('156-45xsghf75-4sf569')
         self.assertEqual(len(list(result_1)), 4)
@@ -523,7 +530,7 @@ class GetMyList(TestCase):
         self.assertListEqual(result_1, [])
         p_fetch.assert_called_once()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     @patch('resources.lib.parsex.parse_my_list_item', return_value=None)
     def test_get_mylist_with_parse_errors(self, _, __):
         """Simulate parse errors and the parser returning None"""
@@ -534,7 +541,7 @@ class GetMyList(TestCase):
     def test_get_mylist_not_signed_in(self, _):
         self.assertRaises(SystemExit, itvx.my_list, '156-45xsghf75-4sf569')
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_get_my_list_cache_not_used_after_user_change(self, p_fetch):
         itvx.my_list('156-45xsghf75-4sf569')
         p_fetch.assert_called_once()
@@ -543,7 +550,7 @@ class GetMyList(TestCase):
         itvx.my_list('xxx')
         p_fetch.assert_called_once()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_add_mylist_item(self, p_fetch):
         result = itvx.my_list('156-45xsghf75-4sf569', '10_3408', 'add')
         self.assertEqual(len(list(result)), 4)
@@ -551,7 +558,7 @@ class GetMyList(TestCase):
             is_li_compatible_dict(self, item['show'])
         p_fetch.assert_called_once()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_remove_mylist_item(self, p_delete):
         result = itvx.my_list('156-45xsghf75-4sf569', '10_3408', 'remove')
         self.assertEqual(len(list(result)), 4)
@@ -564,7 +571,7 @@ class InitialiseMyList(TestCase):
     def setUp(self):
         cache.purge()
 
-    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('mylist/mylist_json_data.json'))
+    @patch('resources.lib.itv_account.fetch_authenticated', return_value=open_json('usercontent/mylist_test_data.json'))
     def test_initialise_my_list(self, _):
         itvx.initialise_my_list()
 
@@ -616,7 +623,7 @@ class Recommendations(TestCase):
     def test_byw_name_only(self, p_fetch):
         res1 = itvx.because_you_watched('my_user_id', name_only=True)
         p_fetch.assert_called_once()
-        self.assertEqual('Van Der Valk (Original)', res1)
+        self.assertEqual('The Consultant', res1)
         # from cache
         res2 = itvx.because_you_watched('my_user_id', name_only=True)
         p_fetch.assert_called_once()

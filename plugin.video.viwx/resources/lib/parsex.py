@@ -104,7 +104,7 @@ def scrape_json(html_page):
 def parse_simulcast_item(sim_dta: dict) -> dict:
     """Parse simulcast items from various sources like hero, search, etc"""
 
-    plain_title = sim_dta.get('title') or sim_dta['brandTitle']
+    plain_title = title = sim_dta.get('title') or sim_dta['brandTitle']
     channel = sim_dta.get('channel') or sim_dta['channelName']
     description = sim_dta.get('description') or sim_dta.get('synopsis', '')
     img_link = sim_dta.get('imageTemplate') or sim_dta.get('imageHref')
@@ -113,39 +113,41 @@ def parse_simulcast_item(sim_dta: dict) -> dict:
     utc_now = datetime.now(tz=timezone.utc)
     tz_local = kodi_utils.local_timezone()
     tz_utc = timezone.utc
+    ctx_mnu = []
 
-    try:
-        utc_start = utils.strptime(start_t, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=tz_utc)
-        utc_end = utils.strptime(end_t, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=tz_utc)
-        title = plain_title
-    except ValueError:
-        # Simulcast hero items have a start and end as British local time in hh:mm format.
-        start_hrs, start_mins = start_t.split(':')
-        end_hrs, end_mins = end_t.split(':')
-        btz = utils.ZoneInfo('Europe/London')
-        # Add today's date. This goes wrong when it's just past midnight and the live item started
-        # the day before. Since simulcast items can have a start time in the future as well as in
-        # the past, there's no way to determine the real date. However, it's unlikely live hero
-        # items will be presented at such a time.
+    if start_t and end_t:
+        try:
+            utc_start = utils.strptime(start_t, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=tz_utc)
+            utc_end = utils.strptime(end_t, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=tz_utc)
+        except ValueError:
+            # Simulcast hero items have a start and end as British local time in hh:mm format.
+            start_hrs, start_mins = start_t.split(':')
+            end_hrs, end_mins = end_t.split(':')
+            btz = utils.ZoneInfo('Europe/London')
+            # Add today's date. This goes wrong when it's just past midnight and the live item started
+            # the day before. Since simulcast items can have a start time in the future as well as in
+            # the past, there's no way to determine the real date. However, it's unlikely live hero
+            # items will be presented at such a time.
 
-        brit_start = datetime.now(tz=btz).replace(hour=int(start_hrs), minute=int(start_mins))
-        brit_end = datetime.now(tz=btz).replace(hour=int(end_hrs), minute=int(end_mins))
-        utc_start = brit_start.astimezone(tz_utc)
-        utc_end = brit_end.astimezone(tz_utc)
-        # Title in the colour used for all hero items.
-        title = ''.join(('[COLOR orange]', plain_title, '[/COLOR]'))
+            brit_start = datetime.now(tz=btz).replace(hour=int(start_hrs), minute=int(start_mins))
+            brit_end = datetime.now(tz=btz).replace(hour=int(end_hrs), minute=int(end_mins))
+            utc_start = brit_start.astimezone(tz_utc)
+            utc_end = brit_end.astimezone(tz_utc)
+            # Title in the colour used for all hero items.
+            title = ''.join(('[COLOR orange]', plain_title, '[/COLOR]'))
 
-    if utc_start < utc_now:
-        title = title + '   [B][I][COLOR yellow]on now[/COLOR][/I][/B]'
-        ctx_mnu = [ctx_mnu_watch_from_start(channel, utc_start.strftime('%Y-%m-%dT%H:%M:%S'))]
+        if utc_start < utc_now:
+            title = title + '   [B][I][COLOR yellow]on now[/COLOR][/I][/B]'
+            ctx_mnu = [ctx_mnu_watch_from_start(channel, utc_start.strftime('%Y-%m-%dT%H:%M:%S'))]
+
+        plot = ''. join(('Live on ', channel, ' ',
+                         utc_start.astimezone(tz_local).strftime('%H:%M'),
+                         ' - ',
+                         utc_end.astimezone(tz_local).strftime('%H:%M'),
+                         '\n',
+                         description))
     else:
-        ctx_mnu = []
-    plot = ''. join(('Live on ', channel, ' ',
-                     utc_start.astimezone(tz_local).strftime('%H:%M'),
-                     ' - ',
-                     utc_end.astimezone(tz_local).strftime('%H:%M'),
-                     '\n',
-                     description))
+        plot = ''. join(('Live on ', channel, '\n', description))
 
     return {
         'type': 'simulcastspot',
@@ -375,17 +377,22 @@ def parse_collection_item(show_data, hide_paid=False):
 def parse_shortform_item(item_data, time_zone, time_fmt, hide_paid=False):
     """Parse an item from a shortFormSlider.
 
-    ShortFormSliders are found on the main page, some collection pages.
-    Items from heroAndLatest and curatedRails in category news also have a shortForm-like content.
+    ShortFormSliders are found on the main page. Some collection pages used to have
+    shortFromSliders, but this field has not been seen on collection for quite some time.
+    Items from heroAndLatest and curatedRails in category news also have a shortForm-like
+    content and are handled by this parser.
 
     """
     try:
         content_type = item_data['contentType']
 
         if content_type == 'shortform':
-            # This item is a 'short item', aka 'news clip'.
+            # This item is a 'short item', aka 'news clip' or 'sport clip'.
+            # hero and curated rails from the news category lack a field 'genre'.
+            # Since sportShortFrom is only ever present on the main page, it's safe
+            # to assume genry is news.
             url = '/'.join(('https://www.itv.com/watch',
-                            item_data['genre'],
+                            item_data.get('genre', 'news'),
                             item_data['titleSlug'],
                             item_data['episodeId']))
 

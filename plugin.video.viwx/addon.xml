@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viwx" name="viwX" version="1.7.1" provider-name="Dimitri Kroon">
+<addon id="plugin.video.viwx" name="viwX" version="1.7.2" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.5"/>
@@ -31,6 +31,12 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
+[B]v1.7.2[/B]
+[B]Fixes:[/B]
+- In some cases, Kodi continued to run the previous version for a while after the add-on was updated.
+- Short news clips fail to play in category News.
+- Support live items without start and end time.
+
 [B]v 1.7.1[/B]
 [B]Fixes:[/B]
 - Short sport clips fail to play with error 'Not Found'
