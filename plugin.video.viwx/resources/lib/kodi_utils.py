@@ -99,17 +99,6 @@ def ask_log_handler(default):
         return result, ''
 
 
-def ask_play_from_start(title=None):
-    if not isinstance(title, (type(None), str)):
-        logger.error("Invalid argument passed to ask_lay_from_start: '%s'", title)
-        raise ValueError('Parameter title must be of type string')
-
-    dlg = xbmcgui.Dialog()
-    return dlg.yesno(
-            title or addon_info.name,
-            Script.localize(TXT_PLAY_FROM_START))
-
-
 def msg_dlg(msg, title=None, **kwargs):
     if not isinstance(msg, (str, int)) or not isinstance(title, (type(None), str, int)):
         logger.error("Invalid argument passed to message dialog: '%s', '%s'", msg, title)

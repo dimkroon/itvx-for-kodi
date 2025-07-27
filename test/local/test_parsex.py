@@ -54,7 +54,6 @@ class ParseSimulcastItem(unittest.TestCase):
             cmd = item['ctx_mnu'][0][1]
             self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
             self.assertTrue('start_time=' in cmd)
-            self.assertTrue('play_from_start=True' in cmd)
 
     def test_simucast_hero(self):
         """Hero start and end time is in British local time in 'HH:MM'
