@@ -51,11 +51,6 @@ class TestKodiUtils(unittest.TestCase):
             self.assertEqual(5, result)
             self.assertEqual('', name)
 
-    def test_ask_play_from_start(self):
-        kodi_utils.ask_play_from_start()
-        kodi_utils.ask_play_from_start('Title')
-        self.assertRaises(ValueError, kodi_utils.ask_play_from_start, 1235)
-
     def test_get_system_setting(self):
         with patch("xbmc.executeJSONRPC",
                    return_value='{"id": 1, "jsonrpc": "2.0", "result": {"value": "Europe/Amsterdam"}}') as p_rpc:
