@@ -480,7 +480,7 @@ class PlayStreamLive(TestCase):
         self.assertTrue(object_checks.is_url(p_req_strm.call_args[0][0], '/FAST16'))
         # -- Watch from the start --
         result = main.play_stream_live.test(channel='ITV', url=None,
-                                            start_time="2024-11-03T18:00:30", play_from_start=True)
+                                            start_time="2024-11-03T18:00:30")
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue('inputstream.adaptive.play_timeshift_buffer' in result._props)
 

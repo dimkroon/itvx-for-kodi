@@ -60,11 +60,6 @@
 				</setting>
 			</group>
 			<group id="grp_live" label="30120">
-				<setting id="live_play_from_start" label="30121" type="boolean" help="30321">
-					<level>0</level>
-					<default>false</default>
-					<control type="toggle" />
-				</setting>
 				<setting id="tv_region" label="30122" type="string" help="30322">
 					<level>0</level>
 					<default>by_account</default>
