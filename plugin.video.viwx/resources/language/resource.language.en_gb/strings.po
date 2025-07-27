@@ -69,9 +69,6 @@ msgctxt "#30120"
 msgid "Live channels"
 msgstr ""
 
-msgctxt "#30121"
-msgid "Offer to play from the start"
-msgstr ""
 
 msgctxt "#30122"
 msgid "TV region"
@@ -153,10 +150,7 @@ msgid "Target of viwX logging.\n"
 "'No logging' if you want to ensure the addon spends as little time on logging as possible."
 msgstr ""
 
-msgctxt "#30321"
-msgid "Show a dialog with the option to play the current program from the start each time a live channel is being started.\n"
-"When disabled 'play form the start' is still available on the context menu of the main live channels."
-msgstr ""
+
 
 msgctxt "#30322"
 msgid "Region for local news and weather on ITV1.\n"

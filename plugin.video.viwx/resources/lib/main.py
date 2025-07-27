@@ -289,7 +289,6 @@ def sub_menu_live(_):
                 'channel': chan_name,
                 'url': item['streamUrl'],
                 'title': prog_title,
-                'start_time': program_start_time
                 }
 
         # noinspection SpellCheckingInspection
@@ -527,7 +526,7 @@ def create_mp4_file_item(name, file_url):
 
 
 @Resolver.register
-def play_stream_live(addon, channel, url=None, title=None, start_time=None, play_from_start=False):
+def play_stream_live(addon, channel, url=None, title=None, start_time=None):
     if url is None:
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel
         logger.info("Created live url from channel name: '%s'", url)
@@ -539,13 +538,10 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None, play
         # Only affects freeview streams, is currently ignored by web.
         url = url + '?region=' + tv_region
 
-    if addon.setting['live_play_from_start'] != 'true' and not play_from_start:
-        start_time = None
     fhd_enabled = addon.setting['FHD_enabled'] == 'true'
     manifest_url, key_service_url, subtitle_url = itv.get_live_urls(url,
                                                                     title,
                                                                     start_time,
-                                                                    play_from_start,
                                                                     fhd_enabled)
     list_item = create_dash_stream_item(channel, manifest_url, key_service_url)
     if list_item:
