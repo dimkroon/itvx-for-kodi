@@ -82,7 +82,7 @@ def ctx_mnu_watch_from_start(chan_id, start_time):
         'PlayMedia(plugin://', utils.addon_info.id,
         '/resources/lib/main/play_stream_live/?channel=', chan_id,
         '&start_time=', start_time[:19],
-        '&play_from_start=True, noresume)'))
+        ', noresume)'))
     return utils.addon_info.localise(TXT_PLAY_FROM_START), cmd
 
 
