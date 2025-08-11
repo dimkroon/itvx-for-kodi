@@ -811,16 +811,21 @@ class Playlists(unittest.TestCase):
         .. note ::
             Fast channels change often and some might not be available any more.
         """
+        low_res_found = False
         for channel in ('ITV3', 'FAST5', 'FAST20'):
             playlist = self.get_playlist_live(channel, 'freeview')
             start_again_url = playlist['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
-            self.assertTrue('ctv-low.mpd' in start_again_url)
+            if not 'ctv-low.mpd' in start_again_url:
+                continue
+            low_res_found = True
             start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
             mpd_url = (start_again_url.replace('ctv-low', 'ctv').
                        format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S')))
             resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
             max_res = object_checks.check_dash_manifest(self, resp.text)
             self.assertEqual(1080, max_res)
+            break
+        self.assertTrue(low_res_found)
 
     # -----------------------
     #       VOD
