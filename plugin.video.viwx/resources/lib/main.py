@@ -492,17 +492,44 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
             'Sec-Fetch-Mode=cors&'
             'Sec-Fetch-Site=same-site'))
 
-    play_item.setProperties({
-        'inputstream': is_helper.inputstream_addon,
-        'inputstream.adaptive.manifest_type': PROTOCOL,
-        'inputstream.adaptive.license_type': DRM,
-        # Ensure to clear the Content-Type header to force curl to make the right request.
-        'inputstream.adaptive.license_key': ''.join(
-                (key_service_url, '|Content-Type=application/octet-stream|R{SSM}|')),
-        'inputstream.adaptive.stream_headers': stream_headers,
-        'inputstream.adaptive.manifest_headers': stream_headers,
-        'inputstream.adaptive.internal_cookies': 'true'
-    })
+    kodi_vers = kodi_utils.kodi_version()[0]
+    logger.info('Building ISA properties for Kodi version %s', kodi_vers)
+    if kodi_vers < 21:
+        play_item.setProperties({
+            'inputstream': is_helper.inputstream_addon,
+            'inputstream.adaptive.manifest_type': PROTOCOL,
+            'inputstream.adaptive.license_type': DRM,
+            # Ensure to clear the Content-Type header to force curl to make the right request.
+            'inputstream.adaptive.license_key': ''.join(
+                    (key_service_url, '|Content-Type=application/octet-stream|R{SSM}|')),
+            'inputstream.adaptive.stream_headers': stream_headers,
+            'inputstream.adaptive.manifest_headers': stream_headers,
+            'inputstream.adaptive.internal_cookies': 'true'
+        })
+    else:
+        import json
+        isa_props = {
+            'internal_cookies': True,
+        }
+        lic_header = 0
+        play_item.setProperties({
+            'inputstream': is_helper.inputstream_addon,
+            'inputstream.adaptive.stream_headers': stream_headers,
+            'inputstream.adaptive.manifest_headers': stream_headers,
+            'inputstream.adaptive.config': json.dumps(isa_props),
+            'inputstream.adaptive.drm_legacy': ''.join(
+                ('com.widevine.alpha|',
+                 key_service_url,
+                 '|User-Agent=', fetch.USER_AGENT,
+                 '&Content-Type=application/octet-stream',
+                 '&Referer=https://www.itv.com/'
+                 '&Origin=https://www.itv.com'
+                 '&Sec-Fetch-Dest=empty'
+                 '&Sec-Fetch-Mode=cors'
+                 '&Sec-Fetch-Site=cross-site',
+                 )
+            ),
+        })
 
     if resume_time:
         play_item.setProperties({

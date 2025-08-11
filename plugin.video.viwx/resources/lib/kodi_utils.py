@@ -38,6 +38,16 @@ TXT_LOGIN_NOW = 30621
 BTN_TXT_OK = 30790
 BTN_TXT_CANCEL = 30791
 
+_kodi_vers = None
+
+
+def kodi_version():
+    global _kodi_vers
+    if _kodi_vers is None:
+        vers = xbmc.getInfoLabel('System.BuildVersionShort').split('.')
+        _kodi_vers = (int(vers[0]), int(vers[1]))
+    return _kodi_vers
+
 
 def ask_credentials(username: str | None = None, password: str | None = None):
     """Ask the user to enter his username and password.
