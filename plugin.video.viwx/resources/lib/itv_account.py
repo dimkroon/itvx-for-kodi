@@ -228,7 +228,7 @@ class ItvSession:
             self._user_nickname = data['name']
             self._tv_region = region.tv_region(data['region'])
             self._expire_time = data['exp'] - 1800
-        except (KeyError, AttributeError, IndexError, binascii.Error, json.JSONDecodeError) as err:
+        except (KeyError, AttributeError, IndexError, ValueError, binascii.Error, json.JSONDecodeError) as err:
             logger.error("Failed to parse token: '%r'", err)
             self._user_id = None
             self._user_nickname = None
