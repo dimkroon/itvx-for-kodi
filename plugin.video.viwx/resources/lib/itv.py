@@ -55,7 +55,7 @@ def get_live_schedule(hours=4, local_tz=None):
     return schedule
 
 
-def get_live_urls(url=None, title=None, start_time=None, play_from_start=False, full_hd=False):
+def get_live_urls(url=None, title=None, start_time=None, full_hd=False):
     """Return the urls to the dash stream, key service and subtitles for a particular live channel.
 
     .. note::
@@ -72,12 +72,12 @@ def get_live_urls(url=None, title=None, start_time=None, play_from_start=False, 
     start_again_url = video_locations.get('StartAgainUrl')
 
     if start_again_url:
-        if start_time and (play_from_start or kodi_utils.ask_play_from_start(title)):
+        if start_time:
             dash_url = start_again_url.format(START_TIME=start_time)
             logger.debug('get_live_urls - selected play from start at %s', start_time)
         else:
             # Go 1 hour back to ensure we get the timeshift stream with adverts embedded
-            # and can skip back a bit in the stream. Some FAST channels that do have a large
+            # and can skip back a bit in the stream. Some FAST channels that do not have a large
             # enough buffer automatically use the maximum available time shift for that channel.
             start_time = datetime.now(timezone.utc) - timedelta(seconds=3600)
             dash_url = start_again_url.format(START_TIME=start_time.strftime('%Y-%m-%dT%H:%M:%S'))

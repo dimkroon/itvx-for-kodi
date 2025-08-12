@@ -90,7 +90,7 @@ class GetLiveUrls(TestCase):
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_itv1.json'))
     def test_get_live_urls_start_again(self, _):
-        mpd, key, subs = itv.get_live_urls('itv1/url', start_time='2023-05-06T17:18:32Z', play_from_start=True)
+        mpd, key, subs = itv.get_live_urls('itv1/url', start_time='2023-05-06T17:18:32Z')
         self.assertTrue(is_url(mpd))
         self.assertTrue('?t=' in mpd)
         self.assertTrue(is_url(key))
@@ -101,7 +101,7 @@ class GetLiveUrls(TestCase):
         for item in playlist['Playlist']['Video']['VideoLocations']:
             del item['StartAgainUrl']
         with patch('resources.lib.itvx._request_stream_data', return_value=playlist):
-            mpd, key, subs = itv.get_live_urls('itv1/url', start_time='2023-05-06T17:18:32Z', play_from_start=True)
+            mpd, key, subs = itv.get_live_urls('itv1/url', start_time='2023-05-06T17:18:32Z')
         self.assertTrue(is_url(mpd))
         self.assertFalse('?t=' in mpd)
         self.assertTrue(is_url(key))
