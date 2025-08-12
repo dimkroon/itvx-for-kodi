@@ -47,6 +47,11 @@ TXT_ADD_TO_MYLIST = 30801
 TXT_REMOVE_FROM_MYLIST = 30802
 
 
+if Script.setting['live_play_from_start']:
+    from resources.lib.cleanup import remove_setting_value
+    remove_setting_value(utils.addon_info.profile, 'live_play_from_start')
+
+
 def empty_folder():
     kodi_utils.msg_dlg(Script.localize(TXT_NO_ITEMS_FOUND))
     # Script.notify('ITV hub', Script.localize(TXT_NO_ITEMS_FOUND), icon=Script.NOTIFY_INFO, display_time=6000)
