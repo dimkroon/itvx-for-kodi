@@ -1,7 +1,3 @@
-v 1.7.3
-Hotfix:
-- Videos fail to play with the message: "Could not make the request. Your internet may be down."
-
 v 1.7.2
 Fixes:
 - In some cases, Kodi continued to run the previous version for a while after the add-on was updated.

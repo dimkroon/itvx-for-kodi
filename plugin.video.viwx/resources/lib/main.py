@@ -471,8 +471,8 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
     DRM = 'com.widevine.alpha'
 
     is_helper = inputstreamhelper.Helper(PROTOCOL, drm=DRM)
-    # if not is_helper.check_inputstream():
-    #     return False
+    if not is_helper.check_inputstream():
+        return False
 
     play_item = ListItem(offscreen=True)
     if name:
