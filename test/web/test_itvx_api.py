@@ -136,8 +136,15 @@ class Search(unittest.TestCase):
         results = resp_obj['results']
         self.assertIsInstance(results, list)
         for item in results:
-            object_checks.has_keys(item, 'id', 'contentType', 'streamingPlatform', 'data', 'score',
+            object_checks.has_keys(item, 'id', 'contentType', 'data', 'score',
                                    obj_name='resultItem')
+            if item['contentType'] == 'pretx':
+                self.assertFalse('streamingPlatform' in item)
+                # pretx is unplayable and currently not supported
+                return
+            else:
+                self.assertEqual(item['streamingPlatform'], 'itv_hub')
+
             if item['contentType'] == 'live':
                 self.assertEqual('simulcast', item['channelType'])  # Flag if other types like fast turn up.
                 object_checks.misses_keys(item, 'entityType', obj_name='resultItem')
@@ -575,7 +582,7 @@ web_req_data = {
     },
     'device': {
         'manufacturer': 'Firefox',
-        'model': '1127',
+        'model': fetch.USER_AGENT_VERSION,
         'os': {
             'name': 'Linux',
             'type': 'desktop',
@@ -671,7 +678,7 @@ features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-tra
 
 class Playlists(unittest.TestCase):
     manifest_headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+        'User-Agent': fetch.USER_AGENT,
         'Origin': 'https://www.itv.com'}
 
     @classmethod
@@ -710,9 +717,9 @@ class Playlists(unittest.TestCase):
             url,
             headers={
                 'Accept': 'application/vnd.itv.online.playlist.sim.v3+json',
-                'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                'User-Agent': fetch.USER_AGENT,
                 'Origin': 'https://www.itv.com'},
-            json=post_data, timeout=10)
+            json=post_data, timeout=(2, 8))
         strm_data = resp.json()
         return strm_data
 

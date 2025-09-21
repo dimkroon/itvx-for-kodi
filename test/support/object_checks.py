@@ -359,7 +359,7 @@ def check_short_form_item(item):
         assert '/' in item['episodeId']
 
     assert is_not_empty(item['episodeTitle'], str)
-    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp', '.gif')), \
+    assert is_url(item['imageUrl'], ('.jpg', '.jpeg', '.png', '.bmp', '.gif', 'webp')), \
            "item '{}' has not a valid imageUrl: '{}'".format(item['episodeTitle'], item['imageUrl'])
 
 
