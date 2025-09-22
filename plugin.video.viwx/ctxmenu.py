@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2024 Dimitri Kroon.
+#  Copyright (c) 2024-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
@@ -12,16 +12,15 @@ from xbmc import log, executebuiltin
 
 
 def ctxmnu_live_play_from(addon_id, startpoint=None):
-    from datetime import datetime, timedelta
+    from datetime import datetime, timedelta, timezone
     # noinspection PyUnresolvedReferences
     li = sys.listitem
     channel = li.getProperty('viwx.live_channel')
-    start_t = datetime.utcnow() - timedelta(hours=float(startpoint))
+    start_t = datetime.now(timezone.utc) - timedelta(hours=float(startpoint))
     querystring = urlencode({
         'channel': channel,
         'url': li.getProperty('viwx.live_url'),
-        'start_time': start_t.strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'play_from_start': 'True'
+        'start_time': start_t.strftime('%Y-%m-%dT%H:%M:%SZ')
     })
     command = ''.join((
         'PlayMedia(plugin://',
