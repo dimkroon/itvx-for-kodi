@@ -332,7 +332,7 @@ def sub_menu_live(_):
         cb_kwargs = callback_kwargs.copy()
         cb_kwargs['start_time'] = start_t.strftime('%Y-%m-%dT%H:%M:%SZ')
         cmd = ''.join(('PlayMedia(',
-                       build_path(play_stream_live, play_from_start=True, **cb_kwargs),
+                       build_path(play_stream_live, **cb_kwargs),
                        ', noresume)'))
         li.context.append(("Play 3.5 hrs back", cmd))
 
