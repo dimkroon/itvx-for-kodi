@@ -2,8 +2,38 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
+
+import xbmcgui
+
+
+def patch_listitem():
+    """Setting parameter `offscreen` to true when creating `ListItems`
+    can significantly speed up the creation long lists.
+
+    Since codequick doesn't use this parameter, this function monkey
+    patches `xmbcgui.Listitem` with an alternative class that sets
+    `offscreen` to True by default.
+
+    .. note ::
+        To make sure that everything references this patched ListItem apply
+        this patch before codequick is imported, or any other module that
+        uses xbmcgui.ListItem.
+    """
+    class PatchedListItem(xbmcgui.ListItem):
+        def __init__(self,
+                     label: str = '',
+                     label2: str = '',
+                     path: str = '',
+                     offscreen: bool = True):
+            super().__init__(label, label2, path, offscreen)
+
+    xbmcgui.ListItem = PatchedListItem
+
+
+patch_listitem()
+
 
 from codequick import Route, Listitem
 # noinspection PyProtectedMember
@@ -11,8 +41,7 @@ from codequick.listing import strip_formatting
 
 
 def patch_cc_route():
-    """
-    Fixes a bug in codequick v1.0.2. by monkey patching
+    """Fixes Listitem caching in codequick v1.0.2. by monkey patching
     ``codequick.route.Route.__call__(...)``.
 
     The problem is that decorating a callback with ``@Route.Register(cache_ttl=60)``
@@ -32,8 +61,7 @@ def patch_cc_route():
 
 
 def patch_label_prop():
-    """
-    Fixes an annoyance in codequick v1.0.2. by monkey patching
+    """Addresses an annoyance in codequick v1.0.2. by monkey patching
     ``codequick.listing.Listitem.label`` property.
 
     The problem is that setting label on a codequick Listitem will always
@@ -43,7 +71,7 @@ def patch_label_prop():
     has not already set.
 
     This will be fixed if you call ``patch_label_prop()`` in the addon before
-    ``codequick.run()`` is being called.
+    ``codequick.run()`` is called.
 
     """
     def label_setter(self, label):
@@ -54,3 +82,6 @@ def patch_label_prop():
         self.info.setdefault("title", unformatted_label)
 
     Listitem.label = Listitem.label.setter(label_setter)  # type: ignore
+
+
+patch_label_prop()
