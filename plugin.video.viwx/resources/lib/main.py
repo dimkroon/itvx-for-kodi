@@ -177,6 +177,7 @@ class Paginator:
 
         if next_page_nr:
             li = Listitem.next_page(filter_char=self._filter, page_nr=next_page_nr, **self._kwargs)
+            li.property['SpecialSort'] = 'bottom'
             li.info['sorttitle'] = 'zzzzzz'
             yield li
 
