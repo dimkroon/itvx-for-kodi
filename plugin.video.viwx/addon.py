@@ -1,19 +1,14 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2023 Dimitri Kroon.
+#  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
-from codequick import support
+from resources.lib import cc_patch
 from resources.lib import addon_log
 from resources.lib import main
 from resources.lib import utils
-from resources.lib import cc_patch
-
-
-cc_patch.patch_cc_route()
-cc_patch.patch_label_prop()
 
 
 if __name__ == '__main__':
