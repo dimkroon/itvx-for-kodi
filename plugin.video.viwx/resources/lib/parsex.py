@@ -3,7 +3,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 import json
@@ -293,25 +293,34 @@ def parse_editorial_slider(url, slider_data):
     """Parse editorialSliders from the main page or from a collection."""
     # noinspection PyBroadException
     try:
-        coll_data = slider_data['collection']
-        if not coll_data.get('shows'):
-            # Has happened. Items without field `shows` have an invalid headingLink
-            return None
-        page_link = coll_data.get('headingLink')
-        base_url = 'https://www.itv.com/watch'
-        if page_link:
-            # Link to the collection's page if available
-            params = {'url': base_url + page_link['href']}
+        header = slider_data.get('header')
+        if header:
+            # slider from the main page
+            params = {'url': 'https://www.itv.com' + header['linkHref']}
+            title = header['title']
+
         else:
-            # Provide the slider name when the collection contents are the
-            # items in the slider on the original page.
-            slider_name = slider_data['collection']['sliderName']
-            params = {'url': url, 'slider': slider_name}
+            # slider from a collection page
+            coll_data = slider_data['collection']
+            if not coll_data.get('shows'):
+                # Has happened. Items without a field `shows` have an invalid headingLink
+                return None
+            title = coll_data['headingTitle']
+            page_link = coll_data.get('headingLink')
+            base_url = 'https://www.itv.com/watch'
+            if page_link:
+                # Link to the collection's page if available
+                params = {'url': base_url + page_link['href']}
+            else:
+                # Provide the slider id when the collection contents are the
+                # items in the slider on the original page.
+                params = {'url': url, 'slider': slider_data['id']}
 
         return {'type': 'collection',
-                'show': {'label': coll_data['headingTitle'],
+                'show': {'label': title,
                          'params': params,
-                         'info': {'sorttitle': sort_title(coll_data['headingTitle'])}}}
+                         'info': {'sorttitle': sort_title(title),
+                                  }}}
     except:
         logger.error("Unexpected error parsing editorialSlider from %s", url, exc_info=True)
         return None
@@ -499,19 +508,27 @@ def parse_item_type_collection(item_data):
         Only items from heroContent seem to have a field `ctaLabel`.
 
     """
-    url = '/'.join(('https://www.itv.com/watch/collections',
-                   item_data.get('titleSlug', ''),
-                   item_data.get('collectionId') or item_data['pageId']))
+    if 'href' in item_data:
+        # This is a new format found in the main page's editorial rails
+        url = 'https://www.itv.com' + item_data['href']
+    else:
+        # A format still found on collection pages and hero rail.
+        url = '/'.join(('https://www.itv.com/watch/collections',
+                       item_data.get('titleSlug', ''),
+                       item_data.get('collectionId') or item_data['pageId']))
     if item_data['contentType'] == 'page':
         # This querystring is required for page items
         url += '?ind'
 
     title = item_data['title']
-    descr = '\n\n'.join(txt for txt in (item_data.get('ctaLabel', 'Collection'), item_data.get('description')) if txt)
+    descr = '\n\n'.join(txt for txt in (item_data.get('ctaLabel', 'Collection'),
+                                        item_data.get('description'),
+                                        item_data.get('subtitle')) if txt)
+    img_template = item_data.get('imageTemplate') or item_data['partnershipTileImageTemplate']
     item = {
         'label': title,
-        'art': {'thumb': item_data['imageTemplate'].format(**IMG_PROPS_THUMB),
-                'fanart': item_data['imageTemplate'].format(**IMG_PROPS_FANART)},
+        'art': {'thumb': img_template.format(**IMG_PROPS_THUMB),
+                'fanart': img_template.format(**IMG_PROPS_FANART)},
         'info': {'title': '[B]{}[/B]'.format(title),
                  'plot': descr,
                  'sorttitle': sort_title(title)},

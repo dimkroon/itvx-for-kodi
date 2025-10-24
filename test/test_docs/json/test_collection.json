@@ -8,14 +8,14 @@
       "Dev_Comment": "A 'normal' editorialSlider with shows of all types and a headingLink",
       "containerType": "Rail",
       "displayType": "Standard",
-      "id": "zyqPJaRe6vOFftNzu4HY8",
+      "id": "test_rail",
       "collection": {
         "headingTitle": "Don't miss a moment...",
         "headingLink": {
           "href": "/collections/dont-miss-a-moment/3ctGv6rzQ2etzrAmPOvWsh",
           "text": "View All"
         },
-        "sliderName": "test_rail",
+        "sliderName": "editorial_rail_slot1",
         "itemCount": 15,
         "shows": [
           {
@@ -481,7 +481,7 @@
       "Dev_Comment": "An editorialSlider without a headingLink",
       "containerType": "Rail",
       "displayType": "Promo Portrait",
-      "id": "1qO1Pb87LraYmK0ru2uFEv",
+      "id": "test_rail-2",
       "collection": {
         "headingTitle": "Drama: Top Picks",
         "sliderName": "editorial_rail_slot2",

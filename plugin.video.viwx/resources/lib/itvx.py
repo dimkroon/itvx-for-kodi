@@ -3,7 +3,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 import time
@@ -223,21 +223,16 @@ def collection_content(url=None, slider=None, hide_paid=False):
             return
 
         else:
-            # `slider` is the name of an editorialSlider.
-            # On the main page editorialSliders is a dict, on collection pages it is a list.
-            # Although a dict on the main page, the names of the sliders are not exactly the
-            # same as the keys of the dict.
+            # `slider` is the id of an editorialSlider.
             # Until now all editorial sliders on the main page have a 'view all' button, so
             # the contents of the slider itself should never be used, but better allow it
             # now in case it ever changes.
-            if is_main_page:
-                sliders_list = page_data['editorialSliders'].values()
-            else:
-                sliders_list = page_data['editorialSliders']
+            sliders_list = page_data['editorialSliders']
             items_list = None
             for slider_item in sliders_list:
-                if slider_item['collection']['sliderName'] == slider:
-                    items_list = slider_item['collection']['shows']
+                if slider_item['id'] == slider:
+                    # Try to get the items form the main page or from a collections page.
+                    items_list = slider_item.get('items') or slider_item['collection']['shows']
                     break
             if items_list is None:
                 logger.error("Failed to parse collection content: Unknown slider '%s'", slider)

@@ -330,7 +330,7 @@ def list_collections(_):
         if item:
             yield Listitem.from_dict(list_collection_content, **item['show'])
 
-    for slider in main_page['editorialSliders'].values():
+    for slider in main_page['editorialSliders']:
         item = parsex.parse_editorial_slider(url, slider)
         if item:
             yield Listitem.from_dict(list_collection_content, **item['show'])

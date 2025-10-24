@@ -474,17 +474,20 @@ class MainPage(unittest.TestCase):
                     # Just to check over time if this is always true
                     self.assertTrue(any(inf.startswith('Series') for inf in item['contentInfo']))
 
-        self.assertIsInstance(page_props['editorialSliders'], dict)
-        for item in page_props['editorialSliders'].values():
-            collection = item['collection']
-            if collection.get('headingLink'):
+        self.assertIsInstance(page_props['editorialSliders'], list)
+        for item in page_props['editorialSliders']:
+            header = item['header']
+            if header.get('linkHref'):
                 # These collections have their own page and their data on the main page is not used.
                 continue
-            # , 'imageTreatment', 'imageAspectRatio', 'imageClass'
-            has_keys(collection, 'headingTitle', 'shows',
-                     obj_name='collection-' + collection['headingTitle'])
-            for show in collection['shows']:
-                check_shows(self, show, 'MainPage.ES[' + collection['headingTitle'] + ']')
+            has_keys(item, 'header', 'items', 'key', 'isRail', 'tileType', 'id',
+                     obj_name='collection-' + header['title'])
+            self.assertTrue(is_not_empty(header['title'], str))
+            self.assertTrue(is_not_empty(header['linkAriaLabel'], str))
+            self.assertTrue(is_not_empty(item['id'], str))
+            self.assertTrue(item['isRail'])                     # Just to flag when another item pops up.
+            for show in item['items']:
+                check_shows(self, show, 'MainPage.ES[' + header['title'] + ']')
 
         self.assertIsInstance(page_props['trendingSliderContent'], dict)
         self.assertTrue(page_props['trendingSliderContent']['header']['title'])
@@ -575,6 +578,7 @@ class CollectionPages(unittest.TestCase):
             is_url(page_data['pageImageUrl'])
 
             for slider in editorial_sliders:
+                testcase.assertTrue(is_not_empty(slider['id'], str))
                 collection_data = slider['collection']
                 has_keys(collection_data, 'headingTitle', 'sliderName')
                 obj_name = parent_name + collection_data['headingTitle']
@@ -611,11 +615,14 @@ class CollectionPages(unittest.TestCase):
 
         page_data = parsex.scrape_json(fetch.get_document('https://www.itv.com/'))
         editorial_sliders = page_data['editorialSliders']
-        for rail in editorial_sliders.values():
-            pagelink = rail['collection'].get('headingLink', {}).get('href')
+        for rail in editorial_sliders:
+            has_keys(rail, 'header', 'items', 'key', 'isRail', 'tileType', 'id')
+            self.assertTrue(rail['isRail'])            # Just interested to know what other items are.
+            # All editorial sliders on the main page should have a 'view all' button.
+            pagelink = rail['header']['linkHref']
             if not pagelink:
                 continue
-            self.check_page(self, 'https://www.itv.com/watch' + pagelink)
+            self.check_page(self, 'https://www.itv.com' + pagelink)
 
         for slider in page_data['shortFormSliderContent']:
             if slider['key'] == 'newsShortForm':

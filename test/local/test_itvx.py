@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
@@ -117,11 +117,11 @@ class FullSchedule(TestCase):
 
 class MainPageItem(TestCase):
     def test_list_main_page_items(self):
-        page_data = open_json('html/index-data.json')
+        page_data = open_json('json/index-data.json')
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(7, items_count)
+            self.assertEqual(11, items_count)       # test data contains 7 hero items of various types.
             for item in items:
                 check_item(self, item)
         # Hero item of unknown type is disregarded.
@@ -167,7 +167,7 @@ class Collections(TestCase):
         items2 = list(filter(None, itvx.collection_content(slider='shortFormSlider', hide_paid=True)))
         self.assertListEqual(items, items2)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_trending(self, _):
         items = list(filter(None, itvx.collection_content(slider='trendingSliderContent')))
         self.assertGreater(len(items), 10)
@@ -178,12 +178,12 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_from_main_page(self, _):
-        items = list(itvx.collection_content(url='https://www.itv.com', slider='editorial_rail_slot1'))
-        self.assertEqual(4, len(items))
+        items = list(itvx.collection_content(url='https://www.itv.com', slider='3yrH7Suy8kFCPlkYFrgfwl'))
+        self.assertEqual(12, len(items))
         for item in items:
             check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(url='https://www.itv.com',
-                                                           slider='editorial_rail_slot1',
+                                                           slider='3yrH7Suy8kFCPlkYFrgfwl',
                                                            hide_paid=True)))
         self.assertListEqual(items, items2)
 
@@ -216,12 +216,12 @@ class Collections(TestCase):
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
     def test_editorial_slider_from_collection(self, _):
-        items = list(itvx.collection_content(url='my_test_collection', slider='editorial_rail_slot2'))
+        items = list(itvx.collection_content(url='my_test_collection', slider='test_rail-2'))
         self.assertEqual(4, len(items))
         for item in items:
             check_item(self, item)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_non_existing_collection(self, _):
         items = list(filter(None, itvx.collection_content('https://www.itv.com', slider='SomeNonExistingSlider')))
         self.assertListEqual([], items)
