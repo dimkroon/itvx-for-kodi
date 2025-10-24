@@ -1,3 +1,10 @@
+v 1.7.4
+Fixes:
+- Collection list was empty, due to changes at ITVX.
+
+Changes:
+- Re-enabled inputstream helper (undoing changes of 1.7.3 now that inputstreamhelper has been fixed).
+
 v 1.7.3
 Hotfix:
 - Videos fail to play with the message: "Could not make the request. Your internet may be down."
