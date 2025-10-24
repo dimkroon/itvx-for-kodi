@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
@@ -106,10 +106,11 @@ class LiveSchedules(unittest.TestCase):
                 if program['displayTitle'] is None:
                     # If displayTitle is None all other fields are None or False as well.
                     # Noticed first 25-6-2023, on the FAST channels that were no longer available
-                    # Since May 2024 a channel name 'ITV Sport' has empty data.
+                    # Since May 2024 channels broadcasting live streams not divided up in separate
+                    # programmes have empty data.
                     for k in progr_keys:
                         self.assertFalse(program[k])
-                    self.assertTrue(chan['name'].lower() in ('itv sport', ))
+                    self.assertTrue(chan['name'].lower() in ('itv sport', 'space live 24/7 channel'))
                 else:
                     self.assertTrue(object_checks.is_iso_utc_time(program['start']))
                     self.assertTrue(object_checks.is_iso_utc_time(program['end']))

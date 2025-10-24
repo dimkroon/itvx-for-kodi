@@ -3,7 +3,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 from test.support import fixtures
@@ -646,7 +646,10 @@ class WatchPages(unittest.TestCase):
         # some fields missing as well, but there is no point in checking that.
         # From 10-2023 fields of 'citv' are also all None or False. Most likely to be removed in the future.
         if all(not progr_data.get(k) for k in all_keys):
-            self.assertTrue(obj_name.lower().startswith('unwind') or obj_name.lower().startswith('citv'))
+            name = obj_name.lower()
+            self.assertTrue(name.startswith('unwind') or
+                            name.startswith('itv sport') or
+                            name.startswith('space live 24/7 channel'))
             return
 
         has_keys(progr_data, *all_keys, obj_name=obj_name)
