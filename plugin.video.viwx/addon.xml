@@ -8,7 +8,7 @@
     <import addon="script.module.tzdata" version="0.2.1"/>
     <import addon="script.module.tzlocal" version="5.0.1"/>
     <import addon="script.module.codequick" version="1.0.3"/>
-    <import addon="script.module.inputstreamhelper" version="0.6.1"/>
+    <import addon="script.module.inputstreamhelper" version="0.8.3"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>video</provides>
