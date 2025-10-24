@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 import xbmcaddon
 
@@ -219,19 +219,19 @@ class MyItvx(TestCase):
 
 
 class Collections(TestCase):
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_get_collections(self, _):
         coll = main.list_collections.test()
-        self.assertEqual(20, len(coll))
+        self.assertEqual(17, len(coll))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_get_collection_news(self, _):
         shows = list(filter(None, main.list_collection_content.test(slider='newsShortForm')))
-        self.assertGreater(len(shows), 10)
+        self.assertEqual(len(shows), 3)
         for item in shows:
             self.assertIsInstance(item, Listitem)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/index-data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_get_collection_trending(self, _):
         shows = list(filter(None, main.list_collection_content.test(slider='trendingSliderContent')))
         self.assertGreater(len(shows), 10)

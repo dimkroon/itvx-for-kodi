@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from test.support import fixtures
 fixtures.global_setup()
@@ -194,7 +194,7 @@ class Generic(unittest.TestCase):
         self.assertIsNone(parsex.parse_hero_content(item))
 
     def test_parse_main_page_short_form_slider(self):
-        data = open_json('html/index-data.json')
+        data = open_json('json/index-data.json')
         for slider in data['shortFormSliderContent']:
             obj = parsex.parse_short_form_slider(slider)
             has_keys(obj, 'type', 'show')
@@ -215,7 +215,7 @@ class Generic(unittest.TestCase):
     def test_parse_editorial_slider_items(self):
         # Sliders on the main page
         data = open_json('json/index-data.json')
-        for item_data in data['editorialSliders'].values():
+        for item_data in data['editorialSliders']:
             obj = parsex.parse_editorial_slider('https://www.itv.com', item_data)
             has_keys(obj, 'type', 'show')
             is_li_compatible_dict(self, obj['show'])
@@ -283,7 +283,7 @@ class Generic(unittest.TestCase):
         self.assertIsNone(item)
 
     def test_parse_collection_title_from_main_page(self):
-        data = open_json('html/index-data.json')['editorialSliders']['editorialRailSlot1']['collection']['shows']
+        data = open_json('json/index-data.json')['editorialSliders'][0]['items']
         item = parsex.parse_collection_item(data[0])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
@@ -304,7 +304,7 @@ class Generic(unittest.TestCase):
         is_li_compatible_dict(self, item['show'])
 
         # shortForm news item from the main page
-        data = open_json('html/index-data.json')['shortFormSliderContent'][0]['items']
+        data = open_json('json/index-data.json')['shortFormSliderContent'][0]['items']
         item = parsex.parse_shortform_item(data[1], tz_uk, "%H-%M-%S")
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
@@ -314,7 +314,7 @@ class Generic(unittest.TestCase):
         self.assertIsNone(item)
 
     def test_parse_trending_collection_item(self):
-        data = open_json('html/index-data.json')['trendingSliderContent']['items']
+        data = open_json('json/index-data.json')['trendingSliderContent']['items']
         item = parsex.parse_collection_item(data[1])
         has_keys(item, 'type', 'show')
         is_li_compatible_dict(self, item['show'])
