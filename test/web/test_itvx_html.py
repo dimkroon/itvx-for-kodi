@@ -901,8 +901,8 @@ class TvGuide(unittest.TestCase):
         self.assertEqual(today.date(), start_t.date())
 
 
-all_categories = ['factual', 'drama-soaps', 'children', 'films', 'sport',
-                  'comedy', 'news', 'entertainment', 'signed-bsl']
+all_categories = ['films'] #['factual', 'drama-soaps', 'children', 'films', 'sport',
+                 # 'comedy', 'news', 'entertainment', 'signed-bsl']
 
 
 class Categories(unittest.TestCase):

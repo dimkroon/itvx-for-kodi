@@ -309,7 +309,7 @@ class Categories(TestCase):
     def test_category_film(self, _):
         items = main.list_category.test('category/films')
         self.assertIsInstance(items, list)
-        self.assertEqual(292, len(items))
+        self.assertEqual(394, len(items))
         check_list_items(self, items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
@@ -341,10 +341,10 @@ class Categories(TestCase):
     def test_category_drama_list_by_character(self, _):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0) * 2):  # a-z on 20 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
-            self.assertEqual(19, len(programmes))
+            self.assertEqual(24, len(programmes))
             check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='0-9')))
-            self.assertEqual(1, len(programmes))
+            self.assertEqual(3, len(programmes))
             check_list_items(self, programmes)
         # Test content of 'A' divided in sub-pages
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 6)*3):  # a-z on 20 items, page length=6
@@ -352,7 +352,7 @@ class Categories(TestCase):
             self.assertEqual(7, len(programmes))
             check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A', page_nr=2)))
-            # Categories 'A' has 19 items
+            # Categories 'A' has 24 items
             self.assertEqual(7, len(programmes))  # The remaining item of the last page is added to this one.
             check_list_items(self, programmes)
 
