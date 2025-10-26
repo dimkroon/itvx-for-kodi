@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from test.support import fixtures
 fixtures.global_setup()
@@ -151,31 +151,24 @@ class TestGetProductions(unittest.TestCase):
 class TestPlayCatchup(unittest.TestCase):
     def test_play_itv_1(self):
         result = main.play_stream_live.test("itv", 'https://simulcast.itv.com/playlist/itvonline/itv', None)
-        self.assertEqual('itv', result.getLabel())
         self.assertIsInstance(result, XbmcListItem)
 
     def test_play_vod_a_touch_of_frost(self):
         result = main.play_stream_catchup(MagicMock(),
-                                          url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y',
-                                          name='A Touch of Frost')
-        self.assertEqual('A Touch of Frost', result.getLabel())
+                                          url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y' )
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
         self.assertIsInstance(result, XbmcListItem)
 
     def test_play_vod_frost_with_subtitles(self):
         with patch.object(itv.Script, 'setting', new={'subtitles_show': 'true', 'subtitles_color': 'true'}):
             result = main.play_stream_catchup(MagicMock(),
-                                              url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y',
-                                              name='A Touch of Frost')
-        self.assertEqual('A Touch of Frost', result.getLabel())
+                                              url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y')
         self.assertEqual(1, len(result._subtitles))
         self.assertIsInstance(result, XbmcListItem)
 
     def test_play_vod_episode_julia_bradbury(self):
         result = main.play_stream_catchup(MagicMock(),
-                                          url='https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001',
-                                          name='Walks with Julia Bradbury')
-        self.assertEqual('Walks with Julia Bradbury', result.getLabel())
+                                          url='https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001')
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue(object_checks.is_url(result.getPath(), '.mpd'))
 
@@ -185,7 +178,7 @@ class TestPlayCatchup(unittest.TestCase):
         news_item = page_data['shortFormSliderContent'][0]['items'][0]
         item_url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
         # play the item
-        result = main.play_title.test(item_url, 'news item')
+        result = main.play_title.test(item_url)
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 

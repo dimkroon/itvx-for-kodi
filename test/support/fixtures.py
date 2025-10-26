@@ -2,7 +2,7 @@
 #  Copyright (c) 2022-2025 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
@@ -60,6 +60,10 @@ def global_setup():
 
         # Use an xbmcgui.ListItem that stores the values which have been set.
         patch_listitem()
+
+        # Apply codequick patches
+        from resources.lib.cc_patch import patch_label_prop
+        patch_label_prop()
 
 
 patch_1 = None
@@ -232,17 +236,20 @@ def localise_mock(self, str_id):
     Returns only the text of the first line in the file.
 
     """
-    pattern = f'msgctxt "#{str_id}"\nmsgid "([^"]*)"'
-    test_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
-    lang_file = os.path.join(
-        test_dir,
-        '../plugin.video.viwx/resources/language/resource.language.en_gb/strings.po')
-    with open(lang_file) as f:
-        lang_texts = f.read()
-    match = re.search(pattern, lang_texts)
-    if match:
-        return match[1]
-    return ''
+    if 30000 <= str_id <= 30999:
+        pattern = f'msgctxt "#{str_id}"\nmsgid "([^"]*)"'
+        test_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
+        lang_file = os.path.join(
+            test_dir,
+            '../plugin.video.viwx/resources/language/resource.language.en_gb/strings.po')
+        with open(lang_file) as f:
+            lang_texts = f.read()
+        match = re.search(pattern, lang_texts)
+        if match:
+            return match[1]
+        return ''
+    else:
+        return 'UNKNOWN_SYS_STRING'
 
 
 class FileMock(xbmcvfs.File):
@@ -253,7 +260,7 @@ class FileMock(xbmcvfs.File):
         self._file = open(translate_path_mock(filepath), mode)
 
     def read(self, numBytes: int = 0) -> str:
-        # For some reason Kodi's default numBytes == 0, while python requires -1 to read all content.
+        # For some reason Kodi's default numBytes == 0, while Python requires -1 to read all content.
         if numBytes == 0:
             numBytes = -1
         return self._file.read(numBytes)
