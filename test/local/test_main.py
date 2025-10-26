@@ -521,7 +521,6 @@ class PlayStreamLive(TestCase):
     def test_play_live_by_channel_name(self, _, __, p_req_strm):
         result = main.play_stream_live.test(channel='ITV', url=None)
         self.assertIsInstance(result, XbmcListItem)
-        self.assertEqual('ITV', result.getLabel())
         self.assertFalse('IsPlayable' in result._props)
         self.assertFalse('inputstream.adaptive.play_timeshift_buffer' in result._props)
         # Assert channel name is converted to a full url
@@ -531,7 +530,6 @@ class PlayStreamLive(TestCase):
         p_req_strm.reset_mock()
         result = main.play_stream_live.test(channel='FAST16', url=None)
         self.assertIsInstance(result, XbmcListItem)
-        self.assertEqual('FAST16', result.getLabel())
         self.assertFalse('inputstream.adaptive.play_timeshift_buffer' in result._props)
         # Assert channel name is converted to a full url
         self.assertEqual(1, len(p_req_strm.call_args_list))
@@ -582,57 +580,45 @@ class PlayStreamCatchup(TestCase):
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_news_short.json'))
     def test_play_short_news_item(self, _):
-        result = main.play_stream_catchup.test('some/url', 'a short news item')
+        result = main.play_stream_catchup.test('some/url')
         self.assertIsInstance(result, XbmcListItem)
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('requests.get', return_value=HttpResponse())
     @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
     def test_play_episode(self, _, __):
-        result = main.play_stream_catchup.test('some/url', 'my episode')
+        result = main.play_stream_catchup.test('some/url')
         self.assertIsInstance(result, XbmcListItem)
-        self.assertEqual('my episode', result.getLabel())
-        self.assertEqual('my episode', result._info['video']['title'])
         with self.assertRaises(KeyError):
             result._info['video']['plot']
         self.assertFalse('IsPlayable' in result._props)
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
-    @patch('requests.get', return_value=HttpResponse())
-    @patch('resources.lib.itv_account.ItvSession.cookie', new={'Itv.Session': ''})
-    def test_play_episode_without_title(self, _, __):
-        result = main.play_stream_catchup.test('some/url', '')
-        self.assertIsInstance(result, XbmcListItem)
-        self.assertEqual('', result.getLabel())
-        with self.assertRaises(KeyError):
-            result._info['video']['title']
-
-    @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=('my/subs.file', ))
     def test_play_episode_with_subtitles(self, _, __, ___):
-        result = main.play_stream_catchup.test('some/url', 'my episode')
+        result = main.play_stream_catchup.test('some/url')
         self.assertEqual(len(result._subtitles), 1)
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=XbmcListItem())
     @patch('resources.lib.itv.get_vtt_subtitles', return_value=None)
     def test_play_episode_without_subtitles(self, _, __, ___):
-        result = main.play_stream_catchup.test('some/url', 'my episode')
+        result = main.play_stream_catchup.test('some/url')
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=xbmcgui.ListItem())
     @patch('resources.lib.itvx.get_resume_point', return_value=32)
     def test_play_episode_with_resume(self, _, __, ___):
-        result = main.play_stream_catchup.test('some/url', 'my episode', set_resume_point=True)
+        result = main.play_stream_catchup.test('some/url', set_resume_point=True)
         self.assertEqual('32', result._props['ResumeTime'])
         self.assertTrue('TotalTime' in result._props)
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=errors.AccessRestrictedError)
     def test_play_premium_episode(self, _):
-        result = main.play_stream_catchup.test('url', '')
+        result = main.play_stream_catchup.test('url')
         self.assertIs(result, False)
 
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_doc_martin.json'))
@@ -640,17 +626,17 @@ class PlayStreamCatchup(TestCase):
         # Ensure we have an empty file and session object
         with patch.object(itv_account.itv_session(), 'account_data', {}):
             with self.assertRaises(SystemExit) as cm:
-                main.play_stream_catchup.test('url', '')
+                main.play_stream_catchup.test('url')
             self.assertEqual(1, cm.exception.code)
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=ValueError)
     def test_play_catchup_with_other_error(self, _):
-        self.assertRaises(ValueError, main.play_stream_catchup.test, 'url', '')
+        self.assertRaises(ValueError, main.play_stream_catchup.test, 'url')
 
     @patch('resources.lib.itvx._request_stream_data', return_value=open_json('playlists/pl_doc_martin.json'))
     @patch('resources.lib.main.create_dash_stream_item', return_value=False)
     def test_play_catchup_inputstream_adaptive_not_installed(self, _, __):
-        result = main.play_stream_catchup.test('url', '')
+        result = main.play_stream_catchup.test('url')
         self.assertIs(result, False)
 
 

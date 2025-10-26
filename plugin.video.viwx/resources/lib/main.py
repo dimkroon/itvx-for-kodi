@@ -465,7 +465,7 @@ def do_search(addon, search_query):
         yield li
 
 
-def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_time=None):
+def create_dash_stream_item(manifest_url, key_service_url, resume_time=None):
     # noinspection PyImport,PyUnresolvedReferences
     import inputstreamhelper
 
@@ -480,9 +480,6 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
         return False
 
     play_item = ListItem(offscreen=True)
-    if name:
-        play_item.setLabel(name)
-        play_item.setInfo('video', {'title': name})
 
     play_item.setPath(manifest_url)
     play_item.setContentLookup(False)
@@ -519,12 +516,9 @@ def create_dash_stream_item(name: str, manifest_url, key_service_url, resume_tim
     return play_item
 
 
-def create_mp4_file_item(name, file_url):
+def create_mp4_file_item(file_url):
     logger.debug('mp4 file url: %s', file_url)
     play_item = ListItem(offscreen=True)
-    if name:
-        play_item.setLabel(name)
-        play_item.setInfo('video', {'title': name})
     play_item.setPath(file_url)
     play_item.setContentLookup(False)
     play_item.setMimeType('video/mp4')
@@ -549,7 +543,7 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None):
                                                                     title,
                                                                     start_time,
                                                                     fhd_enabled)
-    list_item = create_dash_stream_item(channel, manifest_url, key_service_url)
+    list_item = create_dash_stream_item(manifest_url, key_service_url)
     if list_item:
         if start_time and ('?t=' in manifest_url or '&t=' in manifest_url):
             list_item.setProperty('inputstream.adaptive.play_timeshift_buffer', 'true')
@@ -560,9 +554,9 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None):
 
 
 @Resolver.register
-def play_stream_catchup(plugin, url, name, set_resume_point=False):
+def play_stream_catchup(plugin, url, set_resume_point=False):
 
-    logger.info('play catchup stream - %s  url=%s', name, url)
+    logger.info('play catchup stream url=%s', url)
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
         manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url, fhd_enabled)
@@ -573,9 +567,9 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
         return False
 
     if stream_type == 'SHORT':
-        return create_mp4_file_item(name, manifest_url)
+        return create_mp4_file_item(manifest_url)
     else:
-        list_item = create_dash_stream_item(name, manifest_url, key_service_url)
+        list_item = create_dash_stream_item(manifest_url, key_service_url)
         if not list_item:
             return False
 
@@ -599,8 +593,8 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
 
 
 @Resolver.register
-def play_title(plugin, url, name=''):
-    """Play an episode from an url to the episode's html page.
+def play_title(plugin, url):
+    """Play an episode from a url to the episode's html page.
 
     While episodes obtained from list_productions() have direct urls to stream's
     playlist, episodes from listings obtained by parsing html pages have an url
@@ -612,7 +606,7 @@ def play_title(plugin, url, name=''):
     except AccessRestrictedError:
         kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
         return False
-    return play_stream_catchup(plugin, url, name)
+    return play_stream_catchup(plugin, url)
 
 
 @Script.register
