@@ -4,12 +4,14 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
-import xbmcaddon
+from __future__ import annotations
 
 from test.support import fixtures
 fixtures.global_setup()
 
 import json
+import importlib
+import inspect
 
 from datetime import datetime, timezone
 from unittest import TestCase
@@ -30,6 +32,34 @@ from resources.lib import itv_account
 
 setUpModule = fixtures.setup_local_tests
 tearDownModule = fixtures.tear_down_local_tests
+
+
+def check_list_items(testcase: TestCase, list_items: Listitem | list[Listitem]):
+    """Perform some checks on codequick Listitems
+
+    """
+    if isinstance(list_items, Listitem):
+        list_items = [list_items]
+    for li in list_items:
+        testcase.assertIsInstance(li, Listitem)
+        # Ascertain it builds
+        li.build()
+        # Check that the callback arguments are present in the callback function.
+        path_parts = li.path.path.strip('/').split('/')
+        module = importlib.import_module('.'.join(path_parts[:-1]))
+        callb = getattr(module, path_parts[-1])
+        callb_sign = inspect.signature(callb)
+        if any(param.kind == param.VAR_KEYWORD for param in callb_sign.parameters.values()):
+            # all keyword arguments are accepted.
+            continue
+        for kwarg in li.params.keys():
+            if kwarg.startswith('_') and kwarg.endswith('_'):
+                # Special keyword arguments used internally by codequick.
+                # To keep playable urls consistent, do not allow these in playable items.
+                testcase.assertFalse(li.path.is_playable)
+                continue
+            testcase.assertTrue(kwarg in callb_sign.parameters,
+                                f"Keyword argument '{kwarg}' not present in callback '{path_parts[-1]}'.")
 
 
 class Paginator(TestCase):
@@ -57,14 +87,16 @@ class MainMenu(TestCase):
         mockeddt.mocked_now = datetime.now(tz=timezone.utc).replace(hour=21)
         items = list(main.root.test())
         self.assertGreater(len(items), 10)
+        # Check context before listitem check, because Listitem.build()
+        # will create context menus on every playable.
         items_with_ctx_menus = 0
         for item in items:
-            self.assertIsInstance(item, Listitem)
             if len(item.context) > 0:
                 items_with_ctx_menus += 1
         # Check 'My ItvX' is present
         self.assertTrue(items[0].label == 'My itvX')
         self.assertEqual(6, items_with_ctx_menus)
+        check_list_items(self, items)
 
 
 class LiveChannels(TestCase):
@@ -77,6 +109,7 @@ class LiveChannels(TestCase):
         self.assertIsInstance(chans, list)
         chan_list = list(chans)
         self.assertGreaterEqual(len(chan_list), 10)
+        check_list_items(self, chan_list)
         self.assertEqual(2, mocked_get_json.call_count)
         # Next call is from cache
         main.sub_menu_live.test()
@@ -89,6 +122,7 @@ class LiveChannels(TestCase):
         cache.purge()
         chans = main.sub_menu_live.test()
         self.assertIsInstance(chans, list)
+        self.assertGreaterEqual(len(chans), 10)
 
 
 class MyItvx(TestCase):
@@ -103,6 +137,7 @@ class MyItvx(TestCase):
             with patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/byw.json')):
                 list_items = main.sub_menu_my_itvx.test()
                 self.assertEqual(4, len(list_items))
+                check_list_items(self, list_items)
 
     @patch('resources.lib.itv_account.fetch_authenticated',
            new=lambda funct, url, login=True, **kwargs: funct(url, **kwargs))
@@ -112,6 +147,7 @@ class MyItvx(TestCase):
                    return_value=HttpResponse(text=open_doc('usercontent/last_watched_all.json')())) as p_fetch:
             shows = list(main.generic_list.test('watching', filter_char=None))
             self.assertEqual(10, len(shows))
+            check_list_items(self, shows)
             p_fetch.assert_called_once()
         # All responses below have been observed in the wild when the watched list had no items.
         cache.purge()
@@ -135,8 +171,7 @@ class MyItvx(TestCase):
     def test_list_mylist(self, _):
         li_items = main.generic_list.test(filter_char=None, page_nr=None)
         self.assertIsInstance(li_items, list)
-        for item in li_items:
-            self.assertIsInstance(item, Listitem)
+        check_list_items(self, li_items)
 
     @patch('resources.lib.cache.my_list_programmes', new=None)
     def test_my_list_context_menu_not_logged_in(self):
@@ -191,6 +226,7 @@ class MyItvx(TestCase):
             result = main.generic_list.test('byw')
         p_fetch.assert_called_once()
         self.assertEqual(12, len(result))
+        check_list_items(self, result)
 
     @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/recommended.json'))
     def test_recommended(self, p_fetch):
@@ -200,6 +236,7 @@ class MyItvx(TestCase):
             result = main.generic_list.test('recommended')
         p_fetch.assert_called_once()
         self.assertEqual(12, len(result))
+        check_list_items(self, result)
 
         # Logged In
         p_fetch.reset_mock()
@@ -208,11 +245,13 @@ class MyItvx(TestCase):
             result = main.generic_list.test('recommended')
             p_fetch.assert_called_once()
             self.assertEqual(12, len(result))
+            check_list_items(self, result)
 
             # Hide paid
             with patch('xbmcaddon.Addon.getSetting', return_value='true'):
                 result = main.generic_list.test('recommended')
             self.assertEqual(11, len(result))       # one paid item in the list.
+            check_list_items(self, result)
 
     def test_non_existing_type_of_generic_list(self):
         self.assertRaises(ValueError, main.generic_list.test, 'non-existing-list')
@@ -223,34 +262,31 @@ class Collections(TestCase):
     def test_get_collections(self, _):
         coll = main.list_collections.test()
         self.assertEqual(17, len(coll))
+        check_list_items(self, coll)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_get_collection_news(self, _):
         shows = list(filter(None, main.list_collection_content.test(slider='newsShortForm')))
         self.assertEqual(len(shows), 3)
-        for item in shows:
-            self.assertIsInstance(item, Listitem)
+        check_list_items(self, shows)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_get_collection_trending(self, _):
         shows = list(filter(None, main.list_collection_content.test(slider='trendingSliderContent')))
         self.assertGreater(len(shows), 10)
-        for item in shows:
-            self.assertIsInstance(item, Listitem)
+        check_list_items(self, shows)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
     def test_get_collection_from_collection_page(self, _):
         shows = list(filter(None, main.list_collection_content.test(url='top-picks')))
         self.assertGreater(len(shows), 10)
-        for item in shows:
-            self.assertIsInstance(item, Listitem)
+        check_list_items(self, shows)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_itvx-kids.json'))
     def test_get_collection_from_collection_page_with_rails(self, _):
         shows = list(filter(None, main.list_collection_content.test(url='itvs-kids')))
         self.assertGreater(len(shows), 10)
-        for item in shows:
-            self.assertIsInstance(item, Listitem)
+        check_list_items(self, shows)
 
 
 class Categories(TestCase):
@@ -261,21 +297,20 @@ class Categories(TestCase):
     def test_get_categories(self, _):
         cats = main.list_categories.test()
         self.assertAlmostEqual(len(cats), 8, delta=2)
-        for cat in cats:
-            self.assertIsInstance(cat, Listitem)
+        check_list_items(self, cats)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_drama-soaps.json'))
     def test_get_category_drama(self, _):
         programmes = main.list_category.test('sdfg')
         self.assertGreater(len(programmes), 100)
-        for prog in programmes:
-            self.assertIsInstance(prog, (Listitem, type(None)))
+        check_list_items(self, programmes)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_films.json'))
     def test_category_film(self, _):
         items = main.list_category.test('category/films')
         self.assertIsInstance(items, list)
         self.assertEqual(292, len(items))
+        check_list_items(self, items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_get_category_children_paginated(self, _):
@@ -283,18 +318,22 @@ class Categories(TestCase):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 60) * 2):  # no a-z, page length = 30
             programmes = list(filter(None, main.list_category.test('sdfg')))
             self.assertEqual(61, len(programmes))
+            check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', page_nr=2)))
             self.assertEqual(8, len(programmes))
+            check_list_items(self, programmes)
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(0, 125)):  # no a-z, page length = 55
             # content must be more than 5 longer than page length before actual pagination is performed.
             programmes = list(filter(None, main.list_category.test('sdfg')))
             self.assertEqual(128, len(programmes))
+            check_list_items(self, programmes)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_children.json'))
     def test_category_children_az_list(self, _):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0)):  # a-z on 20 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg')))
             self.assertEqual(20, len(programmes))
+            check_list_items(self, programmes)
             self.assertEqual('A', programmes[0].label)
             self.assertEqual('A', programmes[0].params['filter_char'])
 
@@ -303,15 +342,19 @@ class Categories(TestCase):
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 0) * 2):  # a-z on 20 items, page length=0
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
             self.assertEqual(19, len(programmes))
+            check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='0-9')))
             self.assertEqual(1, len(programmes))
+            check_list_items(self, programmes)
         # Test content of 'A' divided in sub-pages
         with patch('xbmcaddon.Addon.getSettingInt', side_effect=(20, 6)*3):  # a-z on 20 items, page length=6
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A')))
             self.assertEqual(7, len(programmes))
+            check_list_items(self, programmes)
             programmes = list(filter(None, main.list_category.test('sdfg', filter_char='A', page_nr=2)))
             # Categories 'A' has 19 items
             self.assertEqual(7, len(programmes))  # The remaining item of the last page is added to this one.
+            check_list_items(self, programmes)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_category_news(self, _):
@@ -319,12 +362,14 @@ class Categories(TestCase):
         items = main.list_category.test('category/news')
         self.assertIsInstance(items, list)
         self.assertEqual(7, len(items))
+        check_list_items(self, items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_hero_items(self, _):
         items = main.list_news_sub_category.test('my/url', 'heroAndLatestData', None)
         self.assertIsInstance(items, list)
         self.assertEqual(12, len(items))
+        check_list_items(self, items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_long_format_items(self, _):
@@ -332,6 +377,7 @@ class Categories(TestCase):
         items = main.list_news_sub_category.test('my/url', 'longformData', None)
         self.assertIsInstance(items, list)
         self.assertEqual(36, len(items))
+        check_list_items(self, items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json'))
     def test_sub_category_news_rails(self, _):
@@ -339,6 +385,7 @@ class Categories(TestCase):
         items = main.list_news_sub_category.test('my/url', 'curatedRails', 'All Around The UK')
         self.assertIsInstance(items, list)
         self.assertEqual(12, len(items))
+        check_list_items(self, items)
 
 
 @patch("resources.lib.cache.get_item", new=lambda *a, **k: None)     # disable cache
@@ -357,6 +404,7 @@ class Productions(TestCase):
         list_items = main.list_productions.test('some/url/to/marple')
         self.assertIsInstance(list_items, list)
         self.assertEqual(6, len(list_items))
+        check_list_items(self, list_items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
     def test_episodes_marple_series_4(self, _):
@@ -364,6 +412,7 @@ class Productions(TestCase):
         list_items = main.list_productions.test('some/url/to/marple', series_idx='4')
         self.assertIsInstance(list_items, list)
         self.assertEqual(4, len(list_items))
+        check_list_items(self, list_items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_midsomer-murders.json'))
     def test_episodes_midsummer_murders_series_other_episodes(self, _):
@@ -371,6 +420,7 @@ class Productions(TestCase):
         list_items = main.list_productions.test('/some/url//to/midsumer', series_idx='others')
         self.assertIsInstance(list_items, list)
         self.assertEqual(1, len(list_items))      # 22 series, 1 episode
+        check_list_items(self, list_items)
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_bad-girls_data.json'))
     def test_episodes_bad_girls_series_5(self, _):
@@ -378,6 +428,7 @@ class Productions(TestCase):
         list_items = main.list_productions.test('some/url/to/bad girls', series_idx='5')
         self.assertIsInstance(list_items, list)
         self.assertEqual(16, len(list_items))
+        check_list_items(self, list_items)
 
     def test_episode_of_show_with_only_one_series(self):
         # FIXME: Not quite sure what we are actually testing here.
@@ -389,6 +440,7 @@ class Productions(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=data):
             series_listing = main.list_productions.test('asd')
             self.assertEqual(4, len(series_listing))
+            check_list_items(self, series_listing)
             # Check if all items are playable
             for episode in series_listing:
                 self.assertIs(episode.path, main.play_stream_catchup.route)
@@ -398,6 +450,7 @@ class Productions(TestCase):
         list_items = main.list_productions.test('some/url/to/mids murders', series_idx='others')
         self.assertIsInstance(list_items, list)
         self.assertEqual(1, len(list_items))
+        check_list_items(self, list_items)
 
 
 class Search(TestCase):
@@ -409,6 +462,7 @@ class Search(TestCase):
         self.assertEqual(8, len(results))
         self.assertIs(results[0].path, main.list_productions.route)  # programme
         self.assertIs(results[4].path, main.play_title.route)  # film
+        check_list_items(self, results)
 
     @patch('requests.sessions.Session.send',
            return_value=HttpResponse(text=open_doc('search/test_results.json')()))
@@ -418,17 +472,21 @@ class Search(TestCase):
         with patch('xbmcaddon.Addon.getSetting', return_value='true'):
             results = main.do_search.test('__')
             self.assertEqual(5, len(results))
+        check_list_items(self, results)
 
     def test_search_result_with_unknown_entitytype(self):
         search_data = open_json('search/test_results.json')
         with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_1 = main.do_search.test('kjhbn')
             self.assertEqual(8, len(results_1))
+            check_list_items(self, results_1)
+
         # check again with one item having an unknown entity type
         search_data['results'][3]['entityType'] = 'video'
         with patch('requests.sessions.Session.send', return_value=HttpResponse(text=json.dumps(search_data))):
             results_2 = main.do_search.test('kjhbn')
             self.assertEqual(7, len(results_2))
+            check_list_items(self, results_2)
 
     @patch('requests.sessions.Session.send', return_value=HttpResponse(204))
     def test_search_with_no_results(self, _):
