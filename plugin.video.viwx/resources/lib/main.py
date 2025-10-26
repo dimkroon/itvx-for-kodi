@@ -10,6 +10,8 @@ import typing
 import string
 import sys
 
+from functools import wraps
+
 import requests
 import xbmc
 import xbmcplugin
@@ -70,6 +72,7 @@ def dynamic_listing(func=None):
     This decorator provides default behaviour for these cases.
 
     """
+    @wraps(func)
     def wrapper(*args, **kwargs):
         # Codequick will always pass a Router object as 1st positional argument and all other parameters
         # as keyword arguments, but others, like tests, may use position arguments.
@@ -88,11 +91,8 @@ def dynamic_listing(func=None):
             else:
                 # Anything that evaluates to False is 'no items found'.
                 return empty_folder()
-    if func is None:
-        return wrapper()
-    else:
-        wrapper.__name__ = 'wrapper.' + func.__name__
-        return wrapper
+
+    return wrapper
 
 
 class Paginator:
