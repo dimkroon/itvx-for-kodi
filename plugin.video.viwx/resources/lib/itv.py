@@ -118,12 +118,12 @@ def get_catchup_urls(episode_url, full_hd=False):
     return dash_url, key_service, subtitles, playlist['VideoType'], playlist['ProductionId']
 
 
-def get_vtt_subtitles(subtitles_url):
-    """Return a tuple with the file paths to rst subtitles files. The tuple usually
+def get_vtt_subtitles(plugin, subtitles_url):
+    """Return a tuple with the subtitle paths. The tuple usually
     has only a single element, but could contain more.
 
     Return None if subtitles_url does not point to a valid Web-vvt subtitle file or
-    subtitles are not te be shown by user setting.
+    subtitles are not to be shown by user setting.
 
     """
     show_subtitles = Script.setting['subtitles_show'] == 'true'
@@ -134,6 +134,10 @@ def get_vtt_subtitles(subtitles_url):
     if not subtitles_url:
         logger.info('No subtitles available for this stream')
         return None
+
+    subtitle_format = plugin.setting['subtitle_format']
+    if subtitle_format == 'VTT':
+        return (subtitles_url, )
 
     # noinspection PyBroadException
     try:

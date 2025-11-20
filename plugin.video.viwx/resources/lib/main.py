@@ -578,7 +578,7 @@ def play_stream_catchup(plugin, url, name, set_resume_point=False):
             return False
 
         plugin.register_delayed(xprogress.playtime_monitor, production_id=production_id)
-        subtitles = itv.get_vtt_subtitles(subtitle_url)
+        subtitles = itv.get_vtt_subtitles(plugin, subtitle_url)
         if subtitles:
             list_item.setSubtitles(subtitles)
             list_item.setProperties({

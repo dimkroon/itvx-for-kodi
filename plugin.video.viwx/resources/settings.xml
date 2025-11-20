@@ -16,11 +16,26 @@
 					<default>false</default>
 					<control type="toggle"/>
 				</setting>
+				<setting id="subtitle_format" label="30142" type="string" help="30406">
+					<level>0</level>
+					<default>SRT</default>
+					<dependencies>
+						<dependency type="enable" setting="subtitles_show">true</dependency>
+					</dependencies>
+					<constraints>
+						<options>
+							<option label="SRT">SRT</option>
+							<option label="VTT">VTT</option>
+						</options>
+					</constraints>
+					<control type="spinner" format="string"/>
+				</setting>
 				<setting id="subtitles_color" label="30103" type="boolean" help="30303">
 					<level>0</level>
 					<default>true</default>
 					<dependencies>
 						<dependency type="enable" setting="subtitles_show">true</dependency>
+						<dependency type="enable" setting="subtitle_format">SRT</dependency>
 					</dependencies>
 					<control type="toggle"/>
 				</setting>
