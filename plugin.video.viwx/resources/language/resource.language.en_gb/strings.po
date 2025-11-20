@@ -194,7 +194,7 @@ msgstr ""
 
 msgctxt "#30405"
 msgid "Export the authentication tokens from this device so you can import them on another device.\n"
-"Visit https://github.com/dimkroon/itvx-for-kodi/wiki for ore info."
+"Visit https://github.com/dimkroon/itvx-for-kodi/wiki for more info."
 msgstr ""
 
 # Script texts
