@@ -310,13 +310,15 @@ def check_item_type_page(testcase, item, parent_name):
     url = 'https://www.itv.com/watch/collections/' + item['titleSlug'] + '/' + item['pageId']
     headers = {
         # Without these headers the requests will time out.
-        'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0',
+        'user-agent': fetch.USER_AGENT,
         'Origin': 'https: /www.itv.com',
     }
-    # Check url without query string fails
-    # Since june 2025 requests without query time out, instead of returning not found.
-    testcase.assertRaises(requests.Timeout, requests.get, url, headers=headers, timeout=3)
-    # testcase.assertEqual(404, resp.status_code)
+    # Check url without query string fails with either status code 404, or a timeout.
+    try:
+        resp = requests.get(url, headers=headers, timeout=(3, 5))
+        testcase.assertEqual(404, resp.status_code)
+    except requests.Timeout:
+        pass
     # Check the contents of the collection page with querystring added to url
     CollectionPages.check_page(testcase, url + '?ind', parent_name)
 

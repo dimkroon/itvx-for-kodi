@@ -48,7 +48,7 @@ class LiveSchedules(unittest.TestCase):
                         'platformTag': 'dotcom',
                         'featureSet': 'mpeg-dash,widevine'},
                 headers={'Accept': 'application/vnd.itv.hubsvc.schedule.v2+vnd.itv.hubsvc.channel.v2+hal+json',
-                         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0',
+                         'User-Agent': fetch.USER_AGENT,
                          'Origin': 'https://www.itv.com',
                          },
                 timeout=60)     # Usually a 504 - Gateway Timeout is returned before that.
@@ -840,7 +840,7 @@ class Playlists(unittest.TestCase):
             url,
             headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
                      'User-Agent': 'X-Player',
-                     # 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0 ',
+                     # 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0',
                      # 'Origin': 'https://www.itv.com',
                      },
             # headers={'Accept': 'application/vnd.itv.vod.playlist.v4+json',
