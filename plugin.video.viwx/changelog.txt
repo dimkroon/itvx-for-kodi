@@ -1,3 +1,8 @@
+v 1.7.5
+Fixes:
+- Some changes in web requests that could fix timeout errors on some systems.
+- Fixed typo, thanks to Andrew Bird.
+
 v 1.7.4
 Fixes:
 - Collection list was empty, due to changes at ITVX.

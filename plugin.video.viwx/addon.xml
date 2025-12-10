@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viwx" name="viwX" version="1.7.4" provider-name="Dimitri Kroon">
+<addon id="plugin.video.viwx" name="viwX" version="1.7.5" provider-name="Dimitri Kroon">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.5"/>
@@ -31,9 +31,10 @@
       <fanart>resources/fanart.png</fanart>
     </assets>
     <news>
-[B]v 1.7.4[/B]
-- Fixed collection list was empty due to changes at ITVX.
-- Re-enabled inputstream helper.
+[B]v 1.7.5[/B]
+[B]Fixes:[/B]
+- Some changes in web requests that could fix timeout errors on some systems.
+- Fixed typo, thanks to Andrew Bird.
     </news>
     <reuselanguageinvoker>true</reuselanguageinvoker>
   </extension>
