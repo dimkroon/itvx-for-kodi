@@ -177,7 +177,10 @@ class ItvSession:
             resp = fetch.get_json(
                 'https://auth.prd.user.itv.com/token',
                 params={'refresh': token},
-                headers={'Accept': 'application/vnd.user.auth.v2+json'},
+                headers={'Accept': 'application/vnd.user.auth.v2+json',
+                         'origin': 'https://app.10ft.itv.com',
+                         'referer': 'https://app.10ft.itv.com/',
+                         },
                 timeout=fetch.WEB_TIMEOUT
             )
             new_tokens = resp
