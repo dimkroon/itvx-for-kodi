@@ -141,6 +141,11 @@ class PlayTimeMonitor(Player):
         other events.
 
         """
+        if not self._user_id:
+            self._status = PlayState.STOPPED
+            logger.debug("Cancelling monitoring; user is not signed in.")
+            return
+
         logger.debug("Event OPEN of production %s", self._production_id)
         self._instance_id = str(uuid.uuid4())
         data = {
