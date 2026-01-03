@@ -544,9 +544,9 @@ class PlayStreamLive(TestCase):
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_itv1.json'))
     def test_play_stream_live_without_credentials(self, _):
         with patch.object(itv_account.itv_session(), 'account_data', {}):
-            with self.assertRaises(SystemExit) as cm:
-                main.play_stream_live.test(channel='ITV', url=None)
-            self.assertEqual(1, cm.exception.code)
+            # Ensure it completes without error
+            result = main.play_stream_live.test(channel='ITV', url=None)
+            self.assertIsInstance(result, XbmcListItem)
 
     @patch('resources.lib.itv.get_live_urls', side_effect=ValueError)
     def test_play_stream_live_without_other_error(self, _):
@@ -664,13 +664,14 @@ class PlayVOD(TestCase):
         result = main.play_vod(MagicMock(), 'url')
         self.assertIs(result, False)
 
+    @patch('resources.lib.itv_gql.get_playlist_url', return_value=('playlist_url', False))
     @patch('resources.lib.fetch.post_json', return_value=open_json('playlists/pl_doc_martin.json'))
-    def test_play_catchup_without_credentials(self, _):
+    def test_play_catchup_without_credentials(self, _, __):
         # Ensure we have an empty file and session object
         with patch.object(itv_account.itv_session(), 'account_data', {}):
-            with self.assertRaises(SystemExit) as cm:
-                main.play_vod(MagicMock(), 'url')
-            self.assertEqual(1, cm.exception.code)
+            # Ensure it completes without error
+            result = main.play_vod(MagicMock(), 'url')
+            self.assertIsInstance(result, XbmcListItem)
 
     @patch('resources.lib.itv.get_catchup_urls', side_effect=ValueError)
     def test_play_catchup_with_other_error(self, _):

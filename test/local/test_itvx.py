@@ -703,8 +703,8 @@ class RequestStreamData(TestCase):
         post_dta = p_post.call_args.kwargs['data']
         self.assertEqual('ctv', post_dta['variantAvailability']['platformTag'])
 
-    def test_request_with_auth_failure(self, _):
+    def test_request_vod_not_signed_in(self, p_post):
         with patch.object(itv_account.itv_session(), 'account_data', {}):
-            with self.assertRaises(SystemExit) as cm:
-                itvx._request_stream_data('some/url')
-            self.assertEqual(1, cm.exception.code)
+            # Ensure it completes without error
+            itvx._request_stream_data('some/url', stream_type='vod')
+            p_post.assert_called_once()
