@@ -784,7 +784,7 @@ features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-tra
 
 
 def _request_stream_data(url, stream_type='live', full_hd=False, has_ad=False):
-    from .itv_account import itv_session, fetch_authenticated
+    from .itv_account import itv_session
     session = itv_session()
 
     if full_hd:
@@ -806,8 +806,8 @@ def _request_stream_data(url, stream_type='live', full_hd=False, has_ad=False):
             features = features_catchup
         stream_req_data['variantAvailability']['featureset'] = features
 
-    stream_data = fetch_authenticated(
-        fetch.post_json, url,
+    stream_data = fetch.post_json(
+        url,
         data=stream_req_data,
         headers={'Accept': accept_type})
 

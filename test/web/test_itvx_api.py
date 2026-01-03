@@ -731,6 +731,8 @@ features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-tra
 
 
 class Playlists(unittest.TestCase):
+    FAST_CHANNELS = ('FAST5', 'FAST20')
+
     manifest_headers = {
         'User-Agent': fetch.USER_AGENT,
         'Origin': 'https://www.itv.com'}
@@ -740,14 +742,17 @@ class Playlists(unittest.TestCase):
         cls.acc_data = itv_account.itv_session()
         cls.acc_data.refresh()
 
-    def create_post_data(self, stream_type, platform='freeview'):
+    def create_post_data(self, stream_type, platform='freeview', auth=True):
         req_data = {
             'web': web_req_data,
             'mobile': mobile_req_data,
             'freeview': freeview_req_data
         }.get(platform)
         post_data = copy.deepcopy(req_data)
-        post_data['user']['token'] = self.acc_data.access_token
+        if auth:
+            post_data['user']['token'] = self.acc_data.access_token
+        else:
+            post_data['user']['token'] = ''
         post_data['client']['supportsAdPods'] = True
 
         if stream_type == 'live':
@@ -756,7 +761,7 @@ class Playlists(unittest.TestCase):
             post_data['variantAvailability']['featureset'] = features_catchup
         return post_data
 
-    def get_playlist_live(self, channel, platform='freeview', query_str=''):
+    def get_playlist_live(self, channel, platform='freeview', query_str='', auth=True):
         """Get the playlist of one of the itvx live channels
 
         For all channels no other headers than User Agent and Origin are required.
@@ -764,7 +769,7 @@ class Playlists(unittest.TestCase):
 
         Since accessToken is provided in the body, authentication by cookie or header is not needed.
         """
-        post_data = self.create_post_data('live', platform)
+        post_data = self.create_post_data('live', platform, auth)
 
         url = 'https://simulcast.itv.com/playlist/itvonline/' + channel + query_str
         resp = requests.post(
@@ -793,6 +798,11 @@ class Playlists(unittest.TestCase):
             # testutils.save_json(strm_data, 'playlists/pl_itv1.json')
             object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
 
+    def test_get_playlist_simulcast_web_not_signed_in(self):
+        for channel in ('ITV', 'ITV2', 'ITV3', 'ITV4', 'ITVBe'):
+            strm_data = self.get_playlist_live(channel, 'web', auth=False)
+            object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
+
     def test_get_playlist_simulcast_freeview(self):
         for channel in ('ITV', 'ITV2', 'ITV4'):
             strm_data = self.get_playlist_live(channel, 'freeview')
@@ -802,6 +812,10 @@ class Playlists(unittest.TestCase):
             strm_data = self.get_playlist_live(channel, 'freeview')
             object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
             self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+
+    def test_get_playlist_simulcast_freeview_not_signed_in(self):
+        strm_data = self.get_playlist_live('ITV', 'freeview', auth=False)
+        object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=True)
 
     def test_playlist_live_regional_freeview(self):
         strm_data = self.get_playlist_live('ITV', 'freeview')
@@ -822,26 +836,32 @@ class Playlists(unittest.TestCase):
         self.assertTrue('/itv1/' in url)
 
     def test_get_playlist_fast_web(self):
-        for chan_id in (5, 20):
-            channel = 'FAST{}'.format(chan_id)
+        for channel in self.FAST_CHANNELS:
             strm_data = self.get_playlist_live(channel, 'web')
             # if chan_id == 20:
             #     testutils.save_json(strm_data, 'playlists/pl_fast_non_dar.json')
             object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
-            if chan_id == 20:
+            if channel == 'FAST20':
                 # FAST20 - GoUSA TV is always non-dar
                 self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
             else:
                 self.assertTrue(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
 
+    def test_get_playlist_fast_web_not_signed_in(self):
+        strm_data = self.get_playlist_live(self.FAST_CHANNELS[0], 'web', auth=False)
+        object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
+
     def test_get_playlist_fast_freeview(self):
         """Freeview fast channels are 720p by default"""
-        for chan_id in (5, 20):
-            channel = 'FAST{}'.format(chan_id)
+        for channel in self.FAST_CHANNELS:
             strm_data = self.get_playlist_live(channel, 'freeview')
             object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
             # All freeview live streams are non-dar
             self.assertFalse(strm_data['Playlist']['Video']['VideoLocations'][0]['IsDar'])
+
+    def test_get_playlist_fast_freeview_not_signed_in(self):
+        strm_data = self.get_playlist_live(self.FAST_CHANNELS[0], 'freeview', auth=False)
+        object_checks.check_live_stream_info(strm_data['Playlist'], full_hd=False)
 
     def test_manifest_live_simulcast_web(self):
         manifest = self.get_manifest_live('ITV', 'web')
@@ -873,7 +893,7 @@ class Playlists(unittest.TestCase):
             Fast channels change often and some might not be available any more.
         """
         low_res_found = False
-        for channel in ('ITV3', 'FAST5', 'FAST20'):
+        for channel in ('ITV3', *self.FAST_CHANNELS):
             playlist = self.get_playlist_live(channel, 'freeview')
             start_again_url = playlist['Playlist']['Video']['VideoLocations'][0]['StartAgainUrl']
             if not 'ctv-low.mpd' in start_again_url:
@@ -892,11 +912,11 @@ class Playlists(unittest.TestCase):
     #       VOD
     # -----------------------
 
-    def get_playlist_catchup(self, url=None, platform='freeview', audio_described=False):
+    def get_playlist_catchup(self, url=None, platform='freeview', audio_described=False, auth=True):
         """Request stream of a catchup episode (i.e. production)
 
         """
-        post_data = self.create_post_data('vod', platform)
+        post_data = self.create_post_data('vod', platform, auth)
         if audio_described:
             post_data['variantAvailability']['featureset'].append('inband-audio-description')
 
@@ -927,6 +947,12 @@ class Playlists(unittest.TestCase):
         strm_data = self.get_playlist_catchup(platform='freeview')
         object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=True)
 
+    def test_get_playlist_catchup_not_signed_in(self):
+        strm_data = self.get_playlist_catchup(platform='web', auth=False)
+        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=False)
+        strm_data = self.get_playlist_catchup(platform='freeview', auth=False)
+        object_checks.check_catchup_dash_stream_info(strm_data['Playlist'], full_hd=True)
+
     def test_get_playlist_premium_catchup(self):
         """Request a premium stream _without_ a premium account."""
         # Judge John Deed S1E1
@@ -936,13 +962,23 @@ class Playlists(unittest.TestCase):
 
     def test_playlist_catchup_audio_described(self):
         # Request playlist of Shardlake S1E1 without audio described in featurest
-        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', False)
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001',
+                                         audio_described=False)
         manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
         self.assertTrue('VAR075-HD-S.ism' in manifest_url)
         # Now request the same playlist *with* audio described in featurest
-        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', True)
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001',
+                                         audio_described=True)
         manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
         self.assertTrue('VAR075-AD-HD-S.ism' in manifest_url)
+
+    def test_get_playlist_premium_catchup_not_signed_in(self):
+        """Request a premium stream _without_ being logged in."""
+        # Judge John Deed S1E1
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_5323_0001.001',
+                                         auth=False)
+        object_checks.has_keys(resp, 'Message', 'TransactionId')
+        self.assertTrue('message: Failed to verify user token' in resp['Message'])
 
     def test_manifest_vod(self):
         for platform in ('web', 'freeview'):
@@ -956,7 +992,8 @@ class Playlists(unittest.TestCase):
                 self.assertEqual(1080, max_res)
 
     def test_manifest_vod_audio_described(self):
-        strm_data = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', True)
+        strm_data = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001',
+                                              audio_described=True)
         mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
         resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text

@@ -190,9 +190,16 @@ class WebRequest(TestCase):
                 fetch.web_request('get', URL)
             self.assertEqual('Login failed', str(cr.exception))
 
+        # Play premium content with a free account
         with patch('requests.sessions.Session.request', return_value=HttpResponse(
                 status_code=403, text=json.dumps({'Message': 'User does not have entitlements'}))):
             self.assertRaises(errors.AccessRestrictedError, fetch.web_request, 'get', URL)
+
+        # Play premium content without being signed in.
+        with patch('requests.sessions.Session.request', return_value=HttpResponse(
+            status_code=403, text=('{"Message": "UserTokenValidationFailed for user: None message: Failed '
+                                   'to verify ''user token","TransactionId": "oas-magni-123456-AaBbCc"}'))):
+            self.assertRaises(errors.AuthenticationError, fetch.web_request, 'get', URL)
 
         # Geo-block respones do not have a description any more, but leave this test to
         # ensure an old-style response is still handled correctly.
