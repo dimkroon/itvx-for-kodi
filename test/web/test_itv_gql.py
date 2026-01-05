@@ -46,3 +46,9 @@ class GetCategory(TestCase):
     def test_get_category_az_drama(self):
         data = itv_gql.category_az('DRAMA_AND_SOAPS')
         pass
+
+    def test_get_category_az_factual(self):
+        data = itv_gql.category_az('FACTUAL')
+        pass
+
+
