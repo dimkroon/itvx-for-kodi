@@ -151,7 +151,14 @@ def check_shows(testcase, show, parent_name):
 
 
 def check_programme(self, progr_data):
-    """AKA 'Brand'"""
+    """Check data from field 'programme' on a programme's page.
+
+     This is a subset of the data found on programme, series, or episode pages.
+     This data is not used to show info of the programme; that's done while parsing
+     the category, or collection, but is typically used to provide some additional
+     data parsing series and episodes
+
+    """
     obj_name = progr_data['title']
     has_keys(progr_data, 'title', 'ccid', 'image', 'longDescription', 'description',
              'encodedProgrammeId', 'titleSlug', 'tier', 'visuallySigned',
