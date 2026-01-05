@@ -36,3 +36,13 @@ class GetShortPlaylistUrl(TestCase):
         ccid = 'yvr02ml'  # https://app.10ft.itv.com/3.672.1/freeview/sport/yvr02ml
         playlist_url = itv_gql.get_short_playlist_url(ccid, is_sport=True)
         self.assertTrue(is_url(playlist_url))
+
+
+class GetCategory(TestCase):
+    def test_category_page_drama(self):
+        data = itv_gql.get_category('DRAMA_AND_SOAPS')
+        pass
+
+    def test_get_category_az_drama(self):
+        data = itv_gql.category_az('DRAMA_AND_SOAPS')
+        pass
