@@ -383,7 +383,7 @@ def check_category_item(item):
 
     assert is_not_empty(item['title'], str)
     # Only the contentType from items in category news vary, normal category items are all of type 'brand'.
-    assert item['contentType'] in ('series', 'special', 'film', 'episode', 'brand')
+    assert item['contentType'] in ('series', 'special', 'brand') # 'series', 'film', 'episode',
     assert is_not_empty(item['titleSlug'], str)
     assert is_encoded_programme_id(item['encodedProgrammeId']), "Invalid encodedProgrammeId in '{}'.".format(title)
     if 'encodedEpisodeId' in item:
