@@ -38,3 +38,26 @@ class GetShortPlaylistUrl(TestCase):
         ccid = 'yvr02ml'  # https://app.10ft.itv.com/3.672.1/freeview/sport/yvr02ml
         playlist_url = itv_gql.get_short_playlist_url(ccid, is_sport=True)
         self.assertTrue(is_url(playlist_url))
+
+
+class Categories(TestCase):
+    def test_all_categories(self):
+        data = itv_gql.all_categories()
+        known_categories = ['FACTUAL', 'DRAMA_AND_SOAPS', 'CHILDREN', 'FILM',
+                            'SPORT', 'COMEDY', 'NEWS', 'ENTERTAINMENT']
+        fetched_categories = [genre['id'] for genre in data['data']['genres']]
+        self.assertListEqual(fetched_categories, known_categories)
+
+    def test_category_page_drama(self):
+        data = itv_gql.get_page('DRAMA_AND_SOAPS')
+        pass
+
+    def test_get_category_az_drama(self):
+        data = itv_gql.category_az('DRAMA_AND_SOAPS')
+        pass
+
+    def test_get_category_az_factual(self):
+        data = itv_gql.category_az('FACTUAL')
+        pass
+
+
