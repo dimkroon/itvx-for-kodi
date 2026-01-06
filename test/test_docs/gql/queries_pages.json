@@ -1,0 +1,347 @@
+{
+    "FACTUAL": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "FACTUAL",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "DRAMA_AND_SOAPS": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "DRAMA_AND_SOAPS",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "CHILDREN": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "CHILDREN",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "FILM": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "FILM",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "SPORT": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "SPORT",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "COMEDY": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "COMEDY",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "ENTERTAINMENT": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "category": "ENTERTAINMENT",
+                "tiers": [
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    },
+    "mainpage": {
+        "query": "query GetPage( $pagesFilter: PageFilter! $itemsFilter: CollectionItemFilter! $collectionLimit: Int $platform: Platform! $withUpsell: Boolean! $withSimulcast: Boolean! $withFastChannels: Boolean! $withNewContentTags: Boolean! ) { pages(filter: $pagesFilter) { id name subtitle imageUrl category adServed items { name targetedContainer { id name destination priority containerType displayType content { __typename ... on CollectionSpot { collection { __typename id itemCount title subtitle subsequentJourney { name label destinationUrl(platform: $platform) imageUrl } imageTreatment imageAspectRatio imageClass adServed excludeTimeDependentTags @include(if: $withNewContentTags) items(filter: $itemsFilter limit: $collectionLimit) { itemType __typename ... on SeriesCollectionItem { imageUrl seriesItem { tier imageUrl(imageType: ITVX) __typename seriesNumber numberOfEpisodes ccid synopses { ninety epg } visuallySigned subtitled audioDescribed strapline brand { legacyId title channel { name } ccid imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } series { seriesNumber } genres { id name } subgenres { id name } } earliestAvailableEpisode { legacyId imageUrl(imageType: ITVX) broadcastDateTime brandLegacyId availableNow ccid } timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on TitleCollectionItem { imageUrl titleItem { titleType tier partnership contentOwner title brandLegacyId legacyId broadcastDateTime __typename visuallySigned subtitled audioDescribed synopses { epg ninety } strapline attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } ... on Special { ccid broadcastDateTime title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } genres { id name } subgenres { id name } } ... on Film { title timeDependentTags @include(if: $withNewContentTags) { key label } latestAvailableVersion { duration } brand { imageUrl(imageType: ITVX) synopses { epg } } productionYear genres { id name } subgenres { id name } ccid } ... on Episode { ccid episodeNumber seriesNumber broadcastDateTime timeDependentTags @include(if: $withNewContentTags) { key label } brand { title imageUrl(imageType: ITVX) partnership contentOwner synopses { epg } genres { id name } subgenres { id name } } versions { duration } } ... on Title { titleType imageUrl(imageType: ITVX) legacyId brandLegacyId brand { title legacyId imageUrl(imageType: ITVX) partnership contentOwner genres { id name } subgenres { id name } synopses { epg ninety } ccid } broadcastDateTime channel { name } series { seriesNumber longRunning } availableNow synopses { epg ninety } } } } ... on BrandCollectionItem { imageUrl brandItem { ccid __typename tier title numberOfAvailableSeries synopses { ninety epg } imageUrl(imageType: ITVX) legacyId genres { id name } subgenres { id name } channel { name } series { seriesNumber } latestAvailableTitle { imageUrl(imageType: ITVX) broadcastDateTime availableNow } partnership contentOwner visuallySigned subtitled audioDescribed strapline timeDependentTags @include(if: $withNewContentTags) { key label } attribution { partnership { name imageUrls { ctvBrowser } } contentOwner { name imageUrls { ctvBrowser } } } } } ... on PageCollectionItem { imageUrl strapline title subtitle pageItem { id name category subtitle adServed } } ... on CollectionCollectionItem { title imageUrl strapline subtitle collectionItem { id itemCount adServed } } ... on UrlSpotCollectionItem { title subtitle imageUrl url } ... on UpsellSpotCollectionItem @include(if: $withUpsell) { title subtitle strapline imageUrl } ... on SimulcastSpotCollectionItem @include(if: $withSimulcast) { title subtitle startDateTime endDateTime channel { name } genre { name } imageUrl strapline startDateTime endDateTime } ... on FastChannelSpotCollectionItem @include(if: $withFastChannels) { title subtitle fastChannel imageUrl strapline startDateTime endDateTime } ... on NewsCategoryPageSpotItem { title subtitle imageUrl strapline } ... on ShortformCollectionItem { title subtitle strapline ccid slug imageUrl } } } } } } } } }",
+        "variables": {
+            "pagesFilter": {
+                "id": "5XWogs4WuTogO8d7PwIlGR",
+                "tiers": [
+                    "PAID",
+                    "FREE"
+                ],
+                "available": "NOW"
+            },
+            "collectionLimit": 12,
+            "platform": "CTV",
+            "itemsFilter": {
+                "itemTypes": [
+                    "BRAND",
+                    "SERIES",
+                    "TITLE",
+                    "COLLECTION",
+                    "PAGE",
+                    "URLSPOT",
+                    "NEWSCATEGORYPAGESPOT",
+                    "SHORTFORM",
+                    "UPSELLSPOT",
+                    "SIMULCASTSPOT",
+                    "FASTCHANNELSPOT"
+                ],
+                "features": [
+                    "OUTBAND_WEBVTT",
+                    "MPEG_DASH",
+                    "WIDEVINE",
+                    "HD",
+                    "SINGLE_TRACK",
+                    "INBAND_AUDIO_DESCRIPTION"
+                ],
+                "broadcaster": "ITV",
+                "platform": "CTV"
+            },
+            "withUpsell": true,
+            "withSimulcast": true,
+            "withFastChannels": true,
+            "withNewContentTags": true
+        }
+    }
+}
