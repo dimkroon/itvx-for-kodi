@@ -1,11 +1,9 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2026 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
-
-
 from test.support import fixtures
 fixtures.global_setup()
 
@@ -14,6 +12,10 @@ from unittest import TestCase
 from resources.lib import itv_gql
 
 from support.object_checks import is_url
+
+
+setUpModule = fixtures.setup_web_test
+
 
 
 class GetPlaylistUrl(TestCase):
