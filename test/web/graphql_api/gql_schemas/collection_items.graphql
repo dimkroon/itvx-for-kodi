@@ -1,0 +1,97 @@
+
+interface CollectionItem {
+    itemType: String
+}
+
+
+type SeriesCollectionItem implements CollectionItem {
+    itemType: String
+    imageUrl: String
+    seriesItem: Series
+}
+
+type TitleCollectionItem implements CollectionItem {
+    itemType: String
+    imageUrl: String
+    titleItem: Title
+}
+
+type BrandCollectionItem implements CollectionItem {
+    itemType: String
+    imageUrl: String
+    brandItem: Brand
+}
+
+type PageCollectionItem implements CollectionItem {
+    itemType: String
+    imageUrl: String
+    strapline: String
+    title: String
+    subtitle: String
+    pageItem: Page
+}
+
+type CollectionCollectionItem implements CollectionItem {
+    itemType: String
+    imageUrl: String
+    strapline: String
+    title: String
+    subtitle: String
+    collectionItem: Collection
+}
+
+type UrlSpotCollectionItem implements CollectionItem {
+    itemType: String
+    title: String
+    subtitle: String
+    url: String
+}
+
+type UpsellSpotCollectionItem implements CollectionItem {
+    itemType: String
+    title: String
+    subtitle: String
+    strapline: String
+    imageUrl: String
+}
+
+type SimulcastSpotCollectionItem implements CollectionItem {
+    itemType: String
+    title: String
+    subtitle: String
+    strapline: String
+    imageUrl: String
+    startDateTime: String
+    endDateTime: String
+    channel: Channel
+    genre: Genre
+}
+
+type FastChannelSpotCollectionItem implements CollectionItem {
+    itemType: String
+    title: String
+    subtitle: String
+    strapline: String
+    imageUrl: String
+    startDateTime: String
+    endDateTime: String
+    fastChannel: Channel
+}
+
+type NewsCategoryPageSpotItem implements CollectionItem {
+    itemType: String
+    title: String
+    subtitle: String
+    strapline: String
+    imageUrl: String
+}
+
+type ShortformCollectionItem implements CollectionItem {
+    itemType: String
+    title: String
+    subtitle: String
+    strapline: String
+    imageUrl: String
+    ccid: ID!
+    slug: String
+}

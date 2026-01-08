@@ -1,0 +1,16 @@
+
+
+type Page {
+    id: String
+    name: String
+    category: String
+    subtitle: String
+    adServed: Boolean
+}
+
+
+type Collection {
+    id: String
+    itemCount: Int
+    adServed: Boolean
+}

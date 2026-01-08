@@ -30,12 +30,24 @@ type Version {
 }
 
 type Series {
+    ccid: String!
     fullSeries: Boolean
     longRunning: Boolean
     numberOfAvailableEpisodes: Int
-    """serieNumber is null when there are multiple episodes, but they are not part of a specific series,
+    """serieNumber is null if there are multiple episodes, but they are not part of a specific series,
     like one of the episode of the coverage sports event."""
     seriesNumber: Int       # Is nullable
+    tier: [String]
+    imageUrl (imageType: String = HUB): String
+    synopses: Synopses
+    strapline: String
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    brand: Brand
+    earliestAvailableEpisode: Episode
+    timeDependentTags: TimeDependentTags
+    attribution: Attribution
 }
 
 type Synopses {
@@ -82,8 +94,28 @@ type Variant {
     variantId: String
 }
 
-"This may not a be real existing object, but just here to satisfy code completion and checking"
-type ImageUrl{
-    imageType: String
-    url: String
+"Info like 'new episodes', or 'newly added'"
+type TimeDependentTags {
+    key: String
+    label: String
 }
+
+type AttributionLogo {
+    ctvBrowser: String
+}
+
+type PartnershipAttribution {
+    name: String
+    imageUrls: AttributionLogo
+}
+
+type ContentOwnerAttribution {
+    name: String
+    imageUrls: AttributionLogo
+}
+
+type Attribution {
+    partnership: PartnershipAttribution
+    contentOwner: ContentOwnerAttribution
+}
+

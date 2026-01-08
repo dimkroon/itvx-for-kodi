@@ -12,9 +12,16 @@ type Brand {
     earliestAvailableTitle: Episode
     latestAvailableTitle: Episode
     genres: [Genre]
-    imageUrl: [ImageUrl]
+    subgenres: [Genre]
+    imageUrl (imageType: String = HUB): String
     tier: [String]
-    partnership: String
-    contentOwner: String
+    partnership: PartnershipAttribution
+    contentOwner: ContentOwnerAttribution
     synopses: Synopses
+    strapline: String
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    timeDependentTags: TimeDependentTags
+    attribution: Attribution
 }

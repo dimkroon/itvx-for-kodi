@@ -1,5 +1,5 @@
 " Details of a single playable item."
-interface Title {
+interface TitleInterface {
     "The type of title: EPISODE, SPECIAL, or FILM"
     titleType: String
     ccid: String!
@@ -10,22 +10,54 @@ interface Title {
     brandLegacyId: String
      """In gql queries argument 'imageType: ITVX' is always passed.
     Without arguments, the default urls returned are to the legacy hubimages.itv.com.
-    With this argument the urls returned are to ovp.itv.com/images"""
-    imageUrl: ImageUrl
+    With argument ITVX the urls returned are to ovp.itv.com/images"""
+    imageUrl (imageType: String = HUB): String
     channel: Channel
     "A date time string in the format '2022-12-01T11:25:00Z'"
     broadcastDateTime: String
     latestAvailableVersion: Version
     synopses: Synopses
+    strapline: String
     tier: [String]
     "Probably a place holder, usually null at this moment"
     partnership: String
     "Probably a placeholder, is usually null right now"
     contentOwner: String
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    attribution:Attribution
+
+}
+
+type Title implements TitleInterface {
+    titleType: String
+    ccid: String!
+    legacyId: String
+    title: String
+    availableNow: Boolean
+    hasBrand: Boolean
+    brandLegacyId: String
+    imageUrl (imageType: String = HUB): String
+    channel: Channel
+    broadcastDateTime: String
+    latestAvailableVersion: Version
+    synopses: Synopses
+    strapline: String
+    tier: [String]
+    partnership: String
+    contentOwner: String
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    attribution:Attribution
+    "----------------Fields not common to the Title interface"
+    brand: Brand
+    series: Series
 }
 
 
-type Episode {
+type Episode implements TitleInterface {
     """titleType is always EPISODE"""
     titleType: String
     ccid: String!
@@ -34,30 +66,34 @@ type Episode {
     availableNow: Boolean
     hasBrand: Boolean
     brandLegacyId: String
-    imageUrl: ImageUrl
+    imageUrl (imageType: String = HUB): String
     channel: Channel
-    "A date time string in the format '2022-12-01T11:25:00Z'"
     broadcastDateTime: String
     latestAvailableVersion: Version
     synopses: Synopses
+    strapline: String
     tier: [String]
-    "Probably a place holder, usually null at this moment"
     partnership: String
-    "Probably a placeholder, is usually null right now"
     contentOwner: String
-    "----------------Fields not common to titles in general"
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    attribution:Attribution
+    "----------------Fields not common to the Title interface"
     brand: Brand
     episodeNumber: Int
+    seriesNumber: Int
     " As these are tags I suppose the type is string-like, but I've only seen empty lists"
     merchandisingTags: [String]
     nextAvailableTitle: Episode
     regionalisation: Boolean
     "Info concerning the series this episode belongs to."
     series: Series
-
+    timeDependentTags: TimeDependentTags
+    versions: [Version]
 }
 
-type Film {
+type Film implements TitleInterface {
     "Is always 'FILM'."
     titleType: String!
     ccid: String!
@@ -66,21 +102,30 @@ type Film {
     availableNow: Boolean
     hasBrand: Boolean
     brandLegacyId: String
-    imageUrl: [ImageUrl]
+    imageUrl (imageType: String = HUB): String
     channel: Channel
     "Can well be null on a Film object"
     broadcastDateTime: String               # nullable
     latestAvailableVersion: Version
     synopses: Synopses
+    strapline: String
     tier: [String]
-    "Unknown type, is always null"
     partnership: String
-    "Type unsure, is often null, be may have seen itv sometimes"
     contentOwner: String
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    attribution:Attribution
+    "----------------Fields not common to the Title interface"
+    timeDependentTags: TimeDependentTags
+    brand: Brand
+    productionYear: Int
+    genres: [Genre]
+    subgenres: [Genre]
 }
 
 
-type Special {
+type Special implements TitleInterface{
     """Is always 'SPECIAL'.
     Apparently Special is a kind of title (production in legacy terms) that stands on it's own,
     i.e not being part of a program and not being a film."""
@@ -91,22 +136,30 @@ type Special {
     availableNow: Boolean
     hasBrand: Boolean
     brandLegacyId: String
-    imageUrl: [ImageUrl]
+    imageUrl (imageType: String = HUB): String
     channel: Channel
     "Datetime in a format 2021-12-31T15:50:00Z"
     broadcastDateTime: String
     latestAvailableVersion: Version
     synopses: Synopses
+    strapline: String
     tier: [String]
     "Unknown type, is always null"
     partnership: String
-    "Type unsure, is often null, but may have seen itv sometimes"
     contentOwner: String
-    "----------------Fields not common to titles in general"
+    visuallySigned: Boolean
+    subtitled: Boolean
+    audioDescribed: Boolean
+    attribution:Attribution
+    "----------------Fields not common to the Title interface"
     merchandisingTags: [String]     # see remark at Episode
     "Is expected to be always null at Special types of objects"
     nextAvailableTitle: [Episode]
     regionalisation: Boolean
     categories: [String]            # "A list of genre ID's, which not the same type as field genres"
     genres: [Genre]               # check if this does really not exist in other title type objects
+    subgenres: [Genre]
+    timeDependentTags: TimeDependentTags
+    brand: Brand
+
 }
