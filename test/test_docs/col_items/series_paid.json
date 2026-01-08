@@ -1,0 +1,41 @@
+{
+  "Dev_Comment": "Series - Paid",
+  "contentType": "series",
+  "series": [
+    {
+      "seriesNumber": 1
+    }
+  ],
+  "seriesNumber": 1,
+  "contentInfo": "Series 1",
+  "title": "Martina Cole's Lady Killers",
+  "titleSlug": "martina-coles-lady-killers",
+  "partnership": null,
+  "contentOwner": null,
+  "channel": "itv",
+  "description": "Leading crime writer, Martina Cole, investigates female serial killers",
+  "dateTime": null,
+  "genres": [
+    {
+      "id": "FACTUAL",
+      "name": "Documentaries & Lifestyle"
+    }
+  ],
+  "imageTemplate": "https://ovp.itv.com/v2/images/series/98f5bf3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "98f5bf3",
+  "brandCCId": "y7vd7s5",
+  "programmeId": "35865",
+  "encodedProgrammeId": {
+    "letterA": "35865",
+    "underscore": "35865"
+  },
+  "episodeId": "1042444",
+  "encodedEpisodeId": {
+    "letterA": "1042444",
+    "underscore": "1042444"
+  },
+  "isPaid": true,
+  "tagNames": [
+    "premium"
+  ]
+}

@@ -5,7 +5,12 @@
   "collection": {
     "id": "3WygGOsy4f4B02iGXNEWHd",
     "page": "collections",
+    "itemCount": 78,
     "headingTitle": "Fresh in",
+    "headingLink": {
+      "href": "/collections/fresh-in/3WygGOsy4f4B02iGXNEWHd",
+      "text": "View All"
+    },
     "imageUrl": null,
     "sliderName": "fresh_in",
     "isChildrenCollection": false,
@@ -19,111 +24,328 @@
         "contentType": "series",
         "series": [
           {
-            "seriesNumber": 17
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 1
           }
         ],
-        "seriesNumber": 17,
-        "contentInfo": "Series 17",
-        "title": "Britain's Got Talent",
-        "titleSlug": "britains-got-talent",
+        "seriesNumber": 3,
+        "contentInfo": "Series 1 - 3",
+        "title": "Fletchers' Family Farm",
+        "titleSlug": "fletchers-family-farm",
         "partnership": null,
         "contentOwner": null,
         "channel": "itv",
-        "description": "Always entertaining, always surprising - join Ant & Dec for an epic show",
-        "dateTime": "2024-04-20T18:30:00Z",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "description": "Liz and Kelvin's confidence continues to grow in their fourth year of farming.",
+        "dateTime": "2025-10-19T10:30:00Z",
         "genres": [
           {
-            "id": "ENTERTAINMENT",
-            "name": "Entertainment & Reality"
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/series/v177r0z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "v177r0z",
-        "programmeId": "1/7470",
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/nxls9yb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "nxls9yb",
+        "brandCCId": "8yfnhq4",
+        "programmeId": "10/4512",
         "encodedProgrammeId": {
-          "letterA": "1a7470",
-          "underscore": "1_7470"
+          "letterA": "10a4512",
+          "underscore": "10_4512"
         },
-        "episodeId": "1/7470/0208",
+        "episodeId": "10/4512/0023",
         "encodedEpisodeId": {
-          "letterA": "1a7470a0208",
-          "underscore": "1_7470_0208"
+          "letterA": "10a4512a0023",
+          "underscore": "10_4512_0023"
         },
         "isPaid": false
       },
       {
-        "contentType": "brand",
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          }
+        ],
+        "seriesNumber": 3,
+        "contentInfo": "Series 2 - 3",
+        "title": "The Jonathan Ross Show: Special Guests",
+        "titleSlug": "the-jonathan-ross-show-special-guests",
         "partnership": null,
         "contentOwner": null,
-        "title": "Drama Queens",
-        "titleSlug": "drama-queens",
-        "description": "Step into the busy lives of your favourite soap stars - all-new reality",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "channel": "itv",
+        "description": "Some memorable moments from past series of The Jonathan Ross Show",
+        "dateTime": "2025-10-11T21:40:00Z",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "dateTime": "2024-05-08T20:00:00Z",
-        "channel": "itvbe",
-        "imageTemplate": "https://ovp.itv.com/images/programme/1dzg1z6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "numberOfAvailableSeries": 1,
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/9l5yclj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "9l5yclj",
+        "brandCCId": "x0fp6pm",
+        "programmeId": "2/8061",
+        "encodedProgrammeId": {
+          "letterA": "2a8061",
+          "underscore": "2_8061"
+        },
+        "episodeId": "2/8061/0008",
+        "encodedEpisodeId": {
+          "letterA": "2a8061a0008",
+          "underscore": "2_8061_0008"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
         "series": [
           {
-            "numberOfEpisodes": 8,
-            "numberOfAvailableEpisodes": 5,
-            "fullSeries": false,
-            "legacyId": "10/5259-01",
-            "seriesNumber": 1,
-            "longRunning": true
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 5
           }
         ],
-        "ccid": "1dzg1z6",
-        "programmeId": "10/5259",
+        "seriesNumber": 5,
+        "contentInfo": "Series 1 - 5",
+        "title": "The 1% Club",
+        "titleSlug": "the-1percent-club",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "Quiz show where contestants compete against the country to answer a series of questions.",
+        "dateTime": "2025-10-11T19:30:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/0g9q7w0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "0g9q7w0",
+        "brandCCId": "5b5f7kw",
+        "programmeId": "10/0593",
         "encodedProgrammeId": {
-          "letterA": "10a5259",
-          "underscore": "10_5259"
+          "letterA": "10a0593",
+          "underscore": "10_0593"
         },
-        "contentInfo": "Series 1",
+        "episodeId": "10/0593/0055",
+        "encodedEpisodeId": {
+          "letterA": "10a0593a0055",
+          "underscore": "10_0593_0055"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Romesh Ranganathan's Parents' Evening",
+        "titleSlug": "romesh-ranganathans-parents-evening",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "Romesh Ranganathan hosts the game show that tests parents' knowledge of their children.",
+        "dateTime": "2025-10-11T20:35:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/0fs0y1j/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "0fs0y1j",
+        "brandCCId": "b10k1ny",
+        "programmeId": "10/5680",
+        "encodedProgrammeId": {
+          "letterA": "10a5680",
+          "underscore": "10_5680"
+        },
+        "episodeId": "10/5680/0005",
+        "encodedEpisodeId": {
+          "letterA": "10a5680a0005",
+          "underscore": "10_5680_0005"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 3,
+        "contentInfo": "Series 1 - 3",
+        "title": "Big Brother",
+        "titleSlug": "big-brother",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Get ready for more mischief and mayhem than ever before...",
+        "dateTime": "2025-09-28T20:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/4b51chm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "4b51chm",
+        "brandCCId": "r829kmj",
+        "programmeId": "10/4928",
+        "encodedProgrammeId": {
+          "letterA": "10a4928",
+          "underscore": "10_4928"
+        },
+        "episodeId": "10/4928/0074",
+        "encodedEpisodeId": {
+          "letterA": "10a4928a0074",
+          "underscore": "10_4928_0074"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 3,
+        "contentInfo": "Series 1 - 3",
+        "title": "Big Brother: Late & Live",
+        "titleSlug": "big-brother-late-and-live",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Big Brother is back and he's here to play",
+        "dateTime": "2025-09-28T21:30:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/jw6b2rf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "jw6b2rf",
+        "brandCCId": "zcwmw31",
+        "programmeId": "10/4929",
+        "encodedProgrammeId": {
+          "letterA": "10a4929",
+          "underscore": "10_4929"
+        },
+        "episodeId": "10/4929/0073",
+        "encodedEpisodeId": {
+          "letterA": "10a4929a0073",
+          "underscore": "10_4929_0073"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "M&S: Dress The Nation",
+        "titleSlug": "mands-dress-the-nation",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "Meet the 10 budding fashion designers hoping to design for M&S! ",
+        "dateTime": "2025-09-14T17:55:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/w67fkrt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "w67fkrt",
+        "brandCCId": "3txdxtp",
+        "programmeId": "10/5591",
+        "encodedProgrammeId": {
+          "letterA": "10a5591",
+          "underscore": "10_5591"
+        },
+        "episodeId": "10/5591/0007",
+        "encodedEpisodeId": {
+          "letterA": "10a5591a0007",
+          "underscore": "10_5591_0007"
+        },
         "isPaid": false
       },
       {
         "contentType": "special",
-        "duration": "PT2H",
-        "contentInfo": "2h",
-        "title": "The Olivier Awards 2024",
-        "titleSlug": "the-olivier-awards-2024",
+        "duration": "PT1H58M",
+        "contentInfo": "1h 58m",
+        "title": "The National Television Awards 2025",
+        "titleSlug": "the-national-television-awards-2025",
         "partnership": null,
         "contentOwner": null,
-        "dateTime": "2024-04-14T21:15:00Z",
+        "dateTime": "2025-09-10T19:00:00Z",
         "channel": "itv",
-        "description": "Join West End star Hannah Waddingham for this glitzy awards ceremony",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "description": "Joel Dommett presides over the 30th year of TV's biggest awards show at The O2 London.",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/special/hzx82hz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "hzx82hz",
-        "programmeId": "2/2330",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/747flsl/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "747flsl",
+        "programmeId": "1/7302",
         "encodedProgrammeId": {
-          "letterA": "2a2330",
-          "underscore": "2_2330"
+          "letterA": "1a7302",
+          "underscore": "1_7302"
         },
-        "episodeId": "2/2330/0011",
+        "episodeId": "1/7302/0007",
         "encodedEpisodeId": {
-          "letterA": "2a2330a0011",
-          "underscore": "2_2330_0011"
+          "letterA": "1a7302a0007",
+          "underscore": "1_7302_0007"
         },
         "isPaid": false
       },
@@ -138,9 +360,6 @@
           },
           {
             "seriesNumber": 1
-          },
-          {
-            "seriesNumber": null
           },
           {
             "seriesNumber": 23
@@ -158,7 +377,7 @@
             "seriesNumber": 33
           },
           {
-            "seriesNumber": 16
+            "seriesNumber": 36
           },
           {
             "seriesNumber": 21
@@ -168,6 +387,9 @@
           },
           {
             "seriesNumber": 28
+          },
+          {
+            "seriesNumber": 35
           },
           {
             "seriesNumber": 8
@@ -224,242 +446,45 @@
             "seriesNumber": 24
           },
           {
+            "seriesNumber": 16
+          },
+          {
+            "seriesNumber": 34
+          },
+          {
             "seriesNumber": 18
           },
           {
             "seriesNumber": 13
           }
         ],
-        "seriesNumber": 33,
-        "contentInfo": "32 Series",
+        "seriesNumber": 36,
+        "contentInfo": "35 Series",
         "title": "The Only Way is Essex",
         "titleSlug": "the-only-way-is-essex",
         "partnership": null,
         "contentOwner": null,
         "channel": "itvbe",
-        "description": "Jet off to Bali for more romance, scandal & goss - new eps each Sunday",
-        "dateTime": "2024-03-24T21:00:00Z",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "description": "The glam squad returns for more high fashion and high drama!",
+        "dateTime": "2025-08-17T20:00:00Z",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/series/y8xdn9l/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "y8xdn9l",
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/0nxlxbz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "0nxlxbz",
+        "brandCCId": "2p2wmfp",
         "programmeId": "1/9310",
         "encodedProgrammeId": {
           "letterA": "1a9310",
           "underscore": "1_9310"
         },
-        "episodeId": "1/9310/0402",
+        "episodeId": "1/9310/0436",
         "encodedEpisodeId": {
-          "letterA": "1a9310a0402",
-          "underscore": "1_9310_0402"
-        },
-        "isPaid": false
-      },
-      {
-        "contentType": "brand",
-        "partnership": null,
-        "contentOwner": null,
-        "title": "The Martin Lewis Money Show Live",
-        "titleSlug": "the-martin-lewis-money-show-live",
-        "description": "Martin's back to help you with your money in this BAFTA-nominated show",
-        "categories": [
-          "FACTUAL"
-        ],
-        "genres": [
-          {
-            "id": "FACTUAL",
-            "name": "Documentaries & Lifestyle"
-          }
-        ],
-        "dateTime": "2023-07-11T19:00:00Z",
-        "channel": "itv",
-        "imageTemplate": "https://ovp.itv.com/images/programme/7gjfbfk/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "numberOfAvailableSeries": 3,
-        "series": [
-          {
-            "numberOfEpisodes": 2,
-            "numberOfAvailableEpisodes": 2,
-            "fullSeries": true,
-            "legacyId": "2/1827-13",
-            "seriesNumber": null,
-            "longRunning": false
-          },
-          {
-            "numberOfEpisodes": 20,
-            "numberOfAvailableEpisodes": 20,
-            "fullSeries": true,
-            "legacyId": "2/1827-11",
-            "seriesNumber": 11,
-            "longRunning": false
-          },
-          {
-            "numberOfEpisodes": 16,
-            "numberOfAvailableEpisodes": 16,
-            "fullSeries": true,
-            "legacyId": "2/1827-12",
-            "seriesNumber": 12,
-            "longRunning": false
-          },
-          {
-            "numberOfEpisodes": 14,
-            "numberOfAvailableEpisodes": 14,
-            "fullSeries": true,
-            "legacyId": "2/1827-15",
-            "seriesNumber": 13,
-            "longRunning": true
-          }
-        ],
-        "ccid": "7gjfbfk",
-        "programmeId": "2/1827",
-        "encodedProgrammeId": {
-          "letterA": "2a1827",
-          "underscore": "2_1827"
-        },
-        "contentInfo": "Series 11 - 13",
-        "isPaid": false
-      },
-      {
-        "contentType": "episode",
-        "title": "The Voice UK",
-        "titleSlug": "the-voice-uk",
-        "episodeNumber": 9,
-        "seriesNumber": 7,
-        "contentInfo": "S7, E9",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
-        "genres": [
-          {
-            "id": "ENTERTAINMENT",
-            "name": "Entertainment & Reality"
-          }
-        ],
-        "partnership": null,
-        "contentOwner": null,
-        "description": "One champion, one record deal, one cash prize - who will take the crown?",
-        "dateTime": "2023-12-30T20:30:00Z",
-        "channel": "itv",
-        "imageTemplate": "https://ovp.itv.com/images/episode/yzpy0wf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "yzpy0wf",
-        "programmeId": "2/4394",
-        "encodedProgrammeId": {
-          "letterA": "2a4394",
-          "underscore": "2_4394"
-        },
-        "episodeId": "2/4394/0168",
-        "encodedEpisodeId": {
-          "letterA": "2a4394a0168",
-          "underscore": "2_4394_0168"
-        },
-        "isPaid": false
-      },
-      {
-        "contentType": "special",
-        "duration": "PT1H",
-        "contentInfo": "1h",
-        "title": "The Big Quiz: Coronation Street v Emmerdale (2023) - The One Where All Roads Lead To London!",
-        "titleSlug": "the-big-quiz-coronation-street-v-emmerdale-2023-the-one-where-all-roads-lead-to-london",
-        "partnership": null,
-        "contentOwner": null,
-        "dateTime": "2023-12-28T20:00:00Z",
-        "channel": "itv",
-        "description": "It's the annual clash between ITV's biggest soaps - Stephen Mulhern hosts",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
-        "genres": [
-          {
-            "id": "ENTERTAINMENT",
-            "name": "Entertainment & Reality"
-          }
-        ],
-        "imageTemplate": "https://ovp.itv.com/images/special/l4r44ds/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "l4r44ds",
-        "programmeId": "2/4240",
-        "encodedProgrammeId": {
-          "letterA": "2a4240",
-          "underscore": "2_4240"
-        },
-        "episodeId": "2/4240/0009",
-        "encodedEpisodeId": {
-          "letterA": "2a4240a0009",
-          "underscore": "2_4240_0009"
-        },
-        "isPaid": false
-      },
-      {
-        "contentType": "special",
-        "duration": "PT1H",
-        "contentInfo": "1h",
-        "title": "Barry Humphries: The Last Laugh",
-        "titleSlug": "barry-humphries-the-last-laugh",
-        "partnership": null,
-        "contentOwner": null,
-        "dateTime": "2023-12-25T22:00:00Z",
-        "channel": "itv",
-        "description": "Remembering a comedy legend - the man behind Dame Edna Everage & others.",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
-        "genres": [
-          {
-            "id": "ENTERTAINMENT",
-            "name": "Entertainment & Reality"
-          }
-        ],
-        "imageTemplate": "https://ovp.itv.com/images/special/ysd6y7v/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "ysd6y7v",
-        "programmeId": "10/4734",
-        "encodedProgrammeId": {
-          "letterA": "10a4734",
-          "underscore": "10_4734"
-        },
-        "episodeId": "10/4734/0001",
-        "encodedEpisodeId": {
-          "letterA": "10a4734a0001",
-          "underscore": "10_4734_0001"
-        },
-        "isPaid": false
-      },
-      {
-        "contentType": "episode",
-        "title": "The Jonathan Ross Show",
-        "titleSlug": "the-jonathan-ross-show",
-        "episodeNumber": 8,
-        "seriesNumber": 21,
-        "contentInfo": "S21, E8",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
-        "genres": [
-          {
-            "id": "ENTERTAINMENT",
-            "name": "Entertainment & Reality"
-          }
-        ],
-        "partnership": null,
-        "contentOwner": null,
-        "description": "Ariana DeBose, Boy George & Katherine Jenkins - festive special show",
-        "dateTime": "2023-12-24T22:15:00Z",
-        "channel": "itv",
-        "imageTemplate": "https://ovp.itv.com/images/episode/3br1xlb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "3br1xlb",
-        "programmeId": "2/1166",
-        "encodedProgrammeId": {
-          "letterA": "2a1166",
-          "underscore": "2_1166"
-        },
-        "episodeId": "2/1166/0242",
-        "encodedEpisodeId": {
-          "letterA": "2a1166a0242",
-          "underscore": "2_1166_0242"
+          "letterA": "1a9310a0436",
+          "underscore": "1_9310_0436"
         },
         "isPaid": false
       },
@@ -475,68 +500,973 @@
         ],
         "seriesNumber": 2,
         "contentInfo": "Series 1 - 2",
-        "title": "Britain Get Singing",
-        "titleSlug": "britain-get-singing",
+        "title": "You Bet! On Tour",
+        "titleSlug": "you-bet-on-tour",
         "partnership": null,
         "contentOwner": null,
         "channel": "itv",
-        "description": "Roman Kemp hosts a celeb sing-off in support of Britain Get Talking.",
-        "dateTime": "2023-12-24T21:00:00Z",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "description": "Ordinary people, extraordinary challenges - the epic gameshow goes on tour! ",
+        "dateTime": "2025-08-30T19:00:00Z",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/series/hfbwcnj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "hfbwcnj",
-        "programmeId": "10/2794",
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/bn8jxc2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "bn8jxc2",
+        "brandCCId": "cpqx5bf",
+        "programmeId": "10/5760",
         "encodedProgrammeId": {
-          "letterA": "10a2794",
-          "underscore": "10_2794"
+          "letterA": "10a5760",
+          "underscore": "10_5760"
         },
-        "episodeId": "10/2794/0002",
+        "episodeId": "10/5760/0004",
         "encodedEpisodeId": {
-          "letterA": "10a2794a0002",
-          "underscore": "10_2794_0002"
+          "letterA": "10a5760a0004",
+          "underscore": "10_5760_0004"
         },
         "isPaid": false
       },
       {
-        "contentType": "episode",
-        "title": "The Best of Parkinson",
-        "titleSlug": "the-best-of-parkinson",
-        "episodeNumber": 11,
-        "seriesNumber": 7,
-        "contentInfo": "S7, E11",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Bachelor Australia",
+        "titleSlug": "the-bachelor-australia",
+        "description": "An eligible bachelor looks for love among a sea of single ladies",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
+        "dateTime": "2025-09-18T13:30:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/4rl1mvn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 2,
+        "series": [
+          {
+            "numberOfEpisodes": 16,
+            "numberOfAvailableEpisodes": 16,
+            "fullSeries": true,
+            "legacyId": "10/6338-01",
+            "seriesNumber": 9,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 12,
+            "numberOfAvailableEpisodes": 12,
+            "fullSeries": true,
+            "legacyId": "10/6338-02",
+            "seriesNumber": 10,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "4rl1mvn",
+        "programmeId": "10/6338",
+        "encodedProgrammeId": {
+          "letterA": "10a6338",
+          "underscore": "10_6338"
+        },
+        "contentInfo": "Series 9 - 10",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
         "partnership": null,
         "contentOwner": null,
-        "description": "An incredible stellar line-up for Parkinson\u2019s last ever chat show!",
-        "dateTime": "2023-12-22T21:00:00Z",
+        "title": "Win Win with People\u2019s Postcode Lottery",
+        "titleSlug": "win-win-with-peoples-postcode-lottery",
+        "description": "Mel & Sue present ITV's biggest ever interactive Saturday night quiz!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-10-11T18:30:00Z",
         "channel": "itv",
-        "imageTemplate": "https://ovp.itv.com/images/episode/pjyjgk9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "pjyjgk9",
-        "programmeId": "L4010",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/pmx140z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/6829-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "pmx140z",
+        "programmeId": "10/6829",
         "encodedProgrammeId": {
-          "letterA": "L4010",
-          "underscore": "L4010"
+          "letterA": "10a6829",
+          "underscore": "10_6829"
         },
-        "episodeId": "L4010/0071",
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "Sam & Billie: Sister Act",
+        "titleSlug": "sam-and-billie-sister-act",
+        "description": "The sisters are back - and ready for a brand new chapter!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-09-23T21:00:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/wrrf2sz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/6362-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "wrrf2sz",
+        "programmeId": "10/6362",
+        "encodedProgrammeId": {
+          "letterA": "10a6362",
+          "underscore": "10_6362"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Princess Diaries",
+        "titleSlug": "the-princess-diaries",
+        "description": "The daughter of reality royalty turns 18! ",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-08-13T20:00:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/crnx6xl/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 4,
+            "numberOfAvailableEpisodes": 4,
+            "fullSeries": true,
+            "legacyId": "10/6871-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "crnx6xl",
+        "programmeId": "10/6871",
+        "encodedProgrammeId": {
+          "letterA": "10a6871",
+          "underscore": "10_6871"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Fortune Hotel: Late Check Out",
+        "titleSlug": "the-fortune-hotel-late-check-out",
+        "description": "Ellie Taylor checks in...  and checks out the drama from the main show! ",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/dqjgf8d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 8,
+            "numberOfAvailableEpisodes": 8,
+            "fullSeries": true,
+            "legacyId": "10/6453-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "dqjgf8d",
+        "programmeId": "10/6453",
+        "encodedProgrammeId": {
+          "letterA": "10a6453",
+          "underscore": "10_6453"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "Cooking With the Stars",
+        "titleSlug": "cooking-with-the-stars",
+        "description": "Emma Willis and Tom Allen host an epic celeb cook-off",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-09-13T06:30:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/tfc7kkf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 5,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/1356-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/1356-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/1356-03",
+            "seriesNumber": 3,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/1356-04",
+            "seriesNumber": 4,
+            "longRunning": true
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/1356-05",
+            "seriesNumber": 5,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "tfc7kkf",
+        "programmeId": "10/1356",
+        "encodedProgrammeId": {
+          "letterA": "10a1356",
+          "underscore": "10_1356"
+        },
+        "contentInfo": "Series 1 - 5",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "The Fortune Hotel",
+        "titleSlug": "the-fortune-hotel",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "Stephen Mangan returns as 11 pairs bluff, swap & scheme to win \u00a3250k",
+        "dateTime": "2025-08-06T20:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/t8ytmdb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "t8ytmdb",
+        "brandCCId": "7wr76y7",
+        "programmeId": "10/5106",
+        "encodedProgrammeId": {
+          "letterA": "10a5106",
+          "underscore": "10_5106"
+        },
+        "episodeId": "10/5106/0009",
         "encodedEpisodeId": {
-          "letterA": "L4010a0071",
-          "underscore": "L4010_0071"
+          "letterA": "10a5106a0009",
+          "underscore": "10_5106_0009"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "Georgia & Tommy: Happy Essex After",
+        "titleSlug": "georgia-and-tommy-happy-essex-after",
+        "description": "TOWIE\u2019s fave couple say \u2018I do\u2019 under the Spanish sun",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-08-07T20:00:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/m0hnsgs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 3,
+            "numberOfAvailableEpisodes": 3,
+            "fullSeries": true,
+            "legacyId": "10/6332-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "m0hnsgs",
+        "programmeId": "10/6332",
+        "encodedProgrammeId": {
+          "letterA": "10a6332",
+          "underscore": "10_6332"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": "ITVX",
+        "contentOwner": "AMC_REALITY",
+        "title": "Love After Lock Up: Life After Lock Up",
+        "titleSlug": "love-after-lock-up-life-after-lock-up",
+        "description": "Challenges, triumphs & family dramas. Don't miss the reality spin-off ",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/419ylg7/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 4,
+        "series": [
+          {
+            "numberOfEpisodes": 9,
+            "numberOfAvailableEpisodes": 9,
+            "fullSeries": true,
+            "legacyId": "10/7047-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 14,
+            "numberOfAvailableEpisodes": 14,
+            "fullSeries": true,
+            "legacyId": "10/7047-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 20,
+            "numberOfAvailableEpisodes": 20,
+            "fullSeries": true,
+            "legacyId": "10/7047-03",
+            "seriesNumber": 3,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 16,
+            "numberOfAvailableEpisodes": 16,
+            "fullSeries": true,
+            "legacyId": "10/7047-04",
+            "seriesNumber": 4,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "419ylg7",
+        "programmeId": "10/7047",
+        "encodedProgrammeId": {
+          "letterA": "10a7047",
+          "underscore": "10_7047"
+        },
+        "contentInfo": "Series 1 - 4",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "SHARK! Celebrity Infested Waters",
+        "titleSlug": "shark-celebrity-infested-waters",
+        "description": "Sharks... Celebrities... What could possibly go wrong?",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/l809v0q/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 5,
+            "fullSeries": false,
+            "legacyId": "10/5743-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "l809v0q",
+        "programmeId": "10/5743",
+        "encodedProgrammeId": {
+          "letterA": "10a5743",
+          "underscore": "10_5743"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Real Housewives of Beverly Hills",
+        "titleSlug": "the-real-housewives-of-beverly-hills",
+        "description": "Follow the lavish lives of six savvy, Beverly Hills women - new series!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2024-11-19T17:00:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/tyv6m06/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 24,
+            "numberOfAvailableEpisodes": 20,
+            "fullSeries": false,
+            "legacyId": "2/2106-13",
+            "seriesNumber": 13,
+            "longRunning": true
+          }
+        ],
+        "brandCCId": "tyv6m06",
+        "programmeId": "2/2106",
+        "encodedProgrammeId": {
+          "letterA": "2a2106",
+          "underscore": "2_2106"
+        },
+        "contentInfo": "Series 13",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 7
+          },
+          {
+            "seriesNumber": 10
+          },
+          {
+            "seriesNumber": 11
+          },
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 8
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 12
+          },
+          {
+            "seriesNumber": 9
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 12,
+        "contentInfo": "Series 1 - 12",
+        "title": "Love Island",
+        "titleSlug": "love-island",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "A scorching summer just got hotter. ",
+        "dateTime": "2025-06-09T20:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/xqjt1py/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "xqjt1py",
+        "brandCCId": "wkk03p7",
+        "programmeId": "2/3697",
+        "encodedProgrammeId": {
+          "letterA": "2a3697",
+          "underscore": "2_3697"
+        },
+        "episodeId": "2/3697/0737",
+        "encodedEpisodeId": {
+          "letterA": "2a3697a0737",
+          "underscore": "2_3697_0737"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "Love Island: The Morning After",
+        "titleSlug": "love-island-the-morning-after",
+        "description": "Stream the official Love Island Vodcast for all the goss - new eps daily",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/khmwy12/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 2,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/6015-01",
+            "seriesNumber": 2,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 41,
+            "numberOfAvailableEpisodes": 41,
+            "fullSeries": true,
+            "legacyId": "10/6015-02",
+            "seriesNumber": 3,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "khmwy12",
+        "programmeId": "10/6015",
+        "encodedProgrammeId": {
+          "letterA": "10a6015",
+          "underscore": "10_6015"
+        },
+        "contentInfo": "Series 2 - 3",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 12
+          },
+          {
+            "seriesNumber": 9
+          },
+          {
+            "seriesNumber": 10
+          },
+          {
+            "seriesNumber": 7
+          },
+          {
+            "seriesNumber": 8
+          },
+          {
+            "seriesNumber": 11
+          }
+        ],
+        "seriesNumber": 12,
+        "contentInfo": "Series 7 - 12",
+        "title": "Love Island: Aftersun",
+        "titleSlug": "love-island-aftersun",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Aftersun is back with the sensational Maya Jama returning to host another summer of love.",
+        "dateTime": "2025-06-15T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/kf3mj2m/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "kf3mj2m",
+        "brandCCId": "8ck1sm8",
+        "programmeId": "2/5131",
+        "encodedProgrammeId": {
+          "letterA": "2a5131",
+          "underscore": "2_5131"
+        },
+        "episodeId": "2/5131/0074",
+        "encodedEpisodeId": {
+          "letterA": "2a5131a0074",
+          "underscore": "2_5131_0074"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT49M",
+        "contentInfo": "49m",
+        "title": "Sam Thompson's Match Ball Mission for Soccer Aid",
+        "titleSlug": "sam-thompsons-match-ball-mission-for-soccer-aid",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2025-06-13T20:00:00Z",
+        "channel": "itv",
+        "description": "Follow Sam's epic journey to deliver the Soccer Air for UNICEF match ball",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/dz7cxdy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "dz7cxdy",
+        "programmeId": "10/6885/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6885a0001B",
+          "underscore": "10_6885_0001B"
+        },
+        "episodeId": "10/6885/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6885a0001",
+          "underscore": "10_6885_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT3H18M",
+        "contentInfo": "3h 18m",
+        "title": "Soccer Aid for UNICEF 2025",
+        "titleSlug": "soccer-aid-for-unicef-2025",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2025-06-15T17:00:00Z",
+        "channel": "itv",
+        "description": "Join these celebs for a cheeky game of footie - all for a good cause!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/x7p2kpc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "x7p2kpc",
+        "programmeId": "34725",
+        "encodedProgrammeId": {
+          "letterA": "34725",
+          "underscore": "34725"
+        },
+        "episodeId": "34725/0006",
+        "encodedEpisodeId": {
+          "letterA": "34725a0006",
+          "underscore": "34725_0006"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Olivia Attwood: The Price of Perfection",
+        "titleSlug": "olivia-attwood-the-price-of-perfection",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Olivia is back examining society\u2019s obsession with the \u2018perfect\u2019 body ",
+        "dateTime": "2025-06-19T00:05:00Z",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/ytpcp29/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "ytpcp29",
+        "brandCCId": "mdf3xq2",
+        "programmeId": "10/2910",
+        "encodedProgrammeId": {
+          "letterA": "10a2910",
+          "underscore": "10_2910"
+        },
+        "episodeId": "10/2910/0006",
+        "encodedEpisodeId": {
+          "letterA": "10a2910a0006",
+          "underscore": "10_2910_0006"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Genius Game",
+        "titleSlug": "the-genius-game",
+        "description": "In this fiendish battle of wits, only the sharpest survive  ",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-06-11T20:00:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/j8s2tqf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 8,
+            "numberOfAvailableEpisodes": 8,
+            "fullSeries": true,
+            "legacyId": "10/5133-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "j8s2tqf",
+        "programmeId": "10/5133",
+        "encodedProgrammeId": {
+          "letterA": "10a5133",
+          "underscore": "10_5133"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT1H33M",
+        "contentInfo": "1h 33m",
+        "title": "The British Soap Awards 2025",
+        "titleSlug": "the-british-soap-awards-2025",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2025-06-05T19:00:00Z",
+        "channel": "itv",
+        "description": "Jane McDonald returns to host the annual award ceremony at London's Hackney Empire.",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/gfc7dp4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "gfc7dp4",
+        "programmeId": "2/3735",
+        "encodedProgrammeId": {
+          "letterA": "2a3735",
+          "underscore": "2_3735"
+        },
+        "episodeId": "1/4772/0014",
+        "encodedEpisodeId": {
+          "letterA": "1a4772a0014",
+          "underscore": "1_4772_0014"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT1H8M",
+        "contentInfo": "1h 8m",
+        "title": "Love Island: Decade of Love",
+        "titleSlug": "love-island-decade-of-love",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2025-06-01T20:00:00Z",
+        "channel": "itv2",
+        "description": "10 years of your favourite islanders - relive iconic couples & unforgettable moments!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/9mctdqy/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "9mctdqy",
+        "programmeId": "10/6980/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6980a0001B",
+          "underscore": "10_6980_0001B"
+        },
+        "episodeId": "10/6980/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6980a0001",
+          "underscore": "10_6980_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Bardsley Bunch",
+        "titleSlug": "the-bardsley-bunch",
+        "description": "Meet the Bardsleys, where four fabulous generations live under one roof!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-05-21T20:00:00Z",
+        "channel": "itvbe",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/83n24yn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/6394-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "83n24yn",
+        "programmeId": "10/6394",
+        "encodedProgrammeId": {
+          "letterA": "10a6394",
+          "underscore": "10_6394"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Assembly",
+        "titleSlug": "the-assembly",
+        "description": "Some of the UK's best known faces open up like never before",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-10-05T23:55:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/zz38m74/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 5,
+            "numberOfAvailableEpisodes": 5,
+            "fullSeries": true,
+            "legacyId": "10/6350-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "zz38m74",
+        "programmeId": "10/6350",
+        "encodedProgrammeId": {
+          "letterA": "10a6350",
+          "underscore": "10_6350"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Celebrity Big Brother: Late & Live",
+        "titleSlug": "celebrity-big-brother-late-and-live",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Join us live from our studio just a stone\u2019s throw from the Celebrity Big Brother house.",
+        "dateTime": "2025-04-07T21:30:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/f6npxyd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "f6npxyd",
+        "brandCCId": "lnr3m74",
+        "programmeId": "10/5343",
+        "encodedProgrammeId": {
+          "letterA": "10a5343",
+          "underscore": "10_5343"
+        },
+        "episodeId": "10/5343/0018",
+        "encodedEpisodeId": {
+          "letterA": "10a5343a0018",
+          "underscore": "10_5343_0018"
         },
         "isPaid": false
       },
@@ -545,71 +1475,268 @@
         "series": [
           {
             "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
           }
         ],
-        "seriesNumber": 1,
-        "contentInfo": "Series 1",
-        "title": "Deal or No Deal",
-        "titleSlug": "deal-or-no-deal",
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Celebrity Big Brother",
+        "titleSlug": "celebrity-big-brother",
         "partnership": null,
         "contentOwner": null,
         "channel": "itv",
-        "description": "The iconic red boxes are back! Join Stephen Mulhern for 2023's new series",
-        "dateTime": "2024-04-28T18:00:00Z",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "description": "Highs, lows, twists and turns - the Celebrity Big Brother final is here!",
+        "dateTime": "2025-04-07T20:00:00Z",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/series/7qjd6g5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "7qjd6g5",
-        "programmeId": "10/4934",
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/bjjjfw9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "bjjjfw9",
+        "brandCCId": "9mm0f1p",
+        "programmeId": "10/5342",
         "encodedProgrammeId": {
-          "letterA": "10a4934",
-          "underscore": "10_4934"
+          "letterA": "10a5342",
+          "underscore": "10_5342"
         },
-        "episodeId": "10/4934/0001",
+        "episodeId": "10/5342/0018",
         "encodedEpisodeId": {
-          "letterA": "10a4934a0001",
-          "underscore": "10_4934_0001"
+          "letterA": "10a5342a0018",
+          "underscore": "10_5342_0018"
         },
         "isPaid": false
       },
       {
         "contentType": "special",
-        "duration": "PT1H15M",
-        "contentInfo": "1h 15m",
-        "title": "An Audience with Kylie",
-        "titleSlug": "an-audience-with-kylie",
+        "duration": "PT1H42M",
+        "contentInfo": "1h 42m",
+        "title": "The Olivier Awards 2025",
+        "titleSlug": "the-olivier-awards-2025",
         "partnership": null,
         "contentOwner": null,
-        "dateTime": "2023-12-10T19:45:00Z",
+        "dateTime": "2025-04-06T21:15:00Z",
         "channel": "itv",
-        "description": "Join the pop icon for a musical extravaganza",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "description": "Beverley Knight and Billy Porter host the 2025 edition of the theatre awards ceremony.",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/special/n4gpnc8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "n4gpnc8",
-        "programmeId": "10/5022",
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/tbx7t69/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "tbx7t69",
+        "programmeId": "2/2330",
         "encodedProgrammeId": {
-          "letterA": "10a5022",
-          "underscore": "10_5022"
+          "letterA": "2a2330",
+          "underscore": "2_2330"
         },
-        "episodeId": "10/5022/0001",
+        "episodeId": "2/2330/0012",
         "encodedEpisodeId": {
-          "letterA": "10a5022a0001",
-          "underscore": "10_5022_0001"
+          "letterA": "2a2330a0012",
+          "underscore": "2_2330_0012"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 21
+          },
+          {
+            "seriesNumber": 23
+          },
+          {
+            "seriesNumber": 22
+          }
+        ],
+        "seriesNumber": 23,
+        "contentInfo": "Series 21 - 23",
+        "title": "Hell's Kitchen",
+        "titleSlug": "hells-kitchen",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Gordon's chefs slice and dice their way towards the final!",
+        "dateTime": "2025-02-24T21:00:00Z",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/26w9t16/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "26w9t16",
+        "brandCCId": "tdsrtb5",
+        "programmeId": "1/5021",
+        "encodedProgrammeId": {
+          "letterA": "1a5021",
+          "underscore": "1_5021"
+        },
+        "episodeId": "1/5021/0345",
+        "encodedEpisodeId": {
+          "letterA": "1a5021a0345",
+          "underscore": "1_5021_0345"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 35
+          },
+          {
+            "seriesNumber": 34
+          }
+        ],
+        "seriesNumber": 34,
+        "contentInfo": "Series 34 - 35",
+        "title": "Who Wants to Be a Millionaire?",
+        "titleSlug": "who-wants-to-be-a-millionaire",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "Who will be a million-pound winner?! Don't miss brand new episodes!",
+        "dateTime": "2021-02-07T20:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/1xyttcr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "1xyttcr",
+        "brandCCId": "vf96nmx",
+        "programmeId": "33753",
+        "encodedProgrammeId": {
+          "letterA": "33753",
+          "underscore": "33753"
+        },
+        "episodeId": "1/7907/0148",
+        "encodedEpisodeId": {
+          "letterA": "1a7907a0148",
+          "underscore": "1_7907_0148"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Wheel of Fortune",
+        "titleSlug": "wheel-of-fortune",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "Graham Norton is back! Join him for this spin on the classic game show!",
+        "dateTime": "2025-10-28T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/dl7psyf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "dl7psyf",
+        "brandCCId": "bt4lvmk",
+        "programmeId": "10/5010",
+        "encodedProgrammeId": {
+          "letterA": "10a5010",
+          "underscore": "10_5010"
+        },
+        "episodeId": "10/5010/0009",
+        "encodedEpisodeId": {
+          "letterA": "10a5010a0009",
+          "underscore": "10_5010_0009"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 15
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 9
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 18
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 17
+          },
+          {
+            "seriesNumber": 16
+          },
+          {
+            "seriesNumber": 14
+          },
+          {
+            "seriesNumber": 13
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 8
+          }
+        ],
+        "seriesNumber": 18,
+        "contentInfo": "14 Series",
+        "title": "The Real Housewives of Cheshire",
+        "titleSlug": "the-real-housewives-of-cheshire",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "The ladies are back - serving shade and champers in equal measure",
+        "dateTime": "2025-03-03T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/lps6blz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "lps6blz",
+        "brandCCId": "2psb31k",
+        "programmeId": "2/3398",
+        "encodedProgrammeId": {
+          "letterA": "2a3398",
+          "underscore": "2_3398"
+        },
+        "episodeId": "2/3398/0194",
+        "encodedEpisodeId": {
+          "letterA": "2a3398a0194",
+          "underscore": "2_3398_0194"
         },
         "isPaid": false
       },
@@ -617,83 +1744,1654 @@
         "contentType": "brand",
         "partnership": null,
         "contentOwner": null,
-        "title": "The Real Full Monty: Jingle Balls",
-        "titleSlug": "the-real-full-monty-jingle-balls",
-        "description": "Join this group of a celebs for a striptease in aid of a very good cause",
-        "categories": [
-          "FACTUAL"
-        ],
-        "genres": [
-          {
-            "id": "FACTUAL",
-            "name": "Documentaries & Lifestyle"
-          }
-        ],
-        "dateTime": "2023-12-12T21:00:00Z",
-        "channel": "itv",
-        "imageTemplate": "https://ovp.itv.com/images/programme/zx7dgxz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "numberOfAvailableSeries": 1,
-        "series": [
-          {
-            "numberOfEpisodes": 2,
-            "numberOfAvailableEpisodes": 2,
-            "fullSeries": true,
-            "legacyId": "10/4061-01",
-            "seriesNumber": 1,
-            "longRunning": false
-          }
-        ],
-        "ccid": "zx7dgxz",
-        "programmeId": "10/4061",
-        "encodedProgrammeId": {
-          "letterA": "10a4061",
-          "underscore": "10_4061"
-        },
-        "contentInfo": "Series 1",
-        "isPaid": false
-      },
-      {
-        "contentType": "special",
-        "duration": "PT10M",
-        "contentInfo": "10m",
-        "title": "An Audience with Kylie: Exclusive performance",
-        "titleSlug": "an-audience-with-kylie-exclusive-performance",
-        "partnership": null,
-        "contentOwner": null,
-        "dateTime": null,
-        "channel": "itv",
-        "description": "Enjoy this unseen performance from Kylie",
-        "categories": [
-          "ENTERTAINMENT"
-        ],
+        "title": "Patti Stanger: The Matchmaker",
+        "titleSlug": "patti-stanger-the-matchmaker",
+        "description": "High standards, high drama - \u2018The Matchmaker\u2019 is back!  ",
         "genres": [
           {
             "id": "ENTERTAINMENT",
             "name": "Entertainment & Reality"
           }
         ],
-        "imageTemplate": "https://ovp.itv.com/images/special/zdcw9pg/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-        "ccid": "zdcw9pg",
-        "programmeId": "10/5022",
+        "dateTime": "2025-04-29T21:00:00Z",
+        "channel": "itvbe",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/bpppwjz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 10,
+            "numberOfAvailableEpisodes": 10,
+            "fullSeries": true,
+            "legacyId": "10/6387-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "bpppwjz",
+        "programmeId": "10/6387",
         "encodedProgrammeId": {
-          "letterA": "10a5022",
-          "underscore": "10_5022"
+          "letterA": "10a6387",
+          "underscore": "10_6387"
         },
-        "episodeId": "10/5022/0002",
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 11
+          },
+          {
+            "seriesNumber": 25
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 23
+          },
+          {
+            "seriesNumber": 19
+          },
+          {
+            "seriesNumber": 31
+          },
+          {
+            "seriesNumber": 9
+          },
+          {
+            "seriesNumber": 33
+          },
+          {
+            "seriesNumber": 36
+          },
+          {
+            "seriesNumber": 21
+          },
+          {
+            "seriesNumber": 26
+          },
+          {
+            "seriesNumber": 28
+          },
+          {
+            "seriesNumber": 35
+          },
+          {
+            "seriesNumber": 8
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 32
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 12
+          },
+          {
+            "seriesNumber": 22
+          },
+          {
+            "seriesNumber": 10
+          },
+          {
+            "seriesNumber": 29
+          },
+          {
+            "seriesNumber": 14
+          },
+          {
+            "seriesNumber": 20
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 30
+          },
+          {
+            "seriesNumber": 17
+          },
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 15
+          },
+          {
+            "seriesNumber": 7
+          },
+          {
+            "seriesNumber": 24
+          },
+          {
+            "seriesNumber": 16
+          },
+          {
+            "seriesNumber": 34
+          },
+          {
+            "seriesNumber": 18
+          },
+          {
+            "seriesNumber": 13
+          }
+        ],
+        "seriesNumber": 35,
+        "contentInfo": "35 Series",
+        "title": "The Only Way is Essex",
+        "titleSlug": "the-only-way-is-essex",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "The glossy posse is back!",
+        "dateTime": "2025-02-23T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/zv1mx69/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "zv1mx69",
+        "brandCCId": "2p2wmfp",
+        "programmeId": "1/9310",
+        "encodedProgrammeId": {
+          "letterA": "1a9310",
+          "underscore": "1_9310"
+        },
+        "episodeId": "1/9310/0425",
         "encodedEpisodeId": {
-          "letterA": "10a5022a0002",
-          "underscore": "10_5022_0002"
+          "letterA": "1a9310a0425",
+          "underscore": "1_9310_0425"
         },
         "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 5
+          }
+        ],
+        "seriesNumber": 6,
+        "contentInfo": "Series 2 - 6",
+        "title": "The Masked Singer",
+        "titleSlug": "the-masked-singer",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "The Masked Singer is back with more epic outfits & jaw-dropping reveals!",
+        "dateTime": "2025-01-04T19:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/lddc3nm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "lddc3nm",
+        "brandCCId": "71xn0cw",
+        "programmeId": "2/6976",
+        "encodedProgrammeId": {
+          "letterA": "2a6976",
+          "underscore": "2_6976"
+        },
+        "episodeId": "2/6976/0065",
+        "encodedEpisodeId": {
+          "letterA": "2a6976a0065",
+          "underscore": "2_6976_0065"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 14
+          }
+        ],
+        "seriesNumber": 14,
+        "contentInfo": "Series 14",
+        "title": "The Real Housewives of New Jersey",
+        "titleSlug": "the-real-housewives-of-new-jersey",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "The housewives are back with more birthdays, brawls and big drama!",
+        "dateTime": "2025-01-29T17:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/153t0qw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "153t0qw",
+        "brandCCId": "tq53vq1",
+        "programmeId": "2/2831",
+        "encodedProgrammeId": {
+          "letterA": "2a2831",
+          "underscore": "2_2831"
+        },
+        "episodeId": "2/2831/0247",
+        "encodedEpisodeId": {
+          "letterA": "2a2831a0247",
+          "underscore": "2_2831_0247"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 14
+          },
+          {
+            "seriesNumber": 16
+          },
+          {
+            "seriesNumber": 17
+          }
+        ],
+        "seriesNumber": 17,
+        "contentInfo": "Series 14, 16, 17",
+        "title": "Dancing on Ice",
+        "titleSlug": "dancing-on-ice",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "Who will win at the rink? The greatest show on ice is back!",
+        "dateTime": "2025-01-12T18:30:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/6x85yb2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "6x85yb2",
+        "brandCCId": "61jh3y7",
+        "programmeId": "2/5040",
+        "encodedProgrammeId": {
+          "letterA": "2a5040",
+          "underscore": "2_5040"
+        },
+        "episodeId": "2/5040/0078",
+        "encodedEpisodeId": {
+          "letterA": "2a5040a0078",
+          "underscore": "2_5040_0078"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 2",
+        "title": "Love Island All Stars: The Morning After",
+        "titleSlug": "love-island-all-stars-the-morning-after",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "All the goss from the night before - who likes who & what did they do?!",
+        "dateTime": null,
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/z6s8bw2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "z6s8bw2",
+        "brandCCId": "1q760q9",
+        "programmeId": "10/6487",
+        "encodedProgrammeId": {
+          "letterA": "10a6487",
+          "underscore": "10_6487"
+        },
+        "episodeId": "10/6487/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6487a0001",
+          "underscore": "10_6487_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 5
+          }
+        ],
+        "seriesNumber": 4,
+        "contentInfo": "Series 1 - 5",
+        "title": "The 1% Club",
+        "titleSlug": "the-1percent-club",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "Quiz show where contestants try to answer a question only 1% of the country can get right.",
+        "dateTime": "2025-01-25T20:30:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/1flgk5j/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "1flgk5j",
+        "brandCCId": "5b5f7kw",
+        "programmeId": "10/0593",
+        "encodedProgrammeId": {
+          "letterA": "10a0593",
+          "underscore": "10_0593"
+        },
+        "episodeId": "10/0593/0042",
+        "encodedEpisodeId": {
+          "letterA": "10a0593a0042",
+          "underscore": "10_0593_0042"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Gordon Ramsay's Food Stars USA",
+        "titleSlug": "gordon-ramsays-food-stars-usa",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "The hunt is on again! Can the fiery chef find the next culinary star?",
+        "dateTime": "2025-01-27T20:00:00Z",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/vfjnmy5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "vfjnmy5",
+        "brandCCId": "g9vm96g",
+        "programmeId": "10/6062",
+        "encodedProgrammeId": {
+          "letterA": "10a6062",
+          "underscore": "10_6062"
+        },
+        "episodeId": "10/6062/0011",
+        "encodedEpisodeId": {
+          "letterA": "10a6062a0011",
+          "underscore": "10_6062_0011"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 18
+          }
+        ],
+        "seriesNumber": 18,
+        "contentInfo": "Series 18",
+        "title": "The Real Housewives of Orange County",
+        "titleSlug": "the-real-housewives-of-orange-county",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "Head to Orange County to enjoy the lavish lifestyles of these housewives",
+        "dateTime": "2025-01-14T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/5d9g156/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "5d9g156",
+        "brandCCId": "169rn8m",
+        "programmeId": "1/9824",
+        "encodedProgrammeId": {
+          "letterA": "1a9824",
+          "underscore": "1_9824"
+        },
+        "episodeId": "1/9824/0331",
+        "encodedEpisodeId": {
+          "letterA": "1a9824a0331",
+          "underscore": "1_9824_0331"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 3
+          }
+        ],
+        "seriesNumber": 4,
+        "contentInfo": "Series 1 - 4",
+        "title": "Ant & Dec's Limitless Win",
+        "titleSlug": "ant-and-decs-limitless-win",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Ant and Dec are back in a new series - who will climb the highest?",
+        "dateTime": "2025-01-04T20:30:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/rqhj3lr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "rqhj3lr",
+        "brandCCId": "8rksy33",
+        "programmeId": "10/1813",
+        "encodedProgrammeId": {
+          "letterA": "10a1813",
+          "underscore": "10_1813"
+        },
+        "episodeId": "10/1813/0018",
+        "encodedEpisodeId": {
+          "letterA": "10a1813a0018",
+          "underscore": "10_1813_0018"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 3",
+        "title": "Fletchers' Family Farm",
+        "titleSlug": "fletchers-family-farm",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "The Fletchers are back sharing an intimate look at life on their farm",
+        "dateTime": "2024-11-24T11:30:00Z",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/266bwdx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "266bwdx",
+        "brandCCId": "8yfnhq4",
+        "programmeId": "10/4512",
+        "encodedProgrammeId": {
+          "letterA": "10a4512",
+          "underscore": "10_4512"
+        },
+        "episodeId": "10/4512/0011",
+        "encodedEpisodeId": {
+          "letterA": "10a4512a0011",
+          "underscore": "10_4512_0011"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Love Island All Stars",
+        "titleSlug": "love-island-all-stars",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Old flames reignited, new romances blossomed - stream every episode now!",
+        "dateTime": "2025-01-13T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/pjxtjs4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "pjxtjs4",
+        "brandCCId": "ytj3bm4",
+        "programmeId": "10/5231",
+        "encodedProgrammeId": {
+          "letterA": "10a5231",
+          "underscore": "10_5231"
+        },
+        "episodeId": "10/5231/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5231a0001",
+          "underscore": "10_5231_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT46M",
+        "contentInfo": "46m",
+        "title": "Bullseye Christmas Special",
+        "titleSlug": "bullseye-christmas-special",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-12-22T18:00:00Z",
+        "channel": "itv",
+        "description": "Join Freddie Flintoff & Luke Littler as the iconic game show returns!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/l0yxms1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "l0yxms1",
+        "programmeId": "10/6696",
+        "encodedProgrammeId": {
+          "letterA": "10a6696",
+          "underscore": "10_6696"
+        },
+        "episodeId": "BULLSEYE/0001",
+        "encodedEpisodeId": {
+          "letterA": "BULLSEYEa0001",
+          "underscore": "BULLSEYE_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "You Bet! On Tour",
+        "titleSlug": "you-bet-on-tour",
+        "description": "The epic, high-stakes gameshow is back! Stream it now",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-10-04T17:00:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/cpqx5bf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 2,
+        "series": [
+          {
+            "numberOfEpisodes": 2,
+            "numberOfAvailableEpisodes": 2,
+            "fullSeries": true,
+            "legacyId": "10/5760-01",
+            "seriesNumber": 1,
+            "longRunning": true
+          },
+          {
+            "numberOfEpisodes": 7,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": false,
+            "legacyId": "10/5760-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "cpqx5bf",
+        "programmeId": "10/5760",
+        "encodedProgrammeId": {
+          "letterA": "10a5760",
+          "underscore": "10_5760"
+        },
+        "contentInfo": "Series 1 - 2",
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT48M",
+        "contentInfo": "48m",
+        "title": "Fletchers' Family Farm at Christmas",
+        "titleSlug": "fletchers-family-farm-at-christmas",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-12-29T18:00:00Z",
+        "channel": "itv",
+        "description": "The family venture to Finland to visit a farm in the harsh Arctic Circle",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/jp75txn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "jp75txn",
+        "programmeId": "10/4512",
+        "encodedProgrammeId": {
+          "letterA": "10a4512",
+          "underscore": "10_4512"
+        },
+        "episodeId": "10/4512/0021",
+        "encodedEpisodeId": {
+          "letterA": "10a4512a0021",
+          "underscore": "10_4512_0021"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "episode",
+        "title": "Deal or No Deal Celebrity Special",
+        "titleSlug": "deal-or-no-deal-celebrity-special",
+        "episodeTitle": "Katarina Johnson-Thompson",
+        "episodeNumber": 3,
+        "seriesNumber": 2,
+        "contentInfo": "S2, E3. Katarina Johnson-Thompson",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "partnership": null,
+        "contentOwner": null,
+        "description": "Olympic silver medallist Katarina Johnson-Thompson takes on the notorious Banker.",
+        "dateTime": "2025-09-19T20:00:00Z",
+        "channel": "itvbe",
+        "imageTemplate": "https://ovp.itv.com/v2/images/episode/w261tb6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "w261tb6",
+        "brandCCId": "n7dvw34",
+        "programmeId": "10/4930",
+        "encodedProgrammeId": {
+          "letterA": "10a4930",
+          "underscore": "10_4930"
+        },
+        "episodeId": "10/4930/0005",
+        "encodedEpisodeId": {
+          "letterA": "10a4930a0005",
+          "underscore": "10_4930_0005"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT47M",
+        "contentInfo": "47m",
+        "title": "Wheel of Fortune Christmas Special",
+        "titleSlug": "wheel-of-fortune-christmas-special",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-12-28T19:00:00Z",
+        "channel": "itv",
+        "description": "Richard E Grant, Joanna Page and Tyler West spin the Wheel for charity",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/8n53p73/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "8n53p73",
+        "programmeId": "10/5010",
+        "encodedProgrammeId": {
+          "letterA": "10a5010",
+          "underscore": "10_5010"
+        },
+        "episodeId": "10/5010/0017",
+        "encodedEpisodeId": {
+          "letterA": "10a5010a0017",
+          "underscore": "10_5010_0017"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT1H7M",
+        "contentInfo": "1h 7m",
+        "title": "Katy Perry: Night of a Lifetime",
+        "titleSlug": "katy-perry-night-of-a-lifetime",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-12-21T18:30:00Z",
+        "channel": "itv",
+        "description": "Katy Perry performs exclusively for ITV in a spectacular performance",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/mv9r40c/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "mv9r40c",
+        "programmeId": "10/6341/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6341a0001B",
+          "underscore": "10_6341_0001B"
+        },
+        "episodeId": "10/6341/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6341a0001",
+          "underscore": "10_6341_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT47M",
+        "contentInfo": "47m",
+        "title": "Take That: This Life - Live In Concert",
+        "titleSlug": "take-that-this-life-live-in-concert",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": null,
+        "channel": "itv2",
+        "description": "Enjoy an evening with Take That featuring all the hits from their tour",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/5x3mr37/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "5x3mr37",
+        "programmeId": "10/6459/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6459a0001B",
+          "underscore": "10_6459_0001B"
+        },
+        "episodeId": "10/6459/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6459a0001",
+          "underscore": "10_6459_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT2H6M",
+        "contentInfo": "2h 6m",
+        "title": "The Royal Variety Performance 2024",
+        "titleSlug": "the-royal-variety-performance-2024",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-12-15T20:00:00Z",
+        "channel": "itv",
+        "description": "Alan Carr and Amanda Holden unite to host a night of epic entertainment ",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/9q4gs8x/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "9q4gs8x",
+        "programmeId": "L0897",
+        "encodedProgrammeId": {
+          "letterA": "L0897",
+          "underscore": "L0897"
+        },
+        "episodeId": "L0897/0025",
+        "encodedEpisodeId": {
+          "letterA": "L0897a0025",
+          "underscore": "L0897_0025"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 2",
+        "title": "The Real Housewives of Dubai",
+        "titleSlug": "the-real-housewives-of-dubai",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "Step into the ultra-luxe lives of these housewives - new series!",
+        "dateTime": "2024-12-05T17:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/clldjr9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "clldjr9",
+        "brandCCId": "vhg1ggy",
+        "programmeId": "10/4499",
+        "encodedProgrammeId": {
+          "letterA": "10a4499",
+          "underscore": "10_4499"
+        },
+        "episodeId": "10/4499/0015",
+        "encodedEpisodeId": {
+          "letterA": "10a4499a0015",
+          "underscore": "10_4499_0015"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 2",
+        "title": "Deal or No Deal",
+        "titleSlug": "deal-or-no-deal",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "Join Stephen Mulhern for the iconic gameshow with just one question - Deal or No Deal?",
+        "dateTime": "2025-10-01T18:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/nhfxc09/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "nhfxc09",
+        "brandCCId": "58sldx9",
+        "programmeId": "10/4934",
+        "encodedProgrammeId": {
+          "letterA": "10a4934",
+          "underscore": "10_4934"
+        },
+        "episodeId": "10/4934/0021",
+        "encodedEpisodeId": {
+          "letterA": "10a4934a0021",
+          "underscore": "10_4934_0021"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT49M",
+        "contentInfo": "49m",
+        "title": "An Evening with Dua Lipa",
+        "titleSlug": "an-evening-with-dua-lipa",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-12-08T20:00:00Z",
+        "channel": "itv",
+        "description": "Join Dua, a spectacular orchestra & Elton John at the iconic Albert Hall",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/cyh1k6k/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "cyh1k6k",
+        "programmeId": "10/6310/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a6310a0001B",
+          "underscore": "10_6310_0001B"
+        },
+        "episodeId": "10/6310/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a6310a0001",
+          "underscore": "10_6310_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 12
+          },
+          {
+            "seriesNumber": 14
+          },
+          {
+            "seriesNumber": 13
+          }
+        ],
+        "seriesNumber": 13,
+        "contentInfo": "Series 12 - 14",
+        "title": "The Chase Celebrity Special",
+        "titleSlug": "the-chase-celebrity-special",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv4",
+        "description": "Watch celebs pit their wits against ruthless quiz genius, the Chaser",
+        "dateTime": "2022-12-25T17:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/88tm1sl/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "88tm1sl",
+        "brandCCId": "8m25kxf",
+        "programmeId": "2/1400",
+        "encodedProgrammeId": {
+          "letterA": "2a1400",
+          "underscore": "2_1400"
+        },
+        "episodeId": "2/1400/0137",
+        "encodedEpisodeId": {
+          "letterA": "2a1400a0137",
+          "underscore": "2_1400_0137"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "I'm A Celebrity... Unpacked",
+        "titleSlug": "im-a-celebrity-unpacked",
+        "description": "Join Joel Dommett, Sam Thompson and Kemi Rodgers for all the best gossip",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2024-12-08T22:40:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/q6hlsp2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 22,
+            "numberOfAvailableEpisodes": 22,
+            "fullSeries": true,
+            "legacyId": "10/6257-01",
+            "seriesNumber": 1,
+            "longRunning": true
+          }
+        ],
+        "brandCCId": "q6hlsp2",
+        "programmeId": "10/6257",
+        "encodedProgrammeId": {
+          "letterA": "10a6257",
+          "underscore": "10_6257"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT1H6M",
+        "contentInfo": "1h 6m",
+        "title": "McFly The 21st Birthday Party",
+        "titleSlug": "mcfly-the-21st-birthday-party",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-11-09T17:30:00Z",
+        "channel": "itv",
+        "description": "Join McFly for an explosive night of music celebrating 21 years",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/ql8y01d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "ql8y01d",
+        "programmeId": "10/5937/0001B",
+        "encodedProgrammeId": {
+          "letterA": "10a5937a0001B",
+          "underscore": "10_5937_0001B"
+        },
+        "episodeId": "10/5937/0001",
+        "encodedEpisodeId": {
+          "letterA": "10a5937a0001",
+          "underscore": "10_5937_0001"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 2
+          }
+        ],
+        "seriesNumber": 6,
+        "contentInfo": "4 Series",
+        "title": "Love Island: Australia",
+        "titleSlug": "love-island-australia",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itvbe",
+        "description": "The temperatures are rising in this scorching summer of love!",
+        "dateTime": "2024-11-18T22:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/bfpk46d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "bfpk46d",
+        "brandCCId": "s5txkkt",
+        "programmeId": "2/5470",
+        "encodedProgrammeId": {
+          "letterA": "2a5470",
+          "underscore": "2_5470"
+        },
+        "episodeId": "2/5470/0148",
+        "encodedEpisodeId": {
+          "letterA": "2a5470a0148",
+          "underscore": "2_5470_0148"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 24
+          },
+          {
+            "seriesNumber": 23
+          },
+          {
+            "seriesNumber": 20
+          },
+          {
+            "seriesNumber": 22
+          },
+          {
+            "seriesNumber": 21
+          }
+        ],
+        "seriesNumber": 24,
+        "contentInfo": "Series 20 - 24",
+        "title": "I'm a Celebrity... Get Me Out of Here!",
+        "titleSlug": "im-a-celebrity-get-me-out-of-here",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "It's the final week and the trials continue to test the group",
+        "dateTime": "2024-11-17T21:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/4b4qnkh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "4b4qnkh",
+        "brandCCId": "hkjzkbc",
+        "programmeId": "L2649",
+        "encodedProgrammeId": {
+          "letterA": "L2649",
+          "underscore": "L2649"
+        },
+        "episodeId": "1/7103/0339",
+        "encodedEpisodeId": {
+          "letterA": "1a7103a0339",
+          "underscore": "1_7103_0339"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "Romesh Ranganathan's Parents' Evening",
+        "titleSlug": "romesh-ranganathans-parents-evening",
+        "description": "Romesh is back with a brand new series!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2025-11-01T21:20:00Z",
+        "channel": "itvbe",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/b10k1ny/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 2,
+        "series": [
+          {
+            "numberOfEpisodes": 4,
+            "numberOfAvailableEpisodes": 3,
+            "fullSeries": false,
+            "legacyId": "10/5680-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 4,
+            "fullSeries": false,
+            "legacyId": "10/5680-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "b10k1ny",
+        "programmeId": "10/5680",
+        "encodedProgrammeId": {
+          "letterA": "10a5680",
+          "underscore": "10_5680"
+        },
+        "contentInfo": "Series 1 - 2",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Girls Aloud Show",
+        "titleSlug": "the-girls-aloud-show",
+        "description": "Join the iconic pop group for a night of non-stop hits at London's O2",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": "2024-11-17T20:00:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/p6k4qyr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 0,
+        "series": [],
+        "brandCCId": "p6k4qyr",
+        "programmeId": "10/5973",
+        "encodedProgrammeId": {
+          "letterA": "10a5973",
+          "underscore": "10_5973"
+        },
+        "contentInfo": "",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 1
+          },
+          {
+            "seriesNumber": 7
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 5
+          }
+        ],
+        "seriesNumber": 7,
+        "contentInfo": "Series 1 - 7",
+        "title": "Billie & Greg: The Family Diaries",
+        "titleSlug": "billie-and-greg-the-family-diaries",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "The Sheps are back and busier than ever! ",
+        "dateTime": "2024-10-16T20:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/x5gb8yd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "x5gb8yd",
+        "brandCCId": "bmvmg47",
+        "programmeId": "10/1549",
+        "encodedProgrammeId": {
+          "letterA": "10a1549",
+          "underscore": "10_1549"
+        },
+        "episodeId": "10/1549/0042",
+        "encodedEpisodeId": {
+          "letterA": "10a1549a0042",
+          "underscore": "10_1549_0042"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 2,
+        "contentInfo": "Series 1 - 3",
+        "title": "Big Brother: Late & Live",
+        "titleSlug": "big-brother-late-and-live",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "Join AJ & Will for juicy gossip, spicy exclusives and hot takes",
+        "dateTime": "2024-10-06T21:50:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/27ryrh8/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "27ryrh8",
+        "brandCCId": "zcwmw31",
+        "programmeId": "10/4929",
+        "encodedProgrammeId": {
+          "letterA": "10a4929",
+          "underscore": "10_4929"
+        },
+        "episodeId": "10/4929/0037",
+        "encodedEpisodeId": {
+          "letterA": "10a4929a0037",
+          "underscore": "10_4929_0037"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": "ITVX",
+        "contentOwner": "AMC_REALITY",
+        "title": "Pregnant & Dating",
+        "titleSlug": "pregnant-and-dating",
+        "description": "As if dating wasn\u2019t hard enough\u2026 try being pregnant!",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/dzkj4ry/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 8,
+            "numberOfAvailableEpisodes": 8,
+            "fullSeries": true,
+            "legacyId": "10/5574-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "dzkj4ry",
+        "programmeId": "10/5574",
+        "encodedProgrammeId": {
+          "letterA": "10a5574",
+          "underscore": "10_5574"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 13
+          }
+        ],
+        "seriesNumber": 13,
+        "contentInfo": "Series 13",
+        "title": "The Real Housewives of Beverly Hills",
+        "titleSlug": "the-real-housewives-of-beverly-hills",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "The lavish ladies of Beverly Hills are back and ready shop, bitch and party",
+        "dateTime": "2024-10-23T16:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/9bm7ts0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "9bm7ts0",
+        "brandCCId": "tyv6m06",
+        "programmeId": "2/2106",
+        "encodedProgrammeId": {
+          "letterA": "2a2106",
+          "underscore": "2_2106"
+        },
+        "episodeId": "2/2106/0284",
+        "encodedEpisodeId": {
+          "letterA": "2a2106a0284",
+          "underscore": "2_2106_0284"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": "ITVX",
+        "contentOwner": "AMC_REALITY",
+        "title": "Braxton Family Values",
+        "titleSlug": "braxton-family-values",
+        "description": "They\u2019re loud, proud & fiercely loyal - meet singer Toni Braxton\u2019s family",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/bs15g7v/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 7,
+        "series": [
+          {
+            "numberOfEpisodes": 11,
+            "numberOfAvailableEpisodes": 11,
+            "fullSeries": true,
+            "legacyId": "10/6212-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 26,
+            "numberOfAvailableEpisodes": 26,
+            "fullSeries": true,
+            "legacyId": "10/6212-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 26,
+            "numberOfAvailableEpisodes": 26,
+            "fullSeries": true,
+            "legacyId": "10/6212-03",
+            "seriesNumber": 3,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 29,
+            "numberOfAvailableEpisodes": 29,
+            "fullSeries": true,
+            "legacyId": "10/6212-04",
+            "seriesNumber": 4,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 26,
+            "numberOfAvailableEpisodes": 26,
+            "fullSeries": true,
+            "legacyId": "10/6212-05",
+            "seriesNumber": 5,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 27,
+            "numberOfAvailableEpisodes": 27,
+            "fullSeries": true,
+            "legacyId": "10/6212-06",
+            "seriesNumber": 6,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "10/6212-07",
+            "seriesNumber": 7,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "bs15g7v",
+        "programmeId": "10/6212",
+        "encodedProgrammeId": {
+          "letterA": "10a6212",
+          "underscore": "10_6212"
+        },
+        "contentInfo": "Series 1 - 7",
+        "isPaid": false
+      },
+      {
+        "contentType": "special",
+        "duration": "PT1H37M",
+        "contentInfo": "1h 37m",
+        "title": "Daily Mirror Pride of Britain Awards 2024",
+        "titleSlug": "daily-mirror-pride-of-britain-awards-2024",
+        "partnership": null,
+        "contentOwner": null,
+        "dateTime": "2024-10-24T19:00:00Z",
+        "channel": "itv",
+        "description": "Celebrate Britain's unsung heroes in a star-studded night to remember",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/special/gm2rl3h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "gm2rl3h",
+        "programmeId": "L2604",
+        "encodedProgrammeId": {
+          "letterA": "L2604",
+          "underscore": "L2604"
+        },
+        "episodeId": "L2604/0013",
+        "encodedEpisodeId": {
+          "letterA": "L2604a0013",
+          "underscore": "L2604_0013"
+        },
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": "ITVX",
+        "contentOwner": "AMC_REALITY",
+        "title": "Mama June: From Not to Hot",
+        "titleSlug": "mama-june-from-not-to-hot",
+        "description": "Enter the crazy world of reality star Mama June - catch all the drama",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/yx3s69d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 4,
+        "series": [
+          {
+            "numberOfEpisodes": 9,
+            "numberOfAvailableEpisodes": 9,
+            "fullSeries": true,
+            "legacyId": "2/5748-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 19,
+            "numberOfAvailableEpisodes": 19,
+            "fullSeries": true,
+            "legacyId": "2/5748-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 12,
+            "numberOfAvailableEpisodes": 12,
+            "fullSeries": true,
+            "legacyId": "2/5748-04",
+            "seriesNumber": 4,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 22,
+            "numberOfAvailableEpisodes": 22,
+            "fullSeries": true,
+            "legacyId": "2/5748-05",
+            "seriesNumber": 5,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "yx3s69d",
+        "programmeId": "2/5748",
+        "encodedProgrammeId": {
+          "letterA": "2a5748",
+          "underscore": "2_5748"
+        },
+        "contentInfo": "4 Series",
+        "isPaid": false
+      },
+      {
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "Gordon Ramsay's Food Stars USA",
+        "titleSlug": "gordon-ramsays-food-stars-usa",
+        "description": "The hunt is on! The fiery chef searches for the next food & drink star",
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "dateTime": "2025-02-07T20:00:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/g9vm96g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 2,
+        "series": [
+          {
+            "numberOfEpisodes": 10,
+            "numberOfAvailableEpisodes": 10,
+            "fullSeries": true,
+            "legacyId": "10/6062-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 10,
+            "numberOfAvailableEpisodes": 10,
+            "fullSeries": true,
+            "legacyId": "10/6062-02",
+            "seriesNumber": 2,
+            "longRunning": true
+          }
+        ],
+        "brandCCId": "g9vm96g",
+        "programmeId": "10/6062",
+        "encodedProgrammeId": {
+          "letterA": "10a6062",
+          "underscore": "10_6062"
+        },
+        "contentInfo": "Series 1 - 2",
+        "isPaid": false
+      },
+      {
+        "contentType": "page",
+        "title": "Real Lives, Real Stories from the US",
+        "titleSlug": "real-lives-real-stories-from-the-us",
+        "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/hayuselect/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "Stream it now",
+        "pageId": "2Iq4ZbBmX4E9U8HR76VwZ1",
+        "adServed": true
       }
-    ]
+    ],
+    "adServed": false
   },
   "editorialSliders": null,
   "navAdServerParams": {
     "area": "collections",
-    "category": [],
+    "category": "",
     "appname": "dotcom",
-    "appversion": "2.226.2",
+    "appversion": "2.435.3",
     "size": "hubsponsorbutton"
   },
   "collectionSlug": "fresh-in",

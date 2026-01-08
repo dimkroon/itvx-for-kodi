@@ -1,0 +1,10 @@
+{
+  "Dev_Comment": "Page",
+  "contentType": "page",
+  "title": "Sport",
+  "titleSlug": "sport",
+  "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/sportpageeuro/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "description": "Enjoy highlights, interviews & full matches - including coverage from the UEFA Women's Euros and Tour de France. ",
+  "pageId": "1JM6S5yseJeyzkHKhBvPKp",
+  "adServed": false
+}

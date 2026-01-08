@@ -1,0 +1,41 @@
+{
+  "Dev_Comment": "Episode - Free",
+  "contentType": "episode",
+  "title": "Love Island: Aftersun",
+  "titleSlug": "love-island-aftersun",
+  "episodeTitle": null,
+  "episodeNumber": 6,
+  "seriesNumber": 12,
+  "contentInfo": "S12, E6",
+  "genres": [
+    {
+      "id": "ENTERTAINMENT",
+      "name": "Entertainment & Reality"
+    }
+  ],
+  "partnership": null,
+  "contentOwner": null,
+  "description": "With Indiyah Polack, Sam Thompson, Ash Holme and Series 11 besties Uma and Mimii.",
+  "dateTime": "2025-07-20T21:00:00Z",
+  "channel": "itv2",
+  "imageTemplate": "https://ovp.itv.com/v2/images/episode/qn9f2vz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "qn9f2vz",
+  "brandCCId": "8ck1sm8",
+  "programmeId": "2/5131",
+  "encodedProgrammeId": {
+    "letterA": "2a5131",
+    "underscore": "2_5131"
+  },
+  "episodeId": "2/5131/0079",
+  "encodedEpisodeId": {
+    "letterA": "2a5131a0079",
+    "underscore": "2_5131_0079"
+  },
+  "isPaid": false,
+  "tagNames": [
+    {
+      "label": "new-content",
+      "displayText": "New Episode"
+    }
+  ]
+}

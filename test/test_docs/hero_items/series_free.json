@@ -1,0 +1,57 @@
+{
+  "Dev_Comment": "Series - Free 2025-07-22 01:28",
+  "audioDescribed": true,
+  "contentType": "series",
+  "series": 2,
+  "genre": [
+    "Drama"
+  ],
+  "subgenres": [
+    {
+      "id": "CRIME_AND_THRILLER",
+      "name": "Crime & Thriller"
+    }
+  ],
+  "contentInfo": [
+    "Drama",
+    "Crime & Thriller",
+    "Series 2"
+  ],
+  "title": "Karen Pirie",
+  "titleSlug": "karen-pirie",
+  "partnership": null,
+  "contentOwner": null,
+  "numberOfEpisodes": 3,
+  "description": "The relentless Scottish DI returns with a baffling new cold case. Can she crack the infamous 80s disappearance of an oil heiress & her son? BAFTA-winning drama starring Lauren Lyle.",
+  "descriptionShort": "The relentless Scottish detective is back with a baffling new cold case",
+  "genres": [
+    {
+      "id": "DRAMA_AND_SOAPS",
+      "name": "Drama"
+    }
+  ],
+  "imageTemplate": "https://ovp.itv.com/v2/images/series/m2rn01c/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "brandImageTemplate": "https://ovp.itv.com/v2/images/programme/tw3hmrd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "brandCCId": "tw3hmrd",
+  "titleCCId": "fy9xdmb",
+  "programmeId": "10/0641",
+  "encodedProgrammeId": {
+    "letterA": "10a0641",
+    "underscore": "10_0641"
+  },
+  "encodedEpisodeId": {
+    "letterA": "10a0641a0004",
+    "underscore": "10_0641_0004"
+  },
+  "ctaLabel": "Watch Now",
+  "ariaLabel": "Watch series 2 of Karen Pirie",
+  "isPaid": false,
+  "attribution": {
+    "partnership": null,
+    "contentOwner": null
+  },
+  "strapline": {
+    "text": "New series - stream every episode",
+    "variant": "default"
+  }
+}

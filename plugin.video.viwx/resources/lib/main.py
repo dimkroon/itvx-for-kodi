@@ -12,7 +12,6 @@ import sys
 
 from functools import wraps
 
-import requests
 import xbmc
 import xbmcplugin
 from xbmcgui import ListItem
@@ -193,7 +192,7 @@ def root(_):
     yield Listitem.from_dict(sub_menu_my_itvx, 'My itvX')
     yield Listitem.from_dict(sub_menu_live, 'Live', params={'_cache_to_disc_': False})
     for item in itvx.main_page_items():
-        callback = callb_map.get(item['type'], play_title)
+        callback = callb_map.get(item['type'], play_stream_catchup)
         li = Listitem.from_dict(callback, **item['show'])
         li.context.extend(item.get('ctx_mnu', []))
         _my_list_context_mnu(li, item.get('programme_id'))
@@ -415,7 +414,7 @@ def list_productions(plugin, url, series_idx=None):
                             xbmcplugin.SORT_METHOD_DATE,
                             disable_autosort=True)
 
-    result = itvx.episodes(url, use_cache=True, prefer_bsl=plugin.setting.get_boolean('prefer_bsl'))
+    result = itvx.episodes(url, use_cache=True)
     if not result:
         return
 
@@ -457,7 +456,7 @@ def do_search(addon, search_query):
     for result in search_results:
         if result is None:
             continue
-        li = Listitem.from_dict(callb_map.get(result['type'], play_title), **result['show'])
+        li = Listitem.from_dict(callb_map.get(result['type'], play_stream_catchup), **result['show'])
         ctx_mnus = result.get('ctx_mnu')
         if ctx_mnus:
             li.context.extend(ctx_mnus)
@@ -554,12 +553,30 @@ def play_stream_live(addon, channel, url=None, title=None, start_time=None):
 
 
 @Resolver.register
-def play_stream_catchup(plugin, url, set_resume_point=False):
+def play_stream_catchup(plugin, ccid, set_resume_point=False):
+    """Play a VOD title based on the title's features and user preference."""
+    from resources.lib import itv_gql
 
-    logger.info('play catchup stream url=%s', url)
+    logger.info('play catchup stream ccid=%s', ccid)
+    playlist_url = itv_gql.get_playlist_url(ccid=ccid, prefer_bsl=plugin.setting['prefer_bsl'] == 'true')
+    return play_vod(plugin, playlist_url, set_resume_point)
+
+
+@Resolver.register
+def play_clip(plugin, ccid, is_sport):
+    """Play a short news or sports clip"""
+    from resources.lib import itv_gql
+
+    logger.info('play clip ccid=%s', ccid)
+    playlist_url = itv_gql.get_short_playlist_url(ccid=ccid, is_sport=is_sport)
+    return play_vod(plugin, playlist_url)
+
+
+def play_vod(plugin, playlist_url, set_resume_point=False):
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
-        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(url, fhd_enabled)
+        manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(
+            playlist_url, fhd_enabled)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
@@ -596,17 +613,20 @@ def play_stream_catchup(plugin, url, set_resume_point=False):
 def play_title(plugin, url):
     """Play an episode from a url to the episode's html page.
 
-    While episodes obtained from list_productions() have direct urls to stream's
-    playlist, episodes from listings obtained by parsing html pages have an url
-    to the respective episode's details html page.
+    Since playables are base on ccid this is just still here in case
+    a shortform item of type 'episode' pops up somewhere. Indications are that
+    shortform-like slider currently only contain items of type shortForm. Until
+    test confirm this over a longer period, this function is kept in as fall back.
+
 
     """
+    logger.warning("Unexpected call to legacy function 'play_title()'. Url='%s'", url)
     try:
         url = itvx.get_playlist_url_from_episode_page(url, plugin.setting.get_boolean('prefer_bsl'))
     except AccessRestrictedError:
         kodi_utils.msg_dlg(Script.localize(TXT_PREMIUM_CONTENT))
         return False
-    return play_stream_catchup(plugin, url)
+    return play_vod(plugin, url)
 
 
 @Script.register
@@ -658,9 +678,11 @@ callb_map = {
     'programme': list_productions,
     'simulcastspot': play_stream_live,
     'fastchannelspot': play_stream_live,
-    'episode': play_title,
-    'special': play_title,
-    'film': play_title,
-    'title': play_title,
-    'vodstream': play_stream_catchup
+    'episode': play_stream_catchup,
+    'special': play_stream_catchup,
+    'film': play_stream_catchup,
+    'title': play_stream_catchup,
+    'vodstream': play_stream_catchup,
+    'shortform': play_clip,
+    'short-episode': play_title,
 }

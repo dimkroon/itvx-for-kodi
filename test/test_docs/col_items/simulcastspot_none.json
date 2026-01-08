@@ -1,0 +1,16 @@
+{
+  "Dev_Comment": "Simulcastspot - None",
+  "contentType": "simulcastspot",
+  "title": "ITV Quiz",
+  "description": "Stream it now",
+  "channel": "itvbe",
+  "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/itvquiz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "genre": "Entertainment",
+  "contentInfo": "Entertainment",
+  "startDateTime": null,
+  "endDateTime": null,
+  "progress": null,
+  "tagNames": [
+    "live"
+  ]
+}

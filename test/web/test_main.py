@@ -148,37 +148,37 @@ class TestGetProductions(unittest.TestCase):
         self.assertEqual(3, len(items))
 
 
-class TestPlayCatchup(unittest.TestCase):
+class TestPlayStreamLive(unittest.TestCase):
     def test_play_itv_1(self):
         result = main.play_stream_live.test("itv", 'https://simulcast.itv.com/playlist/itvonline/itv', None)
         self.assertIsInstance(result, XbmcListItem)
 
+
+class Testplay_stream_catchup(unittest.TestCase):
+    frost_ccid = '8x6vsf7' #  A touch of Frost S15E1
     def test_play_vod_a_touch_of_frost(self):
-        result = main.play_stream_catchup(MagicMock(),
-                                          url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y' )
+        result = main.play_stream_catchup.test(self.frost_ccid)
         self.assertRaises(AttributeError, getattr, result, '_subtitles')
-        self.assertIsInstance(result, XbmcListItem)
-
-    def test_play_vod_frost_with_subtitles(self):
-        with patch.object(itv.Script, 'setting', new={'subtitles_show': 'true', 'subtitles_color': 'true'}):
-            result = main.play_stream_catchup(MagicMock(),
-                                              url='https://magni.itv.com/playlist/itvonline/ITV3/Y_1774_0002_Y')
-        self.assertEqual(1, len(result._subtitles))
-        self.assertIsInstance(result, XbmcListItem)
-
-    def test_play_vod_episode_julia_bradbury(self):
-        result = main.play_stream_catchup(MagicMock(),
-                                          url='https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001')
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue(object_checks.is_url(result.getPath(), '.mpd'))
 
+    def test_play_vod_frost_with_subtitles(self):
+        with patch.object(itv.Script, 'setting',
+                          new={'subtitles_show': 'true', 'subtitles_color': 'true',
+                               'prefer_bsl': 'false', 'FHD_enabled': 'false'}):
+            result = main.play_stream_catchup.test(self.frost_ccid)
+        self.assertEqual(1, len(result._subtitles))
+        self.assertIsInstance(result, XbmcListItem)
+        self.assertTrue(object_checks.is_url(result.getPath(), '.mpd'))
+
+
+class TestPlayClip(unittest.TestCase):
     def test_play_short_news_item(self):
         # get the first news item from the main page
         page_data = itvx.get_page_data('https://www.itv.com/')
         news_item = page_data['shortFormSliderContent'][0]['items'][0]
-        item_url = '/'.join(('https://www.itv.com/watch/news', news_item['titleSlug'], news_item['episodeId']))
         # play the item
-        result = main.play_title.test(item_url)
+        result = main.play_clip.test(news_item['episodeId'], is_sport=False)
         self.assertIsInstance(result, XbmcListItem)
         self.assertTrue(object_checks.is_url(result.getPath(), '.mp4'))
 

@@ -121,7 +121,7 @@ class MainPageItem(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(11, items_count)       # test data contains 7 hero items of various types.
+            self.assertEqual(6, items_count)       # test data contains 4 hero items and sliders trending and news.
             for item in items:
                 check_item(self, item)
         # Hero item of unknown type is disregarded.
@@ -170,7 +170,7 @@ class Collections(TestCase):
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/index-data.json'))
     def test_collection_trending(self, _):
         items = list(filter(None, itvx.collection_content(slider='trendingSliderContent')))
-        self.assertGreater(len(items), 10)
+        self.assertEqual(len(items), 4)
         for item in items:
             check_item(self, item)
         items2 = list(filter(None, itvx.collection_content(slider='trendingSliderContent', hide_paid=True)))
@@ -252,21 +252,21 @@ class Collections(TestCase):
                 self.assertEqual('collection', item['type'])
                 check_item(self, item)
 
-    @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('html/collection_the-costume-collection.json'),
-                                                            open_json('html/collection_the-costume-collection.json')))
+    @patch('resources.lib.itvx.get_page_data', side_effect=(open_json('json/test_collection.json'),
+                                                            open_json('json/test_collection.json')))
     def test_collection_with_paid_items(self, _):
-        # The costume collection has 18 show, 1 title, of which 3 are premium
-        items = list(itvx.collection_content(url='the_costume_collection'))
-        self.assertEqual(19, len(items))
-        items = list(filter(None, itvx.collection_content(url='the_costume_collection', hide_paid=True)))
-        self.assertEqual(16, len(items))
+        # The test collection has 1 short slider, 7 collection items, of which 3 are premium
+        items = list(itvx.collection_content(url='test_collection'))
+        self.assertEqual(8, len(items))
+        items = list(filter(None, itvx.collection_content(url='test_collection', hide_paid=True)))
+        self.assertEqual(5, len(items))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/collection_just-in_data.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('json/test_collection.json'))
     @patch('resources.lib.parsex.parse_collection_item', return_value=None)
     def test_collection_with_invalid_items(self, _, __):
         """Items that fail to parse return None and must be filtered out in the final result."""
         items = list(itvx.collection_content(url='some/url'))
-        self.assertListEqual([None] * 15, items)
+        self.assertListEqual([None] * 7, items[1:])
 
 
 class Categories(TestCase):
@@ -302,7 +302,8 @@ class Categories(TestCase):
             has_keys(progr['show'], 'label', 'info', 'art', 'params')
             self.assertEqual('title', progr['type'])
         free_list = list(itvx.category_content('asdgf', hide_paid=True))
-        self.assertLess(len(free_list), len(program_list))
+        # The website doesn't seem to return paid category content any more, at least not without a paid account.
+        self.assertEqual(len(free_list), len(program_list))
 
     def test_category_news(self):
         with patch('resources.lib.itvx.get_page_data', return_value=open_json('html/category_news.json')):

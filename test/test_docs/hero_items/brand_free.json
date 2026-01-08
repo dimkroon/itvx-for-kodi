@@ -1,0 +1,46 @@
+{
+  "Dev_Comment": "Brand - Free 2025-07-22 01:28",
+  "audioDescribed": false,
+  "contentType": "brand",
+  "partnership": null,
+  "contentOwner": null,
+  "title": "The Ice Cream Girls",
+  "titleSlug": "the-ice-cream-girls",
+  "genres": [
+    {
+      "id": "DRAMA_AND_SOAPS",
+      "name": "Drama"
+    }
+  ],
+  "subgenres": [
+    {
+      "id": "CRIME_AND_THRILLER",
+      "name": "Crime & Thriller"
+    }
+  ],
+  "description": "Chilling crime drama about two vulnerable teen girls who get accused of murder. For years, they go their separate ways, until they are forced to confront each other.",
+  "descriptionShort": "Chilling crime drama - two teen girls face accusations of murder",
+  "imageTemplate": "https://ovp.itv.com/v2/images/programme/r46m6wc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "brandCCId": "r46m6wc",
+  "programmeId": "2/1994",
+  "encodedProgrammeId": {
+    "letterA": "2a1994",
+    "underscore": "2_1994"
+  },
+  "isPaid": false,
+  "contentInfo": [
+    "Drama",
+    "Crime & Thriller",
+    "Series 1"
+  ],
+  "ctaLabel": "Watch Now",
+  "ariaLabel": "Watch an episode of The Ice Cream Girls",
+  "attribution": {
+    "partnership": null,
+    "contentOwner": null
+  },
+  "strapline": {
+    "text": "Stream every episode",
+    "variant": "default"
+  }
+}

@@ -7,39 +7,7 @@
   },
   "programmes": [
     {
-      "broadcastDateTime": "2025-07-18T20:00:00Z",
-      "brandCCId": "l50dm82",
-      "channel": "itv4",
-      "contentInfo": "4h",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Unmissable wrestling action from the biggest-ever show at Wembley Stadium",
-      "encodedEpisodeId": {
-        "letterA": "10a5069a0002",
-        "underscore": "10_5069_0002"
-      },
-      "encodedProgrammeId": {
-        "letterA": "10a5069",
-        "underscore": "10_5069"
-      },
-      "episodeId": "10/5069/0002",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/l50dm82/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "10/5069",
-      "tier": [
-        "FREE"
-      ],
-      "title": "All Elite Wrestling: All In",
-      "titleSlug": "all-elite-wrestling-all-in"
-    },
-    {
-      "broadcastDateTime": "2025-07-14T22:35:00Z",
+      "broadcastDateTime": "2025-10-21T22:15:00Z",
       "brandCCId": "jzlh6m9",
       "channel": "itv4",
       "contentInfo": "Series 3",
@@ -47,14 +15,14 @@
       "contentType": "brand",
       "description": "Hard-hitting action from AEW's newest show featuring all the top stars",
       "encodedEpisodeId": {
-        "letterA": "10a4794a0110",
-        "underscore": "10_4794_0110"
+        "letterA": "10a4794a0124",
+        "underscore": "10_4794_0124"
       },
       "encodedProgrammeId": {
         "letterA": "10a4794",
         "underscore": "10_4794"
       },
-      "episodeId": "10/4794/0110",
+      "episodeId": "10/4794/0124",
       "genres": [
         {
           "id": "SPORT",
@@ -77,7 +45,7 @@
       "titleSlug": "all-elite-wrestling-collision"
     },
     {
-      "broadcastDateTime": "2025-07-19T20:50:00Z",
+      "broadcastDateTime": "2025-10-24T21:00:00Z",
       "brandCCId": "myclhdq",
       "channel": "itv4",
       "contentInfo": "Series 4",
@@ -85,14 +53,14 @@
       "contentType": "brand",
       "description": "It's time for some intense rivalry featuring the biggest stars",
       "encodedEpisodeId": {
-        "letterA": "2a7855a0302",
-        "underscore": "2_7855_0302"
+        "letterA": "2a7855a0316",
+        "underscore": "2_7855_0316"
       },
       "encodedProgrammeId": {
         "letterA": "2a7855",
         "underscore": "2_7855"
       },
-      "episodeId": "2/7855/0302",
+      "episodeId": "2/7855/0316",
       "genres": [
         {
           "id": "SPORT",
@@ -115,7 +83,39 @@
       "titleSlug": "all-elite-wrestling-dynamite"
     },
     {
-      "broadcastDateTime": "2025-07-13T06:15:00Z",
+      "broadcastDateTime": "2025-08-29T20:00:00Z",
+      "brandCCId": "8nhgrh0",
+      "channel": "itv4",
+      "contentInfo": "4h 35m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Action from the wrestling event at London's O2 Arena.",
+      "encodedEpisodeId": {
+        "letterA": "10a7170a0001",
+        "underscore": "10_7170_0001"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a7170",
+        "underscore": "10_7170"
+      },
+      "episodeId": "10/7170/0001",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/8nhgrh0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/7170",
+      "tier": [
+        "FREE"
+      ],
+      "title": "All Elite Wrestling: Forbidden Door",
+      "titleSlug": "all-elite-wrestling-forbidden-door"
+    },
+    {
+      "broadcastDateTime": "2025-10-19T05:30:00Z",
       "brandCCId": "6gbj1hz",
       "channel": "itv4",
       "contentInfo": "Series 6",
@@ -123,14 +123,14 @@
       "contentType": "brand",
       "description": "Catch all the latest news and reviews from the world of cars",
       "encodedEpisodeId": {
-        "letterA": "7a0070a0289",
-        "underscore": "7_0070_0289"
+        "letterA": "7a0070a0303",
+        "underscore": "7_0070_0303"
       },
       "encodedProgrammeId": {
         "letterA": "7a0070",
         "underscore": "7_0070"
       },
-      "episodeId": "7/0070/0289",
+      "episodeId": "7/0070/0303",
       "genres": [
         {
           "id": "SPORT",
@@ -153,7 +153,7 @@
       "titleSlug": "auto-mundial"
     },
     {
-      "broadcastDateTime": "2025-04-21T19:00:00Z",
+      "broadcastDateTime": "2025-09-15T19:00:00Z",
       "brandCCId": "s8gpg7x",
       "channel": "itv4",
       "contentInfo": "Series 2",
@@ -161,14 +161,14 @@
       "contentType": "brand",
       "description": "Highlights from each of the events in the British Rally Championship",
       "encodedEpisodeId": {
-        "letterA": "10a5455a0009",
-        "underscore": "10_5455_0009"
+        "letterA": "10a5455a0012",
+        "underscore": "10_5455_0012"
       },
       "encodedProgrammeId": {
         "letterA": "10a5455",
         "underscore": "10_5455"
       },
-      "episodeId": "10/5455/0009",
+      "episodeId": "10/5455/0012",
       "genres": [
         {
           "id": "SPORT",
@@ -185,7 +185,7 @@
       "titleSlug": "british-rally-championship-highlights"
     },
     {
-      "broadcastDateTime": "2025-06-22T10:35:00Z",
+      "broadcastDateTime": "2025-10-05T09:30:00Z",
       "brandCCId": "4yfwtgn",
       "channel": "itv4",
       "contentInfo": "Series 20 - 21",
@@ -193,14 +193,14 @@
       "contentType": "brand",
       "description": "It's Britain's most exciting motor racing championship - don't miss it",
       "encodedEpisodeId": {
-        "letterA": "1a5204a0215",
-        "underscore": "1_5204_0215"
+        "letterA": "1a5204a0220",
+        "underscore": "1_5204_0220"
       },
       "encodedProgrammeId": {
         "letterA": "1a5204",
         "underscore": "1_5204"
       },
-      "episodeId": "1/5204/0215",
+      "episodeId": "1/5204/0220",
       "genres": [
         {
           "id": "SPORT",
@@ -217,7 +217,7 @@
       "titleSlug": "british-touring-car-championship"
     },
     {
-      "broadcastDateTime": "2025-06-27T17:30:00Z",
+      "broadcastDateTime": "2025-10-10T17:25:00Z",
       "brandCCId": "wngkwcn",
       "channel": "itv4",
       "contentInfo": "Series 10 - 11",
@@ -225,14 +225,14 @@
       "contentType": "brand",
       "description": "Enticing highlights from the touring championships - Steve Rider presents",
       "encodedEpisodeId": {
-        "letterA": "1a7783a0165",
-        "underscore": "1_7783_0165"
+        "letterA": "1a7783a0170",
+        "underscore": "1_7783_0170"
       },
       "encodedProgrammeId": {
         "letterA": "1a7783",
         "underscore": "1_7783"
       },
-      "episodeId": "1/7783/0165",
+      "episodeId": "1/7783/0170",
       "genres": [
         {
           "id": "SPORT",
@@ -242,6 +242,12 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/wngkwcn/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "1/7783",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Episode"
+        }
+      ],
       "tier": [
         "FREE"
       ],
@@ -249,22 +255,22 @@
       "titleSlug": "british-touring-car-championship-highlights"
     },
     {
-      "broadcastDateTime": "2023-12-25T10:30:00Z",
+      "broadcastDateTime": "2024-12-06T19:00:00Z",
       "brandCCId": "wzxb9mt",
       "channel": "itv4",
-      "contentInfo": "2h",
+      "contentInfo": "1h 33m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Take a look back at the BTCC season & enjoy exclusive interviews with the drivers",
       "encodedEpisodeId": {
-        "letterA": "2a3568a0009",
-        "underscore": "2_3568_0009"
+        "letterA": "2a3568a0010",
+        "underscore": "2_3568_0010"
       },
       "encodedProgrammeId": {
         "letterA": "2a3568",
         "underscore": "2_3568"
       },
-      "episodeId": "2/3568/0009",
+      "episodeId": "2/3568/0010",
       "genres": [
         {
           "id": "SPORT",
@@ -282,9 +288,47 @@
     },
     {
       "broadcastDateTime": null,
+      "brandCCId": "rf9l8rt",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Behind the scenes as Burnley FC fight for survival in the Premier League",
+      "encodedEpisodeId": {
+        "letterA": "10a7299a0003",
+        "underscore": "10_7299_0003"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a7299",
+        "underscore": "10_7299"
+      },
+      "episodeId": "10/7299/0003",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/rf9l8rt/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/7299",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "Recently Added"
+        }
+      ],
+      "tier": [
+        "FREE"
+      ],
+      "title": "Burnley FC: Keeping the Faith",
+      "titleSlug": "burnley-fc-keeping-the-faith"
+    },
+    {
+      "broadcastDateTime": null,
       "titleCCId": "j6dh3mn",
       "channel": "itv2",
-      "contentInfo": "1h",
+      "contentInfo": "1h 24m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Turbulent times, a nation's pride - gripping story of the NZ rugby team",
@@ -300,6 +344,172 @@
       ],
       "title": "By The Balls",
       "titleSlug": "by-the-balls"
+    },
+    {
+      "broadcastDateTime": "2025-09-23T18:30:00Z",
+      "brandCCId": "5qshzrp",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch the action from the Carabao Cup ",
+      "encodedEpisodeId": {
+        "letterA": "10a6080a0006",
+        "underscore": "10_6080_0006"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a6080",
+        "underscore": "10_6080"
+      },
+      "episodeId": "10/6080/0006",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/5qshzrp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/6080",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Carabao Cup Live",
+      "titleSlug": "carabao-cup-live"
+    },
+    {
+      "broadcastDateTime": "2025-10-16T17:55:00Z",
+      "brandCCId": "j7txnnf",
+      "channel": "itv4",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch coverage of the FIA Extreme-H World Cup",
+      "encodedEpisodeId": {
+        "letterA": "10a6817a0006",
+        "underscore": "10_6817_0006"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a6817",
+        "underscore": "10_6817"
+      },
+      "episodeId": "10/6817/0006",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/j7txnnf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/6817",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Coverage of of the FIA Extreme H World Cup.",
+      "titleSlug": "coverage-of-of-the-fia-extreme-h-world-cup"
+    },
+    {
+      "broadcastDateTime": null,
+      "brandCCId": "cgcc74g",
+      "channel": "itv4",
+      "contentInfo": "Series 15",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The popular pro cycling race is back - who will hold the 2025 jersey?",
+      "encodedEpisodeId": {
+        "letterA": "1a7209a0080",
+        "underscore": "1_7209_0080"
+      },
+      "encodedProgrammeId": {
+        "letterA": "1a7209",
+        "underscore": "1_7209"
+      },
+      "episodeId": "1/7209/0080",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/cgcc74g/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "1/7209",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Cycling: Tour of Britain",
+      "titleSlug": "cycling-tour-of-britain"
+    },
+    {
+      "broadcastDateTime": "2025-09-07T19:00:00Z",
+      "brandCCId": "jjbnynp",
+      "channel": "itv4",
+      "contentInfo": "Series 12",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch all the latest highlights from the pro cycling tournament",
+      "encodedEpisodeId": {
+        "letterA": "2a3041a0097",
+        "underscore": "2_3041_0097"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a3041",
+        "underscore": "2_3041"
+      },
+      "episodeId": "2/3041/0097",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/jjbnynp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3041",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Cycling: Tour of Britain Highlights",
+      "titleSlug": "cycling-tour-of-britain-highlights"
+    },
+    {
+      "broadcastDateTime": "2025-10-24T17:00:00Z",
+      "brandCCId": "h6rncc6",
+      "channel": "itv4",
+      "contentInfo": "Series 14",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Whoever wins will celebrate the biggest night of their career",
+      "encodedEpisodeId": {
+        "letterA": "2a1245a0078",
+        "underscore": "2_1245_0078"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a1245",
+        "underscore": "2_1245"
+      },
+      "episodeId": "2/1245/0078",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/h6rncc6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/1245",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Series"
+        }
+      ],
+      "tier": [
+        "FREE"
+      ],
+      "title": "Darts: European Championship",
+      "titleSlug": "darts-european-championship"
     },
     {
       "broadcastDateTime": "2025-02-02T19:00:00Z",
@@ -374,14 +584,14 @@
       "contentType": "brand",
       "description": "The UIM E1 World Championship - the world's first electric powerboat racing series",
       "encodedEpisodeId": {
-        "letterA": "10a5421a0011",
-        "underscore": "10_5421_0011"
+        "letterA": "10a5421a0012",
+        "underscore": "10_5421_0012"
       },
       "encodedProgrammeId": {
         "letterA": "10a5421",
         "underscore": "10_5421"
       },
-      "episodeId": "10/5421/0011",
+      "episodeId": "10/5421/0012",
       "genres": [
         {
           "id": "SPORT",
@@ -391,12 +601,6 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/n7t2bs6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/5421",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Episode"
-        }
-      ],
       "tier": [
         "FREE"
       ],
@@ -404,7 +608,7 @@
       "titleSlug": "e1-world-championship"
     },
     {
-      "broadcastDateTime": "2025-07-05T07:25:00Z",
+      "broadcastDateTime": "2025-10-11T07:25:00Z",
       "brandCCId": "3gvr3z4",
       "channel": "itv4",
       "contentInfo": "Series 2",
@@ -412,14 +616,14 @@
       "contentType": "brand",
       "description": "The world's first electric powerboat racing series.",
       "encodedEpisodeId": {
-        "letterA": "10a5422a0012",
-        "underscore": "10_5422_0012"
+        "letterA": "10a5422a0014",
+        "underscore": "10_5422_0014"
       },
       "encodedProgrammeId": {
         "letterA": "10a5422",
         "underscore": "10_5422"
       },
-      "episodeId": "10/5422/0012",
+      "episodeId": "10/5422/0014",
       "genres": [
         {
           "id": "SPORT",
@@ -442,86 +646,188 @@
       "titleSlug": "e1-world-championship-highlights"
     },
     {
-      "broadcastDateTime": "2025-06-29T15:10:00Z",
-      "brandCCId": "8qwy3p1",
-      "channel": "itv",
-      "contentInfo": "Series 4",
+      "broadcastDateTime": "2025-09-25T10:45:00Z",
+      "brandCCId": "0rpj5vs",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
       "contentOwner": null,
       "contentType": "brand",
-      "description": "The Pride has arrived! Don't miss England women's international matches",
+      "description": "Enjoy all the action & every goal from football's EFL Carabao Cup",
       "encodedEpisodeId": {
-        "letterA": "10a1895a0042",
-        "underscore": "10_1895_0042"
+        "letterA": "10a2273a0027",
+        "underscore": "10_2273_0027"
       },
       "encodedProgrammeId": {
-        "letterA": "10a1895",
-        "underscore": "10_1895"
+        "letterA": "10a2273",
+        "underscore": "10_2273"
       },
-      "episodeId": "10/1895/0042",
+      "episodeId": "10/2273/0027",
       "genres": [
         {
           "id": "SPORT",
           "name": "Sport"
         }
       ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/8qwy3p1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/0rpj5vs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
-      "programmeId": "10/1895",
+      "programmeId": "10/2273",
       "tier": [
         "FREE"
       ],
-      "title": "England Women's International Football",
-      "titleSlug": "england-womens-international-football"
+      "title": "EFL Carabao Cup Highlights",
+      "titleSlug": "efl-carabao-cup-highlights"
     },
     {
-      "broadcastDateTime": "2025-07-02T17:30:00Z",
-      "brandCCId": "rvsnlgr",
+      "broadcastDateTime": "2025-10-05T10:30:00Z",
+      "brandCCId": "w7cm54h",
+      "channel": "itv",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Coverage of the English Football League (EFL).",
+      "encodedEpisodeId": {
+        "letterA": "10a6081a0008",
+        "underscore": "10_6081_0008"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a6081",
+        "underscore": "10_6081"
+      },
+      "episodeId": "10/6081/0008",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/w7cm54h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/6081",
+      "tier": [
+        "FREE"
+      ],
+      "title": "EFL Live",
+      "titleSlug": "efl-live"
+    },
+    {
+      "broadcastDateTime": "2025-10-22T23:05:00Z",
+      "brandCCId": "50pw6r9",
       "channel": "itv4",
+      "contentInfo": "Series 4",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Unmissable EFL highs, lows, action and talking points ",
+      "encodedEpisodeId": {
+        "letterA": "10a2272a0171",
+        "underscore": "10_2272_0171"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a2272",
+        "underscore": "10_2272"
+      },
+      "episodeId": "10/2272/0171",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/50pw6r9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2272",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Episode"
+        }
+      ],
+      "tier": [
+        "FREE"
+      ],
+      "title": "English Football League Highlights",
+      "titleSlug": "english-football-league-highlights"
+    },
+    {
+      "broadcastDateTime": null,
+      "brandCCId": "ml4gpxd",
+      "channel": "itv",
       "contentInfo": "Series 1",
       "contentOwner": null,
       "contentType": "brand",
-      "description": "A UEFA documentary series about women's football",
+      "description": "Get closer to the EWC in Riyadh, with celeb guests and game highlights!",
       "encodedEpisodeId": {
-        "letterA": "10a7009a0006",
-        "underscore": "10_7009_0006"
+        "letterA": "10a7219a0009",
+        "underscore": "10_7219_0009"
       },
       "encodedProgrammeId": {
-        "letterA": "10a7009",
-        "underscore": "10_7009"
+        "letterA": "10a7219",
+        "underscore": "10_7219"
       },
-      "episodeId": "10/7009/0006",
+      "episodeId": "10/7219/0009",
       "genres": [
         {
           "id": "SPORT",
           "name": "Sport"
         }
       ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/rvsnlgr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/ml4gpxd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
-      "programmeId": "10/7009",
+      "programmeId": "10/7219",
       "tier": [
         "FREE"
       ],
-      "title": "EQUALS",
-      "titleSlug": "equals"
+      "title": "Esports World Cup Spotlight",
+      "titleSlug": "esports-world-cup-spotlight"
     },
     {
-      "broadcastDateTime": "2024-07-14T14:00:00Z",
+      "broadcastDateTime": null,
+      "brandCCId": "3k8plk1",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch all the highlights from the ESports World Cup in Riyadh",
+      "encodedEpisodeId": {
+        "letterA": "10a7218a0004",
+        "underscore": "10_7218_0004"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a7218",
+        "underscore": "10_7218"
+      },
+      "episodeId": "10/7218/0004",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/3k8plk1/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/7218",
+      "tier": [
+        "FREE"
+      ],
+      "title": "EWC Spotlight Roundup",
+      "titleSlug": "ewc-spotlight-roundup"
+    },
+    {
+      "broadcastDateTime": "2025-10-05T18:00:00Z",
       "brandCCId": "y9nshdw",
-      "channel": "itv3",
-      "contentInfo": "Series 4",
+      "channel": "itv4",
+      "contentInfo": "Series 4 - 5",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Extreme E is back with a third season of more electric racing action",
       "encodedEpisodeId": {
-        "letterA": "10a1323a0027",
-        "underscore": "10_1323_0027"
+        "letterA": "10a1323a0035",
+        "underscore": "10_1323_0035"
       },
       "encodedProgrammeId": {
         "letterA": "10a1323",
         "underscore": "10_1323"
       },
-      "episodeId": "10/1323/0027",
+      "episodeId": "10/1323/0035",
       "genres": [
         {
           "id": "SPORT",
@@ -531,6 +837,12 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/y9nshdw/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/1323",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Series"
+        }
+      ],
       "tier": [
         "FREE"
       ],
@@ -538,22 +850,22 @@
       "titleSlug": "extreme-e"
     },
     {
-      "broadcastDateTime": "2024-07-18T22:45:00Z",
+      "broadcastDateTime": "2025-10-19T09:55:00Z",
       "brandCCId": "8yww40m",
-      "channel": "itv",
+      "channel": "itv4",
       "contentInfo": "Series 4",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Check out the latest thrills & highlights from the electric racing series",
       "encodedEpisodeId": {
-        "letterA": "10a1324a0024",
-        "underscore": "10_1324_0024"
+        "letterA": "10a1324a0048",
+        "underscore": "10_1324_0048"
       },
       "encodedProgrammeId": {
         "letterA": "10a1324",
         "underscore": "10_1324"
       },
-      "episodeId": "10/1324/0024",
+      "episodeId": "10/1324/0048",
       "genres": [
         {
           "id": "SPORT",
@@ -573,7 +885,7 @@
       "broadcastDateTime": "2024-02-17T06:10:00Z",
       "brandCCId": "h3f9wb7",
       "channel": "itv4",
-      "contentInfo": "30m",
+      "contentInfo": "25m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Get up to speed on the exciting world of all-electric off-road racing",
@@ -634,188 +946,10 @@
       "titleSlug": "extreme-e-electric-odyssey"
     },
     {
-      "broadcastDateTime": "2025-05-17T14:00:00Z",
-      "brandCCId": "6h9qhqh",
-      "channel": "itv",
-      "contentInfo": "Series 10",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Immerse yourself in all the best action from the pitch in the FA Cup",
-      "encodedEpisodeId": {
-        "letterA": "10a1856a0099",
-        "underscore": "10_1856_0099"
-      },
-      "encodedProgrammeId": {
-        "letterA": "10a1856",
-        "underscore": "10_1856"
-      },
-      "episodeId": "10/1856/0099",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/6h9qhqh/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "10/1856",
-      "tier": [
-        "FREE"
-      ],
-      "title": "FA Cup",
-      "titleSlug": "fa-cup"
-    },
-    {
-      "broadcastDateTime": null,
-      "brandCCId": "t3nj0cd",
-      "channel": "itv",
-      "contentInfo": "Series 2",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Stream all the action and all the goals from every game on TV!",
-      "encodedEpisodeId": {
-        "letterA": "10a5525a0050",
-        "underscore": "10_5525_0050"
-      },
-      "encodedProgrammeId": {
-        "letterA": "10a5525",
-        "underscore": "10_5525"
-      },
-      "episodeId": "10/5525/0050",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/t3nj0cd/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "10/5525",
-      "tier": [
-        "FREE"
-      ],
-      "title": "FA Cup Highlights",
-      "titleSlug": "fa-cup-highlights"
-    },
-    {
-      "broadcastDateTime": "2025-07-14T19:00:00Z",
-      "brandCCId": "6fyh794",
-      "channel": "itv4",
-      "contentInfo": "Series 3",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Highlights of the new Formula E Championship, held in street circuits around the world.",
-      "encodedEpisodeId": {
-        "letterA": "2a3354a0031",
-        "underscore": "2_3354_0031"
-      },
-      "encodedProgrammeId": {
-        "letterA": "2a3354",
-        "underscore": "2_3354"
-      },
-      "episodeId": "2/3354/0031",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/6fyh794/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "2/3354",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Episode"
-        }
-      ],
-      "tier": [
-        "FREE"
-      ],
-      "title": "Formula E Highlights",
-      "titleSlug": "formula-e-highlights"
-    },
-    {
-      "broadcastDateTime": null,
-      "brandCCId": "gwzyd1z",
-      "channel": "itv",
-      "contentInfo": "Series 3",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Live coverage of the Formula E Championship, held in street circuits around the world.",
-      "encodedEpisodeId": {
-        "letterA": "2a3252a0036",
-        "underscore": "2_3252_0036"
-      },
-      "encodedProgrammeId": {
-        "letterA": "2a3252",
-        "underscore": "2_3252"
-      },
-      "episodeId": "2/3252/0036",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/gwzyd1z/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "2/3252",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Episode"
-        }
-      ],
-      "tier": [
-        "FREE"
-      ],
-      "title": "Formula E Live",
-      "titleSlug": "formula-e-live"
-    },
-    {
-      "broadcastDateTime": null,
-      "brandCCId": "ncj3m4k",
-      "channel": "itv",
-      "contentInfo": "Series 2",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Nicki Shields presents action from the qualifying rounds of the Formula E Championship",
-      "encodedEpisodeId": {
-        "letterA": "2a3970a0018",
-        "underscore": "2_3970_0018"
-      },
-      "encodedProgrammeId": {
-        "letterA": "2a3970",
-        "underscore": "2_3970"
-      },
-      "episodeId": "2/3970/0018",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/ncj3m4k/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "2/3970",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Episode"
-        }
-      ],
-      "tier": [
-        "FREE"
-      ],
-      "title": "Formula E Qualifiers",
-      "titleSlug": "formula-e-qualifiers"
-    },
-    {
       "broadcastDateTime": "2023-06-20T17:30:00Z",
       "titleCCId": "glqfczc",
       "channel": "itv4",
-      "contentInfo": "30m",
+      "contentInfo": "23m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Epic battles & a racing revival - the charismatic jockey looks back",
@@ -858,17 +992,87 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/vqb54c0/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/7140",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "Recently Added"
-        }
-      ],
       "tier": [
         "FREE"
       ],
       "title": "From the Ground Up",
       "titleSlug": "from-the-ground-up"
+    },
+    {
+      "broadcastDateTime": "2025-10-18T14:00:00Z",
+      "brandCCId": "d9kgrwb",
+      "channel": "itv4",
+      "contentInfo": "Series 5",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Watch a host of world-class talent at the live Gallagher Premiership",
+      "encodedEpisodeId": {
+        "letterA": "10a2252a0027",
+        "underscore": "10_2252_0027"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a2252",
+        "underscore": "10_2252"
+      },
+      "episodeId": "10/2252/0027",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/d9kgrwb/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2252",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Series"
+        }
+      ],
+      "tier": [
+        "FREE"
+      ],
+      "title": "Gallagher PREM Rugby",
+      "titleSlug": "gallagher-prem-rugby"
+    },
+    {
+      "broadcastDateTime": "2025-10-22T18:00:00Z",
+      "brandCCId": "wgg70tq",
+      "channel": "itv4",
+      "contentInfo": "Series 5",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch all the most exciting highlights from Gallagher Premiership Rugby",
+      "encodedEpisodeId": {
+        "letterA": "10a2324a0095",
+        "underscore": "10_2324_0095"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a2324",
+        "underscore": "10_2324"
+      },
+      "episodeId": "10/2324/0095",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/wgg70tq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/2324",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Episode"
+        }
+      ],
+      "tier": [
+        "FREE"
+      ],
+      "title": "Gallagher PREM Unleashed",
+      "titleSlug": "gallagher-prem-unleashed"
     },
     {
       "broadcastDateTime": null,
@@ -879,14 +1083,14 @@
       "contentType": "brand",
       "description": "Highlights from the Longines Global Champions Tour and Global Champions League",
       "encodedEpisodeId": {
-        "letterA": "10a6910a0006",
-        "underscore": "10_6910_0006"
+        "letterA": "10a6910a0012",
+        "underscore": "10_6910_0012"
       },
       "encodedProgrammeId": {
         "letterA": "10a6910",
         "underscore": "10_6910"
       },
-      "episodeId": "10/6910/0006",
+      "episodeId": "10/6910/0012",
       "genres": [
         {
           "id": "SPORT",
@@ -907,6 +1111,123 @@
       ],
       "title": "Global Champions 2025: Show Jumping Highlights",
       "titleSlug": "global-champions-2025-show-jumping-highlights"
+    },
+    {
+      "broadcastDateTime": null,
+      "titleCCId": "6221qkm",
+      "channel": "itv2",
+      "contentInfo": "2h 36m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "The world\u2019s top show jumpers meet at the London Grand Prix of the Global Champions Tour.",
+      "programmeId": "10/6909/0001B",
+      "encodedProgrammeId": {
+        "letterA": "10a6909a0001B",
+        "underscore": "10_6909_0001B"
+      },
+      "imageTemplate": "https://ovp.itv.com/v2/images/special/6221qkm/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "tier": [
+        "FREE"
+      ],
+      "title": "Global Champions Tour: London Grand Prix (2025)",
+      "titleSlug": "global-champions-tour-london-grand-prix-2025"
+    },
+    {
+      "broadcastDateTime": "2025-07-30T19:00:00Z",
+      "brandCCId": "vwztqsr",
+      "channel": "itv4",
+      "contentInfo": "Series 15",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Don't miss this three-day motorsports extravaganza from Goodwood House",
+      "encodedEpisodeId": {
+        "letterA": "1a8579a0033",
+        "underscore": "1_8579_0033"
+      },
+      "encodedProgrammeId": {
+        "letterA": "1a8579",
+        "underscore": "1_8579"
+      },
+      "episodeId": "1/8579/0033",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/vwztqsr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "1/8579",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Goodwood Festival of Speed",
+      "titleSlug": "goodwood-festival-of-speed"
+    },
+    {
+      "broadcastDateTime": "2025-09-29T18:00:00Z",
+      "brandCCId": "fj7gw7v",
+      "channel": "itv4",
+      "contentInfo": "46m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Enjoy the glory days of motor racing as classic cars race at Goodwood",
+      "encodedEpisodeId": {
+        "letterA": "34997a0004",
+        "underscore": "34997_0004"
+      },
+      "encodedProgrammeId": {
+        "letterA": "34997",
+        "underscore": "34997"
+      },
+      "episodeId": "34997/0004",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/fj7gw7v/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "34997",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Goodwood Revival",
+      "titleSlug": "goodwood-revival"
+    },
+    {
+      "broadcastDateTime": "2025-10-09T18:00:00Z",
+      "brandCCId": "j1ry71k",
+      "channel": "itv",
+      "contentInfo": "Series 7",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Coverage of England's International friendly matches.",
+      "encodedEpisodeId": {
+        "letterA": "2a3564a0029",
+        "underscore": "2_3564_0029"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a3564",
+        "underscore": "2_3564"
+      },
+      "episodeId": "2/3564/0029",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/j1ry71k/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3564",
+      "tier": [
+        "FREE"
+      ],
+      "title": "International Football",
+      "titleSlug": "international-football"
     },
     {
       "broadcastDateTime": null,
@@ -1005,7 +1326,7 @@
       "titleSlug": "itv-football-classics"
     },
     {
-      "broadcastDateTime": "2025-07-19T12:30:00Z",
+      "broadcastDateTime": "2025-10-24T12:00:00Z",
       "brandCCId": "wf6rp38",
       "channel": "itv",
       "contentInfo": "Series 8 - 9",
@@ -1013,14 +1334,14 @@
       "contentType": "brand",
       "description": "Witness all the action from major horse racing events around the UK",
       "encodedEpisodeId": {
-        "letterA": "2a4397a0899",
-        "underscore": "2_4397_0899"
+        "letterA": "2a4397a0927",
+        "underscore": "2_4397_0927"
       },
       "encodedProgrammeId": {
         "letterA": "2a4397",
         "underscore": "2_4397"
       },
-      "episodeId": "2/4397/0899",
+      "episodeId": "2/4397/0927",
       "genres": [
         {
           "id": "SPORT",
@@ -1075,22 +1396,22 @@
       "titleSlug": "itv-racing-breeders-cup-live"
     },
     {
-      "broadcastDateTime": "2024-08-29T16:30:00Z",
+      "broadcastDateTime": "2025-08-28T16:30:00Z",
       "brandCCId": "6g3kqsg",
       "channel": "itv4",
-      "contentInfo": "Series 3",
+      "contentInfo": "Series 3 - 4",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Don't miss top horse racing coverage from all over the UK",
       "encodedEpisodeId": {
-        "letterA": "10a2446a0018",
-        "underscore": "10_2446_0018"
+        "letterA": "10a2446a0024",
+        "underscore": "10_2446_0024"
       },
       "encodedProgrammeId": {
         "letterA": "10a2446",
         "underscore": "10_2446"
       },
-      "episodeId": "10/2446/0018",
+      "episodeId": "10/2446/0024",
       "genres": [
         {
           "id": "SPORT",
@@ -1139,7 +1460,7 @@
       "titleSlug": "itv-racing-sky-bet-sunday-series"
     },
     {
-      "broadcastDateTime": "2025-07-19T08:00:00Z",
+      "broadcastDateTime": "2025-10-25T08:30:00Z",
       "brandCCId": "03wrv6r",
       "channel": "itv4",
       "contentInfo": "Series 8 - 9",
@@ -1147,14 +1468,14 @@
       "contentType": "brand",
       "description": "The stars are out in force - don't miss top coverage of the horse racing",
       "encodedEpisodeId": {
-        "letterA": "2a4875a0522",
-        "underscore": "2_4875_0522"
+        "letterA": "2a4875a0536",
+        "underscore": "2_4875_0536"
       },
       "encodedProgrammeId": {
         "letterA": "2a4875",
         "underscore": "2_4875"
       },
-      "episodeId": "2/4875/0522",
+      "episodeId": "2/4875/0536",
       "genres": [
         {
           "id": "SPORT",
@@ -1180,7 +1501,7 @@
       "broadcastDateTime": "2024-11-30T23:35:00Z",
       "titleCCId": "xsrtkx9",
       "channel": "itv",
-      "contentInfo": "1h",
+      "contentInfo": "44m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Retired Lioness Karen Carney looks at the state of women's football in this documentary.",
@@ -1198,7 +1519,7 @@
       "titleSlug": "karen-carney-the-state-of-it"
     },
     {
-      "broadcastDateTime": "2025-07-18T19:00:00Z",
+      "broadcastDateTime": "2025-09-30T18:00:00Z",
       "brandCCId": "3z0hp2h",
       "channel": "itv4",
       "contentInfo": "Series 10",
@@ -1206,14 +1527,14 @@
       "contentType": "brand",
       "description": "All the memorable moments from the Road Racing series",
       "encodedEpisodeId": {
-        "letterA": "2a5089a0108",
-        "underscore": "2_5089_0108"
+        "letterA": "2a5089a0105",
+        "underscore": "2_5089_0105"
       },
       "encodedProgrammeId": {
         "letterA": "2a5089",
         "underscore": "2_5089"
       },
-      "episodeId": "2/5089/0108",
+      "episodeId": "2/5089/0105",
       "genres": [
         {
           "id": "SPORT",
@@ -1223,6 +1544,59 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/3z0hp2h/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "2/5089",
+      "tier": [
+        "FREE"
+      ],
+      "title": "King of the Roads",
+      "titleSlug": "king-of-the-roads"
+    },
+    {
+      "broadcastDateTime": null,
+      "titleCCId": "syq10f4",
+      "channel": "itv2",
+      "contentInfo": "3h 22m",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Live coverage of a charity football match between a Portugal Legends team and a World XI.",
+      "programmeId": "10/7288/0001B",
+      "encodedProgrammeId": {
+        "letterA": "10a7288a0001B",
+        "underscore": "10_7288_0001B"
+      },
+      "imageTemplate": "https://ovp.itv.com/v2/images/special/syq10f4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "tier": [
+        "FREE"
+      ],
+      "title": "Legends Charity Game 2025: Portugal v World",
+      "titleSlug": "legends-charity-game-2025-portugal-v-world"
+    },
+    {
+      "broadcastDateTime": "2025-10-23T21:30:00Z",
+      "brandCCId": "crnlgb9",
+      "channel": "itv4",
+      "contentInfo": "Series 2",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Highlights of matches from Ligue 1, France's top football division",
+      "encodedEpisodeId": {
+        "letterA": "10a6301a0035",
+        "underscore": "10_6301_0035"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a6301",
+        "underscore": "10_6301"
+      },
+      "episodeId": "10/6301/0035",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/crnlgb9/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/6301",
       "tagNames": [
         {
           "label": "new-content",
@@ -1232,11 +1606,11 @@
       "tier": [
         "FREE"
       ],
-      "title": "King of the Roads",
-      "titleSlug": "king-of-the-roads"
+      "title": "Ligue 1 Highlights",
+      "titleSlug": "ligue-1-highlights"
     },
     {
-      "broadcastDateTime": "2025-07-16T22:40:00Z",
+      "broadcastDateTime": "2025-08-28T00:30:00Z",
       "brandCCId": "7ccv7vc",
       "channel": "itv4",
       "contentInfo": "Series 1",
@@ -1244,14 +1618,14 @@
       "contentType": "brand",
       "description": "Highlights from the latest tournaments of golf's LIV Tour.",
       "encodedEpisodeId": {
-        "letterA": "10a6635a0010",
-        "underscore": "10_6635_0010"
+        "letterA": "10a6635a0014",
+        "underscore": "10_6635_0014"
       },
       "encodedProgrammeId": {
         "letterA": "10a6635",
         "underscore": "10_6635"
       },
-      "episodeId": "10/6635/0010",
+      "episodeId": "10/6635/0014",
       "genres": [
         {
           "id": "SPORT",
@@ -1261,12 +1635,6 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/7ccv7vc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/6635",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Episode"
-        }
-      ],
       "tier": [
         "FREE"
       ],
@@ -1282,14 +1650,14 @@
       "contentType": "brand",
       "description": "Catch all the live coverage of LIV Golf 2025",
       "encodedEpisodeId": {
-        "letterA": "10a6631a0042",
-        "underscore": "10_6631_0042"
+        "letterA": "10a6631a0058",
+        "underscore": "10_6631_0058"
       },
       "encodedProgrammeId": {
         "letterA": "10a6631",
         "underscore": "10_6631"
       },
-      "episodeId": "10/6631/0042",
+      "episodeId": "10/6631/0058",
       "genres": [
         {
           "id": "SPORT",
@@ -1299,12 +1667,6 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/t0nxz6k/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/6631",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Episode"
-        }
-      ],
       "tier": [
         "FREE"
       ],
@@ -1315,7 +1677,7 @@
       "broadcastDateTime": "2024-06-01T10:30:00Z",
       "titleCCId": "p0yh0ly",
       "channel": "itv4",
-      "contentInfo": "30m",
+      "contentInfo": "22m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Don't miss this doc about Man City's thrilling 1999 play off final",
@@ -1333,7 +1695,7 @@
       "titleSlug": "man-city-5-minutes-to-go"
     },
     {
-      "broadcastDateTime": "2024-09-05T17:25:00Z",
+      "broadcastDateTime": "2024-12-26T09:10:00Z",
       "brandCCId": "2cqm4g3",
       "channel": "itv4",
       "contentInfo": "Series 11",
@@ -1368,7 +1730,7 @@
       "broadcastDateTime": null,
       "brandCCId": "7fmmc35",
       "channel": "itv",
-      "contentInfo": "Series 1, 3",
+      "contentInfo": "Series 1 - 3",
       "contentOwner": null,
       "contentType": "brand",
       "description": "An all-racing, two-wheel, freestyle face-off - time to tear up the dirt!",
@@ -1429,7 +1791,7 @@
       "titleSlug": "more-than-machine"
     },
     {
-      "broadcastDateTime": "2025-07-13T05:45:00Z",
+      "broadcastDateTime": "2025-10-19T05:00:00Z",
       "brandCCId": "rzsmgnf",
       "channel": "itv4",
       "contentInfo": "Series 4",
@@ -1437,14 +1799,14 @@
       "contentType": "brand",
       "description": "From Superbikes to Formula 1, this has it all - get the latest news",
       "encodedEpisodeId": {
-        "letterA": "10a2005a0194",
-        "underscore": "10_2005_0194"
+        "letterA": "10a2005a0208",
+        "underscore": "10_2005_0208"
       },
       "encodedProgrammeId": {
         "letterA": "10a2005",
         "underscore": "10_2005"
       },
-      "episodeId": "10/2005/0194",
+      "episodeId": "10/2005/0208",
       "genres": [
         {
           "id": "SPORT",
@@ -1467,7 +1829,7 @@
       "titleSlug": "motorsport-mundial"
     },
     {
-      "broadcastDateTime": "2025-07-15T00:30:00Z",
+      "broadcastDateTime": "2025-10-21T00:30:00Z",
       "brandCCId": "p7ckvt7",
       "channel": "itv4",
       "contentInfo": "Series 20 - 21",
@@ -1475,14 +1837,14 @@
       "contentType": "brand",
       "description": "Join us for latest coverage of exciting motorsport from around Britain",
       "encodedEpisodeId": {
-        "letterA": "1a5301a0255",
-        "underscore": "1_5301_0255"
+        "letterA": "1a5301a0269",
+        "underscore": "1_5301_0269"
       },
       "encodedProgrammeId": {
         "letterA": "1a5301",
         "underscore": "1_5301"
       },
-      "episodeId": "1/5301/0255",
+      "episodeId": "1/5301/0269",
       "genres": [
         {
           "id": "SPORT",
@@ -1540,7 +1902,7 @@
       "broadcastDateTime": "2025-07-13T13:40:00Z",
       "titleCCId": "s62hljj",
       "channel": "itv",
-      "contentInfo": "2h 15m",
+      "contentInfo": "2h 12m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Coverage of the men's friendly between Preston North End and Liverpool",
@@ -1551,12 +1913,6 @@
       },
       "imageTemplate": "https://ovp.itv.com/v2/images/special/s62hljj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "Recently Added"
-        }
-      ],
       "tier": [
         "FREE"
       ],
@@ -1589,12 +1945,6 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/f94pzk4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/7016",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "Recently Added"
-        }
-      ],
       "tier": [
         "FREE"
       ],
@@ -1605,7 +1955,7 @@
       "broadcastDateTime": "2024-06-17T18:30:00Z",
       "titleCCId": "p7ll45f",
       "channel": "itv4",
-      "contentInfo": "30m",
+      "contentInfo": "23m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "A special programme celebrating four female jockeys who enjoyed success at Royal Ascot.",
@@ -1623,9 +1973,73 @@
       "titleSlug": "royal-ascot-queens-of-the-turf"
     },
     {
+      "broadcastDateTime": "2025-09-18T18:00:00Z",
+      "brandCCId": "1xtrt5b",
+      "channel": "itv4",
+      "contentInfo": "Series 11",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Highlights from one of the world\u2019s biggest classic motor racing festivals",
+      "encodedEpisodeId": {
+        "letterA": "2a2631a0015",
+        "underscore": "2_2631_0015"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a2631",
+        "underscore": "2_2631"
+      },
+      "episodeId": "2/2631/0015",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/1xtrt5b/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/2631",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Silverstone Festival",
+      "titleSlug": "silverstone-festival"
+    },
+    {
+      "broadcastDateTime": "2025-09-28T17:45:00Z",
+      "brandCCId": "t22lpmp",
+      "channel": "itv4",
+      "contentInfo": "Series 5",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "All the pots, all the shots - stream top snooker action!",
+      "encodedEpisodeId": {
+        "letterA": "10a1758a0090",
+        "underscore": "10_1758_0090"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a1758",
+        "underscore": "10_1758"
+      },
+      "episodeId": "10/1758/0090",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/t22lpmp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/1758",
+      "tier": [
+        "FREE"
+      ],
+      "title": "Snooker: British Open Championship",
+      "titleSlug": "snooker-british-open-championship"
+    },
+    {
       "broadcastDateTime": "2025-03-23T18:45:00Z",
       "brandCCId": "cfw85kx",
-      "channel": "itv4",
+      "channel": "itv",
       "contentInfo": "Series 10",
       "contentOwner": null,
       "contentType": "brand",
@@ -1657,7 +2071,7 @@
     {
       "broadcastDateTime": null,
       "brandCCId": "4dkdskt",
-      "channel": "itv4",
+      "channel": "itv",
       "contentInfo": "Series 7",
       "contentOwner": null,
       "contentType": "brand",
@@ -1687,22 +2101,22 @@
       "titleSlug": "snooker-tour-championship"
     },
     {
-      "broadcastDateTime": null,
+      "broadcastDateTime": "2025-03-24T22:45:00Z",
       "brandCCId": "j7kjk37",
       "channel": "itv",
-      "contentInfo": "15m",
+      "contentInfo": "55m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Star-studded event celebrating unsung heroes across the country",
       "encodedEpisodeId": {
-        "letterA": "10a0159a0005",
-        "underscore": "10_0159_0005"
+        "letterA": "10a0159a0002",
+        "underscore": "10_0159_0002"
       },
       "encodedProgrammeId": {
         "letterA": "10a0159",
         "underscore": "10_0159"
       },
-      "episodeId": "10/0159/0005",
+      "episodeId": "10/0159/0002",
       "genres": [
         {
           "id": "SPORT",
@@ -1719,7 +2133,7 @@
       "titleSlug": "sport-gives-back-awards-sport-and-me"
     },
     {
-      "broadcastDateTime": "2025-06-19T00:00:00Z",
+      "broadcastDateTime": "2025-09-25T21:40:00Z",
       "brandCCId": "60z66lc",
       "channel": "itv4",
       "contentInfo": "Series 1",
@@ -1727,14 +2141,14 @@
       "contentType": "brand",
       "description": "All of the action from the T100 Triathlon World Tour.",
       "encodedEpisodeId": {
-        "letterA": "10a6867a0003",
-        "underscore": "10_6867_0003"
+        "letterA": "10a6867a0006",
+        "underscore": "10_6867_0006"
       },
       "encodedProgrammeId": {
         "letterA": "10a6867",
         "underscore": "10_6867"
       },
-      "episodeId": "10/6867/0003",
+      "episodeId": "10/6867/0006",
       "genres": [
         {
           "id": "SPORT",
@@ -1747,7 +2161,7 @@
       "tagNames": [
         {
           "label": "new-content",
-          "displayText": "Recently Added"
+          "displayText": "New Episode"
         }
       ],
       "tier": [
@@ -1757,22 +2171,22 @@
       "titleSlug": "t100-triathlon-highlights"
     },
     {
-      "broadcastDateTime": "2024-08-28T18:00:00Z",
+      "broadcastDateTime": "2025-08-27T18:00:00Z",
       "brandCCId": "rkqzbxj",
       "channel": "itv4",
-      "contentInfo": "Series 3",
+      "contentInfo": "1h 33m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Join top stars as they raise funds for charity at this annual event",
       "encodedEpisodeId": {
-        "letterA": "10a0590a0005",
-        "underscore": "10_0590_0005"
+        "letterA": "10a0590a0006",
+        "underscore": "10_0590_0006"
       },
       "encodedProgrammeId": {
         "letterA": "10a0590",
         "underscore": "10_0590"
       },
-      "episodeId": "10/0590/0005",
+      "episodeId": "10/0590/0006",
       "genres": [
         {
           "id": "SPORT",
@@ -1789,7 +2203,7 @@
       "titleSlug": "target-sports-stars-fishing-championship"
     },
     {
-      "broadcastDateTime": "2024-08-17T10:30:00Z",
+      "broadcastDateTime": "2024-12-24T12:05:00Z",
       "brandCCId": "xjz6f62",
       "channel": "itv4",
       "contentInfo": "Series 1",
@@ -1821,7 +2235,7 @@
       "titleSlug": "the-best-of-saint-and-greavsie"
     },
     {
-      "broadcastDateTime": "2025-07-12T09:30:00Z",
+      "broadcastDateTime": "2025-10-25T09:30:00Z",
       "brandCCId": "4hggznx",
       "channel": "itv4",
       "contentInfo": "Series 9",
@@ -1829,14 +2243,14 @@
       "contentType": "brand",
       "description": "Plunge into the past with highlights from this iconic football show",
       "encodedEpisodeId": {
-        "letterA": "1a6464a0188",
-        "underscore": "1_6464_0188"
+        "letterA": "1a6464a0201",
+        "underscore": "1_6464_0201"
       },
       "encodedProgrammeId": {
         "letterA": "1a6464",
         "underscore": "1_6464"
       },
-      "episodeId": "1/6464/0188",
+      "episodeId": "1/6464/0201",
       "genres": [
         {
           "id": "SPORT",
@@ -1862,7 +2276,7 @@
       "broadcastDateTime": "2025-06-15T11:25:00Z",
       "titleCCId": "s002498",
       "channel": "itv",
-      "contentInfo": "30m",
+      "contentInfo": "24m",
       "contentOwner": null,
       "contentType": "brand",
       "description": "Alice Loxton charts the history and heritage of the Royal Procession at Royal Ascot.",
@@ -1880,104 +2294,55 @@
       "titleSlug": "the-royal-procession-at-ascot-celebrating-200-years"
     },
     {
-      "broadcastDateTime": "2025-07-19T10:00:00Z",
-      "brandCCId": "dv2f03c",
+      "broadcastDateTime": "2025-10-10T00:35:00Z",
+      "titleCCId": "qf0ysgp",
       "channel": "itv4",
-      "contentInfo": "Series 19",
+      "contentInfo": "47m",
       "contentOwner": null,
       "contentType": "brand",
-      "description": "Every twist, every turn... all the action from cycling's grand tour",
-      "encodedEpisodeId": {
-        "letterA": "1a7000a0404",
-        "underscore": "1_7000_0404"
-      },
+      "description": "Action from Total Kombat 2 at the O2 Arena in London.",
+      "programmeId": "10/7340/0001B",
       "encodedProgrammeId": {
-        "letterA": "34067",
-        "underscore": "34067"
+        "letterA": "10a7340a0001B",
+        "underscore": "10_7340_0001B"
       },
-      "episodeId": "1/7000/0404",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/dv2f03c/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "imageTemplate": "https://ovp.itv.com/v2/images/special/qf0ysgp/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
-      "programmeId": "34067",
       "tagNames": [
         {
           "label": "new-content",
-          "displayText": "New Series"
+          "displayText": "Recently Added"
         }
       ],
       "tier": [
         "FREE"
       ],
-      "title": "Tour de France",
-      "titleSlug": "tour-de-france"
-    },
-    {
-      "broadcastDateTime": "2025-07-19T18:00:00Z",
-      "brandCCId": "xm70dwr",
-      "channel": "itv4",
-      "contentInfo": "Series 2",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Feel every mile with all the best bits from the renowned cycling race",
-      "encodedEpisodeId": {
-        "letterA": "10a5559a0039",
-        "underscore": "10_5559_0039"
-      },
-      "encodedProgrammeId": {
-        "letterA": "10a5559",
-        "underscore": "10_5559"
-      },
-      "episodeId": "10/5559/0039",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/xm70dwr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "10/5559",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "New Series"
-        }
-      ],
-      "tier": [
-        "FREE"
-      ],
-      "title": "Tour de France Highlights",
-      "titleSlug": "tour-de-france-highlights"
+      "title": "Total Kombat Highlights",
+      "titleSlug": "total-kombat-highlights"
     },
     {
       "broadcastDateTime": null,
-      "titleCCId": "px9flpq",
+      "titleCCId": "lwznqm3",
       "channel": "itv2",
-      "contentInfo": "50m",
+      "contentInfo": "3h 51m",
       "contentOwner": null,
       "contentType": "brand",
-      "description": "A look back at the 2022 Women\u2019s European Championship.",
-      "programmeId": "10/7011/0001B",
+      "description": "Elite fighters face off in the finals of martial arts tournament Total Kombat.",
+      "programmeId": "10/7252/0001B",
       "encodedProgrammeId": {
-        "letterA": "10a7011a0001B",
-        "underscore": "10_7011_0001B"
+        "letterA": "10a7252a0001B",
+        "underscore": "10_7252_0001B"
       },
-      "imageTemplate": "https://ovp.itv.com/v2/images/special/px9flpq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "imageTemplate": "https://ovp.itv.com/v2/images/special/lwznqm3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "tier": [
         "FREE"
       ],
-      "title": "UEFA Women's EURO 2022 Tournament Review",
-      "titleSlug": "uefa-womens-euro-2022-tournament-review"
+      "title": "Total Kombat Live",
+      "titleSlug": "total-kombat-live"
     },
     {
-      "broadcastDateTime": "2025-07-13T18:00:00Z",
+      "broadcastDateTime": "2025-07-27T14:30:00Z",
       "brandCCId": "kw24n5b",
       "channel": "itv",
       "contentInfo": "Series 1",
@@ -1985,14 +2350,14 @@
       "contentType": "brand",
       "description": "Catch every goal, tackle and triumph live from Switzerland",
       "encodedEpisodeId": {
-        "letterA": "10a6089a0013",
-        "underscore": "10_6089_0013"
+        "letterA": "10a6089a0016",
+        "underscore": "10_6089_0016"
       },
       "encodedProgrammeId": {
         "letterA": "10a6089",
         "underscore": "10_6089"
       },
-      "episodeId": "10/6089/0013",
+      "episodeId": "10/6089/0016",
       "genres": [
         {
           "id": "SPORT",
@@ -2002,12 +2367,6 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/kw24n5b/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/6089",
-      "tagNames": [
-        {
-          "label": "new-content",
-          "displayText": "Recently Added"
-        }
-      ],
       "tier": [
         "FREE"
       ],
@@ -2023,14 +2382,14 @@
       "contentType": "brand",
       "description": "Memorable moments and phenomenal goals - stream highlights of every game",
       "encodedEpisodeId": {
-        "letterA": "10a6551a0028",
-        "underscore": "10_6551_0028"
+        "letterA": "10a6551a0031",
+        "underscore": "10_6551_0031"
       },
       "encodedProgrammeId": {
         "letterA": "10a6551",
         "underscore": "10_6551"
       },
-      "episodeId": "10/6551/0028",
+      "episodeId": "10/6551/0031",
       "genres": [
         {
           "id": "SPORT",
@@ -2040,6 +2399,38 @@
       "imageTemplate": "https://ovp.itv.com/v2/images/programme/918d798/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
       "programmeId": "10/6551",
+      "tier": [
+        "FREE"
+      ],
+      "title": "UEFA Women's EURO 2025 Highlights",
+      "titleSlug": "uefa-womens-euro-2025-highlights"
+    },
+    {
+      "broadcastDateTime": null,
+      "brandCCId": "kzlnscf",
+      "channel": "itv",
+      "contentInfo": "Series 1",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Watch the world\u2019s fastest obstacle racers battle it out.",
+      "encodedEpisodeId": {
+        "letterA": "10a7416a0002",
+        "underscore": "10_7416_0002"
+      },
+      "encodedProgrammeId": {
+        "letterA": "10a7416",
+        "underscore": "10_7416"
+      },
+      "episodeId": "10/7416/0002",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/kzlnscf/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "10/7416",
       "tagNames": [
         {
           "label": "new-content",
@@ -2049,61 +2440,8 @@
       "tier": [
         "FREE"
       ],
-      "title": "UEFA Women's EURO 2025 Highlights",
-      "titleSlug": "uefa-womens-euro-2025-highlights"
-    },
-    {
-      "broadcastDateTime": null,
-      "titleCCId": "scv9cr4",
-      "channel": "itv2",
-      "contentInfo": "15m",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "A look back at the 2022 Women\u2019s European Championship final between England and Germany.",
-      "programmeId": "10/7010/0001B",
-      "encodedProgrammeId": {
-        "letterA": "10a7010a0001B",
-        "underscore": "10_7010_0001B"
-      },
-      "imageTemplate": "https://ovp.itv.com/v2/images/special/scv9cr4/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "tier": [
-        "FREE"
-      ],
-      "title": "UEFA Women\u2019s Euro England 2022 Winners \u2013 Lionesses Bring It Home",
-      "titleSlug": "uefa-womens-euro-england-2022-winners-lionesses-bring-it-home"
-    },
-    {
-      "broadcastDateTime": null,
-      "brandCCId": "658gx0d",
-      "channel": "itv",
-      "contentInfo": "Series 1",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Relive the best matches from the UEFA Women's EUROs between 2009 - 2022",
-      "encodedEpisodeId": {
-        "letterA": "10a7063a0015",
-        "underscore": "10_7063_0015"
-      },
-      "encodedProgrammeId": {
-        "letterA": "10a7063",
-        "underscore": "10_7063"
-      },
-      "episodeId": "10/7063/0015",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/658gx0d/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "10/7063",
-      "tier": [
-        "FREE"
-      ],
-      "title": "UEFA Women's Euros Revisited",
-      "titleSlug": "uefa-womens-euros-revisited"
+      "title": "UIPM Obstacle World Championships 2025 Live",
+      "titleSlug": "uipm-obstacle-world-championships-2025-live"
     },
     {
       "broadcastDateTime": null,
@@ -2138,63 +2476,31 @@
       "titleSlug": "world-chase-tag"
     },
     {
-      "broadcastDateTime": "2025-07-06T06:00:00Z",
-      "brandCCId": "qzkn82w",
-      "channel": "itv4",
-      "contentInfo": "Series 9",
+      "broadcastDateTime": "2025-10-14T18:00:00Z",
+      "brandCCId": "k06mkb5",
+      "channel": "itv",
+      "contentInfo": "Series 3",
       "contentOwner": null,
       "contentType": "brand",
-      "description": "Watch drivers push themselves to their limits in this World Championship",
+      "description": "Coverage of England's World Cup Qualifying matches  involving two non-England teams.",
       "encodedEpisodeId": {
-        "letterA": "2a2398a0120",
-        "underscore": "2_2398_0120"
+        "letterA": "2a4648a0036",
+        "underscore": "2_4648_0036"
       },
       "encodedProgrammeId": {
-        "letterA": "2a2398",
-        "underscore": "2_2398"
+        "letterA": "2a4648",
+        "underscore": "2_4648"
       },
-      "episodeId": "2/2398/0120",
+      "episodeId": "2/4648/0036",
       "genres": [
         {
           "id": "SPORT",
           "name": "Sport"
         }
       ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/qzkn82w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/k06mkb5/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
       "partnership": null,
-      "programmeId": "2/2398",
-      "tier": [
-        "FREE"
-      ],
-      "title": "World Rally Championship Highlights",
-      "titleSlug": "world-rally-championship-highlights"
-    },
-    {
-      "broadcastDateTime": "2025-07-05T17:00:00Z",
-      "brandCCId": "2f1v738",
-      "channel": "itv4",
-      "contentInfo": "Series 10",
-      "contentOwner": null,
-      "contentType": "brand",
-      "description": "Catch coverage from World Series of Darts tournaments around the world",
-      "encodedEpisodeId": {
-        "letterA": "2a3877a0137",
-        "underscore": "2_3877_0137"
-      },
-      "encodedProgrammeId": {
-        "letterA": "2a3877",
-        "underscore": "2_3877"
-      },
-      "episodeId": "2/3877/0137",
-      "genres": [
-        {
-          "id": "SPORT",
-          "name": "Sport"
-        }
-      ],
-      "imageTemplate": "https://ovp.itv.com/v2/images/programme/2f1v738/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-      "partnership": null,
-      "programmeId": "2/3877",
+      "programmeId": "2/4648",
       "tagNames": [
         {
           "label": "new-content",
@@ -2204,11 +2510,113 @@
       "tier": [
         "FREE"
       ],
+      "title": "World Cup: Qualifiers",
+      "titleSlug": "world-cup-qualifiers"
+    },
+    {
+      "broadcastDateTime": "2025-10-21T18:00:00Z",
+      "brandCCId": "qzkn82w",
+      "channel": "itv4",
+      "contentInfo": "Series 9",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Watch drivers push themselves to their limits in this World Championship",
+      "encodedEpisodeId": {
+        "letterA": "2a2398a0125",
+        "underscore": "2_2398_0125"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a2398",
+        "underscore": "2_2398"
+      },
+      "episodeId": "2/2398/0125",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/qzkn82w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/2398",
+      "tagNames": [
+        {
+          "label": "new-content",
+          "displayText": "New Episode"
+        }
+      ],
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Rally Championship Highlights",
+      "titleSlug": "world-rally-championship-highlights"
+    },
+    {
+      "broadcastDateTime": "2025-08-16T16:00:00Z",
+      "brandCCId": "2f1v738",
+      "channel": "itv4",
+      "contentInfo": "Series 10",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Catch coverage from World Series of Darts tournaments around the world",
+      "encodedEpisodeId": {
+        "letterA": "2a3877a0145",
+        "underscore": "2_3877_0145"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a3877",
+        "underscore": "2_3877"
+      },
+      "episodeId": "2/3877/0145",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/2f1v738/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3877",
+      "tier": [
+        "FREE"
+      ],
       "title": "World Series of Darts",
       "titleSlug": "world-series-of-darts"
     },
     {
-      "broadcastDateTime": "2025-07-15T19:00:00Z",
+      "broadcastDateTime": "2025-09-14T17:00:00Z",
+      "brandCCId": "zq3jqcj",
+      "channel": "itv4",
+      "contentInfo": "Series 11",
+      "contentOwner": null,
+      "contentType": "brand",
+      "description": "Dive into coverage of the finals from Amsterdam",
+      "encodedEpisodeId": {
+        "letterA": "2a3722a0046",
+        "underscore": "2_3722_0046"
+      },
+      "encodedProgrammeId": {
+        "letterA": "2a3722",
+        "underscore": "2_3722"
+      },
+      "episodeId": "2/3722/0046",
+      "genres": [
+        {
+          "id": "SPORT",
+          "name": "Sport"
+        }
+      ],
+      "imageTemplate": "https://ovp.itv.com/v2/images/programme/zq3jqcj/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+      "partnership": null,
+      "programmeId": "2/3722",
+      "tier": [
+        "FREE"
+      ],
+      "title": "World Series of Darts Finals",
+      "titleSlug": "world-series-of-darts-finals"
+    },
+    {
+      "broadcastDateTime": "2025-10-21T19:00:00Z",
       "brandCCId": "n5b8m7w",
       "channel": "itv4",
       "contentInfo": "Series 10",
@@ -2216,14 +2624,14 @@
       "contentType": "brand",
       "description": "Witness all the thrills & spills in these unmissable superbike highlights",
       "encodedEpisodeId": {
-        "letterA": "2a4431a0131",
-        "underscore": "2_4431_0131"
+        "letterA": "2a4431a0136",
+        "underscore": "2_4431_0136"
       },
       "encodedProgrammeId": {
         "letterA": "2a4431",
         "underscore": "2_4431"
       },
-      "episodeId": "2/4431/0131",
+      "episodeId": "2/4431/0136",
       "genres": [
         {
           "id": "SPORT",

@@ -1,0 +1,35 @@
+{
+  "Dev_Comment": "Special - Paid",
+  "contentType": "special",
+  "duration": "PT1H30M",
+  "contentInfo": "1h 30m",
+  "title": "Steve Coogan's Live Stand Up Down Under",
+  "titleSlug": "steve-coogans-live-stand-up-down-under",
+  "partnership": null,
+  "contentOwner": null,
+  "dateTime": null,
+  "channel": "itv2",
+  "description": "Steve Coogan takes his legendary wit and iconic characters to Australia!",
+  "genres": [
+    {
+      "id": "COMEDY",
+      "name": "Comedy"
+    }
+  ],
+  "imageTemplate": "https://ovp.itv.com/v2/images/special/md8s5nr/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "md8s5nr",
+  "programmeId": "10/6347/0001B",
+  "encodedProgrammeId": {
+    "letterA": "10a6347a0001B",
+    "underscore": "10_6347_0001B"
+  },
+  "episodeId": "10/6347/0001",
+  "encodedEpisodeId": {
+    "letterA": "10a6347a0001",
+    "underscore": "10_6347_0001"
+  },
+  "isPaid": true,
+  "tagNames": [
+    "premium"
+  ]
+}

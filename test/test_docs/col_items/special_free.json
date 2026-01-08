@@ -1,0 +1,32 @@
+{
+  "Dev_Comment": "Special - Free",
+  "contentType": "special",
+  "duration": "PT4H",
+  "contentInfo": "4h",
+  "title": "All Elite Wrestling: All In (2025)",
+  "titleSlug": "all-elite-wrestling-all-in-2025",
+  "partnership": null,
+  "contentOwner": null,
+  "dateTime": "2025-07-18T20:00:00Z",
+  "channel": "itv4",
+  "description": "Catch all the action from Texas, featuring the biggest stars",
+  "genres": [
+    {
+      "id": "SPORT",
+      "name": "Sport"
+    }
+  ],
+  "imageTemplate": "https://ovp.itv.com/v2/images/special/wf1htg6/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "wf1htg6",
+  "programmeId": "10/5069",
+  "encodedProgrammeId": {
+    "letterA": "10a5069",
+    "underscore": "10_5069"
+  },
+  "episodeId": "10/5069/0002",
+  "encodedEpisodeId": {
+    "letterA": "10a5069a0002",
+    "underscore": "10_5069_0002"
+  },
+  "isPaid": false
+}

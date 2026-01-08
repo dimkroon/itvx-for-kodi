@@ -1,0 +1,18 @@
+{
+  "data": {
+    "titles": [
+      {
+        "__typename": "Episode",
+        "title": "No Man's Land",
+        "ccid": "hcnxs56",
+        "latestAvailableVersion": {
+          "audioDescribed": true,
+          "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/2_7931_0006.001",
+          "bsl": {
+            "playlistUrl": "https://magni.itv.com/playlist/itvonline/ITV/2_7931_0006.003"
+          }
+        }
+      }
+    ]
+  }
+}

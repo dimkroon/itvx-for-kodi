@@ -2,7 +2,343 @@
   "headingTitle": "Rugby World Cup",
   "headingDescription": "Stream all the latest and classic matches for free",
   "pageImageUrl": "https://ovp.itv.com/images/content-partner-banner/rugbyworldcup/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-  "collection": null,
+  "collection": {
+    "id": "3WygGOsy4f4B02iGXNEWHd",
+    "page": "collections",
+    "itemCount": 78,
+    "headingTitle": "Fresh in",
+    "headingLink": {
+      "href": "/collections/fresh-in/3WygGOsy4f4B02iGXNEWHd",
+      "text": "View All"
+    },
+    "imageUrl": null,
+    "sliderName": "fresh_in",
+    "isChildrenCollection": false,
+    "subsequentJourney": {
+      "name": "Reality & Ent Fresh In Subsequent journey",
+      "label": "View All",
+      "destinationUrl": "/collections/3WygGOsy4f4B02iGXNEWHd"
+    },
+    "shows": [
+      {
+        "Dev_Comment": "Brand - Free",
+        "contentType": "brand",
+        "partnership": null,
+        "contentOwner": null,
+        "title": "The Ice Cream Girls",
+        "titleSlug": "the-ice-cream-girls",
+        "description": "Chilling crime drama - two teen girls face accusations of murder",
+        "genres": [
+          {
+            "id": "DRAMA_AND_SOAPS",
+            "name": "Drama"
+          }
+        ],
+        "dateTime": "2013-05-03T20:00:00Z",
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/r46m6wc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 1,
+        "series": [
+          {
+            "numberOfEpisodes": 3,
+            "numberOfAvailableEpisodes": 3,
+            "fullSeries": true,
+            "legacyId": "2/1994-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "r46m6wc",
+        "programmeId": "2/1994",
+        "encodedProgrammeId": {
+          "letterA": "2a1994",
+          "underscore": "2_1994"
+        },
+        "contentInfo": "Series 1",
+        "isPaid": false
+      },
+      {
+        "Dev_Comment": "Brand - Paid",
+        "contentType": "brand",
+        "partnership": "BRITBOX",
+        "contentOwner": "BBC",
+        "title": "Absolutely Fabulous",
+        "titleSlug": "absolutely-fabulous",
+        "description": "Patsy & Eddie love to booze & bitch in this hit 90s sitcom",
+        "genres": [
+          {
+            "id": "COMEDY",
+            "name": "Comedy"
+          }
+        ],
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/programme/74mfq9w/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "numberOfAvailableSeries": 5,
+        "series": [
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "2/7232-01",
+            "seriesNumber": 1,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "2/7232-02",
+            "seriesNumber": 2,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "2/7232-03",
+            "seriesNumber": 3,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 6,
+            "numberOfAvailableEpisodes": 6,
+            "fullSeries": true,
+            "legacyId": "2/7232-04",
+            "seriesNumber": 4,
+            "longRunning": false
+          },
+          {
+            "numberOfEpisodes": 8,
+            "numberOfAvailableEpisodes": 8,
+            "fullSeries": true,
+            "legacyId": "2/7232-05",
+            "seriesNumber": 5,
+            "longRunning": false
+          }
+        ],
+        "brandCCId": "74mfq9w",
+        "programmeId": "2/7232",
+        "encodedProgrammeId": {
+          "letterA": "2a7232",
+          "underscore": "2_7232"
+        },
+        "contentInfo": "Series 1 - 5",
+        "isPaid": true,
+        "tagNames": [
+          "premium"
+        ]
+      },
+      {
+        "Dev_Comment": "Collection",
+        "contentType": "collection",
+        "title": "Jaws & Other Blockbusters ",
+        "titleSlug": "jaws-and-other-blockbusters",
+        "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/jawscollection50/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "description": "On the 50th anniversary of Spielberg\u2019s razor-toothed classic, dive into the franchise that terrified a generation - or get hooked on more killer blockbusters!",
+        "collectionId": "1cAfjxaSCkuHVjRtt0znmc",
+        "adServed": false
+      },
+      {
+        "Dev_Comment": "Episode - Free",
+        "contentType": "episode",
+        "title": "Love Island: Aftersun",
+        "titleSlug": "love-island-aftersun",
+        "episodeTitle": null,
+        "episodeNumber": 6,
+        "seriesNumber": 12,
+        "contentInfo": "S12, E6",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "partnership": null,
+        "contentOwner": null,
+        "description": "With Indiyah Polack, Sam Thompson, Ash Holme and Series 11 besties Uma and Mimii.",
+        "dateTime": "2025-07-20T21:00:00Z",
+        "channel": "itv2",
+        "imageTemplate": "https://ovp.itv.com/v2/images/episode/qn9f2vz/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "qn9f2vz",
+        "brandCCId": "8ck1sm8",
+        "programmeId": "2/5131",
+        "encodedProgrammeId": {
+          "letterA": "2a5131",
+          "underscore": "2_5131"
+        },
+        "episodeId": "2/5131/0079",
+        "encodedEpisodeId": {
+          "letterA": "2a5131a0079",
+          "underscore": "2_5131_0079"
+        },
+        "isPaid": false,
+        "tagNames": [
+          {
+            "label": "new-content",
+            "displayText": "New Episode"
+          }
+        ]
+      },
+      {
+        "Dev_Comment": "Episode - Paid",
+        "contentType": "episode",
+        "title": "Million Dollar Listing: New York",
+        "titleSlug": "million-dollar-listing-new-york",
+        "episodeTitle": "Uncensored",
+        "episodeNumber": 14,
+        "seriesNumber": 3,
+        "contentInfo": "S3, E14. Uncensored",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "partnership": "ITVX",
+        "contentOwner": "HAYU",
+        "description": "The best stuff they never dared to show you, until now.",
+        "dateTime": null,
+        "channel": "itv",
+        "imageTemplate": "https://ovp.itv.com/v2/images/episode/ckrxvxx/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "ckrxvxx",
+        "brandCCId": "yrqdf83",
+        "programmeId": "2/4653",
+        "encodedProgrammeId": {
+          "letterA": "2a4653",
+          "underscore": "2_4653"
+        },
+        "episodeId": "2/4653/0092",
+        "encodedEpisodeId": {
+          "letterA": "2a4653a0092",
+          "underscore": "2_4653_0092"
+        },
+        "isPaid": true,
+        "tagNames": [
+          "premium"
+        ]
+      },
+      {
+        "Dev_Comment": "Series - Free",
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 7
+          },
+          {
+            "seriesNumber": 10
+          },
+          {
+            "seriesNumber": 11
+          },
+          {
+            "seriesNumber": 5
+          },
+          {
+            "seriesNumber": 2
+          },
+          {
+            "seriesNumber": 6
+          },
+          {
+            "seriesNumber": 8
+          },
+          {
+            "seriesNumber": 4
+          },
+          {
+            "seriesNumber": 3
+          },
+          {
+            "seriesNumber": 12
+          },
+          {
+            "seriesNumber": 9
+          },
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 12,
+        "contentInfo": "Series 1 - 12",
+        "title": "Love Island",
+        "titleSlug": "love-island",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv2",
+        "description": "A scorching summer just got hotter. ",
+        "dateTime": "2025-06-09T20:00:00Z",
+        "genres": [
+          {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/xqjt1py/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "xqjt1py",
+        "brandCCId": "wkk03p7",
+        "programmeId": "2/3697",
+        "encodedProgrammeId": {
+          "letterA": "2a3697",
+          "underscore": "2_3697"
+        },
+        "episodeId": "2/3697/0737",
+        "encodedEpisodeId": {
+          "letterA": "2a3697a0737",
+          "underscore": "2_3697_0737"
+        },
+        "isPaid": false,
+        "tagNames": [
+          {
+            "label": "new-content",
+            "displayText": "New Episode"
+          }
+        ]
+      },
+      {
+        "Dev_Comment": "Series - Paid",
+        "contentType": "series",
+        "series": [
+          {
+            "seriesNumber": 1
+          }
+        ],
+        "seriesNumber": 1,
+        "contentInfo": "Series 1",
+        "title": "Martina Cole's Lady Killers",
+        "titleSlug": "martina-coles-lady-killers",
+        "partnership": null,
+        "contentOwner": null,
+        "channel": "itv",
+        "description": "Leading crime writer, Martina Cole, investigates female serial killers",
+        "dateTime": null,
+        "genres": [
+          {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+          }
+        ],
+        "imageTemplate": "https://ovp.itv.com/v2/images/series/98f5bf3/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+        "titleCCId": "98f5bf3",
+        "brandCCId": "y7vd7s5",
+        "programmeId": "35865",
+        "encodedProgrammeId": {
+          "letterA": "35865",
+          "underscore": "35865"
+        },
+        "episodeId": "1042444",
+        "encodedEpisodeId": {
+          "letterA": "1042444",
+          "underscore": "1042444"
+        },
+        "isPaid": true,
+        "tagNames": [
+          "premium"
+        ]
+      }
+    ],
+    "adServed": false
+  },
   "editorialSliders": [
     {
       "Dev_Comment": "A 'normal' editorialSlider with shows of all types and a headingLink",

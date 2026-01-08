@@ -1,0 +1,37 @@
+{
+  "Dev_Comment": "Brand - Free",
+  "contentType": "brand",
+  "partnership": null,
+  "contentOwner": null,
+  "title": "The Ice Cream Girls",
+  "titleSlug": "the-ice-cream-girls",
+  "description": "Chilling crime drama - two teen girls face accusations of murder",
+  "genres": [
+    {
+      "id": "DRAMA_AND_SOAPS",
+      "name": "Drama"
+    }
+  ],
+  "dateTime": "2013-05-03T20:00:00Z",
+  "channel": "itv",
+  "imageTemplate": "https://ovp.itv.com/v2/images/programme/r46m6wc/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "numberOfAvailableSeries": 1,
+  "series": [
+    {
+      "numberOfEpisodes": 3,
+      "numberOfAvailableEpisodes": 3,
+      "fullSeries": true,
+      "legacyId": "2/1994-01",
+      "seriesNumber": 1,
+      "longRunning": false
+    }
+  ],
+  "brandCCId": "r46m6wc",
+  "programmeId": "2/1994",
+  "encodedProgrammeId": {
+    "letterA": "2a1994",
+    "underscore": "2_1994"
+  },
+  "contentInfo": "Series 1",
+  "isPaid": false
+}

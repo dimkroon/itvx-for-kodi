@@ -49,7 +49,7 @@ class TestItv(unittest.TestCase):
     def test_get_catchup_urls(self):
         urls = (
             # something else with subtitles:
-            'https://magni.itv.com/playlist/itvonline/ITV/10_0852_0001.001', )
+            'https://magni.itv.com/playlist/itvonline/ITV/10_1954_0001.001', )
         for url in urls:
             result = itv.get_catchup_urls(url)
             self.assertIsInstance(result, tuple)

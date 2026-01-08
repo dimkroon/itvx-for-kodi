@@ -1,0 +1,60 @@
+{
+  "Dev_Comment": "Special - Free 2025-12-19 01:21",
+  "audioDescribed": true,
+  "contentType": "special",
+  "duration": "48m",
+  "genre": [
+    "Documentaries & Lifestyle"
+  ],
+  "contentInfo": [
+    "Docs & Lifestyle",
+    "Travel & Adventure",
+    "48m"
+  ],
+  "title": "Accidental Tourist",
+  "titleSlug": "accidental-tourist",
+  "partnership": null,
+  "contentOwner": null,
+  "dateTime": "2025-12-14T21:00:00Z",
+  "description": "Ant & Dec are shoving Stephen Mulhern out of his comfort zone! The man who loves routine - and hates the unknown - is heading east for a crash course in chaos. Buckle up\u2026",
+  "descriptionShort": "Ant & Dec are shoving Stephen Mulhern out of his comfort zone! ",
+  "genres": [
+    {
+      "id": "FACTUAL",
+      "name": "Documentaries & Lifestyle"
+    }
+  ],
+  "subgenres": [
+    {
+      "id": "TRAVEL_ADVENTURE_AND_EXPLORATION",
+      "name": "Travel & Adventure"
+    },
+    {
+      "id": "ENTERTAINMENT",
+      "name": "Entertainment"
+    }
+  ],
+  "imageTemplate": "https://ovp.itv.com/v2/images/special/59g226r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "59g226r",
+  "brandCCId": null,
+  "programmeId": "10/7422",
+  "encodedProgrammeId": {
+    "letterA": "10a7422",
+    "underscore": "10_7422"
+  },
+  "encodedEpisodeId": {
+    "letterA": "10a5963a0001",
+    "underscore": "10_5963_0001"
+  },
+  "ctaLabel": "Watch Episode",
+  "ariaLabel": "Watch the episode, Accidental Tourist",
+  "isPaid": false,
+  "attribution": {
+    "partnership": null,
+    "contentOwner": null
+  },
+  "strapline": {
+    "text": "Just added - stream it now ",
+    "variant": "default"
+  }
+}

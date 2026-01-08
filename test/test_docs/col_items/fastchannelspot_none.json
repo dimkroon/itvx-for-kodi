@@ -1,0 +1,15 @@
+{
+  "Dev_Comment": "Fastchannelspot - None",
+  "contentType": "fastchannelspot",
+  "title": "UEFA Women's Euros 24/7 Channel",
+  "description": "Stream it now",
+  "channel": "fast1",
+  "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-womens-euros25/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "contentInfo": "",
+  "startDateTime": null,
+  "endDateTime": null,
+  "progress": null,
+  "tagNames": [
+    "live"
+  ]
+}
