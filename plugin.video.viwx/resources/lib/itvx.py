@@ -139,24 +139,6 @@ def get_live_channels(local_tz=None):
     return schedule
 
 
-def get_full_schedule():
-    """Get the schedules of the main live channels from a week back to a week ahead.
-
-    These are from the html pages that the website uses to show schedules.
-    """
-    today = datetime.now(timezone.utc)
-    all_days = (today + timedelta(i) for i in range(-7, 8))
-    # schedules = (get_page_data('watch/tv-guide/' + day.strftime('%Y-%m-%d')) for day in all_days)
-    schedule = {}
-    for day in all_days:
-        page_data = get_page_data('/watch/tv-guide/' + day.strftime('%Y-%m-%d'))
-        guide = page_data['tvGuideData']
-        for chan_name, progr_list in guide.items():
-            chan_schedule = schedule.setdefault(chan_name, [])
-            chan_schedule.extend(filter(None, (parsex.parse_schedule_item(progr) for progr in progr_list)))
-    return schedule
-
-
 def main_page_items():
     main_data = get_page_data('https://www.itv.com', cache_time=None)
 

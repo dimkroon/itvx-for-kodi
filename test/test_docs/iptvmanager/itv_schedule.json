@@ -1,0 +1,3138 @@
+{
+    "tvGuideData": {
+        "ITV1": [
+            {
+                "title": "Good Morning Britain",
+                "start": "2026-01-08T06:00:00Z",
+                "end": "2026-01-08T09:30:00Z",
+                "titleCCId": "1d06s56",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "NEWS",
+                        "name": "News"
+                    }
+                ],
+                "seriesNumber": 13,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/good-morning-britain/2a3211/2a3211a4250",
+                "programmeLink": "/good-morning-britain/2a3211",
+                "legacyId": "2/3211/4250",
+                "duration": 12600
+            },
+            {
+                "title": "Lorraine",
+                "start": "2026-01-08T09:30:00Z",
+                "end": "2026-01-08T10:00:00Z",
+                "titleCCId": "t3z7prj",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 18,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/lorraine/1a9360/1a9360a4067",
+                "programmeLink": "/lorraine/1a9360",
+                "legacyId": "1/9360/4067",
+                "duration": 1800
+            },
+            {
+                "title": "This Morning",
+                "start": "2026-01-08T10:00:00Z",
+                "end": "2026-01-08T11:03:00Z",
+                "titleCCId": "y4c21jc",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 38,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/this-morning/1a1960/1a1960a10141",
+                "programmeLink": "/this-morning/1a1960",
+                "legacyId": "1/1960/10141",
+                "duration": 3780
+            },
+            {
+                "title": "ITV Regional Weather",
+                "start": "2026-01-08T11:03:00Z",
+                "end": "2026-01-08T11:10:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 420
+            },
+            {
+                "title": "This Morning",
+                "start": "2026-01-08T11:10:00Z",
+                "end": "2026-01-08T12:30:00Z",
+                "titleCCId": "y4c21jc",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 38,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/this-morning/1a1960/1a1960a10141",
+                "programmeLink": "/this-morning/1a1960",
+                "legacyId": "1/1960/10141",
+                "duration": 4800
+            },
+            {
+                "title": "Loose Women",
+                "start": "2026-01-08T12:30:00Z",
+                "end": "2026-01-08T13:30:00Z",
+                "titleCCId": "yjqsk37",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 30,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/loose-women/1a3173/1a3173a4899",
+                "programmeLink": "/loose-women/1a3173",
+                "legacyId": "1/3173/4899",
+                "duration": 3600
+            },
+            {
+                "title": "ITV Lunchtime News",
+                "start": "2026-01-08T13:30:00Z",
+                "end": "2026-01-08T13:53:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1380
+            },
+            {
+                "title": "National Weather",
+                "start": "2026-01-08T13:53:00Z",
+                "end": "2026-01-08T13:55:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "ITV News Regional",
+                "start": "2026-01-08T13:55:00Z",
+                "end": "2026-01-08T13:58:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 180
+            },
+            {
+                "title": "ITV Regional Weather",
+                "start": "2026-01-08T13:58:00Z",
+                "end": "2026-01-08T14:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "Dickinson's Real Deal",
+                "start": "2026-01-08T14:00:00Z",
+                "end": "2026-01-08T15:00:00Z",
+                "titleCCId": "6tgncjn",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 20,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/dickinsons-real-deal/33248/1a8665a1109",
+                "programmeLink": "/dickinsons-real-deal/33248",
+                "legacyId": "1/8665/1109",
+                "duration": 3600
+            },
+            {
+                "title": "Time is Money",
+                "start": "2026-01-08T15:00:00Z",
+                "end": "2026-01-08T15:58:00Z",
+                "titleCCId": "rq03ddk",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/time-is-money/10a6478/10a6478a0022",
+                "programmeLink": "/time-is-money/10a6478",
+                "legacyId": "10/6478/0022",
+                "duration": 3480
+            },
+            {
+                "title": "ITV Regional Weather",
+                "start": "2026-01-08T15:58:00Z",
+                "end": "2026-01-08T16:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "Deal or No Deal",
+                "start": "2026-01-08T16:00:00Z",
+                "end": "2026-01-08T17:00:00Z",
+                "titleCCId": "mbm6l6m",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/deal-or-no-deal/10a4934/10a4934a0114",
+                "programmeLink": "/deal-or-no-deal/10a4934",
+                "legacyId": "10/4934/0114",
+                "duration": 3600
+            },
+            {
+                "title": "The Chase",
+                "start": "2026-01-08T17:00:00Z",
+                "end": "2026-01-08T18:00:00Z",
+                "titleCCId": "vmct6q4",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 17,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-chase/1a7842/1a7842a2314",
+                "programmeLink": "/the-chase/1a7842",
+                "legacyId": "1/7842/2314",
+                "duration": 3600
+            },
+            {
+                "title": "ITV News Regional",
+                "start": "2026-01-08T18:00:00Z",
+                "end": "2026-01-08T18:28:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1680
+            },
+            {
+                "title": "ITV Regional Weather",
+                "start": "2026-01-08T18:28:00Z",
+                "end": "2026-01-08T18:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "ITV Evening News",
+                "start": "2026-01-08T18:30:00Z",
+                "end": "2026-01-08T19:28:00Z",
+                "titleCCId": "hykktx5",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "NEWS",
+                        "name": "News"
+                    }
+                ],
+                "seriesNumber": 11,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/itv-evening-news/2a4545/2a4545a2610",
+                "programmeLink": "/itv-evening-news/2a4545",
+                "legacyId": "2/4545/2610",
+                "duration": 3480
+            },
+            {
+                "title": "National Weather",
+                "start": "2026-01-08T19:28:00Z",
+                "end": "2026-01-08T19:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "Millionaire Hot Seat",
+                "start": "2026-01-08T19:30:00Z",
+                "end": "2026-01-08T20:00:00Z",
+                "titleCCId": "91j6830",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/millionaire-hot-seat/10a7222/10a7222a0003",
+                "programmeLink": "/millionaire-hot-seat/10a7222",
+                "legacyId": "10/7222/0003",
+                "duration": 1800
+            },
+            {
+                "title": "Emmerdale",
+                "start": "2026-01-08T20:00:00Z",
+                "end": "2026-01-08T20:30:00Z",
+                "titleCCId": "bqvg7dl",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 55,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/emmerdale/Ya0524/1a8694a10486",
+                "programmeLink": "/emmerdale/Ya0524",
+                "legacyId": "1/8694/10486",
+                "duration": 1800
+            },
+            {
+                "title": "Coronation Street",
+                "start": "2026-01-08T20:30:00Z",
+                "end": "2026-01-08T21:00:00Z",
+                "titleCCId": "x9y8b7y",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 67,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/coronation-street/1a0694/1a0694a11771",
+                "programmeLink": "/coronation-street/1a0694",
+                "legacyId": "1/0694/11771",
+                "duration": 1800
+            },
+            {
+                "title": "Grantchester",
+                "start": "2026-01-08T21:00:00Z",
+                "end": "2026-01-08T22:00:00Z",
+                "titleCCId": "j5hgcht",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 10,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/grantchester/2a2958/2a2958a0061",
+                "programmeLink": "/grantchester/2a2958",
+                "legacyId": "2/2958/0061",
+                "duration": 3600
+            },
+            {
+                "title": "ITV News at Ten",
+                "start": "2026-01-08T22:00:00Z",
+                "end": "2026-01-08T22:28:00Z",
+                "titleCCId": "0twv80t",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1680
+            },
+            {
+                "title": "National Weather",
+                "start": "2026-01-08T22:28:00Z",
+                "end": "2026-01-08T22:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "ITV News Regional",
+                "start": "2026-01-08T22:30:00Z",
+                "end": "2026-01-08T22:43:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 780
+            },
+            {
+                "title": "ITV Regional Weather",
+                "start": "2026-01-08T22:43:00Z",
+                "end": "2026-01-08T22:45:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 120
+            },
+            {
+                "title": "The Essex Millionaire Murders",
+                "start": "2026-01-08T22:45:00Z",
+                "end": "2026-01-08T23:35:00Z",
+                "titleCCId": "wy538nx",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-essex-millionaire-murders/10a5975/10a5975a0001",
+                "programmeLink": "/the-essex-millionaire-murders/10a5975",
+                "legacyId": "10/5975/0001",
+                "duration": 3000
+            },
+            {
+                "title": "Millionaire Hot Seat",
+                "start": "2026-01-08T23:35:00Z",
+                "end": "2026-01-09T00:00:00Z",
+                "titleCCId": "91j6830",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/millionaire-hot-seat/10a7222/10a7222a0003",
+                "programmeLink": "/millionaire-hot-seat/10a7222",
+                "legacyId": "10/7222/0003",
+                "duration": 1500
+            },
+            {
+                "title": "Shop On TV",
+                "start": "2026-01-09T00:00:00Z",
+                "end": "2026-01-09T03:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 10800
+            },
+            {
+                "title": "Riches",
+                "start": "2026-01-09T03:00:00Z",
+                "end": "2026-01-09T03:50:00Z",
+                "titleCCId": "x4ccqmq",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/riches/10a1259/10a1259a0004",
+                "programmeLink": "/riches/10a1259",
+                "legacyId": "10/1259/0004",
+                "duration": 3000
+            },
+            {
+                "title": "Unwind With ITV1",
+                "start": "2026-01-09T03:50:00Z",
+                "end": "2026-01-09T05:05:00Z",
+                "titleCCId": "d2748m3",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 4500
+            },
+            {
+                "title": "Deal or No Deal",
+                "start": "2026-01-09T05:05:00Z",
+                "end": "2026-01-09T05:59:59Z",
+                "titleCCId": "mbm6l6m",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/deal-or-no-deal/10a4934/10a4934a0114",
+                "programmeLink": "/deal-or-no-deal/10a4934",
+                "legacyId": "10/4934/0114",
+                "duration": 3299
+            }
+        ],
+        "ITV2": [
+            {
+                "title": "Scooby-Doo! Mystery Incorporated",
+                "start": "2026-01-08T06:00:00Z",
+                "end": "2026-01-08T06:20:00Z",
+                "titleCCId": "2bjcpyf",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "CHILDREN",
+                        "name": "Kids"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/scooby-doo-mystery-incorporated/2a4672/2a4672a0046",
+                "programmeLink": "/scooby-doo-mystery-incorporated/2a4672",
+                "legacyId": "2/4672/0046",
+                "duration": 1200
+            },
+            {
+                "title": "Scooby-Doo! Mystery Incorporated",
+                "start": "2026-01-08T06:20:00Z",
+                "end": "2026-01-08T06:45:00Z",
+                "titleCCId": "tg70mcj",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "CHILDREN",
+                        "name": "Kids"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/scooby-doo-mystery-incorporated/2a4672/2a4672a0047",
+                "programmeLink": "/scooby-doo-mystery-incorporated/2a4672",
+                "legacyId": "2/4672/0047",
+                "duration": 1500
+            },
+            {
+                "title": "Be Cool, Scooby-Doo!",
+                "start": "2026-01-08T06:45:00Z",
+                "end": "2026-01-08T07:05:00Z",
+                "titleCCId": "4vjk70t",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "CHILDREN",
+                        "name": "Kids"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/be-cool-scooby-doo/2a4501/2a4501a0045",
+                "programmeLink": "/be-cool-scooby-doo/2a4501",
+                "legacyId": "2/4501/0045",
+                "duration": 1200
+            },
+            {
+                "title": "Be Cool, Scooby-Doo!",
+                "start": "2026-01-08T07:05:00Z",
+                "end": "2026-01-08T07:30:00Z",
+                "titleCCId": "69t3m4k",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "CHILDREN",
+                        "name": "Kids"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/be-cool-scooby-doo/2a4501/2a4501a0046",
+                "programmeLink": "/be-cool-scooby-doo/2a4501",
+                "legacyId": "2/4501/0046",
+                "duration": 1500
+            },
+            {
+                "title": "Dinner Date",
+                "start": "2026-01-08T07:30:00Z",
+                "end": "2026-01-08T08:30:00Z",
+                "titleCCId": "bkqxfzm",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 10,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/dinner-date/1a8783/1a8783a0279",
+                "programmeLink": "/dinner-date/1a8783",
+                "legacyId": "1/8783/0279",
+                "duration": 3600
+            },
+            {
+                "title": "Olivia & Alex: Parenthood",
+                "start": "2026-01-08T08:30:00Z",
+                "end": "2026-01-08T09:25:00Z",
+                "titleCCId": "2z2k5rt",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/olivia-and-alex-parenthood/10a7121/10a7121a0004",
+                "programmeLink": "/olivia-and-alex-parenthood/10a7121",
+                "legacyId": "10/7121/0004",
+                "duration": 3300
+            },
+            {
+                "title": "The Only Way is Essex",
+                "start": "2026-01-08T09:25:00Z",
+                "end": "2026-01-08T10:25:00Z",
+                "titleCCId": "ywsttqg",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 31,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-only-way-is-essex/1a9310/1a9310a0385",
+                "programmeLink": "/the-only-way-is-essex/1a9310",
+                "legacyId": "1/9310/0385",
+                "duration": 3600
+            },
+            {
+                "title": "The Real Housewives Of Miami",
+                "start": "2026-01-08T10:25:00Z",
+                "end": "2026-01-08T11:20:00Z",
+                "titleCCId": "mbxgkpy",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 3300
+            },
+            {
+                "title": "The Real Housewives of Beverly Hills",
+                "start": "2026-01-08T11:20:00Z",
+                "end": "2026-01-08T12:15:00Z",
+                "titleCCId": "spfgj1v",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 3300
+            },
+            {
+                "title": "Dinner Date",
+                "start": "2026-01-08T12:15:00Z",
+                "end": "2026-01-08T13:15:00Z",
+                "titleCCId": "6cny6km",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 5,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/dinner-date/1a8783/1a8783a0154",
+                "programmeLink": "/dinner-date/1a8783",
+                "legacyId": "1/8783/0154",
+                "duration": 3600
+            },
+            {
+                "title": "Dinner Date",
+                "start": "2026-01-08T13:15:00Z",
+                "end": "2026-01-08T14:15:00Z",
+                "titleCCId": "b6mgg7s",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 10,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/dinner-date/1a8783/1a8783a0282",
+                "programmeLink": "/dinner-date/1a8783",
+                "legacyId": "1/8783/0282",
+                "duration": 3600
+            },
+            {
+                "title": "The Only Way is Essex",
+                "start": "2026-01-08T14:15:00Z",
+                "end": "2026-01-08T15:10:00Z",
+                "titleCCId": "43qb3l6",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 31,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-only-way-is-essex/1a9310/1a9310a0386",
+                "programmeLink": "/the-only-way-is-essex/1a9310",
+                "legacyId": "1/9310/0386",
+                "duration": 3300
+            },
+            {
+                "title": "The Real Housewives of Orange County",
+                "start": "2026-01-08T15:10:00Z",
+                "end": "2026-01-08T16:10:00Z",
+                "titleCCId": "38w3j1j",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 18,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-real-housewives-of-orange-county/1a9824/1a9824a0333",
+                "programmeLink": "/the-real-housewives-of-orange-county/1a9824",
+                "legacyId": "1/9824/0333",
+                "duration": 3600
+            },
+            {
+                "title": "The Real Housewives Of Miami",
+                "start": "2026-01-08T16:10:00Z",
+                "end": "2026-01-08T17:00:00Z",
+                "titleCCId": "tfp7bl1",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 3000
+            },
+            {
+                "title": "The Real Housewives of Beverly Hills",
+                "start": "2026-01-08T17:00:00Z",
+                "end": "2026-01-08T18:00:00Z",
+                "titleCCId": "4wsfqxz",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 3600
+            },
+            {
+                "title": "Celebrity Catchphrase",
+                "start": "2026-01-08T18:00:00Z",
+                "end": "2026-01-08T19:00:00Z",
+                "titleCCId": "9vz3f1r",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 5,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/celebrity-catchphrase/2a2259/2a5716a0027",
+                "programmeLink": "/celebrity-catchphrase/2a2259",
+                "legacyId": "2/5716/0027",
+                "duration": 3600
+            },
+            {
+                "title": "Deal or No Deal",
+                "start": "2026-01-08T19:00:00Z",
+                "end": "2026-01-08T20:00:00Z",
+                "titleCCId": "6zlnzs1",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/deal-or-no-deal/10a4934/10a4934a0092",
+                "programmeLink": "/deal-or-no-deal/10a4934",
+                "legacyId": "10/4934/0092",
+                "duration": 3600
+            },
+            {
+                "title": "The Real Housewives of Orange County",
+                "start": "2026-01-08T20:00:00Z",
+                "end": "2026-01-08T21:00:00Z",
+                "titleCCId": "sn04v48",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 18,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-real-housewives-of-orange-county/1a9824/1a9824a0334",
+                "programmeLink": "/the-real-housewives-of-orange-county/1a9824",
+                "legacyId": "1/9824/0334",
+                "duration": 3600
+            },
+            {
+                "title": "TikTok: Murder Gone Viral",
+                "start": "2026-01-08T21:00:00Z",
+                "end": "2026-01-08T22:00:00Z",
+                "titleCCId": "9b4kfwn",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/tiktok-murder-gone-viral/10a2945/10a2945a0006",
+                "programmeLink": "/tiktok-murder-gone-viral/10a2945",
+                "legacyId": "10/2945/0006",
+                "duration": 3600
+            },
+            {
+                "title": "Family Guy",
+                "start": "2026-01-08T22:00:00Z",
+                "end": "2026-01-08T22:30:00Z",
+                "titleCCId": "f6b9z4v",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 12,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/family-guy/2a4259/2a4259a0219",
+                "programmeLink": "/family-guy/2a4259",
+                "legacyId": "2/4259/0219",
+                "duration": 1800
+            },
+            {
+                "title": "Family Guy",
+                "start": "2026-01-08T22:30:00Z",
+                "end": "2026-01-08T22:55:00Z",
+                "titleCCId": "kpt3z94",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 11,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/family-guy/2a4259/2a4259a0203",
+                "programmeLink": "/family-guy/2a4259",
+                "legacyId": "2/4259/0203",
+                "duration": 1500
+            },
+            {
+                "title": "Family Guy",
+                "start": "2026-01-08T22:55:00Z",
+                "end": "2026-01-08T23:25:00Z",
+                "titleCCId": "n37znrw",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 11,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/family-guy/2a4259/2a4259a0211",
+                "programmeLink": "/family-guy/2a4259",
+                "legacyId": "2/4259/0211",
+                "duration": 1800
+            },
+            {
+                "title": "American Dad!",
+                "start": "2026-01-08T23:25:00Z",
+                "end": "2026-01-08T23:55:00Z",
+                "titleCCId": "kgkx8fd",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 14,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": false,
+                "episodeLink": null,
+                "programmeLink": "/american-dad/2a4263",
+                "legacyId": "2/4263/0236",
+                "duration": 1800
+            },
+            {
+                "title": "American Dad!",
+                "start": "2026-01-08T23:55:00Z",
+                "end": "2026-01-09T00:25:00Z",
+                "titleCCId": "mlkz67r",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 19,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/american-dad/2a4263/2a4263a0366",
+                "programmeLink": "/american-dad/2a4263",
+                "legacyId": "2/4263/0366",
+                "duration": 1800
+            },
+            {
+                "title": "Bob's Burgers",
+                "start": "2026-01-09T00:25:00Z",
+                "end": "2026-01-09T00:55:00Z",
+                "titleCCId": "tcbzc02",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Bob's Burgers",
+                "start": "2026-01-09T00:55:00Z",
+                "end": "2026-01-09T01:25:00Z",
+                "titleCCId": "pscc9yj",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Olivia Attwood's Bad Boyfriends",
+                "start": "2026-01-09T01:25:00Z",
+                "end": "2026-01-09T02:25:00Z",
+                "titleCCId": "hp156ht",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/olivia-attwoods-bad-boyfriends/10a5350/10a5350a0006",
+                "programmeLink": "/olivia-attwoods-bad-boyfriends/10a5350",
+                "legacyId": "10/5350/0006",
+                "duration": 3600
+            },
+            {
+                "title": "Unwind With ITV2",
+                "start": "2026-01-09T02:25:00Z",
+                "end": "2026-01-09T03:00:00Z",
+                "titleCCId": "1ctbn16",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 2100
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:00:00Z",
+                "end": "2026-01-09T03:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:30:00Z",
+                "end": "2026-01-09T04:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:00:00Z",
+                "end": "2026-01-09T04:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:30:00Z",
+                "end": "2026-01-09T05:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:00:00Z",
+                "end": "2026-01-09T05:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:30:00Z",
+                "end": "2026-01-09T05:59:59Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1799
+            }
+        ],
+        "ITVBe": [
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-08T06:00:00Z",
+                "end": "2026-01-08T06:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-08T06:30:00Z",
+                "end": "2026-01-08T07:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-08T07:00:00Z",
+                "end": "2026-01-08T07:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-08T07:30:00Z",
+                "end": "2026-01-08T08:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-08T08:00:00Z",
+                "end": "2026-01-08T08:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-08T08:30:00Z",
+                "end": "2026-01-08T09:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Deal or No Deal",
+                "start": "2026-01-08T09:00:00Z",
+                "end": "2026-01-08T10:00:00Z",
+                "titleCCId": "zszr0kc",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/deal-or-no-deal/10a4934/10a4934a0006",
+                "programmeLink": "/deal-or-no-deal/10a4934",
+                "legacyId": "10/4934/0006",
+                "duration": 3600
+            },
+            {
+                "title": "Tipping Point",
+                "start": "2026-01-08T10:00:00Z",
+                "end": "2026-01-08T11:00:00Z",
+                "titleCCId": "yn7sk2j",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 8,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/tipping-point/2a1875/2a1875a0732",
+                "programmeLink": "/tipping-point/2a1875",
+                "legacyId": "2/1875/0732",
+                "duration": 3600
+            },
+            {
+                "title": "Tipping Point",
+                "start": "2026-01-08T11:00:00Z",
+                "end": "2026-01-08T12:00:00Z",
+                "titleCCId": "7fns2rf",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 8,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/tipping-point/2a1875/2a1875a0733",
+                "programmeLink": "/tipping-point/2a1875",
+                "legacyId": "2/1875/0733",
+                "duration": 3600
+            },
+            {
+                "title": "Tipping Point",
+                "start": "2026-01-08T12:00:00Z",
+                "end": "2026-01-08T13:00:00Z",
+                "titleCCId": "cm7g348",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 8,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/tipping-point/2a1875/2a1875a0734",
+                "programmeLink": "/tipping-point/2a1875",
+                "legacyId": "2/1875/0734",
+                "duration": 3600
+            },
+            {
+                "title": "Lingo",
+                "start": "2026-01-08T13:00:00Z",
+                "end": "2026-01-08T14:00:00Z",
+                "titleCCId": "m372lms",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 3,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/lingo/10a0540/10a0540a0129",
+                "programmeLink": "/lingo/10a0540",
+                "legacyId": "10/0540/0129",
+                "duration": 3600
+            },
+            {
+                "title": "Tenable",
+                "start": "2026-01-08T14:00:00Z",
+                "end": "2026-01-08T15:00:00Z",
+                "titleCCId": "00xr4z7",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 6,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/tenable/2a4724/2a4724a0220",
+                "programmeLink": "/tenable/2a4724",
+                "legacyId": "2/4724/0220",
+                "duration": 3600
+            },
+            {
+                "title": "Beat the Chasers",
+                "start": "2026-01-08T15:00:00Z",
+                "end": "2026-01-08T16:00:00Z",
+                "titleCCId": "9jjr7lw",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 7,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/beat-the-chasers/2a6826/2a6826a0059",
+                "programmeLink": "/beat-the-chasers/2a6826",
+                "legacyId": "2/6826/0059",
+                "duration": 3600
+            },
+            {
+                "title": "Riddiculous",
+                "start": "2026-01-08T16:00:00Z",
+                "end": "2026-01-08T17:00:00Z",
+                "titleCCId": "rg4fl9y",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/riddiculous/10a1886/10a1886a0026",
+                "programmeLink": "/riddiculous/10a1886",
+                "legacyId": "10/1886/0026",
+                "duration": 3600
+            },
+            {
+                "title": "Deal or No Deal",
+                "start": "2026-01-08T17:00:00Z",
+                "end": "2026-01-08T18:00:00Z",
+                "titleCCId": "2rvcplk",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/deal-or-no-deal/10a4934/10a4934a0007",
+                "programmeLink": "/deal-or-no-deal/10a4934",
+                "legacyId": "10/4934/0007",
+                "duration": 3600
+            },
+            {
+                "title": "Lingo",
+                "start": "2026-01-08T18:00:00Z",
+                "end": "2026-01-08T19:00:00Z",
+                "titleCCId": "m9g545b",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 3,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/lingo/10a0540/10a0540a0105",
+                "programmeLink": "/lingo/10a0540",
+                "legacyId": "10/0540/0105",
+                "duration": 3600
+            },
+            {
+                "title": "Lingo",
+                "start": "2026-01-08T19:00:00Z",
+                "end": "2026-01-08T20:00:00Z",
+                "titleCCId": "pgs8sgr",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 3,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/lingo/10a0540/10a0540a0097",
+                "programmeLink": "/lingo/10a0540",
+                "legacyId": "10/0540/0097",
+                "duration": 3600
+            },
+            {
+                "title": "Lingo",
+                "start": "2026-01-08T20:00:00Z",
+                "end": "2026-01-08T21:00:00Z",
+                "titleCCId": "636l16v",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 3,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/lingo/10a0540/10a0540a0139",
+                "programmeLink": "/lingo/10a0540",
+                "legacyId": "10/0540/0139",
+                "duration": 3600
+            },
+            {
+                "title": "Alan Carr's Epic Gameshow",
+                "start": "2026-01-08T21:00:00Z",
+                "end": "2026-01-08T22:00:00Z",
+                "titleCCId": "p82lc4f",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/alan-carrs-epic-gameshow/2a7656/2a7656a0016",
+                "programmeLink": "/alan-carrs-epic-gameshow/2a7656",
+                "legacyId": "2/7656/0016",
+                "duration": 3600
+            },
+            {
+                "title": "Tipping Point",
+                "start": "2026-01-08T22:00:00Z",
+                "end": "2026-01-08T23:00:00Z",
+                "titleCCId": "xvy7775",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 8,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": false,
+                "episodeLink": null,
+                "programmeLink": "/tipping-point/2a1875",
+                "legacyId": "2/1875/0735",
+                "duration": 3600
+            },
+            {
+                "title": "Tipping Point",
+                "start": "2026-01-08T23:00:00Z",
+                "end": "2026-01-08T23:55:00Z",
+                "titleCCId": "qhvf3h2",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 8,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": false,
+                "episodeLink": null,
+                "programmeLink": "/tipping-point/2a1875",
+                "legacyId": "2/1875/0736",
+                "duration": 3300
+            },
+            {
+                "title": "Tipping Point",
+                "start": "2026-01-08T23:55:00Z",
+                "end": "2026-01-09T00:50:00Z",
+                "titleCCId": "18t0ng4",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 8,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": false,
+                "episodeLink": null,
+                "programmeLink": "/tipping-point/2a1875",
+                "legacyId": "2/1875/0737",
+                "duration": 3300
+            },
+            {
+                "title": "Tenable",
+                "start": "2026-01-09T00:50:00Z",
+                "end": "2026-01-09T01:45:00Z",
+                "titleCCId": "00xr4z7",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "ENTERTAINMENT",
+                        "name": "Entertainment & Reality"
+                    }
+                ],
+                "seriesNumber": 6,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/tenable/2a4724/2a4724a0220",
+                "programmeLink": "/tenable/2a4724",
+                "legacyId": "2/4724/0220",
+                "duration": 3300
+            },
+            {
+                "title": "Unwind With ITV Quiz",
+                "start": "2026-01-09T01:45:00Z",
+                "end": "2026-01-09T02:00:00Z",
+                "titleCCId": "68k1xbs",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 900
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T02:00:00Z",
+                "end": "2026-01-09T02:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T02:30:00Z",
+                "end": "2026-01-09T03:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:00:00Z",
+                "end": "2026-01-09T03:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:30:00Z",
+                "end": "2026-01-09T04:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:00:00Z",
+                "end": "2026-01-09T04:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:30:00Z",
+                "end": "2026-01-09T05:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:00:00Z",
+                "end": "2026-01-09T05:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:30:00Z",
+                "end": "2026-01-09T05:59:59Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1799
+            }
+        ],
+        "ITV3": [
+            {
+                "title": "Never the Twain",
+                "start": "2026-01-08T06:00:00Z",
+                "end": "2026-01-08T06:35:00Z",
+                "titleCCId": "60bv4xf",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/never-the-twain/30779/2a3275a0005",
+                "programmeLink": "/never-the-twain/30779",
+                "legacyId": "2/3275/0005",
+                "duration": 2100
+            },
+            {
+                "title": "On the Buses",
+                "start": "2026-01-08T06:35:00Z",
+                "end": "2026-01-08T07:05:00Z",
+                "titleCCId": "cdbq8mt",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "COMEDY",
+                        "name": "Comedy"
+                    }
+                ],
+                "seriesNumber": 5,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/on-the-buses/L0768/L0768a0045",
+                "programmeLink": "/on-the-buses/L0768",
+                "legacyId": "L0768/0045",
+                "duration": 1800
+            },
+            {
+                "title": "Classic Emmerdale",
+                "start": "2026-01-08T07:05:00Z",
+                "end": "2026-01-08T07:35:00Z",
+                "titleCCId": "81w5vm3",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Classic Emmerdale",
+                "start": "2026-01-08T07:35:00Z",
+                "end": "2026-01-08T08:10:00Z",
+                "titleCCId": "81w5vm3",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 2100
+            },
+            {
+                "title": "Classic Coronation Street",
+                "start": "2026-01-08T08:10:00Z",
+                "end": "2026-01-08T08:40:00Z",
+                "titleCCId": "vydhq0p",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Classic Coronation Street",
+                "start": "2026-01-08T08:40:00Z",
+                "end": "2026-01-08T09:10:00Z",
+                "titleCCId": "vydhq0p",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Inspector Morse",
+                "start": "2026-01-08T09:10:00Z",
+                "end": "2026-01-08T11:15:00Z",
+                "titleCCId": "k8dm5kk",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/inspector-morse/MORSE/872219",
+                "programmeLink": "/inspector-morse/MORSE",
+                "legacyId": "872219",
+                "duration": 7500
+            },
+            {
+                "title": "Heartbeat",
+                "start": "2026-01-08T11:15:00Z",
+                "end": "2026-01-08T12:20:00Z",
+                "titleCCId": "qjv8ysn",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 14,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/heartbeat/Ya0757/Ya0757a0269",
+                "programmeLink": "/heartbeat/Ya0757",
+                "legacyId": "Y/0757/0269",
+                "duration": 3900
+            },
+            {
+                "title": "Heartbeat",
+                "start": "2026-01-08T12:20:00Z",
+                "end": "2026-01-08T13:20:00Z",
+                "titleCCId": "wd41s60",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 14,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/heartbeat/Ya0757/Ya0757a0268",
+                "programmeLink": "/heartbeat/Ya0757",
+                "legacyId": "Y/0757/0268",
+                "duration": 3600
+            },
+            {
+                "title": "Foyle's War",
+                "start": "2026-01-08T13:20:00Z",
+                "end": "2026-01-08T15:30:00Z",
+                "titleCCId": "r24hk86",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/foyles-war/25410/322070",
+                "programmeLink": "/foyles-war/25410",
+                "legacyId": "322070",
+                "duration": 7800
+            },
+            {
+                "title": "Classic Emmerdale",
+                "start": "2026-01-08T15:30:00Z",
+                "end": "2026-01-08T16:05:00Z",
+                "titleCCId": "81w5vm3",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 2100
+            },
+            {
+                "title": "Classic Emmerdale",
+                "start": "2026-01-08T16:05:00Z",
+                "end": "2026-01-08T16:40:00Z",
+                "titleCCId": "xq814z4",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 2100
+            },
+            {
+                "title": "Classic Coronation Street",
+                "start": "2026-01-08T16:40:00Z",
+                "end": "2026-01-08T17:15:00Z",
+                "titleCCId": "vydhq0p",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 2100
+            },
+            {
+                "title": "Classic Coronation Street",
+                "start": "2026-01-08T17:15:00Z",
+                "end": "2026-01-08T17:50:00Z",
+                "titleCCId": "vydhq0p",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 2100
+            },
+            {
+                "title": "Heartbeat",
+                "start": "2026-01-08T17:50:00Z",
+                "end": "2026-01-08T18:55:00Z",
+                "titleCCId": "kgk1h9y",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 14,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/heartbeat/Ya0757/Ya0757a0270",
+                "programmeLink": "/heartbeat/Ya0757",
+                "legacyId": "Y/0757/0270",
+                "duration": 3900
+            },
+            {
+                "title": "Heartbeat",
+                "start": "2026-01-08T18:55:00Z",
+                "end": "2026-01-08T20:00:00Z",
+                "titleCCId": "3r10rkz",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 14,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/heartbeat/Ya0757/Ya0757a0272",
+                "programmeLink": "/heartbeat/Ya0757",
+                "legacyId": "Y/0757/0272",
+                "duration": 3900
+            },
+            {
+                "title": "Vera",
+                "start": "2026-01-08T20:00:00Z",
+                "end": "2026-01-08T22:00:00Z",
+                "titleCCId": "26xc36k",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 5,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/vera/1a7314/1a7314a0019",
+                "programmeLink": "/vera/1a7314",
+                "legacyId": "1/7314/0019",
+                "duration": 7200
+            },
+            {
+                "title": "Foyle's War",
+                "start": "2026-01-08T22:00:00Z",
+                "end": "2026-01-08T23:55:00Z",
+                "titleCCId": "s110sf7",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/foyles-war/25410/322071",
+                "programmeLink": "/foyles-war/25410",
+                "legacyId": "322071",
+                "duration": 6900
+            },
+            {
+                "title": "Trial & Retribution",
+                "start": "2026-01-08T23:55:00Z",
+                "end": "2026-01-09T02:05:00Z",
+                "titleCCId": "zkxq7xt",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/trial-and-retribution/Ya1784/Ya1784a0004",
+                "programmeLink": "/trial-and-retribution/Ya1784",
+                "legacyId": "Y/1784/0004",
+                "duration": 7800
+            },
+            {
+                "title": "Unwind With ITV3",
+                "start": "2026-01-09T02:05:00Z",
+                "end": "2026-01-09T02:30:00Z",
+                "titleCCId": "lm79xjd",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1500
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T02:30:00Z",
+                "end": "2026-01-09T03:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:00:00Z",
+                "end": "2026-01-09T03:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:30:00Z",
+                "end": "2026-01-09T04:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:00:00Z",
+                "end": "2026-01-09T04:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:30:00Z",
+                "end": "2026-01-09T05:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:00:00Z",
+                "end": "2026-01-09T05:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:30:00Z",
+                "end": "2026-01-09T05:59:59Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1799
+            }
+        ],
+        "ITV4": [
+            {
+                "title": "The Big Match Revisited",
+                "start": "2026-01-08T06:00:00Z",
+                "end": "2026-01-08T07:00:00Z",
+                "titleCCId": "ckwsxzd",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "SPORT",
+                        "name": "Sport"
+                    }
+                ],
+                "seriesNumber": 3,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-big-match-revisited/1a6464/1a6464a0050",
+                "programmeLink": "/the-big-match-revisited/1a6464",
+                "legacyId": "1/6464/0050",
+                "duration": 3600
+            },
+            {
+                "title": "The Big Match Revisited",
+                "start": "2026-01-08T07:00:00Z",
+                "end": "2026-01-08T08:05:00Z",
+                "titleCCId": "51zbcgs",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "SPORT",
+                        "name": "Sport"
+                    }
+                ],
+                "seriesNumber": 3,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-big-match-revisited/1a6464/1a6464a0051",
+                "programmeLink": "/the-big-match-revisited/1a6464",
+                "legacyId": "1/6464/0051",
+                "duration": 3900
+            },
+            {
+                "title": "Magnum P.I.",
+                "start": "2026-01-08T08:05:00Z",
+                "end": "2026-01-08T09:05:00Z",
+                "titleCCId": "3gd5xjw",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 4,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/magnum-pi/2a2479/2a2479a0065",
+                "programmeLink": "/magnum-pi/2a2479",
+                "legacyId": "2/2479/0065",
+                "duration": 3600
+            },
+            {
+                "title": "Kojak",
+                "start": "2026-01-08T09:05:00Z",
+                "end": "2026-01-08T10:10:00Z",
+                "titleCCId": "wwkfj3g",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/kojak/27354/749629",
+                "programmeLink": "/kojak/27354",
+                "legacyId": "749629",
+                "duration": 3900
+            },
+            {
+                "title": "Boon",
+                "start": "2026-01-08T10:10:00Z",
+                "end": "2026-01-08T11:20:00Z",
+                "titleCCId": "4jpv9dx",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/boon/BOON/855800",
+                "programmeLink": "/boon/BOON",
+                "legacyId": "855800",
+                "duration": 4200
+            },
+            {
+                "title": "The Professionals",
+                "start": "2026-01-08T11:20:00Z",
+                "end": "2026-01-08T12:20:00Z",
+                "titleCCId": "jb054nk",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 4,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-professionals/L0845/L0845a0048",
+                "programmeLink": "/the-professionals/L0845",
+                "legacyId": "L0845/0048",
+                "duration": 3600
+            },
+            {
+                "title": "Robin of Sherwood",
+                "start": "2026-01-08T12:20:00Z",
+                "end": "2026-01-08T13:35:00Z",
+                "titleCCId": "wjnhxkz",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/robin-of-sherwood/ROB/ROBa01a004",
+                "programmeLink": "/robin-of-sherwood/ROB",
+                "legacyId": "ROB/01/004",
+                "duration": 4500
+            },
+            {
+                "title": "Magnum P.I.",
+                "start": "2026-01-08T13:35:00Z",
+                "end": "2026-01-08T14:40:00Z",
+                "titleCCId": "36js76c",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 4,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/magnum-pi/2a2479/2a2479a0066",
+                "programmeLink": "/magnum-pi/2a2479",
+                "legacyId": "2/2479/0066",
+                "duration": 3900
+            },
+            {
+                "title": "Kojak",
+                "start": "2026-01-08T14:40:00Z",
+                "end": "2026-01-08T15:50:00Z",
+                "titleCCId": "m42czqn",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/kojak/27354/749630",
+                "programmeLink": "/kojak/27354",
+                "legacyId": "749630",
+                "duration": 4200
+            },
+            {
+                "title": "Boon",
+                "start": "2026-01-08T15:50:00Z",
+                "end": "2026-01-08T16:55:00Z",
+                "titleCCId": "phnm064",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/boon/BOON/855801",
+                "programmeLink": "/boon/BOON",
+                "legacyId": "855801",
+                "duration": 3900
+            },
+            {
+                "title": "The Professionals",
+                "start": "2026-01-08T16:55:00Z",
+                "end": "2026-01-08T17:55:00Z",
+                "titleCCId": "r0zy431",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 4,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-professionals/L0845/L0845a0049",
+                "programmeLink": "/the-professionals/L0845",
+                "legacyId": "L0845/0049",
+                "duration": 3600
+            },
+            {
+                "title": "Minder",
+                "start": "2026-01-08T17:55:00Z",
+                "end": "2026-01-08T19:00:00Z",
+                "titleCCId": "sd6sz21",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/minder/29175/685090",
+                "programmeLink": "/minder/29175",
+                "legacyId": "685090",
+                "duration": 3900
+            },
+            {
+                "title": "American Pickers",
+                "start": "2026-01-08T19:00:00Z",
+                "end": "2026-01-08T20:00:00Z",
+                "titleCCId": "tv8q1xj",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 4,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/american-pickers/10a7235/10a7235a0064",
+                "programmeLink": "/american-pickers/10a7235",
+                "legacyId": "10/7235/0064",
+                "duration": 3600
+            },
+            {
+                "title": "Ice Road Truckers",
+                "start": "2026-01-08T20:00:00Z",
+                "end": "2026-01-08T21:00:00Z",
+                "titleCCId": "ggpx0g9",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FACTUAL",
+                        "name": "Documentaries & Lifestyle"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/ice-road-truckers/10a7237/10a7237a0027",
+                "programmeLink": "/ice-road-truckers/10a7237",
+                "legacyId": "10/7237/0027",
+                "duration": 3600
+            },
+            {
+                "title": "Rambo: First Blood",
+                "start": "2026-01-08T21:00:00Z",
+                "end": "2026-01-08T22:00:00Z",
+                "titleCCId": "jt61brh",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FILM",
+                        "name": "Film"
+                    }
+                ],
+                "seriesNumber": null,
+                "contentType": "FILM",
+                "episodeAvailableNow": true,
+                "episodeLink": null,
+                "programmeLink": "/rambo-first-blood/35831",
+                "legacyId": "1042288",
+                "duration": 3600
+            },
+            {
+                "title": "Fyi Daily",
+                "start": "2026-01-08T22:00:00Z",
+                "end": "2026-01-08T22:05:00Z",
+                "titleCCId": "2mhcp99",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 300
+            },
+            {
+                "title": "Rambo: First Blood",
+                "start": "2026-01-08T22:05:00Z",
+                "end": "2026-01-08T23:05:00Z",
+                "titleCCId": "jt61brh",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "FILM",
+                        "name": "Film"
+                    }
+                ],
+                "seriesNumber": null,
+                "contentType": "FILM",
+                "episodeAvailableNow": true,
+                "episodeLink": null,
+                "programmeLink": "/rambo-first-blood/35831",
+                "legacyId": "1042288",
+                "duration": 3600
+            },
+            {
+                "title": "Ligue 1 Highlights",
+                "start": "2026-01-08T23:05:00Z",
+                "end": "2026-01-08T23:35:00Z",
+                "titleCCId": "56r9f8n",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "SPORT",
+                        "name": "Sport"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": false,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": "10/6301/0043",
+                "duration": 1800
+            },
+            {
+                "title": "Berlin Station",
+                "start": "2026-01-08T23:35:00Z",
+                "end": "2026-01-09T00:35:00Z",
+                "titleCCId": "rjwpd6s",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 2,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/berlin-station/10a6776/10a6776a0011",
+                "programmeLink": "/berlin-station/10a6776",
+                "legacyId": "10/6776/0011",
+                "duration": 3600
+            },
+            {
+                "title": "The Professionals",
+                "start": "2026-01-09T00:35:00Z",
+                "end": "2026-01-09T01:35:00Z",
+                "titleCCId": "s6459w5",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 4,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/the-professionals/L0845/L0845a0046",
+                "programmeLink": "/the-professionals/L0845",
+                "legacyId": "L0845/0046",
+                "duration": 3600
+            },
+            {
+                "title": "Minder",
+                "start": "2026-01-09T01:35:00Z",
+                "end": "2026-01-09T02:30:00Z",
+                "titleCCId": "32y2bgf",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "DRAMA_AND_SOAPS",
+                        "name": "Drama"
+                    }
+                ],
+                "seriesNumber": 1,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/minder/29175/685089",
+                "programmeLink": "/minder/29175",
+                "legacyId": "685089",
+                "duration": 3300
+            },
+            {
+                "title": "Auto Mundial",
+                "start": "2026-01-09T02:30:00Z",
+                "end": "2026-01-09T03:00:00Z",
+                "titleCCId": "5b1t8vy",
+                "contentTypeITV": "svod",
+                "genres": [
+                    {
+                        "id": "SPORT",
+                        "name": "Sport"
+                    }
+                ],
+                "seriesNumber": 7,
+                "contentType": "EPISODE",
+                "episodeAvailableNow": true,
+                "episodeLink": "/auto-mundial/7a0070/7a0070a0314",
+                "programmeLink": "/auto-mundial/7a0070",
+                "legacyId": "7/0070/0314",
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T03:00:00Z",
+                "end": "2026-01-09T03:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Unwind With ITV4",
+                "start": "2026-01-09T03:30:00Z",
+                "end": "2026-01-09T04:00:00Z",
+                "titleCCId": "0s0mslt",
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:00:00Z",
+                "end": "2026-01-09T04:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T04:30:00Z",
+                "end": "2026-01-09T05:00:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:00:00Z",
+                "end": "2026-01-09T05:30:00Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1800
+            },
+            {
+                "title": "Teleshopping",
+                "start": "2026-01-09T05:30:00Z",
+                "end": "2026-01-09T05:59:59Z",
+                "titleCCId": null,
+                "contentTypeITV": null,
+                "genres": [],
+                "seriesNumber": null,
+                "contentType": null,
+                "episodeAvailableNow": null,
+                "episodeLink": null,
+                "programmeLink": null,
+                "legacyId": null,
+                "duration": 1799
+            }
+        ]
+    },
+    "subnav": {
+        "items": [
+            {
+                "name": "2026-01-01",
+                "id": "2026-01-01",
+                "label": "THU 1",
+                "url": "/watch/tv-guide/2026-01-01"
+            },
+            {
+                "name": "2026-01-02",
+                "id": "2026-01-02",
+                "label": "FRI 2",
+                "url": "/watch/tv-guide/2026-01-02"
+            },
+            {
+                "name": "2026-01-03",
+                "id": "2026-01-03",
+                "label": "SAT 3",
+                "url": "/watch/tv-guide/2026-01-03"
+            },
+            {
+                "name": "2026-01-04",
+                "id": "2026-01-04",
+                "label": "SUN 4",
+                "url": "/watch/tv-guide/2026-01-04"
+            },
+            {
+                "name": "2026-01-05",
+                "id": "2026-01-05",
+                "label": "MON 5",
+                "url": "/watch/tv-guide/2026-01-05"
+            },
+            {
+                "name": "2026-01-06",
+                "id": "2026-01-06",
+                "label": "TUE 6",
+                "url": "/watch/tv-guide/2026-01-06"
+            },
+            {
+                "name": "2026-01-07",
+                "id": "2026-01-07",
+                "label": "YESTERDAY",
+                "url": "/watch/tv-guide/2026-01-07"
+            },
+            {
+                "name": "2026-01-08",
+                "id": "2026-01-08",
+                "label": "TODAY",
+                "url": "/watch/tv-guide/2026-01-08"
+            },
+            {
+                "name": "2026-01-09",
+                "id": "2026-01-09",
+                "label": "TOMORROW",
+                "url": "/watch/tv-guide/2026-01-09"
+            },
+            {
+                "name": "2026-01-10",
+                "id": "2026-01-10",
+                "label": "SAT 10",
+                "url": "/watch/tv-guide/2026-01-10"
+            },
+            {
+                "name": "2026-01-11",
+                "id": "2026-01-11",
+                "label": "SUN 11",
+                "url": "/watch/tv-guide/2026-01-11"
+            },
+            {
+                "name": "2026-01-12",
+                "id": "2026-01-12",
+                "label": "MON 12",
+                "url": "/watch/tv-guide/2026-01-12"
+            },
+            {
+                "name": "2026-01-13",
+                "id": "2026-01-13",
+                "label": "TUE 13",
+                "url": "/watch/tv-guide/2026-01-13"
+            },
+            {
+                "name": "2026-01-14",
+                "id": "2026-01-14",
+                "label": "WED 14",
+                "url": "/watch/tv-guide/2026-01-14"
+            },
+            {
+                "name": "2026-01-15",
+                "id": "2026-01-15",
+                "label": "THU 15",
+                "url": "/watch/tv-guide/2026-01-15"
+            }
+        ],
+        "activeItem": "2026-01-08",
+        "type": "items",
+        "monitorHashChange": false,
+        "customTracking": [
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-01"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-02"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-03"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-04"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-05"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-06"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-07"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-08"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-09"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-10"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-11"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-12"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-13"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-14"
+            },
+            {
+                "event": "CLICK",
+                "screen_name": "hub.tv-guide.2026-01-08",
+                "screen_type": "tv-guide",
+                "sub_navigation": "2026-01-15"
+            }
+        ]
+    },
+    "FASTSlider": {
+        "header": {
+            "title": "ITVX Live: Choose a channel to match your mood!",
+            "linkHref": "/watch/collections/itvx-live-choose-a-channel-to-match-your-mood/58DOqcyNCNMqcAWNIFvXzJ",
+            "linkText": "View All",
+            "linkAriaLabel": "View All programmes from the ITVX Live: Choose a channel to match your mood! collection"
+        },
+        "items": [
+            {
+                "contentType": "fastchannelspot",
+                "title": "Love Island Channel",
+                "description": "100% your type on paper",
+                "channel": "fast13",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-loveisland2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "Space Live 24/7 Channel",
+                "description": "Watch the 24/7 live stream",
+                "channel": "fast22",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-spacelive/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "TOWIE Channel",
+                "description": "It's TOWIE TV!",
+                "channel": "fast15",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-towie/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "Midsomer Murders Channel",
+                "description": "Every murder, every episode, 24/7",
+                "channel": "fast12",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-midsomermurders/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "Reality 24/7",
+                "description": "All your fave reality shows",
+                "channel": "fast1",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-reality247v2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "ITVX Kids Channel",
+                "description": "Find your faves!",
+                "channel": "fast6",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-itvxkids/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "The Chase Channel",
+                "description": "Get your quiz fix",
+                "channel": "fast3",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-thechase/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "ITV Signed",
+                "description": "Stream the best of ITV in BSL",
+                "channel": "fast7",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-signed/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "Saturday Night Every Night",
+                "description": "The ultimate night in on ITVX",
+                "channel": "fast4",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-satnighteverynight/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "ITV Classics",
+                "description": "Iconic ITV 24/7",
+                "channel": "fast5",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-classics70/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "Comedy 24/7 Channel",
+                "description": "Dedicated to big laughs",
+                "channel": "fast16",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-comedy247v2/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            },
+            {
+                "contentType": "fastchannelspot",
+                "title": "Vera Channel",
+                "description": "Stream every episode",
+                "channel": "fast2",
+                "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/fast-vera/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+                "contentInfo": "",
+                "startDateTime": null,
+                "endDateTime": null,
+                "progress": null,
+                "tagNames": [
+                    "live"
+                ]
+            }
+        ],
+        "key": "editorial_rail_slot_16_itvx_channels_itvx_svod",
+        "isRail": true,
+        "tileType": "standard",
+        "id": "MunvLJ2moE9r35f1YtXmQ",
+        "dataTestId": "fast-slider-on-tv-guide",
+        "trackingProps": {}
+    },
+    "error": false
+}

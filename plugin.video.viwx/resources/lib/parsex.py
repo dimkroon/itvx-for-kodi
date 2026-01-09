@@ -13,7 +13,6 @@ from datetime import datetime, timezone
 from urllib.parse import urlencode
 
 from codequick.support import logger_id
-from codequick import Script
 
 from . import utils
 from . import kodi_utils
@@ -767,39 +766,3 @@ def parse_last_watched_item(item, utc_now):
         item_dict['ctx_mnu'] = [ctx_mnu_all_episodes(progr_id)]
     return item_dict
 
-
-def parse_schedule_item(data):
-    """Parse and item from the html page /watch/guide.
-
-    Used to create EPG data for IPTV manager.
-    """
-    from urllib.parse import quote
-
-    plugin_id = utils.addon_info.id
-    genres = data.get('genres')
-    try:
-        item = {
-            'start': data['start'],
-            'stop': data['end'],
-            'title': data['title'],
-            'description': '\n\n'.join(t for t in (data.get('description'), data.get('guidance')) if t),
-            'genre': genres[0].get('name') if genres else None,
-        }
-
-        episode_nr = data.get('episodeNumber')
-        if episode_nr:
-            # It is not uncommon for seriesNumber to be None while episodeNumber does have a value.
-            series_nr = data.get('seriesNumber') or 0
-            item['episode'] = 'S{:02d}E{:02d}'.format(series_nr, episode_nr)
-
-        episode_link = data.get('episodeLink')
-        if episode_link:
-            episode_url = '/watch' + episode_link
-            item['stream'] = ''.join(('plugin://',
-                                      plugin_id,
-                                      '/resources/lib/main/play_title/?url=',
-                                      quote(episode_url, safe='')))
-        return item
-    except:
-        logger.error("Failed to parse html schedule item", exc_info=True)
-        return None

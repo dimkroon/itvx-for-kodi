@@ -1,0 +1,288 @@
+[
+    {
+        "id": "2a548fcc-55e9-561d-9a77-f485fb69dad1",
+        "categories": [
+            "news",
+            "film",
+            "sport",
+            "soap",
+            "music"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/2a548fcc-55e9-561d-9a77-f485fb69dad1/logo.png",
+        "title": "BBC One London"
+    },
+    {
+        "id": "0b6789ff-d68b-5b85-8412-8f11d5e22e10",
+        "categories": [
+            "film",
+            "news",
+            "kids",
+            "music",
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/0b6789ff-d68b-5b85-8412-8f11d5e22e10/logo.png",
+        "title": "BBC Two England"
+    },
+    {
+        "id": "f0eac74d-2245-57c9-9dfa-d8a54da0c066",
+        "categories": [
+            "news",
+            "soap",
+            "film",
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/f0eac74d-2245-57c9-9dfa-d8a54da0c066/logo.png",
+        "title": "ITV1 London"
+    },
+    {
+        "id": "fd66055a-5bc7-51e8-8421-df88e60c98b3",
+        "categories": [
+            "news",
+            "film",
+            "kids",
+            "soap",
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/fd66055a-5bc7-51e8-8421-df88e60c98b3/logo.png",
+        "title": "Channel 4"
+    },
+    {
+        "id": "bbc2a081-fc85-5c05-8ff0-4438cc97de2c",
+        "categories": [
+            "news",
+            "music",
+            "kids",
+            "sport",
+            "film"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/bbc2a081-fc85-5c05-8ff0-4438cc97de2c/logo.png",
+        "title": "5"
+    },
+    {
+        "id": "fea6e9fd-c98c-5209-849f-a486ac600ff7",
+        "categories": [
+            "news",
+            "kids",
+            "film",
+            "soap"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/fea6e9fd-c98c-5209-849f-a486ac600ff7/logo.png",
+        "title": "BBC Three"
+    },
+    {
+        "id": "f2fb2e91-2578-5975-a7cc-dd048186ea52",
+        "categories": [
+            "music",
+            "film",
+            "news",
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/f2fb2e91-2578-5975-a7cc-dd048186ea52/logo.png",
+        "title": "BBC Four"
+    },
+    {
+        "id": "64b0d836-b2b1-5a9c-a077-99fbd5dff799",
+        "categories": [
+            "film",
+            "news",
+            "kids"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/64b0d836-b2b1-5a9c-a077-99fbd5dff799/logo.png",
+        "title": "ITV2"
+    },
+    {
+        "id": "8dc66a04-043a-5c8e-aab3-a32343bd2016",
+        "categories": [
+            "film",
+            "soap"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/8dc66a04-043a-5c8e-aab3-a32343bd2016/logo.png",
+        "title": "ITV3"
+    },
+    {
+        "id": "76c14546-b2bd-51d4-9760-4b24820686e2",
+        "categories": [
+            "film",
+            "sport",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/76c14546-b2bd-51d4-9760-4b24820686e2/logo.png",
+        "title": "ITV4"
+    },
+    {
+        "id": "a7b21ed3-4835-5065-8824-cc04de2e5733",
+        "categories": [],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/a7b21ed3-4835-5065-8824-cc04de2e5733/logo.png",
+        "title": "ITV Quiz"
+    },
+    {
+        "id": "37f6c091-46bc-51f2-b7ca-d8f2a2a361e8",
+        "categories": [
+            "film",
+            "news",
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/37f6c091-46bc-51f2-b7ca-d8f2a2a361e8/logo.png",
+        "title": "Sky Showcase"
+    },
+    {
+        "id": "6e9dc822-69e5-5568-996a-ccce413791c2",
+        "categories": [
+            "film",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/6e9dc822-69e5-5568-996a-ccce413791c2/logo.png",
+        "title": "Sky Witness"
+    },
+    {
+        "id": "5c56dba8-10dd-5b7e-aa9d-0317867ec2c9",
+        "categories": [
+            "film",
+            "sport",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/5c56dba8-10dd-5b7e-aa9d-0317867ec2c9/logo.png",
+        "title": "Sky Atlantic"
+    },
+    {
+        "id": "b5442f3a-c482-50d1-96d5-f25fd16f3e37",
+        "categories": [
+            "sport",
+            "film",
+            "news",
+            "soap",
+            "kids"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/b5442f3a-c482-50d1-96d5-f25fd16f3e37/logo.png",
+        "title": "E4"
+    },
+    {
+        "id": "d4e9648c-12e6-586a-9265-f2878a610884",
+        "categories": [
+            "news",
+            "film"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/d4e9648c-12e6-586a-9265-f2878a610884/logo.png",
+        "title": "More4"
+    },
+    {
+        "id": "3d8bb828-1eb5-5de5-bb40-efba8bae9835",
+        "categories": [
+            "film",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/3d8bb828-1eb5-5de5-bb40-efba8bae9835/logo.png",
+        "title": "4seven"
+    },
+    {
+        "id": "51b4a470-009c-5a13-bb8d-1f1090796c3c",
+        "categories": [
+            "film",
+            "news",
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/51b4a470-009c-5a13-bb8d-1f1090796c3c/logo.png",
+        "title": "Film4"
+    },
+    {
+        "id": "9512892c-d864-513c-b630-abb5df6b49f4",
+        "categories": [
+            "soap",
+            "news",
+            "film"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/9512892c-d864-513c-b630-abb5df6b49f4/logo.png",
+        "title": "5STAR"
+    },
+    {
+        "id": "4b75d2ae-672b-5d6f-b1d8-a0b2761fde3a",
+        "categories": [
+            "film",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/4b75d2ae-672b-5d6f-b1d8-a0b2761fde3a/logo.png",
+        "title": "5USA"
+    },
+    {
+        "id": "715f4b2b-b1a9-5ce4-aaa0-7de29db1bbfe",
+        "categories": [
+            "film",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/715f4b2b-b1a9-5ce4-aaa0-7de29db1bbfe/logo.png",
+        "title": "U&Dave"
+    },
+    {
+        "id": "30050daf-5792-5ca4-90f9-f2f776be9d1f",
+        "categories": [
+            "film",
+            "soap"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/30050daf-5792-5ca4-90f9-f2f776be9d1f/logo.png",
+        "title": "U&Drama"
+    },
+    {
+        "id": "fd22499a-bc88-5836-a639-7fad80310d7f",
+        "categories": [
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/fd22499a-bc88-5836-a639-7fad80310d7f/logo.png",
+        "title": "Really"
+    },
+    {
+        "id": "1a83cd94-9972-5ecf-9243-853212ca1fe1",
+        "categories": [
+            "film",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/1a83cd94-9972-5ecf-9243-853212ca1fe1/logo.png",
+        "title": "Sky Mix"
+    },
+    {
+        "id": "d1c48f93-3ae1-5c35-9338-31d5f7227c7b",
+        "categories": [
+            "film",
+            "news"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/d1c48f93-3ae1-5c35-9338-31d5f7227c7b/logo.png",
+        "title": "U&Yesterday"
+    },
+    {
+        "id": "27b85aec-51fc-5c55-a483-24ff7c70186b",
+        "categories": [
+            "kids"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/27b85aec-51fc-5c55-a483-24ff7c70186b/logo.png",
+        "title": "CBeebies"
+    },
+    {
+        "id": "538e4786-ea3b-5ab2-8336-94d0077a17b1",
+        "categories": [],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/538e4786-ea3b-5ab2-8336-94d0077a17b1/logo.png",
+        "title": "Sky Replay"
+    },
+    {
+        "id": "4a456557-c479-5190-bedc-ae061c5771c2",
+        "categories": [
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/4a456557-c479-5190-bedc-ae061c5771c2/logo.png",
+        "title": "Sky Sports Main Event"
+    },
+    {
+        "id": "efc9d7d8-bfee-525a-99d8-ee61729feea0",
+        "categories": [
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/efc9d7d8-bfee-525a-99d8-ee61729feea0/logo.png",
+        "title": "Sky Sports News"
+    },
+    {
+        "id": "0e28fe4a-9473-5ea0-955d-eba6f0e8c705",
+        "categories": [
+            "sport"
+        ],
+        "media": "https://cdn.tv-guide.future.sensi.link/images/channel/0e28fe4a-9473-5ea0-955d-eba6f0e8c705/logo.png",
+        "title": "TNT Sports 1"
+    }
+]

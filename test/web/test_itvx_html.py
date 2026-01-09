@@ -814,7 +814,8 @@ class TvGuide(unittest.TestCase):
                 self.assertTrue(is_not_empty(item['duration'], int))
                 self.assertTrue(is_iso_utc_time(item['start']))
                 self.assertTrue(is_iso_utc_time(item['end']))
-                # Items like some news and weather do not have a titleCCId, but other live and recorded programmes do.
+                # Items like weather local news, teleshopping, do not have a titleCCId,
+                # but other live and recorded programmes do. Items with titleCCId may still not be available now.
                 self.assertTrue(is_not_empty(item['titleCCId'], str) or isinstance(item['titleCCId'], NONE_T))
                 if item.get('contentType') is None:
                     # Some items, probably all live items do not have more info,
@@ -855,7 +856,7 @@ class TvGuide(unittest.TestCase):
         query = {'position': 'end'}
         page = requests.get(url, headers=self.headers, timeout=3).text
         schedule_data = parsex.scrape_json(page)
-        # testutils.save_json(schedule_data, 'schedule/html_schedule.json')
+        # testutils.save_json(schedule_data, 'iptvmanager/itv_schedule.json')
         self.check_guide(schedule_data['tvGuideData'])
 
     def test_html_guide_week_ago(self):

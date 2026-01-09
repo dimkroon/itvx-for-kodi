@@ -103,18 +103,6 @@ class NowNextSchedule(TestCase):
             self.assertEqual('11:00 pm', start_time.lower())
 
 
-class FullSchedule(TestCase):
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('schedule/html_schedule.json'))
-    def test_full_schedule(self, _):
-        schedules = itvx.get_full_schedule()
-        self.assertIsInstance(schedules, dict)
-        channels = ('ITV1', 'ITV2', 'ITVBe', 'ITV3', 'ITV4')
-        has_keys(schedules, *channels)
-        for progr_list in schedules.values():
-            self.assertIsInstance(progr_list, list)
-            self.assertGreater(len(progr_list), 100)
-
-
 class MainPageItem(TestCase):
     def test_list_main_page_items(self):
         page_data = open_json('json/index-data.json')

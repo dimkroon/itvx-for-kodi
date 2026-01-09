@@ -466,32 +466,6 @@ class Generic(unittest.TestCase):
         for item in show['ctx_mnu']:
             self.assertIsInstance(item, tuple)
 
-    def test_parse_schedule(self):
-        data = open_json('json/schedule_data.json')['tvGuideData']
-
-        # episodeNr present, but seriesNr is None
-        item = parsex.parse_schedule_item(data['ITV'][0])
-        self.assertEqual('S00E41', item['episode'])
-        # Both episodeNr and seriesNr present
-        item = parsex.parse_schedule_item(data['ITV'][1])
-        self.assertEqual('S07E10', item['episode'])
-        # Both episodeNr and seriesNr absent
-        item = parsex.parse_schedule_item(data['ITV'][2])
-        self.assertTrue('episode' not in item.keys())
-
-        # Formatting direct episode url
-        item = parsex.parse_schedule_item(data['ITV'][1])
-        self.assertTrue(item['stream'].startswith("plugin://plugin.video.viwx/resources/lib"))
-        self.assertTrue(item['stream'].endswith(data['ITV'][1]['episodeLink'][-4:]))
-
-        # Check all test items
-        for chan_data in data.values():
-            for item in chan_data:
-                self.assertIsNotNone(parsex.parse_schedule_item(item))
-
-        # Invalid data
-        self.assertIsNone(parsex.parse_schedule_item({}))
-
     def test_parse_viewall(self):
         slider_data = {
             'header': {
