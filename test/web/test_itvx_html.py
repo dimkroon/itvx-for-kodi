@@ -814,7 +814,8 @@ class TvGuide(unittest.TestCase):
                 self.assertTrue(is_not_empty(item['duration'], int))
                 self.assertTrue(is_iso_utc_time(item['start']))
                 self.assertTrue(is_iso_utc_time(item['end']))
-                # Items like some news and weather do not have a titleCCId, but other live and recorded programmes do.
+                # Items like weather local news, teleshopping, do not have a titleCCId,
+                # but other live and recorded programmes do. Items with titleCCId may still not be available now.
                 self.assertTrue(is_not_empty(item['titleCCId'], str) or isinstance(item['titleCCId'], NONE_T))
                 if item.get('contentType') is None:
                     # Some items, probably all live items do not have more info,
