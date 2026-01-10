@@ -13,7 +13,6 @@ from datetime import datetime, timezone
 from urllib.parse import urlencode
 
 from codequick.support import logger_id
-from codequick import Script
 
 from . import utils
 from . import kodi_utils

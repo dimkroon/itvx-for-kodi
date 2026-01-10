@@ -10,7 +10,9 @@ import time
 import xbmc
 import requests
 
-from codequick.script import Script
+from datetime import datetime, timezone, timedelta
+
+from codequick import Script, Resolver, Route
 from codequick.support import build_path
 
 
@@ -68,14 +70,14 @@ class IPTVManager:
 
     @via_socket
     def send_channels(self):
-        from resources.lib.main import play_stream_live
         """Return JSON-STREAMS formatted python data structure to IPTV Manager"""
+        callback_ref = Resolver.ref('resources.lib.main:play_stream_live')
         chan_list = [
             {
                 'id': chan_data.get('id'),
                 'name': chan_data.get('name'),
                 'logo': chan_data.get('logo'),
-                'stream': build_path(play_stream_live, query={'channel': name, 'url': None})
+                'stream': build_path(callback_ref, query={'channel': name, 'url': None})
             } for name, chan_data in CHANNELS.items()
         ]
         return {'version': 1, 'streams': chan_list}
@@ -83,13 +85,12 @@ class IPTVManager:
     @via_socket
     def send_epg(self):
         """Return JSON-EPG formatted python data structure to IPTV Manager"""
-        from resources.lib.itvx import get_full_schedule
 
         # ITV EPG has hardly more info than the programme title, but does contain
         # replay VOD links. EPG from 'What to Watch' has more info, but a smaller
         # range of available dates and often skips short programmes, like weather
         # and regional news. That's why we request both and merge WtW into ITV EPG.
-        itv_epg = get_full_schedule()
+        itv_epg = itv_schedule()
         wtw_epg = what_to_watch_schedule()
         schedules = merge_epg(itv_epg, wtw_epg)
         epg_data = {CHANNELS[k]['id']: v for k, v in schedules.items()}
@@ -211,6 +212,51 @@ def what_to_watch_schedule():
         return {}
 
 
+def itv_schedule():
+    """Get the schedules of the main live channels from a week back to a week ahead.
+
+    These are from the html pages that the website uses to show schedules.
+    """
+    from resources.lib.itvx import get_page_data
+
+    today = datetime.now(timezone.utc)
+    all_days = (today + timedelta(i) for i in range(-7, 8))
+    # schedules = (get_page_data('watch/tv-guide/' + day.strftime('%Y-%m-%d')) for day in all_days)
+    schedule = {}
+    for day in all_days:
+        page_data = get_page_data('/watch/tv-guide/' + day.strftime('%Y-%m-%d'))
+        guide = page_data['tvGuideData']
+        for chan_name, progr_list in guide.items():
+            chan_schedule = schedule.setdefault(chan_name, [])
+            chan_schedule.extend(filter(None, (parse_itv_programme(progr) for progr in progr_list)))
+    return schedule
+
+
+def parse_itv_programme(data):
+    """Parse and item from the HTML page /watch/guide.
+
+    Used to create EPG data for IPTV manager.
+    """
+
+    genres = data.get('genres')
+    try:
+        item = {
+            'start': data['start'][:19] + 'Z',
+            'stop': data['end'][:19] + 'Z',
+            'title': data['title'],
+            'genre': genres[0].get('name') if genres else None,
+        }
+
+        if data.get('episodeAvailableNow'):
+            callback_ref = Route.ref('resources/lib/main:play_stream_catchup')
+            item['stream'] = build_path(callback_ref, query={'ccid': data.get('titleCCId', '')})
+        return item
+    except:
+        import traceback
+        xbmc.log("[plugin.video.viwx.iptv] Failed to parse ITV schedule item:\n" + traceback.format_exc())
+        return None
+
+
 def merge_epg(master_epg, additional_epg):
     """Merge the info from `additional_epg` into `master_epg`.
 
@@ -228,7 +274,11 @@ def merge_epg(master_epg, additional_epg):
         # time formats may different in this respect.
         pgm_dict = {item['start'][:16]: item for item in additional_prgrm_list}
         for pgm in prgrm_list:
-            additional_pgm = pgm_dict.get(pgm['start'][:16])
+            try:
+                additional_pgm = pgm_dict.get(pgm['start'][:16])
+            except TypeError as err:
+                print("Type error on pgm:", err, pgm)
+                continue
             if additional_pgm:
                 # Ensure not to overwrite with None values and programme end time.
                 new_info = {k: v for k, v in additional_pgm.items() if v is not None and k != 'stop'}
