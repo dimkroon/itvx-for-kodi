@@ -4,13 +4,21 @@
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
+from __future__ import annotations
+
+import os
 import json
 import socket
 import time
+
+from collections.abc import Sequence, Iterable, MutableMapping
+
 import xbmc
 import requests
 
 from datetime import datetime, timezone, timedelta
+from bisect import bisect_left, bisect_right
+from operator import itemgetter
 
 from codequick import Script, Resolver, Route
 from codequick.support import build_path
@@ -44,6 +52,179 @@ CHANNELS = {
                      '6Dv76O9mtWd6m7DzIavtsf/b3d491289679b8030eae7b4a7db58f2d/itv4.png?w=512',
              'preset': 5}
 }
+
+
+class ChannelSchedule(Sequence):
+    """Class containing programme information of a single channel in JSON-EPG
+    format.
+
+    """
+    TIME_FMT = '%Y-%m-%dT%H:%M:%SZ'
+
+    def __init__(self, channel: str, programmes: Iterable[dict]):
+        self.channel = channel
+        self._pgm_list = sorted(programmes, key=itemgetter('start'))
+
+    @property
+    def programme_list(self):
+        return self._pgm_list
+
+    def filter(self, from_time: datetime = None, to_time: datetime = None):
+        """Return a new `ChannelSchedule` object with programmes starting between
+        `from_time` and `to_time`.
+
+        """
+        by_start_time = itemgetter('start')
+        if from_time:
+            start_idx = bisect_left(self._pgm_list, from_time.strftime(self.TIME_FMT), key=by_start_time)
+        else:
+            start_idx = 0
+        if to_time:
+            end_idx = bisect_left(self._pgm_list, to_time.strftime(self.TIME_FMT), lo=start_idx, key=by_start_time)
+        else:
+            end_idx = len(self._pgm_list)
+        return type(self)(self.channel, self._pgm_list[start_idx:end_idx])
+
+    def update_programme_info(self, schedule: ChannelSchedule):
+        """Merge the info from `schedule` into the current programmes.
+
+        Based on the programme start time, update the programme info of each programme
+        with the corresponding item from `schedule`. All fields that already exist
+        will be overwritten if they are present and not None in `schedule`, except
+        the programme's end time.
+
+        """
+        # Disregard seconds and timezone offset.
+        schedule = {item['start'][:16]: item for item in schedule}
+        for prgrm_info in self._pgm_list:
+            new_info = schedule.get(prgrm_info['start'][:16])
+            if new_info:
+                # Ensure not to overwrite with None values and programme end time.
+                valid_fields = {k: v for k, v in new_info.items() if v is not None and k != 'stop'}
+                prgrm_info.update(valid_fields)
+
+    def extend(self, schedule: ChannelSchedule | list):
+        """Add programmes from `schedule` that have a start time later than the
+        current last programme.
+
+        """
+        if not isinstance(schedule, (ChannelSchedule, list)):
+            raise TypeError(f"Invalid type {type(schedule).__name__}.")
+        if isinstance(schedule, ChannelSchedule):
+            new_prgrms = schedule._pgm_list
+        else:
+            new_prgrms = schedule
+
+        if self._pgm_list:
+            last_pgm_start: str = self._pgm_list[-1]['start']
+            idx = bisect_right(new_prgrms, last_pgm_start, key=itemgetter('start'))
+            self._pgm_list.extend(new_prgrms[idx:])
+        else:
+            self._pgm_list = new_prgrms[:]
+
+    def __getitem__(self, item):
+        result = self._pgm_list.__getitem__(item)
+        if isinstance(result, list):
+            # return slice
+            return type(self)(self.channel, result)
+        else:
+            # return item
+            return result
+
+    def __iter__(self):
+        return iter(self._pgm_list)
+
+    def __len__(self):
+        return len(self._pgm_list)
+
+    def __eq__(self, other):
+        return (isinstance(other, ChannelSchedule)
+                and self.channel == other.channel
+                and self._pgm_list == other._pgm_list)
+
+
+class Epg(MutableMapping):
+    """Container to hold the schedules of several channels."""
+    def __init__(self):
+        self._chan_schedules = {}
+
+    @property
+    def json_epg(self) -> dict:
+        """Return the whole EPG as JSON-EPG formatted Python data structure."""
+        epg_data = {name: schedule.programme_list for name, schedule in self._chan_schedules.items()}
+        return epg_data
+
+    @classmethod
+    def from_json_epg(cls, json_epg: dict) -> Epg:
+        """Create a new Epg object from a JSON-EPG formatted Python data structure."""
+        new_epg = cls()
+        try:
+            for chan_name, pgm_list in json_epg.items():
+                schedule = ChannelSchedule(chan_name, pgm_list)
+                new_epg.add_schedule(schedule)
+        except Exception as err:
+            xbmc.log(f"[plugin.video.viwx.iptv] Failed to create Epg from JSON-EPG: {repr(err)}.")
+        return new_epg
+
+    def add_schedule(self, schedule: ChannelSchedule):
+        self._chan_schedules[schedule.channel] = schedule
+
+    def filter(self, from_time: datetime = None, to_time: datetime = None) -> Epg:
+        """Return a new `Epg` object with programmes starting between
+        `from_time` and `to_time`.
+
+        """
+        new_epg = type(self)()
+        for chan_name, schedule in self._chan_schedules.items():
+            new_epg.add_schedule(schedule.filter(from_time, to_time))
+        return new_epg
+
+    def update_programme_info(self, new_epg: Epg):
+        """Based on the programme start time, update the programme info of each programme
+        of each channel with the info of the corresponding item in `new_epg`. All fields
+        that already exist will be overwritten if they are present and not None in
+        `schedule`, except the programme's end time.
+
+        """
+        for chan_name, schedule in self._chan_schedules.items():
+            new_schedule = new_epg.get(chan_name)
+            if new_schedule:
+                schedule.update_programme_info(new_schedule)
+
+    def extend(self, new_epg: Epg):
+        """Add programmes from `new_epg` that start later than the last programmes already
+         in the EPG. Add channels from new_epg if not present in the current EPG.
+
+         Earlier programmes are disregarded.
+
+         """
+        if not isinstance(new_epg, Epg):
+            raise TypeError(f"Param 'new_epg' should be an 'Epg' object not {type(new_epg).__name__}.")
+        my_schedules = self._chan_schedules
+        other_schedules = new_epg._chan_schedules
+        for chan_name, schedule in my_schedules.items():
+            if chan_name in other_schedules:
+                schedule.extend(other_schedules[chan_name])
+        for other_name, other_sched in other_schedules.items():
+            if other_name not in my_schedules:
+                my_schedules[other_name] = other_sched
+
+    def __setitem__(self, key, value):
+        if not isinstance(value, ChannelSchedule):
+            raise TypeError(f"Invalid type. Must be a ChannelSchedule object, not '{type(value).__name__}'.")
+        self._chan_schedules[key] = value
+
+    def __getitem__(self, key):
+        return self._chan_schedules[key]
+
+    def __delitem__(self, key):
+        del self._chan_schedules[key]
+
+    def __len__(self):
+        return len(self._chan_schedules)
+
+    def __iter__(self):
+        return self._chan_schedules.__iter__()
 
 
 # IPTVManager class from https://github.com/add-ons/service.iptv.manager/wiki/Integration
@@ -159,14 +340,17 @@ def request_wtw_epg(chan_ids):
     now = int(time.time())
     start_t = now - 43200
     end_t = now + 7 * 86400
-    channels_epg = {}
+    wtw_epg = Epg()
     for chan, chan_id in chan_ids.items():
         url = f'https://api.tv-guide.future.sensi.link/schedules/{chan_id}/{start_t}/{end_t}'
         resp = requests.get(url)
         data = resp.json()
-        pgm_list = filter(None, (parse_wtw_programme(pgm_data) for pgm_data in data))
-        channels_epg[chan] = sorted(pgm_list, key=lambda x: x['start'])
-    return channels_epg
+        schedule = ChannelSchedule(
+            chan,
+            filter(None, (parse_wtw_programme(pgm_data) for pgm_data in data))
+        )
+        wtw_epg.add_schedule(schedule)
+    return wtw_epg
 
 
 def parse_wtw_programme(prgrm_data):
@@ -215,21 +399,23 @@ def what_to_watch_schedule():
 def itv_schedule():
     """Get the schedules of the main live channels from a week back to a week ahead.
 
-    These are from the html pages that the website uses to show schedules.
+    These are from the HTML pages that the website uses to show schedules.
     """
     from resources.lib.itvx import get_page_data
 
     today = datetime.now(timezone.utc)
     all_days = (today + timedelta(i) for i in range(-7, 8))
     # schedules = (get_page_data('watch/tv-guide/' + day.strftime('%Y-%m-%d')) for day in all_days)
-    schedule = {}
+    itv_epg = Epg()
     for day in all_days:
         page_data = get_page_data('/watch/tv-guide/' + day.strftime('%Y-%m-%d'))
         guide = page_data['tvGuideData']
+        day_epg = Epg()
         for chan_name, progr_list in guide.items():
-            chan_schedule = schedule.setdefault(chan_name, [])
-            chan_schedule.extend(filter(None, (parse_itv_programme(progr) for progr in progr_list)))
-    return schedule
+            programmes = (filter(None, (parse_itv_programme(progr) for progr in progr_list)))
+            day_epg.add_schedule(ChannelSchedule(chan_name, programmes))
+        itv_epg.extend(day_epg)
+    return itv_epg
 
 
 def parse_itv_programme(data):
@@ -255,32 +441,3 @@ def parse_itv_programme(data):
         import traceback
         xbmc.log("[plugin.video.viwx.iptv] Failed to parse ITV schedule item:\n" + traceback.format_exc())
         return None
-
-
-def merge_epg(master_epg, additional_epg):
-    """Merge the info from `additional_epg` into `master_epg`.
-
-    Based on the programme start time, update the programme info of `master_epg`
-    with the corresponding item of `additional_epg`. All fields that already
-    exist in `master_epg` will be overwritten if they are present and not None in
-    `additional_epg`.
-
-    """
-
-    for chan, prgrm_list in master_epg.items():
-        additional_prgrm_list = additional_epg.get(chan, [])
-        # Convert the programmes list into dict with start time as key to make
-        # lookup much easier. Seconds and time zone are stripped off, because
-        # time formats may different in this respect.
-        pgm_dict = {item['start'][:16]: item for item in additional_prgrm_list}
-        for pgm in prgrm_list:
-            try:
-                additional_pgm = pgm_dict.get(pgm['start'][:16])
-            except TypeError as err:
-                print("Type error on pgm:", err, pgm)
-                continue
-            if additional_pgm:
-                # Ensure not to overwrite with None values and programme end time.
-                new_info = {k: v for k, v in additional_pgm.items() if v is not None and k != 'stop'}
-                pgm.update(new_info)
-    return master_epg
