@@ -16,7 +16,7 @@ from collections.abc import Sequence, Iterable, MutableMapping
 import xbmc
 import requests
 
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, date, timezone, timedelta
 from bisect import bisect_left, bisect_right
 from operator import itemgetter
 
@@ -396,25 +396,31 @@ def what_to_watch_schedule():
         return {}
 
 
-def itv_schedule():
-    """Get the schedules of the main live channels from a week back to a week ahead.
+def itv_schedule(from_date: date = None):
+    """Get the schedules of the main live channels from max a week back to a week ahead.
 
     These are from the HTML pages that the website uses to show schedules.
     """
     from resources.lib.itvx import get_page_data
 
-    today = datetime.now(timezone.utc)
-    all_days = (today + timedelta(i) for i in range(-7, 8))
-    # schedules = (get_page_data('watch/tv-guide/' + day.strftime('%Y-%m-%d')) for day in all_days)
+    today = datetime.now(timezone.utc).date()
+    one_day = timedelta(days=1)
+    if from_date:
+        # Request no more than 7 days back.
+        start_day = max(from_date, today - timedelta(days=7))
+    else:
+        start_day = today - timedelta(days=7)
+    last_day = today + timedelta(days=8)
     itv_epg = Epg()
-    for day in all_days:
-        page_data = get_page_data('/watch/tv-guide/' + day.strftime('%Y-%m-%d'))
+    while start_day < last_day:
+        page_data = get_page_data('/watch/tv-guide/' + start_day.strftime('%Y-%m-%d'))
         guide = page_data['tvGuideData']
         day_epg = Epg()
         for chan_name, progr_list in guide.items():
             programmes = (filter(None, (parse_itv_programme(progr) for progr in progr_list)))
             day_epg.add_schedule(ChannelSchedule(chan_name, programmes))
         itv_epg.extend(day_epg)
+        start_day += one_day
     return itv_epg
 
 

@@ -10,9 +10,9 @@ fixtures.global_setup()
 import json
 import unittest
 from unittest.mock import MagicMock, patch
-from datetime import datetime
+from datetime import datetime, date, timezone, timedelta
 
-from test.support.object_checks import is_not_empty
+from test.support.object_checks import is_not_empty, has_keys
 from test.support.testutils import open_json
 from resources.lib import iptvmanager
 
@@ -81,7 +81,7 @@ class TestEntryFunctions(unittest.TestCase):
         """Errors should be ignored silently"""
         iptvmanager.epg.test(port=1234)
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('schedule/html_schedule.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('iptvmanager/itv_schedule.json'))
     def test_egp_integration(self, _):
         mocked_socket = MagicMock()
         mocked_socket.sendall = MagicMock()
@@ -354,3 +354,56 @@ class TestEpgSchedule(unittest.TestCase):
         self.assertListEqual(list(self.epg.keys()), ['Chan1', 'Chan3'])
         with self.assertRaises(TypeError):
             self.epg['Chan4'] = []
+
+
+class ITVSchedule(unittest.TestCase):
+    def test_parse_schedule(self):
+        data = open_json('iptvmanager/itv_schedule.json')['tvGuideData']
+
+        # Episode available as vod
+        pgm_info = data['ITV1'][0]
+        item = iptvmanager.parse_itv_programme(pgm_info)
+        self.assertTrue(item['stream'].startswith("plugin://plugin.video.viwx/resources/lib"))
+        # Replay URLs must be formatted the same as the add-on normally does.
+        self.assertTrue('?_pickle_=' in item['stream'])
+        # Episode not available as vod
+        item = iptvmanager.parse_itv_programme(data['ITV1'][3])
+        self.assertFalse('stream' in item.keys())
+
+        # Invalid data
+        self.assertIsNone(iptvmanager.parse_itv_programme({}))
+
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('iptvmanager/itv_schedule.json'))
+    def test_full_schedule(self, _):
+        schedules = iptvmanager.itv_schedule(date(2023, 6, 12))
+        self.assertIsInstance(schedules, iptvmanager.Epg)
+        channels = ('ITV1', 'ITV2', 'ITVBe', 'ITV3', 'ITV4')
+        has_keys(schedules, *channels)
+        for progr_list in schedules.values():
+            self.assertIsInstance(progr_list, iptvmanager.ChannelSchedule)
+            self.assertGreater(len(progr_list), 20)
+
+    def test_full_schedule_internet_fetch(self):
+        # `from-date not defined, should request schedules from 7 days back to 7 days ahead.
+        with patch('resources.lib.itvx.get_page_data',
+                   return_value=open_json('iptvmanager/itv_schedule.json')) as p_fetch:
+            iptvmanager.itv_schedule()
+            self.assertEqual(15, p_fetch.call_count)
+
+        # `from_date` is far back, should fetch schedules from 7 days back to 7 days ahead.
+        with patch('resources.lib.itvx.get_page_data',
+                   return_value=open_json('iptvmanager/itv_schedule.json')) as p_fetch:
+            iptvmanager.itv_schedule(date(2023, 6, 12))
+            self.assertEqual(15, p_fetch.call_count)
+
+        # `from_date` is 4 day ago, should fetch schedules from 4 days back to 7 days ahead.
+        with patch('resources.lib.itvx.get_page_data',
+                   return_value=open_json('iptvmanager/itv_schedule.json')) as p_fetch:
+            iptvmanager.itv_schedule(datetime.now(tz=timezone.utc).date() - timedelta(days=4))
+            self.assertEqual(12, p_fetch.call_count)
+
+        # `from-date is today, should request schedules from today to 7 days ahead
+        with patch('resources.lib.itvx.get_page_data',
+                   return_value=open_json('iptvmanager/itv_schedule.json')) as p_fetch:
+            iptvmanager.itv_schedule(datetime.now(tz=timezone.utc).date())
+            self.assertEqual(8, p_fetch.call_count)

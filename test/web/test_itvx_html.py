@@ -856,7 +856,7 @@ class TvGuide(unittest.TestCase):
         query = {'position': 'end'}
         page = requests.get(url, headers=self.headers, timeout=3).text
         schedule_data = parsex.scrape_json(page)
-        # testutils.save_json(schedule_data, 'schedule/html_schedule.json')
+        # testutils.save_json(schedule_data, 'iptvmanager/itv_schedule.json')
         self.check_guide(schedule_data['tvGuideData'])
 
     def test_html_guide_week_ago(self):
