@@ -5,6 +5,8 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from __future__ import annotations
+from test.support import fixtures
+fixtures.global_setup()
 
 import os
 import json
@@ -393,7 +395,7 @@ def what_to_watch_schedule():
     except:
         import traceback
         xbmc.log("[plugin.video.viwx.iptv] Failed to create What-to-Watch EPG:\n" + traceback.format_exc())
-        return {}
+        return Epg()
 
 
 def itv_schedule(from_date: date = None):

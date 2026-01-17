@@ -13,7 +13,7 @@ from unittest.mock import MagicMock, patch
 from datetime import datetime, date, timezone, timedelta
 
 from test.support.object_checks import is_not_empty, has_keys
-from test.support.testutils import open_json
+from test.support.testutils import open_json, open_doc, HttpResponse
 from resources.lib import iptvmanager
 
 
@@ -354,6 +354,115 @@ class TestEpgSchedule(unittest.TestCase):
         self.assertListEqual(list(self.epg.keys()), ['Chan1', 'Chan3'])
         with self.assertRaises(TypeError):
             self.epg['Chan4'] = []
+
+
+class WhatToWatchScedule(unittest.TestCase):
+    def setUp(self):
+        self.prgm_info = {
+            "title": "My Programme",
+            "type": "episode",
+            "dateTime": "2026-01-09T19:30:00.000Z",
+            "endDateTime": "2026-01-09T20:00:00.000Z",
+            "media": "https://tv.assets.pressassociation.io/37b113aa-110f-5c24-b2ed-c101d6074042.jpg",
+            "assets": {
+                "type": "episode",
+                "title": "asset title",
+                "summary": {"short": "short summary", "medium": "medium summary", "long": "long summary"},
+                "category": "sport",
+                "number": 4,
+                "season": 1
+            },
+            "channelName": "ITV1 London"
+        }
+
+    def test_get_region_id(self):
+        with patch('requests.get', return_value=HttpResponse(text=open_doc('iptvmanager/wtw_regions.json')())):
+            region_id = iptvmanager.what_to_watch_region_id()
+            self.assertTrue(is_not_empty(region_id, str))
+        # Freeview not present as platform
+        with patch('requests.get', return_value=HttpResponse(text='{"platforms":[{"title": "sky", "regions": []}]}')):
+            region_id = iptvmanager.what_to_watch_region_id()
+            self.assertIsNone(region_id)
+
+    @patch('requests.get', return_value=HttpResponse(text=open_doc('iptvmanager/wtw_channels.json')()))
+    def test_channel_ids(self, p_get):
+        chan_ids = iptvmanager.what_to_watch_channel_ids('my-region-id')
+        self.assertTrue(p_get.call_args.args[0].endswith('my-region-id'))
+        self.assertEqual(5, len(chan_ids))
+        for chan_name in ('ITV1', 'ITV2', 'ITV3', 'ITV4', 'ITVBe'):
+            self.assertTrue(is_not_empty(chan_ids[chan_name], str))
+
+    def test_parse_programme_full(self):
+        # full info
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        has_keys(epg_info, 'start', 'subtitle', 'description', 'image', 'episode')
+        self.assertEqual(5, len(epg_info))
+        for v in epg_info.values():
+            self.assertTrue(is_not_empty(v, str))
+        self.assertEqual(epg_info['episode'], 'S01E04')
+        self.assertEqual(epg_info['description'], self.prgm_info['assets']['summary']['long'])
+        self.assertEqual(epg_info['subtitle'], self.prgm_info['assets']['title'])
+
+    def test_parse_programme_without_season(self):
+        del self.prgm_info['assets']['season']
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertEqual(epg_info['episode'], 'S00E04')
+
+    def test_parse_programme_without_episode(self):
+        del self.prgm_info['assets']['number']
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertTrue('episode' not in epg_info.keys())
+
+    def test_parse_programme_summary(self):
+        del self.prgm_info['assets']['summary']['long']
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertEqual(epg_info['description'], self.prgm_info['assets']['summary']['medium'])
+        del self.prgm_info['assets']['summary']['medium']
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertEqual(epg_info['description'], self.prgm_info['assets']['summary']['short'])
+        del self.prgm_info['assets']['summary']['short']
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertIsNone(epg_info['description'])
+        # In practice, summary can be an empty list.
+        # noinspection PyTypeChecker
+        self.prgm_info['assets']['summary'] = []
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertIsNone(epg_info['description'])
+
+    def test_parse_title_is_generic(self):
+        """Quite often asset title is the string 'Generic'."""
+        self.prgm_info['assets']['title'] = 'Generic'
+        epg_info = iptvmanager.parse_wtw_programme(self.prgm_info)
+        self.assertIsNone(epg_info['subtitle'])
+
+    def test_parse_invalid_programme(self):
+        epg_info = iptvmanager.parse_wtw_programme({'message': 'not allowed'})
+        self.assertIsNone(epg_info)
+
+    @patch('requests.get', return_value=HttpResponse(text=open_doc('iptvmanager/wtw_schedule_itv1.json')()))
+    def test_schedule(self, p_get):
+        epg = iptvmanager.request_wtw_epg({'My-Chan': 'my_chan_id'})
+        p_get.assert_called_once()
+        self.assertIsInstance(epg, iptvmanager.Epg)
+        self.assertEqual(1, len(epg))
+        self.assertIsInstance(epg['My-Chan'], iptvmanager.ChannelSchedule)
+        self.assertGreater(len(epg['My-Chan']), 10)
+
+    def test_get_wtw_epg(self):
+        with patch('requests.get', side_effect=(
+                HttpResponse(text=open_doc('iptvmanager/wtw_regions.json')()),
+                HttpResponse(text=open_doc('iptvmanager/wtw_channels.json')()))
+                + (HttpResponse(text=open_doc('iptvmanager/wtw_schedule_itv1.json')()), ) * 5) as p_get:
+            epg = iptvmanager.what_to_watch_schedule()
+            # requests for region, channel id, and 5 schedule requests for all ITV channels
+            self.assertEqual(7, p_get.call_count)
+            self.assertIsInstance(epg, iptvmanager.Epg)
+            self.assertEqual(5, len(epg))
+        # On error an empty Epg object should be returned.
+        with patch('requests.get', side_effect=Exception):
+            epg = iptvmanager.what_to_watch_schedule()
+            self.assertIsInstance(epg, iptvmanager.Epg)
+            self.assertEqual(0, len(epg))
 
 
 class ITVSchedule(unittest.TestCase):
