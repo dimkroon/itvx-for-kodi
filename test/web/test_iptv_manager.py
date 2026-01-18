@@ -8,6 +8,7 @@
 from test.support import fixtures
 fixtures.global_setup()
 
+import os
 from unittest import TestCase
 
 from support.object_checks import is_not_empty
@@ -38,3 +39,16 @@ class WhatToWatchEpg(TestCase):
             for pgm in schedule:
                 self.assertIsInstance(pgm, dict)
 
+
+class General(TestCase):
+    def test_get_full_schedule(self):
+        try:
+            os.unlink(iptvmanager.CACHE_PATH)
+        except FileNotFoundError:
+            pass
+        guide = iptvmanager.get_full_schedule()
+        self.assertIsInstance(guide, iptvmanager.Epg)
+        self.assertEqual(5, len(guide))
+        for schedule in guide.values():
+            self.assertIsInstance(schedule, iptvmanager.ChannelSchedule)
+            self.assertGreater(len(schedule), 300)

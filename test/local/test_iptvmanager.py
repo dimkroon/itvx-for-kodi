@@ -8,8 +8,9 @@ from test.support import fixtures
 fixtures.global_setup()
 
 import json
+import time
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, mock_open
 from datetime import datetime, date, timezone, timedelta
 
 from test.support.object_checks import is_not_empty, has_keys
@@ -33,13 +34,16 @@ class TestIptvmanager(unittest.TestCase):
                 self.assertTrue(is_not_empty(chan[key], str))
 
     def test_send_epg(self):
-        epg_data = {'ITV1': [{'start': "23:23", 'end': '12:43', 'title': 'my title', 'description': ''}],
-                    'ITV2': [{'start': "23:23", 'end': '12:43', 'title': 'his title', 'description': ''}],
-                    'ITV3': [{'start': "23:23", 'end': '12:43', 'title': 'm title', 'description': ''}]}
+        epg_data = {
+            'ITV1': [{'start': "23:23", 'end': '12:43', 'title': 'my title', 'description': ''}],
+            'ITV2': [{'start': "23:23", 'end': '12:43', 'title': 'his title', 'description': ''}],
+            'ITV3': [{'start': "23:23", 'end': '12:43', 'title': 'm title', 'description': ''}]
+        }
+        epg_obj = iptvmanager.Epg.from_json_epg(epg_data)
         mocked_socket = MagicMock()
         mocked_socket.sendall = MagicMock()
         with patch('socket.socket', return_value=mocked_socket):
-            with patch('resources.lib.itvx.get_full_schedule', return_value=epg_data):
+            with patch('resources.lib.iptvmanager.get_full_schedule', return_value=epg_obj):
                 iptvm = iptvmanager.IPTVManager(port=10)
                 iptvm.send_epg()
 
@@ -516,3 +520,76 @@ class ITVSchedule(unittest.TestCase):
                    return_value=open_json('iptvmanager/itv_schedule.json')) as p_fetch:
             iptvmanager.itv_schedule(datetime.now(tz=timezone.utc).date())
             self.assertEqual(8, p_fetch.call_count)
+
+
+class FileReadWrite(unittest.TestCase):
+    def setUp(self):
+        self.epg_data = {
+            'Chan1': [
+                {'start': '2025-06-01T01:00:00Z', 'stop': '2025-06-01T02:00:00Z'},
+                {'start': '2025-06-01T02:00:00Z', 'stop': '2025-06-01T03:00:00Z'}
+            ],
+            'Chan2': [
+                {'start': '2025-06-01T01:05:05Z', 'stop': '2025-06-01T02:05:05Z'},
+                {'start': '2025-06-01T02:05:05Z', 'stop': '2025-06-01T03:05:05Z'}
+            ]
+        }
+
+    def test_save_epg(self):
+        epg_obj = iptvmanager.Epg.from_json_epg(self.epg_data)
+        with patch('resources.lib.iptvmanager.open', mock_open()) as m:
+            iptvmanager.save_epg(epg_obj)
+            mocked_open = m.return_value
+            mocked_open.__enter__.assert_called_once()
+            mocked_open.__exit__.assert_called_once()
+            write_count = mocked_open.write.call_count
+            self.assertGreater(write_count, 10)
+
+    def test_read_epg(self):
+        test_data = {'saved': time.time(), 'epg': self.epg_data}
+        with patch('resources.lib.iptvmanager.open', mock_open(read_data=json.dumps(test_data))):
+            saved_date, epg = iptvmanager.read_epg()
+        self.assertAlmostEqual(saved_date, datetime.now(timezone.utc), delta=timedelta(seconds=1))
+        self.assertIsInstance(epg, iptvmanager.Epg)
+        self.assertTrue('Chan1' in epg and 'Chan2' in epg)
+
+        with patch('resources.lib.iptvmanager.open', side_effect=IOError):
+            saved_date, epg = iptvmanager.read_epg()
+        self.assertIsNone(saved_date)
+        self.assertIsInstance(epg, iptvmanager.Epg)
+        self.assertEqual(0, len(epg.keys()))
+
+@patch("resources.lib.iptvmanager.what_to_watch_region_id", return_value='aghjgfbj')
+@patch("resources.lib.iptvmanager.what_to_watch_channel_ids", return_value={'ITV1': 'aghjgfbj'})
+@patch('resources.lib.itvx.get_page_data', return_value=open_json('iptvmanager/itv_schedule.json'))
+@patch('requests.get', return_value=HttpResponse(text=open_doc('iptvmanager/wtw_schedule_itv1.json')()))
+class FullSchedule(unittest.TestCase):
+    def setUp(self):
+        self.epg_data = {
+            'ITV1': [
+                {'start': '2025-06-01T01:00:00Z', 'stop': '2025-06-01T02:00:00Z'},
+                {'start': '2025-06-01T02:00:00Z', 'stop': '2025-06-01T03:00:00Z'}
+            ],
+            'ITV2': [
+                {'start': '2025-06-01T01:05:05Z', 'stop': '2025-06-01T02:05:05Z'},
+                {'start': '2025-06-01T02:05:05Z', 'stop': '2025-06-01T03:05:05Z'}
+            ]
+        }
+
+    def test_full_schedule_with_cache(self, p_get, p_page, _, __):
+        with patch('resources.lib.iptvmanager.open',
+               mock_open(read_data=json.dumps(
+                   {'saved': time.time(), 'epg': open_doc('iptvmanager/wtw_schedule_itv1.json')()}))) as p_open:
+            epg = iptvmanager.get_full_schedule()
+            self.assertIsInstance(epg, iptvmanager.Epg)
+            p_get.assert_called_once()
+            p_page.assert_called()
+            p_open.assert_called()
+
+    def test_full_schedule_without_cache(self, p_get, p_page, _, __):
+        with patch('resources.lib.iptvmanager.open', side_effect=IOError) as p_open:
+            epg = iptvmanager.get_full_schedule()
+            self.assertIsInstance(epg, iptvmanager.Epg)
+            p_get.assert_called_once()
+            p_page.assert_called()
+            p_open.assert_called()

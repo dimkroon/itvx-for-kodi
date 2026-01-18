@@ -26,6 +26,8 @@ from codequick import Script, Resolver, Route
 from codequick.support import build_path
 
 
+CACHE_PATH = os.path.join(Script.get_info('profile'), 'epg.json')
+
 # Logo URLs from now/next.
 CHANNELS = {
     'ITV1': {'id': 'viwx.itv1',
@@ -268,14 +270,7 @@ class IPTVManager:
     @via_socket
     def send_epg(self):
         """Return JSON-EPG formatted python data structure to IPTV Manager"""
-
-        # ITV EPG has hardly more info than the programme title, but does contain
-        # replay VOD links. EPG from 'What to Watch' has more info, but a smaller
-        # range of available dates and often skips short programmes, like weather
-        # and regional news. That's why we request both and merge WtW into ITV EPG.
-        itv_epg = itv_schedule()
-        wtw_epg = what_to_watch_schedule()
-        schedules = merge_epg(itv_epg, wtw_epg)
+        schedules = get_full_schedule().json_epg
         epg_data = {CHANNELS[k]['id']: v for k, v in schedules.items()}
         return dict(version=1, epg=epg_data)
 
@@ -298,6 +293,42 @@ def epg(_, port):
         # Catch all errors to prevent codequick showing an error message
         from traceback import format_exc
         xbmc.log("[plugin.video.viwx.iptv] Error in iptvmanager.epg:\n." + format_exc())
+
+
+def get_full_schedule():
+    """Return JSON-EPG formatted python data structure to IPTV Manager"""
+
+    # ITV EPG has hardly more info than the programme title, but does contain
+    # replay VOD links. EPG from 'What to Watch' has more info, but a smaller
+    # range of available dates and often skips short programmes, like weather
+    # and regional news. That's why we request both and merge WtW into ITV EPG.
+    # Additionally, a previously saved EPG is used to:
+    # - prevent unnecessary request for data in the past that won't change anyway.
+    # - retrieve programme details that are no longer available at whattowatch.com.
+    now = datetime.now(timezone.utc)
+    last_week = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=-7)
+    twelve_hours = timedelta(hours=12)
+
+    last_saved, cached_epg = read_epg()
+    wtw_epg = what_to_watch_schedule()
+    if last_saved and last_saved > now - timedelta(days=14):
+        # Before this point in time info is regarded static, after this time info is to be refreshed.
+        update_time = last_saved - twelve_hours
+        itv_epg = itv_schedule(from_date=update_time.date())
+        if last_saved < now - twelve_hours:
+            # Update info of programmes no longer available on whattowatch.com
+            itv_epg.update_programme_info(cached_epg.filter(last_week, to_time=now - twelve_hours))
+        # Update info of programmes currently available on whattowatch.com
+        itv_epg.update_programme_info(wtw_epg)
+
+        new_epg = cached_epg.filter(last_week, update_time)
+        new_epg.extend(itv_epg)
+    else:
+        new_epg = itv_schedule()
+        new_epg.update_programme_info(wtw_epg)
+
+    save_epg(new_epg)
+    return new_epg
 
 
 def what_to_watch_region_id(region='london'):
@@ -449,3 +480,27 @@ def parse_itv_programme(data):
         import traceback
         xbmc.log("[plugin.video.viwx.iptv] Failed to parse ITV schedule item:\n" + traceback.format_exc())
         return None
+
+
+def save_epg(epg_obj: Epg):
+    """Store the contents of an Epg object to file."""
+
+    data = {'saved': time.time(), 'epg': epg_obj.json_epg}
+    with open(CACHE_PATH, 'w') as f:
+        json.dump(data, f)
+
+
+def read_epg() -> tuple[datetime | None, Epg]:
+    """Read EPG from file and return a tuple of datetime and Epg object.
+     The datetime is the time the file was last saved.
+
+    """
+    try:
+        with open(CACHE_PATH, 'r') as f:
+            data = json.load(f)
+        saved_time = data.get('saved', 0)
+        saved_dt = datetime.fromtimestamp(saved_time, tz=timezone.utc)
+        cached_epg = Epg.from_json_epg(data.get('epg', {}))
+        return saved_dt, cached_epg
+    except:
+        return None, Epg()
