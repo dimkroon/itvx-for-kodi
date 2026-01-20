@@ -41,7 +41,7 @@ CHANNELS = {
                      'aV9MOsYOMEXHx3iw0p4tk/57b35173231c4290ff199ef8573367ad/itv2.png?w=512',
              'preset': 2},
     'ITVBe': {'id': 'viwx.itvbe',
-              'name': 'ITVBe',
+              'name': 'ITV Quiz',
               'logo': 'https://images.ctfassets.net/bd5zurrrnk1g/'
                       '6Mul5JVrb06pRu8bNDgIAe/b5309fa32322cc3db398d25e523e2b2e/itvBe.png?w=512',
               'preset': 3},
