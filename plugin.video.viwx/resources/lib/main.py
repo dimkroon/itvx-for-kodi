@@ -558,8 +558,8 @@ def play_stream_catchup(plugin, ccid, set_resume_point=False):
     from resources.lib import itv_gql
 
     logger.info('play catchup stream ccid=%s', ccid)
-    playlist_url = itv_gql.get_playlist_url(ccid=ccid, prefer_bsl=plugin.setting['prefer_bsl'] == 'true')
-    return play_vod(plugin, playlist_url, set_resume_point)
+    playlist_url, has_ad = itv_gql.get_playlist_url(ccid=ccid, prefer_bsl=plugin.setting['prefer_bsl'] == 'true')
+    return play_vod(plugin, playlist_url, set_resume_point, has_ad)
 
 
 @Resolver.register
@@ -572,11 +572,11 @@ def play_clip(plugin, ccid, is_sport):
     return play_vod(plugin, playlist_url)
 
 
-def play_vod(plugin, playlist_url, set_resume_point=False):
+def play_vod(plugin, playlist_url, set_resume_point=False, has_ad=False):
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
         manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(
-            playlist_url, fhd_enabled)
+            playlist_url, fhd_enabled, has_ad)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')

@@ -667,7 +667,7 @@ features_live = {
 features_catchup = ['mpeg-dash', 'widevine', 'outband-webvtt', 'hd', 'single-track']
 
 
-def _request_stream_data(url, stream_type='live', full_hd=False):
+def _request_stream_data(url, stream_type='live', full_hd=False, has_ad=False):
     from .itv_account import itv_session, fetch_authenticated
     session = itv_session()
 
@@ -683,7 +683,12 @@ def _request_stream_data(url, stream_type='live', full_hd=False):
         stream_req_data['variantAvailability']['featureset'] = features_live
     else:
         accept_type = 'application/vnd.itv.vod.playlist.v4+json'
-        stream_req_data['variantAvailability']['featureset'] = features_catchup
+        if has_ad:
+            features = features_catchup[:]
+            features.append('inband-audio-description')
+        else:
+            features = features_catchup
+        stream_req_data['variantAvailability']['featureset'] = features
 
     stream_data = fetch_authenticated(
         fetch.post_json, url,

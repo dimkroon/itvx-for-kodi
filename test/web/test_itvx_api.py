@@ -838,11 +838,13 @@ class Playlists(unittest.TestCase):
     #       VOD
     # -----------------------
 
-    def get_playlist_catchup(self, url=None, platform='freeview'):
+    def get_playlist_catchup(self, url=None, platform='freeview', audio_described=False):
         """Request stream of a catchup episode (i.e. production)
 
         """
         post_data = self.create_post_data('vod', platform)
+        if audio_described:
+            post_data['variantAvailability']['featureset'].append('inband-audio-description')
 
         if not url:
             # request playlist of an episode of Doc Martin
@@ -878,6 +880,16 @@ class Playlists(unittest.TestCase):
         object_checks.has_keys(resp, 'Message', 'TransactionId')
         self.assertTrue('message: User does not have entitlements' in resp['Message'])
 
+    def test_playlist_catchup_audio_described(self):
+        # Request playlist of Shardlake S1E1 without audio described in featurest
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', False)
+        manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
+        self.assertTrue('VAR075-HD-S.ism' in manifest_url)
+        # Now request the same playlist *with* audio described in featurest
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', True)
+        manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
+        self.assertTrue('VAR075-AD-HD-S.ism' in manifest_url)
+
     def test_manifest_vod(self):
         for platform in ('web', 'freeview'):
             strm_data = self.get_playlist_catchup(platform=platform)
@@ -888,6 +900,14 @@ class Playlists(unittest.TestCase):
                 self.assertEqual(720, max_res)
             else:
                 self.assertEqual(1080, max_res)
+
+    def test_manifest_vod_audio_described(self):
+        strm_data = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', True)
+        mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
+        resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
+        manifest = resp.text
+        self.assertTrue(manifest.startswith('<?xml version='))
+        self.assertTrue('<Label>AudioDescription</Label>' in manifest)
 
     def test_playlist_news_collection_items(self):
         """Short news items form the collection 'news' are all just mp4 files."""

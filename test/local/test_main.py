@@ -570,7 +570,7 @@ class PlayStreamLive(TestCase):
 
 
 # noinspection PyMethodMayBeStatic
-@patch('resources.lib.itv_gql.get_playlist_url', return_value='pl_url')
+@patch('resources.lib.itv_gql.get_playlist_url', return_value=('pl_url', True))
 @patch('resources.lib.main.play_vod')
 class PlayStreamCatchUp(TestCase):
     def test_play_stream_catchup_bsl_treu(self, p_play_vod, p_get_playlist):
@@ -578,21 +578,21 @@ class PlayStreamCatchUp(TestCase):
         plugin.setting = {'prefer_bsl': 'false'}
         main.play_stream_catchup(plugin, 'myccid', set_resume_point=False)
         p_get_playlist.assert_called_once_with(ccid='myccid', prefer_bsl=False)
-        p_play_vod.assert_called_once_with(plugin, 'pl_url', False)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url', False, True)
 
     def test_play_stream_catchup_bsl_false(self, p_play_vod, p_get_playlist):
         plugin = MagicMock()
         plugin.setting = {'prefer_bsl': 'true'}
         main.play_stream_catchup(plugin, 'myccid', set_resume_point=False)
         p_get_playlist.assert_called_once_with(ccid='myccid', prefer_bsl=True)
-        p_play_vod.assert_called_once_with(plugin, 'pl_url', False)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url', False, True)
 
     def test_play_stream_catchup_set_resume(self, p_play_vod, p_get_playlist):
         plugin = MagicMock()
         plugin.setting = {'prefer_bsl': 'false'}
         main.play_stream_catchup(plugin, 'myccid', set_resume_point=True)
         p_get_playlist.assert_called_once_with(ccid='myccid', prefer_bsl=False)
-        p_play_vod.assert_called_once_with(plugin, 'pl_url', True)
+        p_play_vod.assert_called_once_with(plugin, 'pl_url', True, True)
 
 
 # noinspection PyMethodMayBeStatic
