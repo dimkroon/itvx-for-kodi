@@ -190,7 +190,7 @@ def set_playcount(params: dict, duration: int):
 
     Set playcount to 1 and ensure the resume position is cleared by setting it to 0.
     """
-    full_url = create_callback_url('play_stream_catchup', _title_=params['name'], **params)
+    full_url = create_callback_url('play_stream_catchup', **params)
     json_str = '{"jsonrpc": "2.0", "method": "Files.SetFileDetails", "params": {"file":"%s", ' \
                '"media": "video", "playcount": 1, "resume": {"position": 0, "total": %s}}, "id": 1}' % (
                     full_url, duration)
