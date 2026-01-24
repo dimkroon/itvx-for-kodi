@@ -121,7 +121,7 @@ class MainPageItem(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(6, items_count)       # test data contains 4 hero items and sliders trending and news.
+            self.assertEqual(8, items_count)       # test data contains 6 hero items and sliders trending and news.
             for item in items:
                 check_item(self, item)
         # Hero item of unknown type is disregarded.

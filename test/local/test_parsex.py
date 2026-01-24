@@ -58,7 +58,7 @@ class ParseSimulcastItem(unittest.TestCase):
     def test_simucast_hero(self):
         """Hero start and end time is in British local time in 'HH:MM'
          format, so requires some special treatment."""
-        data = open_json('hero_items/simulcast.json')
+        data = open_json('hero_items/simulcastspot_date.json')
         data['startDateTime'] = '18:15'
         with patch('resources.lib.parsex.datetime', new=mockeddt) as dt_mock:
             # Programme has already started

@@ -132,7 +132,86 @@
         "text": "Stream every episode",
         "variant": "default"
       }
+    },
+      {
+  "Dev_Comment": "Film - Free 2025-12-19 01:21",
+  "audioDescribed": true,
+  "contentType": "film",
+  "productionYear": 2003,
+  "genre": [
+    "Film"
+  ],
+  "genres": [
+    {
+      "id": "FILM",
+      "name": "Film"
     }
+  ],
+  "subgenres": [
+    {
+      "id": "COMEDY",
+      "name": "Comedy"
+    },
+    {
+      "id": "ROMANTIC",
+      "name": "Romantic"
+    }
+  ],
+  "duration": "2h 8m",
+  "contentInfo": [
+    "Film",
+    "Comedy",
+    "2h 8m",
+    "2003"
+  ],
+  "title": "Love Actually",
+  "titleSlug": "love-actually",
+  "partnership": null,
+  "contentOwner": null,
+  "dateTime": "2025-12-09T21:00:00Z",
+  "description": "Love is all around us in this top comedy classic from the writer of Notting Hill. An all-star cast play eight loosely interrelated couples in the run-up to Christmas.",
+  "descriptionShort": "Love is all around us in this classic - get all the Christmas feels!",
+  "imageTemplate": "https://ovp.itv.com/v2/images/film/8tspx65/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+  "titleCCId": "8tspx65",
+  "brandCCId": null,
+  "programmeId": "27304",
+  "encodedProgrammeId": {
+    "letterA": "27304",
+    "underscore": "27304"
+  },
+  "ctaLabel": "Watch Film",
+  "ariaLabel": "Watch the film, Love Actually",
+  "isPaid": false,
+  "attribution": {
+    "partnership": null,
+    "contentOwner": null
+  },
+  "strapline": {
+    "text": "Just added - stream it now",
+    "variant": "default"
+  }
+},
+      {
+    "Dev_Comment": "Simulcastspot - Date 2026-01-24 22:18",
+    "contentType": "simulcastspot",
+    "title": "ALL STAR TELLY - 24/01",
+    "description": "It's another fabulous fix of all star telly - settle in for more of Wheel of Fortune, The Masked Singer and more! ",
+    "channel": "itv",
+    "imageTemplate": "https://ovp.itv.com/v2/images/promotional-artpack/allstartellyjan/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "genre": "Entertainment",
+    "ctaLabel": "Watch Live",
+    "ariaLabel": "Watch live, ALL STAR TELLY - 24/01",
+    "contentInfo": [
+        "Entertainment"
+    ],
+    "strapline": {
+        "text": "Stream ITV1 now",
+        "variant": "live-and-fast"
+    },
+    "startDateTime": "18:00",
+    "endDateTime": "21:30",
+    "tagName": "live"
+}
   ],
  "editorialSliders": [
     {
