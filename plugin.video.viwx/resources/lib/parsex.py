@@ -71,7 +71,7 @@ def ctx_mnu_all_episodes(programme_id: str, programme_name: str = 'undefined'):
     return (utils.addon_info.localise(TXT_VIEW_ALL_EPISODES),
             ''.join(('Container.Update(plugin://',
                      utils.addon_info.id,
-                     '/resources/lib/main/wrapper.list_productions?',
+                     '/resources/lib/main/list_productions?',
                      callback_qs,
                      ')'))
             )
