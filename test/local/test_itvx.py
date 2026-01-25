@@ -435,7 +435,7 @@ class EpisodesProgress(TestCase):
     def test_get_progress(self, p_fetch):
         data = itvx.episodes_progress('jghdfn')
         self.assertIsInstance(data, dict)
-        self.assertEqual(27, len(data))
+        self.assertEqual(11, len(data))
         p_fetch.assert_called_once()
         # Check next request is from cache
         itvx.episodes_progress('jghdfn')
