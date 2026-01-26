@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import os
+import sys
 import json
 import socket
 import time
@@ -57,7 +58,7 @@ CHANNELS = {
 
 
 class ChannelSchedule(Sequence):
-    """Class containing programme information of a single channel in JSON-EPG
+    """Class containing programme information of a single TV channel in JSON-EPG
     format.
 
     """
@@ -147,6 +148,7 @@ class ChannelSchedule(Sequence):
 
 class Epg(MutableMapping):
     """Container to hold the schedules of several channels."""
+
     def __init__(self):
         self._chan_schedules = {}
 
@@ -197,7 +199,7 @@ class Epg(MutableMapping):
         """Add programmes from `new_epg` that start later than the last programmes already
          in the EPG. Add channels from new_epg if not present in the current EPG.
 
-         Earlier programmes are disregarded.
+         Earlier programmes from `new_epg` are disregarded.
 
          """
         if not isinstance(new_epg, Epg):
@@ -268,7 +270,13 @@ class IPTVManager:
     @via_socket
     def send_epg(self):
         """Return JSON-EPG formatted python data structure to IPTV Manager"""
-        schedules = get_full_schedule().json_epg
+
+        # Bisect with parameter 'key' was only introduced in python 3.10.
+        # Revert to the old way of getting EPG on older python versions.
+        if sys.version_info.minor > 9:
+            schedules = get_full_schedule().json_epg
+        else:
+            schedules = itv_schedule().json_epg
         epg_data = {CHANNELS[k]['id']: v for k, v in schedules.items()}
         return dict(version=1, epg=epg_data)
 
