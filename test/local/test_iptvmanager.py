@@ -10,6 +10,7 @@ fixtures.global_setup()
 import json
 import time
 import unittest
+from collections import namedtuple
 from unittest.mock import MagicMock, patch, mock_open
 from datetime import datetime, date, timezone, timedelta
 
@@ -34,6 +35,7 @@ class TestIptvmanager(unittest.TestCase):
                 self.assertTrue(is_not_empty(chan[key], str))
 
     def test_send_epg(self):
+        VersInfo = namedtuple('VersInfo', ['major', 'minor', 'micro'])
         epg_data = {
             'ITV1': [{'start': "23:23", 'end': '12:43', 'title': 'my title', 'description': ''}],
             'ITV2': [{'start': "23:23", 'end': '12:43', 'title': 'his title', 'description': ''}],
@@ -43,14 +45,28 @@ class TestIptvmanager(unittest.TestCase):
         mocked_socket = MagicMock()
         mocked_socket.sendall = MagicMock()
         with patch('socket.socket', return_value=mocked_socket):
-            with patch('resources.lib.iptvmanager.get_full_schedule', return_value=epg_obj):
-                iptvm = iptvmanager.IPTVManager(port=10)
-                iptvm.send_epg()
+            with patch('sys.version_info', new=VersInfo(3, 10, 0)):
+                with patch('resources.lib.iptvmanager.get_full_schedule', return_value=epg_obj) as p_full_schedule:
+                    iptvm = iptvmanager.IPTVManager(port=10)
+                    iptvm.send_epg()
 
-        mocked_socket.sendall.assert_called_once()
-        call_dta = json.loads(mocked_socket.sendall.call_args[0][0])
-        self.assertEqual(1, call_dta['version'])
-        self.assertListEqual(list(epg_data.values()), list(call_dta['epg'].values()))
+                p_full_schedule.assert_called_once()
+                mocked_socket.sendall.assert_called_once()
+                call_dta = json.loads(mocked_socket.sendall.call_args[0][0])
+                self.assertEqual(1, call_dta['version'])
+                self.assertListEqual(list(epg_data.values()), list(call_dta['epg'].values()))
+
+            # Only itv schedule on python < 3.10.
+            mocked_socket.reset_mock()
+            with patch('sys.version_info', new=VersInfo(3, 9, 12)):
+                with patch('resources.lib.iptvmanager.get_full_schedule', return_value=epg_obj) as p_full_schedule:
+                    with patch('resources.lib.iptvmanager.itv_schedule', return_value=epg_obj) as p_itv_schedule:
+                        iptvm = iptvmanager.IPTVManager(port=10)
+                        iptvm.send_epg()
+
+                p_full_schedule.assert_not_called()
+                p_itv_schedule.assert_called_once()
+                mocked_socket.sendall.assert_called_once()
 
     @patch('json.dumps', side_effect=ValueError)
     def test_send_with_error(self, _):
