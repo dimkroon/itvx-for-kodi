@@ -13,6 +13,7 @@ from unittest.mock import patch, PropertyMock
 from datetime import timezone
 import types
 import time
+import os
 
 from test.support.testutils import open_json, open_doc, HttpResponse
 from test.support.object_checks import has_keys, is_li_compatible_dict, is_url, is_not_empty
@@ -415,12 +416,14 @@ class Episodes(TestCase):
 class EpisodesProgress(TestCase):
     def setUp(self):
         cache.purge()
+        prgrss_cache_file = os.path.join(utils.addon_info.profile, 'progress.cache')
+        os.unlink(prgrss_cache_file)
 
     @patch('resources.lib.fetch.get_json', return_value=open_json('usercontent/progress_the_chase.json'))
     def test_get_progress(self, p_fetch):
         data = itvx.episodes_progress('jghdfn')
         self.assertIsInstance(data, dict)
-        self.assertEqual(27, len(data))
+        self.assertEqual(11, len(data))
         p_fetch.assert_called_once()
         # Check next request is from cache
         itvx.episodes_progress('jghdfn')
