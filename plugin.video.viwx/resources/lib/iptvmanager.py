@@ -5,10 +5,9 @@
 #  See LICENSE.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from __future__ import annotations
-from test.support import fixtures
-fixtures.global_setup()
 
 import os
+import sys
 import json
 import socket
 import time
@@ -42,8 +41,8 @@ CHANNELS = {
              'preset': 2},
     'ITVBe': {'id': 'viwx.itvbe',
               'name': 'ITV Quiz',
-              'logo': 'https://images.ctfassets.net/bd5zurrrnk1g/'
-                      '6Mul5JVrb06pRu8bNDgIAe/b5309fa32322cc3db398d25e523e2b2e/itvBe.png?w=512',
+              'logo': 'https://images.ctfassets.net/bd5zurrrnk1g/6P6qsqdjIJOlumDK8mDP0P/'
+                      '90e45b5246fbc029d9c098e88bc5c2a6/ITV_Quiz-ITVX__mono_white.png',
               'preset': 3},
     'ITV3': {'id': 'viwx.itv3',
              'name': 'ITV3',
@@ -59,7 +58,7 @@ CHANNELS = {
 
 
 class ChannelSchedule(Sequence):
-    """Class containing programme information of a single channel in JSON-EPG
+    """Class containing programme information of a single TV channel in JSON-EPG
     format.
 
     """
@@ -149,6 +148,7 @@ class ChannelSchedule(Sequence):
 
 class Epg(MutableMapping):
     """Container to hold the schedules of several channels."""
+
     def __init__(self):
         self._chan_schedules = {}
 
@@ -199,7 +199,7 @@ class Epg(MutableMapping):
         """Add programmes from `new_epg` that start later than the last programmes already
          in the EPG. Add channels from new_epg if not present in the current EPG.
 
-         Earlier programmes are disregarded.
+         Earlier programmes from `new_epg` are disregarded.
 
          """
         if not isinstance(new_epg, Epg):
@@ -270,7 +270,13 @@ class IPTVManager:
     @via_socket
     def send_epg(self):
         """Return JSON-EPG formatted python data structure to IPTV Manager"""
-        schedules = get_full_schedule().json_epg
+
+        # Bisect with parameter 'key' was only introduced in python 3.10.
+        # Revert to the old way of getting EPG on older python versions.
+        if sys.version_info.minor > 9:
+            schedules = get_full_schedule().json_epg
+        else:
+            schedules = itv_schedule().json_epg
         epg_data = {CHANNELS[k]['id']: v for k, v in schedules.items()}
         return dict(version=1, epg=epg_data)
 

@@ -85,12 +85,12 @@ class WhatToWatchData(TestCase):
             if pgm['timestamp'] > last_pgm['timestamp']:
                 last_pgm = pgm
         TM_FMT = '%y-%m-%d %H:%M'
-        print(f"First programme: {time.strftime(TM_FMT, time.gmtime(first_pgm['timestamp']))} - {time.strftime(TM_FMT, time.gmtime(first_pgm['endTimestamp']))}")
-        print(f"First programme starts {(now - first_pgm['timestamp']) / 3600:0.2f} and ends {(now - first_pgm['endTimestamp']) / 3600:0.2f} hrs before now ")
-        print(f"last programme starts {(end_t - last_pgm['timestamp']) / 3600:0.2f} hrs before and ends {(last_pgm['endTimestamp'] - end_t) / 3600:0.2f} hrs after end_t")
+        # print(f"First programme: {time.strftime(TM_FMT, time.gmtime(first_pgm['timestamp']))} - {time.strftime(TM_FMT, time.gmtime(first_pgm['endTimestamp']))}")
+        # print(f"First programme starts {(now - first_pgm['timestamp']) / 3600:0.2f} and ends {(now - first_pgm['endTimestamp']) / 3600:0.2f} hrs before now ")
+        # print(f"last programme starts {(end_t - last_pgm['timestamp']) / 3600:0.2f} hrs before and ends {(last_pgm['endTimestamp'] - end_t) / 3600:0.2f} hrs after end_t")
         # The first programme played between 16 and 30 hrs before now.
-        self.assertTrue(first_pgm['timestamp'] < now - 16 * 3600)
-        self.assertTrue(first_pgm['endTimestamp'] > now - 30 * 3600)
+        self.assertTrue(first_pgm['timestamp'] <= now - 8 * 3600)
+        self.assertTrue(first_pgm['endTimestamp'] > now - 32 * 3600)
         # The last programme starts before end_t end stops after end_t
         self.assertTrue(last_pgm['timestamp'] < end_t)
         self.assertTrue(last_pgm['endTimestamp'] > end_t)

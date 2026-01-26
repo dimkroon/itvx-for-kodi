@@ -553,3 +553,49 @@ class ParseLastWatched(unittest.TestCase):
         self.assertIsInstance(show['ctx_mnu'], list)
         for item in show['ctx_mnu']:
             self.assertIsInstance(item, tuple)
+
+    def test_parse_viewall(self):
+        slider_data = {
+            'header': {
+                'linkHref': '/watch/collections/some_collection.html',
+                'linkText': "My Test Link"
+            }
+        }
+        item = parsex.parse_view_all(deepcopy(slider_data))
+        self.assertEqual('collection', item['type'])
+        self.assertTrue('url' in item['show']['params'])
+        self.assertEqual('My Test Link', item['show']['label'])
+
+        data = deepcopy(slider_data)
+        data['header']['linkHref'] = '/watch/categories/some_category.html'
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('category', item['type'])
+        self.assertTrue('path' in item['show']['params'])
+        self.assertEqual('My Test Link', item['show']['label'])
+
+        # Invalid and non-existing links
+        data = deepcopy(slider_data)
+        data['header']['linkHref'] = '/watch/some_programme.html'
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+        data['header']['linkHref'] = ''
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+        data['header']['linkHref'] = None
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+        del data['header']['linkHref']
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertIsNone(item)
+
+        # Missing and empty linkText
+        data = deepcopy(slider_data)
+        data['header']['linkText'] = ''
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('View All', item['show']['label'])
+        data['header']['linkText'] = None
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('View All', item['show']['label'])
+        del data['header']['linkText']
+        item = parsex.parse_view_all(deepcopy(data))
+        self.assertEqual('View All', item['show']['label'])
