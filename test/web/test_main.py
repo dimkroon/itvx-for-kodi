@@ -133,7 +133,7 @@ class TestGetProductions(unittest.TestCase):
 
     def test_get_productions_of_a_paid_programme(self):
         """Productions of a paid programme"""
-        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/wallander/10a2176')
+        items = main.list_productions(MagicMock(), 'https://www.itv.com/watch/new-tricks/10a1333')
         self.assertGreater(len(items), 1)
 
     def test_get_productions_bad_girls(self):

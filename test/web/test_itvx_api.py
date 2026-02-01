@@ -882,11 +882,11 @@ class Playlists(unittest.TestCase):
 
     def test_playlist_catchup_audio_described(self):
         # Request playlist of Shardlake S1E1 without audio described in featurest
-        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', False)
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', 'web', False)
         manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
         self.assertTrue('VAR075-HD-S.ism' in manifest_url)
         # Now request the same playlist *with* audio described in featurest
-        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', True)
+        resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', 'web', True)
         manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
         self.assertTrue('VAR075-AD-HD-S.ism' in manifest_url)
 
@@ -902,7 +902,8 @@ class Playlists(unittest.TestCase):
                 self.assertEqual(1080, max_res)
 
     def test_manifest_vod_audio_described(self):
-        strm_data = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', True)
+        strm_data = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001',
+                                              audio_described=True)
         mpd_url = strm_data['Playlist']['Video']['MediaFiles'][0]['Href']
         resp = requests.get(mpd_url, headers=self.manifest_headers, timeout=10)
         manifest = resp.text

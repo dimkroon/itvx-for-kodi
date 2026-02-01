@@ -726,11 +726,11 @@ class WatchPages(unittest.TestCase):
                 check_series(self, series, programme_data['title'])
 
     def test_premium_episode_page(self):
-        url = 'https://www.itv.com/watch/downton-abbey/1a8697/1a8697a0001'
+        url = 'https://www.itv.com/watch/new-tricks/10a1333/10a1333a0001'
         page = fetch.get_document(url)
         # testutils.save_doc(page, 'html/paid_episode_downton-abbey-s1e1.html')
         data = parsex.scrape_json(page)
-        # testutils.save_json(data, 'html/paid_episode_downton-abbey-s1e1.json')
+        # testutils.save_json(data, 'html/paid_programme.json')
         programme_data = data['programme']
         check_programme(self, programme_data)
         self.assertListEqual(['PAID'], programme_data['tier'])

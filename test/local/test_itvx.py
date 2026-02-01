@@ -346,12 +346,12 @@ class Episodes(TestCase):
         self.assertEqual(len(series_listing), 6)
         self.assertTrue(is_not_empty(programme_id, str))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_programme.json'))
     def test_paid_episodes(self, _):
         series_listing, programme_id = itvx.episodes('asd')
         self.assertIsInstance(series_listing, dict)
-        self.assertEqual(6, len(series_listing))
-        self.assertEqual(7, len(series_listing['1']['episodes']))
+        self.assertEqual(13, len(series_listing))
+        self.assertEqual(6, len(series_listing['1']['episodes']))
         self.assertTrue(is_not_empty(programme_id, str))
 
     @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/series_miss-marple_data.json'))
@@ -484,7 +484,7 @@ class GetPLaylistUrl(TestCase):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
 
-    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_episode_downton-abbey-s1e1.json'))
+    @patch('resources.lib.itvx.get_page_data', return_value=open_json('html/paid_programme.json'))
     def test_get_playlist_from_premium_episode(self, _):
         result = itvx.get_playlist_url_from_episode_page('page')
         self.assertTrue(is_url(result))
