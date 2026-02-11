@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2024-2025 Dimitri Kroon.
+#  Copyright (c) 2024-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from __future__ import annotations
 
@@ -450,16 +450,19 @@ def itv_schedule(from_date: date = None):
     else:
         start_day = today - timedelta(days=7)
     last_day = today + timedelta(days=8)
-    itv_epg = Epg()
+    # Ensure not to use extending en filtering on Epg or ChannelSchedule objects, so
+    # this function can still run as fallback on python < 3.10
+    programmes = {}
     while start_day < last_day:
         page_data = get_page_data('/watch/tv-guide/' + start_day.strftime('%Y-%m-%d'))
         guide = page_data['tvGuideData']
-        day_epg = Epg()
         for chan_name, progr_list in guide.items():
-            programmes = (filter(None, (parse_itv_programme(progr) for progr in progr_list)))
-            day_epg.add_schedule(ChannelSchedule(chan_name, programmes))
-        itv_epg.extend(day_epg)
+            chan_pgms = programmes.setdefault(chan_name, [])
+            chan_pgms.extend(filter(None, (parse_itv_programme(progr) for progr in progr_list)))
         start_day += one_day
+    itv_epg = Epg()
+    for chan_name, pgm_list in programmes.items():
+        itv_epg.add_schedule(ChannelSchedule(chan_name, pgm_list))
     return itv_epg
 
 
