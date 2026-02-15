@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
@@ -330,7 +330,8 @@ def check_short_form_item(item):
     misses_keys(item, 'href', 'isPaid', 'tier', 'imagePresets')
 
     # As of 2026-01 flag if other types are still present in shortform-like sliders
-    assert (item['contentType'] in ('shortform', )) #'episode', 'fastchannelspot'))
+    # Type episode found 2026-02: ITV news at ten in heroAndLatest of cat News.
+    assert (item['contentType'] in ('shortform', 'episode')) #, 'fastchannelspot'))
 
     if item['contentType'] == 'fastchannelspot':
         assert (item['channel'].startswith('fast'))
