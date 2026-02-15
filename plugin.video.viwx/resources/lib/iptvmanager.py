@@ -256,7 +256,7 @@ class IPTVManager:
     @via_socket
     def send_channels(self):
         """Return JSON-STREAMS formatted python data structure to IPTV Manager"""
-        callback_ref = Resolver.ref('resources.lib.main:play_stream_live')
+        callback_ref = Resolver.ref('resources/lib/main:play_stream_live')
         chan_list = [
             {
                 'id': chan_data.get('id'),
