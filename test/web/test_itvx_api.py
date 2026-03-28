@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
@@ -697,9 +697,9 @@ class Playlists(unittest.TestCase):
         post_data['client']['supportsAdPods'] = True
 
         if stream_type == 'live':
-            post_data['variantAvailability']['featureset'] = features_live
+            post_data['variantAvailability']['featureset'] = copy.deepcopy(features_live)
         else:
-            post_data['variantAvailability']['featureset'] = features_catchup
+            post_data['variantAvailability']['featureset'] = copy.deepcopy(features_catchup)
         return post_data
 
     def get_playlist_live(self, channel, platform='freeview', query_str=''):
@@ -884,7 +884,7 @@ class Playlists(unittest.TestCase):
         # Request playlist of Shardlake S1E1 without audio described in featurest
         resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', 'web', False)
         manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']
-        self.assertTrue('VAR075-HD-S.ism' in manifest_url)
+        self.assertTrue('VAR075-HD-S.ism' in manifest_url, f'manifest_url={manifest_url}')
         # Now request the same playlist *with* audio described in featurest
         resp = self.get_playlist_catchup('https://magni.itv.com/playlist/itvonline/ITV/10_6658_0001.001', 'web', True)
         manifest_url = resp['Playlist']['Video']['MediaFiles'][0]['Href']

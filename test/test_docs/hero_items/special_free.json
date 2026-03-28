@@ -1,60 +1,60 @@
 {
-  "Dev_Comment": "Special - Free 2025-12-19 01:21",
-  "audioDescribed": true,
-  "contentType": "special",
-  "duration": "48m",
-  "genre": [
-    "Documentaries & Lifestyle"
-  ],
-  "contentInfo": [
-    "Docs & Lifestyle",
-    "Travel & Adventure",
-    "48m"
-  ],
-  "title": "Accidental Tourist",
-  "titleSlug": "accidental-tourist",
-  "partnership": null,
-  "contentOwner": null,
-  "dateTime": "2025-12-14T21:00:00Z",
-  "description": "Ant & Dec are shoving Stephen Mulhern out of his comfort zone! The man who loves routine - and hates the unknown - is heading east for a crash course in chaos. Buckle up\u2026",
-  "descriptionShort": "Ant & Dec are shoving Stephen Mulhern out of his comfort zone! ",
-  "genres": [
-    {
-      "id": "FACTUAL",
-      "name": "Documentaries & Lifestyle"
-    }
-  ],
-  "subgenres": [
-    {
-      "id": "TRAVEL_ADVENTURE_AND_EXPLORATION",
-      "name": "Travel & Adventure"
-    },
-    {
-      "id": "ENTERTAINMENT",
-      "name": "Entertainment"
-    }
-  ],
-  "imageTemplate": "https://ovp.itv.com/v2/images/special/59g226r/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
-  "titleCCId": "59g226r",
-  "brandCCId": null,
-  "programmeId": "10/7422",
-  "encodedProgrammeId": {
-    "letterA": "10a7422",
-    "underscore": "10_7422"
-  },
-  "encodedEpisodeId": {
-    "letterA": "10a5963a0001",
-    "underscore": "10_5963_0001"
-  },
-  "ctaLabel": "Watch Episode",
-  "ariaLabel": "Watch the episode, Accidental Tourist",
-  "isPaid": false,
-  "attribution": {
+    "Dev_Comment": "Special - Free 2026-03-29 00:42",
+    "audioDescribed": true,
+    "contentType": "special",
+    "duration": "47m",
+    "genre": [
+        "Documentaries & Lifestyle"
+    ],
+    "contentInfo": [
+        "Docs & Lifestyle",
+        "True Crime",
+        "47m"
+    ],
+    "title": "WhatsApp Obsession: The Murder of Stephanie Hansen",
+    "titleSlug": "whatsapp-obsession-the-murder-of-stephanie-hansen",
     "partnership": null,
-    "contentOwner": null
-  },
-  "strapline": {
-    "text": "Just added - stream it now ",
-    "variant": "default"
-  }
+    "contentOwner": null,
+    "dateTime": "2026-03-24T21:00:00Z",
+    "description": "Obsession, control & betrayal. This powerful true-crime documentary tells the story of Stephanie Hansen, a young woman who was murdered at the hands of her fixated flatmate.",
+    "descriptionShort": "Obsession, control & betrayal - a powerful true crime documentary",
+    "genres": [
+        {
+            "id": "FACTUAL",
+            "name": "Documentaries & Lifestyle"
+        }
+    ],
+    "subgenres": [
+        {
+            "id": "TRUE_CRIME",
+            "name": "True Crime"
+        },
+        {
+            "id": "DOCUMENTARY",
+            "name": "Documentary"
+        }
+    ],
+    "imageTemplate": "https://ovp.itv.com/v2/images/special/hwcdphq/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "titleCCId": "hwcdphq",
+    "brandCCId": null,
+    "programmeId": "10/6785/0001B",
+    "encodedProgrammeId": {
+        "letterA": "10a6785a0001B",
+        "underscore": "10_6785_0001B"
+    },
+    "encodedEpisodeId": {
+        "letterA": "10a6785a0001",
+        "underscore": "10_6785_0001"
+    },
+    "ctaLabel": "Watch Episode",
+    "ariaLabel": "Watch the episode, WhatsApp Obsession: The Murder of Stephanie Hansen",
+    "isPaid": false,
+    "attribution": {
+        "partnership": null,
+        "contentOwner": null
+    },
+    "strapline": {
+        "text": "Just added - stream it now",
+        "variant": "default"
+    }
 }

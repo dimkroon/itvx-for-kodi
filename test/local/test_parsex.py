@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
@@ -52,7 +52,8 @@ class ParseSimulcastItem(unittest.TestCase):
         else:
             self.assertIsInstance(item['ctx_mnu'][0], tuple)
             cmd = item['ctx_mnu'][0][1]
-            self.assertTrue(cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
+            self.assertTrue(
+                cmd.startswith("PlayMedia(plugin://plugin.video.viwx/resources/lib/main/play_stream_live/?"))
             self.assertTrue('start_time=' in cmd)
 
     def test_simucast_hero(self):
@@ -174,13 +175,13 @@ class Generic(unittest.TestCase):
         self.assertEqual(1, len(obj['ctx_mnu']))
         self.assertTrue('list_productions' in obj['ctx_mnu'][0][1])
 
-        # # An episode item's context menu 'view all episodes'.
-        # item = deepcopy(data['heroContent'][8])
-        # self.assertEqual('episode', item['contentType'])
-        # obj = parsex.parse_hero_content(item)
-        # self.assertIsInstance(obj['ctx_mnu'], list)
-        # self.assertEqual(1, len(obj['ctx_mnu']))
-        # self.assertTrue('list_productions' in obj['ctx_mnu'][0][1])
+        # An episode item's context menu 'view all episodes'.
+        item = deepcopy(data['heroContent'][7])
+        self.assertEqual('episode', item['contentType'])
+        obj = parsex.parse_hero_content(item)
+        self.assertIsInstance(obj['ctx_mnu'], list)
+        self.assertEqual(1, len(obj['ctx_mnu']))
+        self.assertTrue('list_productions' in obj['ctx_mnu'][0][1])
 
         # An item of unknown type
         item = deepcopy(data['heroContent'][0])
@@ -324,7 +325,7 @@ class Generic(unittest.TestCase):
 
     def test_get_hero_cta_label(self):
         result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'S1: E2 - episode 2'})
-        self.assertEqual( 'episode 2', result)
+        self.assertEqual('episode 2', result)
         result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'S1:E2 - episode 2'})
         self.assertEqual('episode 2', result)
         result = parsex._get_hero_cta_label({'label': 'watch now', 'episodeLabel': 'episode 2'})
@@ -333,6 +334,7 @@ class Generic(unittest.TestCase):
         self.assertEqual('watch now', result)
         result = parsex._get_hero_cta_label({'label': '', 'episodeLabel': ''})
         self.assertEqual('', result)
+        # noinspection PyTypeChecker
         result = parsex._get_hero_cta_label('episode title')
         self.assertEqual('', result)
 
@@ -366,7 +368,6 @@ class Generic(unittest.TestCase):
             item = parsex.parse_search_result(result_item)
             has_keys(item, 'type', 'show')
             is_li_compatible_dict(self, item['show'])
-
 
         # unknown entity type
         search_result = data['results'][0]
@@ -519,6 +520,7 @@ class Generic(unittest.TestCase):
         data['header']['linkHref'] = ''
         item = parsex.parse_view_all(deepcopy(data))
         self.assertIsNone(item)
+        # noinspection PyTypeChecker
         data['header']['linkHref'] = None
         item = parsex.parse_view_all(deepcopy(data))
         self.assertIsNone(item)
@@ -531,6 +533,7 @@ class Generic(unittest.TestCase):
         data['header']['linkText'] = ''
         item = parsex.parse_view_all(deepcopy(data))
         self.assertEqual('View All', item['show']['label'])
+        # noinspection PyTypeChecker
         data['header']['linkText'] = None
         item = parsex.parse_view_all(deepcopy(data))
         self.assertEqual('View All', item['show']['label'])

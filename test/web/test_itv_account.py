@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from test.support import fixtures
 fixtures.global_setup()
@@ -102,8 +102,8 @@ class TestTokens(unittest.TestCase):
         self.assertEqual('https://auth.itv.com', user_data['iss'])  # issuer
         self.assertTrue(testutils.is_uuid(user_data['sub']))
         self.assertAlmostEqual(self.now, user_data['iat'], delta=5)
-        # refresh token expires after 1 year (31536000 sec.), allow a difference of a leap day
-        self.assertAlmostEqual(user_data['exp'], self.now + 365 * 86400, delta=86400)
+        # refresh token expires after 2 years and a day, allow a difference of a leap day
+        self.assertAlmostEqual(user_data['exp'], self.now + 2 * 365 * 86400, delta=86400)
         self.assertEqual('content', user_data['scope'])
         self.assertAlmostEqual(self.now, user_data['auth_time'], delta=5)  # timestamp of moment of authentication
 

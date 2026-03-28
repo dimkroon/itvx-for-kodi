@@ -1,0 +1,49 @@
+{
+    "Dev_Comment": "Episode - Free 2026-03-28 22:43",
+    "audioDescribed": true,
+    "contentType": "episode",
+    "title": "Celebrity Sabotage",
+    "titleSlug": "celebrity-sabotage",
+    "series": 1,
+    "episode": 2,
+    "contentInfo": [
+        "Ent & Reality",
+        "Reality"
+    ],
+    "genres": [
+        {
+            "id": "ENTERTAINMENT",
+            "name": "Entertainment & Reality"
+        }
+    ],
+    "subgenres": [
+        {
+            "id": "REALITY",
+            "name": "Reality"
+        }
+    ],
+    "ctaLabel": "Series 1, Episode 2",
+    "ariaLabel": "Watch Now",
+    "partnership": null,
+    "contentOwner": null,
+    "description": "Celebs take on 'Couple Goals', a fake love-themed show hosted by Matt and Emma Willis, who are totally in on the whole thing and even get set their own jaw-dropping mission.",
+    "descriptionShort": "Celebs take on a fake love-themed show hosted by Matt and Emma Willis.",
+    "imageTemplate": "https://ovp.itv.com/v2/images/episode/tc71g36/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "brandImageTemplate": "https://ovp.itv.com/v2/images/programme/m4n23hs/itv_hub/{class}/{aspect_ratio}?distributionPartner={distributionPartner}&fallback={fallback}&treatment={treatment}&w={width}&h={height}&q={quality}&blur={blur}&bg={bg}",
+    "programmeId": "10/5842",
+    "encodedProgrammeId": {
+        "letterA": "10a5842",
+        "underscore": "10_5842"
+    },
+    "encodedEpisodeId": {
+        "letterA": "10a5842a0003",
+        "underscore": "10_5842_0003"
+    },
+    "isPaid": false,
+    "attribution": {
+        "partnership": null,
+        "contentOwner": null
+    },
+    "brandCCId": "m4n23hs",
+    "titleCCId": "tc71g36"
+}

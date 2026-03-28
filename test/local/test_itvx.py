@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
@@ -121,7 +121,7 @@ class MainPageItem(TestCase):
         with patch('resources.lib.itvx.get_page_data', return_value=page_data):
             items = list(itvx.main_page_items())
             items_count = len(items)
-            self.assertEqual(8, items_count)       # test data contains 6 hero items and sliders trending and news.
+            self.assertEqual(10, items_count)       # test data contains 8 hero items and sliders 'trending' and 'news'.
             for item in items:
                 check_item(self, item)
         # Hero item of unknown type is disregarded.

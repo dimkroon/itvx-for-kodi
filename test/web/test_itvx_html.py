@@ -1,6 +1,6 @@
 
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
@@ -798,7 +798,10 @@ class TvGuide(unittest.TestCase):
     headers = {
         # Without these headers the requests will time out.
         'user-agent': fetch.USER_AGENT,
+        'Accept-Language': 'en-GB,en;q=0.5',
         'Origin': 'https: /www.itv.com',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-site',
     }
 
     def check_guide(self, data):
@@ -853,7 +856,7 @@ class TvGuide(unittest.TestCase):
         today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
         url = 'https://www.itv.com/watch/tv-guide/' + today
         query = {'position': 'end'}
-        page = requests.get(url, headers=self.headers, timeout=3).text
+        page = requests.get(url, headers=self.headers, timeout=(3, 7)).text
         schedule_data = parsex.scrape_json(page)
         # testutils.save_json(schedule_data, 'schedule/html_schedule.json')
         self.check_guide(schedule_data['tvGuideData'])

@@ -223,12 +223,13 @@ def check_live_stream_info(playlist, full_hd=False):
         if full_hd:
             # Freeview live streams are all non-dar, even if supportsAdPods is True
             assert strm['IsDar'] is False
-            assert 'ctv.mpd' in strm['StartAgainUrl']
+            assert 'ctv.mpd' in strm['StartAgainUrl'], f"StartAgainUrl={strm['StartAgainUrl']}"
         else:
             url = strm['StartAgainUrl']
             assert ('dotcom.mpd' in url
                     or 'dotcom-low.mpd' in url
                     or 'ctv-low.mpd' in url)
+
 
 def has_adverts(playlist):
     breaks = playlist['ContentBreaks']
