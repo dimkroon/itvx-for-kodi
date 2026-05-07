@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from test.support import fixtures
 fixtures.global_setup()
@@ -62,12 +62,43 @@ class TestKodiUtils(unittest.TestCase):
                    return_value='{"error":{"code":-32602,"message":"Invalid params."},"id": 1,"jsonrpc": "2.0"}'):
             self.assertRaises(ValueError, kodi_utils.get_system_setting, "my.setting")
 
+
+class LocalTimezone(unittest.TestCase):
+    def setUp(self):
+        # Delete the cached ZoneInfo object.
+        try:
+            delattr(kodi_utils.local_timezone, 'tz_info')
+        except AttributeError:
+            pass
+
     def test_local_time_zone(self):
+        # normal request
         tz = kodi_utils.local_timezone()
         self.assertIsInstance(tz, utils.ZoneInfo)
-        with patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError):
-            tz = kodi_utils.local_timezone()
-            self.assertIsInstance(tz, utils.ZoneInfo)
+
+    @patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError)
+    def test_kodi_settings_error(self, mocked_setting_get):
+        # Error getting Kodi setting
+        tz = kodi_utils.local_timezone()
+        self.assertIsInstance(tz, utils.ZoneInfo)
+        mocked_setting_get.assert_called_once()
+
+    @patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError)
+    def test_invalid_time_zone(self, mocked_setting_get):
+        # Test a value that was observed being returned by osmc after an update.
+        # This causes ZoneInfo to raise ZoneInfoNotFoundError, a subclass of KeyError
+        tz = kodi_utils.local_timezone()
+        self.assertIsInstance(tz, utils.ZoneInfo)
+        mocked_setting_get.assert_called_once()
+
+    @patch('resources.lib.kodi_utils.get_system_setting', side_effect=ValueError)
+    def test_function_caches_zoneinfo(self, mocked_setting_get):
+        # Second call is retrieved from cache
+        tz1 = kodi_utils.local_timezone()
+        mocked_setting_get.assert_called_once()
+        tz2 = kodi_utils.local_timezone()
+        self.assertIs(tz1, tz2)
+        mocked_setting_get.assert_called_once()
 
 
 @patch('xbmcgui.Dialog.ok')

@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 from __future__ import annotations
 import json
@@ -131,16 +131,13 @@ def get_system_setting(setting_id):
         raise ValueError('system setting error: {}'.format(msg))
 
 
-_local_timezone = None
-
-
 def local_timezone() -> ZoneInfo:
-    global _local_timezone
-    if not _local_timezone:
+    ltz = getattr(local_timezone, 'tz_info', None)
+    if ltz is None:
         try:
-            _local_timezone = ZoneInfo(get_system_setting('locale.timezone'))
-        except ValueError:
+            local_timezone.tz_info = ltz = ZoneInfo(get_system_setting('locale.timezone'))
+        except (ValueError, KeyError):
             # To be Matrix compatible
             from tzlocal import get_localzone
-            _local_timezone = get_localzone()
-    return _local_timezone
+            local_timezone.tz_info = ltz = get_localzone()
+    return ltz
