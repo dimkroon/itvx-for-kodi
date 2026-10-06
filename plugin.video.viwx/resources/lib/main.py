@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
 #  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
@@ -572,11 +572,14 @@ def play_clip(plugin, ccid, is_sport):
     return play_vod(plugin, playlist_url)
 
 
-def play_vod(plugin, playlist_url, set_resume_point=False, has_ad=False):
+@Resolver.register
+def play_vod(plugin, playlist_url, set_resume_point=False, has_ad=False, low_res=False):
+    set_resume_point = str(set_resume_point).lower() == 'true'
+    has_ad = str(has_ad).lower() == 'true'
     fhd_enabled = plugin.setting['FHD_enabled'] == 'true'
     try:
         manifest_url, key_service_url, subtitle_url, stream_type, production_id = itv.get_catchup_urls(
-            playlist_url, fhd_enabled, has_ad)
+            playlist_url, fhd_enabled, has_ad, low_res)
         logger.debug('dash subtitles url: %s', subtitle_url)
     except AccessRestrictedError:
         logger.info('Stream only available with premium account')
@@ -606,6 +609,9 @@ def play_vod(plugin, playlist_url, set_resume_point=False, has_ad=False):
                     'TotalTime': '7200'
                 })
                 logger.info("Resume from %s", resume_time)
+        list_item.setProperties({'viwx.playlist_url': playlist_url,
+                                 'viwx.set_resume_point': str(set_resume_point),
+                                 'viwx.has_ad': str(has_ad)})
         return list_item
 
 

@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2022-2025 Dimitri Kroon.
+#  Copyright (c) 2022-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
@@ -86,7 +86,7 @@ def get_live_urls(url=None, title=None, start_time=None, full_hd=False):
     return dash_url, key_service, None
 
 
-def get_catchup_urls(playlist_url, full_hd=False, has_ad=False):
+def get_catchup_urls(playlist_url, full_hd=False, has_ad=False, low_res=False):
     """Return the urls to the dash stream, key service and subtitles for a particular catchup
     episode and the type of video.
 
@@ -96,14 +96,25 @@ def get_catchup_urls(playlist_url, full_hd=False, has_ad=False):
     stream_data = playlist['Video']
 
     # Select the media with the highest resolution
-    highest_resolution = 0
+
     video_locations = None
     base_url = stream_data.get('Base')
-    for media in stream_data['MediaFiles']:
-        res = int(media.get('Resolution', 0))
-        if res > highest_resolution:
-            video_locations = media
-            highest_resolution = res
+    if low_res:
+        lowest_resolution = 99999
+        for media in stream_data['MediaFiles']:
+            res = int(media.get('Resolution', 0))
+            if res < lowest_resolution:
+                video_locations = media
+                lowest_resolution = res
+        logger.debug('Selected stream with lowest resolution: %s', lowest_resolution)
+    else:
+        highest_resolution = 0
+        for media in stream_data['MediaFiles']:
+            res = int(media.get('Resolution', 0))
+            if res > highest_resolution:
+                video_locations = media
+                highest_resolution = res
+        logger.debug('Selected stream with highest resolution: %s', highest_resolution)
     if video_locations is None:
         # Some items, in particular short news clip, may still have the old format of media files.
         video_locations = stream_data['MediaFiles'][0]

@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
-#  Copyright (c) 2023-2025 Dimitri Kroon.
+#  Copyright (c) 2023-2026 Dimitri Kroon.
 #  This file is part of plugin.video.viwx.
 #  SPDX-License-Identifier: GPL-2.0-or-later
-#  See LICENSE.txt
+#  See LICENSE.txt or https://www.gnu.org/licenses/gpl-2.0.txt
 # ----------------------------------------------------------------------------------------------------------------------
 import threading
 import uuid
@@ -62,6 +62,12 @@ class PlayTimeMonitor(Player):
             return
 
         try:
+            audio = self.getAvailableAudioStreams()
+            logger.debug(f"***** cur audio stream = '{audio}' *********")
+            if not audio:
+                self.restart_low_res()
+                self._status = PlayState.STOPPED
+                return
             self._cur_file = self.getPlayingFile()
             self._playtime = self.getTime()
             self._totaltime = self.getTotalTime()
@@ -72,6 +78,22 @@ class PlayTimeMonitor(Player):
             logger.error("PlayTimeMonitor.onAVStarted:\n", exc_info=True)
             self._playtime = 0
             self._status = PlayState.STOPPED
+
+    def restart_low_res(self):
+        from codequick.support import CallbackRef, build_path
+        from codequick import Resolver
+
+        li = self.getPlayingItem()
+        self.stop()
+        cb = CallbackRef('resources/lib/main/play_vod', Resolver)
+        path = build_path(cb, query={
+            'playlist_url': li.getProperty('viwx.playlist_url'),
+            'set_resume_point': li.getProperty('viwx.set_resume_point') == 'True',
+            'has_ad': li.getProperty('viwx.has_ad') == 'True',
+            'low_res': True
+        })
+        logger.debug('Restarting low resolution playback: "%s"', path)
+        self.play(path)
 
     def onAVChange(self) -> None:
         if self._cur_file and self._cur_file != self.getPlayingFile():
@@ -107,6 +129,7 @@ class PlayTimeMonitor(Player):
         end_t = time.monotonic() + timeout
         while self._status is PlayState.UNDEFINED:
             if time.monotonic() >= end_t:
+                logger.debug("wait_until_playing ended: the video did not start within the timeout of %s sec.", timeout)
                 return False
             if self.monitor.waitForAbort(0.2):
                 logger.debug("wait_until_playing ended: abort requested")
@@ -264,7 +287,7 @@ def playtime_monitor(production_id):
     try:
         player = PlayTimeMonitor(production_id)
         player.initialise()
-        player.wait_until_playing(15)
+        player.wait_until_playing(20)
         player.monitor_progress()
     except Exception as e:
         logger.error("Playtime monitoring aborted due to unhandled exception: %r", e)
