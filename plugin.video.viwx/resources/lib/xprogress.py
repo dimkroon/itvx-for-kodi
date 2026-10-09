@@ -68,8 +68,16 @@ class PlayTimeMonitor(Player):
                 self.restart_low_res()
                 self._status = PlayState.STOPPED
                 return
+            self.initialise()
             self._cur_file = self.getPlayingFile()
             self._playtime = self.getTime()
+            resume_point = self.getPlayingItem().getProperty('ResumeTime')
+            logger.debug("Playing item's start time = '%s',  resume point = '%s'", self._playtime, resume_point)
+            if resume_point:
+                resume_point = float(resume_point)
+                if resume_point - self._playtime > 5:
+                    logger.debug("Forcing resume point to %s sec.", resume_point)
+                    self.seekTime(resume_point)
             self._totaltime = self.getTotalTime()
             self._status = PlayState.PLAYING
             logger.debug("PlayTimeMonitor: total play time = %s", self._totaltime/60)
@@ -80,20 +88,26 @@ class PlayTimeMonitor(Player):
             self._status = PlayState.STOPPED
 
     def restart_low_res(self):
-        from codequick.support import CallbackRef, build_path
         from codequick import Resolver
+        from resources.lib.main import play_vod
+        from xbmc import PlayList
 
         li = self.getPlayingItem()
-        self.stop()
-        cb = CallbackRef('resources/lib/main/play_vod', Resolver)
-        path = build_path(cb, query={
-            'playlist_url': li.getProperty('viwx.playlist_url'),
-            'set_resume_point': li.getProperty('viwx.set_resume_point') == 'True',
-            'has_ad': li.getProperty('viwx.has_ad') == 'True',
-            'low_res': True
-        })
-        logger.debug('Restarting low resolution playback: "%s"', path)
-        self.play(path)
+        new_li = play_vod(Resolver(),
+                          li.getProperty('viwx.playlist_url'),
+                          False,
+                          li.getProperty('viwx.has_ad') == 'True',
+                          True)
+        resume_time = li.getProperty('ResumeTime')
+        logger.debug("Listitem resume time = '%s'", resume_time)
+        if resume_time:
+            new_li.setProperties({'ResumeTime': resume_time,
+                                  'TotalTime': '7200'})
+            logger.debug("New listitem resume time = '%s'", new_li.getProperty('ResumeTime'))
+        logger.debug('Restarting low resolution playback: "%s"', new_li.getPath())
+        PlayList(1).add(new_li.getPath(), new_li)
+        self.playnext()
+        # self.play(new_li.getPath(), new_li)
 
     def onAVChange(self) -> None:
         if self._cur_file and self._cur_file != self.getPlayingFile():
@@ -286,8 +300,8 @@ def playtime_monitor(production_id):
     logger.debug("playtime monitor running from thead %s", threading.current_thread().native_id)
     try:
         player = PlayTimeMonitor(production_id)
-        player.initialise()
-        player.wait_until_playing(20)
+        # player.initialise()
+        player.wait_until_playing(15)
         player.monitor_progress()
     except Exception as e:
         logger.error("Playtime monitoring aborted due to unhandled exception: %r", e)
